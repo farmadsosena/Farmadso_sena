@@ -8,24 +8,30 @@
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/header.css">
-    
+
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Farmadso</title>
 </head>
 
 <body>
-    <?php 
+    <?php
     require_once 'templates/header.html';
     ?>
-
+    <h2>Prueba compra </h2>
     <?php 
+    require_once 'views/pay.php'; 
+    ?>
+    <?php
     require_once 'templates/footer.html';
     ?>
 
     <script src="assets/js/index.js"></script>
     <script src="assets/js/menuDesplegable.js"></script>
     <script src="assets/js/menuHamburguer.js"></script>
+
+    <script src="assets/js/checkAmount.js"></script>
+    <script src="assets/js/paymentProcess.js"></script>
 </body>
 
 </html>
