@@ -1,0 +1,31 @@
+/* reseteo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azulOscuro: #2d57a8;
+    --verdeClaro: #b5ddca;
+    --verdeOscuro: #33a892;
+    --blanco: #fffefe;
+    --grisClaro : #f1f2f5;
+    --azulClaro: #6d93c9;
+    --fuente: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuente);
+}
+
+h1 {
+    color: var(--azulOscuro);
+}
+
+
+
+
+
