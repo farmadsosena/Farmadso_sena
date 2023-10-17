@@ -115,6 +115,277 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
     height: 100%;
 }
 
+
+/* Garaviz */
+#conte{
+    border-top: 1px solid;
+    display: flex;
+    height: 92%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#datos{
+    border-right: 1px solid;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+#moto{
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    
+}
+
+#mot{
+    border: 1px solid;
+    width: 90%;
+    height: 90%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#mo{
+    color: black;
+    font-size: 100px;
+}
+
+
+#nuevoContenido1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#nuevoContenido1,h1{
+    text-align: center;
+}
+
+
+/* Historial */
+#nuevoContenido2{
+    border: 1px solid gold;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    height: 87vh;
+}
+
+.botoneees{
+    border-bottom: 1px solid;
+    width: 100%;
+    flex-direction: row;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#sele{
+    width: 150px;
+}
+
+#codi{
+    width: 200px;
+}
+
+.his{
+    display: flex;
+    flex-direction: row;
+    height: 72vh;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3px;
+    gap: 3vh;
+}
+
+.c{
+    border: 1px solid;
+    border-radius: 12px;
+    width: 70%;
+    height: 35%;
+}
+
+.inf{
+    height: 6rem;
+    margin: 10px;
+    display: flex;
+}
+.logo{
+    border: 1px solid;
+    width: 20%;
+    height: 70%;
+    margin: 10px;
+}
+
+.infff{
+    width: 100%;
+    margin: 10px;
+}
+
+.listo{
+    width: 30%;
+    margin: 10px;
+}
+
+.co{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 82%;
+    font-size: 30px;
+}
+
+#b{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#but{
+    width: 100px;
+    height: 2rem;
+    background-color: #244588;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos para la ventana modal ver Garaviz */
+
+
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+  }
+
+  .modal-contenido {
+    background-color: #fefefe;
+    margin: 6% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70vh;
+    position: relative;
+
+  }
+
+  #cerrarModal {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+/* finaliza */
+  
+.cajja {
+    border: 1px solid;
+    width: 95%; 
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.ti {
+    margin: 10px;
+    text-align: center;
+}
+
+.in {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    margin: 5px 0;
+}
+
+.inn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.un1 {
+    border: 1px solid;
+    width: 30px;
+    height: 20px;
+}
+
+.cajjjja {
+    margin: 10px;
+}
+
+.imaaa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iaam {
+    border: 1px solid;
+    width: 300px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+}
+
+#ce {
+    width: 100px;
+    background-color: darkred;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Fin */
+
+
 /* CONTENEDOR DE LOS PEDIDOS DISPONIBLES */
 
 .notificationsDelivery{
@@ -472,6 +743,148 @@ DE LAS TAREAS*/
         width: 40%;
     }
     
+
+    /* Garaviz */
+
+    .his{
+        overflow: scroll;
+    }
+
+    #task{
+        font-size: 40px;
+        cursor: pointer;
+    }
+    #notification{
+        font-size: 40px;
+        cursor: pointer;
+    }
+    #history{
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    #conte{
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #datos{
+        width: 90%;
+        height: 100%;
+        border: none;
+        border-bottom: 2px solid;
+        gap: 10px;
+    }
+    
+    #moto{
+        width: 100%;
+        height: 100%;
+    
+    }
+
+    #sele{
+        width: 100px;
+    }
+    
+    #codi{
+        width: 100px;
+    }
+
+    .c{
+        font-size: 25px;
+        border: 1px solid;
+        height: 32%;
+        width: 100%;
+    }
+    
+    .inf{
+        border: 1px solid;
+        height: 8rem;
+        margin: 10px;        
+    }
+    .logo{
+        border: 1px solid;
+        width: 100%;
+        height: 70%;
+        margin: 10px;
+    }
+    
+    .infff{
+        font-size: 12px;
+        width: 100%;
+        margin: 10px;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .listo{
+        width: 30%;
+    }
+    
+    .co{
+        font-size: 20px;
+    
+    }
+
+    #lis{
+        color: #09f10d;
+    }
+    
+    .chulo{
+        font-size: 13px;
+    }
+    
+    #b{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .verMasButton{
+        width: 100px;
+        background-color: #288372;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .cajja {
+        max-width: 100%;
+        width: 90%; 
+    }
+
+    .iaam {
+        width: 200px; 
+        height: 150px; 
+    }
+
+    #ce {
+        width: 80px; 
+        font-size: 14px; 
+    }
+
+    .modal-contenido{
+        max-width: 90%;
+        width: 100%;
+        margin: 50px auto;
+    }
+
+
+    .modalVerMas-content{
+        font-size: 14px;
+        width: 90%;
+        margin: 110px auto;
+    }
+
+    /* Fin Garaviz */
+
+
     /* .search{
         display: flex;
         flex-direction: row;
@@ -529,7 +942,7 @@ DE LAS TAREAS*/
     /* CONTENEDOR PRINCIPAL (MAIN) */
     
     .mainDelivery{
-        height: 70vh;
+        height: 71vh;
     }
     
     /* CONTENEDOR PRINCIPAL QUE CONTEDRA EL CONTENEDOR
@@ -769,6 +1182,7 @@ DE LAS TAREAS*/
     width: 100%;
     padding-left: 2vh;
     gap: 2vh;
+    font-size: 10px;
 }
 
 .addressInformation>img{
