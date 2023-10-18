@@ -28,16 +28,16 @@
                 search
             </span>
         </div> -->
-        <span id="task" class="material-symbols-outlined" onclick="showTasks()">
-            quick_reference_all
-        </span>
-        <span id="notification" class="material-symbols-outlined" onclick="showNotifications()">
+        <span id="task" class="material-symbols-outlined" onclick="showTasks()" style="cursor: pointer; user-select: none;">
+          quick_reference_all
+      </span>
+        <span id="notification" class="material-symbols-outlined" onclick="showNotifications()" style="cursor: pointer;  user-select: none;">
             notifications
             </span>
-        <span id="history" class="material-symbols-outlined" onclick="showNuevoContenido2()">
+        <span id="history" class="material-symbols-outlined" onclick="showNuevoContenido2()" style="cursor: pointer;  user-select: none; ">
             history
         </span>
-        <span id="settings" class="material-symbols-outlined" onclick="showNuevoContenido1()">
+        <span id="settings" class="material-symbols-outlined" onclick="showNuevoContenido1()" style="cursor: pointer;  user-select: none;">
             settings
         </span>
     </nav>
@@ -46,27 +46,68 @@
     <main class="mainDelivery">
 
         <!-- contenido para logos de historial y configuracion -->
-        <div id="nuevoContenido1" class="contenido-nuevo" style="display: none">
-            <h1>Detalles Motocicleta</h1>
-    
-            <section id="conte">
-              <section id="datos">
-                <input type="text" name="" id="" placeholder="NUMERO DE PLACA"/>
-                <input type="text" name="" id="" placeholder="TARJETA DE PROPIEDAD"/>
-                <input type="file" name="" id="" />
-              </section>
-    
-    
-              <section id="moto">
-                <div id="mot">
-                  <h1>MOTOCICLETA</h1>
-    
-                  <i id="mo" class="fa-solid fa-motorcycle"></i>
+        <div id="nuevoContenido1" class="contenido-nuevo">
+          <aside class="navConfig">
+            <div class="containerMenuConfig">
+              <div class="EncabezadoNavConfig">
+                <p>Mi cuenta</p>
+              </div>
+              <div class="datosConfig">
+                <p class="LetraGris">Bienvenido:</p>
+                <div class="nameUserConfig">¿Que Deseas Hacer?</div>
+              </div>
+              <div class="optionNavConfig">
+                <p class="LetraGris">Tu Cuenta:</p>
+                <div class="optionGeneralesConfig">
+                  <article class="opcionesConfig" id="Micuenta">
+                    <span class="material-symbols-outlined iconUser">
+                      account_circle
+                    </span>
+                    <p>Mi perfil</p>
+                  </article>
+                  <article class="opcionesConfig" id="Detalles">
+                    <span class="material-symbols-outlined iconUser"> info </span>
+                    <p>Detalles</p>
+                  </article>
                 </div>
-              </section>
-            </section>
-          </div>
-
+              </div>
+              <div class="helpConfig">
+                <p class="LetraGris">Ajustes y Ayuda:</p>
+                <div class="configCont">
+                  <article class="opcionesConfig"><span class="material-symbols-outlined iconUser">
+                    support_agent
+                    </span><p>Contactanos</p></article>
+                  <article class="opcionesConfig"><span class="material-symbols-outlined iconUser">
+                    help
+                    </span><p>Soporte</p></article>
+                  <article class="opcionesConfig" id="CerrarSesion"><span class="material-symbols-outlined iconUser">
+                    do_not_disturb_on
+                    </span><p>Cerrar Sesión</p></article>
+  
+                </div>
+              </div>
+            </div>
+          </aside>
+  
+  
+          <div class="ContenedoresOptionConfig1" id="PerfilConfig">hola</div>
+          <div class="ContenedoresOptionConfig2" id="PerfilConfig">Goku</div>
+          <div class="ContenedoresOptionConfig3" id="PerfilConfig">Vegeta</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        </div>
+  
+  
 
           <div id="nuevoContenido2" class="contenido-nuevo" style="display: none">
             <div class="botoneees">
@@ -424,62 +465,15 @@
     </span>
   </footer>
 
+
+
+  <script src="assets/js/menuNavConfig.js"></script>
   <script src="assets/js/verMasPedidosDisponibles.js"></script>
-  <script>
-    // Recuperar el estado actual al cargar la página
-    window.onload = function () {
-        var currentState = sessionStorage.getItem('currentState');
-        if (currentState === 'notifications') {
-            showNotifications();
-        } else if (currentState === 'tasks') {
-            showTasks();
-        } else if (currentState === 'nuevoContenido1') {
-            showNuevoContenido1();
-        } else if (currentState === 'nuevoContenido2') {
-            showNuevoContenido2();
-        }
-    };
-
-    function showNotifications() {
-        document.getElementById('notificationsSection').style.display = 'block';
-        document.getElementById('tasksSection').style.display = 'none';
-        document.getElementById('nuevoContenido1').style.display = 'none';
-        document.getElementById('nuevoContenido2').style.display = 'none';
-        // Guardar el estado actual
-        sessionStorage.setItem('currentState', 'notifications');
-    }
-
-    function showTasks() {
-        document.getElementById('notificationsSection').style.display = 'none';
-        document.getElementById('tasksSection').style.display = 'block';
-        document.getElementById('nuevoContenido1').style.display = 'none';
-        document.getElementById('nuevoContenido2').style.display = 'none';
-        // Guardar el estado actual
-        sessionStorage.setItem('currentState', 'tasks');
-    }
-
-    function showNuevoContenido1() {
-        document.getElementById('notificationsSection').style.display = 'none';
-        document.getElementById('tasksSection').style.display = 'none';
-        document.getElementById('nuevoContenido1').style.display = 'block';
-        document.getElementById('nuevoContenido2').style.display = 'none';
-        // Guardar el estado actual
-        sessionStorage.setItem('currentState', 'nuevoContenido1');
-    }
-
-    function showNuevoContenido2() {
-        document.getElementById('notificationsSection').style.display = 'none';
-        document.getElementById('tasksSection').style.display = 'none';
-        document.getElementById('nuevoContenido1').style.display = 'none';
-        document.getElementById('nuevoContenido2').style.display = 'block';
-        // Guardar el estado actual
-        sessionStorage.setItem('currentState', 'nuevoContenido2');
-    }
-</script>
+  <script src="assets/js/modal.js"></script>
+<script src="assets/js/navConfigDomi.js"></script>
 </body>
 
 <!-- Garaviz -->
 
-<script src="/assets/js/modal.js"></script>
 
 </html>

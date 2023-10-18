@@ -96,10 +96,10 @@ body{
     font-size: 5vh;
 }
 
-#task:hover, #notification:hover,
+/* #task:hover, #notification:hover,
 #history:hover, #settings:hover{
     background-color: var(--azulClaro);
-}
+} */
 
 /* CONTENEDOR PRINCIPAL (MAIN) */
 
@@ -114,7 +114,9 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
 .mainDeliverySection{
     height: 100%;
 }
-
+.navE{
+    cursor: pointer;
+}
 
 /* Garaviz */
 #conte{
@@ -165,12 +167,121 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
 }
 
 
-#nuevoContenido1{
+
+#nuevoContenido1 {
+    display: flex;
+    width: 100%;
+    height: 88vh;
+  }
+  .navConfig {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+  }
+  .containerMenuConfig {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* ventana de config */
+  .EncabezadoNavConfig {
+    width: 100%;
+    height: 12%;
+    display: flex;
+  }
+  .EncabezadoNavConfig p {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .datosConfig {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .LetraGris {
+    color: gray;
+  }
+  .nameUserConfig {
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-}
+    border-radius: 2px;
+    border-bottom: 1px solid rgb(214, 212, 212);
+  }
+  .optionNavConfig {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  
+  .optionGeneralesConfig {
+    background-color: #fff;
+    width: 100%;
+    height: 90%;
+  }
+  .opcionesConfig {
+    width: 100%;
+    height: 37px;
+    display: flex;
+    border-radius: 2px;
+    border-bottom: 1px solid rgb(214, 212, 212);
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+  }
+  .iconUser {
+    margin-left: 10px;
+    color: var(--azulOscuro);
+  }
+  .helpConfig{
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: end;
+      align-items: start;
+  }
+  .configCont{
+      width: 100%;
+      height: 60%;
+      background-color: #fff;
+  }
+  .ContenedoresOptionConfig1{
+      flex: 1;
+      background-color: var(--azulClaro);
+  }
+  .ContenedoresOptionConfig2{
+      flex: 1;
+      background-color: var(--verdeClaro);
+  }
+  .ContenedoresOptionConfig3{
+      flex: 1;
+      background-color: var(--verdeOscuro);
+  }
+  
+  .contenido-nuevo{
+      display: flex;
+      width: 100%;
+      height: 100%;
+  }
+  #nuevoContenido1{
+      display: flex;
+  }
 
 #nuevoContenido1,h1{
     text-align: center;
@@ -179,15 +290,13 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
 
 /* Historial */
 #nuevoContenido2{
-    border: 1px solid gold;
     display: flex;
     justify-items: center;
     flex-direction: column;
-    height: 87vh;
+    height: 88vh;
 }
 
 .botoneees{
-    border-bottom: 1px solid;
     width: 100%;
     flex-direction: row;
     height: 5rem;
@@ -195,6 +304,7 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
+    border-bottom: 1px solid rgb(214, 212, 212);
 }
 
 #sele{
@@ -208,15 +318,15 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
 .his{
     display: flex;
     flex-direction: row;
-    height: 72vh;
+    height: 77vh;
     overflow-y: scroll;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 3px;
     gap: 3vh;
 }
 
 .c{
+    margin-top: 10px;
     border: 1px solid;
     border-radius: 12px;
     width: 70%;
@@ -699,7 +809,9 @@ DE LAS TAREAS*/
     background-color: #288372;
     box-shadow: 0px 0px 10px  #288372;
 }
-
+.azulClaro{
+    background-color: var(--azulClaro);
+}
 
 
   @media screen and (max-width: 700px){
@@ -741,8 +853,13 @@ DE LAS TAREAS*/
         align-items: center;
         justify-content: flex-end;
         width: 40%;
+        cursor: pointer !important;
+        user-select: none;
     }
-    
+   .navDelivery span{
+    cursor: pointer;
+    user-select: none;
+   }
 
     /* Garaviz */
 
@@ -752,15 +869,12 @@ DE LAS TAREAS*/
 
     #task{
         font-size: 40px;
-        cursor: pointer;
     }
     #notification{
         font-size: 40px;
-        cursor: pointer;
     }
     #history{
         font-size: 40px;
-        cursor: pointer;
     }
 
     #conte{
@@ -927,6 +1041,7 @@ DE LAS TAREAS*/
         align-items: center;
         justify-content: center;
         font-size: 4vh;
+        
     }
 
     #task, #notification,
@@ -934,10 +1049,10 @@ DE LAS TAREAS*/
         display: none;
     }
     
-    #task:hover, #notification:hover,
+    /* #task:hover, #notification:hover,
     #history:hover, #settings:hover{
         background-color: var(--azulClaro);
-    }
+    } */
     
     /* CONTENEDOR PRINCIPAL (MAIN) */
     
@@ -1291,5 +1406,7 @@ DE LAS TAREAS*/
     box-shadow: 0px 0px 10px  #288372;
 }
 
-
+.navConfig{
+    display: none;
+}
 }
