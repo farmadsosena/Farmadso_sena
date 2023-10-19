@@ -766,6 +766,12 @@ DE LAS TAREAS*/
   height: 9vh;
 }
 
+ /* Estilo para ocultar el botón original */
+ input[type="file"] {
+  display: none;
+}
+
+
 .upload,
 .deliver {
   height: 7vh;
@@ -773,6 +779,10 @@ DE LAS TAREAS*/
 }
 
 .upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   background-color: burlywood;
   border: none;
   color: var(--blanco);
