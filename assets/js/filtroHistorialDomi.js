@@ -20,8 +20,8 @@ filtroSelect.addEventListener("change", function () {
   } else if (filtroSelect.value === "fecha") {
     // Ocultar el input de búsqueda y mostrar fechas
     buscarFacturaInput.style.display = "none";
-    fechaInicialDiv.style.display = "block";
-    fechaFinalDiv.style.display = "block";
+    fechaInicialDiv.style.display = "flex";
+    fechaFinalDiv.style.display = "flex";
     // Limpiar valores de búsqueda
     buscarFacturaInput.value = "";
   }
