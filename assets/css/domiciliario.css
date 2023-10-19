@@ -331,6 +331,7 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
     border-radius: 12px;
     width: 70%;
     height: 35%;
+    background-color: #a5d8ff;
 }
 
 .inf{
@@ -343,6 +344,14 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
     width: 20%;
     height: 70%;
     margin: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box{
+    font-size: 50px;
 }
 
 .infff{
@@ -375,13 +384,12 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 #but{
     width: 100px;
     height: 2rem;
-    background-color: #244588;
+    background-color: #b2f2bb; 
     border: none;
     cursor: pointer;
 }
@@ -400,8 +408,8 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   }
 
   .modal-contenido {
-    background-color: #fefefe;
-    margin: 6% auto;
+    background-color: #a5d8ff;
+    margin: 3% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 70vh;
@@ -460,6 +468,7 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
 
 .cajjjja {
     margin: 10px;
+    border-top: 1px solid;
 }
 
 .imaaa {
@@ -974,10 +983,15 @@ DE LAS TAREAS*/
         width: 100px;
     }
 
+    .contenedorSecuFiltro{
+        width: 80%;
+        font-size: 20px;
+    }
+
     .c{
         font-size: 25px;
         border: 1px solid;
-        height: 32%;
+        height: 44%;
         width: 100%;
     }
     
@@ -1052,7 +1066,7 @@ DE LAS TAREAS*/
     .modal-contenido{
         max-width: 90%;
         width: 100%;
-        margin: 50px auto;
+        margin: 30px auto;
     }
 
 
