@@ -18,7 +18,7 @@
     <?php 
     require_once 'templates/header.html';
     ?>
-<h1>prueba tresh</h1>
+<h1>prueba klk</h1>
     <?php 
     require_once 'templates/footer.html';
     ?>
