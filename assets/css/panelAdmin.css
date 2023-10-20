@@ -410,43 +410,86 @@ body {
 
 /* FORMULARIO AGREGAR MEDICAMENTOS */
 .cont-form {
-    border: 3px solid orange;
-    overflow-y: scroll;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-self: center;
+    justify-content: space-between;
     padding: .5em;
+    gap:5px;
 }
-
+.bx-chevron-left{
+    background-color: #e4e4e4;
+    color: rgb(59, 59, 59);
+    width: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 50%;
+    height: 1em;
+}
+.bx-chevron-left:hover{
+    cursor: pointer;
+    color: var(--tertiary);
+}
 .formAM {
     display: flex;
-    border: 1px solid red;
     flex: 1;
     flex-direction: column;
+    justify-content: space-between;
 }
-
+.Adjustment{
+    display: flex;
+    justify-content: space-around;
+}
+.Adjustments{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+.distributecontent{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    justify-content: center;
+}
 .inputFormAM {
-    border: 2px solid blue;
     font-size: 15px;
     height: auto;
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     gap: .5em;
 }
-
+.inputFormAMS {
+    font-size: 15px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5em;
+}
 .inputFormAM textarea {
-    border: 2px solid orange;
-    width: 10em;
+    width: 15em;
     height: 5em;
 }
-
-.inputFormAM input[type="text"], input[type="number"] {
-    border: 2px solid rgb(81, 255, 0);
+.inputFormAM textarea:focus{
+    outline: none;
+}
+.inputFormAM label{
+    font-size: 15px;
+}
+.inputFormAM input[type="text"], input[type="number"], input[type="date"]  {
     width: 10em;
     height: 2em;
+    border: 1px solid rgb(185, 185, 185);
+    background-color: #f7f7f7;
+    padding-left: 5px;
 }
-
+.inputFormAM input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus{
+    outline: none;
+}
 .custom-file-input {
     display: none;
 }
@@ -455,41 +498,90 @@ body {
     background-color: var(--tertiary);
     border: none;
     color: white;
-    padding: 5px 5px;
+    padding: 3px 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: .5em;
+    border-radius: .2em;
+}
+.btn-registrar {
+    background-color: #33a892;
+    color: #fff;
+    border: none;
+    padding: 5px 0px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-
+.btn-registrar:hover {
+    background-color: #2e8f7b;
+}
 
 .no-file-selected {
-    color: red;
+    color: #363636;
     font-size: 13px;
+    width: 12em;
+    height: 2em;
+    display: flex;
+    overflow-y: scroll;
+}
+.no-file-selected::-webkit-scrollbar {
+    width: 2px; 
 }
 
+.no-file-selected::-webkit-scrollbar-thumb {
+    background-color: #585858; 
+    border-radius: 10px; 
+}
 .custom-file-input:invalid+.no-file-selected {
     display: inline-block;
 }
 
-
-.cont-inputimg {
-    border: 1px solid green;
+.inputallimg{
     display: flex;
-    flex-wrap: wrap;
+}
+.inputImg{
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 5px;
+}
+.cont-inputimg {
+    display: flex;
+    flex-direction: column;
 }
 
 .content-inputall {
     display: flex;
-    border: 2px solid;
-    flex-wrap: wrap;
-    gap: .5em;
+    flex-direction: column;
+    gap: 20px;
 }
-
+.select-custom {
+    padding: 2px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    color: #333;
+    width: 200px;
+  }
+  
+  .select-custom:focus {
+    outline: none;
+    border-color: #33a892; /* Cambia el color del borde al enfocar el elemento */
+  }
+  
+  /* Estilos adicionales para el dropdown (opcional) */
+  .select-custom option {
+    background-color: #fff;
+    color: #333;
+  }
+  
 
 
 /* CSS JHENS */
