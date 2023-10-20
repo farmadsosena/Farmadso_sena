@@ -83,22 +83,45 @@ h1 {
     color: #012c6d;
 }
 
-.menu a {
+.close-button{
+    display: none;
+}
+.menu nav{
+    display: flex;
+    width: 100%;
+}
+.menu nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.menu nav li{
+    list-style: none;
+}
+.menu nav a {
     color: #012c6d;
     font-weight: 350;
+    text-decoration: none;
 }
 
-.menu a:hover {
+.menu  nav a:hover {
     color: #00c3a5;
 }
+
+
+.hemberger {
+    display: none;
+  }
 
 .iniciar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 25%;
-    height: 50%;
-    border-radius: 5px;
+    width:100%;
+    height: 2.5rem;
+    border-radius: 10px;
+    padding: 5px 5px;
     color: white !important;
     background-color: #3d83df;
 }
@@ -123,6 +146,7 @@ h1 {
     background-image: url(../img/figura-base.svg);
     width: 60% !important;
     height: 100%;
+    background-size: cover;
     position: relative;
     transform: translate(100px, 40px);
 }
@@ -177,21 +201,24 @@ h1 {
 .servicios {
     display: flex;
     flex-direction: column;
-    align-items: center;
+   justify-content: center;
+   align-items: center;
     padding: 1rem 3rem;
     background-color: white;
     width: 100%;
-    height: 80vh;
+    height: 120vh;
 }
 
 .servicios h2 {
     text-align: center;
     font: 550 1.5rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    width: 75%;
+    width: 70%;
+    padding:  40px 40px;
     color: #012c6d;
 }
 
 .servicios h4 {
+    text-align: center;
     font: 550 0.9rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
     color: rgb(41, 38, 38);
 }
@@ -199,8 +226,8 @@ h1 {
 .cartera {
     display: flex;
     justify-content: space-between;
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
     margin-top: 15px;
 }
 
@@ -298,20 +325,22 @@ h1 {
 
 .divhes{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 1rem;
-    width: 80%;
-    height: 85%;
+    width: 100%;
+    height: 100vh;
 }
 
 .divhes .img-proposito{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45%;
+    width: 100%;
 }
 
 .divhes .img-proposito img{
-    width: 90%;
+    width: 70%;
     height: 100%;
     border-radius: 10px;
 }
@@ -321,7 +350,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 55%;
+    width: 100%;
 }
 
 .divhes .contenido details {
@@ -360,6 +389,7 @@ h1 {
 }
 
 .fugos {
+    width: 100%;
     padding: 0.7rem;
     color: rgb(39, 38, 38);
 }
@@ -368,3 +398,215 @@ h1 {
     max-height: 0; 
     overflow: hidden;
 }
+
+
+ /*------ first mobile ------ */
+ @media  screen and (max-width: 767px) {
+  .rapido>a{
+    font-size: 1.2em;
+  }
+
+
+  .conten-he{
+    width: 85%;
+    /* border: 1px solid; */
+  }
+
+  .conten-he .imgar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.conten-he .imgar img {
+    width: 100%;
+    height: 10rem;
+    background-size: cover;
+}
+
+  .imgar img{
+    height: 10rem;
+  }
+
+  .hemberger {    
+    display: block;
+    cursor: pointer;
+    margin-left: 25vh;
+    
+  }
+
+  .hemberger .line {
+    width: 40px;
+    height: 4px;
+    border-radius: 10px;
+    background-color: #000;
+    margin: 6px 0;
+  }
+
+
+  .nav-bar {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin: -80px 0 0 0;
+    width: 100vw;
+    transition: 0.5s;
+    overflow: hidden;
+    height: 0;
+  }
+
+  .nav-bar ul {
+    display: flex;
+    flex-direction: column;
+    display: block;
+    width: fit-content;
+    gap: 80px;
+    transition: 0.5s ; 
+    opacity: 0;
+  }
+
+  .nav-bar ul li a{
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4em;
+  }
+
+  .nav-bar.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      /* border: 1px solid; */
+      width: 100%;
+      background-color: #00000052;
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-bar .close-button {
+        display: none;
+        font-size: 34px;
+        cursor: pointer;
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        color: #fff;
+      }
+      
+      .nav-bar.active .close-button {
+        display: block;
+      }
+      
+    .nav-bar.active ul {
+      opacity: 1;
+    }
+
+  .nav-bar ul li a {
+    margin-bottom: 12px;
+  }
+
+  .iniciar{
+    height: 3.6rem;
+  }
+
+  .presentacion{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .descrip-present{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    gap: 10px;
+    /* border: 1px solid; */
+    padding: 30px 30px;
+  }
+
+  .descrip-present h2{
+    width: 100%;
+    text-align: justify;
+    letter-spacing: .1px;
+  }
+
+  .descrip-present div{
+    text-align: justify;
+    font-size: 20px;
+  }
+
+  .descrip-present a{
+    width: 60%;
+  }
+  
+  .servicios{
+    width: 100%;
+    border: 1px solid;
+    height: 100vh;
+  }
+
+  .servicios h2{
+    width: 100%;
+  }
+
+  .servicios h4{
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .cartera{
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    margin-bottom:60px;
+  }
+
+  .cartera a{
+    width: 100%;
+  }
+
+  .banner{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .banner h2{
+    width: 100%;
+    text-align: center;
+    font-size:30px;
+    padding: 2px 2px;
+    height: 4rem;
+  }
+
+  .banner div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7rem;
+    font-size: 20px;
+    padding: 30px 30px;
+    text-align: center;
+  }
+
+  .banner a{
+    width: 30%;
+    height: 3rem;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .proposito{
+    width: 100%;
+  }
+  .divhes{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  
+ }
