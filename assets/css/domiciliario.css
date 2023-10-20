@@ -1530,3 +1530,18 @@ DE LAS TAREAS*/
     display: none;
   }
 }
+
+@media screen and (max-width: 375px) {
+
+  .upload {
+    background-color: burlywood;
+    border: none;
+    color: var(--blanco);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+    font-size: 2vh;
+  }
+
+
+}
