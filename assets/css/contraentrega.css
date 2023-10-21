@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #363636;
+    font-family: sans-serif;
+}
+
+:root {
+    --azulOscuro: #2d57a8;
+    --verdeClaro: #b5ddca;
+    --verdeOscuro: #33a892;
+    --blanco: #fffefe;
+    --grisClaro: #f1f2f5;
+    --azulClaro: #6d93c9;
+    --fuente: sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+}
+
+/* Main principal del form */
+
+#mainFormContraentrega {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--blanco);
+}
+
+
+
+.logoFarmadso {
+    align-self: center;
+    width: 11rem;
+    height: 4rem;
+    object-fit: contain;
+    margin-bottom: .5em
+}
+
+.columnFormContraentrega {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+
+.columnFormContraentrega>img {
+    width: 80%;
+    max-height: 80%;
+    align-self: center;
+}
+
+.columnFormContraentrega>h1 {
+    margin-top: 1.3em;
+    color: var(--azulOscuro);
+    font-size: 1.6em;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.formulario_contraentrega {
+    width: 45%;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    padding: .5em .8em;
+    border-radius: .5em;
+    background-color: #f1f2f5;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.groupOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.groupTwo {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.inputCont {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputCont>label {
+    font-weight: bold;
+    margin-bottom: .2em;
+    font-size: .9em;
+    color: rgb(99, 104, 112);
+}
+
+.inputCont>input,
+.saveContraentrega,
+.inputCont>textarea {
+    border: none;
+    width: 100%;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    padding: .8em .5em;
+    color: rgb(99, 104, 112);
+    border-radius: .3em;
+    font-size: 14px;
+}
+
+.inputCont>textarea {
+    flex: 1;
+    resize: none;
+    width: 100% !important;
+}
+
+.saveContraentrega {
+    height: 3rem;
+    width: 50%;
+    background-color: var(--azulClaro);
+    color: var(--blanco);
+    cursor: pointer;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
+
+
+
+@media screen and (max-width : 700px) {
+
+    .columnFormContraentrega{
+        display: none;
+    } 
+
+    .formulario_contraentrega{
+        width: 100%;
+    }
+}
