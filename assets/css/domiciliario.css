@@ -325,7 +325,6 @@ h1 {
 
 .c{
     margin-top: 10px;
-    border: 1px solid;
     border-radius: 12px;
     width: 70%;
     height: 45%;
@@ -418,10 +417,11 @@ h1 {
 }
 
   .modal-contenido {
-    background-color: #fefefe;
-    margin: 6% auto;
+    background-color: #a5d8ff;
+    margin: 2% auto;
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 20px;
     width: 70vh;
     position: relative;
   }
@@ -436,7 +436,6 @@ h1 {
 /* finaliza */
 
 .cajja {
-  border: 1px solid;
   width: 95%;
   max-width: 100%;
   height: auto;
@@ -1037,7 +1036,7 @@ DE LAS TAREAS*/
 
     .c{
         font-size: 25px;
-        height: 50%;
+        height: 60%;
         width: 100%;
     }
     
@@ -1108,7 +1107,7 @@ DE LAS TAREAS*/
     .modal-contenido{
         max-width: 90%;
         width: 100%;
-        margin: 50px auto;
+        margin: 20px auto;
     }
 
   .modalVerMas-content {
