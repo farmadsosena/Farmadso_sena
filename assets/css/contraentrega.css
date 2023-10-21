@@ -2,18 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #363636;
-    font-family: sans-serif;
 }
 
 :root {
     --azulOscuro: #2d57a8;
     --verdeClaro: #b5ddca;
     --verdeOscuro: #33a892;
-    --blanco: #fffefe;
+    --blanco: #f0f2f5;
     --grisClaro: #f1f2f5;
     --azulClaro: #6d93c9;
-    --fuente: sans-serif;
+    --fuente:   'Open Sans', sans-serif;;
 }
 
 body {
@@ -57,8 +55,8 @@ body {
     color: var(--azulOscuro);
     font-size: 1.6em;
     text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+    font-family: var(--fuente);
+ }
 
 .formulario_contraentrega {
     width: 45%;
@@ -67,7 +65,7 @@ body {
     flex-direction: column;
     padding: .5em .8em;
     border-radius: .5em;
-    background-color: #f1f2f5;
+    background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
@@ -96,7 +94,8 @@ body {
     font-weight: bold;
     margin-bottom: .2em;
     font-size: .9em;
-    color: rgb(99, 104, 112);
+    color: rgb(70, 71, 73);
+    font-family: var(--fuente);
 }
 
 .inputCont>input,
@@ -105,11 +104,14 @@ body {
     border: none;
     width: 100%;
     outline: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     padding: .8em .5em;
     color: rgb(99, 104, 112);
     border-radius: .3em;
     font-size: 14px;
+}
+.inputCont >input:focus, .inputCont >textarea:focus{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .inputCont>textarea {
@@ -124,19 +126,23 @@ body {
     background-color: var(--azulClaro);
     color: var(--blanco);
     cursor: pointer;
+    transition: all .1s ease;
     margin-top: 1em;
     margin-bottom: .5em;
 }
 
+.saveContraentrega:hover {
+    transform: scale(1.05);
+}
 
 
 @media screen and (max-width : 700px) {
 
-    .columnFormContraentrega{
+    .columnFormContraentrega {
         display: none;
-    } 
+    }
 
-    .formulario_contraentrega{
+    .formulario_contraentrega {
         width: 100%;
     }
 }

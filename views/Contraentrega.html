@@ -3,85 +3,94 @@
 
     <div class="d">
         <div class="d2">
-    <div class="dd"><label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required></div>
+            <div class="dd"><label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
 
-    <div class="dd"><label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido" required></div>
+            <div class="dd"><label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+            </div>
 
-    <div class="dd"><label for="email">Email:</label>
-    <input type="email" id="email" name="email" required></div>
+            <div class="dd"><label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-    <div class="dd"><label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono"></div>
+            <div class="dd"><label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+            </div>
 
-    <div class="dd"><label for="direccion">Dirección Completa:</label>
-    <input type="text" id="direccion" name="direccion" required></div>
+            <div class="dd"><label for="direccion">Dirección Completa:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
 
+        </div>
     </div>
-</div>
-
-    
-<div class="d1">
-    <div class="d3">
-    <div class="dd"><label for="fecha">Dia:</label>
-    <select id="dia" name="dia">
-        <!-- Llena los días desde 1 hasta 31 -->
-        <script>
-            for (let i = 1; i <= 31; i++) {
-                const option = document.createElement("option");
-                option.value = i;
-                option.textContent = i;
-                document.getElementById("dia").appendChild(option);
-            }
-        </script>
-    </select>
-
-    <select id="mes" name="mes">
-        <option value="enero">Mes</option>
-        <option value="enero">Enero</option>
-        <option value="febrero">Febrero</option>
-        <option value="marzo">Marzo</option>
-        <option value="abril">Abril</option>
-        <option value="mayo">Mayo</option>
-        <option value="junio">Junio</option>
-        <option value="julio">Julio</option>
-        <option value="agosto">Agosto</option>
-        <option value="septiembre">Septiembre</option>
-        <option value="octubre">Octubre</option>
-        <option value="noviembre">Noviembre</option>
-        <option value="diciembre">Diciembre</option>
-    </select>
 
 
+    <div class="d1">
+        <div class="d3">
+            <div class="dd"><label for="fecha">Dia:</label>
+                <select id="dia" name="dia">
+                    <!-- Llena los días desde 1 hasta 31 -->
+                    <script>
+                        for (let i = 1; i <= 31; i++) {
+                            const option = document.createElement("option");
+                            option.value = i;
+                            option.textContent = i;
+                            document.getElementById("dia").appendChild(option);
+                        }
+                    </script>
+                </select>
 
-    <select id="ano" name="ano">
-        <option value="">Año</option>
-        <!-- Opciones hasta el año 2028 -->
-        <script>
-            const anoSelect = document.getElementById("ano");
-            const currentYear = new Date().getFullYear();
-            for (let year = currentYear; year <= 2028; year++) {
-                const option = document.createElement("option");
-                option.value = year;
-                option.textContent = year;
-                anoSelect.appendChild(option);
-            }
-        </script>
-    </select>
-</div>
+                <select id="mes" name="mes">
+                    <option value="enero">Mes</option>
+                    <option value="enero">Enero</option>
+                    <option value="febrero">Febrero</option>
+                    <option value="marzo">Marzo</option>
+                    <option value="abril">Abril</option>
+                    <option value="mayo">Mayo</option>
+                    <option value="junio">Junio</option>
+                    <option value="julio">Julio</option>
+                    <option value="agosto">Agosto</option>
+                    <option value="septiembre">Septiembre</option>
+                    <option value="octubre">Octubre</option>
+                    <option value="noviembre">Noviembre</option>
+                    <option value="diciembre">Diciembre</option>
+                </select>
 
-    
-    <div class="dd"><label for="detalle">Detalle Adicional:</label>
-    <input type="text" id="detalle" name="detalle"></div>
 
-    <div class="dd"><label for="mensaje">Mensaje Personalizado:</label>
-    <textarea style="width:11.3rem; height:3rem;" id="mensaje" name="mensaje" rows="2" cols="3" required></textarea></div>
-    <div class="dd"><label for="nota">Nota Funcional:</label>
-    <textarea style="width:11.3rem; height:3rem;" id="nota" name="nota" rows="2" cols="3"></textarea></div>
-    <br>
 
-    <input class="boton" type="submit" value="Enviar">
-    </div>
+                <select id="ano" name="ano">
+                    <option value="">Año</option>
+                    <!-- Opciones hasta el año 2028 -->
+                    <script>
+                        const anoSelect = document.getElementById("ano");
+                        const currentYear = new Date().getFullYear();
+                        for (let year = currentYear; year <= 2028; year++) {
+                            const option = document.createElement("option");
+                            option.value = year;
+                            option.textContent = year;
+                            anoSelect.appendChild(option);
+                        }
+                    </script>
+                </select>
+            </div>
+
+
+            <div class="dd"><label for="detalle">Detalle Adicional:</label>
+                <input type="text" id="detalle" name="detalle">
+            </div>
+
+            <div class="dd"><label for="mensaje">Mensaje Personalizado:</label>
+                <textarea style="width:11.3rem; height:3rem;" id="mensaje" name="mensaje" rows="2" cols="3"
+                    required></textarea>
+            </div>
+            <div class="dd"><label for="nota">Nota Funcional:</label>
+                <textarea style="width:11.3rem; height:3rem;" id="nota" name="nota" rows="2" cols="3"></textarea>
+            </div>
+            <br>
+
+            <input class="boton" type="submit" value="Enviar">
+        </div>
     </div>
 </form>
