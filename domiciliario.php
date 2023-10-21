@@ -301,7 +301,12 @@
 
       <section class="mainDeliverySection" id="notificationsSection">
         <section class="notificationsDelivery">
-          <article class="orderAvailable">
+
+        <?php
+            include("php/parques.php")
+            ?>
+
+          <!-- <article class="orderAvailable">
             <p>001</p>
             <div class="nameEPS">
               <img src="assets/img/logoEPS.png" alt="" />
@@ -315,9 +320,9 @@
             <div class="buttonSeeMore">
               <a href="#" class="seeMore">Ver más</a>
             </div>
-          </article>
+          </article> -->
 
-          <article class="orderAvailable">
+          <!-- <article class="orderAvailable">
             <p>002</p>
             <div class="nameEPS">
               <img src="assets/img/logoEPS.png" alt="" />
@@ -395,7 +400,7 @@
             <div class="buttonSeeMore">
               <a href="#" class="seeMore">Ver más</a>
             </div>
-          </article>
+          </article> -->
         </section>
       </section>
 
