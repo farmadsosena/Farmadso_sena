@@ -11,7 +11,8 @@
     --blanco: #f0f2f5;
     --grisClaro: #f1f2f5;
     --azulClaro: #6d93c9;
-    --fuente:   'Open Sans', sans-serif;;
+    --fuente: 'Open Sans', sans-serif;
+    ;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
 #mainFormContraentrega {
     width: 100%;
     height: 100%;
+    overflow: hidden;
     display: flex;
     background-color: var(--blanco);
 }
@@ -56,12 +58,20 @@ body {
     font-size: 1.6em;
     text-align: center;
     font-family: var(--fuente);
- }
+}
+
+.mainPrincipal {
+    width: 45%;
+    overflow: hidden;
+    display: flex;
+}
 
 .formulario_contraentrega {
-    width: 45%;
+    width: 100%;
     margin: 1em;
     display: flex;
+    transform: translateX(-500%);
+    transition: all .3s ease;
     flex-direction: column;
     padding: .5em .8em;
     border-radius: .5em;
@@ -90,6 +100,12 @@ body {
     flex-direction: column;
 }
 
+.inputCont>span {
+    transform: translate(.2em, 2em);
+    z-index: 1;
+    position: absolute;
+}
+
 .inputCont>label {
     font-weight: bold;
     margin-bottom: .2em;
@@ -101,18 +117,21 @@ body {
 .inputCont>input,
 .saveContraentrega,
 .inputCont>textarea {
+    position: relative;
     border: none;
     width: 100%;
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    padding: .8em .5em;
+    padding: .8em 1.5em;
     color: rgb(99, 104, 112);
     border-radius: .3em;
     font-size: 14px;
 }
-.inputCont >input:focus, .inputCont >textarea:focus{
+
+.inputCont>input:focus, .inputCont>textarea:focus {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
+
 
 .inputCont>textarea {
     flex: 1;
@@ -132,7 +151,17 @@ body {
 }
 
 .saveContraentrega:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
+}
+
+.cartView {
+    overflow: hidden;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    border-radius: 1em;
+    background-color: #ffff;
 }
 
 
@@ -145,4 +174,20 @@ body {
     .formulario_contraentrega {
         width: 100%;
     }
+
+    .mainPrincipal {
+        width: 100%;
+    }
 }
+
+.activeForm {
+    transform: translateX(0%);
+    width: 100%;
+}
+
+/* .errorForm{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(255, 5, 5) 0px 0px 0px 1px inset !important;
+}
+.warningForm{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(255, 138, 5) 0px 0px 0px 1px inset !important;
+} */
