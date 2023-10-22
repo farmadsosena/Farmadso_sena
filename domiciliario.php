@@ -302,7 +302,7 @@
       <section class="mainDeliverySection" id="notificationsSection">
         <section class="notificationsDelivery">
 
-        <?php
+         <?php
             include("php/parques.php")
             ?>
 
