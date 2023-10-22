@@ -491,6 +491,25 @@ display: none;
   justify-content: center;
   align-items: center;
   gap: 5px;
- 
+ cursor:pointer;
+}
+
+.cards_formulas{
+  border: solid 1px black;
+  width: 80%;
+  height: 450px;
+  overflow: auto;
+  display: flex;
+  padding-top: 15px;
+  padding-left: 28px;
+  gap: 25px;
+}
+
+
+.card{
+  width: 250px;
+  height: 150px;
+  border: rgb(197, 197, 197) 1px solid;
+  
 }
 
