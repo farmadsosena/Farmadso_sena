@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/adminDomiciliario.css">
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>ADMINDOMICILIARIO</title>
 </head>
 <body>
@@ -18,13 +19,13 @@
                 <h1>ADMIN</h1>
         </div>
         <nav class="navAdminProfile">
-            <span class="material-symbols-outlined">
+            <span id="icon1" class="material-symbols-outlined">
                 two_wheeler
             </span>
-            <span class="material-symbols-outlined">
+            <span id="icon2" class="material-symbols-outlined">
                 group_add
             </span>
-            <span class="material-symbols-outlined">
+            <span id="icon3" class="material-symbols-outlined">
                 all_inbox
             </span>
         </nav>
@@ -34,218 +35,232 @@
             </button>
         </div>
     </aside>
-    <main class="mainAdminDelivery">
-        <section class="deliveryActivedDesactived">
-            <div class="titleSelect">
-                <h2>Domiciliarios:</h2>
-                <select id="status" name="status">
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-            </div>
-            <section class="deliverys">
-                <div class="statusDelivery">
-                    <div class="imgStatusDelivery" onclick="openModal()">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullName">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="status">
-                        INACTIVO
-                    </span>
-                </div>
 
-                <div class="statusDelivery">
-                    <div class="imgStatusDelivery">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullName">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statuss">
-                        ACTIVO
-                    </span>
+    <main id="mainContent" class="mainAdminDelivery">
+        <section id="sectionMain" class="sectionMain">
+            <section id="deliverys" class="deliveryActivedDesactived">
+                <div class="titleSelect">
+                    <h2>Domiciliarios:</h2>
+                    <select id="status" name="status">
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
                 </div>
-
-                <div class="statusDelivery">
-                    <div class="imgStatusDelivery">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
+                <section class="deliverys">
+                    <div class="statusDelivery">
+                        <div class="imgStatusDelivery" onclick="openModal()">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullName">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="status">
+                            INACTIVO
+                        </span>
                     </div>
-                    <div class="fullName">
-                        <p>Mario Alexander Gomez Lozada</p>
+    
+                    <div class="statusDelivery">
+                        <div class="imgStatusDelivery">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullName">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statuss">
+                            ACTIVO
+                        </span>
                     </div>
-                    <span class="status">
-                        INACTIVO
-                    </span>
-                </div>
-
-                <div class="statusDelivery">
-                    <div class="imgStatusDelivery">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
+    
+                    <div class="statusDelivery">
+                        <div class="imgStatusDelivery">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullName">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="status">
+                            INACTIVO
+                        </span>
                     </div>
-                    <div class="fullName">
-                        <p>Mario Alexander Gomez Lozada</p>
+    
+                    <div class="statusDelivery">
+                        <div class="imgStatusDelivery">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullName">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="status">
+                            INACTIVO
+                        </span>
                     </div>
-                    <span class="status">
-                        INACTIVO
-                    </span>
-                </div>
-
-                <div class="statusDelivery">
-                    <div class="imgStatusDelivery">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
+    
+                    <div class="statusDelivery">
+                        <div class="imgStatusDelivery">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullName">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="status">
+                            INACTIVO
+                        </span>
                     </div>
-                    <div class="fullName">
-                        <p>Mario Alexander Gomez Lozada</p>
+                </section>
+            </section>
+    
+            <section class="deliveryFreeBusy">
+                <section class="deliverysFree">
+                    <h3>Domiciliarios Disponibles</h3>
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
                     </div>
-                    <span class="status">
-                        INACTIVO
-                    </span>
-                </div>
+    
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryFree">
+                        <div class="imgStatusDeliveryFree">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameFree">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusFree">
+                            Libre
+                        </span>
+                    </div> 
+                </section>
+    
+                <section class="deliverysBusy">
+                    <h3>Domiciliarios Ocupados</h3>
+                    <div class="statusDeliveryBusy">
+                        <div class="imgStatusDeliveryBusy">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameBusy">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusBusy">
+                            Ocupado
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryBusy">
+                        <div class="imgStatusDeliveryBusy">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameBusy">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusBusy">
+                            Ocupado
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryBusy">
+                        <div class="imgStatusDeliveryBusy">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameBusy">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusBusy">
+                            Ocupado
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryBusy">
+                        <div class="imgStatusDeliveryBusy">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameBusy">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusBusy">
+                            Ocupado
+                        </span>
+                    </div>
+    
+                    <div class="statusDeliveryBusy">
+                        <div class="imgStatusDeliveryBusy">
+                            <img src="assets/img/domiciliario1.jpg" alt="">
+                        </div>
+                        <div class="fullNameBusy">
+                            <p>Mario Alexander Gomez Lozada</p>
+                        </div>
+                        <span class="statusBusy">
+                            Ocupado
+                        </span>
+                    </div>
+                    
+                    
+                </section>
             </section>
         </section>
-
-        <section class="deliveryFreeBusy">
-            <section class="deliverysFree">
-                <h3>Domiciliarios Disponibles</h3>
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div>
-
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div>
-
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div>
-
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div>
-
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div>
-
-                <div class="statusDeliveryFree">
-                    <div class="imgStatusDeliveryFree">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameFree">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusFree">
-                        Libre
-                    </span>
-                </div> 
-            </section>
-
-            <section class="deliverysBusy">
-                <h3>Domiciliarios Ocupados</h3>
-                <div class="statusDeliveryBusy">
-                    <div class="imgStatusDeliveryBusy">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameBusy">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusBusy">
-                        Ocupado
-                    </span>
-                </div>
-
-                <div class="statusDeliveryBusy">
-                    <div class="imgStatusDeliveryBusy">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameBusy">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusBusy">
-                        Ocupado
-                    </span>
-                </div>
-
-                <div class="statusDeliveryBusy">
-                    <div class="imgStatusDeliveryBusy">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameBusy">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusBusy">
-                        Ocupado
-                    </span>
-                </div>
-
-                <div class="statusDeliveryBusy">
-                    <div class="imgStatusDeliveryBusy">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameBusy">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusBusy">
-                        Ocupado
-                    </span>
-                </div>
-
-                <div class="statusDeliveryBusy">
-                    <div class="imgStatusDeliveryBusy">
-                        <img src="assets/img/domiciliario1.jpg" alt="">
-                    </div>
-                    <div class="fullNameBusy">
-                        <p>Mario Alexander Gomez Lozada</p>
-                    </div>
-                    <span class="statusBusy">
-                        Ocupado
-                    </span>
-                </div>
-                
-                
-            </section>
+        
+        <section id="sectionIcon2" class="sectionMain" style="display: none;">
+            <h2>Contenido del segundo icono</h2>
+            <!-- Aquí puedes agregar el contenido específico para el segundo icono -->
+        </section>
+        
+        <!-- Nuevo contenido para el tercer icono -->
+        <section id="sectionIcon3" class="sectionMain" style="display: none;">
+            <h2>Contenido del tercer icono</h2>
+            <!-- Aquí puedes agregar el contenido específico para el tercer icono -->
         </section>
     </main>
 
@@ -273,11 +288,37 @@
                 <button class="deactivate" onclick="deactivate()">Desactivar</button>
                 <button class="activate" onclick="activate()">Activar</button>
             </div>
-            <button onclick="showRating()">Calificación</button>
+            <button onclick="openCalificacionModal()">Calificación</button>
         </div>
     </div>
 </div>
 
+<div id="modalCalificacion" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCalificacionModal()">&times;</span>
+        <div class="modal-header">
+            <h2>Calificación Domiciliario</h2>
+        </div>
+        <div class="modal-body">
+                <div id="estrellas" onclick="calificar(event)">
+                    <span class="estrella">&#9733;</span>
+                    <span class="estrella">&#9733;</span>
+                    <span class="estrella">&#9733;</span>
+                    <span class="estrella">&#9733;</span>
+                    <span class="estrella">&#9733;</span>
+                </div>
+            <div class="comentarios-container">
+                <h3>Comentarios de los usuarios:</h3>
+                <div id="comentariosList">
+                    <!-- Contenido de comentarios -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/cambiarOpcionesAdminDomiciliario.js"></script>
+<script src="assets/js/calificacionDomiciliario.js"></script>
 <script src="assets/js/verInformacionDomiciliario.js"></script>
 
 </body>
