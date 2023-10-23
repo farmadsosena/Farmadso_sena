@@ -10,8 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-<!-- toast.js -->
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- toast.js -->
+    <!-- Enlace a la hoja de estilos de Toastr.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- Enlace al JavaScript de Toastr.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <title>Contraentrega</title>
 </head>
@@ -38,13 +42,13 @@
                 <article class="groupTwo">
                     <div class="inputCont">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" required class="errorForm">
+                        <input type="text" name="nombre" id="nombre" class="errorForm">
                         <span> <i style="color: #2d57a8" class='bx bx-user'></i></span>
                     </div>
 
                     <div class="inputCont">
                         <label for="apellido">Apellidos</label>
-                        <input type="text" name="apellido" id="apellido" class="warningForm" required>
+                        <input type="text" name="apellido" id="apellido" class="warningForm">
                         <span> <i style="color: #2d57a8" class='bx bx-user'></i></span>
                     </div>
                 </article>
@@ -52,16 +56,16 @@
                 <article class="groupTwo">
                     <div class="inputCont">
                         <label for="direccion">Dirección completa</label>
-                        <input type="text" name="direccion" id="direccion" required>
+                        <input type="text" name="direccion" id="direccion">
                         <span> <i style="color: #2d57a8" class='bx bxs-map-pin'></i>
                         </span>
                     </div>
 
                     <div class="inputCont">
                         <label for="codigo">Código postal</label>
-                        <input type="number" name="codigo" id="codigo" required>
+                        <input type="number" name="codigo" id="codigo" minlength="5" maxlength="5">
                         <span> <i style="color: #2d57a8" class='bx bx-code-block'></i>
-                         
+
                         </span>
                     </div>
 
@@ -70,7 +74,7 @@
                 <article class="groupTwo">
                     <div class="inputCont">
                         <label for="telefono">Número de Teléfono</label>
-                        <input type="tel" name="telefono" id="telefono" required>
+                        <input type="tel" name="telefono" id="telefono">
                         <span> <i style="color: #2d57a8" class='bx bx-phone'></i></span>
                     </div>
 
@@ -87,13 +91,14 @@
                 </div>
 
                 <div class="groupOne">
-                    <button class="saveContraentrega">Realizar compra</button>
+                    <button name='realizarcompra' class="saveContraentrega">Realizar compra</button>
                 </div>
             </form>
         </main>
 
 
     </main>
+    <script src="../assets/js/contraEntrega.js"></script>
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
@@ -107,7 +112,7 @@
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
-    <script src="../assets/js/pagoContraentrega.js"></script>
+
 </body>
 
 </html>
