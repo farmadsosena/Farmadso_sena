@@ -206,14 +206,13 @@ h1 {
     padding: 1rem 3rem;
     background-color: white;
     width: 100%;
-    height: 120vh;
+    height: 100vh;
 }
 
 .servicios h2 {
     text-align: center;
     font: 550 1.5rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
     width: 70%;
-    padding:  40px 40px;
     color: #012c6d;
 }
 
@@ -233,6 +232,7 @@ h1 {
 
 .cartera a {
     width: 47%;
+    height: 26rem;
     border-radius: 7px;
     transition: transform 0.5s;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
@@ -247,7 +247,7 @@ h1 {
 }
 
 .cartera a div {
-    height: 72%;
+    height: 75%;
 }
 
 .cartera a div img {
@@ -261,7 +261,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 23%;
+    height: 22%;
     padding: 0.6rem 2rem;
 }
 
@@ -403,11 +403,12 @@ h1 {
 
  /*------ first mobile ------ */
  @media  screen and (max-width: 767px) {
+  
   .rapido>a{
-    font-size: 1.2em;
+    width: auto;
+    text-align: end;
+    font-size: 0.8em;
   }
-
-
   .conten-he{
     width: 85%;
     /* border: 1px solid; */
@@ -433,14 +434,13 @@ h1 {
     display: block;
     cursor: pointer;
     margin-left: 25vh;
-    
   }
 
   .hemberger .line {
-    width: 40px;
-    height: 4px;
+    width: 25px;
+    height: 3px;
     border-radius: 10px;
-    background-color: #000;
+    background-color: #012c6d;
     margin: 6px 0;
   }
 
@@ -512,6 +512,7 @@ h1 {
 
   .presentacion{
     width: 100%;
+    height: 70vh;
     justify-content: center;
     align-items: center;
   }
@@ -521,39 +522,38 @@ h1 {
     display: flex;
     flex-direction: column;
     height: 30rem;
-    gap: 10px;
-    /* border: 1px solid; */
-    padding: 30px 30px;
+    padding: 20px;
   }
 
   .descrip-present h2{
     width: 100%;
-    text-align: justify;
-    letter-spacing: .1px;
   }
 
   .descrip-present div{
     text-align: justify;
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .descrip-present a{
-    width: 60%;
+    width: 100%;
+    height: 2.5rem !important;
   }
   
   .servicios{
     width: 100%;
-    border: 1px solid;
-    height: 100vh;
+    height: auto;
+    padding: 0.9rem 1.5rem !important;
   }
 
   .servicios h2{
     width: 100%;
+    font: 550 1rem/1.4rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
   }
 
   .servicios h4{
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
+    margin-top: 8px;
   }
 
   .cartera{
@@ -569,33 +569,29 @@ h1 {
 
   .banner{
     display: flex;
-    gap: 5px;
     width: 100%;
+    padding: 0.5rem 0.7rem;
   }
 
   .banner h2{
     width: 100%;
     text-align: center;
-    font-size:30px;
-    padding: 2px 2px;
-    height: 4rem;
+    font: 550 1.8rem/2.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+    height: auto;
+    padding: 0.5rem 0rem;
   }
 
   .banner div{
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 7rem;
-    font-size: 20px;
-    padding: 30px 30px;
-    text-align: center;
+    height: auto;
+    font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
   }
 
   .banner a{
-    width: 30%;
-    height: 3rem;
-    font-size: 20px;
+    width: 60%;
+    height: 2.5rem;
+    font-size: 17px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -603,11 +599,29 @@ h1 {
 
   .proposito{
     width: 100%;
-  }
-  .divhes{
-    flex-direction: column;
-    width: 100%;
+    height: auto;
+    padding: 0.5rem 1rem !important;
   }
 
+  .proposito h2{
+    width: 100%;
+    font: 550 1.4rem/1.6rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  }
+  .divhes{
+    padding: 0 !important;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  .img-proposito img{
+    width: 80% !important;
+  }
+
+  .contenido{
+    padding: 0.5rem 0rem !important;
+  }
+  .contenido details{
+    width: 95% !important;
+  }
   
      }
