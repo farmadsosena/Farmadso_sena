@@ -51,7 +51,7 @@ try {
         }
     </style>
 </head>
-<body>    <h4>Su compra ha sido realizada con éxito</h4>
+<body>    <h2 style="color: #2d57a8">Su compra ha sido realizada con éxito</h2>
 <table>
     <tr>
         <th>Nombre Medicamento</th>
@@ -96,6 +96,12 @@ try {
         <td>$21.000</td>
     </tr>
 </table>
+<a style="
+width: 150px;
+height: 50px;
+background-color: #9f9f9;
+display: inline-flex;
+"  href="adso24.com">Ver compra</a>
 <p>Subtotal de compra: $75.500</p>
 </body>
 </html>';
