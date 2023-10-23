@@ -532,9 +532,8 @@ display: none;
   display: flex;
   flex-direction: column;
   width: 2000px;
-  height: 780px;
+  height: 700px;
   overflow: auto;
-
 }
 .icon{
   display: flex;
