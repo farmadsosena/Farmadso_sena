@@ -299,9 +299,7 @@
       <section class="mainDeliverySection" id="notificationsSection">
         <section class="notificationsDelivery">
 
-         <?php
-            include("php/parques.php")
-            ?>
+         
 
           <!-- <article class="orderAvailable">
             <p>001</p>
