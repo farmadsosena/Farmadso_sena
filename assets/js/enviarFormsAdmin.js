@@ -24,4 +24,3 @@ function sendForm(event, formulario, ruta) {
         })
 
 }
-// Enviar form
