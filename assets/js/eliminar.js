@@ -1,49 +1,30 @@
-// Obtiene una lista de referencias a todos los checkboxes con la clase 'ui-checkbox'
+// Obtén una lista de referencias a todos los checkboxes
 var checkboxes = document.querySelectorAll('.ui-checkbox');
-
-// Almacena las secciones seleccionadas
-var selectedSections = [];
 
 // Agrega un evento de cambio a cada checkbox
 checkboxes.forEach(function(checkbox) {
   checkbox.addEventListener('change', function() {
+    // Verifica si el checkbox está seleccionado
     if (checkbox.checked) {
-      // Agrega la sección a la lista de selecciones
-      var section = checkbox.closest('.tu-clase-de-seccion'); // Reemplaza 'tu-clase-de-seccion' con la clase correcta de la sección
-      if (section) {
-        selectedSections.push(section);
-      }
-    } else {
-      // Elimina la sección de la lista de selecciones si se desmarca el checkbox
-      var index = selectedSections.indexOf(section);
-      if (index !== -1) {
-        selectedSections.splice(index, 1);
-      }
+      // Agrega un retardo de tiempo antes de eliminar la sección
+      setTimeout(function() {
+        // Muestra una alerta de confirmación
+        var confirmacion = confirm('¿Estás seguro de eliminar la sección seleccionada?');
+        
+        // Si el usuario confirma la eliminación, elimina la sección
+        if (confirmacion) {
+          // Elimina la sección
+          var section = checkbox.closest('.ui-checkbox'); // Reemplaza 'tu-clase-de-seccion' con la clase correcta de la sección
+          if (section) {
+            section.remove();
+            // Muestra una alerta de que se ha eliminado la sección
+            alert('Sección eliminada.');
+          }
+        } else {
+          // Si el usuario cancela la eliminación, desmarca el checkbox
+          checkbox.checked = false;
+        }
+      }, 1000); // Retardo de 1 segundo (puedes ajustar el valor según tus necesidades)
     }
   });
-});
-
-// Agrega un evento de clic a un botón para mostrar la alerta después de seleccionar
-var botonAlerta = document.getElementById('botonAlerta'); // Reemplaza 'botonAlerta' con el ID correcto de tu botón
-
-botonAlerta.addEventListener('click', function() {
-  if (selectedSections.length > 0) {
-    // Muestra una alerta de confirmación
-    var confirmacion = confirm('¿Estás seguro de eliminar las secciones seleccionadas?');
-
-    if (confirmacion) {
-      // Elimina las secciones seleccionadas
-      selectedSections.forEach(function(section) {
-        section.remove();
-      });
-
-      // Desmarca todos los checkboxes
-      checkboxes.forEach(function(checkbox) {
-        checkbox.checked = false;
-      });
-
-      // Limpia la lista de selecciones
-      selectedSections = [];
-    }
-  }
 });
