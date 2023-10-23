@@ -1,0 +1,166 @@
+
+/* ESTILOS DE EL CONTENEDOR 2 (SEGUNDO ICONO) */
+.personas-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.persona {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background: var(--grisClaro);
+    border-radius: 8px;
+    justify-content: space-between;
+    font-size: 30px;
+    height: 3.5rem;
+    border-bottom: 1px solid grey;
+}
+
+.persona:nth-child(odd) {
+    background: var(--blanco);
+}
+
+.fa-circle-user {
+    font-size: 60px;
+}
+
+.nombre {
+    flex: 1;
+}
+
+#but {
+    background-color: #12b886;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: var(--blanco);
+}
+
+/*FIN ESTILOS DE EL CONTENEDOR 2 (SEGUNDO ICONO) */
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.211);
+    backdrop-filter: blur(30px);
+  }
+  
+    .modal-contenido {
+      background-color: white;
+      margin: 4% auto;
+      padding: 20px;
+      width: 70vh;
+      position: relative;
+      height: 80%;
+    }
+  
+  #cerrarModal {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+.modalDoss {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-contenidoDoss {
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 90%;
+    position: relative;
+    
+}
+
+.cerrar-modalDoss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-bodyDoss {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.imgStatusDeliveryModlDoss{
+    border-bottom: 2px solid;
+    padding: 10px;
+}
+
+.modal-infoDoss {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    color: #0082c6;
+    height: 238px;
+}
+
+.modal-buttonsDoss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.DADoss{
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.acepDoss{
+    background-color: #40c057;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+.rechaDoss{
+    background-color: #ff0000;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
