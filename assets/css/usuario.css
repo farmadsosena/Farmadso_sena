@@ -545,7 +545,6 @@ input:focus{
 
 
 .card{
-  
   width: 280px;
   height: 220px;
   border: rgb(197, 197, 197) 1px solid;
@@ -570,10 +569,11 @@ input:focus{
 .cont-p{
   display: flex;
   flex-direction: column;
-  width: 2000px;
+  width: 100%;
   height: 700px;
   overflow: auto;
 }
+
 .icon{
   display: flex;
   width: 3rem;
