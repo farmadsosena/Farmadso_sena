@@ -1,30 +1,29 @@
-// Obtén una lista de referencias a todos los checkboxes
-var checkboxes = document.querySelectorAll('.ui-checkbox');
+// Obtén elementos relevantes
+const seleccionarTodo = document.getElementById('seleccionarTodo');
+const checkboxes = document.querySelectorAll('.ui-checkbox');
 
-// Agrega un evento de cambio a cada checkbox
-checkboxes.forEach(function(checkbox) {
-  checkbox.addEventListener('change', function() {
-    // Verifica si el checkbox está seleccionado
-    if (checkbox.checked) {
-      // Agrega un retardo de tiempo antes de eliminar la sección
-      setTimeout(function() {
-        // Muestra una alerta de confirmación
-        var confirmacion = confirm('¿Estás seguro de eliminar la sección seleccionada?');
-        
-        // Si el usuario confirma la eliminación, elimina la sección
-        if (confirmacion) {
-          // Elimina la sección
-          var section = checkbox.closest('.ui-checkbox'); // Reemplaza 'tu-clase-de-seccion' con la clase correcta de la sección
-          if (section) {
-            section.remove();
-            // Muestra una alerta de que se ha eliminado la sección
-            alert('Sección eliminada.');
-          }
-        } else {
-          // Si el usuario cancela la eliminación, desmarca el checkbox
-          checkbox.checked = false;
+// Agrega un controlador de eventos al botón "Eliminar"
+document.querySelector('.eliminar-razon').addEventListener('click', () => {
+  // Confirma si el usuario quiere eliminar las razones seleccionadas
+  const confirmacion = confirm('¿Estás seguro de que deseas eliminar las razones seleccionadas?');
+  if (confirmacion) {
+    // Recorre todos los checkboxes y elimina las razones seleccionadas
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        // Elimina el elemento .rect más cercano al checkbox seleccionado
+        const rectElement = checkbox.closest('.rect');
+        if (rectElement) {
+          rectElement.remove();
         }
-      }, 1000); // Retardo de 1 segundo (puedes ajustar el valor según tus necesidades)
-    }
+      }
+    });
+  }
+});
+
+// Agrega un controlador de eventos al checkbox "Seleccionar todo"
+seleccionarTodo.addEventListener('change', () => {
+  // Marca o desmarca todos los checkboxes según el estado del checkbox "Seleccionar todo"
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = seleccionarTodo.checked;
   });
 });

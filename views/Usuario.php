@@ -337,160 +337,174 @@
       <section class="paginas" id="dos">
         ejem 2
       </section>
+
       <section class="paginas" id="tres">
         <div class="cont-p">
-        <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
-        <div class="bt-form"><button>
-          <h1>Formulas</h1>
-        </button></div>
+          <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
+            <div class="bt-form">
 
-        <div class="sect-p">
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input id="botonAlerta" type="checkbox" class="ui-checkbox"> 
-          <div><h3>Razon de la formula</h3></div>
+              <button class="title-formula">
+                <h1>Formulas</h1>
+              </button>
+
+              <button class="eliminar-razon">Eliminar</button>
+
+              <div class="seleccion-todo">
+
+                <input type="checkbox" id="seleccionarTodo">
+                <p>Seleccionar todo</p>
+
+              </div>
+
+            </div>
+
+            <div class="sect-p">
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input id="botonAlerta" type="checkbox" class="ui-checkbox"> 
+                <div><h3>Razon de la formula 1</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula 2</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula 3</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+
+              <div class="rect">
+                <div class="cont-cd"> 
+                  <input type="checkbox" class="ui-checkbox">
+                <div><h3>Razon de la formula</h3></div>
+                </div>
+                <div class="cont-cd">          
+                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
+                  <div><h3>Doctor</h3></div></div>
+                <div><h3>Fecha</h3></div>
+                <div><button>Estado</button></div>
+              </div>
+            </div>
           </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
         </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        <div class="rect">
-          <div class="cont-cd"> 
-            <input type="checkbox" class="ui-checkbox">
-          <div><h3>Razon de la formula</h3></div>
-          </div>
-          <div class="cont-cd">          
-            <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
-            <div><h3>Doctor</h3></div></div>
-          <div><h3>Fecha</h3></div>
-          <div><button>Estado</button></div>
-        </div>
-
-        </div>
-      </div>
       </section>
     </section>
   </main>
