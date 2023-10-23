@@ -1,0 +1,364 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+  }
+
+  #menu {
+    width: 20%;
+    background-color: #f0f0f0;
+    color: #fff;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #menu .title-cuenta{
+    color: #000;
+  }
+
+  .contenedor-pestañas .opc{
+    background-color: #fff;
+    height: 40px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5px;
+    border-radius: 2px;
+    border-bottom: 1px solid rgb(214, 212, 212);
+    cursor: pointer;
+  }
+
+  .contenedor-pestañas .tab{
+    width: 80%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+  }
+
+  .contenedor-pestañas h4{
+    color: gray;
+  }
+
+  #contenido {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .tab {
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .tab img{
+    width: 20px;
+    margin-right: 10px;
+  }
+
+  .contenido-pestaña {
+    display: none;
+  }
+
+  /* estilos del contenido de las pestaña de cupon */
+
+  #cupon .cuponera-container p{
+    font-size: 20px;
+  }
+
+  .cuponera-container .form-cupon{
+    display: flex;
+    align-items: center;
+  }
+
+  .form-cupon p{
+    margin-right: 15px;
+  }
+
+  .form-cupon input{
+    border-radius: 15px;
+    border: 0.5px solid gray;
+    background-color: #fff;
+    width: 250px;
+    height: 30px;
+    padding: auto;
+    padding-left: 20px;
+  }
+
+  .form-cupon button{
+    	border: none; 
+      border-radius: 3px;
+      height: 28px;
+  }
+
+  /* estilos del cotenido de mi perfil */
+
+  .perfil{
+    display: flex;
+  }
+
+  .perfil img{
+    width: 100px;
+  }
+
+  .datos{
+    margin-left: 15px;
+  }
+
+  .datos .nn{
+    font-size: 22px;
+    margin-bottom: -15px;
+  }
+
+  .form-datos{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .form-datos .left{
+    width: 48%;
+  }
+
+  .form-datos .dato{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .form-datos .dato p{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .form-datos .dato input{
+    border: none;
+    width: 99%;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: 0.1px solid gray;
+  }
+
+  .form-datos .genero p{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .form-datos .right{
+    width: 48%;
+  }
+
+  .right .pais select{
+    border: 0.1px solid gray;
+    border-radius: 3px;
+    width: 14.3%;
+    height: 30px;
+  }
+
+  .right .pais input{
+    border: 0.1px solid gray;
+    border-radius: 3px;
+    width: 82%;
+    height: 30px;
+    margin-left: 6px;
+  }
+
+  .right .nacimiento p{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .right .nacimiento select{
+    border: 0.1px solid gray;
+    border-radius: 3px;
+    width: 32.6%;
+    height: 30px;
+  }
+
+  .right .nacimiento button{
+    border: none;
+    background-color: #418fde;
+    width: 99%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 35px;
+  }
+
+  /* estilos de mis direcciones */
+
+  #misdirecciones{
+    width: 95%;
+  }
+
+  #misdirecciones h3 {
+    font-size: 30px;
+  } 
+  
+  #misdirecciones .btn-direccion{
+    text-align: right;
+  }
+
+  #misdirecciones .btn-direccion #openModalBtn{
+    background-color: #418fde;
+    border-radius: 5px;
+    padding: 7px 20px;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Estilos para la ventana modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px; /* Limita el ancho de la ventana modal */
+}
+
+.close {
+  color: blue;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Estilos para los campos y la disposición */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%; /* Ajusta el ancho de los campos */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.address-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field {
+  width: 45%; /* Ajusta el ancho de los campos en la fila */
+}
+
+  /* estilos del contenido de cambiar contraseña */
+  #cambiarcontrasena{
+    display: flex;
+  }
+
+  #cambiarcontrasena .contraseña{
+    width: 37%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+  }
+
+  #cambiarcontrasena .form-contraseña{
+    background-color: #f0f0f0;
+    width: 98%;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  #cambiarcontrasena .form-contraseña .contraseña-actual{
+    border: 0.5px solid gray;
+    width: 90%;
+    height: 30px;
+    border-radius: 4px;
+    outline: none;
+  } 
+
+  #cambiarcontrasena .form-contraseña .nueva-cntrs{
+    margin-top: 20px;
+  } 
+  
+  #cambiarcontrasena .form-contraseña .nueva-cntrs input{
+    border: 0.5px solid gray;
+    height: 30px;
+    width: 44%;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  #cambiarcontrasena .form-contraseña button{
+    border: none;
+    background-color: #418fde;
+    border-radius: 4px;
+    width: 92%;
+    height: 27px;
+    margin-top: 20px;
+    color: #fff;
+    margin-bottom: 25px;
+  }
+
+  /* estilos del contenido de mis compras */
+
+  #miscompras .title-miscompras{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #miscompras .title-miscompras h2{
+    color: gray;
+  }
+
+  #miscompras .title-miscompras a{
+    background-color: #418fde;
+    text-decoration: none;
+    width: 10%;
+    height: 25px;
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  #miscompras .compras-container{
+    background-color: #f0f0f0;
+    height: 150px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+  }
+
+  #miscompras .compras-container img{
+    width: 50px;  
+    margin-right: 20px;
+  }
