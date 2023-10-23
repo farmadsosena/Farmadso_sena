@@ -475,7 +475,7 @@
     </div>
 
     <!-- Ventana modal para "Historial" GARAVIZ-->
-    <div id="miModal" class="modal">
+    <div id="miModal" class="modal" onclick="cerrarG()">
       <div class="modal-contenido">
         <span class="cerrar-modal" id="cerrarModal" onclick="cerrarG()">
           &times;</span

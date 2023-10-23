@@ -110,8 +110,18 @@ body{
     flex-direction: column;
     width: 88%;
     align-items: center;
+    height: 100vh;
     gap: 10px;
-    overflow: auto;
+}
+
+.sectionMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
 }
 
 .deliveryActivedDesactived{
@@ -290,6 +300,10 @@ ACTIVOS E INACTIVOS */
 }
 
 
+
+
+
+
 .deliverysBusy{
     display: flex;
     flex-direction: column;
@@ -403,6 +417,14 @@ ACTIVOS E INACTIVOS */
     cursor: pointer;
 }
 
+.modal_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    height: 75%;
+}
+
 /* Estilos para la imagen del domiciliario en la modal */
 .modal-body .imgStatusDelivery img {
     max-width: 100%;
@@ -426,7 +448,7 @@ ACTIVOS E INACTIVOS */
     align-items: flex-end;
     gap: 10px;
     height: 5rem;
-    width: 14rem;
+    width: 17.5rem;
     padding-right: 4px;
 }
 
@@ -470,6 +492,106 @@ ACTIVOS E INACTIVOS */
 }
 
 
+/* Estilos para la segunda modal */
+#modalCalificacion {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    border: 1px solid #888;
+    width: 30%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header h2 {
+    text-align: center;
+}
+
+.modal-body {
+    margin-top: 20px;
+    width: 80%;
+    height: 70%;
+}
+
+#estrellas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+}
+
+#estrellas>span{
+    font-size: 2rem;
+}
+
+.comentarios-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+
+}
+
+#comentariosList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 1rem;
+}
+
+#comentariosList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.estrella {
+    font-size: 24px; /* Tamaño de la estrella */
+    color: gold; /* Color de la estrella */
+    cursor: pointer;
+}
+
+.estrella:hover {
+    color: orange; /* Cambiar el color al pasar el ratón por encima */
+}
+
+
+.avatar {
+    width: 30px; /* Ajusta el tamaño según tus preferencias */
+    height: 30px; /* Ajusta el tamaño según tus preferencias */
+    border-radius: 50%; /* Para una imagen redonda (puedes ajustar según tus preferencias) */
+    margin-right: 10px; /* Ajusta el espacio entre la imagen y el texto */
+}
+
+
+/* Estilo para el icono resaltado */
+.material-symbols-outlined.selected {
+    background-color: var(--azulClaro);
+}
 
 /* estilo para los iconos */
 
@@ -479,7 +601,6 @@ ACTIVOS E INACTIVOS */
 }
 
 .contenido-oculto {
-    /* Estilos para el contenido oculto */
     display: none;
 }
 
@@ -501,7 +622,7 @@ ACTIVOS E INACTIVOS */
     background: var(--grisClaro);
     border-radius: 8px;
     justify-content: space-between;
-    font-size: 40px;
+    font-size: 28px;
 }
 
 .persona:nth-child(odd) {
@@ -509,7 +630,7 @@ ACTIVOS E INACTIVOS */
 }
 
 .fa-circle-user {
-    font-size: 100px;
+    font-size: 45px;
 }
 
 .nombre {
@@ -518,11 +639,14 @@ ACTIVOS E INACTIVOS */
 
 #but {
     background-color: #12b886;
-    width: 150px;
-    height: 50px;
+    border: none;
+    border: 2px solid black;
+    color: white;
+    width: 100px;
+    height: 30px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -540,16 +664,16 @@ ACTIVOS E INACTIVOS */
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.889);
   }
   
     .modal-contenido {
       background-color: white;
-      margin: 4% auto;
+      margin: 8% auto;
       padding: 20px;
       width: 70vh;
       position: relative;
-      height: 80%;
+      height: 60%;
     }
   
   #cerrarModal {
@@ -588,10 +712,10 @@ ACTIVOS E INACTIVOS */
     cursor: pointer;
 }
 
-.modal-bodyDoss {
+.modal-bodyDoss { 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     padding: 20px;
 }
@@ -743,13 +867,14 @@ ACTIVOS E INACTIVOS */
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.889);
     z-index: 1;
     overflow: auto;
 }
 
 .modal-contentTress {
     background-color: #1971c2;
+    color: white;
     margin: 10% auto;
     padding: 20px;
     width: 30%;
@@ -870,6 +995,6 @@ ACTIVOS E INACTIVOS */
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    overflow-y: scroll;
+    overflow-y: scroll;
     }
 }

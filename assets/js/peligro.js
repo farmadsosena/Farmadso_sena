@@ -16,14 +16,6 @@
     // Cierra la modal si se hace clic en el botón de cerrar
     document.getElementById("cerrarModalTress").addEventListener("click", cerrarModalTress);
 
-    // Cierra la modal si se hace clic fuera de ella
-    window.onclick = function(event) {
-        var modal = document.getElementById("myModalTress");
-        if (event.target === modal) {
-            cerrarModalTress();
-        }
-    }
-
     // Acción cuando se hace clic en el botón "Enviar"
     document.getElementById("enviarBtn").addEventListener("click", function() {
         // Aquí puedes agregar la lógica para procesar el envío de datos o lo que necesites
