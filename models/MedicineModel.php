@@ -11,8 +11,7 @@ class MedicineModel
     }
 
 
-    public function medicineInsert($medicine, $imagenesBd)
-    {
+    public function medicineInsert($medicine, $imagenesBd) {
 
         $codigo = $medicine['codigo'];
         $nombre = $medicine['nombre'];
