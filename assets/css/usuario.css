@@ -502,12 +502,14 @@ display: none;
   display: flex;
   justify-content: center;
   padding-top: 25px;
-
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 35px;
 }
 
 
 .card{
+  
   width: 280px;
   height: 180px;
   border: rgb(197, 197, 197) 1px solid;
