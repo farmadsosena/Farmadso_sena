@@ -15,10 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
     <!-- Script de GARAVIZ -->
-    <script
-      src="https://kit.fontawesome.com/5a100f3f01.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/5a100f3f01.js" crossorigin="anonymous"></script>
 
     <title>Domiciliario</title>
   </head>

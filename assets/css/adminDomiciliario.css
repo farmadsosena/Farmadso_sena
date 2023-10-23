@@ -111,6 +111,7 @@ body{
     width: 88%;
     align-items: center;
     gap: 10px;
+    overflow: auto;
 }
 
 .deliveryActivedDesactived{
@@ -287,10 +288,6 @@ ACTIVOS E INACTIVOS */
     height: 70%;
     border-radius: 8px 8px 8px 8px;
 }
-
-
-
-
 
 
 .deliverysBusy{
@@ -473,3 +470,406 @@ ACTIVOS E INACTIVOS */
 }
 
 
+
+/* estilo para los iconos */
+
+.material-symbols-outlined {
+    /* Estilos para los iconos */
+    cursor: pointer;
+}
+
+.contenido-oculto {
+    /* Estilos para el contenido oculto */
+    display: none;
+}
+
+/* Tabla, iconos boton */
+/* Estilos para el contenido oculto (contenido2) */
+
+.personas-container {
+    display: flex;
+    flex-direction: column; 
+    width: 90%;
+}
+
+.persona {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background: var(--grisClaro);
+    border-radius: 8px;
+    justify-content: space-between;
+    font-size: 40px;
+}
+
+.persona:nth-child(odd) {
+    background: var(--blanco); 
+}
+
+.fa-circle-user {
+    font-size: 100px;
+}
+
+.nombre {
+    flex: 1; 
+}
+
+#but {
+    background-color: #12b886;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* MODAL 2*/
+/* Estilos para la modal */
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+    .modal-contenido {
+      background-color: white;
+      margin: 4% auto;
+      padding: 20px;
+      width: 70vh;
+      position: relative;
+      height: 80%;
+    }
+  
+  #cerrarModal {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+.modalDoss {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-contenidoDoss {
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 90%;
+    position: relative;
+    
+}
+
+.cerrar-modalDoss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-bodyDoss {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.imgStatusDeliveryModlDoss{
+    border-bottom: 2px solid;
+    padding: 10px;
+}
+
+.modal-infoDoss {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    color: #0082c6;
+    height: 238px;
+}
+
+.modal-buttonsDoss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.DADoss{
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.acepDoss{
+    background-color: #40c057;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+.rechaDoss{
+    background-color: #ff0000;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+
+/* Estilos contenedor 3 */
+.conte3 {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+}
+
+.botoneees {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.libres, .pendientes, .entregados {
+    border: 2px solid;
+    width: 250px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.libres {
+    background-color: #12b886;
+}
+
+.pendientes {
+    background-color: #fab005;
+}
+
+.entregados {
+    background-color: #ff0000;
+}
+
+.estaddos {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.da {
+    border-bottom: 1px solid;
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.NFC, .empre, .esta, .repor{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.minilibre, .minipendiente, .minientregado{
+    border: 1px solid;
+    width: 150px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.minilibre{
+    background-color: #12b886;
+}
+.minipendiente{
+    background-color: #fab005;
+}
+.minientregado{
+    background-color: #ff0000;
+}
+
+#peligro{
+    font-size: 60px;
+    color: #fab005;
+    cursor: pointer;
+}
+
+/* VENTANA MODAL 3 */
+.modalTress {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-contentTress {
+    background-color: #1971c2;
+    margin: 10% auto;
+    padding: 20px;
+    width: 30%;
+    height: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilos para el botón de cierre de la modal */
+.closeTress {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Estilos para el icono de peligro */
+#peligroTress {
+    cursor: pointer;
+}
+
+/* Estilo para ocultar el icono de peligro cuando se abre la modal */
+#peligroTress.openTress {
+    display: none;
+}
+
+.tiiituu{
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ccdomi{
+    width: 100px;
+    height: 25px;
+}
+
+.cen{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buu{
+    border: none;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: #ff0000;
+    width: 100px;
+    height: 2.5rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+/* Estilos para hacerlo responsive */
+@media (max-width: 768px) {
+    .modal-contenido{
+        max-width: 90%;
+        width: 80%;
+    }
+    .modal-infoDoss {
+        font-size: 14px;
+    }
+
+    .acepDoss{
+        width: 140px;
+        height: 35px;
+        font-size: 20px;
+    }
+    .rechaDoss{
+        background-color: #ff0000;
+        border: none;
+        cursor: pointer;
+        border: 1px solid #0082c6;
+        width: 140px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    .personas-container{
+        max-width: 70%;
+        width: 90%;
+    }
+    .persona i{
+        font-size: 10px;
+    }
+
+    .nombre{
+        font-size: 10px;
+    }
+
+    #but{
+        width: 50px;
+        height: 15px;
+        font-size: 10px;
+        border: none;
+
+    }
+
+    .asideAdminDelivery {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        background-color: var(--azulOscuro);
+    }
+
+    .personas-container{
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: scroll;
+    }
+}
