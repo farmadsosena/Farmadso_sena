@@ -95,6 +95,7 @@
       </section>
     </section>
     <section class="cuerpores">
+    
       <section class="paginas" id="uno">
         <div class="formulas">
           <div class="opt_config">
@@ -174,6 +175,11 @@
                   <li>Abrir</li>
                   <li class="delete">Eliminar</li>
                 </ul>
+              </div>
+
+
+              <div class="modal_card">
+          
               </div>
             </div>
 
@@ -274,7 +280,10 @@
         </div>
 
 
+      
+
       </section>
+    
       <section class="paginas" id="dos">
         ejem 2
       </section>
