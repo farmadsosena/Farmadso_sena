@@ -1,0 +1,120 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
+}
+
+/* Estilos generales del pie de página */
+.elegante-pie-de-pagina {
+  background-color: #e8fbf9;
+  color: #000000;
+  padding: 30px 0;
+}
+
+.elegante-pie-de-pagina .contenedor {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.elegante-pie-de-pagina .columna {
+  flex: 1;
+  padding: 0 20px;
+}
+
+/* Estilos para los enlaces rápidos */
+.elegante-pie-de-pagina ul {
+  list-style: none;
+  padding: 0;
+}
+
+.elegante-pie-de-pagina ul li {
+  margin-bottom: 10px;
+}
+
+.elegante-pie-de-pagina ul li a {
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.elegante-pie-de-pagina ul li a:hover {
+  color: rgb(167, 167, 167); /* Color de resaltado al pasar el mouse */
+}
+
+
+
+/* Estilos para la sección de redes sociales */
+.redes-sociales {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-row: 2 / 3;
+}
+
+.iconos-final {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  transition: all 0.3s ease;
+}
+
+.iconos-final:hover {
+  transform: scale(1.1);
+  border-color: #000000;
+}
+
+.fa-facebook,
+.fa-instagram,
+.fa-whatsapp {
+  color: #000000;
+  font-size: 20px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  footer {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      column-gap: 20px;
+  }
+
+  #contacto {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+  }
+
+  .redes-sociales {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+  }
+}
+
+/* FINALIZA LAS EDICIONES DEL FOOTER DE LA PÁGINA*/
+
+
+/* Estilos para los créditos */
+.creditos {
+  text-align: center;
+  background-color: #e8fbf9;
+  padding: 10px 0;
+}
+
+.creditos p {
+  margin: 0;
+  font-size: 14px;
+  color: #000000;
+}
+
+.creditos a:hover {
+  color: #000000;
+}
