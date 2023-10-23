@@ -496,20 +496,34 @@ display: none;
 
 .cards_formulas{
   border: solid 1px black;
-  width: 80%;
+  width: 90%;
   height: 450px;
   overflow: auto;
   display: flex;
-  padding-top: 15px;
-  padding-left: 28px;
-  gap: 25px;
+  justify-content: center;
+  padding-top: 25px;
+
+  gap: 35px;
 }
 
 
 .card{
-  width: 250px;
-  height: 150px;
+  width: 280px;
+  height: 180px;
   border: rgb(197, 197, 197) 1px solid;
+  padding: 5px 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.firts_line{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 20px;
   
 }
 
@@ -670,3 +684,95 @@ display: none;
   transition: none;
   opacity: 1;
 }
+
+.date-card{
+  font-size: 0.8em;
+}
+
+.state-card{
+  border: 1px solid rgb(187, 187, 187);
+  height: 20px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  background-color: orange;
+}
+
+.state-card2{
+  border: 1px solid rgb(187, 187, 187);
+  height: 20px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  background-color: rgb(9, 214, 9);
+}
+
+.state-card3{
+  border: 1px solid rgb(187, 187, 187);
+  height: 20px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  background-color: rgb(107, 107, 107);
+}
+
+.title_card{
+  font-size: 1em;
+}
+
+.second-line{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profesion{
+  font-size: 0.8em;
+}
+
+.name_doc{
+  font-weight: bolder;
+}
+
+.third-line{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu_card{
+  display: none;
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+  width: 100px;
+  height: 80px;
+  background-color: white;
+  border: rgb(197, 197, 197) 1px solid;
+  padding-left: 5px;
+}
+
+.menu_card ul{
+  height: 100%;
+  width: 100%;
+  display: flex;
+ flex-direction: column;
+  gap: 10px; 
+  justify-content: center;
+}
+
+.menu_card ul li{
+  list-style: none;
+  font-size: 1.1em;
+}
+
+.delete{
+  color: red;
+}
+
