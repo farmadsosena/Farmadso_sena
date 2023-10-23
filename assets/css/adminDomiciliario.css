@@ -108,10 +108,11 @@ body{
 .mainAdminDelivery{
     display: flex;
     flex-direction: column;
-    width: 88%;
     align-items: center;
-    height: 100vh;
-    gap: 10px;
+    justify-content: center;
+    width: 88%;
+    height: 100%;
+    gap: 30px;
 }
 
 .sectionMain{
@@ -618,6 +619,13 @@ ACTIVOS E INACTIVOS */
 
 /* Tabla, iconos boton */
 /* Estilos para el contenido oculto (contenido2) */
+
+.conte2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
 .personas-container {
     display: flex;
