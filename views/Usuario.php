@@ -183,6 +183,56 @@
               </div>
             </div>
 
+            <div class="card" data-id="1">
+              <div class="firts_line">
+                <div class="date-card">
+                  <p>05 de Noviembre de 2023</p>
+                </div>
+
+                <div class="state-card2">
+                  Entregado
+                </div>
+
+              </div>
+
+              <div class="second-line">
+                <h3 class="title_card">
+                  Formulación de software para el catéter de rodilla maxilar </h3>
+
+                <div class="doc">
+                  <p class="profesion">Profesional de la salud</p>
+                  <p class="name_doc">Diego Hoyos Linares</p>
+                </div>
+
+                <div class="eps">
+
+                </div>
+
+                <div class="opt-card">
+
+                </div>
+              </div>
+
+              <div class="third-line">
+
+                Descargar
+
+                <img class="open_menu"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+
+              </div>
+              <div class="menu_card">
+                <ul>
+                  <li>Abrir</li>
+                  <li class="delete">Eliminar</li>
+                </ul>
+              </div>
+
+
+              <div class="modal_card">
+          
+              </div>
+            </div>
 
             <div class="card">
               <div class="firts_line">
