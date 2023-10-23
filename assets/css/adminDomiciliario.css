@@ -417,6 +417,14 @@ ACTIVOS E INACTIVOS */
     cursor: pointer;
 }
 
+.modal_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    height: 75%;
+}
+
 /* Estilos para la imagen del domiciliario en la modal */
 .modal-body .imgStatusDelivery img {
     max-width: 100%;
@@ -440,7 +448,7 @@ ACTIVOS E INACTIVOS */
     align-items: flex-end;
     gap: 10px;
     height: 5rem;
-    width: 14rem;
+    width: 17.5rem;
     padding-right: 4px;
 }
 
