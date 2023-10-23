@@ -22,6 +22,7 @@ contraentregaForm.addEventListener('input', ()=>{
 })
 
 
-// Funcion de mostrar ventana cart()
-document.getElementById('viewCart').
-document.getElementById('contraentregaForm').
+
+// // Funcion de mostrar ventana cart()
+// document.getElementById('viewCart').
+// document.getElementById('contraentregaForm').
