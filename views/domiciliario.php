@@ -3,12 +3,30 @@ session_start();
 include "../config/Conexion.php";
 
 if (!isset($_SESSION["usu"])) {
-  echo "<script> window.location='login.php'</script>";
+    echo "<script> window.location='login.php'</script>";
 }
 
 $id = $_SESSION["id"];
 
-echo $id;
+
+function existe_en_tabla($tabla, $usuario)
+{
+    global $conexion;
+    $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+    $resultado = $conexion->query($consulta);
+    return $resultado->num_rows == 0;
+}
+
+if (existe_en_tabla('usuarios', $id)) {
+  echo "<script> window.location='login.php'</script>";
+}
+if (existe_en_tabla('domiciliario', $id)) {
+    echo "<script> window.location='login.php'</script>";
+}
+if (existe_en_tabla('farmacias', $id)) {
+    echo "<script> window.location='login.php'</script>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

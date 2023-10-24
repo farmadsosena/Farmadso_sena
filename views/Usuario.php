@@ -8,6 +8,7 @@ if (!isset($_SESSION["usu"])) {
 
 $id = $_SESSION["id"];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,57 +30,64 @@ $id = $_SESSION["id"];
 
 <body>
 
-  <aside class="aside">
-    <!-- nuevo proceso -->
-    <section class="nabber">
-      <i class='bx bx-menu'></i>
-      <div>
-        <img src="../assets/img/logoFarmadso - cambio.png" alt="">
-        <p>Farmadso</p>
-      </div>
-    </section>
+  <section class="yuli">
+    <div class="icon">
+      <i class="bx bx-menu"></i>
+    </div>
 
-    <section class="naver">
-      <article class="hoss">
-        <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
-          <div>
-            <i class='bx bx-notepad'></i>
-            Mis formulas
-          </div>
-        </div>
+    <aside class="aside">
+      <!-- Nuevo proceso -->
+      <section class="nabber">
 
-        <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
-          <div>
-            <i class='bx bx-shopping-bag'></i>
-            Mis compras
-          </div>
+        <div class="logo">
+          <img src="../assets/img/logoFarmadso - cambio.png" alt="">
+          <p>Farmadso</p>
         </div>
+      </section>
 
-        <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
-          <div>
-            <i class='bx bx-trash-alt'></i>
-            Papelera
+      <section class="naver">
+        <article class="hoss">
+          <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
+            <div>
+              <i class='bx bx-notepad'></i>
+              Mis formulas
+            </div>
           </div>
-        </div>
 
-        <div class="toggle-dic">
-          <div>
-            <i class='bx bx-user-circle'></i>
-            Solicitar un nuevo rol
+          <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+            <div>
+              <i class='bx bx-shopping-bag'></i>
+              Mis compras
+            </div>
           </div>
-        </div>
-      </article>
-    </section>
-  </aside>
+
+          <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+            <div>
+              <i class='bx bx-trash-alt'></i>
+              Papelera
+            </div>
+          </div>
+
+          <div class="toggle-dic">
+            <div>
+              <i class='bx bx-user-circle'></i>
+              Solicitar un nuevo rol
+            </div>
+          </div>
+        </article>
+      </section>
+    </aside>
+  </section>
 
   <main class="mader">
     <article class="menu">
+
       <header class="adder">
 
         <section class="buscador">
           <div>
             <input type="search" name="" id="" placeholder="Buscar campo">
-            <i class='bx bx-search-alt-2'></i>
+            <i class='bx bx-search-alt-2' id=""></i>
           </div>
         </section>
 
@@ -94,36 +102,34 @@ $id = $_SESSION["id"];
               <div class="options">
 
                 <?php
-                function existe_en_tabla($tabla, $usuario)
-                {
-                  global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-                  $resultado = $conexion->query($consulta);
-                  return $resultado->num_rows > 0;
-                }
-
-                if (existe_en_tabla('domiciliario', $id)) {
-                  echo '<div class="option">
-              <i class="bx bx-car"></i> Domiciliario
-            </div>';
-                }
-                if (existe_en_tabla('farmacias', $id)) {
-                  echo '<div class="option">
-              <i class="bx bxs-business"></i> Farmaceutico
-            </div>';
-                }
-                if (existe_en_tabla('usuarios', $id)) {
-                  echo '<div class="option">
-              <i class="bx bx-user-circle"></i> Cuenta de usuario
-            </div>';
-                }
-
-                $conexion->close();
-                ?>
+                    function existe_en_tabla($tabla, $usuario)
+                    {
+                      global $conexion;
+                      $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                      $resultado = $conexion->query($consulta);
+                      return $resultado->num_rows > 0;
+                    }
+    
+                    if (existe_en_tabla('domiciliario', $id)) {
+                      echo '<div class="option">
+                  <i class="bx bx-car"></i> Domiciliario
+                </div>';
+                    }
+                    if (existe_en_tabla('farmacias', $id)) {
+                      echo '<div class="option">
+                  <i class="bx bxs-business"></i> Farmaceutico
+                </div>';
+                    }
+                    if (existe_en_tabla('usuarios', $id)) {
+                      echo '<div class="option">
+                  <i class="bx bx-user-circle"></i> Cuenta de usuario
+                </div>';
+                    }
+    
+                    $conexion->close();
+                    ?>
               </div>
             </div>
-
-
 
             <section class="cont-usu" id="cuenta-fasd">
               <img src="../assets/img/usuario.png" alt="">
@@ -161,45 +167,47 @@ $id = $_SESSION["id"];
 
             <div class="cards_formulas">
               <div class="scroll2">
-                  <!-- <div class="card" data-id="1">
-                    <div class="firts_line">
-                      <div class="date-card">
-                        <p>05 de Noviembre de 2023</p>
-                      </div>
-
-                      <div class="state-card2">
-                        Entregado
-                      </div>
+                <!-- Comienzan tarjetas para formulas -->
+                <div class="card" data-id="1">
+                  <div class="firts_line">
+                    <div class="date-card">
+                      <p>05 de Noviembre de 2023</p>
                     </div>
 
-                    <div class="second-line">
-                      <h3 class="title_card"> Formulación de software para el catéter de rodilla maxilar </h3>
-                      <div class="doc">
-                        <p class="profesion">Profesional de la salud</p>
-                        <p class="name_doc">Diego Hoyos Linares</p>
-                      </div>
-                      <div class="eps"></div>
-                      <div class="opt-card"></div>
+                    <div class="state-card">
+                      Entregado
                     </div>
+                  </div>
 
-                    <div class="third-line">Descargar
-                      <img class="open_menu"
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                  <div class="second-line">
+                    <h3 class="title_card"> Formulación de software para el catéter de rodilla maxilar </h3>
+                    <div class="doc">
+                      <p class="profesion">Profesional de la salud</p>
+                      <p class="name_doc">Diego Hoyos Linares</p>
                     </div>
-                    <div class="menu_card">
-                      <ul>
-                        <li>Abrir</li>
-                        <li class="delete">Eliminar</li>
-                      </ul>
-                    </div>
-                  </div> -->
-                  <section class="prepare">
-                  <img src="../assets/img/No data-rafiki.png" alt="">
+                    <div class="eps"></div>
+                    <div class="opt-card"></div>
+                  </div>
 
-                    <h2>No existen formulas todavia en el sistema</h2>
-                  </section>
-
+                  <div class="third-line">Descargar
+                    <img class="open_menu"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                  </div>
+                  <div class="menu_card">
+                    <ul>
+                      <li>Abrir</li>
+                      <li class="delete">Eliminar</li>
+                    </ul>
+                  </div>
                 </div>
+
+                <!-- Final de tarjetas -->
+
+                <!-- <section class="prepare">
+                  <img src="../assets/img/No data-rafiki.png" alt="">
+                    <h2>No existen formulas todavia en el sistema</h2>
+                  </section> -->
+              </div>
             </div>
           </article>
         </section>
@@ -456,7 +464,7 @@ $id = $_SESSION["id"];
       <header>
         <h2>diegohlinares2004@gmail.com</h2>
         <section class="dash-img">
-          <img src="" alt="">
+          <img src="../assets/img/usuario.png" alt="">
         </section>
         <button>
           Configuracion de la cuenta
@@ -500,6 +508,7 @@ $id = $_SESSION["id"];
   <script src="../assets/js/filtros_formulas.js"></script>
   <script src="../assets/js/eliminar.js"></script>
   <script src="../assets/js/menu_card.js"></script>
+  <script src="../assets/js/funcionusuario.js"></script>
 </body>
 
 </html>

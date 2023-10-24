@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (text.includes("Domiciliario")) {
         window.location= '../views/domiciliario.php'
       } else if (text.includes("Farmaceutico")) {
-        window.location= '../views/'
+        window.location= '../views/PanelAdmin.php'
       } else if (text.includes("Cuenta de usuario")) {
-        window.location= '../views/'
+        window.location= '../views/Usuario.php'
       }
 
     });

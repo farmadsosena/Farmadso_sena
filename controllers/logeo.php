@@ -11,7 +11,6 @@ if (isset($_POST["enviar"])) {
         $rol = $des["idrol"];
         $id = $des["idusuario"];
         $_SESSION["usu"] = $user;
-        $_SESSION["rol"] = $rol;
         $_SESSION["id"] = $id;
         if ($rol == "1") {
             echo "<script> window.location='../views/administrador_ve.php'</script>";

@@ -23,11 +23,26 @@ body{
   background-color: #f6f8fc;
 }
 
+
+.yuli{
+  display: flex;
+  flex-direction: column;
+  width: 40vh;
+  position: relative;
+  height: 100%;
+}
+
+.yuli .icon{
+  position: relative;
+  top: 15px;
+}
+
 .aside{
   display: flex;
   flex-direction: column;
   /* border: 1px solid; */
-  width: 50vh;
+  margin-top: -40px;
+  width: 40vh;
 }
 .adder{
   display: flex;
@@ -398,14 +413,16 @@ body{
   padding: 2rem 0rem;
   height: auto;
 }
+
 .doss{
   background-color: #d3e3fd;
-
+  
 }
 .doss div{
   color: #333; 
   font-weight: 550 !important; 
 }
+
 .hoss .toggle-dic{
   display: flex;
   align-items: center;
@@ -820,14 +837,3 @@ body{
   color: red;
 }
 
-.prepare{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.prepare img{
-  width: 50%;
-}
