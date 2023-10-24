@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
       option.classList.remove("show");
       const text = option.textContent;
       selectedOption.innerHTML = option.innerHTML;
+
+
+      if (text.includes("Domiciliario")) {
+        window.location= '../views/domiciliario.php'
+      } else if (text.includes("Farmaceutico")) {
+        window.location= '../views/'
+      } else if (text.includes("Cuenta de usuario")) {
+        window.location= '../views/'
+      }
+
     });
   });
 

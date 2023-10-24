@@ -115,7 +115,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 33%;
 }
 
 .option-true{
@@ -331,7 +331,7 @@ body{
 
 /* Estilos para el custom select */
 .custom-select {
-  width: 60%;
+  width: 65%;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -460,66 +460,75 @@ body{
   height: 100%;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  padding: 0.5rem 0rem;
 }
 
 
 .opt_config{
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  height: 70px;
-  width: 90%;
-  border: #3d83df91 solid 2px;
-  margin-top: 25px;
-  gap: 5px;
+  width: 98%;
+  height: 10%;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }
 
 .search{
+  position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  width: 40%;
+  width: 70%;
+  height: 100%;
   margin-left: 15px;
-  
 }
 
 .search input[type='search']{
   border: rgb(172, 172, 172) solid 1px;
   height: 35px;
+  border-radius: 3px;
   width: 100%;
   font-size: 1em;
-  padding-left: 5px;
-  border-radius: 10px 0 0 10px;
+  padding-left: 3rem;
+  background-color: transparent;
+  border: none;
+}
+.search i{
+  color: #6c6c6c;
+  position: absolute;
+  left: 14px;
+  font-size: 1.6rem;
 }
 
-input:focus{
+
+.search input:focus {
   outline: none;
+  border: 1px solid rgb(65, 84, 250);
 }
-
 .rotate{
   transform: rotate(0.5turn);
 }
 
-.lupa{
-  background-color: #3d83df;
-  height: 50%;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  border-radius: 0px 5px 5px  0px;
-
-}
-
 
 .filtros{
+  width: 30%;
+  height: 100%;
   display: flex;
-  margin-left: 15px;
-  gap: 15px;
-  
+  align-items: center;
+  justify-content: space-around;
+  color: #6c6c6c;
+}
+
+.filtros i{
+  transform: rotate(90deg);
+  font-size: 1.5rem;
+}
+.filtros div{
+  padding: 0.3rem 0.65rem;
+}
+.filtros div:hover{
+  background-color: rgba(0,0,0,.06);
 }
 
 .config_filtros{
@@ -531,38 +540,52 @@ input:focus{
 }
 
 .cards_formulas{
-  border: solid 1px black;
-  width: 90%;
-  height: 450px;
+  width: 98%;
+  height: 90%;
   overflow: auto;
   display: flex;
   justify-content: center;
-  padding-top: 25px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 35px;
 }
 
+.cards_formulas {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
 
+.cards_formulas::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+
+.scroll2{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 .card{
-  width: 280px;
-  height: 220px;
+  width: 32.5%;
+  margin-top: 0.8rem;
+  height: 200px;
   border: rgb(197, 197, 197) 1px solid;
-  padding: 5px 5px;
+  padding: 0.8rem 0.8rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
+  border-radius: 5px;
   position: relative;
 }
 
 .firts_line{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 20px;
-  
 }
 
 /* modificaciones para papelera */
@@ -735,30 +758,12 @@ input:focus{
   justify-content: center;
   align-items: center;
   font-size: 0.8em;
+  border: none;
+  border-radius: 4px;
+  color: #333;
   background-color: orange;
 }
 
-.state-card2{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(9, 214, 9);
-}
-
-.state-card3{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(107, 107, 107);
-}
 
 .title_card{
   font-size: 1em;
@@ -771,7 +776,7 @@ input:focus{
 }
 
 .profesion{
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 
 .name_doc{
@@ -782,6 +787,7 @@ input:focus{
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 1rem;
 }
 
 .menu_card{
@@ -814,3 +820,14 @@ input:focus{
   color: red;
 }
 
+.prepare{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.prepare img{
+  width: 50%;
+}
