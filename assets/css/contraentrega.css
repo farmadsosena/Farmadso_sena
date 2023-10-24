@@ -18,6 +18,7 @@
 body {
     height: 100vh;
     display: flex;
+    z-index: 1;
 }
 
 /* Main principal del form */
@@ -64,15 +65,16 @@ body {
     width: 45%;
     overflow: hidden;
     display: flex;
+    position: relative;
 }
 
 .formulario_contraentrega {
     width: 100%;
-    margin: 1em;
+    height: 100%;
     display: flex;
-    transform: translateX(-500%);
-    transition: all .3s ease;
+    transition: all .5s ease;
     flex-direction: column;
+    position: absolute;
     padding: .5em .8em;
     border-radius: .5em;
     background-color: #fff;
@@ -118,7 +120,7 @@ body {
 .saveContraentrega,
 .inputCont>textarea {
     position: relative;
-    border: none;
+ border: none;
     width: 100%;
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.11) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
@@ -173,17 +175,24 @@ body {
 
     .formulario_contraentrega {
         width: 100%;
+        margin: .5em;
     }
 
     .mainPrincipal {
         width: 100%;
     }
+
+    
+.inputCont>label{
+    font-size: .85em;
+}
+.saveContraentrega{
+    height: 2.5em;
 }
 
-.activeForm {
-    transform: translateX(0%);
-    width: 100%;
 }
+
+
 
 /* .errorForm{
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(255, 5, 5) 0px 0px 0px 1px inset !important;
@@ -191,3 +200,46 @@ body {
 .warningForm{
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(255, 138, 5) 0px 0px 0px 1px inset !important;
 } */
+
+
+
+#changeContent{
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    top: 1.5em;
+    color: var(--azulOscuro);
+    background-color:transparent;
+    font-size: 1.5em;
+    left: .5em;
+    align-items: center;
+    display: flex;
+    border: none;
+}
+#changeContent >div{
+    position: relative;
+    width: 2.6rem;
+}
+
+
+#cantidadFinal{
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+}
+
+
+.activeForm {
+    transform: translateX(0%) !important;
+    width: 100% !important;
+    z-index: 2 !important;
+
+}
+
+
+.desactiveForm{
+    transform: translateX(-500%);
+}

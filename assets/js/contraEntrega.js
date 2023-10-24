@@ -20,3 +20,25 @@ function sendForm(event, formcontraentrega, link) {
         })
         .catch((error) => console.error('Error:', error));
 }
+
+
+
+
+// Funcion para cambiar contenido de la view pagosContraentrega
+var btn = document.getElementById('changeContent');
+var cartCont = document.querySelector('.contCarrito')
+var formcontraentrega = document.querySelector('.formulario_contraentrega')
+
+btn.addEventListener('click', () => {
+
+    if (!formcontraentrega.classList.contains('activeForm')) {
+
+        formcontraentrega.classList.toggle('desactiveForm')
+
+
+    } else {
+        cartCont.classList.toggle('activeForm')
+        alert('visible formContraentrega')
+    }
+
+})

@@ -15,18 +15,26 @@ function consultarMonto(callback) {
                             label: 'pay'
                         },
                         createOrder: function (data, actions) {
+
+                            document.getElementById('modalCargar').style.display ='flex';
+                            
                             return actions.order.create({
                                 purchase_units: [{
                                     amount: {
                                         value: pesoFinal // Monto de compra
                                     }
                                 }]
+                                
                             });
+
+                           
+
                         },
                         onApprove: function (data, actions) {
                             actions.order.capture().then(function (detalles) {
                                 console.log(JSON.stringify(detalles));
 
+                            
                                 fetch('../controllers/procesarCompra.php', {
                                     method: "POST",
                                     headers: {
@@ -39,7 +47,8 @@ function consultarMonto(callback) {
                                 .then(response => response.json())
                                 .then(data => {
                                     if (data.success === true) {
-                                        alert('Compra realizada correctamente');
+                                        document.getElementById('modalCargar').style.display ='none';
+                                        toastr.success('Compra realizada correctamente');
                                     }
                                 })
                                 .catch(error => {
@@ -84,4 +93,3 @@ function convertirPesosADolares(cantidad, callback) {
         }
     });
 }
-
