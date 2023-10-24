@@ -42,7 +42,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
         echo '<span>Dirección: B/' . $datosCompra["direccion"] . '</span>';
         echo '<span>Cliente: ' . $nombrePaciente . ' ' . $apellidoCliente . ' </span>';
         echo '</div>';
-        echo '<div class="buttonSeeMore" onclick="abrirNoti()">';
+        echo '<div class="buttonSeeMore" onclick="abrirNoti(' . $datosCompra["idcompra"] . ')">';
         echo '<a href="#" class="seeMore" >Ver más</a>';
         echo '</div>';
         echo '</article>';

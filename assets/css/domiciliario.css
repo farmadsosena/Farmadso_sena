@@ -635,14 +635,19 @@ h1 {
   align-items: flex-end;
   width: 60%;
 }
-
+.fechaVer{
+  gap: 5px;
+  display: flex;
+}
 .mainAdresses {
   display: flex;
   flex-direction: column;
   height: 7vh;
   margin-bottom: 10px;
 }
-
+.mainAdresses span{
+  display: flex;
+}
 .aplicar {
   display: flex;
   align-items: center;
