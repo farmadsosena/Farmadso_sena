@@ -2,6 +2,30 @@
 session_start();
 include "../config/Conexion.php";
 
+if (!isset($_SESSION["usu"])) {
+    echo "<script> window.location='login.php'</script>";
+}
+
+$id = $_SESSION["id"];
+
+
+function existe_en_tabla($tabla, $usuario)
+{
+    global $conexion;
+    $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+    $resultado = $conexion->query($consulta);
+    return $resultado->num_rows == 0;
+}
+
+if (existe_en_tabla('usuarios', $id)) {
+  echo "<script> window.location='login.php'</script>";
+}
+if (existe_en_tabla('domiciliario', $id)) {
+    echo "<script> window.location='login.php'</script>";
+}
+if (existe_en_tabla('farmacias', $id)) {
+    echo "<script> window.location='login.php'</script>";
+}
 
 ?>
 
@@ -68,7 +92,7 @@ include "../config/Conexion.php";
                 <div class="item">
                     <div class="custom-select">
                         <div class="selected-option">
-                            <i class='bx bx-user-circle'></i> Cuenta de usuario
+                            <i class='bx bx-user-circle'></i> Cuenta Farmacia
                         </div>
                         <div class="options">
                             <?php
@@ -92,10 +116,9 @@ include "../config/Conexion.php";
                             }
                             if (existe_como_usu('usuarios', $id)) {
                                 echo '<div class="option">
-                                <i class="bx bx-user-circle"></i> Cuenta de usuario
+                                <i class="bx bx-user-circle"></i> <p>Cuenta de usuario</p>
                                 </div>';
                             }
-                            $conexion->close();
                             ?>
                         </div>
                     </div>
@@ -155,10 +178,8 @@ include "../config/Conexion.php";
                     <!-- Primera vista -->
 
                     <!-- INICIO DE ARTICULOS GENERADOS CON WHILE -->
-                    <?php
-
-                    require_once '../templates/medicamentos.php';
-                    ?>
+                    <!-- Archuvo que causa problemas #00c16c -->
+                    
 
                     <!-- CIERRA ARTICULOS QUE SERIAN GENERADOS CON WHILE -->
 
