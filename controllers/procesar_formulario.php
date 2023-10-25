@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Establecer el valor de estado como 1
     $estado = 1;
+    echo $telefono;
 
     // Validación de contraseña y confirmar contraseña
     $confirmar_password = $_POST["passwordusuario"];
@@ -83,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // Redirigir si alguien intenta acceder directamente a este archivo
-    header("Location: login.php");
+    header("Location: ../views/login.php");
 }
 
 // Cierra la conexión a la base de datos

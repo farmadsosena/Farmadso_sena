@@ -11,7 +11,7 @@
 
 <body class="fondo">
     <section class="formulario">
-        <form class="form" method="post" action="../controllers/procesar_formulario.php">
+        <form class="form" method="post">
             <p class="title">Registro de Usuario</p>
             <p class="message">Regístrate ahora y obtén acceso completo a nuestro sistema.</p>
             <label class="contenedor_label">
@@ -69,6 +69,10 @@
             <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
         </form>
     </section>
+
+    <?php
+include("../controllers/procesar_formulario.php");
+    ?>
 </body>
 
 </html>

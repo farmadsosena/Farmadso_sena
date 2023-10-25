@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/login copy.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="../assets/js/app.js" defer></script>
     <script src="../assets/js/Font.js"></script>
     <title>Login</title>
 </head>
+
 <body>
     <section class="regresar" id="caso">
         <a href="../index.html"><i class="fa-solid fa-arrow-left"></i><p>Regresar</p></a>
@@ -36,8 +41,9 @@
             </div>
             <button type="submit" name="enviar" class="primary-btn">Iniciar sesión</button>
             <span class="divider">O</span>
-            <a class="secondary-btn" href="register_usuario.php">Crear una cuenta</a>
+            <a class="secondary-btn" href="registro.php">Crear una cuenta</a>
         </div>
     </form>
 </body>
+
 </html>

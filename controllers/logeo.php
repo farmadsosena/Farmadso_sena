@@ -1,28 +1,48 @@
 <?php
 session_start();
 include "../config/Conexion.php";
+
 if (isset($_POST["enviar"])) {
     $user = $_POST["usuario"];
     $contraseña = $_POST["contraseña"];
 
-    $consul = mysqli_query($conexion, "SELECT * FROM usuarios WHERE documento='$user' and passwordusuario='$contraseña'");
-    if (mysqli_num_rows($consul) > 0) {
-        $des = mysqli_fetch_array($consul);
-        $rol = $des["idrol"];
-        $id = $des["idusuario"];
-        $_SESSION["usu"] = $user;
-        $_SESSION["id"] = $id;
-        if ($rol == "1") {
-            echo "<script> window.location='../views/administrador_ve.php'</script>";
-        } else if ($rol == "2") {
-            echo "<script> window.location='../views/Usuario.php'</script>";
-        } 
-    } else {
-        echo "<script> 
-        alert('No existe la cuenta de usuario')
-        window.location='../views/administrador_ve.php'
-        </script>";
+    // Validar que el usuario sea una cadena de números válida 
+    if (!preg_match("/^[0-9]{7,10}$/", $user)) {
+        echo "<script>alert('Número de cédula no válido');
+        window.location='../views/login.php'</script>";
+    }
+    // Validar que la contraseña no sea un número negativo
+    else if ($contraseña < 0) {
+        echo "<script>alert('La contraseña no es válida caracter negativo');
+        window.location='../views/login.php'</script>";
+    }
+     else {
+        $consul = mysqli_query($conexion, "SELECT * FROM usuarios WHERE documento='$user'");
+        if (mysqli_num_rows($consul) > 0) {
+            $des = mysqli_fetch_array($consul);
+            $password_hash = $des["passwordusuario"];
+            $id = $des["idusuario"];
+            $rol = $des["idrol"];
+            
+            // Verificar si la contraseña proporcionada coincide con la almacenada en la base de datos
+            // if (password_verify($contraseña, $password_hash)) {  Cuando se hace por hash
+                if ($contraseña === $password_hash) {
+                    // Contraseña correcta
+                    $_SESSION["usu"] = $user;
+                    $_SESSION["id"] = $id;
+                    if ($rol == "1") {
+                        echo "<script>window.location='../views/'</script>";
+                    } elseif ($rol == "2") {
+                        echo "<script>window.location='../views/Usuario.php'</script>";
+                    }
+                } else {
+                    // Contraseña incorrecta
+                    echo "<script>alert('Contraseña incorrecta');</script>";
+                    echo "<script>window.location='../views/login.php'</script>";
+                }
+        } else {
+            echo "<script>alert('El usuario no existe');
+            window.location='../views/login.php</script>";
+        }
     }
 }
-
-?>
