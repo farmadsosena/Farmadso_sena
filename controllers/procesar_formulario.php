@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // Redirigir si alguien intenta acceder directamente a este archivo
-    header("Location: register_usuario.html");
+    header("Location: login.php");
 }
 
 // Cierra la conexión a la base de datos

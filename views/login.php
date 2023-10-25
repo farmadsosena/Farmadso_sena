@@ -36,7 +36,7 @@
             </div>
             <button type="submit" name="enviar" class="primary-btn">Iniciar sesión</button>
             <span class="divider">O</span>
-            <a class="secondary-btn" href="registro.php">Crear una cuenta</a>
+            <a class="secondary-btn" href="register_usuario.php">Crear una cuenta</a>
         </div>
     </form>
 </body>

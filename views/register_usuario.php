@@ -66,7 +66,7 @@
            
             </label>
             <button class="submit" type="submit">Registrar</button>
-            <p class="signin">¿Ya tienes una cuenta? <a href="#">Login</a></p>
+            <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
         </form>
     </section>
 </body>
