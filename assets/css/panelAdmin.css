@@ -53,10 +53,11 @@ body {
   .options {
     display: none;
     position: absolute;
+    left: 100%;
+    top: 0;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 5px 5px;
+    border-radius:5px 5px;
     z-index: 1;
   }
   
@@ -65,8 +66,11 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    height: auto;
   }
-  
+  .option p{
+    display: inline-block;
+  }
   .option i {
     margin-right: 10px;
   }
