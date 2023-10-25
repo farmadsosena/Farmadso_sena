@@ -526,6 +526,4 @@
   <script src="assets/js/actualizarestadonoti.js"></script>
 </body>
 
-<!-- Garaviz -->
-
 </html>
