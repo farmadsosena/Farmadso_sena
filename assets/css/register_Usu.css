@@ -1,0 +1,104 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+.fondo{
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  background-image: url(./fondo_salud.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.formulario {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 350px;
+  flex-direction: column;
+  text-align: center;
+  background-image: url(./blob-scene-haikei.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.message {
+  font-size: 14px;
+  color: #777;
+  margin: 10px 0;
+}
+
+/* Estilos de etiquetas y campos de entrada */
+.contenedor_label {
+  margin-bottom: 20px;
+}
+
+
+.contenedor_label input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.contendor_select {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Estilos de botón */
+.submit {
+  background: #2d57a8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit:hover {
+  background: #6d93c9;
+}
+
+.letra_label{
+  display: flex;
+  font-weight: bold;
+}
+
+/* Estilos para el enlace de inicio de sesión */
+.signin {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.signin a {
+  color: #006aff;
+  text-decoration: none;
+}
+
+.signin a:hover {
+  text-decoration: underline;
+}
