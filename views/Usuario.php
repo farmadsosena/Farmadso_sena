@@ -68,7 +68,7 @@ $id = $_SESSION["id"];
             </div>
           </div>
 
-          <div class="toggle-dic">
+          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuarta', this)">
             <div>
               <i class='bx bx-user-circle'></i>
               Solicitar un nuevo rol
@@ -454,7 +454,278 @@ $id = $_SESSION["id"];
             </article>
           </div>
         </section>
+        <section class="paginas" id="cuatro">
 
+<div class="column" id="opciones">
+  <div class="option" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+    <div class="arrow-icon">
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+  </div>
+  <div class="option" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
+    <div class="arrow-icon">
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+  </div>
+</div>
+<div id="contenido-domiciliario" class="hidden">
+  <div class="container">
+    <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
+      <i class='bx bx-left-arrow-alt'></i>
+      <h1>Solicitud para ser domiciliario</h1>
+    </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="nombreCompleto">Nombre Completo</label>
+        <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="numeroDocumento">Numero de documento</label>
+        <input type="text" id="numerodocumento" name="numerodocumento" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+    </section>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="correo">Correo de Contacto</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="imagen"> Imagen de Presentación</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+
+    </section>
+
+    <h2>Datos Sensibles</h2>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="Direcciónresidencia">Dirección de residencia</label>
+        <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
+        <select id="vehiculo" name="departamento" required>
+          <option value="moto">Moto</option>
+          <option value="carro">Carro</option>
+          <!-- Agrega más departamentos según sea necesario -->
+        </select>
+      </div>
+
+    </section>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="imagen">Licencia de conducir</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="imagen">Tarjeta de propiedad</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="imagen">Soat</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+    </section>
+
+    <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
+    <select id="cuenta_bancaria" name="cuenta_bancaria" required>
+      <option>Escoge la opcion</option>
+      <option value="nequi">Nequi</option>
+      <option value="paypal">PayPal</option>
+      <option value="bancolombia">Bancolombia</option>
+    </select>
+
+    <section class="respuesta_select" id="respuesta_select">
+
+      <div id="nequi_info" class="info-container hidden">
+
+        <h3>Datos Sensible para Nequi</h3>
+
+        <section class="parte1-formulario">
+
+          <div class="contenedoresparte1">
+            <label for="nombre_usuario">Introduce nombre de usuario </label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+          </div>
+
+          <div class="contenedoresparte1">
+            <label for="telefono">Ingrese numero de teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+
+        </section>
+      </div>
+
+      <div id="paypal_info" class="info-container hidden">
+
+        <h3>Datos Sensible para PayPal</h3>
+
+        <section class="parte1-formulario">
+          <div class="contenedoresparte1">
+            <label for="nombre_usuario">Introduce nombre de usuario </label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+          </div>
+
+          <div class="contenedoresparte1">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+
+        </section>
+      </div>
+
+      <div id="bancolombia_info" class="info-container hidden">
+
+        <h3>Datos Sensible para Bancolombia<h3>
+
+            <section class="parte2-formulario">
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Tipo cuenta natural o juridico</label>
+                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+              </div>
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Cuenta de ahorro o corriente</label>
+                <input type="text" id="numerodocumento" name="numerodocumento" required>
+              </div>
+            </section>
+
+            <section class="parte3-formulario">
+              <div class="contenedoresparte2">
+                <label for="telefono">Numero de la tarjeta</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Propietario</label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+            </section>
+
+      </div>
+
+    </section>
+
+    <button id="enviar">Enviar</button>
+  </div>
+</div>
+
+<div id="contenido-farmacia" class="hidden">
+  <div class="container">
+    <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+      <i class='bx bx-left-arrow-alt'></i>
+      <h1>Solicitud para registrar farmacia</h1>
+    </div>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="nombreFarmacia">Nombre de la Farmacia</label>
+        <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" name="direccion" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+    </section>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="correo">Correo de Contacto</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+      <div class="contenedoresparte1">
+        <label for="imagen"> Imagen de Presentación</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+    </section>
+
+    <h2>Datos Sensibles</h2>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="departamento">Departamento</label>
+        <select id="departamento" name="departamento" required>
+          <option value="departamento1">Caquetá</option>
+          <option value="departamento2">Cundinamarca</option>
+          <!-- Agrega más departamentos según sea necesario -->
+        </select>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="ciudad">Ciudad</label>
+        <select id="ciudad" name="ciudad" required>
+          <option value="departamento1">Florencia</option>
+          <option value="departamento2">Bogota</option>
+          <!-- Agrega más ciudades según sea necesario -->
+        </select>
+      </div>
+    </section>
+
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="codigoPostal">Código Postal</label>
+        <input type="text" id="codigoPostal" name="codigoPostal" required>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="horario">Días de Horario Laboral</label>
+        <select id="horario" name="horario" required>
+          <option value="lunes">Lunes</option>
+          <option value="martes">Martes</option>
+          <!-- Agrega más días según sea necesario -->
+        </select>
+      </div>
+
+      <div class="contenedoresparte1">
+        <label for="jornada">Jornada</label>
+        <select id="jornada" name="jornada" required>
+          <option value="manana">Mañana</option>
+          <option value="tarde">Tarde</option>
+        </select>
+      </div>
+    </section>
+
+    <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+    <select id="epsRegistrado" name="epsRegistrado" required>
+      <option value="si">Sí</option>
+      <option value="no">No</option>
+    </select>
+
+    <label for="eps">EPS con la que está registrado</label>
+    <select id="eps" name="eps" required>
+      <option value="eps1">EPS 1</option>
+      <option value="eps2">IPS 2</option>
+      <!-- Agrega más EPS según sea necesario -->
+    </select>
+
+    <label for="nitEps">NIT de EPS</label>
+    <input type="text" id="nitEps" name="nitEps" required>
+
+    <button id="enviar">Enviar</button>
+  </div>
+</div>
+</section>
+</section>
       </section>
     </article>
   </main>
@@ -509,6 +780,8 @@ $id = $_SESSION["id"];
   <script src="../assets/js/eliminar.js"></script>
   <script src="../assets/js/menu_card.js"></script>
   <script src="../assets/js/funcionusuario.js"></script>
+  <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
+  <script src="../assets/js/mostrar_opcionesparte4.js"></script>
 </body>
 
 </html>
