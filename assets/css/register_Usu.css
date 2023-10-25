@@ -8,7 +8,7 @@
   justify-content: center;
   display: flex;
   padding: 1rem;
-  background-image: url(/assets/img/fondo_regisusuario.png);
+  background-image: url(../img/fondo_salud.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -21,7 +21,7 @@
   width: 350px;
   flex-direction: column;
   text-align: center;
-  background-image: url(./blob-scene-haikei.png);
+  background-image: url(../img/fondo_regisusuario.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
