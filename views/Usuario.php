@@ -7,6 +7,21 @@ if (!isset($_SESSION["usu"])) {
 }
 
 $id = $_SESSION["id"];
+
+function existe_el_usu($tabla, $usuario)
+{
+  global $conexion;
+  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+  $resultado = $conexion->query($consulta);
+  return $resultado->num_rows == 0;
+}
+
+if (existe_el_usu('domiciliario', $id)) {
+  echo "<script> window.location='login.php'</script>";
+}
+if (existe_el_usu('farmacias', $id)) {
+  echo "<script> window.location='login.php'</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +37,7 @@ $id = $_SESSION["id"];
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -102,32 +115,32 @@ $id = $_SESSION["id"];
               <div class="options">
 
                 <?php
-                    function existe_en_tabla($tabla, $usuario)
-                    {
-                      global $conexion;
-                      $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-                      $resultado = $conexion->query($consulta);
-                      return $resultado->num_rows > 0;
-                    }
-    
-                    if (existe_en_tabla('domiciliario', $id)) {
-                      echo '<div class="option">
+                function existe_en_tabla($tabla, $usuario)
+                {
+                  global $conexion;
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                  $resultado = $conexion->query($consulta);
+                  return $resultado->num_rows > 0;
+                }
+
+                if (existe_en_tabla('domiciliario', $id)) {
+                  echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
-                    }
-                    if (existe_en_tabla('farmacias', $id)) {
-                      echo '<div class="option">
+                }
+                if (existe_en_tabla('farmacias', $id)) {
+                  echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                    }
-                    if (existe_en_tabla('usuarios', $id)) {
-                      echo '<div class="option">
+                }
+                if (existe_en_tabla('usuarios', $id)) {
+                  echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
-                    }
-    
-                    $conexion->close();
-                    ?>
+                }
+
+                $conexion->close();
+                ?>
               </div>
             </div>
 
@@ -190,8 +203,7 @@ $id = $_SESSION["id"];
                   </div>
 
                   <div class="third-line">Descargar
-                    <img class="open_menu"
-                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                    <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
                   </div>
                   <div class="menu_card">
                     <ul>
