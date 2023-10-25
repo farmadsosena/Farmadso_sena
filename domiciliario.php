@@ -121,164 +121,23 @@
           </div>
         </div>
       </div>
+<!-- mostramos el historial -->
+
 
       <div class="his">
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>18/10/2023</p>
-              </div>
+      <?php
+        include("views/historiasDomi.php");
+        ?>
 
-            </div>
 
-            <div class="listo">
-              <div class="co">
-                <p>0001</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
+       
 
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>19/10/2023</p>
-              </div>
-            </div>
 
-            <div class="listo">
-              <div class="co">
-                <p>0002</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
 
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>20/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0003</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
-
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>21/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0004</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
-
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>22/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0005</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p id="test">Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
       </div>
+
+
+
     </div>
 
     <!-- FIN GARAVIZ -->
@@ -533,6 +392,7 @@
   <script src="assets/js/navConfigDomi.js"></script>
   <script src="assets/js/actualizarestadonoti.js"></script>
   <script src="assets/js/noti.js"></script>
+  <script src="assets/js/enviarImagenCompra.js"></script>
 </body>
 
 <!-- Garaviz -->

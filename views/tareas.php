@@ -85,10 +85,11 @@ while ($datosReporte = $resultado->fetch_assoc()) {
     echo '<p>EN CAMINO</p>';
     echo '</div>';
     echo '<div class="optionsStateDelivery">';
-    echo'<form class="formularioEntrega" action="" method="post">';
+    echo'<form type="submit" class="formularioEntrega" action="" method="post">';
+    echo '<input type="hidden" name="idcompra" value="' . $idcompra . '">';
     echo '<label class="upload">';
     echo 'Cargar Imagen';
-    echo '<input type="file" />';
+    echo '<input type="file" name="archivo" />';
     echo '</label>';
     echo '<button class="deliver">ENTREGAR</button>';
     echo '</form>';
