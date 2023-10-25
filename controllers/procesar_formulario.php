@@ -1,16 +1,5 @@
 <?php
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "farmadso";
-
-// Realiza la conexión a la base de datos
-$conexion = mysqli_connect($server, $username, $password, $database);
-
-// Verifica si la conexión se estableció correctamente
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
-}
+include "../config/Conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recopilar datos del formulario
@@ -82,10 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-} else {
-    // Redirigir si alguien intenta acceder directamente a este archivo
-    header("Location: ../views/login.php");
-}
+} 
 
 // Cierra la conexión a la base de datos
 mysqli_close($conexion);

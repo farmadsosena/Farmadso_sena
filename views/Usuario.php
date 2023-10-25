@@ -32,6 +32,9 @@ if (existe_el_usu('farmacias', $id)) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/usuario.css">
+  <link rel="stylesheet" href="../assets/css/enlances_formulario_Usu.css">
+  <link rel="stylesheet" href="../assets/css/register_Usu.css">
+  <link rel="stylesheet" href="../assets/css/registros_domi_y_farmacia.css">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
@@ -81,7 +84,7 @@ if (existe_el_usu('farmacias', $id)) {
             </div>
           </div>
 
-          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuarta', this)">
+          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
             <div>
               <i class='bx bx-user-circle'></i>
               Solicitar un nuevo rol
@@ -469,12 +472,12 @@ if (existe_el_usu('farmacias', $id)) {
         <section class="paginas" id="cuatro">
 
 <div class="column" id="opciones">
-  <div class="option" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+  <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
     <div class="arrow-icon">
       <i class="fa-solid fa-arrow-right"></i>
     </div>
   </div>
-  <div class="option" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
+  <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
     <div class="arrow-icon">
       <i class="fa-solid fa-arrow-right"></i>
     </div>
