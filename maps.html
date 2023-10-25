@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Agrega la referencia al CDN de Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik"></script>
+</head>
+<body>
+  <div id="map" style="width: 400px; height: 300px;"></div>
+  <script>
+    // Función para mostrar la ubicación en el mapa
+    function mostrarUbicacionEnMapa(latitud, longitud) {
+      const mapOptions = {
+        center: { lat: latitud, lng: longitud },
+        zoom: 15
+      };
+      const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      const marker = new google.maps.Marker({
+        position: { lat: latitud, lng: longitud },
+        map: map
+      });
+    }
+
+    // Función para obtener la ubicación
+    function obtenerUbicacion() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const longitud = position.coords.longitude;
+          const latitud = position.coords.latitude;
+          console.log("Longitud: " + longitud);
+          console.log("Latitud: " + latitud);
+          mostrarUbicacionEnMapa(latitud, longitud);
+        });
+      } else {
+        console.log("Tu navegador no soporta Geolocalización.");
+      }
+    }
+
+    // Llama a la función para obtener la ubicación
+    obtenerUbicacion();
+  </script>
+</body>
+</html>
