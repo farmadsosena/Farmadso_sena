@@ -96,7 +96,7 @@ body{
 }
 
 .form-title h1{
-    color: var(--text);
+    color: #445963;
     font-size: 2.5rem;
 }
 
@@ -197,14 +197,14 @@ input, button{
     background: #fff;
     margin: 0.5rem 0rem;
     color: var(--primary);
-    border: 2px solid var(--primary);
+    border: 2px solid #445963;
     border-radius: 5px;
     font-weight: 600;
     height: 3rem;
 }
 
 .secondary-btn:hover{
-    background: var(--primary);
+    background: #445963;
     color: #fff;
     transition: .3s ease;
 }
@@ -217,7 +217,7 @@ button{
 }
 
 .primary-btn{
-    background: var(--primary);
+    background: #445963;
     color: #fff;
     font-weight: 600;
     border-radius: 5px;

@@ -71,7 +71,7 @@
     </section>
 
     <?php
-include("../controllers/procesar_formulario.php");
+      include("../controllers/procesar_formulario.php");
     ?>
 </body>
 
