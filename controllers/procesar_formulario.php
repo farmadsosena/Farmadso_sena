@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $estado = 1;
 
     // Validación de contraseña y confirmar contraseña
-    $confirmar_password = $_POST["confirmar_password"];
+    $confirmar_password = $_POST["passwordusuario"];
     if ($passwordusuario != $confirmar_password) {
         echo "<script>
             Swal.fire({
