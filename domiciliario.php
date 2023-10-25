@@ -30,10 +30,10 @@
             </span>
         </div> -->
       <span id="task" class="material-symbols-outlined tareas" onclick="showTasks()" style="cursor: pointer; user-select: none">
-        quick_reference_all
+        quick_reference_all <article class="circuloTask"></article>
       </span>
       <span id="notification" class="material-symbols-outlined notificacion" onclick="showNotifications()" style="cursor: pointer; user-select: none">
-        notifications
+        notifications      <article class="circuloNoti"></article>
       </span>
       <span id="history" class="material-symbols-outlined historial" onclick="showNuevoContenido2()" style="cursor: pointer; user-select: none">
         history
@@ -121,164 +121,23 @@
           </div>
         </div>
       </div>
+<!-- mostramos el historial -->
+
 
       <div class="his">
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>18/10/2023</p>
-              </div>
+      <?php
+        include("views/historiasDomi.php");
+        ?>
 
-            </div>
 
-            <div class="listo">
-              <div class="co">
-                <p>0001</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
+       
 
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>19/10/2023</p>
-              </div>
-            </div>
 
-            <div class="listo">
-              <div class="co">
-                <p>0002</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
 
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>20/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0003</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
-
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>21/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0004</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p>Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
-
-        <div class="c">
-          <div class="inf">
-            <div class="logo">
-              <i class="fa-solid fa-box-archive"></i>
-            </div>
-            <div class="infff">
-              <p>Isaias Caballero</p>
-              <p>Dirección: B/Rosal</p>
-              <div class="FechaDate">
-                <h3>Fecha:</h3>
-                <p>22/10/2023</p>
-              </div>
-            </div>
-
-            <div class="listo">
-              <div class="co">
-                <p>0005</p>
-              </div>
-              <div class="chulo">
-                <i class="fa-solid fa-check"></i>
-                <p id="test">Entregado</p>
-              </div>
-            </div>
-          </div>
-          <div id="b">
-            <button id="but" onclick="abrirG()" class="openModalButton">
-              Ver más...
-            </button>
-          </div>
-        </div>
       </div>
+
+
+
     </div>
 
     <!-- FIN GARAVIZ -->
@@ -389,8 +248,14 @@
     </section>
 
     <section class="mainDeliverySectionTask" id="tasksSection" style="display: none">
-      <section class="pendingTask">
-        <div class="taskData">
+       
+
+
+      <?php
+        include("views/tareas.php")
+        ?>
+
+        <!-- <div class="taskData">
           <div class="addressInformation">
             <img src="assets/img/domiciliario1.jpg" alt="" />
             <div class="addressData">
@@ -413,14 +278,16 @@
             <div class="optionsStateDelivery">
               <label class="upload">
                 Cargar Imagen
-                <!-- Elemento input de tipo file oculto -->
+              
                 <input type="file" />
               </label>
               <button class="deliver">ENTREGAR</button>
             </div>
           </div>
-        </div>
-      </section>
+        </div> -->
+  
+<form action="" method="post"></form>
+      
     </section>
   </main>
 
@@ -508,10 +375,10 @@
 
   <footer class="footerDelivery">
     <span id="footerTask" class="material-symbols-outlined" onclick="showTasks()">
-      quick_reference_all
+      quick_reference_all  <article class="circuloTask"></article>
     </span>
     <span id="footerNotification" class="material-symbols-outlined" onclick="showNotifications()">
-      notifications
+      notifications   <article class="circuloNoti"></article>
     </span>
     <span id="footerHistory" class="material-symbols-outlined" onclick="showNuevoContenido2()">
       history
@@ -524,6 +391,8 @@
   <script src="assets/js/modal.js"></script>
   <script src="assets/js/navConfigDomi.js"></script>
   <script src="assets/js/actualizarestadonoti.js"></script>
+  <script src="assets/js/noti.js"></script>
+  <script src="assets/js/enviarImagenCompra.js"></script>
 </body>
 
 </html>
