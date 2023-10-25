@@ -15,13 +15,6 @@ function existe_el_usu($tabla, $usuario)
   $resultado = $conexion->query($consulta);
   return $resultado->num_rows == 0;
 }
-
-if (existe_el_usu('domiciliario', $id)) {
-  echo "<script> window.location='login.php'</script>";
-}
-if (existe_el_usu('farmacias', $id)) {
-  echo "<script> window.location='login.php'</script>";
-}
 ?>
 
 <!DOCTYPE html>
