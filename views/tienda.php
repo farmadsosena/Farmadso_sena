@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="assets/img/logoFarmadso.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
     
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -16,11 +16,11 @@
 
 <body>
     <?php 
-    require_once 'templates/header.html';
+    require_once '../templates/header.html';
     ?>
 <h1>prueba klk</h1>
     <?php 
-    require_once 'templates/footer.html';
+    require_once '../templates/footer.html';
     ?>
 
     <script src="../assets/js/index.js"></script>

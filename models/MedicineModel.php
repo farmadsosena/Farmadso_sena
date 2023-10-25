@@ -27,6 +27,7 @@ class MedicineModel
         $idpromocion = $medicine['idpromocion'];
         $formaadministracion = $medicine['administracion'];
         $idpromocion = $medicine['idpromocion'];
+        $stock = $medicine['stock'];
 
         $imagenesComa = implode (', ', $imagenesBd);
 
@@ -40,8 +41,8 @@ class MedicineModel
 
                 $idMedicine = $this->conn->insert_id;
 
-                $this->conn->query("INSERT INTO inventario(idmedicamento, descripcion, fechavencimiento, instrucciones, lote, idcategoria, idprovedor, idpromocion, formaadministracion,  imagendescrip) 
-                VALUES ('$idMedicine', '$descripcion','$fechavencimiento','$instrucciones','$lote','$idcategoria','$idproveedor','$idpromocion', '$formaadministracion', '$imagenesComa' )");
+                $this->conn->query("INSERT INTO inventario(idmedicamento, descripcion, fechavencimiento, instrucciones, lote,stock, idcategoria, idprovedor, idpromocion, formaadministracion,  imagendescrip) 
+                VALUES ('$idMedicine', '$descripcion','$fechavencimiento','$instrucciones','$lote',  '$stock', '$idcategoria','$idproveedor','$idpromocion', '$formaadministracion', '$imagenesComa' )");
 
                 // Insertar en inventario los demas campos
 

@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $medicine['nombre'] = mysqli_real_escape_string($conexion, $_POST['medicineName']);
     $medicine['precio'] = mysqli_real_escape_string($conexion, $_POST['priceMedicine']);
     $medicine['lote'] = mysqli_real_escape_string($conexion, $_POST['loteMedicine']);
+    $medicine['stock'] = mysqli_real_escape_string($conexion, $_POST['StockMedicine']);
     $medicine['descripcion'] = mysqli_real_escape_string($conexion, $_POST['description']);
     $medicine['instrucciones'] = mysqli_real_escape_string($conexion, $_POST['instructionMedicine']);
     $medicine['fechavencimiento'] = mysqli_real_escape_string($conexion, $_POST['expirationDate']);
