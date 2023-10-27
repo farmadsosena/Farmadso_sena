@@ -216,7 +216,7 @@ body{
 }
 .cuentas .dash-img{
   margin: 0.8rem 0rem;
-  width: 29%;
+  width: 25%;
   height: 5rem;
   border-radius: 50%;
 }
@@ -224,7 +224,7 @@ body{
 .cuentas .dash-img img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -296,7 +296,6 @@ body{
   color: rgb(20, 15, 15);
 }
 .count .fal div{
-  border: 1px solid black;
   width: 69%;
   height: 70%;
   border-radius: 50%;
@@ -562,28 +561,20 @@ body{
   height: 90%;
   overflow: auto;
   display: flex;
-  justify-content: center;
+
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 12px;
 }
 
-.cards_formulas {
-  scrollbar-width: none;
-  /* Oculta la barra de desplazamiento */
-}
 
 .cards_formulas::-webkit-scrollbar-thumb {
   background-color: transparent;
   /* Oculta el pulgar de la barra de desplazamiento */
 }
 
-.scroll2{
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+
+
 .card{
   width: 32.5%;
   margin-top: 0.8rem;
@@ -996,7 +987,7 @@ body{
   gap: 30px;
   margin-bottom: 10px;
 }
-
+/* responsive compras */
 
 .opt_config{
   flex-direction: column;
@@ -1018,6 +1009,27 @@ body{
   height: 73%;
 }
 
+
+.cards_formulas{
+  width: 98%;
+  height: 90%;
+  overflow: auto;
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card{
+  width: 100%;
+
+}
+
+
+
+
+/* fin */
 .cuentas{
   width: 82%;
 }
