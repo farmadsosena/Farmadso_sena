@@ -175,6 +175,59 @@ function existe_el_usu($tabla, $usuario)
 
             <div class="cards_formulas">
               
+                  <?php 
+                  
+                    $consulta = mysqli_query($conexion, "SELECT * FROM formulas  where estado = 1 ");
+                   
+                    if($consulta){
+                      $card = mysqli_fetch_assoc($consulta);
+                      
+                      $fecha = $card['fechaOrden'];
+                      $fecha_timestamp = strtotime($fecha);
+                      
+                      if ($fecha_timestamp !== false) {
+                          $fecha_formateada = date(" j F Y", $fecha_timestamp);               
+                      }
+
+
+                      // $doc = mysqli_query($conexion, "");
+                      echo"<div class='card' data-id='{$card['idFormula']}'>
+                      <div class='firts_line'>
+                        <div class='date-card'>
+                          <p>$fecha_formateada</p>
+                        </div>
+    
+                        <div class='state-card'>
+                          Entregado
+                        </div>
+                      </div>
+    
+                      <div class='second-line'>
+                        <h3 class='title_card'> Formulación de software para el catéter de rodilla maxilar </h3>
+                        <div class='doc'>
+                          <p class='profesion'>Profesional de la salud</p>
+                          <p class='name_doc'>Diego Hoyos Linares</p>
+                        </div>
+                        <div class='eps'></div>
+                        <div class='opt-card'></div>
+                      </div>
+    
+                      <div class='third-line'>Descargar
+                        <img class='open_menu' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=' />
+                      </div>
+                      <div class='menu_card'>
+                        <ul>
+                          <li>Abrir</li>
+                          <li class='delete'>Eliminar</li>
+                        </ul>
+                      </div>
+                    </div>";
+
+                    }
+                  
+                  ?>
+
+
                 <!-- Comienzan tarjetas para formulas -->
                 <div class="card" data-id="1">
                   <div class="firts_line">
@@ -323,11 +376,11 @@ function existe_el_usu($tabla, $usuario)
             </button></div>
 
           <div class="cont-p">
-            <article class="sect-p">
-              <?php
-              require_once '../templates/papelera.php';
-              ?>
-            </article>
+            <!-- <article class="sect-p">
+              <?php 
+              // require_once '../templates/papelera.php';
+              ?> -->
+            <!-- </article> -->
           </div>
         </section>
         <section class="paginas" id="cuatro">
