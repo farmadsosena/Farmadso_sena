@@ -1,14 +1,12 @@
-
-
-/* h1{
+.titulo_solicitud{
     border-bottom: 1px solid black;
     padding-bottom: 0.5rem;
-} */
+} 
 
-/* h3{
+.datos_titulos{
     display: flex;
     margin-top: 0.5rem;
-} */
+} 
 
 .flecha_titulo {
     display: flex;
@@ -49,8 +47,8 @@ label {
     font-weight: bold;
     margin-top: 10px;
 }
-/* 
-select,
+
+.hidden select,
 input {
     width: 100%;
     padding: 10px;
@@ -58,7 +56,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-} */
+}
 
 #enviar {
     background-color: #007bff;

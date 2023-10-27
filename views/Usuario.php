@@ -7,14 +7,12 @@ if (!isset($_SESSION["usu"])) {
 }
 
 $id = $_SESSION["id"];
+$eps = $_SESSION["eps"];
 
-function existe_el_usu($tabla, $usuario)
-{
-  global $conexion;
-  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-  $resultado = $conexion->query($consulta);
-  return $resultado->num_rows == 0;
-}
+
+$consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+$resultado = $conexion->query($consulta);
+
 ?>
 
 <!DOCTYPE html>
@@ -56,33 +54,68 @@ function existe_el_usu($tabla, $usuario)
 
       <section class="naver">
         <article class="hoss">
-          <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
-            <div>
-              <i class='bx bx-notepad'></i>
-              Mis formulas
+          <?php
+          if ($eps == 1) {
+          ?>
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
             </div>
-          </div>
+            <a href="inicio_tienda.php" class="toggle-dic">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+            </a>
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
+            </div>
+          <?php
+          } else {
+          ?>
+            <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
+              <div>
+                <i class='bx bx-notepad'></i>
+                Mis formulas
+              </div>
+            </div>
 
-          <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
-            <div>
-              <i class='bx bx-shopping-bag'></i>
-              Mis compras
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
             </div>
-          </div>
 
-          <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
-            <div>
-              <i class='bx bx-trash-alt'></i>
-              Papelera
+            <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+              <div>
+                <i class='bx bx-trash-alt'></i>
+                Papelera
+              </div>
             </div>
-          </div>
 
-          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
-            <div>
-              <i class='bx bx-user-circle'></i>
-              Solicitar un nuevo rol
+            <a href="inicio_tienda.php" class="toggle-dic">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+            </a>
+
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
             </div>
-          </div>
+          <?php
+          }
+          ?>
+
         </article>
       </section>
     </aside>
@@ -256,7 +289,7 @@ function existe_el_usu($tabla, $usuario)
             <div class="container">
               <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
                 <i class='bx bx-left-arrow-alt'></i>
-                <h1>Solicitud para ser domiciliario</h1>
+                <h1 class="titulo_solicitud">Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
                 <div class="contenedoresparte1">
@@ -288,7 +321,7 @@ function existe_el_usu($tabla, $usuario)
 
               </section>
 
-              <h2>Datos Sensibles</h2>
+              <h3 class="datos_titulos">Datos Sensibles</h3>
 
               <section class="parte1-formulario">
                 <div class="contenedoresparte1">
@@ -336,7 +369,7 @@ function existe_el_usu($tabla, $usuario)
 
                 <div id="nequi_info" class="info-container hidden">
 
-                  <h3>Datos Sensible para Nequi</h3>
+                  <h3 class="datos_titulos">Datos Sensible para Nequi</h3>
 
                   <section class="parte1-formulario">
 
@@ -355,7 +388,7 @@ function existe_el_usu($tabla, $usuario)
 
                 <div id="paypal_info" class="info-container hidden">
 
-                  <h3>Datos Sensible para PayPal</h3>
+                  <h3 class="datos_titulos" 3>Datos Sensible para PayPal</h3>
 
                   <section class="parte1-formulario">
                     <div class="contenedoresparte1">
@@ -373,7 +406,7 @@ function existe_el_usu($tabla, $usuario)
 
                 <div id="bancolombia_info" class="info-container hidden">
 
-                  <h3>Datos Sensible para Bancolombia<h3>
+                  <h3 class="datos_titulos">Datos Sensible para Bancolombia<h3>
 
                       <section class="parte2-formulario">
 
@@ -412,7 +445,7 @@ function existe_el_usu($tabla, $usuario)
             <div class="container">
               <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
                 <i class='bx bx-left-arrow-alt'></i>
-                <h1>Solicitud para registrar farmacia</h1>
+                <h1 class="titulo_solicitud">Solicitud para registrar farmacia</>
               </div>
 
               <section class="parte1-formulario">
@@ -443,7 +476,7 @@ function existe_el_usu($tabla, $usuario)
                 </div>
               </section>
 
-              <h2>Datos Sensibles</h2>
+              <h3 class="datos_titulos">Datos Sensibles</h3>
 
               <section class="parte1-formulario">
                 <div class="contenedoresparte1">
@@ -521,9 +554,6 @@ function existe_el_usu($tabla, $usuario)
         <section class="dash-img">
           <img src="../assets/img/usuario.png" alt="">
         </section>
-        <button>
-          Configuracion de la cuenta
-        </button>
       </header>
       <section class="darf">
         <details class="fores-u">
