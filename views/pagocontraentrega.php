@@ -23,6 +23,7 @@
 </head>
 
 <body id="bodyContraentrega">
+
     <section id="modalCargar">
         <div class="three-body">
             <div class="three-body__dot"></div>
@@ -42,11 +43,13 @@
         <main class="mainPrincipal">
             <button id="changeContent">
 
+
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
                     <p id="cantidadFinal">6</p>
                     <i class='bx bx-cart' id="viewCartIcon" ></i>
                 </div>
+
 
             </button>
 
@@ -165,7 +168,12 @@
 
                     <div class="inputCont">
                         <label for="codigo">Código postal</label>
-                        <input type="number" name="codigo" id="codigo" minlength="5" maxlength="5">
+                        <select type="number" name="codigo" id="codigo">
+                            <option value="180001">180001</option>
+                            <option value="180002">180002</option>
+                            <option value="180007">180007</option>
+                            <option value="180008">180008</option>
+                        </select>
                         <span> <i style="color: #2d57a8" class='bx bx-code-block'></i>
 
                         </span>

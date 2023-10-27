@@ -117,6 +117,7 @@ body {
 }
 
 .inputCont>input,
+.inputCont >select,
 .saveContraentrega,
 .inputCont>textarea {
     position: relative;
@@ -128,6 +129,7 @@ body {
     color: rgb(99, 104, 112);
     border-radius: .3em;
     font-size: 14px;
+    background-color: transparent;
 }
 
 .inputCont>input:focus, .inputCont>textarea:focus {
