@@ -5,6 +5,7 @@
     font-family: inherit;
 }
 
+
 :root{
     --bg:#A0A0A0;
     --primary:#353935;
@@ -58,8 +59,9 @@ body{
 
 .padre{
     display: flex;
-    height: 90vh;
+    height: 85vh;
 }
+
 .form-contenedor{
     display: flex;
     align-items: center;
@@ -230,3 +232,42 @@ button{
     color: var(--primary);
     border: 2px solid var(--primary);
 }
+
+ /*------ first mobile ------ */
+ @media  screen and (max-width: 767px) { /*------ first mobile ------ */
+    
+    .form-case{
+        height: 4rem;
+        width: 100%; 
+    }
+
+    .regresar{
+        justify-content: end;  
+        height: 4rem;
+    }
+
+    .padre{
+        flex-direction: column;
+        width: 100%;
+      
+    }
+
+    .form-contenedor{
+        width: 100%;
+    }
+
+    .form{
+        width: 90%;
+        height: 40rem;
+    }
+
+    .imagen{
+        width: 100%;
+        margin-top: -90px;
+        height: 30rem;
+    }
+
+    .imagen img{
+        width: 60%;
+    }
+ }
