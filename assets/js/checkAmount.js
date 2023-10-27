@@ -16,7 +16,7 @@ function consultarMonto(callback) {
                         },
                         createOrder: function (data, actions) {
 
-                            document.getElementById('modalCargar').style.display ='flex';
+                           
                             
                             return actions.order.create({
                                 purchase_units: [{
@@ -32,7 +32,7 @@ function consultarMonto(callback) {
                         },
                         onApprove: function (data, actions) {
                             actions.order.capture().then(function (detalles) {
-                            
+                                document.getElementById('modalCargar').style.display ='flex';
                                 fetch('../controllers/procesarCompra.php', {
                                     method: "POST",
                                     headers: {
@@ -56,6 +56,7 @@ function consultarMonto(callback) {
                         },
                         onCancel: function (data) {
                             toastr.warning("Pago cancelado");
+                            document.getElementById('modalCargar').style.display ='none';
                         }
                     }).render('#paypal-button-container');
                 });
