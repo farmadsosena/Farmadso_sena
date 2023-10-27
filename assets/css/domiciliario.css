@@ -53,38 +53,55 @@ html {
   width: 60%;
 }
 
-.search {
+/* ESTILO DE SELECT DE OPCION DE PERFIL */
+.custom-select {
+  width: 30%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.selected-option {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-  height: 5vh;
-  width: 50vh;
-  gap: 1vh;
-  padding-right: 2vh;
-  border: 2px solid var(--grisClaro);
-  background-color: var(--azulOscuro);
-  border-radius: 20px;
+  justify-content: center;
+  height: 3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+
+}
+
+.selected-option i{
+  margin-right: 0.7rem;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}
+
+.option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option i {
   margin-right: 10px;
 }
-
-.search > span {
-  color: var(--grisClaro);
+.show{
+  display: block;
 }
-
-.searchDelivery {
-  height: 100%;
-  width: 100%;
-  border-radius: 20px;
-  border: none;
-  background: none;
-  padding-left: 2vh;
-  color: var(--blanco);
-}
-
-.searchDelivery:focus {
-  outline: none;
-}
+/* FIN DE SELECT DE OPCION DE PERFILES */
 
 #task,
 #notification,

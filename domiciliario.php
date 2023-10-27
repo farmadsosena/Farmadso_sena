@@ -22,13 +22,7 @@
       <span class="material-symbols-outlined"> directions_bike </span>
       <h1>DOMICILIARIO</h1>
     </div>
-    <div class="select">
-    <label for="deliverySelector">Selecciona:</label>
-  <select id="deliverySelector">
-    <option value="domiciliario">Domiciliario</option>
-    <option value="usuario">Usuario</option>
-  </select>
-    </div>
+    
     <nav class="navDelivery">
       <!-- <div class="search">
             <input class="searchDelivery" type="search" name="" id="">
@@ -36,6 +30,50 @@
                 search
             </span>
         </div> -->
+          <!-- SELECT DE OPCIONES DE PERFIL -->
+      <div class="custom-select">
+              <div class="selected-option">
+                <i class='bx bx-user-circle'></i> Cuenta de usuario
+              </div>
+              <div class="options">
+                <div class="option">
+                  <i class="bx bx-car"></i> Domiciliario
+                </div>
+                <div class="option">
+                  <i class="bx bx-car"></i> Holi
+                </div>
+                <div class="option">
+                  <i class="bx bx-car"></i> Vocere gay
+                </div>
+                <?php
+                // function existe_en_tabla($tabla, $usuario)
+                // {
+                //   global $conexion;
+                //   $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                //   $resultado = $conexion->query($consulta);
+                //   return $resultado->num_rows > 0;
+                // }
+
+                // if (existe_en_tabla('domiciliario', $id)) {
+                //   echo '<div class="option">
+                //   <i class="bx bx-car"></i> Domiciliario
+                // </div>';
+                // }
+                // if (existe_en_tabla('farmacias', $id)) {
+                //   echo '<div class="option">
+                //   <i class="bx bxs-business"></i> Farmaceutico
+                // </div>';
+                // }
+                // if (existe_en_tabla('usuarios', $id)) {
+                //   echo '<div class="option">
+                //   <i class="bx bx-user-circle"></i> Cuenta de usuario
+                // </div>';
+                // }
+
+                ?>
+              </div>
+            </div>
+            <!-- FIN DE SELECT DE OPCIONES DE PERFIL -->
       <span id="task" class="material-symbols-outlined tareas" onclick="showTasks()" style="cursor: pointer; user-select: none">
         quick_reference_all <article class="circuloTask"></article>
       </span>
@@ -392,6 +430,7 @@
     </span>
   </footer>
 
+  <script src="assets/js/opcionesSelect.js"></script>
   <script src="assets/js/filtroHistorialDomi.js"></script>
   <script src="assets/js/menuNavConfig.js"></script>
   <script src="assets/js/verMasPedidosDisponibles.js"></script>
