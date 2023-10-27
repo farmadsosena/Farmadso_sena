@@ -22,6 +22,13 @@
       <span class="material-symbols-outlined"> directions_bike </span>
       <h1>DOMICILIARIO</h1>
     </div>
+    <div class="select">
+    <label for="deliverySelector">Selecciona:</label>
+  <select id="deliverySelector">
+    <option value="domiciliario">Domiciliario</option>
+    <option value="usuario">Usuario</option>
+  </select>
+    </div>
     <nav class="navDelivery">
       <!-- <div class="search">
             <input class="searchDelivery" type="search" name="" id="">
@@ -393,6 +400,7 @@
   <script src="assets/js/actualizarestadonoti.js"></script>
   <script src="assets/js/noti.js"></script>
   <script src="assets/js/enviarImagenCompra.js"></script>
+  <script src="assets/js/selectMenu.js"></script>
 </body>
 
 </html>
