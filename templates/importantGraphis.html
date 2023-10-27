@@ -1,0 +1,40 @@
+<section style="flex: 1;">
+
+
+    <div style="width: 400px; height: 400px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        // Datos para el gráfico
+        var data = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            datasets: [{
+                label: 'Ventas Mensuales',
+                data: [12, 19, 3, 5, 2],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de fondo de las barras
+                borderColor: 'rgba(75, 192, 192, 1)', // Color del borde de las barras
+                borderWidth: 1 // Ancho del borde
+            }]
+        };
+
+        // Configuración del gráfico
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        // Crear el contexto del gráfico
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Crear el gráfico de barras
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico
+            data: data, // Datos del gráfico
+            options: options // Opciones del gráfico
+        });
+    </script>
+</section>

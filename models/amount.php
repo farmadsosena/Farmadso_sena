@@ -1,7 +1,7 @@
 <?php
 function consultarMonto(){
 
-  $monto = 103000;
+  $monto = 75500;
   $state = true;
   $data = array(
     'state' => $state,
