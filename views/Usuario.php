@@ -17,6 +17,9 @@ function existe_el_usu($tabla, $usuario)
 }
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -514,17 +517,20 @@ function existe_el_usu($tabla, $usuario)
     </article>
   </main>
 
+<?php
+include "../models/funcionemail.php";
+?>
   <section class="cuentas" id="datos-user">
     <section class="overflow">
-      <header>
-        <h2>diegohlinares2004@gmail.com</h2>
-        <section class="dash-img">
-          <img src="../assets/img/usuario.png" alt="">
-        </section>
-        <button>
-          Configuracion de la cuenta
-        </button>
-      </header>
+    <header>
+      <h2><?php echo $correo_usuario; ?></h2>
+      <section class="dash-img">
+        <img src="../assets/img/usuario.png" alt="">
+      </section>
+      <button>
+        Configuración de la cuenta
+      </button>
+    </header>
       <section class="darf">
         <details class="fores-u">
           <summary> Mis cuentas</summary>
