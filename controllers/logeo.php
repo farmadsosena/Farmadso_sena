@@ -41,8 +41,8 @@ if (isset($_POST["enviar"])) {
                     echo "<script>window.location='../views/login.php'</script>";
                 }
         } else {
-            echo "<script>alert('El usuario no existe');
-            window.location='../views/login.php</script>";
+            echo "<script>alert('El usuario no existe');</script>";
+            echo "<script>window.location='../views/login.php'</script>";
         }
     }
 }
