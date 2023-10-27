@@ -1,4 +1,4 @@
-.swiper {
+.mySwiper {
     flex: 1;
     cursor: pointer;
     height: 100%;
@@ -51,3 +51,30 @@
     stroke-dasharray: 125.6;
     transform: rotate(-90deg);
   }
+
+  .slider-categorias{
+    width: 75rem;
+    max-width: 95%;
+  }
+
+  .slider-farmacias{
+    width: 45rem;
+    max-width: 95%;
+  }
+
+  .colum-categorias{
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  .cont-categorias{
+    width: 11rem !important;
+    padding: 0px 11px;
+  }
+
+  .cont-categorias>img{
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+  } 
