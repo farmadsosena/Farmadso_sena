@@ -19,8 +19,6 @@ $user = mysqli_fetch_assoc($con1);
 </head>
 
 <body>
-
-<?php echo  $id_usuario ?>
   <div id="menu">
     <h2 class="title-cuenta">Mi cuenta</h2>
 
