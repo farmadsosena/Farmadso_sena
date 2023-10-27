@@ -1,5 +1,5 @@
 <?php
-include "../config/Conexion.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recopilar datos del formulario
@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Establecer el valor de estado como 1
     $estado = 1;
-    echo $telefono;
 
     // Validación de contraseña y confirmar contraseña
     $confirmar_password = $_POST["passwordusuario"];
@@ -59,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             text: 'Registro exitoso'
                         });
                     </script>";
+                    echo "<script>window.location='login.php'</script>";
                 } else {
                     echo "<script>
                         Swal.fire({
