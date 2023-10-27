@@ -10,10 +10,13 @@ $id = $_SESSION["id"];
 $eps = $_SESSION["eps"];
 
 
-$consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-$resultado = $conexion->query($consulta);
+$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
+$rr = mysqli_fetch_assoc($consulta);
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -173,7 +176,7 @@ $resultado = $conexion->query($consulta);
             </div>
 
             <section class="cont-usu" id="cuenta-fasd">
-              <img src="../assets/img/usuario.png" alt="">
+              <img src="<?php echo $rr["imgUser"] ?>" alt="">
             </section>
 
           </section>
@@ -547,37 +550,29 @@ $resultado = $conexion->query($consulta);
     </article>
   </main>
 
+<?php
+include "../models/funcionemail.php";
+?>
   <section class="cuentas" id="datos-user">
     <section class="overflow">
-      <header>
-        <h2>diegohlinares2004@gmail.com</h2>
-        <section class="dash-img">
-          <img src="../assets/img/usuario.png" alt="">
-        </section>
-      </header>
+    <header>
+      <h2><?php echo $correo_usuario; ?></h2>
+      <section class="dash-img">
+        <img src="<?php echo $rr["imgUser"] ?>" alt="">
+      </section>
+    </header>
       <section class="darf">
         <details class="fores-u">
           <summary> Mis cuentas</summary>
           <section class="count">
             <section class="fal">
               <div>
-                <img src="" alt="">
+                <img src="<?php echo $rr["imgUser"] ?>" alt="">
               </div>
             </section>
             <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
-            </section>
-          </section>
-          <section class="count">
-            <section class="fal">
-              <div>
-                <img src="" alt="">
-              </div>
-            </section>
-            <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
+              <h4><?php echo $rr["nombre"] . " " . $rr["apellido"];?></h4>
+              <p><?php echo $correo_usuario; ?></p>
             </section>
           </section>
         </details>
