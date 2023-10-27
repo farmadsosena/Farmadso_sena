@@ -139,7 +139,7 @@ $rr = mysqli_fetch_assoc($consulta);
 
         <section class="optio">
           <section class="option-true">
-            <a href="configuracion.html"><i class='bx bx-cog'></i></a>
+            <a href="configuracion.php"><i class='bx bx-cog'></i></a>
 
             <div class="custom-select">
               <div class="selected-option">
