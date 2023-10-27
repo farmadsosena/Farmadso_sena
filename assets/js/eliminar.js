@@ -1,3 +1,26 @@
+$(document).ready(function () {
+  $(".trah").on("click", function () {
+    var nombre = $(this).closest('.rect').data("id"); // Encuentra el contenedor .rect más cercano y obtén su atributo data-id
+
+    console.log(nombre);
+
+    $.ajax({
+      url: "../controllers/elminarFormula.php", 
+      method: "POST",
+      data: {
+        id: nombre,
+      },
+      success: function (response) {
+        alert(response);
+      },
+      error: function (xhr, status, error) {
+        console.error(error);
+      }
+    });
+  });
+});
+
+
 // Obtén elementos relevantes
 const seleccionarTodo = document.getElementById('seleccionarTodo');
 const checkboxes = document.querySelectorAll('.ui-checkbox');

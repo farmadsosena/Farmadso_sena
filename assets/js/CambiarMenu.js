@@ -41,3 +41,19 @@ if (contenedorGuardado) {
 
 mostrarContenedoresMenu('uno', document.getElementById('Inic'));
 
+
+const rectElements = document.querySelectorAll('.rect');
+
+// Agrega un controlador de eventos a cada elemento "rect"
+rectElements.forEach(rect => {
+  rect.addEventListener('mouseover', () => {
+    // Cuando se coloca el cursor, agrega la clase "visible" al "part2-contenido" dentro de este "rect"
+    rect.querySelector('.part2-contenido').classList.add('visible');
+  });
+
+  rect.addEventListener('mouseout', () => {
+    // Cuando se quita el cursor, elimina la clase "visible" del "part2-contenido" dentro de este "rect"
+    rect.querySelector('.part2-contenido').classList.remove('visible');
+  });
+});
+
