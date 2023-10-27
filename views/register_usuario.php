@@ -76,20 +76,7 @@
                         <span class="letra_label">Teléfono</span>
                         <input class="contenedores_input" type="number" name="telefono" placeholder="" required>
 
-                    </label>
-                </div>
-                <div class="contenedoresparte1">
-                    <label class="contenedor_label">
-                        <span class="letra_label">EPS</span>
-                        <select class="contendor_select" name="IdEps" required>
-                            <option value="1">EPS 1</option>
-                            <option value="2">EPS 2</option>
-                            <option value="3">EPS 3</option>
-                        </select>
-
-                    </label>
-                </div>
-            </section>
+            </label>
             <button class="submit" type="submit">Registrar</button>
             <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
         </form>

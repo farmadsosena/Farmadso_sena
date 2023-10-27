@@ -23,7 +23,7 @@
             <a href="../index.html">
                 <p>Pagina principal</p>
             </a>
-            <a href="">
+            <a href="inicio_tienda.php">
                 <p>Tienda</p>
             </a>
         </section>
@@ -62,5 +62,4 @@
         </section>
     </section>
 </body>
-
 </html>

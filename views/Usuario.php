@@ -7,8 +7,13 @@ if (!isset($_SESSION["usu"])) {
 }
 
 $id = $_SESSION["id"];
-?>
+$eps = $_SESSION["eps"];
 
+
+$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
+$rr = mysqli_fetch_assoc($consulta);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,41 +48,78 @@ $id = $_SESSION["id"];
       <!-- Nuevo proceso -->
       <section class="nabber">
 
+      <div class="logo-container">
         <div class="logo">
           <img src="../assets/img/logoFarmadso - cambio.png" alt="">
           <p>Farmadso</p>
         </div>
+      </div>
       </section>
 
       <section class="naver">
         <article class="hoss">
-          <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
-            <div>
-              <i class='bx bx-notepad'></i>
-              Mis formulas
+          <?php
+          if ($eps == 1) {
+          ?>
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
             </div>
-          </div>
+            <a href="inicio_tienda.php" class="toggle-dic">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+            </a>
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
+            </div>
+          <?php
+          } else {
+          ?>
+            <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
+              <div>
+                <i class='bx bx-notepad'></i>
+                Mis formulas
+              </div>
+            </div>
 
-          <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
-            <div>
-              <i class='bx bx-shopping-bag'></i>
-              Mis compras
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
             </div>
-          </div>
 
-          <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
-            <div>
-              <i class='bx bx-trash-alt'></i>
-              Papelera
+            <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+              <div>
+                <i class='bx bx-trash-alt'></i>
+                Papelera
+              </div>
             </div>
-          </div>
 
-          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
-            <div>
-              <i class='bx bx-user-circle'></i>
-              Solicitar un nuevo rol
+            <a href="inicio_tienda.php" class="toggle-dic">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+            </a>
+
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
             </div>
-          </div>
+          <?php
+          }
+          ?>
+
         </article>
       </section>
     </aside>
@@ -130,13 +172,12 @@ $id = $_SESSION["id"];
                 </div>';
                 }
 
-                $conexion->close();
                 ?>
               </div>
             </div>
 
             <section class="cont-usu" id="cuenta-fasd">
-              <img src="../assets/img/usuario.png" alt="">
+              <img src="<?php echo $rr["imgUser"] ?>" alt="">
             </section>
 
           </section>
@@ -170,7 +211,60 @@ $id = $_SESSION["id"];
             </div>
 
             <div class="cards_formulas">
-              <div class="scroll2">
+              
+                  <?php 
+                  
+                    $consulta = mysqli_query($conexion, "SELECT * FROM formulas  where estado = 1 ");
+                   
+                    if($consulta){
+                      $card = mysqli_fetch_assoc($consulta);
+                      
+                      $fecha = $card['fechaOrden'];
+                      $fecha_timestamp = strtotime($fecha);
+                      
+                      if ($fecha_timestamp !== false) {
+                          $fecha_formateada = date(" j F Y", $fecha_timestamp);               
+                      }
+
+
+                      // $doc = mysqli_query($conexion, "");
+                      echo"<div class='card' data-id='{$card['idFormula']}'>
+                      <div class='firts_line'>
+                        <div class='date-card'>
+                          <p>$fecha_formateada</p>
+                        </div>
+    
+                        <div class='state-card'>
+                          Entregado
+                        </div>
+                      </div>
+    
+                      <div class='second-line'>
+                        <h3 class='title_card'> Formulación de software para el catéter de rodilla maxilar </h3>
+                        <div class='doc'>
+                          <p class='profesion'>Profesional de la salud</p>
+                          <p class='name_doc'>Diego Hoyos Linares</p>
+                        </div>
+                        <div class='eps'></div>
+                        <div class='opt-card'></div>
+                      </div>
+    
+                      <div class='third-line'>Descargar
+                        <img class='open_menu' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=' />
+                      </div>
+                      <div class='menu_card'>
+                        <ul>
+                          <li>Abrir</li>
+                          <li class='delete'>Eliminar</li>
+                        </ul>
+                      </div>
+                    </div>";
+
+                    }
+                  
+                  ?>
+
+
                 <!-- Comienzan tarjetas para formulas -->
                 <div class="card" data-id="1">
                   <div class="firts_line">
@@ -204,14 +298,103 @@ $id = $_SESSION["id"];
                     </ul>
                   </div>
                 </div>
+                <div class="card" data-id="1">
+                  <div class="firts_line">
+                    <div class="date-card">
+                      <p>05 de Noviembre de 2023</p>
+                    </div>
 
+                    <div class="state-card">
+                      Entregado
+                    </div>
+                  </div>
+
+                  <div class="second-line">
+                    <h3 class="title_card"> Formulación de software para el catéter de rodilla maxilar </h3>
+                    <div class="doc">
+                      <p class="profesion">Profesional de la salud</p>
+                      <p class="name_doc">Diego Hoyos Linares</p>
+                    </div>
+                    <div class="eps"></div>
+                    <div class="opt-card"></div>
+                  </div>
+
+                  <div class="third-line">Descargar
+                    <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                  </div>
+                  <div class="menu_card">
+                    <ul>
+                      <li>Abrir</li>
+                      <li class="delete">Eliminar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card" data-id="1">
+                  <div class="firts_line">
+                    <div class="date-card">
+                      <p>05 de Noviembre de 2023</p>
+                    </div>
+
+                    <div class="state-card">
+                      Entregado
+                    </div>
+                  </div>
+
+                  <div class="second-line">
+                    <h3 class="title_card"> Formulación de software para el catéter de rodilla maxilar </h3>
+                    <div class="doc">
+                      <p class="profesion">Profesional de la salud</p>
+                      <p class="name_doc">Diego Hoyos Linares</p>
+                    </div>
+                    <div class="eps"></div>
+                    <div class="opt-card"></div>
+                  </div>
+
+                  <div class="third-line">Descargar
+                    <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                  </div>
+                  <div class="menu_card">
+                    <ul>
+                      <li>Abrir</li>
+                      <li class="delete">Eliminar</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card" data-id="1">
+                  <div class="firts_line">
+                    <div class="date-card">
+                      <p>05 de Noviembre de 2023</p>
+                    </div>
+
+                    <div class="state-card">
+                      Entregado
+                    </div>
+                  </div>
+
+                  <div class="second-line">
+                    <h3 class="title_card"> Formulación de software para el catéter de rodilla maxilar </h3>
+                    <div class="doc">
+                      <p class="profesion">Profesional de la salud</p>
+                      <p class="name_doc">Diego Hoyos Linares</p>
+                    </div>
+                    <div class="eps"></div>
+                    <div class="opt-card"></div>
+                  </div>
+
+                  <div class="third-line">Descargar
+                    <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                  </div>
+                  <div class="menu_card">
+                    <ul>
+                      <li>Abrir</li>
+                      <li class="delete">Eliminar</li>
+                    </ul>
+                  </div>
+                </div>
                 <!-- Final de tarjetas -->
 
-                <!-- <section class="prepare">
-                  <img src="../assets/img/No data-rafiki.png" alt="">
-                    <h2>No existen formulas todavia en el sistema</h2>
-                  </section> -->
-              </div>
+               
+             
             </div>
           </article>
         </section>
@@ -229,37 +412,37 @@ $id = $_SESSION["id"];
 
           <div class="cont-p">
             <article class="sect-p">
-              <?php
+              <?php 
               require_once '../templates/papelera.php';
-              ?>
-            </article>
+              ?> 
+              </article> 
           </div>
         </section>
            <section class="paginas" id="cuatro">
 
-<div class="column" id="opciones">
-  <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
-    <div class="arrow-icon">
-      <i class="fa-solid fa-arrow-right"></i>
-    </div>
-  </div>
-  <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
-    <div class="arrow-icon">
-      <i class="fa-solid fa-arrow-right"></i>
-    </div>
-  </div>
-</div>
-<div id="contenido-domiciliario" class="hidden">
-  <div class="container">
-    <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
-      <i class='bx bx-left-arrow-alt'></i>
-      <h1>Solicitud para ser domiciliario</h1>
-    </div>
-    <section class="parte1-formulario">
-      <div class="contenedoresparte1">
-        <label for="nombreCompleto">Nombre Completo</label>
-        <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-      </div>
+          <div class="column" id="opciones">
+            <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+              <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+            <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
+              <div class="arrow-icon">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+          <div id="contenido-domiciliario" class="hidden">
+            <div class="container">
+              <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
+                <i class='bx bx-left-arrow-alt'></i>
+                <h1>Solicitud para ser domiciliario</h1>
+              </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="nombreCompleto">Nombre Completo</label>
+                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                </div>
 
       <div class="contenedoresparte1">
         <label for="numeroDocumento">Numero de documento</label>
@@ -285,7 +468,7 @@ $id = $_SESSION["id"];
 
     </section>
 
-    <h2>Datos Sensibles</h2>
+              <h2>Datos Sensibles</h2>
 
     <section class="parte1-formulario">
       <div class="contenedoresparte1">
@@ -333,7 +516,7 @@ $id = $_SESSION["id"];
 
       <div id="nequi_info" class="info-container hidden">
 
-        <h3>Datos Sensible para Nequi</h3>
+                  <h3>Datos Sensible para Nequi</h3>
 
         <section class="parte1-formulario">
 
@@ -352,7 +535,7 @@ $id = $_SESSION["id"];
 
       <div id="paypal_info" class="info-container hidden">
 
-        <h3>Datos Sensible para PayPal</h3>
+                  <h3>Datos Sensible para PayPal</h3>
 
         <section class="parte1-formulario">
           <div class="contenedoresparte1">
@@ -370,7 +553,7 @@ $id = $_SESSION["id"];
 
       <div id="bancolombia_info" class="info-container hidden">
 
-        <h3>Datos Sensible para Bancolombia<h3>
+                  <h3>Datos Sensible para Bancolombia<h3>
 
             <section class="parte2-formulario">
 
@@ -405,12 +588,12 @@ $id = $_SESSION["id"];
   </div>
 </div>
 
-<div id="contenido-farmacia" class="hidden">
-  <div class="container">
-    <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
-      <i class='bx bx-left-arrow-alt'></i>
-      <h1>Solicitud para registrar farmacia</h1>
-    </div>
+          <div id="contenido-farmacia" class="hidden">
+            <div class="container">
+              <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+                <i class='bx bx-left-arrow-alt'></i>
+                <h1>Solicitud para registrar farmacia</h1>
+              </div>
 
     <section class="parte1-formulario">
       <div class="contenedoresparte1">
@@ -440,7 +623,7 @@ $id = $_SESSION["id"];
       </div>
     </section>
 
-    <h2>Datos Sensibles</h2>
+              <h2>Datos Sensibles</h2>
 
     <section class="parte1-formulario">
       <div class="contenedoresparte1">
@@ -511,40 +694,29 @@ $id = $_SESSION["id"];
     </article>
   </main>
 
+<?php
+include "../models/funcionemail.php";
+?>
   <section class="cuentas" id="datos-user">
     <section class="overflow">
-      <header>
-        <h2>diegohlinares2004@gmail.com</h2>
-        <section class="dash-img">
-          <img src="../assets/img/usuario.png" alt="">
-        </section>
-        <button>
-          Configuracion de la cuenta
-        </button>
-      </header>
+    <header>
+      <h2><?php echo $correo_usuario; ?></h2>
+      <section class="dash-img">
+        <img src="<?php echo $rr["imgUser"] ?>" alt="">
+      </section>
+    </header>
       <section class="darf">
         <details class="fores-u">
           <summary> Mis cuentas</summary>
           <section class="count">
             <section class="fal">
               <div>
-                <img src="" alt="">
+                <img src="<?php echo $rr["imgUser"] ?>" alt="">
               </div>
             </section>
             <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
-            </section>
-          </section>
-          <section class="count">
-            <section class="fal">
-              <div>
-                <img src="" alt="">
-              </div>
-            </section>
-            <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
+              <h4><?php echo $rr["nombre"] . " " . $rr["apellido"];?></h4>
+              <p><?php echo $correo_usuario; ?></p>
             </section>
           </section>
         </details>
