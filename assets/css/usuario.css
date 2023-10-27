@@ -30,11 +30,13 @@ body{
   width: 40vh;
   position: relative;
   height: 100%;
+  margin-top: 30px;
 }
 
 .yuli .icon{
   position: relative;
   top: 15px;
+  display: none;
 }
 .aside{
   display: flex;
@@ -214,7 +216,7 @@ body{
 }
 .cuentas .dash-img{
   margin: 0.8rem 0rem;
-  width: 29%;
+  width: 25%;
   height: 5rem;
   border-radius: 50%;
 }
@@ -222,7 +224,7 @@ body{
 .cuentas .dash-img img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -294,7 +296,6 @@ body{
   color: rgb(20, 15, 15);
 }
 .count .fal div{
-  border: 1px solid black;
   width: 69%;
   height: 70%;
   border-radius: 50%;
@@ -866,13 +867,13 @@ body{
 @media (max-width: 767px) {
   .yuli {
   display: flex;
-  height: 100vh;
+  height: 80vh;
   position: relative; /* Agregamos posición relativa para controlar los iconos */
 }
 
 .yuli .aside {
   width: 13%;
-  height: 100vh;
+  height: 80vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -958,12 +959,12 @@ body{
 }
 
 /* Oculta .logo-container cuando el aside no está activo */
-.yuli:not(.active) .logo {
+.yuli:not(.active) .logo-container .logo {
   display: none;
 }
 
 /* Muestra .logo-container cuando el aside está activo */
-.yuli.active .logo{
+.yuli.active .logo-container .logo{
   display: block;
   display: flex;
   align-items: center;
@@ -1040,4 +1041,6 @@ body{
   padding: 4px 4px;
   border: 1px solid;
 }
+
+
 }
