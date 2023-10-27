@@ -56,8 +56,7 @@
                 <div class="contenedoresparte1">
                     <label class="contenedor_label">
                         <span class="letra_label">Contraseña</span>
-                        <input class="contenedores_input" type="password" name="passwordusuario" placeholder=""
-                            required>
+                        <input class="contenedores_input" type="password" name="passwordusuario" placeholder="" required>
 
                     </label>
                 </div>
@@ -66,8 +65,7 @@
                 <div class="contenedoresparte1">
                     <label class="contenedor_label">
                         <span class="letra_label">Confirmar contraseña</span>
-                        <input class="contenedores_input" type="password" name="confirmar_contra" placeholder=""
-                            required>
+                        <input class="contenedores_input" type="password" name="confirmar_contra" placeholder="" required>
 
                     </label>
                 </div>
@@ -76,17 +74,21 @@
                         <span class="letra_label">Teléfono</span>
                         <input class="contenedores_input" type="number" name="telefono" placeholder="" required>
 
-            </label>
-            <button class="submit" type="submit">Registrar</button>
-            <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
+                    </label>
+                </div>
+            </section>
+                <div class="contenedoresparte1">
+                <button class="submit" type="submit">Registrar</button>
+                <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
+                </div>
         </form>
     </section>
     </section>
 
- 
-<?php
-include("../controllers/procesar_formulario.php");
-?>
+
+    <?php
+    include("../controllers/procesar_formulario.php");
+    ?>
 </body>
 
 </html>
