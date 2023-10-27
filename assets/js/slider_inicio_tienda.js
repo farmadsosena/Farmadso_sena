@@ -17,3 +17,24 @@ var swiper = new Swiper(".mySwiper", {
     prevEl: ".swiper-button-prev"
   },
 });
+
+var swiper = new Swiper(".slider-categorias", {
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  slidesPerView: 6, // Muestra 3 columnas en la vista por defecto
+});
+
+var swiper = new Swiper(".slider-farmacias", {
+  loop: true,
+  autoplay: {
+    delay: 10000,
+    disableOnInteraction: false
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+});
