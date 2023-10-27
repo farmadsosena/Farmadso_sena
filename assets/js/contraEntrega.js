@@ -31,14 +31,56 @@ var formcontraentrega = document.querySelector('.formulario_contraentrega')
 
 btn.addEventListener('click', () => {
 
-    if (!formcontraentrega.classList.contains('activeForm')) {
+    if (cartCont.classList.contains('desactiveForm')) {
+        ocultarElemento('viewCartIcon')
+        ocultarElemento('cantidadFinal')
+        mostrarElemento('payContinue')
 
-        formcontraentrega.classList.toggle('desactiveForm')
+        formcontraentrega.classList.add('desactiveForm');
+        formcontraentrega.classList.remove('activeForm');
+        cartCont.classList.remove('desactiveForm');
+        cartCont.classList.add('activeForm');
 
 
     } else {
-        cartCont.classList.toggle('activeForm')
-        alert('visible formContraentrega')
+        ocultarElemento('payContinue')
+        mostrarElemento('cantidadFinal')
+        mostrarElemento('viewCartIcon')
+        cartCont.classList.remove('activeForm');
+        cartCont.classList.add('desactiveForm');
+
+        formcontraentrega.classList.remove('desactiveForm');
+        formcontraentrega.classList.add('activeForm');
+
     }
 
 })
+
+
+function ocultarElemento(id){
+    document.getElementById(id).style.display = 'none';
+}
+function mostrarElemento(id){
+    document.getElementById(id).style.display = 'flex';
+}
+
+
+
+// Animar el titulo 
+function animateText() {
+    const textElement = document.getElementById("animated-text");
+    let opacity = 0;
+
+    const fadeInInterval = setInterval(function() {
+      opacity += 0.01; // Ajusta la velocidad de la animación cambiando este valor
+      textElement.style.opacity = opacity;
+      if (opacity >= 1) {
+        clearInterval(fadeInInterval);
+        // La animación ha terminado
+    
+      }
+    }, 20); // El intervalo en milisegundos
+  }
+
+  // Llama a la función de animación cuando el documento esté listo
+  document.addEventListener("DOMContentLoaded", animateText);

@@ -33,7 +33,7 @@
     </section>
     <main id="mainFormContraentrega">
         <section class="columnFormContraentrega">
-            <h1>
+            <h1 id="animated-text">
                 No te preocupes por ir a la farmacia, nosotros te llevamos tus medicamentos a casa.
             </h1>
 
@@ -41,15 +41,16 @@
         </section>
         <main class="mainPrincipal">
             <button id="changeContent">
-               
+
                 <div>
-                <p id="cantidadFinal">6</p>
-                <i class='bx bx-cart'></i>
+                    <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
+                    <p id="cantidadFinal">6</p>
+                    <i class='bx bx-cart' id="viewCartIcon" ></i>
                 </div>
-             
+
             </button>
 
-            <div class="contCarrito ">
+            <div class="contCarrito desactiveForm" style="width: 100%">
                 <h3>Resumen de compra</h3>
 
                 <form method="POST" id="form-eliminar">
@@ -136,7 +137,7 @@
                 </form>
             </div>
 
-            <form class="formulario_contraentrega " autocomplete="off" id="contraentregaForm"
+            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm"
                 onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaController.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
 
@@ -192,7 +193,7 @@
                 </div>
 
                 <div class="groupOne">
-                    <button name='realizarcompra' class="saveContraentrega">Realizar compra</button>
+                    <button name='realizarcompra' class="saveContraentrega"></button>
                 </div>
             </form>
         </main>

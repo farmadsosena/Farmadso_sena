@@ -32,8 +32,6 @@ function consultarMonto(callback) {
                         },
                         onApprove: function (data, actions) {
                             actions.order.capture().then(function (detalles) {
-                                console.log(JSON.stringify(detalles));
-
                             
                                 fetch('../controllers/procesarCompra.php', {
                                     method: "POST",
@@ -57,7 +55,7 @@ function consultarMonto(callback) {
                             });
                         },
                         onCancel: function (data) {
-                            alert("Pago cancelado");
+                            toastr.warning("Pago cancelado");
                         }
                     }).render('#paypal-button-container');
                 });
