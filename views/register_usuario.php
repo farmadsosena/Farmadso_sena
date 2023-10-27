@@ -63,20 +63,7 @@
                 <input class="contenedores_input" type="number" name="telefono" placeholder="" required>
 
             </label>
-            <label class="contenedor_label">
-                <span class="letra_label">EPS</span>
-                <select class="contendor_select" name="IdEps" required>
-                    <?php
-                    $eps_rett = mysqli_query($conexion, "SELECT * FROM eps ORDER BY nombre");
-                    if ($eps_rett) {
-                        while ($sett = mysqli_fetch_assoc($eps_rett)) {
-                            echo '<option value="' . $sett["ideps"] . '">' . $sett["nombre"] . '</option>';
-                        }
-                    }
-                    ?>
-                </select>
-
-            </label>
+            
             <button class="submit" type="submit">Registrar</button>
             <p class="signin">¿Ya tienes una cuenta? <a href="login.php">Login</a></p>
         </form>

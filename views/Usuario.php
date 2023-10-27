@@ -14,10 +14,6 @@ $consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$i
 $rr = mysqli_fetch_assoc($consulta);
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -393,10 +389,7 @@ $rr = mysqli_fetch_assoc($consulta);
                 </div>
                 <!-- Final de tarjetas -->
 
-                <!-- <section class="prepare">
-                  <img src="../assets/img/No data-rafiki.png" alt="">
-                    <h2>No existen formulas todavia en el sistema</h2>
-                  </section> -->
+               
              
             </div>
           </article>
@@ -414,11 +407,11 @@ $rr = mysqli_fetch_assoc($consulta);
             </button></div>
 
           <div class="cont-p">
-            <!-- <article class="sect-p">
+            <article class="sect-p">
               <?php 
-              // require_once '../templates/papelera.php';
-              ?> -->
-            <!-- </article> -->
+              require_once '../templates/papelera.php';
+              ?> 
+              </article> 
           </div>
         </section>
         <section class="paginas" id="cuatro">
