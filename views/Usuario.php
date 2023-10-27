@@ -51,10 +51,12 @@ function existe_el_usu($tabla, $usuario)
       <!-- Nuevo proceso -->
       <section class="nabber">
 
+      <div class="logo-container">
         <div class="logo">
           <img src="../assets/img/logoFarmadso - cambio.png" alt="">
           <p>Farmadso</p>
         </div>
+      </div>
       </section>
 
       <section class="naver">
