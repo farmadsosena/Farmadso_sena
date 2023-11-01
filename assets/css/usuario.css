@@ -479,7 +479,34 @@ body{
   align-items: center;
   padding: 0.5rem 0rem;
 }
+/* Agregar nuevas formulas al sistema */
 
+.new-formula{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0rem 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.new-formula button{
+  display: flex;
+  align-items: center;
+  background-color: #2d57a8;
+  width: auto;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.45rem 0.5rem;
+}
+
+.new-formula button i{
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+/* Modificaciones para mostrar las fomrulas establecidas en el sistema */
 
 .opt_config{
   display: flex;
@@ -861,7 +888,245 @@ body{
   display: flex;
   flex-direction: column;
 }
+/* DISEÑO PARA LA VENTANA EMERGENTE DE FORMULAS */
+.contenedor-form{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33333345;
+}
 
+.abilisco{
+  background-color: white;
+  width: 60%;
+  height: 80%;
+  border-radius: 8px;
+  padding: 0rem 0.8rem 0.5rem 0.8rem;
+  position: relative;
+}
+
+.abilisco header{
+  border-bottom: 1px solid rgba(128, 128, 128, 0.401);
+  display: flex;
+  align-items: center;
+  height: 10%;
+}
+
+.abilisco header h2{
+  color: #1c1e21;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  flex: 1;
+  margin-top: 8px;
+}
+.abilisco header div{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  cursor: pointer;
+  height: 2rem;
+  font-size: 25px;
+}
+
+.cuerpo-abilisco{
+  height: 90%;
+}
+
+.cuerpo-abilisco .scroll-abi{
+  height: 90%;
+  /* display: none; */
+  overflow-y: scroll;
+}
+
+.cuerpo-abilisco .botones-abi{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.3rem 0rem;
+  height: 10%;
+
+}
+.scroll-abi .mauso{
+  position: relative;
+  height: auto;
+  margin: 0;
+  padding: 0.2rem 0rem;
+}
+
+.scroll-abi {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
+
+.scroll-abi::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+.mauso p{
+  color: #333;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.mauso div{
+  color: #606770;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: -5px 0px;
+}
+
+.mauso-texto{
+  width: 100%;
+  padding: 11px;
+  font-size: 15px;
+  line-height: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccd0d5;
+  color: #1c1e21;
+  background: #f5f6f7;
+  position: relative;
+  z-index: 1;
+  font-family: sans-serif;
+}
+.mauso-texto:focus{
+  outline: none;
+}
+.rezine-none{
+  resize: none;
+  height: 8rem;
+}
+.flex-mauso{
+  display: flex;
+  align-items: center;
+  height: 20%;
+}
+
+.flex-mauso .mauso-boom{
+  width: 50%;
+  height: 100%;
+  padding: 0rem 0.8rem 0rem 0rem;
+
+}
+
+.flex-mauso .mauso-boom input{
+  margin: 0;
+}
+.menor{
+  margin: 0;
+}
+.encojer{
+  height: 2.7rem;
+}
+
+.botones-abi button{
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.continuar{
+  display: none;
+  background-color: #2d57a8;
+}
+
+.asss{
+  margin-left: 0.8rem;
+  background-color: #a82d2d !important;
+}
+.regresar{
+  background-color: #33a892;
+  margin-right: 0.8rem;
+}
+
+/* DECORACION PARA MIRAR LOS MEDICAMENTOS UNO POR UNO */
+.padre-medicamentos{
+  display: none;
+  overflow: hidden;
+  height: 90%;
+}
+
+.medicamentos-abilisco{
+  height: 100%;
+  overflow-y: scroll;
+}
+.scrall {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
+
+.scrall::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+.cerrar{
+  display: none;
+}
+
+.abrir{
+  display: block !important;
+}
+
+.mauso-resultados{
+  display: none;
+  padding: 0.3rem 0rem;
+  left: 5px;
+  width: 98.5%;
+  position: absolute;
+  height: auto;
+  max-height: 10ch;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.mauso-resultados div{
+  padding: 0.2rem 0.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 15px;
+}
+
+.mauso-resultados div svg{
+  fill: #3030308a;
+  rotate: 150deg;
+  margin-right: 5px;
+}
+
+.mauso-resultados div p{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.agg{
+  display: block;
+  transition: display 0.5s all;
+}
+
+.aggdisplay{
+  display: flex;
+  transition: display 2s all;
+}
 
 
 @media (max-width: 767px) {
@@ -1041,6 +1306,4 @@ body{
   padding: 4px 4px;
   border: 1px solid;
 }
-
-
 }
