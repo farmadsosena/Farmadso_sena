@@ -219,6 +219,8 @@ $rr = mysqli_fetch_assoc($consulta);
                    
                     if($consulta){
                       $card = mysqli_fetch_assoc($consulta);
+                        $IdMedico = $card['IdMedico'];
+                      
                       
                       $fecha = $card['fechaOrden'];
                       $fecha_timestamp = strtotime($fecha);
@@ -227,8 +229,14 @@ $rr = mysqli_fetch_assoc($consulta);
                           $fecha_formateada = date(" j F Y", $fecha_timestamp);               
                       }
 
-
-                      // $doc = mysqli_query($conexion, "");
+                      
+                      $doc = mysqli_query($conexion, "SELECT * from medicos where  idmedico = $IdMedico ");
+                      $user_doc = mysqli_fetch_assoc($doc);
+                      $id_medico = $user_doc['idusuario'];
+                      $cons_med =  mysqli_query($conexion, "SELECT * from usuarios where  idusuario = $id_medico ");
+                      $row = mysqli_fetch_assoc($cons_med);
+                      
+                      
                       echo"<div class='card' data-id='{$card['idFormula']}'>
                       <div class='firts_line'>
                         <div class='date-card'>
@@ -244,7 +252,7 @@ $rr = mysqli_fetch_assoc($consulta);
                         <h3 class='title_card'> Formulación de software para el catéter de rodilla maxilar </h3>
                         <div class='doc'>
                           <p class='profesion'>Profesional de la salud</p>
-                          <p class='name_doc'>Diego Hoyos Linares</p>
+                          <p class='name_doc'>" .$row['nombre'].' '.  $row['apellido'] . "</p>
                         </div>
                         <div class='eps'></div>
                         <div class='opt-card'></div>
