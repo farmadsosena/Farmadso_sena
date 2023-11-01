@@ -386,7 +386,7 @@
         <div class="ti">
           <div class="in">
             <p>EPS:</p>
-            <p>0001</p>
+            <p id="numFact"></p>
           </div>
           <div class="inn">
             <span class="un1"></span>
@@ -394,19 +394,19 @@
           </div>
 
         </div>
-        <p style="margin: 10px;">Direccion principal: Asmet Salud</p>
-        <p style="margin: 10px;">Direcccion 2: La rebaja B/centro Cra: 12</p>
+        <p style="margin: 10px;">Direccion: <principal:div id="DpFact"></principal:div></p>
+        <p style="margin: 10px;">Direcccion 2: <div id="dtFact"></div></p>
 
 
 
         <div class="cajjjja">
-          <p>Cliente: Isaias Caballero</p>
-          <p>Dirección: B/ Rosal</p>
-          <p>Fecha: 10/10/2023</p>
+          <p>Cliente: <div id="ClienteFact"></div></p>
+          <p>Dirección: <div id="DIREFact"></div></p>
+          <p>Fecha: <div id="FechFact"></div></p>
 
           <div class="imaaa">
             <div class="iaam">
-              <h1>IMAGEN</h1>
+              <img id="ImgFact" src="" alt="" srcset="">
             </div>
           </div>
         </div>

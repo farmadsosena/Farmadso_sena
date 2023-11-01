@@ -63,7 +63,7 @@ while ($datosdereporte = $resultado->fetch_assoc()) {
                       </div>
                     </div>
                     <div id="b">
-                      <button id="but" onclick="abrirG()" class="openModalButton">
+                      <button id="but" onclick="abrirG(' . $idcompra . ')" class="openModalButton">
                         Ver más...
                       </button>
                     </div>
