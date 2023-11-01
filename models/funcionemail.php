@@ -4,11 +4,10 @@
 $idusuario = $_SESSION['id'];
 
 // Consulta para obtener el correo del usuario
-$consulta = "SELECT correo FROM usuarios WHERE idusuario = $idusuario";
-$resultado = $conexion->query($consulta);
+$consulta = mysqli_query($conexion,"SELECT correo FROM usuarios WHERE idusuario = $idusuario");
 
-if ($resultado->num_rows > 0) {
-    $fila = $resultado->fetch_assoc();
+if ($consulta->num_rows > 0) {
+    $fila = $consulta->fetch_assoc();
     $correo_usuario = $fila['correo'];
 } else {
     $correo_usuario = "Correo no encontrado";

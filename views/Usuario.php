@@ -14,10 +14,6 @@ $consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$i
 $rr = mysqli_fetch_assoc($consulta);
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,11 +30,14 @@ $rr = mysqli_fetch_assoc($consulta);
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
+    rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
 <body>
+
 
   <section class="yuli">
     <div class="icon">
@@ -140,7 +139,7 @@ $rr = mysqli_fetch_assoc($consulta);
 
         <section class="optio">
           <section class="option-true">
-            <a href="configuracion.html"><i class='bx bx-cog'></i></a>
+            <a href="configuracion.php"><i class='bx bx-cog'></i></a>
 
             <div class="custom-select">
               <div class="selected-option">
@@ -149,26 +148,26 @@ $rr = mysqli_fetch_assoc($consulta);
               <div class="options">
 
                 <?php
-                function existe_en_tabla($tabla, $usuario)
-                {
-                  global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-                  $resultado = $conexion->query($consulta);
-                  return $resultado->num_rows > 0;
-                }
-
-                if (existe_en_tabla('domiciliario', $id)) {
-                  echo '<div class="option">
+                    function existe_en_tabla($tabla, $usuario)
+                    {
+                      global $conexion;
+                      $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                      $resultado = $conexion->query($consulta);
+                      return $resultado->num_rows > 0;
+                    }
+    
+                    if (existe_en_tabla('domiciliario', $id)) {
+                      echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
-                }
-                if (existe_en_tabla('farmacias', $id)) {
-                  echo '<div class="option">
+                    }
+                    if (existe_en_tabla('farmacias', $id)) {
+                      echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                }
-                if (existe_en_tabla('usuarios', $id)) {
-                  echo '<div class="option">
+                    }
+                    if (existe_en_tabla('usuarios', $id)) {
+                      echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
                 }
@@ -297,7 +296,8 @@ $rr = mysqli_fetch_assoc($consulta);
                   </div>
 
                   <div class="third-line">Descargar
-                    <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
+                    <img class="open_menu"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
                   </div>
                   <div class="menu_card">
                     <ul>
@@ -401,10 +401,7 @@ $rr = mysqli_fetch_assoc($consulta);
                 </div>
                 <!-- Final de tarjetas -->
 
-                <!-- <section class="prepare">
-                  <img src="../assets/img/No data-rafiki.png" alt="">
-                    <h2>No existen formulas todavia en el sistema</h2>
-                  </section> -->
+               
              
             </div>
           </article>
@@ -422,14 +419,14 @@ $rr = mysqli_fetch_assoc($consulta);
             </button></div>
 
           <div class="cont-p">
-            <!-- <article class="sect-p">
+            <article class="sect-p">
               <?php 
-              // require_once '../templates/papelera.php';
-              ?> -->
-            <!-- </article> -->
+              require_once '../templates/papelera.php';
+              ?> 
+              </article> 
           </div>
         </section>
-        <section class="paginas" id="cuatro">
+           <section class="paginas" id="cuatro">
 
           <div class="column" id="opciones">
             <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
@@ -447,7 +444,7 @@ $rr = mysqli_fetch_assoc($consulta);
             <div class="container">
               <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
                 <i class='bx bx-left-arrow-alt'></i>
-                <h1 class="titulo_solicitud">Solicitud para ser domiciliario</h1>
+                <h1>Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
                 <div class="contenedoresparte1">
@@ -455,252 +452,252 @@ $rr = mysqli_fetch_assoc($consulta);
                   <input type="text" id="nombrecompleto" name="nombrecompleto" required>
                 </div>
 
-                <div class="contenedoresparte1">
-                  <label for="numeroDocumento">Numero de documento</label>
-                  <input type="text" id="numerodocumento" name="numerodocumento" required>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="numeroDocumento">Numero de documento</label>
+        <input type="text" id="numerodocumento" name="numerodocumento" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" name="telefono" required>
-                </div>
-              </section>
+      <div class="contenedoresparte1">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+    </section>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="correo">Correo de Contacto</label>
-                  <input type="email" id="correo" name="correo" required>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="correo">Correo de Contacto</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="imagen"> Imagen de Presentación</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="imagen"> Imagen de Presentación</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
 
-              </section>
+    </section>
 
-              <h3 class="datos_titulos">Datos Sensibles</h3>
+              <h2>Datos Sensibles</h2>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="Direcciónresidencia">Dirección de residencia</label>
-                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="Direcciónresidencia">Dirección de residencia</label>
+        <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
-                  <select id="vehiculo" name="departamento" required>
-                    <option value="moto">Moto</option>
-                    <option value="carro">Carro</option>
-                    <!-- Agrega más departamentos según sea necesario -->
-                  </select>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
+        <select id="vehiculo" name="departamento" required>
+          <option value="moto">Moto</option>
+          <option value="carro">Carro</option>
+          <!-- Agrega más departamentos según sea necesario -->
+        </select>
+      </div>
 
-              </section>
+    </section>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="imagen">Licencia de conducir</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="imagen">Licencia de conducir</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="imagen">Tarjeta de propiedad</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="imagen">Tarjeta de propiedad</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="imagen">Soat</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-              </section>
+      <div class="contenedoresparte1">
+        <label for="imagen">Soat</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+    </section>
 
-              <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
-              <select id="cuenta_bancaria" name="cuenta_bancaria" required>
-                <option>Escoge la opcion</option>
-                <option value="nequi">Nequi</option>
-                <option value="paypal">PayPal</option>
-                <option value="bancolombia">Bancolombia</option>
-              </select>
+    <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
+    <select id="cuenta_bancaria" name="cuenta_bancaria" required>
+      <option>Escoge la opcion</option>
+      <option value="nequi">Nequi</option>
+      <option value="paypal">PayPal</option>
+      <option value="bancolombia">Bancolombia</option>
+    </select>
 
-              <section class="respuesta_select" id="respuesta_select">
+    <section class="respuesta_select" id="respuesta_select">
 
-                <div id="nequi_info" class="info-container hidden">
+      <div id="nequi_info" class="info-container hidden">
 
-                  <h3 class="datos_titulos">Datos Sensible para Nequi</h3>
+                  <h3>Datos Sensible para Nequi</h3>
 
-                  <section class="parte1-formulario">
+        <section class="parte1-formulario">
 
-                    <div class="contenedoresparte1">
-                      <label for="nombre_usuario">Introduce nombre de usuario </label>
-                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="telefono">Ingrese numero de teléfono</label>
-                      <input type="tel" id="telefono" name="telefono" required>
-                    </div>
-
-                  </section>
-                </div>
-
-                <div id="paypal_info" class="info-container hidden">
-
-                  <h3 class="datos_titulos" 3>Datos Sensible para PayPal</h3>
-
-                  <section class="parte1-formulario">
-                    <div class="contenedoresparte1">
-                      <label for="nombre_usuario">Introduce nombre de usuario </label>
-                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="telefono">Teléfono</label>
-                      <input type="tel" id="telefono" name="telefono" required>
-                    </div>
-
-                  </section>
-                </div>
-
-                <div id="bancolombia_info" class="info-container hidden">
-
-                  <h3 class="datos_titulos">Datos Sensible para Bancolombia<h3>
-
-                      <section class="parte2-formulario">
-
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Tipo cuenta natural o juridico</label>
-                          <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                        </div>
-
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Cuenta de ahorro o corriente</label>
-                          <input type="text" id="numerodocumento" name="numerodocumento" required>
-                        </div>
-                      </section>
-
-                      <section class="parte3-formulario">
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Numero de la tarjeta</label>
-                          <input type="tel" id="telefono" name="telefono" required>
-                        </div>
-
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Propietario</label>
-                          <input type="email" id="correo" name="correo" required>
-                        </div>
-                      </section>
-
-                </div>
-
-              </section>
-
-              <button id="enviar">Enviar</button>
-            </div>
+          <div class="contenedoresparte1">
+            <label for="nombre_usuario">Introduce nombre de usuario </label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
           </div>
+
+          <div class="contenedoresparte1">
+            <label for="telefono">Ingrese numero de teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+
+        </section>
+      </div>
+
+      <div id="paypal_info" class="info-container hidden">
+
+                  <h3>Datos Sensible para PayPal</h3>
+
+        <section class="parte1-formulario">
+          <div class="contenedoresparte1">
+            <label for="nombre_usuario">Introduce nombre de usuario </label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+          </div>
+
+          <div class="contenedoresparte1">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+
+        </section>
+      </div>
+
+      <div id="bancolombia_info" class="info-container hidden">
+
+                  <h3>Datos Sensible para Bancolombia<h3>
+
+            <section class="parte2-formulario">
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Tipo cuenta natural o juridico</label>
+                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+              </div>
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Cuenta de ahorro o corriente</label>
+                <input type="text" id="numerodocumento" name="numerodocumento" required>
+              </div>
+            </section>
+
+            <section class="parte3-formulario">
+              <div class="contenedoresparte2">
+                <label for="telefono">Numero de la tarjeta</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+
+              <div class="contenedoresparte2">
+                <label for="telefono">Propietario</label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+            </section>
+
+      </div>
+
+    </section>
+
+    <button id="enviar">Enviar</button>
+  </div>
+</div>
 
           <div id="contenido-farmacia" class="hidden">
             <div class="container">
               <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
                 <i class='bx bx-left-arrow-alt'></i>
-                <h1 class="titulo_solicitud">Solicitud para registrar farmacia</>
+                <h1>Solicitud para registrar farmacia</h1>
               </div>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="nombreFarmacia">Nombre de la Farmacia</label>
-                  <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="nombreFarmacia">Nombre de la Farmacia</label>
+        <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="direccion">Dirección</label>
-                  <input type="text" id="direccion" name="direccion" required>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" name="direccion" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" name="telefono" required>
-                </div>
-              </section>
+      <div class="contenedoresparte1">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+    </section>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="correo">Correo de Contacto</label>
-                  <input type="email" id="correo" name="correo" required>
-                </div>
-                <div class="contenedoresparte1">
-                  <label for="imagen"> Imagen de Presentación</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-              </section>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="correo">Correo de Contacto</label>
+        <input type="email" id="correo" name="correo" required>
+      </div>
+      <div class="contenedoresparte1">
+        <label for="imagen"> Imagen de Presentación</label>
+        <input type="file" id="imagen" name="imagen" required>
+      </div>
+    </section>
 
-              <h3 class="datos_titulos">Datos Sensibles</h3>
+              <h2>Datos Sensibles</h2>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="departamento">Departamento</label>
-                  <select id="departamento" name="departamento" required>
-                    <option value="departamento1">Caquetá</option>
-                    <option value="departamento2">Cundinamarca</option>
-                    <!-- Agrega más departamentos según sea necesario -->
-                  </select>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="departamento">Departamento</label>
+        <select id="departamento" name="departamento" required>
+          <option value="departamento1">Caquetá</option>
+          <option value="departamento2">Cundinamarca</option>
+          <!-- Agrega más departamentos según sea necesario -->
+        </select>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="ciudad">Ciudad</label>
-                  <select id="ciudad" name="ciudad" required>
-                    <option value="departamento1">Florencia</option>
-                    <option value="departamento2">Bogota</option>
-                    <!-- Agrega más ciudades según sea necesario -->
-                  </select>
-                </div>
-              </section>
+      <div class="contenedoresparte1">
+        <label for="ciudad">Ciudad</label>
+        <select id="ciudad" name="ciudad" required>
+          <option value="departamento1">Florencia</option>
+          <option value="departamento2">Bogota</option>
+          <!-- Agrega más ciudades según sea necesario -->
+        </select>
+      </div>
+    </section>
 
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="codigoPostal">Código Postal</label>
-                  <input type="text" id="codigoPostal" name="codigoPostal" required>
-                </div>
+    <section class="parte1-formulario">
+      <div class="contenedoresparte1">
+        <label for="codigoPostal">Código Postal</label>
+        <input type="text" id="codigoPostal" name="codigoPostal" required>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="horario">Días de Horario Laboral</label>
-                  <select id="horario" name="horario" required>
-                    <option value="lunes">Lunes</option>
-                    <option value="martes">Martes</option>
-                    <!-- Agrega más días según sea necesario -->
-                  </select>
-                </div>
+      <div class="contenedoresparte1">
+        <label for="horario">Días de Horario Laboral</label>
+        <select id="horario" name="horario" required>
+          <option value="lunes">Lunes</option>
+          <option value="martes">Martes</option>
+          <!-- Agrega más días según sea necesario -->
+        </select>
+      </div>
 
-                <div class="contenedoresparte1">
-                  <label for="jornada">Jornada</label>
-                  <select id="jornada" name="jornada" required>
-                    <option value="manana">Mañana</option>
-                    <option value="tarde">Tarde</option>
-                  </select>
-                </div>
-              </section>
+      <div class="contenedoresparte1">
+        <label for="jornada">Jornada</label>
+        <select id="jornada" name="jornada" required>
+          <option value="manana">Mañana</option>
+          <option value="tarde">Tarde</option>
+        </select>
+      </div>
+    </section>
 
-              <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-              <select id="epsRegistrado" name="epsRegistrado" required>
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-              </select>
+    <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+    <select id="epsRegistrado" name="epsRegistrado" required>
+      <option value="si">Sí</option>
+      <option value="no">No</option>
+    </select>
 
-              <label for="eps">EPS con la que está registrado</label>
-              <select id="eps" name="eps" required>
-                <option value="eps1">EPS 1</option>
-                <option value="eps2">IPS 2</option>
-                <!-- Agrega más EPS según sea necesario -->
-              </select>
+    <label for="eps">EPS con la que está registrado</label>
+    <select id="eps" name="eps" required>
+      <option value="eps1">EPS 1</option>
+      <option value="eps2">IPS 2</option>
+      <!-- Agrega más EPS según sea necesario -->
+    </select>
 
-              <label for="nitEps">NIT de EPS</label>
-              <input type="text" id="nitEps" name="nitEps" required>
+    <label for="nitEps">NIT de EPS</label>
+    <input type="text" id="nitEps" name="nitEps" required>
 
-              <button id="enviar">Enviar</button>
-            </div>
-          </div>
-        </section>
-      </section>
+    <button id="enviar">Enviar</button>
+  </div>
+</div>
+</section>
+</section>
       </section>
     </article>
   </main>

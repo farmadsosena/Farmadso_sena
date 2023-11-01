@@ -30,6 +30,8 @@
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/toastr.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <title>Tienda Farmadso</title>
 </head>
 
@@ -40,7 +42,7 @@
       <h3>Carrito de compras</h3>
 
       <div id="cerrarCarrito">
-        <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-xmark"></i>
       </div>
       <form method="POST" id="form-eliminar">
         <p>Subtotal del carrito<b id="subtotal"></b></p>
@@ -76,40 +78,18 @@
     </div>
     <div class="menuResponsive">
       <div class="profileResponsive">
-        <?php
-        if (isset($_SESSION['id_cliente'])) {
-          $imgUser = $_SESSION['imagen_usuario'];
-          echo ' <img src="' . $imgUser . '" alt="">';
-          echo '<p>' . $_SESSION['nombre_cliente'] . '</p>';
-        }
-        if (isset($_SESSION['id_admin'])) {
-          $imgUser = $_SESSION['imagen_usuario'];
-          echo ' <img src="' . $imgUser . '" alt="">';
-          echo '<b>' . $_SESSION['nombre_admin'] . '</b>';
-        }
-        ?>
+        <img src="../assets/img/guest.webp" alt="">
+        <p>Alex</p>
       </div>
       <div class="contenedorEnlaces">
 
         <div class="enlaceMenu" id="inicio"><i class="fa-solid fa-home"></i>Inicio</div>
-        <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Desayunos sorpresa</div>
-        <?php
-        if (isset($_SESSION['id_admin'])) {
-          $imgUser = $_SESSION['imagen_usuario'];
-          echo '<a href="views/administrador.php" class="enlaceMenu"><i class="fa-solid fa-store fa-bounce"></i>Mi tienda</a>';
-          echo '<a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>';
-        }
-        if (!isset($_SESSION['id_admin']) and !isset($_SESSION['id_cliente'])) {
-          echo '<a href="controllers/verificarSesion.php" class="enlaceMenu"><i class="fa-solid fa-plus"></i> iniciar sesion</a>';
-        }
+        <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
 
-        if (isset($_SESSION['id_cliente'])) {
-          echo '<div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Mis pedidos</div>';
-          echo '<div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket" ></i>Mis compras</div>';
-          echo '<div  class="enlaceMenu" id="abrirEditar2"><i class="fa-solid fa-user" ></i>Editar perfil</div>';
-          echo '<a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>';
-        }
-        ?>
+        <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
+        <div class="enlaceMenu" id="abrirEditar2"><i class="fa-solid fa-user"></i>Formulas</div>
+        <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div>
+        <a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
       </div>
     </div>
   </nav>
@@ -117,13 +97,12 @@
     <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
     <div class="menuRight">
       <div id="abrirCarrito" class="addCarrito">
-      <i class='bx bx-cart-alt'></i>
+        <i class='bx bx-cart-alt'></i>
       </div>
       <div class="openMenu">
         <i class="fa-solid fa-bars"></i>
       </div>
     </div>
-
   </header>
 
   <!--Encabezado principal de la pagina-->
@@ -134,24 +113,9 @@
       <div id="productos"><i class='bx bxs-store'></i> Productos</div>
       <div id="abrirCarrito"><i class='bx bx-cart-alt'></i> Carrito</div>
       <div class="profile-user">
-        <i class='bx bxs-user-circle'></i>
+        <a href="configuracion.html"><i class='bx bxs-user-circle'></i></a>
         <div id="cardProfile">
           <div id="cerrarPerfil"><i class="fa-solid fa-xmark"></i></div>
-          <?php if (!isset($_SESSION['id_cliente']) and !isset($_SESSION['id_admin'])) : ?>
-            <a href="login.php">Iniciar sesión</a>
-            <a href="views/registroUsuario.php">Registrate</a>
-          <?php endif;
-          if (isset($_SESSION['id_cliente'])) {
-            echo '<p><i class="fa-regular fa-user"></i> ' . $_SESSION['nombre_cliente'] . '</p>';
-            echo '<p id="abrirEditar"><i class="fa-regular fa-user"></i> Editar perfil</p>';
-
-            echo '<a href="controllers/cerrarSesion.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Cerrar Sesión</a>';
-          } elseif (isset($_SESSION['id_admin'])) {
-            echo '<p>' . $_SESSION['nombre_admin'] . '</p>';
-            echo '<p>Admin</p>';
-            echo '<a href="controllers/cerrarSesion.php">Cerrar Sesión</a>';
-          }
-          ?>
         </div>
       </div>
 
@@ -174,32 +138,92 @@
       </main>
     </section>
     <section class="articles">
-      <h2>Medicamentos más vendidos</h2>
+      <h1>Categorias destacadas</h1>
+      <div class="swiper slider-categorias">
+        <div class="swiper-wrapper">
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
+          </section>
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
+          </section>
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
+          </section>
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
+          </section>
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
+          </section>
+          <section class="swiper-slide cont-categorias">
+            <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
+          </section>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+    <section class="articles">
+      <h1>Ofertas</h1>
       <div class="ranking">
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <h3>Acetaminofén-GENFAR</h3>
-          <div>$2.500</div>
+          <p></p>
+          <h4>Acetaminofén-GENFAR</h4>
+          <h2>$20.640</h2>
+          <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/apiretal.jpg" alt="">
-          <h3>Apiretal</h3>
-          <div>$11.800</div>
+          <h4>Apiretal</h4>
+          <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
-          <h3>TUKOL EXPECTORANTE D</h3>
-          <div>$23.960</div>
+          <h4>TUKOL EXPECTORANTE D</h4>
+          <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
-          <h3>BISOLVON ADULTOS</h3>
-          <div>$31.550</div>
+          <h4>BISOLVON ADULTOS</h4>
+          <button class="comprar-tarje-comp">Comprar</button>
         </div>
       </div>
     </section>
     <section class="articles">
-      <h2>¡Servicios excepcionales para nuestros clientes!</h2>
+      <h1>Farmacias destacadas</h1>
+      <div class="swiper slider-farmacias">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide colum-categorias">
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
+            </section>
+          </div>
+          <div class="swiper-slide colum-categorias">
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
+            </section>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+    <section class="articles">
+      <h1>¡Servicios excepcionales para nuestros clientes!</h1>
       <section>
         <div class="article">
           <i class="fa-solid fa-truck-fast"></i>
@@ -220,4 +244,7 @@
 </body>
 <script src="../assets/js/slider_inicio_tienda.js"></script>
 <script src="../assets/js/Font.js"></script>
+<script src="../assets/js/carritoF.js"></script>
+<script src="../assets/js/funcionMenutienda.js"></script>
+
 </html>
