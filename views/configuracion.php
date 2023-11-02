@@ -263,21 +263,19 @@ $imgUser = $_SESSION['img'];
     </div>
 
     <div id="cambiarcontrasena" class="contenido-pestaña">
-      <div class="contraseña">
-        <form class="form-contraseña" action="">
-          <p>Cambiar de contraseña</p>
+        <div class="contraseña">
+          <form class="form-contraseña" action="">
+            <p>Cambiar de contraseña</p>
 
-          <input class="contraseña-actual" type="text" placeholder="Contraseña actual" />
-
-          <div class="nueva-cntrs">
-            <input type="text" placeholder="Nueva contraseña" />
-            <input type="text" placeholder="Confirme su contraseña" />
-          </div>
-
-          <button>Guardar</button>
-        </form>
+            <div class="nueva-cntrs">
+              <input class="contraseña-actual" type="text" placeholder="Contraseña actual"/>
+              <input type="text" placeholder="Nueva contraseña" />
+              <input type="text" placeholder="Confirme su contraseña" />
+              <button>Guardar</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
 
     <div id="notificaciones" class="contenido-pestaña">
       Contenido de la Pestaña 1
