@@ -31,6 +31,15 @@
                     <label class="contenedor_label">
                         <span class="letra_label">Tipo de Documento</span>
                         <select class="contendor_select" name="tipo_documento" required>
+                            <?php
+                            include "../config/Conexion.php";
+                              $tipdocument=mysqli_query($conexion,"SELECT * FROM tipodocumento ORDER BY IdDocumento ASC");
+                              if($tipdocument){
+                                while($ras = mysqli_fetch_array($tipdocument)){
+                                    echo "<option value='".$ras["IdDocumento"]."'>".$ras["NombreDocu"]."</option>";
+                                }
+                              }  
+                            ?>
                             <option value="1">Cédula</option>
                             <option value="2">Tarjeta de identidad</option>
                         </select>

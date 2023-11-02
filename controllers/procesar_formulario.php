@@ -1,5 +1,4 @@
 <?php
-include("../config/Conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recopilar datos del formulario
@@ -72,3 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 } ?>
+
+
+?>
