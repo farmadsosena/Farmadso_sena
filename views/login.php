@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <script src="../assets/js/app.js" defer></script>
     <script src="../assets/js/Font.js"></script>
     <title>Login</title>
@@ -23,7 +24,7 @@
             <a href="../index.html">
                 <p>Pagina principal</p>
             </a>
-            <a href="">
+            <a href="inicio_tienda.php">
                 <p>Tienda</p>
             </a>
         </section>
@@ -62,5 +63,4 @@
         </section>
     </section>
 </body>
-
 </html>

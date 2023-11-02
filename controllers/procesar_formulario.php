@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST["correo"];
     $passwordusuario = $_POST["passwordusuario"];
     $telefono = $_POST["telefono"];
-    $idEps = $_POST["IdEps"];
+    $idEps = 1;
     // Establecer el valor de idrol como 2
     $idrol = 2;
 
@@ -72,6 +72,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } 
 
-// Cierra la conexión a la base de datos
-mysqli_close($conexion);
 ?>
