@@ -1,14 +1,17 @@
 <?php
-  session_start();
-  include "../config/Conexion.php";
+session_start();
+include "../config/Conexion.php";
 
-  // Simular el inicio de sesión estableciendo las variables de sesión manualmente
-  $_SESSION["usu"] = "nombre_de_usuario"; // Supongamos que "nombre_de_usuario" es el nombre del usuario autenticado.
-  $_SESSION["id"] = 123; // Supongamos que "123" es el ID del usuario autenticado.
+if (!isset($_SESSION["usu"])) {
+  echo "<script> window.location='login.php'</script>";
+}
 
-  $id = $_SESSION["id"];
+$id = $_SESSION["id"];
+$eps = $_SESSION["eps"];
 
-  // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
+
+$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
+$rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
 ?>
 
 <!DOCTYPE html>
@@ -214,12 +217,13 @@
 
               <?php 
                   
-                    $consulta = mysqli_query($conexion, "SELECT * FROM formulas  where EstadoFormula = '1' ");
+                    $consulta = mysqli_query($conexion, "SELECT * FROM formulas  where EstadoFormula = 1 ");
                    
                     if($consulta){
                       $card = mysqli_fetch_assoc($consulta);
                         $IdMedico = $card['IdMedico'];
-                      
+                        $IdDiag = $card['idDiagnostico'];
+                       
                       
                       $fecha = $card['fechaOrden'];
                       $fecha_timestamp = strtotime($fecha);
@@ -228,13 +232,20 @@
                           $fecha_formateada = date(" j F Y", $fecha_timestamp);               
                       }
 
-                      
+                      // consulta medico
                       $doc = mysqli_query($conexion, "SELECT * from medicos where  idmedico = $IdMedico ");
                       $user_doc = mysqli_fetch_assoc($doc);
                       $id_medico = $user_doc['idusuario'];
                       $cons_med =  mysqli_query($conexion, "SELECT * from usuarios where  idusuario = $id_medico ");
                       $row = mysqli_fetch_assoc($cons_med);
                       
+
+                      // consulta diagnostico
+
+                      $diagnostico = mysqli_query($conexion,"SELECT * FROM diagnosticos where idDiag = $IdDiag");
+                      $di = mysqli_fetch_assoc($diagnostico);
+                       $name_di = $di['nombreDiag'];
+
                       
                       echo"<div class='card' data-id='{$card['idFormula']}'>
                       <div class='firts_line'>
@@ -248,7 +259,7 @@
                       </div>
     
                       <div class='second-line'>
-                        <h3 class='title_card'> Formulación de software para el catéter de rodilla maxilar </h3>
+                        <h3 class='title_card'> $name_di </h3>
                         <div class='doc'>
                           <p class='profesion'>Profesional de la salud</p>
                           <p class='name_doc'>" .$row['nombre'].' '.  $row['apellido'] . "</p>
@@ -272,42 +283,15 @@
                   
                   ?> 
 
-              <div class='card' data-id='{$card['idFormula']}'>
-                <div class='firts_line'>
-                  <div class='date-card'>
-                    <p>$fecha_formateada</p>
-                  </div>
-
-                  <div class='state-card'>
-                    Entregado
-                  </div>
-                </div>
-
-                <div class='second-line'>
-                  <h3 class='title_card'> Formulación de software para el catéter de rodilla maxilar </h3>
-                  <div class='doc'>
-                    <p class='profesion'>Profesional de la salud</p>
-                    <p class='name_doc'>Diego Hoyos Linares</p>
-                  </div>
-                  <div class='eps'></div>
-                  <div class='opt-card'></div>
-                </div>
-
-                <div class='third-line'>Descargar
-                  <img class='open_menu'
-                    src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=' />
-                </div>
-                <div class='menu_card'>
-                  <ul>
-                    <li>Abrir</li>
-                    <li class='delete'>Eliminar</li>
-                  </ul>
-                </div>
-              </div>
+              
 
 
               <!-- Comienzan tarjetas para formulas -->
+<div class="formula-info">
+  <div class="card_info">
 
+  </div>
+</div>
               <!-- Final de tarjetas -->
             </div>
           </article>

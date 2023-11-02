@@ -703,6 +703,31 @@ button:hover {
   height: 20px;
 }
 
+
+
+.formula-info{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33333345;
+  z-index: 5;
+}
+
+.card_info{
+  background-color: white;
+  height: 450px;
+  width: 80%;
+
+}
+
+
+/* fin */
+
 /* modificaciones para papelera */
 .cont-p{
   display: flex;
