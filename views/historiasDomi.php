@@ -20,8 +20,7 @@ while ($datosdereporte = $resultado->fetch_assoc()) {
 
     if ($idestadocompra == 4) {
        $idestadocompra = "Entregado";
-    }
-    // Formatear la fecha
+          // Formatear la fecha
     $fechaEntrega = date("d/m/Y", strtotime($datosdereporte["fechafinal"]));
 
     if ($idcompra) {
@@ -70,6 +69,9 @@ while ($datosdereporte = $resultado->fetch_assoc()) {
                   </div>';
         }
     }
+    
+    }
+ 
 }
 
 ?>
