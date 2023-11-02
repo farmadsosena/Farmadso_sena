@@ -19,8 +19,45 @@ $user = mysqli_fetch_assoc($con1);
 </head>
 
 <body>
+<div class="menu-respon">
+      <div class="cont-icon responsive_total" onclick="menu_responsi_total()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div class="tab-respo" onclick="mostrarContenido('miperfil')">
+        <img src="../assets/svg/perfil-usuario.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick="mostrarContenido('misdirecciones')">
+        <img src="../assets/svg/direccion.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick="mostrarContenido('cambiarcontrasena')">
+        <img src="../assets/svg/candado.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick=" mostrarContenido('notificaciones')">
+        <img src="../assets/svg/notificaciones.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick="mostrarContenido('misfavoritos')">
+        <img src="../assets/svg/favorite.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick=" mostrarContenido('politicas')">
+        <img src="../assets/svg/privacidad.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick=" mostrarContenido('soporte')">
+        <img src="../assets/svg/soporte.svg" alt="" />
+      </div>
+      <div class="tab-respo" onclick=" mostrarContenido('contactenos')">
+        <img src="../assets/svg/contacto.svg" alt="" />
+      </div>
+      <a href="../config/cerrarSesion.php" class="cerrar-sesion-nav">
+        <div class="tab-respo" onclick=" mostrarContenido('cerrarsesion')">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </div>
+      </a>
+    </div>
   <div id="menu">
-    <h2 class="title-cuenta">Mi cuenta</h2>
+  <div class="cont-icon">
+        <i class="fa-solid fa-bars" onclick="menu_responsi()"></i>
+        <h2 class="title-cuenta">Mi cuenta</h2>
+      </div>
 
     <div class="contenedor-pestañas cuenta">
       <h4>Tu cuenta</h4>
@@ -79,10 +116,13 @@ $user = mysqli_fetch_assoc($con1);
       </div>
 
       <div class="opc">
-        <div class="tab" onclick=" mostrarContenido('cerrarsesion')">
-          Cerrar sesión
+          <a href="../config/cerrarSesion.php" class="cerrar-sesion-nav">
+            <div class="tab" onclick=" mostrarContenido('cerrarsesion')">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p>Cerrar sesión</p>
+            </div>
+          </a>
         </div>
-      </div>
     </div>
   </div>
 
@@ -264,9 +304,10 @@ $user = mysqli_fetch_assoc($con1);
     </div>
   </div>
 
-  <script src="../assets/js/micuenta.js"></script>
-
-  <script src="../assets/js/VentanaAgregaUnaDireccion.js"></script>
+    <script src="../assets/js/micuenta.js"></script>
+    <script src="../assets/js/Font.js"></script>
+    <script src="../assets/js/VentanaAgregaUnaDireccion.js"></script>
+    <script src="../assets/js/menu_res_cuenta.js"></script>
 </body>
 
 </html>
