@@ -1,6 +1,5 @@
 <?php
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recopilar datos del formulario
     $nombre = $_POST["nombre"];
