@@ -1,19 +1,16 @@
 <?php
-session_start();
-include "../config/Conexion.php";
+  session_start();
+  include "../config/Conexion.php";
 
-if (!isset($_SESSION["usu"])) {
-  echo "<script> window.location='login.php'</script>";
-}
+  // Simular el inicio de sesión estableciendo las variables de sesión manualmente
+  $_SESSION["usu"] = "nombre_de_usuario"; // Supongamos que "nombre_de_usuario" es el nombre del usuario autenticado.
+  $_SESSION["id"] = 123; // Supongamos que "123" es el ID del usuario autenticado.
 
-$id = $_SESSION["id"];
-$eps = $_SESSION["eps"];
+  $id = $_SESSION["id"];
 
-
-$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
-$rr = mysqli_fetch_assoc($consulta);
-
+  // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -309,7 +306,107 @@ $rr = mysqli_fetch_assoc($consulta);
         </section>
 
         <section class="paginas" id="dos">
-          ejem 2
+
+        <div class="container-miscompras">
+
+          <table class="preview-detalle">
+            <thead>
+              <tr>
+                <th class="fecha">Fecha</th>
+                <th class="estado">Estado</th>
+                <th class="email">Email</th>
+                <th class="total">Total</th>
+                <th class="accion">Acción</th>
+              </tr>
+            
+
+            <tbody id="tabla-body">
+              <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
+
+          </table>
+
+
+          <script>
+            // Función para cargar datos desde el servidor
+            function cargarDatos() {
+              // Realizar una solicitud Ajax al servidor para obtener los datos
+              // Puedes utilizar la función fetch o $.ajax de jQuery, dependiendo de tus preferencias
+              // Ejemplo con jQuery:
+              $.ajax({
+                  url: '../controllers/compras.php/',
+                  method: 'GET',
+                  dataType: 'json',
+                  success: function (data) {
+                    // Limpiar el cuerpo de la tabla
+                    $('#tabla-body').empty();
+
+                    // Iterar a través de los datos y construir las filas de la tabla
+                    data.forEach(function (item) {
+                      var row = `<tr>
+                  
+                        <td class="fecha">${item.fecha}</td>
+                        <td class="estado">${item.estadocompra}</td>
+                        <td class="email">${item.email}</td>
+                        <td class="total">${item.total}</td>
+                        <td class="accion"><button class="verdetalle" data-compra-id="${item.idcompra}" data-compra-detalle="${JSON.stringify(item)}" onclick="detalleCompra(this)">Ver Más</button></td>
+                      </tr>`;
+                      $('#tabla-body').append(row);
+                    });
+                  },
+                  error: function (error) {
+                    console.log('Error al cargar los datos: ' + error);
+                  }
+              });
+            }
+
+            // Llamar a la función para cargar los datos al cargar la página
+            $(document).ready(function () {
+                cargarDatos();
+            });
+          </script>
+
+
+          <!-- Ventana modal -->
+          <div id="modalDetalle" class="modal">
+
+            <div class="modal-content">
+              <span class="close-button" onclick="cerrarModal()">&times;</span>
+
+              <table class="preview-detalle">
+                <thead>
+                  <tr>
+                    <th class="fecha">Fecha</th>
+                    <th class="estado">Estado de Compra</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="total">Total</th>
+                    <th class="subtotal">Subtotal</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <!-- aqui va el contenido de detalles-->
+
+                  <tr>
+
+                    <td>23 agosto 2023</td>
+                    <td>Pendiente</td>
+                    <td>Acetaminofen, omeprazol</td>
+                    <td>2</td>
+                    <td>3000</td>
+                    <td>3000</td>
+
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </div>
+          </div>
+
+          </div>
+        
         </section>
 
         <section class="paginas" id="tres">
@@ -717,6 +814,7 @@ include "../models/funcionemail.php";
   <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
+  <script src="../assets/js/modalCompras.js"></script>
 </body>
 
 </html>
