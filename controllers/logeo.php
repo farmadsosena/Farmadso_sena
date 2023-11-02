@@ -24,7 +24,6 @@ if (isset($_POST["enviar"])) {
             $id = $des["idusuario"];
             $rol = $des["idrol"];
             $eps = $des["IdEps"];
-            $img = $des["imgUser"];
             
             // Verificar si la contraseña proporcionada coincide con la almacenada en la base de datos
             // if (password_verify($contraseña, $password_hash)) {  Cuando se hace por hash
@@ -33,7 +32,6 @@ if (isset($_POST["enviar"])) {
                     $_SESSION["usu"] = $user;
                     $_SESSION["id"] = $id;
                     $_SESSION["eps"] = $eps;
-                    $_SESSION["img"] = $img;
                     if ($rol == "1") {
                         echo "<script>window.location='../views/'</script>";
                     } elseif ($rol == "2") {

@@ -341,10 +341,6 @@ input[type="text"] {
     box-shadow: 1px 2px 2px 10px rgba(128, 128, 128, 0.222);
     width: 98%;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 20rem;
     border-radius: 10px;
   }
 
@@ -357,18 +353,13 @@ input[type="text"] {
   } 
 
   #cambiarcontrasena .form-contraseña .nueva-cntrs{
-    display: flex;
-    
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
   } 
   
   #cambiarcontrasena .form-contraseña .nueva-cntrs input{
     border: 0.5px solid gray;
     height: 20px;
-    width: 80%;
+    width: 40%;
     border-radius: 4px;
     outline: none;
   }
@@ -377,8 +368,8 @@ input[type="text"] {
     border: none;
     background-color: #418fde;
     border-radius: 4px;
-    width: 40%;
-    height: 35px;
+    width: 60%;
+    height: 27px;
     margin-top: 20px;
     color: white;
     margin-bottom: 25px;

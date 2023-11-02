@@ -8,7 +8,7 @@ if (!isset($_SESSION["usu"])) {
 
 $id = $_SESSION["id"];
 $eps = $_SESSION["eps"];
-$ImgUser = $_SESSION['img'];
+
 
 $consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
 $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
@@ -437,10 +437,6 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
                 <h1>Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
-            
-<form action="./controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
-<input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
-<section class="parte1-formulario">
                 <div class="contenedoresparte1">
                   <label for="nombreCompleto">Nombre Completo</label>
                   <input type="text" id="nombrecompleto" name="nombrecompleto" required>
@@ -520,17 +516,17 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
 
                   <h3>Datos Sensible para Nequi</h3>
 
-        <section class="parte1-formulario">
+                  <section class="parte1-formulario">
 
-          <div class="contenedoresparte1">
-            <label for="nombre_usuario">Introduce nombre de usuario </label>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-          </div>
+                    <div class="contenedoresparte1">
+                      <label for="nombre_usuario">Introduce nombre de usuario </label>
+                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                    </div>
 
-          <div class="contenedoresparte1">
-            <label for="telefono">Ingrese numero de teléfono</label>
-            <input type="tel" id="telefono" name="telefono" required>
-          </div>
+                    <div class="contenedoresparte1">
+                      <label for="telefono">Ingrese numero de teléfono</label>
+                      <input type="tel" id="telefono" name="telefono" required>
+                    </div>
 
                   </section>
                 </div>
@@ -539,19 +535,19 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
 
                   <h3>Datos Sensible para PayPal</h3>
 
-        <section class="parte1-formulario">
-          <div class="contenedoresparte1">
-            <label for="nombre_usuario">Introduce nombre de usuario </label>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-          </div>
+                  <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="nombre_usuario">Introduce nombre de usuario </label>
+                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                    </div>
 
-          <div class="contenedoresparte1">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" required>
-          </div>
+                    <div class="contenedoresparte1">
+                      <label for="telefono">Teléfono</label>
+                      <input type="tel" id="telefono" name="telefono" required>
+                    </div>
 
-        </section>
-      </div>
+                  </section>
+                </div>
 
                 <div id="bancolombia_info" class="info-container hidden">
 
@@ -559,36 +555,36 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
 
                       <section class="parte2-formulario">
 
-              <div class="contenedoresparte2">
-                <label for="telefono">Tipo cuenta natural o juridico</label>
-                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-              </div>
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Tipo cuenta natural o juridico</label>
+                          <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                        </div>
 
-              <div class="contenedoresparte2">
-                <label for="telefono">Cuenta de ahorro o corriente</label>
-                <input type="text" id="numerodocumento" name="numerodocumento" required>
-              </div>
-            </section>
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Cuenta de ahorro o corriente</label>
+                          <input type="text" id="numerodocumento" name="numerodocumento" required>
+                        </div>
+                      </section>
 
-            <section class="parte3-formulario">
-              <div class="contenedoresparte2">
-                <label for="telefono">Numero de la tarjeta</label>
-                <input type="tel" id="telefono" name="telefono" required>
-              </div>
+                      <section class="parte3-formulario">
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Numero de la tarjeta</label>
+                          <input type="tel" id="telefono" name="telefono" required>
+                        </div>
 
-              <div class="contenedoresparte2">
-                <label for="telefono">Propietario</label>
-                <input type="email" id="correo" name="correo" required>
-              </div>
-            </section>
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Propietario</label>
+                          <input type="email" id="correo" name="correo" required>
+                        </div>
+                      </section>
 
                 </div>
 
               </section>
 
-    <button id="enviar">Enviar</button>
-  </div>
-</div>
+              <button id="enviar">Enviar</button>
+            </div>
+          </div>
 
           <div id="contenido-farmacia" class="hidden">
             <div class="container">
@@ -597,16 +593,16 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
                 <h1>Solicitud para registrar farmacia</h1>
               </div>
 
-    <section class="parte1-formulario">
-      <div class="contenedoresparte1">
-        <label for="nombreFarmacia">Nombre de la Farmacia</label>
-        <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
-      </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                  <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+                </div>
 
-      <div class="contenedoresparte1">
-        <label for="direccion">Dirección</label>
-        <input type="text" id="direccion" name="direccion" required>
-      </div>
+                <div class="contenedoresparte1">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" id="direccion" name="direccion" required>
+                </div>
 
                 <div class="contenedoresparte1">
                   <label for="telefono">Teléfono</label>
@@ -614,28 +610,28 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
                 </div>
               </section>
 
-    <section class="parte1-formulario">
-      <div class="contenedoresparte1">
-        <label for="correo">Correo de Contacto</label>
-        <input type="email" id="correo" name="correo" required>
-      </div>
-      <div class="contenedoresparte1">
-        <label for="imagen"> Imagen de Presentación</label>
-        <input type="file" id="imagen" name="imagen" required>
-      </div>
-    </section>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="correo">Correo de Contacto</label>
+                  <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="contenedoresparte1">
+                  <label for="imagen"> Imagen de Presentación</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+              </section>
 
               <h2>Datos Sensibles</h2>
 
-    <section class="parte1-formulario">
-      <div class="contenedoresparte1">
-        <label for="departamento">Departamento</label>
-        <select id="departamento" name="departamento" required>
-          <option value="departamento1">Caquetá</option>
-          <option value="departamento2">Cundinamarca</option>
-          <!-- Agrega más departamentos según sea necesario -->
-        </select>
-      </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="departamento">Departamento</label>
+                  <select id="departamento" name="departamento" required>
+                    <option value="departamento1">Caquetá</option>
+                    <option value="departamento2">Cundinamarca</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                  </select>
+                </div>
 
                 <div class="contenedoresparte1">
                   <label for="ciudad">Ciudad</label>
@@ -653,45 +649,45 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
                   <input type="text" id="codigoPostal" name="codigoPostal" required>
                 </div>
 
-      <div class="contenedoresparte1">
-        <label for="horario">Días de Horario Laboral</label>
-        <select id="horario" name="horario" required>
-          <option value="lunes">Lunes</option>
-          <option value="martes">Martes</option>
-          <!-- Agrega más días según sea necesario -->
-        </select>
-      </div>
+                <div class="contenedoresparte1">
+                  <label for="horario">Días de Horario Laboral</label>
+                  <select id="horario" name="horario" required>
+                    <option value="lunes">Lunes</option>
+                    <option value="martes">Martes</option>
+                    <!-- Agrega más días según sea necesario -->
+                  </select>
+                </div>
 
-      <div class="contenedoresparte1">
-        <label for="jornada">Jornada</label>
-        <select id="jornada" name="jornada" required>
-          <option value="manana">Mañana</option>
-          <option value="tarde">Tarde</option>
-        </select>
-      </div>
-    </section>
+                <div class="contenedoresparte1">
+                  <label for="jornada">Jornada</label>
+                  <select id="jornada" name="jornada" required>
+                    <option value="manana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                  </select>
+                </div>
+              </section>
 
-    <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-    <select id="epsRegistrado" name="epsRegistrado" required>
-      <option value="si">Sí</option>
-      <option value="no">No</option>
-    </select>
+              <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+              <select id="epsRegistrado" name="epsRegistrado" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
 
-    <label for="eps">EPS con la que está registrado</label>
-    <select id="eps" name="eps" required>
-      <option value="eps1">EPS 1</option>
-      <option value="eps2">IPS 2</option>
-      <!-- Agrega más EPS según sea necesario -->
-    </select>
+              <label for="eps">EPS con la que está registrado</label>
+              <select id="eps" name="eps" required>
+                <option value="eps1">EPS 1</option>
+                <option value="eps2">IPS 2</option>
+                <!-- Agrega más EPS según sea necesario -->
+              </select>
 
-    <label for="nitEps">NIT de EPS</label>
-    <input type="text" id="nitEps" name="nitEps" required>
+              <label for="nitEps">NIT de EPS</label>
+              <input type="text" id="nitEps" name="nitEps" required>
 
-    <button id="enviar">Enviar</button>
-  </div>
-</div>
-</section>
-</section>
+              <button id="enviar">Enviar</button>
+            </div>
+          </div>
+        </section>
+      </section>
       </section>
     </article>
   </main>
@@ -706,7 +702,7 @@ include "../models/funcionemail.php";
           <?php echo $correo_usuario; ?>
         </h2>
         <section class="dash-img">
-          <img src="<?php echo $ImgUser ?>" alt="">
+          <img src="<?php echo $rr[" imgUser"] ?>" alt="">
         </section>
       </header>
       <section class="darf">
@@ -809,6 +805,8 @@ include "../models/funcionemail.php";
   <script src="../assets/js/funcionusuario.js"></script>
   <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
+  <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
+  <script src="../assets/js/modalCompras.js"></script>
 </body>
 
 </html>
