@@ -8,7 +8,7 @@ if (!isset($_SESSION["usu"])) {
 
 $id = $_SESSION["id"];
 $eps = $_SESSION["eps"];
-
+$ImgUser = $_SESSION['img'];
 
 $consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
 $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
@@ -706,7 +706,7 @@ include "../models/funcionemail.php";
           <?php echo $correo_usuario; ?>
         </h2>
         <section class="dash-img">
-          <img src="<?php echo $rr[" imgUser"] ?>" alt="">
+          <img src="<?php echo $ImgUser ?>" alt="">
         </section>
       </header>
       <section class="darf">
