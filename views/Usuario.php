@@ -8,7 +8,7 @@ if (!isset($_SESSION["usu"])) {
 
 $id = $_SESSION["id"];
 $eps = $_SESSION["eps"];
-
+$imgUser = $_SESSION['img'];
 
 $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
 $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
@@ -179,7 +179,7 @@ $user = mysqli_fetch_assoc($con1);
             </div>
 
             <section class="cont-usu" id="cuenta-fasd">
-              <img src="<?php echo $rr["imgUser"] ?>" alt="">
+              <img src="<?php echo $imgUser ?>" alt="">
             </section>
 
           </section>
@@ -597,10 +597,10 @@ $user = mysqli_fetch_assoc($con1);
                     <input type="text" id="Nombref" name="Nombref" required>
                   </div>
 
-                  <div class="contenedoresparte1">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" id="Direccionf" name="Direccionf" required>
-                  </div>
+      <div class="contenedoresparte1">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" name="direccion" required>
+      </div>
 
                   <div class="contenedoresparte1">
                     <label for="telefono">Teléfono</label>
@@ -702,7 +702,7 @@ $user = mysqli_fetch_assoc($con1);
           <?php echo $correo_usuario; ?>
         </h2>
         <section class="dash-img">
-          <img src="<?php echo $rr[" imgUser"] ?>" alt="">
+          <img src="<?php echo $imgUser ?>" alt="">
         </section>
       </header>
       <section class="darf">

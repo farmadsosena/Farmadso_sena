@@ -4,7 +4,7 @@ include("../config/Conexion.php");
 $id_usuario = $_SESSION['id'];
 $con1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id_usuario'");
 $user = mysqli_fetch_assoc($con1);
-
+$imgUser = $_SESSION['img'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,7 +130,7 @@ $user = mysqli_fetch_assoc($con1);
     <div id="miperfil" class="contenido-pestaña">
       <div class="vane">
         <div class="perfil">
-          <img src="./assets/svg/perfil-usuario.svg" alt="" />
+          <img src="<?php  echo  $imgUser?>" alt="" />
           <div class="datos">
             <p class="nn"><?php echo $user['nombre'];?> <?php echo $user['apellido']; ?></p>
             <p><?php echo $user['correo']; ?></p>
