@@ -7,6 +7,7 @@ if (!isset($_SESSION["usu"])) {
 }
 
 $id = $_SESSION["id"];
+
 $eps = $_SESSION["eps"];
 $imgUser = $_SESSION['img'];
 
@@ -215,73 +216,71 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
 
             <div class="cards_formulas">
 
-              <?php 
-                  
-                    $consulta = mysqli_query($conexion, "SELECT * FROM formulas  where EstadoFormula = 1 ");
-                   
-                    if($consulta){
-                      $card = mysqli_fetch_assoc($consulta);
-                        $IdMedico = $card['IdMedico'];
-                        $IdDiag = $card['idDiagnostico'];
-                       
-                      
-                      $fecha = $card['fechaOrden'];
-                      $fecha_timestamp = strtotime($fecha);
-                      
-                      if ($fecha_timestamp !== false) {
-                          $fecha_formateada = date(" j F Y", $fecha_timestamp);               
-                      }
+            <?php 
+$consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
-                      // consulta medico
-                      $doc = mysqli_query($conexion, "SELECT * from medicos where  idmedico = $IdMedico ");
-                      $user_doc = mysqli_fetch_assoc($doc);
-                      $id_medico = $user_doc['idusuario'];
-                      $cons_med =  mysqli_query($conexion, "SELECT * from usuarios where  idusuario = $id_medico ");
-                      $row = mysqli_fetch_assoc($cons_med);
-                      
+if ($consulta->num_rows > 0) {
+    $card = mysqli_fetch_assoc($consulta);
+    $IdMedico = $card['IdMedico'];
+    $IdDiag = $card['idDiagnostico'];
+    $fecha = $card['fechaOrden'];
 
-                      // consulta diagnostico
+    $fecha_timestamp = strtotime($fecha);
+    if ($fecha_timestamp !== false) {
+        $fecha_formateada = date("j F Y", $fecha_timestamp);
+    }
 
-                      $diagnostico = mysqli_query($conexion,"SELECT * FROM diagnosticos where idDiag = $IdDiag");
-                      $di = mysqli_fetch_assoc($diagnostico);
-                       $name_di = $di['nombreDiag'];
+    // Consulta Medico
+    $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
+    $user_doc = mysqli_fetch_assoc($doc);
+    $id_medico = $user_doc['idusuario'];
 
-                      
-                      echo"<div class='card' data-id='{$card['idFormula']}'>
-                      <div class='firts_line'>
-                        <div class='date-card'>
-                          <p>$fecha_formateada</p>
-                        </div>
-    
-                        <div class='state-card'>
-                          Entregado
-                        </div>
-                      </div>
-    
-                      <div class='second-line'>
-                        <h3 class='title_card'> $name_di </h3>
-                        <div class='doc'>
-                          <p class='profesion'>Profesional de la salud</p>
-                          <p class='name_doc'>" .$row['nombre'].' '.  $row['apellido'] . "</p>
-                        </div>
-                        <div class='eps'></div>
-                        <div class='opt-card'></div>
-                      </div>
-    
-                      <div class='third-line'>Descargar
-                        <img class='open_menu' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=' />
-                      </div>
-                      <div class='menu_card'>
-                        <ul>
-                          <li>Abrir</li>
-                          <li class='delete'>Eliminar</li>
-                        </ul>
-                      </div>
-                    </div>";
+    $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
+    $row = mysqli_fetch_assoc($cons_med);
 
-                    }
-                  
-                  ?> 
+    // Consulta Diagnostico
+    $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
+    $di = mysqli_fetch_assoc($diagnostico);
+    $name_di = $di['nombreDiag'];
+
+    echo "<div class='card' data-id='{$card['idFormula']}'>
+        <div class='firts_line'>
+            <div class='date-card'>
+                <p>$fecha_formateada</p>
+            </div>
+
+            <div class='state-card'>
+                Entregado
+            </div>
+        </div>
+
+        <div class='second-line'>
+            <h3 class='title_card'>$name_di</h3>
+            <div class='doc'>
+                <p class='profesion'>Profesional de la salud</p>
+                <p class='name_doc'>" . $row['nombre'] . ' ' . $row['apellido'] . "</p>
+            </div>
+            <div class='eps'></div>
+            <div class='opt-card'></div>
+        </div>
+
+        <div class='third-line'>Descargar
+            <img class='open_menu' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=' />
+        </div>
+        <div class='menu_card'>
+            <ul>
+                <li>Abrir</li>
+                <li class='delete'>Eliminar</li>
+            </ul>
+        </div>
+    </div>";
+}else{
+  // Pendiente por colocar una mejor presentación para cuando 
+  // no se encuentren formulas
+  echo "No hay formulas";
+}
+?>
+
 
               
 
