@@ -439,6 +439,8 @@ $user = mysqli_fetch_assoc($con1);
               </div>
               <section class="parte1-formulario">
 
+              
+
                 <form action="" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
                   <section class="parte1-formulario">
@@ -562,22 +564,11 @@ $user = mysqli_fetch_assoc($con1);
                   </section>
 
                   <button id="enviar">Enviar</button>
-                  </form>
+                </form>
               </section>
             </div>
           </div>
             
-
-
-
-
-
-
-
-
-
-
-
 
 
 
