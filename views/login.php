@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(isset($_SESSION["id"])){
+    header("Location: Usuario.php");
+    exit; // Asegúrate de salir del script para evitar que se ejecute más código no deseado
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
