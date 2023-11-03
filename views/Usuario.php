@@ -415,6 +415,8 @@ if ($consulta->num_rows > 0) {
             </article>
           </div>
         </section>
+            
+      
         <section class="paginas" id="cuatro">
 
           <div class="column" id="opciones">
@@ -436,11 +438,6 @@ if ($consulta->num_rows > 0) {
                 <h1>Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="nombreCompleto">Nombre Completo</label>
-                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                </div>
-              <section class="parte1-formulario">
 
               
 
@@ -452,147 +449,104 @@ if ($consulta->num_rows > 0) {
                       <input type="text" id="Nombre" name="Nombre" required>
                     </div>
 
-                <div class="contenedoresparte1">
-                  <label for="numeroDocumento">Numero de documento</label>
-                  <input type="text" id="numerodocumento" name="numerodocumento" required>
-                </div>
-
-                <div class="contenedoresparte1">
-                  <label for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" name="telefono" required>
-                </div>
-              </section>
-
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="correo">Correo de Contacto</label>
-                  <input type="email" id="correo" name="correo" required>
-                </div>
-
-                <div class="contenedoresparte1">
-                  <label for="imagen"> Imagen de Presentación</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-
-              </section>
-
-              <h2>Datos Sensibles</h2>
-
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="Direcciónresidencia">Dirección de residencia</label>
-                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                </div>
-
-                <div class="contenedoresparte1">
-                  <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
-                  <select id="vehiculo" name="departamento" required>
-                    <option value="moto">Moto</option>
-                    <option value="carro">Carro</option>
-                    <!-- Agrega más departamentos según sea necesario -->
-                  </select>
-                </div>
-
-              </section>
-
-              <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="imagen">Licencia de conducir</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-
-                <div class="contenedoresparte1">
-                  <label for="imagen">Tarjeta de propiedad</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-
-                <div class="contenedoresparte1">
-                  <label for="imagen">Soat</label>
-                  <input type="file" id="imagen" name="imagen" required>
-                </div>
-              </section>
-
-              <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
-              <select id="cuenta_bancaria" name="cuenta_bancaria" required>
-                <option>Escoge la opcion</option>
-                <option value="nequi">Nequi</option>
-                <option value="paypal">PayPal</option>
-                <option value="bancolombia">Bancolombia</option>
-              </select>
-
-              <section class="respuesta_select" id="respuesta_select">
-
-                <div id="nequi_info" class="info-container hidden">
-
-                  <h3>Datos Sensible para Nequi</h3>
-
-              
-
-                <form action="" method="post" enctype="multipart/form-data">
-                  <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
-                  <section class="parte1-formulario">
-
                     <div class="contenedoresparte1">
-                      <label for="nombre_usuario">Introduce nombre de usuario </label>
-                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="telefono">Ingrese numero de teléfono</label>
-                      <input type="tel" id="telefono" name="telefono" required>
-                    </div>
-
-                  </section>
-                </div>
-
-                <div id="paypal_info" class="info-container hidden">
-
-                  <h3>Datos Sensible para PayPal</h3>
-
-                  <section class="parte1-formulario">
-                    <div class="contenedoresparte1">
-                      <label for="nombre_usuario">Introduce nombre de usuario </label>
-                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                      <label for="numeroDocumento">Numero de documento</label>
+                      <input type="text" id="numerodocumento" name="numerodocumento" required>
                     </div>
 
                     <div class="contenedoresparte1">
                       <label for="telefono">Teléfono</label>
                       <input type="tel" id="telefono" name="telefono" required>
                     </div>
+                  </section>
+
+                  <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="correo">Correo de Contacto</label>
+                      <input type="email" id="correo" name="correo" required>
+                    </div>
+
+                    <div class="contenedoresparte1">
+                      <label for="imagen"> Imagen de Presentación</label>
+                      <input type="file" id="imagen" name="imagen" required>
+                    </div>
 
                   </section>
-                </div>
 
-                <div id="bancolombia_info" class="info-container hidden">
+                  <h2>Datos Sensibles</h2>
 
-                  <h3>Datos Sensible para Bancolombia<h3>
+                  <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="Direcciónresidencia">Dirección de residencia</label>
+                      <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                    </div>
 
-                      <section class="parte2-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
+                      <select id="vehiculo" name="departamento" required>
+                        <option value="moto">Moto</option>
+                        <option value="carro">Carro</option>
+                        <!-- Agrega más departamentos según sea necesario -->
+                      </select>
+                    </div>
 
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Tipo cuenta natural o juridico</label>
-                          <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                  </section>
+
+                  <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="imagen">Licencia de conducir</label>
+                      <input type="file" id="imagen" name="imagen" required>
+                    </div>
+
+                    <div class="contenedoresparte1">
+                      <label for="imagen">Tarjeta de propiedad</label>
+                      <input type="file" id="imagen" name="imagen" required>
+                    </div>
+
+                    <div class="contenedoresparte1">
+                      <label for="imagen">Soat</label>
+                      <input type="file" id="imagen" name="imagen" required>
+                    </div>
+                  </section>
+
+                  <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
+                  <select id="cuenta_bancaria" name="cuenta_bancaria" required>
+                    <option>Escoge la opcion</option>
+                    <option value="nequi">Nequi</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bancolombia">Bancolombia</option>
+                  </select>
+
+                  <section class="respuesta_select" id="respuesta_select">
+
+                    <div id="nequi_info" class="info-container hidden">
+
+                      <h3>Datos Sensible para Nequi</h3>
+
+                      <section class="parte1-formulario">
+
+                        <div class="contenedoresparte1">
+                          <label for="imagen"> Imagen de Presentación</label>
+                          <input type="file" id="imagen" name="imagen" required>
                         </div>
 
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Cuenta de ahorro o corriente</label>
-                          <input type="text" id="numerodocumento" name="numerodocumento" required>
-                        </div>
                       </section>
+                    </div>
 
-                      <section class="parte3-formulario">
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Numero de la tarjeta</label>
-                          <input type="tel" id="telefono" name="telefono" required>
+                    <div id="paypal_info" class="info-container hidden">
+
+                      <h3>Datos Sensible para PayPal</h3>
+
+                      <section class="parte1-formulario">
+                        <div class="contenedoresparte1">
+                          <label for="imagen"> Imagen de Presentación</label>
+                          <input type="file" id="imagen" name="imagen" required>
                         </div>
 
-                        <div class="contenedoresparte2">
-                          <label for="telefono">Propietario</label>
-                          <input type="email" id="correo" name="correo" required>
-                        </div>
                       </section>
+                    </div>
 
-                </div>
+                    <div id="bancolombia_info" class="info-container hidden">
 
                       <h3>Datos Sensible para Bancolombia<h3>
 
@@ -612,14 +566,117 @@ if ($consulta->num_rows > 0) {
                   <button id="enviar">Enviar</button>
                 </form>
               </section>
-
-              <button id="enviar">Enviar</button>
             </div>
           </div>
             
 
 
 
+
+
+          <div id="contenido-farmacia" class="hidden">
+            <div class="container">
+              <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+                <i class='bx bx-left-arrow-alt'></i>
+                <h1>Solicitud para registrar farmacia</h1>
+              </div>
+              <form action="../controllers/procesar_registro_farmacia.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="idusuario" value='<?php echo $id_usuario ?>'>
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                    <input type="text" id="Nombref" name="Nombref" required>
+                  </div>
+
+      <div class="contenedoresparte1">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" name="direccion" required>
+      </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefonof" name="telefonof" required>
+                  </div>
+                </section>
+
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="correo">Correo de Contacto</label>
+                    <input type="email" id="correof" name="correof" required>
+                  </div>
+                  <div class="contenedoresparte1">
+                    <label for="imagen"> Imagen de Presentación</label>
+                    <input type="file" id="imagenf" name="imagenf" required>
+                  </div>
+                </section>
+
+                <h2>Datos Sensibles</h2>
+
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="departamento">Departamento</label>
+                    <select id="Departamentof" name="Departamentof" required>
+                      <option value="departamento1">Caquetá</option>
+                      <option value="departamento2">Cundinamarca</option>
+                      <!-- Agrega más departamentos según sea necesario -->
+                    </select>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="ciudad">Ciudad</label>
+                    <select id="ciudadf" name="ciudadf" required>
+                      <option value="departamento1">Florencia</option>
+                      <option value="departamento2">Bogota</option>
+                      <!-- Agrega más ciudades según sea necesario -->
+                    </select>
+                  </div>
+                </section>
+
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="codigoPostal">Código Postal</label>
+                    <input type="text" id="codigoPostalf" name="codigoPostalf" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="horario">Días de Horario Laboral</label>
+                    <select id="horariof" name="horariof" required>
+                      <option value="lunes">Lunes</option>
+                      <option value="martes">Martes</option>
+                      <!-- Agrega más días según sea necesario -->
+                    </select>
+                  </div>
+                </section>
+
+
+
+                    <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+                    <select id="epsRegistradof" name="epsRegistradof" required onchange="mostrarOcultarEPS()">
+                      <option>Escoge la opción</option>
+                      <option value="si">Sí</option>
+                      <option value="no">No</option>
+                    </select>
+
+
+
+                    <label for="eps" style="display: none;">EPS con la que está registrado</label>
+                    <select id="idEpsf" name="idEpsf" style="display: none;">
+                      <option value="1">No tengo una EPS</option>
+                      <option value="2">COOMEVA ENTIDAD PROMOTORA DE SALUD S.A. "COOMEVA E.P.S. S.A.</option>
+                      <option value="3">ASMET SALUD EPS S.A.S.</option>
+                      <option value="4">ASMET SALUD EPS S.A.S.</option>
+                      <option value="5">ENTIDAD PROMOTORA DE SALUD SANITAS S.A.S.</option>
+                    </select>
+
+                  <label for="nitEps" class="niteps" style="display: none;">NIT de EPS</label>
+                  <input type="text" id="nitEPS" name="nitEPS" style="display: none;">
+      
+
+                <button type="submit" id="enviar" name="enviarf">Enviar</button>
+              </form>
+            </div>
+
+          </div>
 
 
           <div id="contenido-farmacia" class="hidden">
@@ -843,6 +900,7 @@ include "../models/funcionemail.php";
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
+  <script src="../assets/js/mostrar_ocultarEPS.js"></script>
 </body>
 
 </html>
