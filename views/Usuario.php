@@ -297,107 +297,133 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
           </article>
         </section>
 
-        <section class="paginas" id="dos">
+        <section class="paginas" id="dos">   
+          
+          <div class="container-miscompras">
 
-        <div class="container-miscompras">
-
-          <table class="preview-detalle">
-            <thead>
-              <tr>
+            <table class="preview-detalle">
+              <thead>
+                <tr>
                 <th class="fecha">Fecha</th>
                 <th class="estado">Estado</th>
                 <th class="email">Email</th>
                 <th class="total">Total</th>
                 <th class="accion">Acción</th>
-              </tr>
-            
+                </tr>
+              </thead>
 
-            <tbody id="tabla-body">
-              <!-- Aquí se agregarán las filas dinámicamente -->
-            </tbody>
+              <tbody id="tabla-body">
+                <!-- Aquí se agregarán las filas dinámicamente -->
+                
+              </tbody>
 
-          </table>
+            </table>
 
 
-          <script>
-            // Función para cargar datos desde el servidor
-            function cargarDatos() {
-              // Realizar una solicitud Ajax al servidor para obtener los datos
-              // Puedes utilizar la función fetch o $.ajax de jQuery, dependiendo de tus preferencias
-              // Ejemplo con jQuery:
-              $.ajax({
-                  url: '../controllers/compras.php/',
+            <script>
+              // Función para cargar datos desde el servidor
+              function cargarDatos() {
+                // Realizar una solicitud Ajax al servidor para obtener los datos
+                $.ajax({
+                url: '../controllers/compras.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                  // Limpiar el cuerpo de la tabla
+                  $('#tabla-body').empty();
+
+                  // Iterar a través de los datos y construir las filas de la tabla
+                  data.forEach(function (item) {
+                  var row = `<tr>
+                    <td class="fecha">${item.fecha}</td>
+                    <td class="estado">${item.estadocompra}</td>
+                    <td class="email">${item.email}</td>
+                    <td class="total">${item.total}</td>            
+                    <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
+                </tr>`;
+                  $('#tabla-body').append(row);
+                  });
+                },
+                error: function (error) {
+                  console.log('Error al cargar los datos: ' + error);
+                }
+                });
+              }
+
+              // Llamar a la función para cargar los datos al cargar la página
+              $(document).ready(function () {
+                cargarDatos();
+              });
+
+            </script>
+
+
+            <!-- Ventana modal -->
+            <div id="modalDetalle" class="modal">
+
+              <div class="modal-content">
+                <span class="close-button" onclick="cerrarModal()">&times;</span>
+
+                <table class="preview-detalle">
+                  <thead>
+                    <tr>
+                      <th class="fecha">Fecha</th>
+                      <th class="estado">Estado de Compra</th>
+                      <th class="detalle">Detalle</th>
+                      <th class="cantidad">Cantidad</th>
+                      <th class="total">Total</th>
+                      <th class="subtotal">Subtotal</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="detallecompra">
+                    <!-- aqui va el contenido de detalles-->
+
+                  </tbody>
+                
+                </table>
+              </div>
+            </div>
+
+
+            <script>
+
+              // Agrega una función para mostrar detalles de compra
+              function mostrarDetalleCompra(idcompra) {
+                // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
+                $.ajax({
+                  url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                   method: 'GET',
                   dataType: 'json',
                   success: function (data) {
-                    // Limpiar el cuerpo de la tabla
-                    $('#tabla-body').empty();
-
-                    // Iterar a través de los datos y construir las filas de la tabla
-                    data.forEach(function (item) {
+                    // Llena la ventana modal con los detalles de la compra
+                    $('#detallecompra').empty();
+                    data.forEach(function (detalle) {
                       var row = `<tr>
-                  
-                        <td class="fecha">${item.fecha}</td>
-                        <td class="estado">${item.estadocompra}</td>
-                        <td class="email">${item.email}</td>
-                        <td class="total">${item.total}</td>
-                        <td class="accion"><button class="verdetalle" data-compra-id="${item.idcompra}" data-compra-detalle="${JSON.stringify(item)}" onclick="detalleCompra(this)">Ver Más</button></td>
+                        <td>${detalle.fecha}</td>
+                        <td>${detalle.estadocompra}</td>
+                        <td>${detalle.detallesventa}</td>
+                        <td>${detalle.cantidad}</td>
+                        <td>${detalle.total}</td>
+                        <td>${detalle.subtotal}</td>
                       </tr>`;
-                      $('#tabla-body').append(row);
+                      $('#detallecompra').append(row);
                     });
+                    // Abre la ventana modal
+                    $('#modalDetalle').show();
                   },
                   error: function (error) {
-                    console.log('Error al cargar los datos: ' + error);
+                    console.log('Error al cargar los detalles de la compra: ' + error);
                   }
-              });
-            }
+                });
+              }
 
-            // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function () {
-                cargarDatos();
-            });
-          </script>
-
-
-          <!-- Ventana modal -->
-          <div id="modalDetalle" class="modal">
-
-            <div class="modal-content">
-              <span class="close-button" onclick="cerrarModal()">&times;</span>
-
-              <table class="preview-detalle">
-                <thead>
-                  <tr>
-                    <th class="fecha">Fecha</th>
-                    <th class="estado">Estado de Compra</th>
-                    <th class="detalle">Detalle</th>
-                    <th class="cantidad">Cantidad</th>
-                    <th class="total">Total</th>
-                    <th class="subtotal">Subtotal</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <!-- aqui va el contenido de detalles-->
-
-                  <tr>
-
-                    <td>23 agosto 2023</td>
-                    <td>Pendiente</td>
-                    <td>Acetaminofen, omeprazol</td>
-                    <td>2</td>
-                    <td>3000</td>
-                    <td>3000</td>
-
-                  </tr>
-
-                </tbody>
-              
-              </table>
-            </div>
-          </div>
+            </script>
 
           </div>
+        </section>
+
+      </div>
         
         </section>
 
