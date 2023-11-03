@@ -11,12 +11,8 @@ $id = $_SESSION["id"];
 $eps = $_SESSION["eps"];
 $imgUser = $_SESSION['img'];
 
-$consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
-$rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
-
-$id_usuario = $_SESSION['id'];
-$con1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id_usuario'");
-$user = mysqli_fetch_assoc($con1);
+$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE idusuario = '$id'");
+$rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +31,9 @@ $user = mysqli_fetch_assoc($con1);
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
+    rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -61,7 +59,7 @@ $user = mysqli_fetch_assoc($con1);
 
       <section class="naver">
         <article class="hoss">
-          <?php
+           <?php
           if ($eps == 1) {
           ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
@@ -84,44 +82,44 @@ $user = mysqli_fetch_assoc($con1);
             </div>
           <?php
           } else {
-          ?>
-            <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
-              <div>
-                <i class='bx bx-notepad'></i>
-                Mis formulas
-              </div>
+          ?> 
+          <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
+            <div>
+              <i class='bx bx-notepad'></i>
+              Mis formulas
             </div>
+          </div>
 
-            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
-              <div>
-                <i class='bx bx-shopping-bag'></i>
-                Mis compras
-              </div>
+          <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+            <div>
+              <i class='bx bx-shopping-bag'></i>
+              Mis compras
             </div>
+          </div>
 
-            <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
-              <div>
-                <i class='bx bx-trash-alt'></i>
-                Papelera
-              </div>
+          <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+            <div>
+              <i class='bx bx-trash-alt'></i>
+              Papelera
             </div>
+          </div>
 
-            <a href="inicio_tienda.php" class="toggle-dic">
-              <div>
-                <i class='bx bx-store'></i>
-                Tienda virtual
-              </div>
-            </a>
-
-            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
-              <div>
-                <i class='bx bx-user-circle'></i>
-                Solicitar un nuevo rol
-              </div>
+          <a href="inicio_tienda.php" class="toggle-dic">
+            <div>
+              <i class='bx bx-store'></i>
+              Tienda virtual
             </div>
-          <?php
+          </a>
+
+          <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+            <div>
+              <i class='bx bx-user-circle'></i>
+              Solicitar un nuevo rol
+            </div>
+          </div>
+           <?php
           }
-          ?>
+          ?> 
 
         </article>
       </section>
@@ -150,32 +148,32 @@ $user = mysqli_fetch_assoc($con1);
               </div>
               <div class="options">
 
-                <?php
-                function existe_en_tabla($tabla, $usuario)
-                {
-                  global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-                  $resultado = $conexion->query($consulta);
-                  return $resultado->num_rows > 0;
-                }
-
-                if (existe_en_tabla('domiciliario', $id)) {
-                  echo '<div class="option">
+                 <?php
+                    function existe_en_tabla($tabla, $usuario)
+                    {
+                      global $conexion;
+                      $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                      $resultado = $conexion->query($consulta);
+                      return $resultado->num_rows > 0;
+                    }
+    
+                    if (existe_en_tabla('domiciliario', $id)) {
+                      echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
-                }
-                if (existe_en_tabla('farmacias', $id)) {
-                  echo '<div class="option">
+                    }
+                    if (existe_en_tabla('farmacias', $id)) {
+                      echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                }
-                if (existe_en_tabla('usuarios', $id)) {
-                  echo '<div class="option">
+                    }
+                    if (existe_en_tabla('usuarios', $id)) {
+                      echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
                 }
 
-                ?>
+                ?> 
               </div>
             </div>
 
@@ -284,14 +282,15 @@ if ($consulta->num_rows > 0) {
 ?>
 
 
+              
 
 
               <!-- Comienzan tarjetas para formulas -->
-              <div class="formula-info">
-                <div class="card_info">
+<div class="formula-info">
+  <div class="card_info">
 
-                </div>
-              </div>
+  </div>
+</div>
               <!-- Final de tarjetas -->
             </div>
           </article>
@@ -299,42 +298,42 @@ if ($consulta->num_rows > 0) {
 
         <section class="paginas" id="dos">
 
-          <div class="container-miscompras">
+        <div class="container-miscompras">
 
-            <table class="preview-detalle">
-              <thead>
-                <tr>
-                  <th class="fecha">Fecha</th>
-                  <th class="estado">Estado</th>
-                  <th class="email">Email</th>
-                  <th class="total">Total</th>
-                  <th class="accion">Acción</th>
-                </tr>
+          <table class="preview-detalle">
+            <thead>
+              <tr>
+                <th class="fecha">Fecha</th>
+                <th class="estado">Estado</th>
+                <th class="email">Email</th>
+                <th class="total">Total</th>
+                <th class="accion">Acción</th>
+              </tr>
+            
+
+            <tbody id="tabla-body">
+              <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
+
+          </table>
 
 
-              <tbody id="tabla-body">
-                <!-- Aquí se agregarán las filas dinámicamente -->
-              </tbody>
-
-            </table>
-
-
-            <script>
-              // Función para cargar datos desde el servidor
-              function cargarDatos() {
-                // Realizar una solicitud Ajax al servidor para obtener los datos
-                // Puedes utilizar la función fetch o $.ajax de jQuery, dependiendo de tus preferencias
-                // Ejemplo con jQuery:
-                $.ajax({
+          <script>
+            // Función para cargar datos desde el servidor
+            function cargarDatos() {
+              // Realizar una solicitud Ajax al servidor para obtener los datos
+              // Puedes utilizar la función fetch o $.ajax de jQuery, dependiendo de tus preferencias
+              // Ejemplo con jQuery:
+              $.ajax({
                   url: '../controllers/compras.php/',
                   method: 'GET',
                   dataType: 'json',
-                  success: function(data) {
+                  success: function (data) {
                     // Limpiar el cuerpo de la tabla
                     $('#tabla-body').empty();
 
                     // Iterar a través de los datos y construir las filas de la tabla
-                    data.forEach(function(item) {
+                    data.forEach(function (item) {
                       var row = `<tr>
                   
                         <td class="fecha">${item.fecha}</td>
@@ -346,59 +345,59 @@ if ($consulta->num_rows > 0) {
                       $('#tabla-body').append(row);
                     });
                   },
-                  error: function(error) {
+                  error: function (error) {
                     console.log('Error al cargar los datos: ' + error);
                   }
-                });
-              }
-
-              // Llamar a la función para cargar los datos al cargar la página
-              $(document).ready(function() {
-                cargarDatos();
               });
-            </script>
+            }
+
+            // Llamar a la función para cargar los datos al cargar la página
+            $(document).ready(function () {
+                cargarDatos();
+            });
+          </script>
 
 
-            <!-- Ventana modal -->
-            <div id="modalDetalle" class="modal">
+          <!-- Ventana modal -->
+          <div id="modalDetalle" class="modal">
 
-              <div class="modal-content">
-                <span class="close-button" onclick="cerrarModal()">&times;</span>
+            <div class="modal-content">
+              <span class="close-button" onclick="cerrarModal()">&times;</span>
 
-                <table class="preview-detalle">
-                  <thead>
-                    <tr>
-                      <th class="fecha">Fecha</th>
-                      <th class="estado">Estado de Compra</th>
-                      <th class="detalle">Detalle</th>
-                      <th class="cantidad">Cantidad</th>
-                      <th class="total">Total</th>
-                      <th class="subtotal">Subtotal</th>
-                    </tr>
-                  </thead>
+              <table class="preview-detalle">
+                <thead>
+                  <tr>
+                    <th class="fecha">Fecha</th>
+                    <th class="estado">Estado de Compra</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="total">Total</th>
+                    <th class="subtotal">Subtotal</th>
+                  </tr>
+                </thead>
 
-                  <tbody>
-                    <!-- aqui va el contenido de detalles-->
+                <tbody>
+                  <!-- aqui va el contenido de detalles-->
 
-                    <tr>
+                  <tr>
 
-                      <td>23 agosto 2023</td>
-                      <td>Pendiente</td>
-                      <td>Acetaminofen, omeprazol</td>
-                      <td>2</td>
-                      <td>3000</td>
-                      <td>3000</td>
+                    <td>23 agosto 2023</td>
+                    <td>Pendiente</td>
+                    <td>Acetaminofen, omeprazol</td>
+                    <td>2</td>
+                    <td>3000</td>
+                    <td>3000</td>
 
-                    </tr>
+                  </tr>
 
-                  </tbody>
-
-                </table>
-              </div>
+                </tbody>
+              
+              </table>
             </div>
-
           </div>
 
+          </div>
+        
         </section>
 
         <section class="paginas" id="tres">
@@ -410,9 +409,9 @@ if ($consulta->num_rows > 0) {
 
           <div class="cont-p">
             <article class="sect-p">
-              <?php
+               <?php 
               require_once '../templates/papelera.php';
-              ?>
+              ?>  
             </article>
           </div>
         </section>
@@ -437,150 +436,154 @@ if ($consulta->num_rows > 0) {
                 <h1>Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="nombreCompleto">Nombre Completo</label>
+                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                </div>
 
-                <form action="" method="post" enctype="multipart/form-data">
-                  <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
+                <div class="contenedoresparte1">
+                  <label for="numeroDocumento">Numero de documento</label>
+                  <input type="text" id="numerodocumento" name="numerodocumento" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" id="telefono" name="telefono" required>
+                </div>
+              </section>
+
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="correo">Correo de Contacto</label>
+                  <input type="email" id="correo" name="correo" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="imagen"> Imagen de Presentación</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+
+              </section>
+
+              <h2>Datos Sensibles</h2>
+
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="Direcciónresidencia">Dirección de residencia</label>
+                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
+                  <select id="vehiculo" name="departamento" required>
+                    <option value="moto">Moto</option>
+                    <option value="carro">Carro</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                  </select>
+                </div>
+
+              </section>
+
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="imagen">Licencia de conducir</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="imagen">Tarjeta de propiedad</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="imagen">Soat</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+              </section>
+
+              <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
+              <select id="cuenta_bancaria" name="cuenta_bancaria" required>
+                <option>Escoge la opcion</option>
+                <option value="nequi">Nequi</option>
+                <option value="paypal">PayPal</option>
+                <option value="bancolombia">Bancolombia</option>
+              </select>
+
+              <section class="respuesta_select" id="respuesta_select">
+
+                <div id="nequi_info" class="info-container hidden">
+
+                  <h3>Datos Sensible para Nequi</h3>
+
                   <section class="parte1-formulario">
+
                     <div class="contenedoresparte1">
-                      <label for="nombreCompleto">Nombre Completo</label>
-                      <input type="text" id="Nombre" name="Nombre" required>
+                      <label for="nombre_usuario">Introduce nombre de usuario </label>
+                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
                     </div>
 
                     <div class="contenedoresparte1">
-                      <label for="numeroDocumento">Numero de documento</label>
-                      <input type="text" id="numerodocumento" name="numerodocumento" required>
+                      <label for="telefono">Ingrese numero de teléfono</label>
+                      <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                  </section>
+                </div>
+
+                <div id="paypal_info" class="info-container hidden">
+
+                  <h3>Datos Sensible para PayPal</h3>
+
+                  <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                      <label for="nombre_usuario">Introduce nombre de usuario </label>
+                      <input type="text" id="nombre_usuario" name="nombre_usuario" required>
                     </div>
 
                     <div class="contenedoresparte1">
                       <label for="telefono">Teléfono</label>
                       <input type="tel" id="telefono" name="telefono" required>
                     </div>
-                  </section>
-
-                  <section class="parte1-formulario">
-                    <div class="contenedoresparte1">
-                      <label for="correo">Correo de Contacto</label>
-                      <input type="email" id="correo" name="correo" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="imagen"> Imagen de Presentación</label>
-                      <input type="file" id="imagen" name="imagen" required>
-                    </div>
 
                   </section>
+                </div>
 
-                  <h2>Datos Sensibles</h2>
+                <div id="bancolombia_info" class="info-container hidden">
 
-                  <section class="parte1-formulario">
-                    <div class="contenedoresparte1">
-                      <label for="Direcciónresidencia">Dirección de residencia</label>
-                      <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                    </div>
+                  <h3>Datos Sensible para Bancolombia<h3>
 
-                    <div class="contenedoresparte1">
-                      <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
-                      <select id="vehiculo" name="departamento" required>
-                        <option value="moto">Moto</option>
-                        <option value="carro">Carro</option>
-                        <!-- Agrega más departamentos según sea necesario -->
-                      </select>
-                    </div>
+                      <section class="parte2-formulario">
 
-                  </section>
-
-                  <section class="parte1-formulario">
-                    <div class="contenedoresparte1">
-                      <label for="imagen">Licencia de conducir</label>
-                      <input type="file" id="imagen" name="imagen" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="imagen">Tarjeta de propiedad</label>
-                      <input type="file" id="imagen" name="imagen" required>
-                    </div>
-
-                    <div class="contenedoresparte1">
-                      <label for="imagen">Soat</label>
-                      <input type="file" id="imagen" name="imagen" required>
-                    </div>
-                  </section>
-
-                  <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
-                  <select id="cuenta_bancaria" name="cuenta_bancaria" required>
-                    <option>Escoge la opcion</option>
-                    <option value="nequi">Nequi</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="bancolombia">Bancolombia</option>
-                  </select>
-
-                  <section class="respuesta_select" id="respuesta_select">
-
-                    <div id="nequi_info" class="info-container hidden">
-
-                      <h3>Datos Sensible para Nequi</h3>
-
-                      <section class="parte1-formulario">
-
-                        <div class="contenedoresparte1">
-                          <label for="imagen"> Imagen de Presentación</label>
-                          <input type="file" id="imagen" name="imagen" required>
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Tipo cuenta natural o juridico</label>
+                          <input type="text" id="nombrecompleto" name="nombrecompleto" required>
                         </div>
 
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Cuenta de ahorro o corriente</label>
+                          <input type="text" id="numerodocumento" name="numerodocumento" required>
+                        </div>
                       </section>
-                    </div>
 
-                    <div id="paypal_info" class="info-container hidden">
-
-                      <h3>Datos Sensible para PayPal</h3>
-
-                      <section class="parte1-formulario">
-                        <div class="contenedoresparte1">
-                          <label for="imagen"> Imagen de Presentación</label>
-                          <input type="file" id="imagen" name="imagen" required>
+                      <section class="parte3-formulario">
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Numero de la tarjeta</label>
+                          <input type="tel" id="telefono" name="telefono" required>
                         </div>
 
+                        <div class="contenedoresparte2">
+                          <label for="telefono">Propietario</label>
+                          <input type="email" id="correo" name="correo" required>
+                        </div>
                       </section>
-                    </div>
 
-                    <div id="bancolombia_info" class="info-container hidden">
+                </div>
 
-                      <h3>Datos Sensible para Bancolombia<h3>
-
-                          <section class="parte2-formulario">
-
-                            <div class="contenedoresparte1">
-                              <label for="imagen"> Imagen de Presentación</label>
-                              <input type="file" id="imagen" name="imagen" required>
-                            </div>
-
-                          </section>
-
-                    </div>
-
-                  </section>
-
-                  <button id="enviar">Enviar</button>
-                  </form>
               </section>
+
+              <button id="enviar">Enviar</button>
             </div>
           </div>
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           <div id="contenido-farmacia" class="hidden">
             <div class="container">
@@ -588,102 +591,99 @@ if ($consulta->num_rows > 0) {
                 <i class='bx bx-left-arrow-alt'></i>
                 <h1>Solicitud para registrar farmacia</h1>
               </div>
-              <form action="../controllers/procesar_registro_farmacia.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="idusuario" value='<?php echo $id_usuario ?>'>
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="nombreFarmacia">Nombre de la Farmacia</label>
-                    <input type="text" id="Nombref" name="Nombref" required>
-                  </div>
 
-      <div class="contenedoresparte1">
-        <label for="direccion">Dirección</label>
-        <input type="text" id="direccion" name="direccion" required>
-      </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                  <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+                </div>
 
-                  <div class="contenedoresparte1">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefonof" name="telefonof" required>
-                  </div>
-                </section>
+                <div class="contenedoresparte1">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" id="direccion" name="direccion" required>
+                </div>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="correo">Correo de Contacto</label>
-                    <input type="email" id="correof" name="correof" required>
-                  </div>
-                  <div class="contenedoresparte1">
-                    <label for="imagen"> Imagen de Presentación</label>
-                    <input type="file" id="imagenf" name="imagenf" required>
-                  </div>
-                </section>
+                <div class="contenedoresparte1">
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" id="telefono" name="telefono" required>
+                </div>
+              </section>
 
-                <h2>Datos Sensibles</h2>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="correo">Correo de Contacto</label>
+                  <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="contenedoresparte1">
+                  <label for="imagen"> Imagen de Presentación</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+              </section>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="departamento">Departamento</label>
-                    <select id="Departamentof" name="Departamentof" required>
-                      <option value="departamento1">Caquetá</option>
-                      <option value="departamento2">Cundinamarca</option>
-                      <!-- Agrega más departamentos según sea necesario -->
-                    </select>
-                  </div>
+              <h2>Datos Sensibles</h2>
 
-                  <div class="contenedoresparte1">
-                    <label for="ciudad">Ciudad</label>
-                    <select id="ciudadf" name="ciudadf" required>
-                      <option value="departamento1">Florencia</option>
-                      <option value="departamento2">Bogota</option>
-                      <!-- Agrega más ciudades según sea necesario -->
-                    </select>
-                  </div>
-                </section>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="departamento">Departamento</label>
+                  <select id="departamento" name="departamento" required>
+                    <option value="departamento1">Caquetá</option>
+                    <option value="departamento2">Cundinamarca</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                  </select>
+                </div>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="codigoPostal">Código Postal</label>
-                    <input type="text" id="codigoPostalf" name="codigoPostalf" required>
-                  </div>
+                <div class="contenedoresparte1">
+                  <label for="ciudad">Ciudad</label>
+                  <select id="ciudad" name="ciudad" required>
+                    <option value="departamento1">Florencia</option>
+                    <option value="departamento2">Bogota</option>
+                    <!-- Agrega más ciudades según sea necesario -->
+                  </select>
+                </div>
+              </section>
 
-                  <div class="contenedoresparte1">
-                    <label for="horario">Días de Horario Laboral</label>
-                    <select id="horariof" name="horariof" required>
-                      <option value="lunes">Lunes</option>
-                      <option value="martes">Martes</option>
-                      <!-- Agrega más días según sea necesario -->
-                    </select>
-                  </div>
-                </section>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="codigoPostal">Código Postal</label>
+                  <input type="text" id="codigoPostal" name="codigoPostal" required>
+                </div>
 
+                <div class="contenedoresparte1">
+                  <label for="horario">Días de Horario Laboral</label>
+                  <select id="horario" name="horario" required>
+                    <option value="lunes">Lunes</option>
+                    <option value="martes">Martes</option>
+                    <!-- Agrega más días según sea necesario -->
+                  </select>
+                </div>
 
+                <div class="contenedoresparte1">
+                  <label for="jornada">Jornada</label>
+                  <select id="jornada" name="jornada" required>
+                    <option value="manana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                  </select>
+                </div>
+              </section>
 
-                    <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-                    <select id="epsRegistradof" name="epsRegistradof" required onchange="mostrarOcultarEPS()">
-                      <option>Escoge la opción</option>
-                      <option value="si">Sí</option>
-                      <option value="no">No</option>
-                    </select>
+              <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+              <select id="epsRegistrado" name="epsRegistrado" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
 
+              <label for="eps">EPS con la que está registrado</label>
+              <select id="eps" name="eps" required>
+                <option value="eps1">EPS 1</option>
+                <option value="eps2">IPS 2</option>
+                <!-- Agrega más EPS según sea necesario -->
+              </select>
 
+              <label for="nitEps">NIT de EPS</label>
+              <input type="text" id="nitEps" name="nitEps" required>
 
-                    <label for="eps" style="display: none;">EPS con la que está registrado</label>
-                    <select id="idEpsf" name="idEpsf" style="display: none;">
-                      <option value="1">No tengo una EPS</option>
-                      <option value="2">COOMEVA ENTIDAD PROMOTORA DE SALUD S.A. "COOMEVA E.P.S. S.A.</option>
-                      <option value="3">ASMET SALUD EPS S.A.S.</option>
-                      <option value="4">ASMET SALUD EPS S.A.S.</option>
-                      <option value="5">ENTIDAD PROMOTORA DE SALUD SANITAS S.A.S.</option>
-                    </select>
-
-                  <label for="nitEps" class="niteps" style="display: none;">NIT de EPS</label>
-                  <input type="text" id="nitEPS" name="nitEPS" style="display: none;">
-      
-
-                <button type="submit" id="enviar" name="enviarf">Enviar</button>
-              </form>
+              <button id="enviar">Enviar</button>
             </div>
-
           </div>
         </section>
       </section>
@@ -692,8 +692,8 @@ if ($consulta->num_rows > 0) {
   </main>
 
   <?php
-  include "../models/funcionemail.php";
-  ?>
+include "../models/funcionemail.php";
+?>
   <section class="cuentas" id="datos-user">
     <section class="overflow">
       <header>
@@ -715,7 +715,7 @@ if ($consulta->num_rows > 0) {
             </section>
             <section class="fole">
               <h4>
-                <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
+                <?php echo $rr["nombre"] . " " . $rr["apellido"];?>
               </h4>
               <p>
                 <?php echo $correo_usuario; ?>
@@ -744,7 +744,8 @@ if ($consulta->num_rows > 0) {
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto"
+              autocomplete="off" value="">
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -752,13 +753,15 @@ if ($consulta->num_rows > 0) {
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none"
+              placeholder="Causa de la cita medica"></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
+                  class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -768,13 +771,15 @@ if ($consulta->num_rows > 0) {
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico"
+                  class="mauso-texto encojer" accept=".png, .jpg,">
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos"
+              placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
           </div>
         </section>
         <section class="padre-medicamentos">
@@ -799,7 +804,8 @@ if ($consulta->num_rows > 0) {
   <script src="../assets/js/funcionusuario.js"></script>
   <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
-  <script src="../assets/js/mostrar_ocultarEPS.js"></script>
+  <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
+  <script src="../assets/js/modalCompras.js"></script>
 </body>
 
 </html>
