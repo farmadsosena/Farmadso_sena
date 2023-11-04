@@ -613,7 +613,7 @@ include "../models/funcionemail.php";
           <?php echo $correo_usuario; ?>
         </h2>
         <section class="dash-img">
-          <img src="<?php echo $rr[" imgUser"] ?>" alt="">
+          <img src="<?php echo $rr["imgUser"] ?>" alt="">
         </section>
       </header>
       <section class="darf">
@@ -622,7 +622,7 @@ include "../models/funcionemail.php";
           <section class="count">
             <section class="fal">
               <div>
-                <img src="<?php echo $rr[" imgUser"] ?>" alt="">
+                <img src="<?php echo $rr["imgUser"] ?>" alt="">
               </div>
             </section>
             <section class="fole">
