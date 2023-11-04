@@ -220,7 +220,7 @@ $rr = mysqli_fetch_assoc($consulta);// El usuario está "iniciado sesión" manua
 $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
 if ($consulta->num_rows > 0) {
-    $card = mysqli_fetch_assoc($consulta);
+  while($card = mysqli_fetch_assoc($consulta)){
     $IdMedico = $card['IdMedico'];
     $IdDiag = $card['idDiagnostico'];
     $fecha = $card['fechaOrden'];
@@ -274,7 +274,7 @@ if ($consulta->num_rows > 0) {
             </ul>
         </div>
     </div>";
-}else{
+}}else{
   // Pendiente por colocar una mejor presentación para cuando 
   // no se encuentren formulas
   echo "No hay formulas";
