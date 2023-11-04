@@ -16,7 +16,7 @@ if (isset($_POST["enviar"])) {
         echo "<script>alert('La contraseña no es válida caracter negativo');
         window.location='../views/login.php'</script>";
     }
-     else {
+    else {
         $consul = mysqli_query($conexion, "SELECT * FROM usuarios WHERE documento='$user'");
         if (mysqli_num_rows($consul) > 0) {
             $des = mysqli_fetch_array($consul);
