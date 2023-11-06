@@ -264,14 +264,14 @@ $imgUser = $_SESSION['img'];
 
     <div id="cambiarcontrasena" class="contenido-pestaña">
       <div class="contraseña">
-        <form class="form-contraseña" action="">
+        <form class="form-contraseña" method="POST" action="../controllers/cambiar_contrasena.php">
           <p>Cambiar de contraseña</p>
 
-          <input class="contraseña-actual" type="text" placeholder="Contraseña actual" />
+          <input class="contraseña-actual" type="password" name="contrasena_actual" placeholder="Contraseña actual" required/>
 
           <div class="nueva-cntrs">
-            <input type="text" placeholder="Nueva contraseña" />
-            <input type="text" placeholder="Confirme su contraseña" />
+            <input type="password" name="nueva_contrasena" placeholder="Nueva contraseña" required />
+            <input type="password" name="confirmar_contrasena" placeholder="Confirme su contraseña" required />
           </div>
 
           <button>Guardar</button>

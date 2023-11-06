@@ -217,11 +217,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <?php
               $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
-              if ($consulta->num_rows > 0) {
-                $card = mysqli_fetch_assoc($consulta);
-                $IdMedico = $card['IdMedico'];
-                $IdDiag = $card['idDiagnostico'];
-                $fecha = $card['fechaOrden'];
+if ($consulta->num_rows > 0) {
+    $card = mysqli_fetch_assoc($consulta);
+    $IdMedico = $card['IdMedico'];
+    $IdDiag = $card['idDiagnostico'];
+    $fecha = $card['fechaOrden'];
 
                 $fecha_timestamp = strtotime($fecha);
                 if ($fecha_timestamp !== false) {
@@ -272,12 +272,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </ul>
         </div>
     </div>";
-              } else {
-                // Pendiente por colocar una mejor presentación para cuando 
-                // no se encuentren formulas
-                echo "No hay formulas";
-              }
-              ?>
+}else{
+  // Pendiente por colocar una mejor presentación para cuando 
+  // no se encuentren formulas
+  echo "No hay formulas";
+}
+?>
 
 
 
