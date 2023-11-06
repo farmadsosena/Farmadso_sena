@@ -722,8 +722,65 @@ button:hover {
   background-color: white;
   height: 450px;
   width: 80%;
-
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 10px;
 }
+
+.infoMedico{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid black;
+  width: 30%;
+  gap: 8px;
+}
+
+.medico{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:100% ;
+}
+
+.title_infoMedico{
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.name_medico{
+  text-align: center;
+  width: 100%;
+  text-wrap: wrap;
+  font-size: 0.8em;
+}
+
+.foto_medico{
+  width: 120px;
+  border-radius: 80%;
+}
+
+
+.tarjeta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+}
+
+
+
+
+.infoFormula{
+  display: flex;
+  border: 1px solid black;
+  width: 80%;
+}
+
+
 
 
 /* fin */
