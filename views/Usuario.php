@@ -590,7 +590,7 @@ if ($consulta->num_rows > 0) {
 
       <div class="contenedoresparte1">
         <label for="direccion">Dirección</label>
-        <input type="text" id="direccion" name="direccion" required>
+        <input type="text" id="Direccionf" name="Direccionf" required>
       </div>
 
                   <div class="contenedoresparte1">
