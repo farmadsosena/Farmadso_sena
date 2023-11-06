@@ -113,7 +113,7 @@
       <div id="productos"><i class='bx bxs-store'></i> Productos</div>
       <div id="abrirCarrito"><i class='bx bx-cart-alt'></i> Carrito</div>
       <div class="profile-user">
-        <a href="configuracion.html"><i class='bx bxs-user-circle'></i></a>
+        <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
         <div id="cardProfile">
           <div id="cerrarPerfil"><i class="fa-solid fa-xmark"></i></div>
         </div>
