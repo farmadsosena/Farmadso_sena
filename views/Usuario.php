@@ -59,7 +59,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         <article class="hoss">
           <?php
           if ($eps == 1) {
-            ?>
+          ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
@@ -78,9 +78,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           } else {
-            ?>
+          ?>
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
@@ -115,7 +115,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           }
           ?>
 
@@ -346,7 +346,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                         </div>
                       </div>
 
-                      
+
                       <div>
 
                       </div>
@@ -400,12 +400,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/compras.php',
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Limpiar el cuerpo de la tabla
                   $('#tabla-body').empty();
 
                   // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function (item) {
+                  data.forEach(function(item) {
                     var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
@@ -416,17 +416,16 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     $('#tabla-body').append(row);
                   });
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los datos: ' + error);
                 }
               });
             }
 
             // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function () {
+            $(document).ready(function() {
               cargarDatos();
             });
-
           </script>
 
 
@@ -459,7 +458,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <script>
-
             // Agrega una función para mostrar detalles de compra
             function mostrarDetalleCompra(idcompra) {
               // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
@@ -467,10 +465,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
-                  data.forEach(function (detalle) {
+                  data.forEach(function(detalle) {
                     var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
@@ -484,19 +482,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Abre la ventana modal
                   $('#modalDetalle').show();
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los detalles de la compra: ' + error);
                 }
               });
             }
-
           </script>
 
         </div>
-      </section>
-
-      </div>
-
       </section>
 
       <section class="paginas" id="tres">
@@ -514,6 +507,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </article>
         </div>
       </section>
+      
       <section class="paginas" id="cuatro">
 
         <div class="column" id="opciones">
@@ -535,14 +529,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <h1>Solicitud para ser domiciliario</h1>
             </div>
             <section class="parte1-formulario">
-              <div class="contenedoresparte1">
-                <label for="nombreCompleto">Nombre Completo</label>
-                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-              </div>
               <section class="parte1-formulario">
-
-
-
                 <form action="" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
                   <section class="parte1-formulario">
@@ -705,30 +692,15 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                         </section>
 
+                        <button id="enviar">Enviar</button>
+                </form>
+              </section>
+            </section>
           </div>
+        </div>
 
-      </section>
-
-
-      <!-- corregir y organizar los contendeores de 
-manera ordena
-
-
- -->
-      <!-- <button id="enviar">Enviar</button> -->
-      </form>
-      </section>
-
-      <!-- <button id="enviar">Enviar</button> -->
-      </div>
-      </div>
-
-
-
-
-
-
-      <div id="contenido-farmacia" class="hidden">
+        <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
+        <div id="contenido-farmacia" class="hidden">
         <div class="container">
           <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
             <i class='bx bx-left-arrow-alt'></i>
@@ -827,17 +799,16 @@ manera ordena
 
           <button id="enviar">Enviar</button>
         </div>
-      </div>
-      </section>
-      </section>
-      </section>
+        </div>
+
+      </section> <!-- Etiqueta que termina el contenedor 4 -->
     </article>
   </main>
 
   <?php
   include "../models/funcionemail.php";
   ?>
-  
+
   <section class="cuentas" id="datos-user">
     <section class="overflow">
       <header>
