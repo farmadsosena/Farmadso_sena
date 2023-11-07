@@ -1,4 +1,4 @@
-document.getElementById("cuenta_bancaria").addEventListener("change", function() {
+document.getElementById("tipo_cuenta").addEventListener("change", function() {
     var selectedOption = this.value;
     var respuestaSelect = document.getElementById("respuesta_select");
 

@@ -16,11 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['enviarf'])) {
     $eps = $_POST["idEpsf"];
     $nitEps = $_POST["nitEPS"];
 
-    // if ($epsRegistradof === "si") {
-    //     $id_eps = $_POST["idEpsf"]; // Use the selected "idEps" value
-    // } else {
-    //     $id_eps = 1; // Set id_eps to 1 when "no" is selected
-    // }
 
     if (isset($_POST['epsRegistradof'])  == "si") {
         $stmt_get_user_id = $conexion->prepare("SELECT idEps FROM eps WHERE ideps = ?");
@@ -77,10 +72,6 @@ if ($codigoPostal < 0 || $telefono < 0) {
         </script>";
     } else {
 
-        // // Subir la imagen al servidor (ajusta la ubicación de la carpeta según tu configuración)
-        // $uploadDir = '../uploads/imgUsuario/';
-        // $imagenPath = $uploadDir . $imagen;
-        // move_uploaded_file($_FILES["imagen"]["tmp_name"], $imagenPath);
 
 
         // Insertar los datos en la base de datos
@@ -89,21 +80,21 @@ if ($codigoPostal < 0 || $telefono < 0) {
 
         if ($conexion->query($sql) === TRUE) {
             echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: 'Registro exitoso'
-                    });
-                </script>";
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Registro exitoso'
+            });
+        </script>";
             header("location: ../views/Usuario.php");
         } else {
             echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Error al registrar la farmacia: " . mysqli_error($conexion) . "'
-                    });
-                </script>";
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al registrar la farmacia: 
+            });
+        </script>";
         }
     }
 }
