@@ -706,7 +706,7 @@ button:hover {
 
 
 .formula-info{
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -733,7 +733,7 @@ button:hover {
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  border: 1px solid black;
+
   width: 30%;
   gap: 8px;
 }
@@ -776,7 +776,8 @@ button:hover {
 
 .infoFormula{
   display: flex;
-  border: 1px solid black;
+  flex-direction: column;
+ 
   width: 80%;
 }
 

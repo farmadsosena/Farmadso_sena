@@ -185,66 +185,65 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </section>
       </header>
 
-      <section class="cuerpores">
-        <section class="paginas" id="uno">
-          <article class="formulas">
-            <section class="new-formula" id="abrirNewVentana">
-              <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
-            </section>
-            <div class="opt_config">
-              <div class="search">
-                <input type="search" placeholder="Buscar Formula..." />
-                <i class='bx bx-filter'></i>
+      <section class="paginas" id="uno">
+        <article class="formulas">
+          <section class="new-formula" id="abrirNewVentana">
+            <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+          </section>
+          <div class="opt_config">
+            <div class="search">
+              <input type="search" placeholder="Buscar Formula..." />
+              <i class='bx bx-filter'></i>
+            </div>
+            <div class="filtros">
+              <div class="doctor config_filtros">
+                Doctor
+                <i class='bx bx-chevron-right'></i>
               </div>
-              <div class="filtros">
-                <div class="doctor config_filtros">
-                  Doctor
-                  <i class='bx bx-chevron-right'></i>
-                </div>
 
-                <div class="state config_filtros">
-                  Estado
-                  <i class='bx bx-chevron-right'></i>
-                </div>
+              <div class="state config_filtros">
+                Estado
+                <i class='bx bx-chevron-right'></i>
+              </div>
 
-                <div class="date config_filtros">
-                  Fecha
-                  <i class='bx bx-chevron-right'></i>
-                </div>
+              <div class="date config_filtros">
+                Fecha
+                <i class='bx bx-chevron-right'></i>
               </div>
             </div>
+          </div>
 
-            <div class="cards_formulas">
+          <div class="cards_formulas">
 
-              <?php
-              $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
+            <?php
+            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
-              if ($consulta->num_rows > 0) {
-                while ($card = mysqli_fetch_assoc($consulta)) {
-                  $IdMedico = $card['IdMedico'];
-                  $IdDiag = $card['idDiagnostico'];
-                  $fecha = $card['fechaOrden'];
+            if ($consulta->num_rows > 0) {
+              while ($card = mysqli_fetch_assoc($consulta)) {
+                $IdMedico = $card['IdMedico'];
+                $IdDiag = $card['idDiagnostico'];
+                $fecha = $card['fechaOrden'];
 
-                  $fecha_timestamp = strtotime($fecha);
-                  if ($fecha_timestamp !== false) {
-                    $fecha_formateada = date("j F Y", $fecha_timestamp);
-                  }
+                $fecha_timestamp = strtotime($fecha);
+                if ($fecha_timestamp !== false) {
+                  $fecha_formateada = date("j F Y", $fecha_timestamp);
+                }
 
-                  // Consulta Medico
-                  $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
-                  $user_doc = mysqli_fetch_assoc($doc);
-                  $id_medico = $user_doc['idusuario'];
+                // Consulta Medico
+                $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
+                $user_doc = mysqli_fetch_assoc($doc);
+                $id_medico = $user_doc['idusuario'];
 
-                  $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
-                  $row = mysqli_fetch_assoc($cons_med);
-                  $name_med = $row["nombre"];
-                  $lastname = $row['apellido'];
-                  // Consulta Diagnostico
-                  $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
-                  $di = mysqli_fetch_assoc($diagnostico);
-                  $name_di = $di['nombreDiag'];
+                $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
+                $row = mysqli_fetch_assoc($cons_med);
+                $name_med = $row["nombre"];
+                $lastname = $row['apellido'];
+                // Consulta Diagnostico
+                $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
+                $di = mysqli_fetch_assoc($diagnostico);
+                $name_di = $di['nombreDiag'];
 
-                  echo "<div class='card' data-id='{$card['idFormula']}'>
+                echo "<div class='card' data-id='{$card['idFormula']}'>
         <div class='firts_line'>
             <div class='date-card'>
                 <p>$fecha_formateada</p>
@@ -275,160 +274,206 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </ul>
         </div>
     </div>";
-                }
-              } else {
-                // Pendiente por colocar una mejor presentación para cuando 
-                // no se encuentren formulas
-                echo "No hay formulas";
               }
-              ?>
+            } else {
+              // Pendiente por colocar una mejor presentación para cuando 
+              // no se encuentren formulas
+              echo "No hay formulas";
+            }
+            ?>
 
 
 
 
 
-              <!-- Comienzan tarjetas para formulas -->
-              <div class="formula-info">
-                <div class="card_info">
-                  <div class="infoMedico">
-                    <h1 class="title_infoMedico">Medico</h1>
-                    <div class="medico">
-                      <img class="foto_medico" src="../assets/img/medico_img.jpg" alt="">
-                      <p class="name_medico">
-                        Andres Leonardo Castro Buitrago
-                      </p>
+            <!-- Comienzan tarjetas para formulas -->
+            <div class="formula-info">
+              <div class="card_info">
+                <div class="infoMedico">
+                  <h1 class="title_infoMedico">Medico</h1>
+                  <div class="medico">
+                    <img class="foto_medico" src="../assets/img/medico_img.jpg" alt="">
+                    <p class="name_medico">
+                      Andres Leonardo Castro Buitrago
+                    </p>
+                  </div>
+                  <div>
+                    <div class="tarjeta ">
+                      <p class="T_name">Tarjeta profesional</p>
+                      <p class="T_number">12345</p>
                     </div>
-                    <div>
-                      <div class="tarjeta ">
-                        <p class="T_name">Tarjeta profesional</p>
-                        <p class="T_number">12345</p>
-                      </div>
-                      <div class="especialidad">
-                        <p class="E_name">Especialidad</p>
-                        <p class="E_espe">Gastroestologo</p>
-                      </div>
+                    <div class="especialidad">
+                      <p class="E_name">Especialidad</p>
+                      <p class="E_espe">Gastroestologo</p>
+                    </div>
 
-                      <div class="fecha_expi">
-                        <p class="F_name">Fecha de expedision</p>
-                        <p class="F_date">05/11/22</p>
-                      </div>
-
+                    <div class="fecha_expi">
+                      <p class="F_name">Fecha de expedision</p>
+                      <p class="F_date">05/11/22</p>
                     </div>
 
                   </div>
-                  <div class="infoFormula">
+
+                </div>
+                <div class="infoFormula">
+                  <div>
+                    <h2>Datos Personales</h2>
+                    <div class="datos_user">
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2>Datos de afiliación</h2>
+                    <div>
+                      <div>
+                        <div>
+                          <p>Nombre paciente</p>
+                          <p>Nicolas Caicedo</p>
+                        </div>
+
+                        <div>
+                          <p>Identificación</p>
+                          <p>1006537933</p>
+                        </div>
+
+                        <div>
+                          <p>Telefono</p>
+                          <p>3115866621</p>
+                        </div>
+
+                        <div>
+                          <p>Fecha nacimiento</p>
+                          <p>05/11/2002</p>
+                        </div>
+                      </div>
+
+                      
+                      <div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div>
+                    <h2>Diagnostico encontrados</h2>
+
+                  </div>
+                  <div>
+                    <h2>Medicamentos</h2>
 
                   </div>
                 </div>
               </div>
-              <!-- Final de tarjetas -->
             </div>
-          </article>
-        </section>
+            <!-- Final de tarjetas -->
+          </div>
+        </article>
+      </section>
 
-        <section class="paginas" id="dos">
+      <section class="paginas" id="dos">
 
-          <div class="container-miscompras">
+        <div class="container-miscompras">
 
-            <table class="preview-detalle">
-              <thead>
-                <tr>
-                  <th class="fecha">Fecha</th>
-                  <th class="estado">Estado</th>
-                  <th class="email">Email</th>
-                  <th class="total">Total</th>
-                  <th class="accion">Acción</th>
-                </tr>
-              </thead>
+          <table class="preview-detalle">
+            <thead>
+              <tr>
+                <th class="fecha">Fecha</th>
+                <th class="estado">Estado</th>
+                <th class="email">Email</th>
+                <th class="total">Total</th>
+                <th class="accion">Acción</th>
+              </tr>
+            </thead>
 
-              <tbody id="tabla-body">
-                <!-- Aquí se agregarán las filas dinámicamente -->
+            <tbody id="tabla-body">
+              <!-- Aquí se agregarán las filas dinámicamente -->
 
-              </tbody>
+            </tbody>
 
-            </table>
+          </table>
 
 
-            <script>
-              // Función para cargar datos desde el servidor
-              function cargarDatos() {
-                // Realizar una solicitud Ajax al servidor para obtener los datos
-                $.ajax({
-                  url: '../controllers/compras.php',
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function (data) {
-                    // Limpiar el cuerpo de la tabla
-                    $('#tabla-body').empty();
+          <script>
+            // Función para cargar datos desde el servidor
+            function cargarDatos() {
+              // Realizar una solicitud Ajax al servidor para obtener los datos
+              $.ajax({
+                url: '../controllers/compras.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                  // Limpiar el cuerpo de la tabla
+                  $('#tabla-body').empty();
 
-                    // Iterar a través de los datos y construir las filas de la tabla
-                    data.forEach(function (item) {
-                      var row = `<tr>
+                  // Iterar a través de los datos y construir las filas de la tabla
+                  data.forEach(function (item) {
+                    var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
                     <td class="email">${item.email}</td>
                     <td class="total">${item.total}</td>            
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
-                      $('#tabla-body').append(row);
-                    });
-                  },
-                  error: function (error) {
-                    console.log('Error al cargar los datos: ' + error);
-                  }
-                });
-              }
-
-              // Llamar a la función para cargar los datos al cargar la página
-              $(document).ready(function () {
-                cargarDatos();
+                    $('#tabla-body').append(row);
+                  });
+                },
+                error: function (error) {
+                  console.log('Error al cargar los datos: ' + error);
+                }
               });
+            }
 
-            </script>
+            // Llamar a la función para cargar los datos al cargar la página
+            $(document).ready(function () {
+              cargarDatos();
+            });
+
+          </script>
 
 
-            <!-- Ventana modal -->
-            <div id="modalDetalle" class="modal">
+          <!-- Ventana modal -->
+          <div id="modalDetalle" class="modal">
 
-              <div class="modal-content">
-                <span class="close-button" onclick="cerrarModal()">&times;</span>
+            <div class="modal-content">
+              <span class="close-button" onclick="cerrarModal()">&times;</span>
 
-                <table class="preview-detalle">
-                  <thead>
-                    <tr>
-                      <th class="fecha">Fecha</th>
-                      <th class="estado">Estado de Compra</th>
-                      <th class="detalle">Detalle</th>
-                      <th class="cantidad">Cantidad</th>
-                      <th class="total">Total</th>
-                      <th class="subtotal">Subtotal</th>
-                    </tr>
-                  </thead>
+              <table class="preview-detalle">
+                <thead>
+                  <tr>
+                    <th class="fecha">Fecha</th>
+                    <th class="estado">Estado de Compra</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="total">Total</th>
+                    <th class="subtotal">Subtotal</th>
+                  </tr>
+                </thead>
 
-                  <tbody id="detallecompra">
-                    <!-- aqui va el contenido de detalles-->
+                <tbody id="detallecompra">
+                  <!-- aqui va el contenido de detalles-->
 
-                  </tbody>
+                </tbody>
 
-                </table>
-              </div>
+              </table>
             </div>
+          </div>
 
 
-            <script>
+          <script>
 
-              // Agrega una función para mostrar detalles de compra
-              function mostrarDetalleCompra(idcompra) {
-                // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
-                $.ajax({
-                  url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function (data) {
-                    // Llena la ventana modal con los detalles de la compra
-                    $('#detallecompra').empty();
-                    data.forEach(function (detalle) {
-                      var row = `<tr>
+            // Agrega una función para mostrar detalles de compra
+            function mostrarDetalleCompra(idcompra) {
+              // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
+              $.ajax({
+                url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                  // Llena la ventana modal con los detalles de la compra
+                  $('#detallecompra').empty();
+                  data.forEach(function (detalle) {
+                    var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
                         <td>${detalle.detallesventa}</td>
@@ -436,23 +481,23 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                         <td>${detalle.total}</td>
                         <td>${detalle.subtotal}</td>
                       </tr>`;
-                      $('#detallecompra').append(row);
-                    });
-                    // Abre la ventana modal
-                    $('#modalDetalle').show();
-                  },
-                  error: function (error) {
-                    console.log('Error al cargar los detalles de la compra: ' + error);
-                  }
-                });
-              }
+                    $('#detallecompra').append(row);
+                  });
+                  // Abre la ventana modal
+                  $('#modalDetalle').show();
+                },
+                error: function (error) {
+                  console.log('Error al cargar los detalles de la compra: ' + error);
+                }
+              });
+            }
 
-            </script>
-
-          </div>
-        </section>
+          </script>
 
         </div>
+      </section>
+
+      </div>
 
       </section>
 
@@ -665,11 +710,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
       </section>
 
-      <button id="enviar">Enviar</button>
+
+      <!-- corregir y organizar los contendeores de 
+manera ordena
+
+
+ -->
+      <!-- <button id="enviar">Enviar</button> -->
       </form>
       </section>
 
-      <button id="enviar">Enviar</button>
+      <!-- <button id="enviar">Enviar</button> -->
       </div>
       </div>
 
