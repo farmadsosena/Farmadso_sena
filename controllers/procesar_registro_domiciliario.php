@@ -7,6 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $fecha_inicio = $_POST["fechainicio"];
     $disponibilidad = $_POST["disponibilidad"];
     $tipo_vehiculo = $_POST["tipovehiculo"];
+    $estadolaboral = "Trabajando";
+    $estadoAcep = "Pendiente";
     
     if (isset($_POST["tipoCuenta"])) {
         $tipoCuenta = $_POST["tipoCuenta"];
@@ -20,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
 
         if ($cuentaValida) {
             // Utilizar el tipo de cuenta para construir el nombre del campo correspondiente
-            $campoNumeroCuenta = "numeroCuenta" . ucfirst($tipoCuenta);
-            $numeroCuenta = $_POST[$campoNumeroCuenta];
+            $campoNumeroCuenta = "numeroCuenta " . ucfirst($tipoCuenta);
+            $numeroCuenta = $campoNumeroCuenta;
 
             // Resto del código para insertar en la base de datos
         } else {
@@ -48,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     }
 
     // Insertar los datos en la base de datos (debes ajustar la consulta SQL según tu base de datos)
-    $sql = "INSERT INTO domiciliario (id_usuario, direccion, fechainicio,disponibilidad, tipovehiculo, tipoCuenta, numeroCuenta, fotoperfil, historial, tarjetaPropiedad, soat , licencia )
-            VALUES ('$id_usuario','$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$tipoCuenta', '$numeroCuenta','$ruta_imagen', '$ruta_imagen','$ruta_imagen','$ruta_imagen','$ruta_imagen')";
+    $sql = "INSERT INTO domiciliario (idusuario, estadolaboral, direccion, fechainicio, disponibilidad, tipovehiculo, tarjetaPropiedad, soat, licencia, tipoCuenta, numeroCuenta, EstadoAcept, fotoperfil)
+            VALUES ('$id_usuario', '$estadolaboral', '$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$ruta_imagen', '$ruta_imagen','$ruta_imagen', '$tipoCuenta','$numeroCuenta','$estadoAcep','$ruta_imagen')";
 
     if ($conexion->query($sql) === TRUE) {
         echo "<script>
@@ -60,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
         });
         </script>";
         // Redireccionar a la página de éxito o a donde sea necesario
+        header("location:../views/Usuario.php");
     } else {
         echo "<script>
         Swal.fire({

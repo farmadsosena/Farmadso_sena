@@ -7,8 +7,10 @@ if (!isset($_SESSION["usu"])) {
 }
 
 $id = $_SESSION["id"];
+
 $eps = $_SESSION["eps"];
 $imgUser = $_SESSION['img'];
+
 $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
 $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
 ?>
@@ -26,7 +28,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <link rel="stylesheet" href="../assets/css/registros_domi_y_farmacia.css">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="sweetalert2.all.min.js"></script>
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,65 +183,65 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </section>
       </header>
 
-      <section class="cuerpores">
-        <section class="paginas" id="uno">
-          <article class="formulas">
-            <section class="new-formula" id="abrirNewVentana">
-              <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
-            </section>
-            <div class="opt_config">
-              <div class="search">
-                <input type="search" placeholder="Buscar Formula..." />
-                <i class='bx bx-filter'></i>
+      <section class="paginas" id="uno">
+        <article class="formulas">
+          <section class="new-formula" id="abrirNewVentana">
+            <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+          </section>
+          <div class="opt_config">
+            <div class="search">
+              <input type="search" placeholder="Buscar Formula..." />
+              <i class='bx bx-filter'></i>
+            </div>
+            <div class="filtros">
+              <div class="doctor config_filtros">
+                Doctor
+                <i class='bx bx-chevron-right'></i>
               </div>
-              <div class="filtros">
-                <div class="doctor config_filtros">
-                  Doctor
-                  <i class='bx bx-chevron-right'></i>
-                </div>
 
-                <div class="state config_filtros">
-                  Estado
-                  <i class='bx bx-chevron-right'></i>
-                </div>
+              <div class="state config_filtros">
+                Estado
+                <i class='bx bx-chevron-right'></i>
+              </div>
 
-                <div class="date config_filtros">
-                  Fecha
-                  <i class='bx bx-chevron-right'></i>
-                </div>
+              <div class="date config_filtros">
+                Fecha
+                <i class='bx bx-chevron-right'></i>
               </div>
             </div>
+          </div>
 
-            <div class="cards_formulas">
+          <div class="cards_formulas">
 
-              <?php
-              $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
+            <?php
+            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
-              if ($consulta->num_rows > 0) {
-                while ($card = mysqli_fetch_assoc($consulta)) {
-                  $IdMedico = $card['IdMedico'];
-                  $IdDiag = $card['idDiagnostico'];
-                  $fecha = $card['fechaOrden'];
+            if ($consulta->num_rows > 0) {
+              while ($card = mysqli_fetch_assoc($consulta)) {
+                $IdMedico = $card['IdMedico'];
+                $IdDiag = $card['idDiagnostico'];
+                $fecha = $card['fechaOrden'];
 
-                  $fecha_timestamp = strtotime($fecha);
-                  if ($fecha_timestamp !== false) {
-                    $fecha_formateada = date("j F Y", $fecha_timestamp);
-                  }
+                $fecha_timestamp = strtotime($fecha);
+                if ($fecha_timestamp !== false) {
+                  $fecha_formateada = date("j F Y", $fecha_timestamp);
+                }
 
-                  // Consulta Medico
-                  $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
-                  $user_doc = mysqli_fetch_assoc($doc);
-                  $id_medico = $user_doc['idusuario'];
+                // Consulta Medico
+                $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
+                $user_doc = mysqli_fetch_assoc($doc);
+                $id_medico = $user_doc['idusuario'];
 
-                  $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
-                  $row = mysqli_fetch_assoc($cons_med);
+                $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
+                $row = mysqli_fetch_assoc($cons_med);
+                $name_med = $row["nombre"];
+                $lastname = $row['apellido'];
+                // Consulta Diagnostico
+                $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
+                $di = mysqli_fetch_assoc($diagnostico);
+                $name_di = $di['nombreDiag'];
 
-                  // Consulta Diagnostico
-                  $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
-                  $di = mysqli_fetch_assoc($diagnostico);
-                  $name_di = $di['nombreDiag'];
-
-                  echo "<div class='card' data-id='{$card['idFormula']}'>
+                echo "<div class='card' data-id='{$card['idFormula']}'>
         <div class='firts_line'>
             <div class='date-card'>
                 <p>$fecha_formateada</p>
@@ -271,130 +272,204 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </ul>
         </div>
     </div>";
-                }
-              } else {
-                // Pendiente por colocar una mejor presentación para cuando 
-                // no se encuentren formulas
-                echo "No hay formulas";
               }
-              ?>
+            } else {
+              // Pendiente por colocar una mejor presentación para cuando 
+              // no se encuentren formulas
+              echo "No hay formulas";
+            }
+            ?>
 
 
 
 
 
-              <!-- Comienzan tarjetas para formulas -->
-              <div class="formula-info">
-                <div class="card_info">
+            <!-- Comienzan tarjetas para formulas -->
+            <div class="formula-info">
+              <div class="card_info">
+                <div class="infoMedico">
+                  <h1 class="title_infoMedico">Medico</h1>
+                  <div class="medico">
+                    <img class="foto_medico" src="../assets/img/medico_img.jpg" alt="">
+                    <p class="name_medico">
+                      Andres Leonardo Castro Buitrago
+                    </p>
+                  </div>
+                  <div>
+                    <div class="tarjeta ">
+                      <p class="T_name">Tarjeta profesional</p>
+                      <p class="T_number">12345</p>
+                    </div>
+                    <div class="especialidad">
+                      <p class="E_name">Especialidad</p>
+                      <p class="E_espe">Gastroestologo</p>
+                    </div>
+
+                    <div class="fecha_expi">
+                      <p class="F_name">Fecha de expedision</p>
+                      <p class="F_date">05/11/22</p>
+                    </div>
+
+                  </div>
 
                 </div>
+                <div class="infoFormula">
+                  <div>
+                    <h2>Datos Personales</h2>
+                    <div class="datos_user">
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <h2>Datos de afiliación</h2>
+                    <div>
+                      <div>
+                        <div>
+                          <p>Nombre paciente</p>
+                          <p>Nicolas Caicedo</p>
+                        </div>
+
+                        <div>
+                          <p>Identificación</p>
+                          <p>1006537933</p>
+                        </div>
+
+                        <div>
+                          <p>Telefono</p>
+                          <p>3115866621</p>
+                        </div>
+
+                        <div>
+                          <p>Fecha nacimiento</p>
+                          <p>05/11/2002</p>
+                        </div>
+                      </div>
+
+
+                      <div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div>
+                    <h2>Diagnostico encontrados</h2>
+
+                  </div>
+                  <div>
+                    <h2>Medicamentos</h2>
+
+                  </div>
+                </div>
               </div>
-              <!-- Final de tarjetas -->
             </div>
-          </article>
-        </section>
+            <!-- Final de tarjetas -->
+          </div>
+        </article>
+      </section>
 
-        <section class="paginas" id="dos">
+      <section class="paginas" id="dos">
 
-          <div class="container-miscompras">
+        <div class="container-miscompras">
 
-            <table class="preview-detalle">
-              <thead>
-                <tr>
-                  <th class="fecha">Fecha</th>
-                  <th class="estado">Estado</th>
-                  <th class="email">Email</th>
-                  <th class="total">Total</th>
-                  <th class="accion">Acción</th>
-                </tr>
-              </thead>
+          <table class="preview-detalle">
+            <thead>
+              <tr>
+                <th class="fecha">Fecha</th>
+                <th class="estado">Estado</th>
+                <th class="email">Email</th>
+                <th class="total">Total</th>
+                <th class="accion">Acción</th>
+              </tr>
+            </thead>
 
-              <tbody id="tabla-body">
-                <!-- Aquí se agregarán las filas dinámicamente -->
+            <tbody id="tabla-body">
+              <!-- Aquí se agregarán las filas dinámicamente -->
 
-              </tbody>
+            </tbody>
 
-            </table>
+          </table>
 
 
-            <script>
-              // Función para cargar datos desde el servidor
-              function cargarDatos() {
-                // Realizar una solicitud Ajax al servidor para obtener los datos
-                $.ajax({
-                  url: '../controllers/compras.php',
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function(data) {
-                    // Limpiar el cuerpo de la tabla
-                    $('#tabla-body').empty();
+          <script>
+            // Función para cargar datos desde el servidor
+            function cargarDatos() {
+              // Realizar una solicitud Ajax al servidor para obtener los datos
+              $.ajax({
+                url: '../controllers/compras.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  // Limpiar el cuerpo de la tabla
+                  $('#tabla-body').empty();
 
-                    // Iterar a través de los datos y construir las filas de la tabla
-                    data.forEach(function(item) {
-                      var row = `<tr>
+                  // Iterar a través de los datos y construir las filas de la tabla
+                  data.forEach(function(item) {
+                    var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
                     <td class="email">${item.email}</td>
                     <td class="total">${item.total}</td>            
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
-                      $('#tabla-body').append(row);
-                    });
-                  },
-                  error: function(error) {
-                    console.log('Error al cargar los datos: ' + error);
-                  }
-                });
-              }
-
-              // Llamar a la función para cargar los datos al cargar la página
-              $(document).ready(function() {
-                cargarDatos();
+                    $('#tabla-body').append(row);
+                  });
+                },
+                error: function(error) {
+                  console.log('Error al cargar los datos: ' + error);
+                }
               });
-            </script>
+            }
+
+            // Llamar a la función para cargar los datos al cargar la página
+            $(document).ready(function() {
+              cargarDatos();
+            });
+          </script>
 
 
-            <!-- Ventana modal -->
-            <div id="modalDetalle" class="modal">
+          <!-- Ventana modal -->
+          <div id="modalDetalle" class="modal">
 
-              <div class="modal-content">
-                <span class="close-button" onclick="cerrarModal()">&times;</span>
+            <div class="modal-content">
+              <span class="close-button" onclick="cerrarModal()">&times;</span>
 
-                <table class="preview-detalle">
-                  <thead>
-                    <tr>
-                      <th class="fecha">Fecha</th>
-                      <th class="estado">Estado de Compra</th>
-                      <th class="detalle">Detalle</th>
-                      <th class="cantidad">Cantidad</th>
-                      <th class="total">Total</th>
-                      <th class="subtotal">Subtotal</th>
-                    </tr>
-                  </thead>
+              <table class="preview-detalle">
+                <thead>
+                  <tr>
+                    <th class="fecha">Fecha</th>
+                    <th class="estado">Estado de Compra</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="total">Total</th>
+                    <th class="subtotal">Subtotal</th>
+                  </tr>
+                </thead>
 
-                  <tbody id="detallecompra">
-                    <!-- aqui va el contenido de detalles-->
+                <tbody id="detallecompra">
+                  <!-- aqui va el contenido de detalles-->
 
-                  </tbody>
+                </tbody>
 
-                </table>
-              </div>
+              </table>
             </div>
+          </div>
 
 
-            <script>
-              // Agrega una función para mostrar detalles de compra
-              function mostrarDetalleCompra(idcompra) {
-                // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
-                $.ajax({
-                  url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function(data) {
-                    // Llena la ventana modal con los detalles de la compra
-                    $('#detallecompra').empty();
-                    data.forEach(function(detalle) {
-                      var row = `<tr>
+          <script>
+            // Agrega una función para mostrar detalles de compra
+            function mostrarDetalleCompra(idcompra) {
+              // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
+              $.ajax({
+                url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  // Llena la ventana modal con los detalles de la compra
+                  $('#detallecompra').empty();
+                  data.forEach(function(detalle) {
+                    var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
                         <td>${detalle.detallesventa}</td>
@@ -402,66 +477,60 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                         <td>${detalle.total}</td>
                         <td>${detalle.subtotal}</td>
                       </tr>`;
-                      $('#detallecompra').append(row);
-                    });
-                    // Abre la ventana modal
-                    $('#modalDetalle').show();
-                  },
-                  error: function(error) {
-                    console.log('Error al cargar los detalles de la compra: ' + error);
-                  }
-                });
-              }
-            </script>
-
-          </div>
-        </section>
+                    $('#detallecompra').append(row);
+                  });
+                  // Abre la ventana modal
+                  $('#modalDetalle').show();
+                },
+                error: function(error) {
+                  console.log('Error al cargar los detalles de la compra: ' + error);
+                }
+              });
+            }
+          </script>
 
         </div>
+      </section>
 
+      <section class="paginas" id="tres">
+        <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
+        <div class="bt-form"><button>
+            <i class='bx bxs-leaf'></i>
+            <h1>Formulas</h1>
+          </button></div>
 
+        <div class="cont-p">
+          <article class="sect-p">
+            <?php
+            require_once '../templates/papelera.php';
+            ?>
+          </article>
+        </div>
+      </section>
 
-        <section class="paginas" id="tres">
-          <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
-          <div class="bt-form"><button>
-              <i class='bx bxs-leaf'></i>
-              <h1>Formulas</h1>
-            </button></div>
+      <section class="paginas" id="cuatro">
 
-          <div class="cont-p">
-            <article class="sect-p">
-              <?php
-              require_once '../templates/papelera.php';
-              ?>
-            </article>
-          </div>
-        </section>
-
-
-        <section class="paginas" id="cuatro">
-
-          <div class="column" id="opciones">
-            <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
-              <div class="arrow-icon">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
-            </div>
-            <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
-              <div class="arrow-icon">
-                <i class="fa-solid fa-arrow-right"></i>
-              </div>
+        <div class="column" id="opciones">
+          <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+            <div class="arrow-icon">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
-          <div id="contenido-domiciliario" class="hidden">
-            <div class="container">
-              <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
-                <i class='bx bx-left-arrow-alt'></i>
-                <h1>Solicitud para ser domiciliario</h1>
-              </div>
+          <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
+            <div class="arrow-icon">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+        <div id="contenido-domiciliario" class="hidden">
+          <div class="container">
+            <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
+              <i class='bx bx-left-arrow-alt'></i>
+              <h1>Solicitud para ser domiciliario</h1>
+            </div>
               <section class="parte1-formulario">
-
-                <form action="../controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
-                  <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
+              <form action="../controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="user" value='<?php echo $id?>'>
                   <section class="parte1-formulario">
                     <div class="contenedoresparte1">
                       <label for="nombreCompleto">Nombre Completo</label>
@@ -498,17 +567,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                       <input type="date" id="fechainicio" name="fechainicio" required>
                     </div>
 
-                    <div class="contenedoresparte1">
-                      <label for="historial">Historial</label>
-                      <input type="file" id="historial" name="historial" required>
-                    </div>
+                <div class="contenedoresparte1">
+                  <label for="disponibilidad">Disponibilidad</label>
+                  <input type="text" id="disponibilidad" name="disponibilidad" required>
+                </div>
 
-                    <div class="contenedoresparte1">
-                      <label for="disponibilidad">Disponibilidad</label>
-                      <input type="text" id="disponibilidad" name="disponibilidad" required>
-                    </div>
+                <div class="contenedoresparte1">
+                  <label for="imagen">Historial</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
 
-                  </section>
+              </section>
 
                   <h2>Datos Sensibles</h2>
 
@@ -546,7 +615,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                       <input type="file" id="imagen" name="imagen" required>
                     </div>
 
-                  </section>
+                          </section>
 
                     <label for="tipoCuenta">Tipo de cuenta:</label>
                     <select name="tipoCuenta" id="tipoCuenta">
@@ -563,18 +632,22 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <button id="enviar" name="enviar">Enviar</button>
                 </form>
               </section>
-            </div>
           </div>
+        </div>
 
 
-          <div id="contenido-farmacia" class="hidden">
+
+
+
+        <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
+        <div id="contenido-farmacia" class="hidden">
             <div class="container">
               <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
                 <i class='bx bx-left-arrow-alt'></i>
                 <h1>Solicitud para registrar farmacia</h1>
               </div>
               <form action="../controllers/procesar_registro_farmacia.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="idusuario" value='<?php echo $id_usuario ?>'>
+                <input type="hidden" name="idusuario" value='<?php echo $id ?>'>
                 <section class="parte1-formulario">
                   <div class="contenedoresparte1">
                     <label for="nombreFarmacia">Nombre de la Farmacia</label>
@@ -592,92 +665,91 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   </div>
                 </section>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="correo">Correo de Contacto</label>
-                    <input type="email" id="correof" name="correof" required>
-                  </div>
-                  <div class="contenedoresparte1">
-                    <label for="imagen">Foto de la cuenta bancaria</label>
-                    <input type="file" id="imagenf" name="imagenf" required>
-                  </div>
-                </section>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="correo">Correo de Contacto</label>
+                  <input type="email" id="correof" name="correof" required>
+                </div>
+                <div class="contenedoresparte1">
+                  <label for="imagen"> Imagen de Presentación</label>
+                  <input type="file" id="imagenf" name="imagenf" required>
+                </div>
+              </section>
 
-                <h2>Datos Sensibles</h2>
+              <h2>Datos Sensibles</h2>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="departamento">Departamento</label>
-                    <select id="Departamentof" name="Departamentof" required>
-                      <option value="departamento1">Caquetá</option>
-                      <option value="departamento2">Cundinamarca</option>
-                      <!-- Agrega más departamentos según sea necesario -->
-                    </select>
-                  </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="departamento">Departamento</label>
+                  <select id="departamentof" name="departamentof" required>
+                    <option value="departamento1">Caquetá</option>
+                    <option value="departamento2">Cundinamarca</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                  </select>
+                </div>
 
-                  <div class="contenedoresparte1">
-                    <label for="ciudad">Ciudad</label>
-                    <select id="ciudadf" name="ciudadf" required>
-                      <option value="departamento1">Florencia</option>
-                      <option value="departamento2">Bogota</option>
-                      <!-- Agrega más ciudades según sea necesario -->
-                    </select>
-                  </div>
-                </section>
+                <div class="contenedoresparte1">
+                  <label for="ciudad">Ciudad</label>
+                  <select id="ciudad" name="ciudadf" required>
+                    <option value="departamento1">Florencia</option>
+                    <option value="departamento2">Bogota</option>
+                    <!-- Agrega más ciudades según sea necesario -->
+                  </select>
+                </div>
+              </section>
 
-                <section class="parte1-formulario">
-                  <div class="contenedoresparte1">
-                    <label for="codigoPostal">Código Postal</label>
-                    <input type="text" id="codigoPostalf" name="codigoPostalf" required>
-                  </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="codigoPostal">Código Postal</label>
+                  <input type="text" id="codigoPostalf" name="codigoPostalf" required>
+                </div>
 
-                  <div class="contenedoresparte1">
-                    <label for="horario">Días de Horario Laboral</label>
-                    <select id="horariof" name="horariof" required>
-                      <option value="lunes">Lunes</option>
-                      <option value="martes">Martes</option>
-                      <!-- Agrega más días según sea necesario -->
-                    </select>
-                  </div>
-                </section>
+                <div class="contenedoresparte1">
+                  <label for="horario">Días de Horario Laboral</label>
+                  <select id="horariof" name="horariof" required>
+                    <option value="lunes">Lunes</option>
+                    <option value="martes">Martes</option>
+                    <!-- Agrega más días según sea necesario -->
+                  </select>
+                </div>
 
+                <div class="contenedoresparte1">
+                  <label for="jornada">Jornada</label>
+                  <select id="jornadaf" name="jornadaf" required>
+                    <option value="manana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                  </select>
+                </div>
+              </section>
 
+              <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+              <select id="epsRegistradof" name="epsRegistradof" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
 
-                <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-                <select id="epsRegistradof" name="epsRegistradof" required onchange="mostrarOcultarEPS()">
-                  <option>Escoge la opción</option>
-                  <option value="si">Sí</option>
-                  <option value="no">No</option>
-                </select>
+              <label for="eps">EPS con la que está registrado</label>
+              <select id="idEpsf" name="idEpsf" required>
+                <option value="1">EPS 1</option>
+                <option value="2">IPS 2</option>
+                <!-- Agrega más EPS según sea necesario -->
+              </select>
 
+              <label for="nitEps">NIT de EPS</label>
+              <input type="text" id="nitEPS" name="nitEPS" required>
 
-
-                <label for="eps" style="display: none;">EPS con la que está registrado</label>
-                <select id="idEpsf" name="idEpsf" style="display: none;">
-                  <option value="1">No tengo una EPS</option>
-                  <option value="2">COOMEVA ENTIDAD PROMOTORA DE SALUD S.A. "COOMEVA E.P.S. S.A.</option>
-                  <option value="3">ASMET SALUD EPS S.A.S.</option>
-                  <option value="4">ASMET SALUD EPS S.A.S.</option>
-                  <option value="5">ENTIDAD PROMOTORA DE SALUD SANITAS S.A.S.</option>
-                </select>
-
-                <label for="nitEps" class="niteps" style="display: none;">NIT de EPS</label>
-                <input type="text" id="nitEPS" name="nitEPS" style="display: none;">
-
-
-                <button type="submit" id="enviar" name="enviarf">Enviar</button>
+              <button id="enviar">Enviar</button>
               </form>
             </div>
-
           </div>
-        </section>
-      </section>
+      </section> <!-- Etiqueta que termina el contenedor 4 -->
     </article>
   </main>
 
   <?php
   include "../models/funcionemail.php";
   ?>
+
   <section class="cuentas" id="datos-user">
     <section class="overflow">
       <header>
@@ -694,11 +766,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <section class="count">
             <section class="fal">
               <div>
-                <img src="<?php echo $rr[" imgUser"] ?>" alt="">
+                <img src="<?php echo $rr["imgUser"] ?>" alt="">
               </div>
             </section>
             <section class="fole">
               <h4>
+                <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
                 <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
               </h4>
               <p>
@@ -781,6 +854,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="../assets/js/eliminar.js"></script>
   <script src="../assets/js/menu_card.js"></script>
   <script src="../assets/js/funcionusuario.js"></script>
+  <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
