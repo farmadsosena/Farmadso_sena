@@ -33,7 +33,7 @@ $response = $client->request(
             'messages' => [
                 [
                     'from' => '447860099299',
-                    'to' => "573123350607",
+                    'to' => "573142280319",
                     'content' => [
                         'templateName' => 'registration_success',
                         'templateData' => [
