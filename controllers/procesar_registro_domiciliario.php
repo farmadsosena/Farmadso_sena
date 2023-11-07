@@ -3,27 +3,32 @@ include("../config/Conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $id_usuario = $_POST["user"];
-    $direccion= $_POST["direccion"];
+    $direccion = $_POST["direccion"];
     $fecha_inicio = $_POST["fechainicio"];
-    $historial = $_POST["historial"];
     $disponibilidad = $_POST["disponibilidad"];
     $tipo_vehiculo = $_POST["tipovehiculo"];
-    $tipoCuenta = $_POST["tipo_cuenta"];
-
-    if ($tipoCuenta === "nequi" || $tipoCuenta === "paypal" || $tipoCuenta === "bancolombia") {
-        $numeroCuenta = $_POST["numeroCuenta"];
-        
-        if ($tipoCuenta === "nequi") {
-         $cuentanequi = $_POST["numeroCuenta"];
-
-        } elseif ($tipoCuenta === "paypal") {
-            $cuentapaypal = $_POST["numeroCuenta"];
-
-        } elseif ($tipoCuenta === "bancolombia") {
-            $cuentaban= $_POST["numeroCuenta"];
-        }
-    } 
     
+    if (isset($_POST["tipoCuenta"])) {
+        $tipoCuenta = $_POST["tipoCuenta"];
+
+        // Validar que el tipo de cuenta seleccionado es válido
+        $cuentaValida = false;
+
+        if ($tipoCuenta === "nequi" || $tipoCuenta === "paypal" || $tipoCuenta === "bancolombia") {
+            $cuentaValida = true;
+        }
+
+        if ($cuentaValida) {
+            // Utilizar el tipo de cuenta para construir el nombre del campo correspondiente
+            $campoNumeroCuenta = "numeroCuenta" . ucfirst($tipoCuenta);
+            $numeroCuenta = $_POST[$campoNumeroCuenta];
+
+            // Resto del código para insertar en la base de datos
+        } else {
+            echo "<div class='alert'>Tipo de cuenta no válido.</div>";
+        }
+    }
+
     // Validar que la imagen se haya cargado correctamente
     if ($_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         $carpeta_destino = "../uploads/imgUsuario/";
@@ -43,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     }
 
     // Insertar los datos en la base de datos (debes ajustar la consulta SQL según tu base de datos)
-    $sql = "INSERT INTO tabla_nombre (id_usuario, direccion, fechainicio, historial,disponibilidad, tipovehiculo tipo_cuenta, numero_cuenta, ruta_imagen)
-            VALUES ('$id_usuario','$direccion','$fecha_inicio', '$historial','$disponibilidad','$tipo_vehiculo', '$tipoCuenta', '$numeroCuenta', '$ruta_imagen')";
+    $sql = "INSERT INTO domiciliario (id_usuario, direccion, fechainicio,disponibilidad, tipovehiculo, tipoCuenta, numeroCuenta, fotoperfil, historial, tarjetaPropiedad, soat , licencia )
+            VALUES ('$id_usuario','$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$tipoCuenta', '$numeroCuenta','$ruta_imagen', '$ruta_imagen','$ruta_imagen','$ruta_imagen','$ruta_imagen')";
 
     if ($conexion->query($sql) === TRUE) {
         echo "<script>
@@ -65,4 +70,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
         </script>";
     }
 }
+
 ?>

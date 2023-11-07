@@ -514,7 +514,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                   <section class="parte1-formulario">
 
-                  <div class="contenedoresparte1">
+                    <div class="contenedoresparte1">
                       <label for="Tipovehiculo">Tipo de Vehiculo</label>
                       <select id="tipovehiculo" name="tipovehiculo" required>
                         <option value="moto">Moto</option>
@@ -531,81 +531,40 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                   <section class="parte1-formulario">
 
-                  <div class="contenedoresparte1">
+                    <div class="contenedoresparte1">
                       <label for="imagen">Tarjeta de propiedad</label>
-                      <input type="file" id="tarjetaPropiedad" name="tarjetaPropiedad" required>
+                      <input type="file" id="imagen" name="imagen" required>
                     </div>
 
                     <div class="contenedoresparte1">
                       <label for="imagen">Soat</label>
-                      <input type="file" id="soat" name="soat" required>
+                      <input type="file" id="imagen" name="imagen" required>
                     </div>
 
                     <div class="contenedoresparte1">
                       <label for="imagen">Licencia de conducir</label>
-                      <input type="file" id="licencia" name="licencia" required>
-                    </div>
-                  
-                  </section>
-
-                  <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
-                  <select id="tipo_cuenta" name="tipo_cuenta" required>
-                    <option>Escoge la opcion</option>
-                    <option value="nequi">Nequi</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="bancolombia">Bancolombia</option>
-                  </select>
-
-                  <section class="respuesta_select" id="respuesta_select">
-
-                    <div id="nequi_info" class="info-container hidden">
-
-                      <h3>Datos Sensible para Nequi</h3>
-
-                      <section class="parte1-formulario">
-                        <div class="contenedoresparte1">
-                          <label for="numeroCuenta">Numero de cuenta</label>
-                          <input type="tel" id="numeroCuenta" name="numeroCuenta" required>
-                        </div>
-
-                      </section>
-                    </div>
-
-                    <div id="paypal_info" class="info-container hidden">
-
-                      <h3>Datos Sensible para PayPal</h3>
-
-                      <section class="parte1-formulario">
-
-                        <div class="contenedoresparte1">
-                          <label for="numeroCuenta">Numero de cuenta</label>
-                          <input type="tel" id="numeroCuenta" name="numeroCuenta" required>
-                        </div>
-                      </section>
-                    </div>
-
-                    <div id="bancolombia_info" class="info-container hidden">
-
-                      <h3>Datos Sensible para Bancolombia<h3>
-
-                          <section class="parte2-formulario">
-                            <div class="contenedoresparte1">
-                              <label for="numeroCuenta">Numero de cuenta</label>
-                              <input type="tel" id="numeroCuenta" name="numeroCuenta" required>
-                            </div>
-                          </section>
-
+                      <input type="file" id="imagen" name="imagen" required>
                     </div>
 
                   </section>
+
+                    <label for="tipoCuenta">Tipo de cuenta:</label>
+                    <select name="tipoCuenta" id="tipoCuenta">
+                      <option value="nequi">Nequi</option>
+                      <option value="paypal">PayPal</option>
+                      <option value="bancolombia">Bancolombia</option>
+                    </select>
+                    <br>
+
+                    <label for="numeroCuenta">Número de cuenta:</label>
+                    <input type="text" name="numeroCuenta" id="numeroCuenta">
+                    <br>
 
                   <button id="enviar" name="enviar">Enviar</button>
                 </form>
               </section>
             </div>
           </div>
-
-
 
 
           <div id="contenido-farmacia" class="hidden">
@@ -825,7 +784,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
-  <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
   <script src="../assets/js/mostrar_ocultarEPS.js"></script>
 </body>
 
