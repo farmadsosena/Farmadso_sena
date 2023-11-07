@@ -214,7 +214,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="cards_formulas">
 
             <?php
-            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
+            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = '$id' and EstadoFormula = 1");
 
             if ($consulta->num_rows > 0) {
               while ($card = mysqli_fetch_assoc($consulta)) {
@@ -507,7 +507,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </article>
         </div>
       </section>
-      
+
       <section class="paginas" id="cuatro">
 
         <div class="column" id="opciones">
