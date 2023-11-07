@@ -1,6 +1,13 @@
 <?php
 session_start(); // Iniciar la sesión
 include("../config/Conexion.php");
+
+
+if (!isset($_SESSION["usu"])) {
+  echo "<script> window.location='login.php'</script>";
+}
+
+
 $id_usuario = $_SESSION['id'];
 $con1 = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id_usuario'");
 $user = mysqli_fetch_assoc($con1);
