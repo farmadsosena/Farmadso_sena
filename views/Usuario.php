@@ -217,11 +217,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <?php
               $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
 
-if ($consulta->num_rows > 0) {
-    $card = mysqli_fetch_assoc($consulta);
-    $IdMedico = $card['IdMedico'];
-    $IdDiag = $card['idDiagnostico'];
-    $fecha = $card['fechaOrden'];
+              if ($consulta->num_rows > 0) {
+                $card = mysqli_fetch_assoc($consulta);
+                $IdMedico = $card['IdMedico'];
+                $IdDiag = $card['idDiagnostico'];
+                $fecha = $card['fechaOrden'];
 
                 $fecha_timestamp = strtotime($fecha);
                 if ($fecha_timestamp !== false) {
@@ -272,12 +272,12 @@ if ($consulta->num_rows > 0) {
             </ul>
         </div>
     </div>";
-}else{
-  // Pendiente por colocar una mejor presentación para cuando 
-  // no se encuentren formulas
-  echo "No hay formulas";
-}
-?>
+              } else {
+                // Pendiente por colocar una mejor presentación para cuando 
+                // no se encuentren formulas
+                echo "No hay formulas";
+              }
+              ?>
 
 
 
@@ -449,104 +449,104 @@ if ($consulta->num_rows > 0) {
 
           <!-- CONTENIDO PARA HACER EL FORMUARIO DE FARMACIA -->
           <div id="contenido-farmacia" class="hidden">
-        <div class="container">
-          <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
-            <i class='bx bx-left-arrow-alt'></i>
-            <h1>Solicitud para registrar farmacia</h1>
-          </div>
+            <div class="container">
+              <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+                <i class='bx bx-left-arrow-alt'></i>
+                <h1>Solicitud para registrar farmacia</h1>
+              </div>
 
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="nombreFarmacia">Nombre de la Farmacia</label>
-              <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
-            </div>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                  <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+                </div>
 
-            <div class="contenedoresparte1">
-              <label for="direccion">Dirección</label>
-              <input type="text" id="direccion" name="direccion" required>
-            </div>
+                <div class="contenedoresparte1">
+                  <label for="direccion">Dirección</label>
+                  <input type="text" id="direccion" name="direccion" required>
+                </div>
 
-            <div class="contenedoresparte1">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" required>
-            </div>
-          </section>
+                <div class="contenedoresparte1">
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" id="telefono" name="telefono" required>
+                </div>
+              </section>
 
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="correo">Correo de Contacto</label>
-              <input type="email" id="correo" name="correo" required>
-            </div>
-            <div class="contenedoresparte1">
-              <label for="imagen"> Imagen de Presentación</label>
-              <input type="file" id="imagen" name="imagen" required>
-            </div>
-          </section>
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="correo">Correo de Contacto</label>
+                  <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="contenedoresparte1">
+                  <label for="imagen"> Imagen de Presentación</label>
+                  <input type="file" id="imagen" name="imagen" required>
+                </div>
+              </section>
 
-          <h2>Datos Sensibles</h2>
+              <h2>Datos Sensibles</h2>
 
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="departamento">Departamento</label>
-              <select id="departamento" name="departamento" required>
-                <option value="departamento1">Caquetá</option>
-                <option value="departamento2">Cundinamarca</option>
-                <!-- Agrega más departamentos según sea necesario -->
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="departamento">Departamento</label>
+                  <select id="departamento" name="departamento" required>
+                    <option value="departamento1">Caquetá</option>
+                    <option value="departamento2">Cundinamarca</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                  </select>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="ciudad">Ciudad</label>
+                  <select id="ciudad" name="ciudad" required>
+                    <option value="departamento1">Florencia</option>
+                    <option value="departamento2">Bogota</option>
+                    <!-- Agrega más ciudades según sea necesario -->
+                  </select>
+                </div>
+              </section>
+
+              <section class="parte1-formulario">
+                <div class="contenedoresparte1">
+                  <label for="codigoPostal">Código Postal</label>
+                  <input type="text" id="codigoPostal" name="codigoPostal" required>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="horario">Días de Horario Laboral</label>
+                  <select id="horario" name="horario" required>
+                    <option value="lunes">Lunes</option>
+                    <option value="martes">Martes</option>
+                    <!-- Agrega más días según sea necesario -->
+                  </select>
+                </div>
+
+                <div class="contenedoresparte1">
+                  <label for="jornada">Jornada</label>
+                  <select id="jornada" name="jornada" required>
+                    <option value="manana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                  </select>
+                </div>
+              </section>
+
+              <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+              <select id="epsRegistrado" name="epsRegistrado" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
               </select>
-            </div>
 
-            <div class="contenedoresparte1">
-              <label for="ciudad">Ciudad</label>
-              <select id="ciudad" name="ciudad" required>
-                <option value="departamento1">Florencia</option>
-                <option value="departamento2">Bogota</option>
-                <!-- Agrega más ciudades según sea necesario -->
+              <label for="eps">EPS con la que está registrado</label>
+              <select id="eps" name="eps" required>
+                <option value="eps1">EPS 1</option>
+                <option value="eps2">IPS 2</option>
+                <!-- Agrega más EPS según sea necesario -->
               </select>
+
+              <label for="nitEps">NIT de EPS</label>
+              <input type="text" id="nitEps" name="nitEps" required>
+
+              <button id="enviar">Enviar</button>
             </div>
-          </section>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="codigoPostal">Código Postal</label>
-              <input type="text" id="codigoPostal" name="codigoPostal" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="horario">Días de Horario Laboral</label>
-              <select id="horario" name="horario" required>
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <!-- Agrega más días según sea necesario -->
-              </select>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="jornada">Jornada</label>
-              <select id="jornada" name="jornada" required>
-                <option value="manana">Mañana</option>
-                <option value="tarde">Tarde</option>
-              </select>
-            </div>
-          </section>
-
-          <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-          <select id="epsRegistrado" name="epsRegistrado" required>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-          </select>
-
-          <label for="eps">EPS con la que está registrado</label>
-          <select id="eps" name="eps" required>
-            <option value="eps1">EPS 1</option>
-            <option value="eps2">IPS 2</option>
-            <!-- Agrega más EPS según sea necesario -->
-          </select>
-
-          <label for="nitEps">NIT de EPS</label>
-          <input type="text" id="nitEps" name="nitEps" required>
-
-          <button id="enviar">Enviar</button>
-        </div>
           </div>
           <!-- FINAL DEL CONTENIDO DE FARMACIA-->
 
@@ -559,10 +559,6 @@ if ($consulta->num_rows > 0) {
                 <h1>Solicitud para ser domiciliario</h1>
               </div>
               <section class="parte1-formulario">
-                <div class="contenedoresparte1">
-                  <label for="nombreCompleto">Nombre Completo</label>
-                  <input type="text" id="nombrecompleto" name="nombrecompleto" required>
-                </div>
                 <section class="parte1-formulario">
                   <form action="" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="user" value='<?php echo $id_usuario ?>'>
@@ -725,18 +721,18 @@ if ($consulta->num_rows > 0) {
 
                           </section>
 
+                          <button id="enviar">Enviar</button>
+                  </form>
+                </section>
+                </section>
             </div>
+
           </div>
-
-            <!-- FINAL DEL CONTENIDO DE DOMICILIARIO -->
+          <!-- FINAL DEL CONTENIDO DE DOMICILIARIO -->
         </section>
-        
-    
-
-      </section>
 
 
-<!-- 
+        <!-- 
       <button id="enviar">Enviar</button>
       </form>
       </section>
@@ -750,7 +746,7 @@ if ($consulta->num_rows > 0) {
 
 
 
-      <!-- </section>
+        <!-- </section>
       </section>
       </section> -->
     </article>

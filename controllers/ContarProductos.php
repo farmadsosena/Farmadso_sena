@@ -1,8 +1,8 @@
 <?php
-include("../config/Conexion.php");
 
 // Valor a validar
-$valor = "11"; // Cambia esto al valor que deseas validar
+$valor = $id_solicit; // Cambia esto al valor que deseas validar
+$numero= $_SESSION["telefono"];
 
 // Consulta SQL para buscar el valor en la tabla
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$valor'";
@@ -39,6 +39,8 @@ if ($result->num_rows > 0) {
         }
       }
   }
+
+  require_once "../Whatsapp.php";
 
 
 } else {

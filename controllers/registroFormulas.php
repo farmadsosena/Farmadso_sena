@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssss", $id, $eps, $medico, $causa, $diag, $estadoFormula, $rutaCompleta);
 
     if ($stmt->execute()) {
+        $id_solicit= mysqli_insert_id($conexion);
         // Obtener el ID de la fórmula recién insertada
         $formulaId = $stmt->insert_id;
 
@@ -56,9 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al insertar el registro de la fórmula: " . $stmt->error;
     }
 
+    require_once "ContarProductos.php";
+
+
     // Cerrar la conexión a la base de datos
-    $stmt->close();
-    $conexion->close();
 
     echo "<script>alert('Fórmula añadida con éxito')</script>";
     echo "<script>window.location='../views/Usuario.php'</script>";
