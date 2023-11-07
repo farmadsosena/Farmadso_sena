@@ -10,7 +10,6 @@ $(document).ready(function() {
   });
 });
 
-
 const detailsElements = document.querySelectorAll('.divhes .contenido details');
 
 detailsElements.forEach((details) => {

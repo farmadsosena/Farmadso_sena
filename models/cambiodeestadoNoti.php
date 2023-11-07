@@ -1,5 +1,4 @@
 <?php
-// tu_script_php.php
 
 require_once('../models/conexion.php');
 

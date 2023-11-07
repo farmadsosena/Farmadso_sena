@@ -10,7 +10,7 @@
     var formData = new FormData();
     formData.append('idCompra', idCompra);
 
-    fetch('views/datosCompra.php', {
+    fetch('models/datosCompra.php', {
         method: 'POST',
         body: formData
     })

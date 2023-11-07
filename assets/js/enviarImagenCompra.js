@@ -6,7 +6,7 @@ $(document).ready(function() {
         var formData = new FormData(this);
 
         $.ajax({
-            url: 'views/cargarimagenCompra.php',
+            url: 'models/cargarimagenCompra.php',
             type: 'POST',
             data: formData,
             contentType: false,

@@ -7,7 +7,7 @@ function abrirG(idCompra) {
   var formData = new FormData();
   formData.append("idCompra", idCompra);
 
-  fetch("views/datosHistoria.php", {
+  fetch("models/datosHistoria.php", {
     method: "POST",
     body: formData,
   })

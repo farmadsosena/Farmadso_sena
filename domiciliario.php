@@ -171,7 +171,7 @@
 
       <div class="his">
       <?php
-        include("views/historiasDomi.php");
+        include("models/historiasDomi.php");
         ?>
 
 
@@ -191,7 +191,7 @@
       <section class="notificationsDelivery">
 
         <?php
-        include("views/notificaciones.php")
+        include("models/notificaciones.php")
         ?>
 
         <!-- <article class="orderAvailable">
@@ -297,7 +297,7 @@
 
 
       <?php
-        include("views/tareas.php")
+        include("models/tareas.php")
         ?>
 
         <!-- <div class="taskData">
