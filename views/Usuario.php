@@ -31,7 +31,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
+    rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -59,7 +61,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         <article class="hoss">
           <?php
           if ($eps == 1) {
-          ?>
+            ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
@@ -78,9 +80,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-          <?php
+            <?php
           } else {
-          ?>
+            ?>
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
@@ -115,7 +117,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-          <?php
+            <?php
           }
           ?>
 
@@ -318,48 +320,131 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     <h2>Datos Personales</h2>
                     <div class="datos_user">
 
+                      <div class="first_line_user">
+                        <div class="content_user">
+                          <p class="subtitle_user">Nombre paciente</p>
+                          <p class="contenido">Nicolas Caicedo</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Identificación</p>
+                          <p class="contenido">1006537933</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Telefono</p>
+                          <p class="contenido">3115866621</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Fecha nacimiento</p>
+                          <p class="contenido">05/11/2002</p>
+                        </div>
+                      </div>
+
+
+                      <div class="second_line_user">
+                        <div>
+                          <p class="content_user">Fecha de orden</p>
+                          <p class="contenido">11/09/23</p>
+                        </div>
+                        <div>
+                          <p class="content_user">Edad actual</p>
+                          <p class="contenido">21 años</p>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
-                  <div>
+                  <div class="">
                     <h2>Datos de afiliación</h2>
-                    <div>
-                      <div>
-                        <div>
-                          <p>Nombre paciente</p>
-                          <p>Nicolas Caicedo</p>
-                        </div>
-
-                        <div>
-                          <p>Identificación</p>
-                          <p>1006537933</p>
-                        </div>
-
-                        <div>
-                          <p>Telefono</p>
-                          <p>3115866621</p>
-                        </div>
-
-                        <div>
-                          <p>Fecha nacimiento</p>
-                          <p>05/11/2002</p>
-                        </div>
+                    <div class="datos_afilicion"> 
+                      <div >
+                        <p class="subtitle_user">Entidad</p>
+                        <p class="contenido">SALUCOOP</p>
                       </div>
 
-
                       <div>
-
+                        <p class="subtitle_user">Plan de beneficios</p>
+                        <p  class="contenido">prepagado</p>
                       </div>
 
+                      <div>
+                        <p class="subtitle_user">Tipo de afiliación</p>
+                        <p class="contenido">Beneficiario</p>
+                      </div>
+
+                      <div>
+                        <p class="subtitle_user">Causa externa</p>
+                        <p class="contenido">Enfermedad general</p>
+                      </div>
                     </div>
                   </div>
                   <div>
                     <h2>Diagnostico encontrados</h2>
-
+                    <div>
+                      <p>Descripción del diagnostico</p>
+                      <p class="contenido">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus nulla optio voluptas, vel
+                        quae ipsa est fugiat voluptates! Ducimus dicta a modi eum incidunt libero temporibus quidem
+                        officiis itaque aliquam.</p>
+                    </div>
                   </div>
                   <div>
                     <h2>Medicamentos</h2>
+                    <div class="content_medicamentos">
 
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+
+                        <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+                      <div class="medicamento">
+                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <p>Ibuprofeno</p>
+                          <p class="state_med">Disponible</p>
+                      </div>
+                      
+
+                    </div>
                   </div>
                 </div>
               </div>
@@ -400,12 +485,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/compras.php',
                 method: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                   // Limpiar el cuerpo de la tabla
                   $('#tabla-body').empty();
 
                   // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function(item) {
+                  data.forEach(function (item) {
                     var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
@@ -416,14 +501,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     $('#tabla-body').append(row);
                   });
                 },
-                error: function(error) {
+                error: function (error) {
                   console.log('Error al cargar los datos: ' + error);
                 }
               });
             }
 
             // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function() {
+            $(document).ready(function () {
               cargarDatos();
             });
           </script>
@@ -465,10 +550,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                 method: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
-                  data.forEach(function(detalle) {
+                  data.forEach(function (detalle) {
                     var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
@@ -482,7 +567,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Abre la ventana modal
                   $('#modalDetalle').show();
                 },
-                error: function(error) {
+                error: function (error) {
                   console.log('Error al cargar los detalles de la compra: ' + error);
                 }
               });
@@ -507,7 +592,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </article>
         </div>
       </section>
-      
+
       <section class="paginas" id="cuatro">
 
         <div class="column" id="opciones">
@@ -701,104 +786,104 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
         <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
         <div id="contenido-farmacia" class="hidden">
-        <div class="container">
-          <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
-            <i class='bx bx-left-arrow-alt'></i>
-            <h1>Solicitud para registrar farmacia</h1>
+          <div class="container">
+            <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+              <i class='bx bx-left-arrow-alt'></i>
+              <h1>Solicitud para registrar farmacia</h1>
+            </div>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="correo">Correo de Contacto</label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+              <div class="contenedoresparte1">
+                <label for="imagen"> Imagen de Presentación</label>
+                <input type="file" id="imagen" name="imagen" required>
+              </div>
+            </section>
+
+            <h2>Datos Sensibles</h2>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="departamento">Departamento</label>
+                <select id="departamento" name="departamento" required>
+                  <option value="departamento1">Caquetá</option>
+                  <option value="departamento2">Cundinamarca</option>
+                  <!-- Agrega más departamentos según sea necesario -->
+                </select>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="ciudad">Ciudad</label>
+                <select id="ciudad" name="ciudad" required>
+                  <option value="departamento1">Florencia</option>
+                  <option value="departamento2">Bogota</option>
+                  <!-- Agrega más ciudades según sea necesario -->
+                </select>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="codigoPostal">Código Postal</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="horario">Días de Horario Laboral</label>
+                <select id="horario" name="horario" required>
+                  <option value="lunes">Lunes</option>
+                  <option value="martes">Martes</option>
+                  <!-- Agrega más días según sea necesario -->
+                </select>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="jornada">Jornada</label>
+                <select id="jornada" name="jornada" required>
+                  <option value="manana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                </select>
+              </div>
+            </section>
+
+            <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+            <select id="epsRegistrado" name="epsRegistrado" required>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+
+            <label for="eps">EPS con la que está registrado</label>
+            <select id="eps" name="eps" required>
+              <option value="eps1">EPS 1</option>
+              <option value="eps2">IPS 2</option>
+              <!-- Agrega más EPS según sea necesario -->
+            </select>
+
+            <label for="nitEps">NIT de EPS</label>
+            <input type="text" id="nitEps" name="nitEps" required>
+
+            <button id="enviar">Enviar</button>
           </div>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="nombreFarmacia">Nombre de la Farmacia</label>
-              <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="direccion">Dirección</label>
-              <input type="text" id="direccion" name="direccion" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" required>
-            </div>
-          </section>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="correo">Correo de Contacto</label>
-              <input type="email" id="correo" name="correo" required>
-            </div>
-            <div class="contenedoresparte1">
-              <label for="imagen"> Imagen de Presentación</label>
-              <input type="file" id="imagen" name="imagen" required>
-            </div>
-          </section>
-
-          <h2>Datos Sensibles</h2>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="departamento">Departamento</label>
-              <select id="departamento" name="departamento" required>
-                <option value="departamento1">Caquetá</option>
-                <option value="departamento2">Cundinamarca</option>
-                <!-- Agrega más departamentos según sea necesario -->
-              </select>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="ciudad">Ciudad</label>
-              <select id="ciudad" name="ciudad" required>
-                <option value="departamento1">Florencia</option>
-                <option value="departamento2">Bogota</option>
-                <!-- Agrega más ciudades según sea necesario -->
-              </select>
-            </div>
-          </section>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="codigoPostal">Código Postal</label>
-              <input type="text" id="codigoPostal" name="codigoPostal" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="horario">Días de Horario Laboral</label>
-              <select id="horario" name="horario" required>
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <!-- Agrega más días según sea necesario -->
-              </select>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="jornada">Jornada</label>
-              <select id="jornada" name="jornada" required>
-                <option value="manana">Mañana</option>
-                <option value="tarde">Tarde</option>
-              </select>
-            </div>
-          </section>
-
-          <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-          <select id="epsRegistrado" name="epsRegistrado" required>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-          </select>
-
-          <label for="eps">EPS con la que está registrado</label>
-          <select id="eps" name="eps" required>
-            <option value="eps1">EPS 1</option>
-            <option value="eps2">IPS 2</option>
-            <!-- Agrega más EPS según sea necesario -->
-          </select>
-
-          <label for="nitEps">NIT de EPS</label>
-          <input type="text" id="nitEps" name="nitEps" required>
-
-          <button id="enviar">Enviar</button>
-        </div>
         </div>
 
       </section> <!-- Etiqueta que termina el contenedor 4 -->
@@ -860,7 +945,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto"
+              autocomplete="off" value="">
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -868,13 +954,15 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none"
+              placeholder="Causa de la cita medica"></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
+                  class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -884,13 +972,15 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico"
+                  class="mauso-texto encojer" accept=".png, .jpg,">
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos"
+              placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
           </div>
         </section>
         <section class="padre-medicamentos">
