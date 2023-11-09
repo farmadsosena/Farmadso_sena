@@ -322,7 +322,7 @@
             </div>
             <div class="optionsStateDelivery">
               <label class="upload">
-                Cargar Imagen
+                Cargar Imagen 
               
                 <input type="file" />
               </label>
