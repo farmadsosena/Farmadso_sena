@@ -1,29 +1,25 @@
-
 <?php
 require_once 'config/Conexion.php';
+$bd = new Conexion();
+$conexion = $bd->getConexion();  // Obtener la conexión a la base de datos
 
-try {
-    $conexion = new PDO('mysql:host=localhost;dbname=farmadso', 'root', '');
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Consulta para obtener los nombres de las categorías
-    $result_categorias = $conexion->query("SELECT idcategoria, nombrecategoria FROM categoria");
-    $categorias = $result_categorias->fetchAll(PDO::FETCH_ASSOC);
+// Consulta para obtener los nombres de las categorías
+$result_categorias = mysqli_query($conexion, "SELECT idcategoria, nombrecategoria FROM categoria");
+$categorias = mysqli_fetch_all($result_categorias, MYSQLI_ASSOC);
 
-    // Consulta para obtener los nombres de los proveedores
-    $result_proveedores = $conexion->query("SELECT idproveedor, nombreproveedor FROM proveedor");
-    $proveedores = $result_proveedores->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
+// Consulta para obtener los nombres de los proveedores
+$result_proveedores = mysqli_query($conexion, "SELECT idproveedor, nombreproveedor FROM proveedor");
+$proveedores = mysqli_fetch_all($result_proveedores, MYSQLI_ASSOC);
 
-$conexion = null; // Cerrar la conexión
+mysqli_close($conexion); // Cerrar la conexión
 ?>
-
 <div class="cont-form">
     <!-- Cerrar Formulario -->
+    <div class="options-form">
     <i class="bx bx-chevron-left" onclick="closeFormMedicine()"></i>
-
+    <i class="bx bx-brush" onclick="cleanFormMedicine()"></i>
+    </div>
     <form id="medicineAdd" onsubmit="sendForm(event, 'medicineAdd', 'controllers/medicineAdd.php' )" class="formAM"
         enctype="multipart/form-data">
         <div class="inputallimg">
@@ -59,7 +55,7 @@ $conexion = null; // Cerrar la conexión
                 <div class="distributecontent">
                     <div class="inputFormAM">
                         <label for="cum">Código:</label>
-                        <input type="number" placeholder="CUM" name="cum" id="cum" />
+                        <input type="number" placeholder="CUM" name="cum" id="cum" required/>
                     </div>
                     <div class="inputFormAM">
                         <label for="medicineName">Nombre:</label>
@@ -70,7 +66,7 @@ $conexion = null; // Cerrar la conexión
 
                     <div class="inputFormAM">
                         <label for="priceMedicine">Precio:</label>
-                        <input type="number" name="priceMedicine" />
+                        <input type="number" name="priceMedicine" placeholder="COP"/>
                     </div>
                     <div class="inputFormAM">
                         <label for="loteMedicine">Lote:</label>
@@ -145,6 +141,3 @@ $conexion = null; // Cerrar la conexión
     </form>
 </div>
 
-<?php
-
-?>

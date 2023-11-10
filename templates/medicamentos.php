@@ -37,6 +37,9 @@
                         </article>
                     ';
                 }
+                if (mysqli_num_rows($result) == 0) {
+                    echo '<p>No se encontraron medicamentos.</p>';
+                }
             } else {
                 echo "Error en la consulta: " . mysqli_error($conexion);
             }

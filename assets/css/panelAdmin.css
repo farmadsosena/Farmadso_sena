@@ -158,6 +158,7 @@ body {
     padding: .5em;
     height: 100%;
     gap: 1em;
+    cursor: pointer;
     align-items: center;
     background-color: var(--blanco);
 }
@@ -480,7 +481,6 @@ border: 1px solid gray;
     width: 12.5em;
     border-radius: 10px;
     border: 1px solid rgb(188, 188, 188);
-    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -488,17 +488,31 @@ border: 1px solid gray;
 
 
 .img-medicine{
-    height: 7em;
+    height: 8em;
     display: flex;
 }
 .img-medicine img{
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid rgb(188, 188, 188);
 }
 .datos-medicine{
     display: flex;
-    height: auto;
+    height: 7em;
+    overflow-y: auto;
 }
+
+.datos-medicine::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #d1d1d1;
+}
+
+.datos-medicine::-webkit-scrollbar-thumb {
+    background-color: #999999;
+    border-radius: 10px;
+}
+
 .dist-datos{
     display: flex;
     flex-direction: column;
@@ -513,7 +527,7 @@ border: 1px solid gray;
     padding: 5px;
 }
 .opciones{
-    padding: 2px;
+    padding: 5px;
     display: flex;
     justify-content: space-around;
 }
@@ -590,7 +604,11 @@ border: 1px solid gray;
     padding: .5em;
     gap: 5px;
 }
-
+.options-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .bx-chevron-left {
     background-color: #e4e4e4;
     color: rgb(59, 59, 59);
@@ -604,6 +622,23 @@ border: 1px solid gray;
 }
 
 .bx-chevron-left:hover {
+    cursor: pointer;
+    color: var(--tertiary);
+}
+
+.bx-brush {
+    background-color: #e4e4e4;
+    color: rgb(59, 59, 59);
+    width: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:25px;
+    border-radius: 50%;
+    height: 1em;
+}
+
+.bx-brush:hover {
     cursor: pointer;
     color: var(--tertiary);
 }
@@ -719,11 +754,12 @@ input[type="date"]:focus {
     width: 12em;
     height: 2em;
     display: flex;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .no-file-selected::-webkit-scrollbar {
     width: 2px;
+    height: 2px;
 }
 
 .no-file-selected::-webkit-scrollbar-thumb {
@@ -1028,24 +1064,31 @@ input[type="date"]:focus {
 .opciones-vol-busc{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
     .opciones-vol-busc input{
     width: 40%;
-padding: 2px 5px;
+padding: 3px 5px;
 height: 100%;
 border-radius: 10px;
 border: 1px solid gray;
+}
+.opciones-vol-busc input:focus{
+   outline: none;
+}
+.opciones-vol-busc h1{
+    color: #2e8f7b;
 }
 .manilla {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 5px;
+
     width: 20em;
     
     /* Controla el ancho de cada producto */
     margin-bottom: 20px;
+    background-color: #ffffff;
     border: 1px solid rgb(196, 196, 196);
     border-radius: 20px;
 }
@@ -1058,14 +1101,16 @@ border: 1px solid gray;
 .manilla img {
     width: 100%;
     height: 12em;
-    border-radius: 20px;
-
-    
+    border-radius: 20px 20px 0px 0px;
+    padding: 0px;
+    margin: 0px;
+    border-bottom: 1px solid rgb(196, 196, 196);
 }
 .scroll-inventario{
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 
@@ -1097,10 +1142,27 @@ border: 1px solid gray;
     display: flex;
     width: 100%;
     height: 40%;
+    gap: 2em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0px 20px 0px 30px;
+    height: 15em;
     justify-content: center;
-    margin-top: 10px;
-    gap: 10px;
 }
+
+.seccion::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+    background-color: rgb(226, 226, 226);
+    border-radius:20px;
+}
+
+.seccion::-webkit-scrollbar-thumb {
+    background: linear-gradient(#2e8f7b, #fff,  #2e8f7b);
+    height: auto; /* Ajusta la altura según tus necesidades */
+    border: 1px solid #2e8f7b;
+    border-radius: 20px;
+}
+
 
 .seccion p{
     font-family: 'Open Sans', sans-serif;
@@ -1110,19 +1172,26 @@ border: 1px solid gray;
     width: 50%;
     flex-direction: column;
     height: auto;
+    padding: 6px;
+    background-color: #ffffff;
+    justify-content: space-between;
 }
 .articulo p{
     font-size: 13px;
     margin-top:2px;
     padding: 5px;
-    box-shadow: 0px 0px 4px rgb(114, 114, 114);
+    display: flex;
+    flex-direction: column;
+
 }
 .botones{
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 10px;
+    padding: 5px 0px;
     justify-content: center;
+    background-color: rgb(96, 168, 206);;
+    border-radius: 0px 0px 20px 20px;
 }
 .boton{
   color: black;
@@ -1156,6 +1225,7 @@ border: 1px solid gray;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 5px;
+    color: white;
   }
   
   .box-editar:before {
@@ -1185,20 +1255,23 @@ border: 1px solid gray;
   }
   
   .box-editar:hover {
-    box-shadow: 0 5px 15px #2e8f7b;
-
+    color: #3a935b;
+    box-shadow: 0 5px 15px #3a935b;
+    background-color: white;
   }
   
   .box-editar:hover:before {
-    border-color: #2e8f7b;
+    border-color: #3a935b;
     height: 100%;
     transform: translateX(0);
+   color: #2e8f7b;
     transition: .3s transform linear, .3s height linear .3s;
   }
   
   .box-editar:hover:after {
-    border-color: #2e8f7b;
+    border-color: #3a935b;
     height: 100%;
+    color: #2e8f7b;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .5s;
   }
@@ -1223,6 +1296,7 @@ border: 1px solid gray;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 5px;
+    color: white;
   }
   
   .box-eliminar:before {
@@ -1253,7 +1327,8 @@ border: 1px solid gray;
   
   .box-eliminar:hover {
     box-shadow: 0 5px 15px #b92525;
-
+    background-color: white;
+    color: red;
   }
   
   .box-eliminar:hover:before {
@@ -1269,3 +1344,26 @@ border: 1px solid gray;
     transform: translateX(0);
     transition: .3s transform linear, .3s height linear .5s;
   }
+
+
+  /*  VENTANA MODAL COMENTARIOS */
+  .modal-comentarios{
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    background-color: rgba(133, 133, 133, 0.475);
+}
+
+
+
+/* EDITAR MEDICAMENTOS */
+.cont-editar-medicamento{
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    align-self: center;
+    justify-content: space-between;
+    padding: .5em;
+    gap: 5px;
+}

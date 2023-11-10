@@ -86,7 +86,7 @@
                 </span>
             </div>
 
-            <div class="art" style="border-left: 0.27em solid #3b7dd3">
+            <div onclick="openModalComentarios()" class="art" style="border-left: 0.27em solid #3b7dd3">
                 <img src="assets/img/opinionesClientes.jpg" alt="Imagen de la oferta" />
                 <span>
                     <h3>Opiniones de Clientes</h3>
@@ -107,9 +107,13 @@
 
         <section id="contentSection">
             <section id="contentUpdate">
+
                 <section class="page visiblePage" id="inicio">
                     <h2>Contenido inicio</h2>
+                    <img src="" alt="">
                 </section>
+
+
                 <section class="page" id="medicamentos">
                     <!-- Primera vista -->
                    
@@ -126,6 +130,9 @@
                     <!-- Abre formulario -->
                   <?php
                   require_once 'templates/FormularioMedicamentos.php';
+                  ?>
+                   <?php
+                  require_once 'templates/editarMedicamentos.php';
                   ?>
                     <!-- cierra formulario -->
                 </section>
@@ -153,21 +160,7 @@
                                         class="bx bx-trash"></i> </button>
                             </div>
                         </div>
-                
-                        <div class="category">
-                            <div class="nombre">
-                                <h1>Antiinflamatorios</h1>
-                            </div>
-                            <div class="descripcion">
-                                <h1>Descripcion del producto</h1>
-                            </div>
-                            <div class="buttons">
-                                <button class="btn-editar">Editar<i
-                                    class="bx bx-pencil"></i> </button>
-                                    <button class="btn-eliminar">Eliminar <i
-                                        class="bx bx-trash"></i> </button>
-                            </div>
-                        </div>
+            
                         </div>
                     </div>
                     </div>
@@ -380,16 +373,20 @@ require_once "templates/inventario.php"
 ?>
 <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
+<!-- VENTANA COMENTARIOS -->
 
+<!-- CIERRA VENTANA COMENTARIOS -->
 
 <!-- CIERRA VENTANAS MODALS -->
 
     <script src="assets/js/menuPanelAdmin.js"></script>
+    <script src="assets/js/funciones-farmacia.js"></script>
     <script src="assets/js/formularioM.js"></script>
     <script src="assets/js/graphisAdminFarmacia.js"></script>
     <script src="assets/js/enviarFormsAdmin.js"></script>
-    <script src="assets/js/medicamentos-Form.js"></script>
+    <script src="assets/js/Ventanas-modals.js"></script>
     <script src="assets/js/filtromedicamentos.js"></script>
+    <script src="assets/js/formularioEditar.js"></script>
 </body>
 
 </html>

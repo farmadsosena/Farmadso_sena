@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (($result === null) ? null : false)
     ;
     $message = match($response){
-        true => 'Medicamento agregado correctamente pero la bd pailas',
+        true => 'Medicamento agregado correctamente',
         null => 'El medicamento ya existe con ese codigo',
         false => 'Paso algo'
     };

@@ -4,6 +4,7 @@ function openFormMedicine() {
 
     contMedicine.style.display = 'none';
     contForm.style.display = 'flex';
+    
 }
 
 function closeFormMedicine() {
@@ -139,7 +140,21 @@ function openDetalleInventario(nombreProducto){
     }
 }
 
+function openModalComentarios(){
+    var contModalC = document.querySelector('.modal-comentarios');
+    contModalC.style.display = 'block';
+}
 
-    
+function closeModalComentarios() {
+    var contModalC = document.querySelector('.modal-comentarios');
+    contModalC.style.display = 'none';
+
+    var comentarios = document.querySelectorAll('.comentario');
+    comentarios.forEach(function(comentario) {
+        comentario.style.display = 'flex';
+    });
+}
+
+   
 
 

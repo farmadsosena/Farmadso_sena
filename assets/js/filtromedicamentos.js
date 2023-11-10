@@ -4,9 +4,9 @@ document.getElementById('filtroNombre').addEventListener('input', function () {
 
     articulos.forEach(function(manilla) {
         var nombre = manilla.querySelector('.nombre-medicamentos').textContent.toLowerCase();
-        var codigo = manilla.querySelector('.categoria-medicamento').textContent.toLowerCase();
+        var categoria = manilla.querySelector('.categoria-medicamento').textContent.toLowerCase();
         
-        if (nombre.includes(filtro) ||codigo.includes(filtro)) {
+        if (nombre.includes(filtro) ||categoria.includes(filtro)) {
             manilla.style.display = 'flex';
         } else {
             manilla.style.display = 'none';
