@@ -185,8 +185,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
       <section class="paginas" id="uno">
         <article class="formulas">
-          <section class="new-formula" id="abrirNewVentana">
-            <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+          <section class="new-formula">
+            <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
           </section>
           <div class="opt_config">
             <div class="search">
@@ -194,24 +194,60 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <i class='bx bx-filter'></i>
             </div>
             <div class="filtros">
-              <div class="doctor config_filtros">
-                Doctor
+              <div class="doctor config_filtros" data-tipo-filtro="IdMedico">
+                <div class="filtros-titulo">Doctor</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall rrrf">
+                  <?php
+                  $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
+                INNER JOIN medicos ON formulas.IdMedico = medicos.idmedico
+                WHERE idPaciente = '$id'");
+
+                  if ($medicos->num_rows > 0) {
+                    $nombres_impresos = array();
+
+                    while ($rg = mysqli_fetch_assoc($medicos)) {
+                      $usuario = $rg["idusuario"];
+                      $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $usuario");
+                      $row = mysqli_fetch_assoc($cons_med);
+
+                      $nombre_completo = $row["nombre"] . " " . $row["apellido"];
+
+                      // Verificar si el nombre ya se ha impreso
+                      if (!in_array($nombre_completo, $nombres_impresos)) {
+                        echo "<div data-valor='" . $rg["idmedico"] . "'>" . $nombre_completo . "</div>";
+                        // Agregar el nombre al array de nombres impresos
+                        $nombres_impresos[] = $nombre_completo;
+                      }
+                    }
+                  }
+                  ?>
+
+                </section>
+
               </div>
 
-              <div class="state config_filtros">
-                Estado
+              <div class="state config_filtros" data-tipo-filtro="EstadoFormula">
+                <div class="filtros-titulo">Estado</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <div data-valor="1">Pendiente</div>
+                  <div data-valor="2">No aceptando</div>
+                  <div data-valor="3">Entregado</div>
+                </section>
               </div>
 
-              <div class="date config_filtros">
-                Fecha
+              <div class="date config_filtros" data-tipo-filtro="fechaOrden">
+                <div class="filtros-titulo">Fecha</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <input type="date" id="fecha">
+                </section>
               </div>
             </div>
           </div>
 
-          <div class="cards_formulas">
+          <div class="cards_formulas" id="LLEGARFR">
 
             <?php
             $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = '$id' and EstadoFormula = 1");
@@ -241,7 +277,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 $di = mysqli_fetch_assoc($diagnostico);
                 $name_di = $di['nombreDiag'];
 
-                echo "<div class='card' data-id='{$card['idFormula']}'>
+                echo "<div class='card' data-id='{$card['idFormula']}' data-informacion='$name_di'>
         <div class='firts_line'>
             <div class='date-card'>
                 <p>$fecha_formateada</p>
@@ -365,6 +401,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
             </div>
             <!-- Final de tarjetas -->
+
+
+            <div id="mensajeNoResultados" class="imgBusqueda">
+            <img src="../assets/img/notas.png" alt="">
+              No se encontraron resultados parecidos
+            </div>
           </div>
         </article>
       </section>
@@ -701,104 +743,104 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
         <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
         <div id="contenido-farmacia" class="hidden">
-        <div class="container">
-          <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
-            <i class='bx bx-left-arrow-alt'></i>
-            <h1>Solicitud para registrar farmacia</h1>
+          <div class="container">
+            <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+              <i class='bx bx-left-arrow-alt'></i>
+              <h1>Solicitud para registrar farmacia</h1>
+            </div>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="correo">Correo de Contacto</label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+              <div class="contenedoresparte1">
+                <label for="imagen"> Imagen de Presentación</label>
+                <input type="file" id="imagen" name="imagen" required>
+              </div>
+            </section>
+
+            <h2>Datos Sensibles</h2>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="departamento">Departamento</label>
+                <select id="departamento" name="departamento" required>
+                  <option value="departamento1">Caquetá</option>
+                  <option value="departamento2">Cundinamarca</option>
+                  <!-- Agrega más departamentos según sea necesario -->
+                </select>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="ciudad">Ciudad</label>
+                <select id="ciudad" name="ciudad" required>
+                  <option value="departamento1">Florencia</option>
+                  <option value="departamento2">Bogota</option>
+                  <!-- Agrega más ciudades según sea necesario -->
+                </select>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="codigoPostal">Código Postal</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" required>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="horario">Días de Horario Laboral</label>
+                <select id="horario" name="horario" required>
+                  <option value="lunes">Lunes</option>
+                  <option value="martes">Martes</option>
+                  <!-- Agrega más días según sea necesario -->
+                </select>
+              </div>
+
+              <div class="contenedoresparte1">
+                <label for="jornada">Jornada</label>
+                <select id="jornada" name="jornada" required>
+                  <option value="manana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                </select>
+              </div>
+            </section>
+
+            <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+            <select id="epsRegistrado" name="epsRegistrado" required>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+
+            <label for="eps">EPS con la que está registrado</label>
+            <select id="eps" name="eps" required>
+              <option value="eps1">EPS 1</option>
+              <option value="eps2">IPS 2</option>
+              <!-- Agrega más EPS según sea necesario -->
+            </select>
+
+            <label for="nitEps">NIT de EPS</label>
+            <input type="text" id="nitEps" name="nitEps" required>
+
+            <button id="enviar">Enviar</button>
           </div>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="nombreFarmacia">Nombre de la Farmacia</label>
-              <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="direccion">Dirección</label>
-              <input type="text" id="direccion" name="direccion" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" required>
-            </div>
-          </section>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="correo">Correo de Contacto</label>
-              <input type="email" id="correo" name="correo" required>
-            </div>
-            <div class="contenedoresparte1">
-              <label for="imagen"> Imagen de Presentación</label>
-              <input type="file" id="imagen" name="imagen" required>
-            </div>
-          </section>
-
-          <h2>Datos Sensibles</h2>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="departamento">Departamento</label>
-              <select id="departamento" name="departamento" required>
-                <option value="departamento1">Caquetá</option>
-                <option value="departamento2">Cundinamarca</option>
-                <!-- Agrega más departamentos según sea necesario -->
-              </select>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="ciudad">Ciudad</label>
-              <select id="ciudad" name="ciudad" required>
-                <option value="departamento1">Florencia</option>
-                <option value="departamento2">Bogota</option>
-                <!-- Agrega más ciudades según sea necesario -->
-              </select>
-            </div>
-          </section>
-
-          <section class="parte1-formulario">
-            <div class="contenedoresparte1">
-              <label for="codigoPostal">Código Postal</label>
-              <input type="text" id="codigoPostal" name="codigoPostal" required>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="horario">Días de Horario Laboral</label>
-              <select id="horario" name="horario" required>
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <!-- Agrega más días según sea necesario -->
-              </select>
-            </div>
-
-            <div class="contenedoresparte1">
-              <label for="jornada">Jornada</label>
-              <select id="jornada" name="jornada" required>
-                <option value="manana">Mañana</option>
-                <option value="tarde">Tarde</option>
-              </select>
-            </div>
-          </section>
-
-          <label for="epsRegistrado">¿Está registrado con una EPS?</label>
-          <select id="epsRegistrado" name="epsRegistrado" required>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-          </select>
-
-          <label for="eps">EPS con la que está registrado</label>
-          <select id="eps" name="eps" required>
-            <option value="eps1">EPS 1</option>
-            <option value="eps2">IPS 2</option>
-            <!-- Agrega más EPS según sea necesario -->
-          </select>
-
-          <label for="nitEps">NIT de EPS</label>
-          <input type="text" id="nitEps" name="nitEps" required>
-
-          <button id="enviar">Enviar</button>
-        </div>
         </div>
 
       </section> <!-- Etiqueta que termina el contenedor 4 -->
@@ -830,7 +872,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </section>
             <section class="fole">
               <h4>
-                <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
                 <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
               </h4>
               <p>
@@ -917,6 +958,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
+  <script src="../assets/js/filtros_formulas.js"></script>
 </body>
 
 </html>
