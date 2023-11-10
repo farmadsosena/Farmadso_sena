@@ -2,25 +2,18 @@
 include("../config/Conexion.php");
 
 // Procesar el formulario cuando se envíe
-if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['enviarf'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idusuario      = $_POST["idusuario"];
     $nombreFarmacia = $_POST["Nombref"];
     $direccion      = $_POST["Direccionf"];
-    $telefono = (int)$_POST["telefonof"];
-    $correo = $_POST["correof"];
-    $departamento = $_POST["Departamentof"];
+    $departamento = $_POST["departamentof"];
     $ciudad = $_POST["ciudadf"];
-    $codigoPostal = (int)$_POST["codigoPostalf"];
     $horario = $_POST["horariof"];
-    $epsRegistrado = $_POST["epsRegistradof"];
     $eps = $_POST["idEpsf"];
     $nitEps = $_POST["nitEPS"];
-
-    // if ($epsRegistradof === "si") {
-    //     $id_eps = $_POST["idEpsf"]; // Use the selected "idEps" value
-    // } else {
-    //     $id_eps = 1; // Set id_eps to 1 when "no" is selected
-    // }
+    $codigoPostal = $_POST["codigoPostalf"];
+    $telefono = (int)$_POST["telefonof"];
+    $correo = $_POST["correof"];
 
     if (isset($_POST['epsRegistradof'])  == "si") {
         $stmt_get_user_id = $conexion->prepare("SELECT idEps FROM eps WHERE ideps = ?");
@@ -56,8 +49,7 @@ if ($_FILES['imagenf']['error'] === UPLOAD_ERR_OK) {
     exit; // Detener la ejecución del código si hay un error al cargar la imagen
 }
 
-// Validación de números negativos en documento y teléfono
-if ($codigoPostal < 0 || $telefono < 0) {
+if ($_POST["codigoPostalf"] < 0 || $_POST["telefonof"] < 0) {
     echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -67,7 +59,7 @@ if ($codigoPostal < 0 || $telefono < 0) {
         </script>";
 } else {
     // Validación de correo
-    if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($_POST ['correof'], FILTER_VALIDATE_EMAIL)) {
         echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -75,35 +67,31 @@ if ($codigoPostal < 0 || $telefono < 0) {
                 text: 'El correo no es válido. Por favor, ingrese un correo válido.'
             });
         </script>";
+    
     } else {
 
-        // // Subir la imagen al servidor (ajusta la ubicación de la carpeta según tu configuración)
-        // $uploadDir = '../uploads/imgUsuario/';
-        // $imagenPath = $uploadDir . $imagen;
-        // move_uploaded_file($_FILES["imagen"]["tmp_name"], $imagenPath);
 
 
         // Insertar los datos en la base de datos
-        $sql = "INSERT INTO farmacias (idusuario ,Nombre, Direccion, telefono, correo, imgfarmacia, Departamento, ciudad, codigoPostal, horario, idEps, nitEPS)
-                VALUES ('$idusuario','$nombreFarmacia', '$direccion', '$telefono', '$correo', '$ruta_imagen ', '$departamento', '$ciudad', '$codigoPostal', '$horario', '$id_eps', '$nitEps')";
+        $sql = "INSERT INTO farmacias (idusuario ,Nombre, Direccion, telefono, correo, imgfarmacia, Departamento, ciudad, codigoPostal, horario, idEps, nitEPS) VALUES ('$idusuario','$nombreFarmacia', '$direccion', '$telefono', '$correo', '$ruta_imagen ','$departamento','$ciudad','$codigoPostal', '$horario', '$id_eps', '$nitEps')";
 
         if ($conexion->query($sql) === TRUE) {
             echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: 'Registro exitoso'
-                    });
-                </script>";
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Registro exitoso'
+            });
+        </script>";
             header("location: ../views/Usuario.php");
         } else {
             echo "<script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Error al registrar la farmacia: " . mysqli_error($conexion) . "'
-                    });
-                </script>";
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al registrar la farmacia: 
+            });
+        </script>";
         }
     }
 }
