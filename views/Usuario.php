@@ -149,25 +149,25 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <div class="options">
 
                 <?php
-                function existe_en_tabla($tabla, $usuario)
+                function existe_en_tabla($tabla, $usuario,$columna,$valorEstado)
                 {
                   global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario' and $columna= '$valorEstado'";
                   $resultado = $conexion->query($consulta);
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id)) {
+                if (existe_en_tabla('domiciliario', $id,'EstadoAcept','Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
                 }
-                if (existe_en_tabla('farmacias', $id)) {
+                if (existe_en_tabla('farmacias', $id,'EstadoSolicitud','Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
                 }
-                if (existe_en_tabla('usuarios', $id)) {
+                if (existe_en_tabla('usuarios', $id, 'estado','1')) {
                   echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
@@ -187,8 +187,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
       <section class="paginas" id="uno">
         <article class="formulas">
-          <section class="new-formula" id="abrirNewVentana">
-            <button><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+          <section class="new-formula">
+            <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
           </section>
           <div class="opt_config">
             <div class="search">
@@ -196,27 +196,63 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <i class='bx bx-filter'></i>
             </div>
             <div class="filtros">
-              <div class="doctor config_filtros">
-                Doctor
+              <div class="doctor config_filtros" data-tipo-filtro="IdMedico">
+                <div class="filtros-titulo">Doctor</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall rrrf">
+                  <?php
+                  $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
+                INNER JOIN medicos ON formulas.IdMedico = medicos.idmedico
+                WHERE idPaciente = '$id'");
+
+                  if ($medicos->num_rows > 0) {
+                    $nombres_impresos = array();
+
+                    while ($rg = mysqli_fetch_assoc($medicos)) {
+                      $usuario = $rg["idusuario"];
+                      $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $usuario");
+                      $row = mysqli_fetch_assoc($cons_med);
+
+                      $nombre_completo = $row["nombre"] . " " . $row["apellido"];
+
+                      // Verificar si el nombre ya se ha impreso
+                      if (!in_array($nombre_completo, $nombres_impresos)) {
+                        echo "<div data-valor='" . $rg["idmedico"] . "'>" . $nombre_completo . "</div>";
+                        // Agregar el nombre al array de nombres impresos
+                        $nombres_impresos[] = $nombre_completo;
+                      }
+                    }
+                  }
+                  ?>
+
+                </section>
+
               </div>
 
-              <div class="state config_filtros">
-                Estado
+              <div class="state config_filtros" data-tipo-filtro="EstadoFormula">
+                <div class="filtros-titulo">Estado</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <div data-valor="1">Pendiente</div>
+                  <div data-valor="2">No aceptando</div>
+                  <div data-valor="3">Entregado</div>
+                </section>
               </div>
 
-              <div class="date config_filtros">
-                Fecha
+              <div class="date config_filtros" data-tipo-filtro="fechaOrden">
+                <div class="filtros-titulo">Fecha</div>
                 <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <input type="date" id="fecha">
+                </section>
               </div>
             </div>
           </div>
 
-          <div class="cards_formulas">
+          <div class="cards_formulas" id="LLEGARFR">
 
             <?php
-            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = $id and EstadoFormula = 1");
+            $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = '$id' and EstadoFormula = 1");
 
             if ($consulta->num_rows > 0) {
               while ($card = mysqli_fetch_assoc($consulta)) {
@@ -243,7 +279,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 $di = mysqli_fetch_assoc($diagnostico);
                 $name_di = $di['nombreDiag'];
 
-                echo "<div class='card' data-id='{$card['idFormula']}'>
+                echo "<div class='card' data-id='{$card['idFormula']}' data-informacion='$name_di'>
         <div class='firts_line'>
             <div class='date-card'>
                 <p>$fecha_formateada</p>
@@ -450,6 +486,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
             </div>
             <!-- Final de tarjetas -->
+
+
+            <div id="mensajeNoResultados" class="imgBusqueda">
+            <img src="../assets/img/notas.png" alt="">
+              No se encontraron resultados parecidos
+            </div>
           </div>
         </article>
       </section>
@@ -592,8 +634,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </article>
         </div>
       </section>
-
-
+      
       <section class="paginas" id="cuatro">
 
         <div class="column" id="opciones">
@@ -875,7 +916,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="fole">
               <h4>
                 <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
-                <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
               </h4>
               <p>
                 <?php echo $correo_usuario; ?>
@@ -966,7 +1006,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
-  <script src="../assets/js/mostrar_ocultarEPS.js"></script>
 </body>
 
 </html>

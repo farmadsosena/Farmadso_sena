@@ -1406,7 +1406,7 @@ gap: 5%;
 }
 
 .mauso-resultados{
-  display: none;
+  display:none;
   padding: 0.3rem 0rem;
   left: 5px;
   width: 98.5%;
@@ -1452,6 +1452,8 @@ gap: 5%;
   display: flex;
   transition: display 2s all;
 }
+
+
 
 
 @media (max-width: 767px) {

@@ -1,22 +1,22 @@
 function ocultarContenedoresMenu() {
-    const contenidos = document.querySelectorAll('.paginas');
-    contenidos.forEach(contenedor => {
-        contenedor.style.display = 'none';
-    });
-    const botones = document.querySelectorAll('.toggle-dic');
-    botones.forEach(boton => {
-        boton.classList.remove('doss');
-    });
+  const contenidos = document.querySelectorAll('.paginas');
+  contenidos.forEach(contenedor => {
+    contenedor.style.display = 'none';
+  });
+  const botones = document.querySelectorAll('.toggle-dic');
+  botones.forEach(boton => {
+    boton.classList.remove('doss');
+  });
 }
 
 function mostrarContenedoresMenu(contenedor, elemento) {
-    ocultarContenedoresMenu();
-    document.getElementById(contenedor).style.display = 'flex';
-    elemento.classList.add('doss');
+  ocultarContenedoresMenu();
+  document.getElementById(contenedor).style.display = 'flex';
+  elemento.classList.add('doss');
 
-    // Guardar el nombre del contenedor y el ID del botón en localStorage
-    localStorage.setItem('contenedorVisible', contenedor);
-    localStorage.setItem('botonVisibleId', elemento.id);
+  // Guardar el nombre del contenedor y el ID del botón en localStorage
+  localStorage.setItem('contenedorVisible', contenedor);
+  localStorage.setItem('botonVisibleId', elemento.id);
 }
 
 ocultarContenedoresMenu();
@@ -37,7 +37,7 @@ if (contenedorGuardado) {
   document.getElementById('uno').style.display = 'flex';
 
 }
-  // Mostrar el contenedor "uno" por defecto
+// Mostrar el contenedor "uno" por defecto
 
 mostrarContenedoresMenu('uno', document.getElementById('Inic'));
 
@@ -56,4 +56,47 @@ rectElements.forEach(rect => {
     rect.querySelector('.part2-contenido').classList.remove('visible');
   });
 });
+
+
+//MENU PARA LOS FILTROS
+
+const config_filtrosElements = document.querySelectorAll(".config_filtros");
+
+  config_filtrosElements.forEach(element => {
+    element.addEventListener("click", function() {
+      const ventanaSal = element.querySelector(".ventana-sal");
+      
+      // Oculta las secciones de todos los elementos config_filtros
+      config_filtrosElements.forEach(item => {
+        const ventanaSalItem = item.querySelector(".ventana-sal");
+        if (ventanaSalItem && ventanaSalItem !== ventanaSal) {
+          ventanaSalItem.classList.remove("mostrar");
+        }
+      });
+      
+      if (ventanaSal) {
+        ventanaSal.classList.toggle("mostrar"); // Agrega o quita la clase "mostrar" para mostrar u ocultar la sección
+      }
+
+      const tipoFiltro = element.getAttribute("data-tipo-filtro");
+    if (tipoFiltro === "fechaOrden") {
+        console.log("HOLA");
+        ventanaSal.classList.add("mostrar"); // Evita que se propague el evento y no se cierre el contenedor
+    }
+
+
+    });
+  });
+
+  document.addEventListener("click", function(event) {
+    config_filtrosElements.forEach(element => {
+      const ventanaSal = element.querySelector(".ventana-sal");
+      if (ventanaSal && ventanaSal.classList.contains("mostrar") && !element.contains(event.target)) {
+        ventanaSal.classList.remove("mostrar");
+      }
+    });
+  });
+
+
+
 

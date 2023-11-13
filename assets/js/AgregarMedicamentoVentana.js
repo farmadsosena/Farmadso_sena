@@ -1,20 +1,20 @@
-var botonAbrirVentana= document.getElementById('abrirNewVentana');
+var botonAbrirVentana = document.getElementById('abrirNewVentana');
 var VentanaAbrir = document.getElementById('VentanaPropia');
-var CerrarVentanA= document.getElementById('X22');
+var CerrarVentanA = document.getElementById('X22');
 
-botonAbrirVentana.addEventListener('click', ()=>{
+botonAbrirVentana.addEventListener('click', () => {
   VentanaAbrir.classList.add('aggdisplay');
 })
 
-CerrarVentanA.addEventListener('click', ()=>{
+CerrarVentanA.addEventListener('click', () => {
   VentanaAbrir.classList.remove('aggdisplay');
 })
 
 
 //MOSTRAR TODOS LOS DIAGNOSTICOS POSIBLES DEPENDIEDNO DEL CODIGO
-$(document).ready(function() {
-  $("#CodigoDiagnostico").on("input", function() {
-    
+$(document).ready(function () {
+  $("#CodigoDiagnostico").on("input", function () {
+
     var query = $(this).val();
 
     if (query === '') {
@@ -27,8 +27,8 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "../controllers/CodigoDiagnostico.php",
-      data: { query: query }, 
-      success: function(data) {
+      data: { query: query },
+      success: function (data) {
         document.getElementById('resultados').classList.add('agg')
         $("#resultados").html(data);
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
           var id = $(this).data('ids');
 
           $("#CodeDiag").val(id)
-          $("#CodigoDiagnostico").val(valor + " //  " + nombre); 
+          $("#CodigoDiagnostico").val(valor + " //  " + nombre);
           document.getElementById('resultados').classList.remove('agg')
         });
 
@@ -52,23 +52,23 @@ $(document).ready(function() {
 
 
 //MOSTRAR Y SACAR LA LISTA DE MEDICOS QUE HAY EN EL SISTEMA DEPENDIENDO DE LA TARJETA PROFESIONAL
-$(document).ready(function() {
-  $("#MedicoResponsable").on("input", function() {
-    
+$(document).ready(function () {
+  $("#MedicoResponsable").on("input", function () {
+
     var caso = $(this).val();
 
     if (caso === '') {
       // Si el input está vacío, oculta el elemento resultados
       document.getElementById('resultados').classList.remove('agg');
-      $("#medicosResult").html('');  
-      return; 
+      $("#medicosResult").html('');
+      return;
     }
 
     $.ajax({
       type: "POST",
       url: "../controllers/CodigoMedico.php",
-      data: { query: caso }, 
-      success: function(data) {
+      data: { query: caso },
+      success: function (data) {
         document.getElementById('medicosResult').classList.add('agg')
         $("#medicosResult").html(data);
 
@@ -79,7 +79,7 @@ $(document).ready(function() {
           var id = $(this).data('ids');
 
           $("#MedicoFinal").val(id)
-          $("#MedicoResponsable").val(valor + " //  " + nombre); 
+          $("#MedicoResponsable").val(valor + " //  " + nombre);
           document.getElementById('medicosResult').classList.remove('agg')
         });
 
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  
+
   //Mostrar el conteendore donde se encuentra el formulario de medicmanrtos
   mostrarMedicamentosButton.addEventListener("click", function () {
     if (padreMedicamentos.style.display === "none") {
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mostrarFormularioActual();
     }
   });
-  
+
 
 
   //Mostrar el conteendore donde se encuentra el formulario de medicmanrtos
@@ -152,30 +152,33 @@ document.addEventListener("DOMContentLoaded", function () {
     padreMedicamentos.classList.remove('abrir');
     scrollabi.classList.remove('cerrar');
   });
-  
+
 
 
   cantidadMedicamentosInput.addEventListener("input", function () {
     const cantidad = parseInt(cantidadMedicamentosInput.value);
 
-    if(cantidad > 8){
+    if (cantidad > 8) {
       alert('Imposible hacer esta formula, no debe llevar tantos medicamentos en una sola formula. Redondeando....')
       document.getElementById("cantidadMedicamentos").value = cantidad;
-    }else{
-    // Limpiar el contenedor padre-medicamentos
-    padreMedicamentos.innerHTML = "";
+    } else {
+      // Limpiar el contenedor padre-medicamentos
+      padreMedicamentos.innerHTML = "";
 
-    if (!isNaN(cantidad) && cantidad > 0) {
-      for (let i = 1; i <= cantidad; i++) {
-        const contenedorMedicamento = document.createElement("section");
-        contenedorMedicamento.className = "medicamentos-abilisco scrall";
-        
-        // Agregar el contenido específico para cada contenedor
-        contenedorMedicamento.innerHTML = `
+      if (!isNaN(cantidad) && cantidad > 0) {
+        for (let i = 1; i <= cantidad; i++) {
+          const contenedorMedicamento = document.createElement("section");
+          contenedorMedicamento.className = "medicamentos-abilisco scrall";
+
+          // Agregar el contenido específico para cada contenedor
+          contenedorMedicamento.innerHTML = `
           <div class="mauso">
             <p>Nombre del medicamento ${i}</p>
             <div>Escriba en este espacio el nombre completo del medicamento que hay en formula</div>
-            <input type="text" name="Medicamento${i}" id="" placeholder="Nombre del medicamento" class="mauso-texto">
+            <input type="text" name="Medicamento${i}" id="NombreMedicamento${i}" placeholder="Nombre del medicamento" class="mauso-texto">
+            <section id="medicamento${i}" class="mauso-resultados scrall fored">
+             
+            </section>
           </div>
           <!-- Relleno de input mediamos -->
           <section class="flex-mauso">
@@ -183,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="mauso">
                 <p>Codigo del medicamento</p>
                 <!-- <div>Es posible que el codigo no aparezca en su formula, no rellene esta opción entonces</div> -->
-                <input type="text" name="codigo${i}" id="codigoMedicamento" placeholder="Codigo basico" class="mauso-texto">
+                <input type="text" name="codigo${i}" id="codigoMedicamento${i}" placeholder="Codigo basico" class="mauso-texto">
               </div>
             </section>
             <section class="mauso-boom">
@@ -219,10 +222,88 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         `;
 
-        padreMedicamentos.appendChild(contenedorMedicamento);
+          padreMedicamentos.appendChild(contenedorMedicamento);
+        }
+
+
+        for (let i = 1; i <= cantidad; i++) {
+          $(document).ready(function () {
+            const nombreMedicamentoInput = document.getElementById(`NombreMedicamento${i}`);
+            const codigoMedicamentoInput = document.getElementById(`codigoMedicamento${i}`);
+            const ventanaMedicamentos = document.getElementById(`medicamento${i}`);
+            
+            $(nombreMedicamentoInput).on("input", function () {
+          
+              var query = $(this).val();
+
+              if (query === '') {
+                // Si el input está vacío, oculta el elemento resultados
+                ventanaMedicamentos.classList.remove('agg');
+                $(ventanaMedicamentos).html('');
+                return;
+              }
+          
+              $.ajax({
+                type: "POST",
+                url: "../controllers/nombreMedicamentos.php",
+                data: { query: query },
+                success: function (data) {
+                 // console.log(ventanaMedicamentos);
+                 ventanaMedicamentos.classList.add('agg')
+                  $(ventanaMedicamentos).html(data);
+
+                  //Al dar click en el contenedor de resultados, el valor pasa al contenedor ""  para enviar a la base de datos
+                  $('.mauso-diagnee').on('click', function () {
+                    var valor = $(this).data('codigo');
+                    var nombre = $(this).data('nombre');
+                    var id = $(this).data('ids');
+          
+                    $("#CodeDiag").val(id)
+                    $("#CodigoDiagnostico").val(valor + " //  " + nombre);
+                    document.getElementById('resultados').classList.remove('agg')
+                  });
+
+                }
+              });
+            });
+          });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
       }
     }
-  }
   });
   //Final de addEvenListener para agregar dinamicamente los contenedores
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
