@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $archivo = $_FILES["Fotoformula"];
     $id = $_SESSION["id"];
     $eps = $_SESSION["eps"];
-    $estadoFormula = "Recién Llegada";
+    $estadoFormula = 1;
 
     $ruta = "../uploads/pdfUsuario";
     $nombres_archivo = $archivo["name"];
