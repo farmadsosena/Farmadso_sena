@@ -149,25 +149,25 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <div class="options">
 
                 <?php
-                function existe_en_tabla($tabla, $usuario)
+                function existe_en_tabla($tabla, $usuario,$columna,$valorEstado)
                 {
                   global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario' and $columna= '$valorEstado'";
                   $resultado = $conexion->query($consulta);
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id)) {
+                if (existe_en_tabla('domiciliario', $id,'EstadoAcept','Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
                 }
-                if (existe_en_tabla('farmacias', $id)) {
+                if (existe_en_tabla('farmacias', $id,'EstadoSolicitud','Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
                 }
-                if (existe_en_tabla('usuarios', $id)) {
+                if (existe_en_tabla('usuarios', $id, 'estado','1')) {
                   echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
