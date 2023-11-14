@@ -713,6 +713,18 @@ DE LAS TAREAS*/
   padding: 4vh;
   width: 100%;
 }
+.contenedorAlertMm{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.imgMm{
+  width: 60;
+  height: 70%;
+}
 /* CONTENEDOR DE LAS TAREAS A REALIZAR */
 
 .pendingTask {
@@ -946,6 +958,30 @@ input[type="file"] {
   width: 90%;
   height: 80%;
 }
+.NotNotification{
+  width: 70%;
+  height: 70%;
+}
+.ContenedorMss{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.ContenedorHisto{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.gifHisto{
+  width: 60;
+  height: 70%;
+}
 @media screen and (max-width: 700px) {
   html {
     height: 100%;
@@ -959,6 +995,9 @@ input[type="file"] {
     height: 92.7vh;
     padding: 0;
     margin: 0;
+  }
+  .custom-select{
+    display: none;
   }
   #ImgFact{
     width: 90%;

@@ -72,7 +72,7 @@
 
                 ?>
               </div>
-            </div>
+      </div>
             <!-- FIN DE SELECT DE OPCIONES DE PERFIL -->
       <span id="task" class="material-symbols-outlined tareas" onclick="showTasks()" style="cursor: pointer; user-select: none">
         quick_reference_all <article class="circuloTask"></article>
@@ -170,6 +170,14 @@
 
 
       <div class="his">
+
+      <section class="ContenedorHisto">
+        <img src="assets/img/dizzy-notebook-2.gif" alt="" srcset="" class="gifHisto">
+
+                  <h2>No tienes Historias</h2>
+        </section>
+
+
       <?php
         include("models/historiasDomi.php");
         ?>
@@ -190,112 +198,20 @@
     <section class="mainDeliverySection" id="notificationsSection">
       <section class="notificationsDelivery">
 
-        <?php
-        include("models/notificaciones.php")
-        ?>
+      <section class="ContenedorMss">
+        <img src="assets/svg/emptyNotification.svg" alt="" srcset="" class="NotNotification" >
+                  <h2>No tienes notificaciones</h2>
+        </section>
+        <?php include("models/notificaciones.php") ?>
 
-        <!-- <article class="orderAvailable">
-            <p>001</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article> -->
-
-        <!-- <article class="orderAvailable">
-            <p>002</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article>
-
-          <article class="orderAvailable">
-            <p>003</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article>
-
-          <article class="orderAvailable">
-            <p>004</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article>
-
-          <article class="orderAvailable">
-            <p>005</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article>
-
-          <article class="orderAvailable">
-            <p>006</p>
-            <div class="nameEPS">
-              <img src="assets/img/logoEPS.png" alt="" />
-              Nombre EPS
-            </div>
-            <hr />
-            <div class="customerData">
-              <span>Dirección: B/Rosal</span>
-              <span>Cliente: Isaias Caballero Mendoza</span>
-            </div>
-            <div class="buttonSeeMore">
-              <a href="#" class="seeMore">Ver más</a>
-            </div>
-          </article> -->
       </section>
     </section>
 
     <section class="mainDeliverySectionTask" id="tasksSection" style="display: none">
-       
-
-
+    <section class="contenedorAlertMm">
+      <img class="imgMm" src="assets/img/Scrum board-rafiki.svg" alt="" srcset="">
+      <h2>No tienes Tareas</h2>
+    </section>
       <?php
         include("models/tareas.php")
         ?>
@@ -440,6 +356,7 @@
   <script src="assets/js/noti.js"></script>
   <script src="assets/js/enviarImagenCompra.js"></script>
   <script src="assets/js/selectMenu.js"></script>
+  <script src="assets/js/AlertDomi.js"></script>
 </body>
 
 </html>
