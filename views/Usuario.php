@@ -147,13 +147,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 <i class='bx bx-user-circle'></i> Cuenta de usuario
               </div>
               <div class="options">
+                
 
                 <?php
-                function existe_en_tabla($tabla, $usuario,$columna,$valorEstado)
+                function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
                 {
                   global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario' and $columna= '$valorEstado'";
-                  $resultado = $conexion->query($consulta);
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
+                  $stmt = $conexion->prepare($consulta);
+                  $stmt->bind_param("ss", $usuario, $valorEstado);
+                  $stmt->execute();
+                  $resultado = $stmt->get_result();
                   return $resultado->num_rows > 0;
                 }
 
@@ -172,7 +176,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
                 }
-
                 ?>
               </div>
             </div>
