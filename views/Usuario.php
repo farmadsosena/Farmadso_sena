@@ -355,7 +355,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                 </div>
                 <div class="infoFormula">
-                  <div>
+                  <div class="contendor_info_formula">
                     <h2>Datos Personales</h2>
                     <div class="datos_user">
 
@@ -396,7 +396,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     </div>
                   </div>
 
-                  <div class="">
+                  <div  class="contendor_info_formula">
                     <h2>Datos de afiliación</h2>
                     <div class="datos_afilicion"> 
                       <div >
@@ -429,7 +429,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                         officiis itaque aliquam.</p>
                     </div>
                   </div>
-                  <div>
+                  <div  class="contendor_info_formula">
                     <h2>Medicamentos</h2>
                     <div class="content_medicamentos">
 
@@ -440,13 +440,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                       </div>
 
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
+                          <img src="../assets/img/loratadina.webp" class="medicamento_img" alt="">
+                          <p>Loratadina</p>
                           <p class="state_med">Disponible</p>
                       </div>
 
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                          <img src="../assets/img/Naproxeno.webp" class="medicamento_img" alt="">
                           <p>Ibuprofeno</p>
                           <p class="state_med">Disponible</p>
                       </div>
@@ -962,7 +962,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
-                <p>Medico responsable</p>
+              <p>Medico responsable</p>
                 <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
                   class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
