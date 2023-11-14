@@ -12,5 +12,10 @@ $body="Bienvenido!!!!\nHemos visto que tiene una formula medica por reclamar, en
 ";
 
 $api=$client->sendChatMessage($to,$body);
-print_r($api);
+if($api ){
+    $response['success'] = true;
+    $response['message'] = "Fórmula añadida con éxito";        
+
+}
+// print_r($api);
 ?>

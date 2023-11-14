@@ -46,23 +46,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmtMedicamento->execute()) {
                 // Registro de medicamento insertado con éxito
+                $response['success'] = true;
+             $response['message'] = "Fórmula añadida con éxito";        
             } else {
                 // Error en la inserción del medicamento
                 echo "Error al insertar el registro de medicamento: " . $stmtMedicamento->error;
             }
         }
         $stmtMedicamento->close();
-    } else {
-        // Error en la inserción de la fórmula principal
-        echo "Error al insertar el registro de la fórmula: " . $stmt->error;
-    }
+
+
+           } else {
+        $response['success'] = false;
+        $response['message'] = "Error al insertar el registro de la fórmula: " . $stmt->error;
+       }
 
     require_once "ContarProductos.php";
 
 
     // Cerrar la conexión a la base de datos
 
-    echo "<script>alert('Fórmula añadida con éxito')</script>";
-    echo "<script>window.location='../views/Usuario.php'</script>";
+    // echo "<script>alert('Fórmula añadida con éxito')</script>";
+ 
+ 
+    // echo "<script>window.location='../views/Usuario.php'</script>";
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    
+
 }
+
+
+
 ?>

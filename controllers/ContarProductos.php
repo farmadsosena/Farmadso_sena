@@ -28,14 +28,14 @@ if ($result->num_rows > 0) {
         $insertar= mysqli_query($conexion,"UPDATE medicamentosformulas SET EstadoFRM= 'Disponible' WHERE IdMedi='$idMedicamentoFormuala'");
 
         if(mysqli_num_rows($ConsulMedi) > 0){
-          echo "Disponible". $NombreMedicamento ."<br>";
+          // echo "Disponible". $NombreMedicamento ."<br>";
         }
 
       }else{
         $insertar=mysqli_query($conexion,"UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias' WHERE IdMedi='$idMedicamentoFormuala'");
 
         if(mysqli_num_rows($ConsulMedi) > 0){
-          echo "Sin unidades para". $NombreMedicamento."<br>";
+          // echo "Sin unidades para". $NombreMedicamento."<br>";
         }
       }
   }
