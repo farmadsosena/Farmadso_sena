@@ -3,49 +3,79 @@ session_start();
 include "../config/Conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $cantidadMedicamentos = $_POST["cantidadMedicamentos"];
-  $diag = $_POST["diagnostico"];
-  $medico = $_POST["medico"];
-  $causa = $_POST["causa"];
-  $archivo = $_FILES["Fotoformula"];
-  $id = $_SESSION["id"];
-  $eps = $_SESSION["eps"];
-  $estadoFormula = "Recién Llegada";
-  $estadoGeneral = "1";
+    $cantidadMedicamentos = $_POST["cantidadMedicamentos"];
+    $diag = $_POST["diagnostico"];
+    $medico = $_POST["medico"];
+    $causa = $_POST["causa"];
+    $archivo = $_FILES["Fotoformula"];
+    $id = $_SESSION["id"];
+    $eps = $_SESSION["eps"];
+    $estadoFormula = 1;
 
-  $ruta = "../uploads/pdfUsuario";
-  $nombres_archivo = $archivo["name"];
-  $rutaCompleta = $ruta . "/" . $nombres_archivo;
-  move_uploaded_file($archivo["tmp_name"], $rutaCompleta);
+    $ruta = "../uploads/pdfUsuario";
+    $nombres_archivo = $archivo["name"];
+    $rutaCompleta = $ruta . "/" . $nombres_archivo;
+    move_uploaded_file($archivo["tmp_name"], $rutaCompleta);
 
-  for ($i = 1; $i <= $cantidadMedicamentos; $i++) {
-    $nombreMedicamento = $_POST["Medicamento" . $i];
-    $codigoMedicamento = $_POST["codigo" . $i];
-    $cantidadEstablecida = $_POST["cantidad" . $i];
-    $concentracion = $_POST["concentracion" . $i];
-    $viaMedicamento = $_POST["via" . $i];
-    $posologia = $_POST["posologia" . $i];
-
-    // Evitar posibles problemas de SQL Injection utilizando consultas preparadas
-    $sql = "INSERT INTO formulas (idPaciente, idEPS, IdMedico, fechaOrden, CausaExterna, idDiagnostico, medicamento, CodigoMedica, CantidadMedi, Concentracion, Via, Posologia, EstadoFormula, pruebaFormula) 
-            VALUES (?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Insertar la fórmula principal en la tabla "formulas"
+    $sql = "INSERT INTO formulas (idPaciente, idEPS, IdMedico, fechaOrden, CausaExterna, idDiagnostico, EstadoFormula, pruebaFormula) 
+            VALUES (?, ?, ?, NOW(), ?, ?, ?, ?)";
 
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("sssssssssssss", $id, $eps, $medico, $causa, $diag, $nombreMedicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia, $estadoFormula, $rutaCompleta);
+    $stmt->bind_param("sssssss", $id, $eps, $medico, $causa, $diag, $estadoFormula, $rutaCompleta);
 
     if ($stmt->execute()) {
-      // Registro insertado con éxito
-    } else {
-      // Error en la inserción
-      echo "Error al insertar el registro: " . $stmt->error;
-    }
-  }
+        $id_solicit= mysqli_insert_id($conexion);
+        // Obtener el ID de la fórmula recién insertada
+        $formulaId = $stmt->insert_id;
 
-  // Cerrar la conexión a la base de datos
-  $stmt->close();
-  $conexion->close();
+        // Insertar los medicamentos en la tabla "medicamentosformulas"
+        for ($i = 1; $i <= $cantidadMedicamentos; $i++) {
+            $nombreMedicamento = $_POST["Medicamento" . $i];
+            $codigoMedicamento = $_POST["codigo" . $i];
+            $cantidadEstablecida = $_POST["cantidad" . $i];
+            $concentracion = $_POST["concentracion" . $i];
+            $viaMedicamento = $_POST["via" . $i];
+            $posologia = $_POST["posologia" . $i];
 
-  echo "<script>alert('Fórmula añadida con éxito')</script>";
-  echo "<script>window.location='../views/Usuario.php'</script>";
+            $sqlMedicamento = "INSERT INTO medicamentosformulas (IdFormula, medicamento, CodigoMedicamento, CantidadMedi, Concentracion, Via, Posologia)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            $stmtMedicamento = $conexion->prepare($sqlMedicamento);
+            $stmtMedicamento->bind_param("issssss", $formulaId, $nombreMedicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia);
+
+            if ($stmtMedicamento->execute()) {
+                // Registro de medicamento insertado con éxito
+                $response['success'] = true;
+             $response['message'] = "Fórmula añadida con éxito";        
+            } else {
+                // Error en la inserción del medicamento
+                echo "Error al insertar el registro de medicamento: " . $stmtMedicamento->error;
+            }
+        }
+        $stmtMedicamento->close();
+
+
+           } else {
+        $response['success'] = false;
+        $response['message'] = "Error al insertar el registro de la fórmula: " . $stmt->error;
+       }
+
+    require_once "ContarProductos.php";
+
+
+    // Cerrar la conexión a la base de datos
+
+    // echo "<script>alert('Fórmula añadida con éxito')</script>";
+ 
+ 
+    // echo "<script>window.location='../views/Usuario.php'</script>";
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    
+
 }
+
+
+
 ?>

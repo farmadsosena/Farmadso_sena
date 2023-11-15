@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -398,6 +397,7 @@ body{
 .mader{
   display: flex;
   width: 100%;
+  height: 100vh;
 }
 
 .naver{
@@ -459,9 +459,88 @@ body{
 }
 
 .paginas{
-  height: 100%;
+  height: 90%;
   width: 100%;
   /* border: 1px solid; */
+}
+
+/* estilos de mis compras -----------------------------------*/
+
+.container-miscompras{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+/* Estilos para la ventana modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative; /* Agregamos esta propiedad para posicionar los elementos relativos a la ventana modal */
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  height: 40%;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  cursor: pointer;
+  font-size: 30px;
+  color: red;
+}
+
+/* Estilo para la tabla principal */
+.preview-detalle {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.preview-detalle thead{
+  position: sticky;
+  top: 0;
+}
+
+.preview-detalle th, .preview-detalle td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.preview-detalle th {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para el botón de "Ver Más" */
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 
@@ -523,7 +602,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 65%;
   height: 100%;
   margin-left: 15px;
 }
@@ -556,12 +635,13 @@ body{
 
 
 .filtros{
-  width: 30%;
+  width: 35%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: #6c6c6c;
+  /* border: 1px solid; */
 }
 
 .filtros i{
@@ -569,19 +649,85 @@ body{
   font-size: 1.5rem;
 }
 .filtros div{
-  padding: 0.3rem 0.65rem;
+  padding: 0.3rem 0.4rem;
 }
-.filtros div:hover{
+.filtros .config_filtros:hover{
   background-color: rgba(0,0,0,.06);
 }
 
+.filtros-titulo{
+  width: 4.5rem;
+  height: 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.imgBusqueda{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.imgBusqueda img{
+  width: 40%;
+}
+
+
+
+.flex{
+  display: flex !important;
+}
 .config_filtros{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
  cursor:pointer;
 }
+/* CONTENEDOR PARA MOSTRAR LOS FILTROS */
+.ventana-sal{
+  width: 13rem;
+  height: auto;
+  max-height: 8rem;
+  border-radius: 7px;
+  /* border: 1px solid; */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  position: absolute;
+  top: 90%;
+  overflow: auto;
+  background-color: #f0f0f0;
+  z-index: 2;
+}
+
+.ventana-sal div{
+  width: 100%;
+  height: 2rem;
+  overflow:hidden;
+}
+
+.rrrf{
+  position: absolute;
+  left: 0 !important;
+}
+.frrr{
+  position: absolute;
+  right: 0 !important;
+
+}
+
+.ventana-sal{
+  display: none;
+}
+
+.mostrar{
+  display: block;
+}
+
 
 .cards_formulas{
   width: 98%;
@@ -624,12 +770,191 @@ body{
   height: 20px;
 }
 
+
+
+.formula-info{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33333345;
+  z-index: 5;
+}
+
+.card_info{
+  background-color: white;
+  height: 450px;
+  width: 80%;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 10px;
+}
+
+.infoMedico{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(250, 250, 250, 0.795);
+  width: 30%;
+  gap: 8px;
+}
+
+.medico{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:100% ;
+}
+
+.title_infoMedico{
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.name_medico{
+  text-align: center;
+  width: 100%;
+  text-wrap: wrap;
+  font-size: 0.8em;
+}
+
+.foto_medico{
+  width: 120px;
+  border-radius: 80%;
+}
+
+
+.tarjeta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+  width: 100%;
+}
+
+
+
+
+.infoFormula{
+  display: flex;
+  flex-direction: column;
+ overflow: auto;
+  width: 80%;
+  gap: 10px;
+}
+
+.datos_user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.first_line_user{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5%;
+}
+
+.second_line_user{
+  display: flex;
+width: 100%;
+justify-content: center;
+gap: 5%;
+}
+
+.second_line_user div{
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.subtitle_user{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content_user{
+  display: flex;
+  justify-content: center;
+  align-items:center ;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contenido{
+  color: gray;
+}
+
+
+
+
+
+.datos_afilicion{
+  display: flex;
+  justify-content: space-around;
+ 
+}
+
+
+.content_medicamentos{
+  display: flex;
+ align-items: center;
+ gap: 10px;
+ width: 100%;
+ flex-wrap: wrap;
+}
+
+.medicamento{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  width: 18%;
+  height: 200px;
+  border-radius: 5px ;
+  gap: 5px;
+}
+
+.medicamento:hover{
+  background-color: rgb(219, 219, 219);
+}
+
+.medicamento_img{
+  width: 120px;
+
+  
+}
+
+
+.state_med{
+  font-size: 0.8em;
+  background-color: rgb(1, 206, 1);
+  width: 80px;
+  text-align: center;
+  border-radius: 5px;
+}
+/* fin */
+
 /* modificaciones para papelera */
 .cont-p{
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 700px;
   overflow: auto;
 }
 
@@ -1081,7 +1406,7 @@ body{
 }
 
 .mauso-resultados{
-  display: none;
+  display:none;
   padding: 0.3rem 0rem;
   left: 5px;
   width: 98.5%;
@@ -1129,9 +1454,12 @@ body{
 }
 
 
+
+
 @media (max-width: 767px) {
   .yuli {
   display: flex;
+  width: 13vh !important;
   height: 80vh;
   position: relative; /* Agregamos posición relativa para controlar los iconos */
 }
@@ -1190,6 +1518,7 @@ body{
 
 .mader{
   width: 100%;
+  padding: 0rem !important;
   display: flex;
   align-items: center;
   height: 100vh;
@@ -1200,6 +1529,7 @@ body{
   width: 100%;
   height: 100vh;
   display: flex;
+  padding: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;

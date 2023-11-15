@@ -121,7 +121,7 @@
       <div id="abrirCarrito"><i class='bx bx-cart-alt'></i><p>Carrito</p></div>
       <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
       <div class="profile-user">
-        <a href="configuracion.html"><i class='bx bxs-user-circle'></i></a>
+        <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
       </div>
 
     </nav>
