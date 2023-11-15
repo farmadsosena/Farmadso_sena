@@ -26,26 +26,3 @@ function sendForm(event, formulario, ruta) {
 }
 // Enviar form
 
-function EditMedicament(event, formId, action) {
-    event.preventDefault();
-
-    var form = document.getElementById(formId);
-    var formData = new FormData(form);
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                alert("Medicamento actualizado correctamente.");
-                // Restablecer el formulario después de una edición exitosa
-                form.reset();
-            } else {
-                alert("Hubo un error al actualizar el medicamento. Por favor, inténtalo de nuevo.");
-            }
-        }
-    };
-
-    xhr.open('POST', action, true);
-    xhr.send(formData);
-}

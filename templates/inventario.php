@@ -26,7 +26,7 @@ if ($result) {
 
     while ($row = mysqli_fetch_assoc($result)) {
         echo '
-        <div class="manilla">
+        <div class="manilla medicamento" data-id="'. $row['idmedicamento'] .'">
         <img src="uploads/imgProductos/'. $row['imagenprincipal'].'" alt="">
         <section class="seccion">
             <div class="articulo">
@@ -41,7 +41,7 @@ if ($result) {
                 <p><strong>Categoria:</strong> <span class="categoria-medicamento">'. $row['categoria'].'</span></p>
                 <p><strong>Proveedor:</strong> <span class="proveedor-medicamento">'. $row['proveedor'] .'</span></p>
                 <p><strong>Lote:</strong> <span class="lote-medicamento">'. $row['lote'] .'</span></p>
-                <p><strong>Precio:</strong> <span class="precio-medicamento">'. $row['precio'].' COP</span></p>
+                <p><strong>Precio:</strong> <span class="precio-medicamento">'. $row['precio'].'</span>COP</p>
                 <p><strong>Stock:</strong> <span class="stock-medicamento">'. $row['stock'] .'</span></p>
             </div>
         </section>

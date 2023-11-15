@@ -44,7 +44,6 @@
                 echo "Error en la consulta: " . mysqli_error($conexion);
             }
 
-            mysqli_close($conexion);
             ?>
         </div>
     </div>
