@@ -8,7 +8,7 @@
     <div class="options-form">
     <i class="bx bx-chevron-left" onclick="closeEditar()"></i>
     </div>
-<form id="medicineEdit" onsubmit="medicineEdit(event, 'EditMedicine', 'controllers/medicineEdit.php' )"  class="formAM" enctype="multipart/form-data">
+<form id="medicineEdit" method="post" class="formAM" enctype="multipart/form-data">
     <div class="inputallimg">
         <div class="cont-inputimg">
             <div class="inputImg">

@@ -1,18 +1,60 @@
 <?php
-// DatosProductos.php
+ob_clean(); 
+require_once '../config/Conexion.php';
 
-// Obtén el idMedicamento del cuerpo de la solicitud
-$idMedicamento = $_POST['id'];
+// Simulación de respuesta JSON desde tu servidor
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $idMedicamento = isset($_POST['id']) ? $_POST['id'] : null;
 
-// Realiza tu consulta y obtén los datos necesarios
-// ...
+    if ($idMedicamento !== null) {
+        // Realiza la consulta a las tablas utilizando un JOIN
+        $query = "SELECT i.*, m.*
+                  FROM inventario AS i
+                  JOIN medicamentos AS m ON i.idmedicamento = m.idmedicamento
+                  WHERE m.idmedicamento = $idMedicamento";
 
-// Forma la respuesta en un array asociativo
-$respuesta = array(
-    'resultado' => 'Éxito',
-    'datos' => $tusDatos,
-);
+        $result = mysqli_query($conexion, $query);
 
-// Convierte el array en JSON y devuelve la respuesta
-echo json_encode($respuesta);
+        if ($result) {
+            // Fetch the row from the result set
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row) {
+                // Procesa los resultados y almacena los datos en variables
+                $codigo = $row['codigo'];
+                $nombre = $row['nombre'];
+
+                $datos = array(
+                    'status' => 'success',
+                    'data' => array(
+                        'codigo' => $codigo,
+                        'nombre' => $nombre
+                    )
+                );
+            } else {
+                // Si no se encuentra el medicamento, envía un mensaje de error
+                $datos = array(
+                    'status' => 'error',
+                    'message' => 'No se encontró el medicamento con el ID proporcionado.'
+                );
+            }
+        } else {
+            // Error en la consulta SQL
+            $datos = array(
+                'status' => 'error',
+                'message' => 'Error en la consulta: ' . mysqli_error($conexion)
+            );
+        }
+    } else {
+        // No se proporcionó el ID
+        $datos = array(
+            'status' => 'error',
+            'message' => 'No se proporcionó el ID del medicamento.'
+        );
+    }
+
+    // Puedes enviar una respuesta JSON
+    echo json_encode($datos);
+    exit; // Salir después de imprimir la respuesta JSON
+}
 ?>
