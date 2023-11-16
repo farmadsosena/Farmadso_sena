@@ -39,6 +39,11 @@ if ($result->num_rows > 0) {
         }
       }
   }
+  
+  //$hash = hash('sha256', $valor);
+
+  //$claveSecreta = "2345"; // Cambia esto por tu clave real
+  //$valorCifrado = openssl_encrypt($valor, 'aes-256-cbc', $claveSecreta, 0, $claveSecreta);
 
   require_once "../Whatsapp.php";
 
