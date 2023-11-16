@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../assets/img/logoFarmadso.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadisticas</title>
+    <link rel="stylesheet" href="../assets/css/graficas.css">
+</head>
+<body>
+  
+
+        <div class="estadisticas-container">
+            <section class="estadisticas">
+                <div class="buttons">
+                    <article class="buttonssuperior">
+                        <section id="menu" class="buttonssuperior">
+                            <button type="button" class="buttonvisit">
+                                <h1>Visitas Registradas</h1>
+                                <span id="visitCount">Cargando...</span>
+                                <script src="../assets/javascript/cantidadVisitas.js"></script>
+                            </button>
+                            <button type="button" class="buttonproduct">
+                                <a class="buttonproduct" href="#" data-target="productos">
+                                    <h1>Productos Registrados</h1>
+                                    <span id="productCount">Cargando...</span>
+                                    <script src="../assets/javascript/cantidadProductos.js"></script>
+                                </a>
+                            </button>
+                            <button type="button" class="buttonuser">
+                                <a class="buttonuser" href="#" data-target="usuarios">
+                                    <h1>Usuarios Registrados</h1>
+                                    <span id="userCount">Cargando...</span>
+                                    <script src="../assets/javascript/cantidadUsuarios.js"></script>
+                                </a>
+                            </button>
+                        </section>
+                    </article>
+                </div>
+                <div class="graficas">
+                    <article class="ventasDSM">
+                        <select id="chartTypeSelector">
+                            <option value="daily">Ventas Diarias</option>
+                            <option value="weekly">Ventas Semanales</option>
+                            <option value="monthly">Ventas Mensuales</option>
+                            <option value="yearly">Ventas Anuales</option>
+                        </select>
+                        <div id="ventasdsm">
+                            <canvas id="ventasDSM"></canvas>
+                            <script src="../assets/javascript/graficoVentas.js"></script>
+                        </div>
+                    </article>
+                    <article class="ProductosMV">
+                        <div id="ProductosMV">
+                            <select id="filterSelect">
+                                <option value="mas_vendidos">Productos más vendidos</option>
+                                <option value="menos_vendidos">Productos menos vendidos</option>
+                            </select>
+                            <canvas id="ProductosMasVendidos"></canvas>
+                            <script src="../assets/javascript/graficoProductoMasVendido.js"></script>
+                        </div>
+
+                    </article>
+                    <article class="ventasCPyC">
+                        <div id="ventasCP">
+                            <select id="categoriaSelect"></select>
+                            <canvas id="ventasPorCategoriaChart" height="100px"></canvas>
+                            <script src="../assets/javascript/graficoVentasCategoria.js"></script>
+                        </div>
+                        <div id="ventasC">
+                            <canvas id="ventasPorClienteChart" height="100px"></canvas>
+                        </div>
+                    </article>
+
+                </div>
+                <article class="graficas">
+                    <article class="buttonsinferior">
+                        <article class="buttonsleft">
+                            <button type="button" class="buttoningresos">
+                                <h1>Ingresos</h1>
+                                <span id="ingresosCount">Cargando...</span>
+                            </button>
+                            <button type="button" class="buttonganancias">
+                                <h1>Ganancias</h1>
+                                <span id="gananciasCount">Cargando...</span>
+                            </button>
+                            <button type="button" class="buttonporcentaje">
+                                <h1>Porcentaje</h1>
+                                <span id="porcentajeCount">Cargando...</span>
+                            </button>
+                        </article>
+                        <article class="grafico">
+                            <canvas id="graficoCircular"></canvas>
+                            <input type="date" id="fechaInput">
+                        </article>
+                        <script src="../assets/javascript/graficoIngresos.js"></script>
+                    </article>
+                    <article class='productosCategoria'>
+                        <canvas id="chart"></canvas>
+                        <script src="../assets/javascript/graficoProductosCategoria.js"></script>
+                    </article>
+                    <article class="productosAgotados">
+                        <section id='estadisticasAgotados'>
+                            <div class="cabeceraAgotados">
+
+                                <div class="titleAgotados">Imagen</div>
+                                <div class="titleAgotados">Nombre</div>
+                                <div class="titleAgotados">Estado</div>
+                                <div class="titleAgotados">actualizar</div>
+
+                            </div>
+                            <div class='cuerpoAgotados'>
+                                <?php
+                                include('../controllers/mostrarProductosAgotados.php');
+                                ?>
+                            </div>
+                        </section>
+                    </article>
+            </section>
+        </div>
+   
+</body>
+</html>

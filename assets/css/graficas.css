@@ -1,0 +1,334 @@
+
+.estadisticas-container {
+    display: flex;
+    padding: 1em;
+    height: calc(91vh - 1.3em);
+    gap: 1em;
+}
+
+.estadisticas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+    height: 3em;
+}
+
+.buttonssuperior {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+    gap: 1em;
+}
+
+.buttonvisit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    height: 2.5em;
+    width: 100%;
+    padding: .5em;
+    color: #fff;
+    background-color: green;
+    border: 0;
+    font-size: 15px;
+}
+
+.buttonproduct {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    width: 100%;
+    height: 2.5em;
+    padding: .5em;
+    color: #fff;
+    background-color: #03066a;
+    border: 0;
+    font-size: 15px;
+}
+
+.buttonproduct:hover {
+    cursor: pointer;
+}
+
+.buttonuser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    width: 100%;
+    height: 2.5em;
+    padding: .5em;
+    color: #fff;
+    background-color: #FF9300;
+    border: 0;
+    font-size: 15px;
+}
+
+.buttonuser:hover {
+    cursor: pointer;
+}
+
+.graficas {
+    display: flex;
+    justify-content: space-between;
+    gap: .5em;
+    height: 15em;
+}
+
+.ProductosMV {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#productosMV {
+    width: em;
+    height: 13em;
+}
+
+#ProductosMasVendidos {
+    width: 400px;
+}
+
+.ventasDSM {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: center;
+    flex: 1;
+    align-items: center;
+    gap: .5em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#ventasdsm {
+    width: 12em;
+}
+
+.ventasCPyC {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+    flex: 1;
+    justify-content: center;
+
+}
+
+#ventasCP {
+    text-align: center;
+    width: 100%;
+    height: 7.5em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#ventasC {
+    width: 100%;
+    padding: .5em;
+    height: 7em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+
+.buttonsinferior {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 1em;
+    padding: 1em;
+}
+
+.buttonsleft {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    width: 10em;
+}
+
+.buttoningresos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    width: 100%;
+    height: 3.5em;
+    padding: .5em;
+    color: #fff;
+    background-color: #FF9300;
+    border: 0;
+    font-size: 15px;
+}
+
+.buttonganancias {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    width: 100%;
+    height: 3.5em;
+    padding: .5em;
+    color: #fff;
+    background-color: #03066a;
+    border: 0;
+    font-size: 15px;
+}
+
+.buttonporcentaje {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    width: 100%;
+    height: 3.5em;
+    padding: .5em;
+    color: #fff;
+    background-color: green;
+    border: 0;
+    font-size: 15px;
+}
+
+.grafico {
+    display: grid;
+    text-align: center;
+    gap: 1em;
+}
+
+#graficoCircular {
+    width: 100%;
+    height: 9em;
+}
+
+.productosCategoria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1em;
+}
+
+.productosAgotados {
+    display: flex;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#estadisticasAgotados {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cabeceraAgotados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2em;
+    background-color: #FF9300;
+    border-bottom: 2px solid #03066a;
+}
+
+.titleAgotados {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.messageAgotados{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.cuerpoAgotados {
+    flex-direction: column;
+    overflow: auto;
+    padding: .2em;
+    height: 15em;
+    gap: .5em;
+
+}
+
+#AgotadoID {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3em;
+    background-color: rgba(255, 0, 0, 0.58);
+    border-radius: 1em;
+    color: #fff;
+    border: 1px solid red;
+    padding: 1em;
+    text-transform: capitalize;
+}
+
+#imgAgotados {
+    height:2.5em;
+    width: 100%;
+}
+
+#nombreAgotado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+#estadoAgotado {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.Agotados_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2em;
+    background-color: transparent;
+    cursor: pointer;
+    color: #0e117a;
+    font-size: 20px;
+    border: 0;
+}
+.Agotados_btn:hover{
+    color: green;
+}
+
+
+
+.scroll-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}

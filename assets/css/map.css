@@ -1,0 +1,194 @@
+/* 
+body{
+  display: flex;
+} */
+
+.sb-title {
+  position: relative;
+  top: -12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+.sb-title-icon {
+  position: relative;
+  top: -5px;
+}
+
+/* .card-container {
+  display: flex;
+}
+
+.mapadireccioncontainer{
+  display: flex;
+} */
+.panel {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 10em;
+}
+
+.half-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.half-input {
+  max-width: 120px;
+}
+
+ .map {
+  width: 500px;
+  height: 500px;
+} 
+
+h2 {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+input {
+  height: 30px;
+}
+
+input {
+  border: 0;
+  border-bottom: 1px solid black;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+input:focus::placeholder {
+  color: white;
+}
+
+.button-cta {
+  height: 40px;
+  width: 40%;
+  background: #3367d6;
+  color: white;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: Roboto, sans-serif;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.48);
+  cursor: pointer;
+}
+
+
+
+/* servicio de geo */
+
+
+
+
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: rgb(104, 104, 104);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 400px;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  margin-top: 0;
+  padding: 0.5em;
+  border: 0;
+  border-bottom: 2px solid gray;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+input[type=reset] {
+  width: auto;
+  height: auto;
+  border-bottom: 0;
+  background-color: transparent;
+  color: rgb(104, 104, 104);
+  font-size: 14px;
+}
+
+.title {
+  width: 100%;
+  margin-block-end: 0;
+  font-weight: 500;
+}
+
+.note {
+  width: 100%;
+  margin-block-start: 0;
+  font-size: 12px;
+}
+
+.form-label {
+  width: 100%;
+  padding: 0.5em;
+}
+
+.full-field {
+  flex: 400px;
+  margin: 15px 0;
+}
+
+.slim-field-left {
+  flex: 1 150px;
+  margin: 15px;
+  margin-inline-start: 0;
+}
+
+.slim-field-right {
+  flex: 1 150px;
+  margin: 15px;
+  margin-inline-end: 0;
+}
+
+.my-button {
+  background-color: #000;
+  border-radius: 6px;
+  color: #fff;
+  margin: 10px;
+  cursor: pointer;
+  padding: 6px 24px;
+  text-decoration: none;
+}
+
+.my-button:hover {
+  background-color: #666;
+}
+
+.my-button:active {
+  position: relative;
+  top: 1px;
+}
