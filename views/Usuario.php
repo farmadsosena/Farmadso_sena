@@ -430,7 +430,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
         <div class="container-miscompras">
 
-          <table class="preview-detalle">
+          <table class="preview-detalle tablauno">
             <thead>
               <tr>
                 <th class="fecha">Fecha</th>
@@ -487,10 +487,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <!-- Ventana modal -->
-          <div id="modalDetalle" class="modal">
+          <div id="modalDetalle" class="modal"> 
+            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>      
 
             <div class="modal-content">
-              <span class="close-button" onclick="cerrarModal()">&times;</span>
+              <span class="close-button pc" onclick="cerrarModal()">&times;</span>
 
               <table class="preview-detalle">
                 <thead>
