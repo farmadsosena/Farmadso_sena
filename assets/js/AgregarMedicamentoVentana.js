@@ -10,7 +10,7 @@ CerrarVentanA.addEventListener("click", () => {
   VentanaAbrir.classList.remove("aggdisplay");
 });
 
-function CloseWindows(){
+function CloseWindows() {
   VentanaAbrir.classList.remove("aggdisplay");
 }
 
@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   });
 
 
-                  
+
                 },
               });
             });
@@ -283,34 +283,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var Medicamentos = document.querySelector("#MedicamentosAdd"); // Usar querySelector para seleccionar un elemento por su ID
- 
+  var Medicamentos = document.querySelector("#MedicamentosAdd");
 
   Medicamentos.addEventListener("submit", function (event) {
-    event.preventDefault();
+      event.preventDefault();
+      var diseño = document.getElementById('CargaDiseño');
 
-    var formData = new FormData(Medicamentos); // Cambiar 'formData' a 'FormData'
+      diseño.classList.add('flex');
 
-    fetch("../controllers/registroFormulas.php", {
-      method: "POST", // Especificar el método POST para enviar datos al servidor
-      body: formData, // Enviar los datos del formulario
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("La solicitud no pudo completarse correctamente.");
-      }
-      return response.json();
-    })
+      var formData = new FormData(Medicamentos);
+
+      fetch("../controllers/registroFormulas.php", {
+          method: "POST",
+          body: formData,
+      })
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error("La solicitud no pudo completarse correctamente.");
+          }
+          return response.json();
+      })
       .then((data) => {
-    
-          console.log("registro exitoso");// Corregir "existoso" a "exitoso"
+          diseño.classList.remove('flex'); // Corregido 'classList.remove'
+          alert("Registro exitoso");
           CloseWindows();
-          cargarContenido()
-         
-       
+          cargarContenido();
+          Medicamentos.reset();
       })
       .catch((error) => {
-        console.log("error en la solicitud", error);
+          console.log("Error en la solicitud", error);
+          alert("Error en la solicitud: " + error.message);
       });
   });
 });
@@ -320,27 +322,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function cargarContenido() {
   fetch("../controllers/cargar.php", {
-      method: "GET",
+    method: "GET",
   })
-  .then(response => {
+    .then(response => {
       if (!response.ok) {
-          throw new Error("La solicitud no pudo completarse correctamente.");
+        throw new Error("La solicitud no pudo completarse correctamente.");
       }
       return response.text();
-  })
-  .then(data => {
+    })
+    .then(data => {
       document.getElementById("LLEGARFR").innerHTML = data;
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error("Error al cargar el contenido:", error);
       alert("Error al cargar el contenido.");
-  });
+    });
 }
 
-function EliminarFormula(){
+function EliminarFormula() {
 
 
-  
+
 }
 
 

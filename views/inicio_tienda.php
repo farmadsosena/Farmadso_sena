@@ -96,6 +96,13 @@
   <header id="headerResponsive">
     <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
     <div class="menuRight">
+      <section class="buscador-responsive">
+        <div class="cont-input-buscador-responsive">
+        <i class="fa-solid fa-xmark" onclick="desactivar_buscador_responsive()"></i>
+          <input type="search" id="" placeholder="¿Qué estás buscando?">
+          <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
+        </div>
+      </section>
       <div id="abrirCarrito" class="addCarrito">
         <i class='bx bx-cart-alt'></i>
       </div>
@@ -109,14 +116,12 @@
   <header id="header">
     <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
     <nav id="menu">
-      <div id="inicio"><i class='bx bxs-home-alt-2'></i> Inicio</div>
-      <div id="productos"><i class='bx bxs-store'></i> Productos</div>
-      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i> Carrito</div>
+      <div id="inicio"><i class='bx bxs-home-alt-2'></i><p>Inicio</p></div>
+      <div id="productos"><i class='bx bxs-store'></i><p>Productos</p></div>
+      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i><p>Carrito</p></div>
+      <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
       <div class="profile-user">
         <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
-        <div id="cardProfile">
-          <div id="cerrarPerfil"><i class="fa-solid fa-xmark"></i></div>
-        </div>
       </div>
 
     </nav>
@@ -141,24 +146,32 @@
       <h1>Categorias destacadas</h1>
       <div class="swiper slider-categorias">
         <div class="swiper-wrapper">
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
-          </section>
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
-          </section>
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
-          </section>
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
-          </section>
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
-          </section>
-          <section class="swiper-slide cont-categorias">
-            <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
-          </section>
+          <div class="swiper-slide colum-categorias">
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
+              <h3>Vitaminas y minerales</h3>
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
+              <h3>Dolor e inflamacion</h3>
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
+              <h3>Gripa y tos</h3>
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
+              <h3>Estomago</h3>
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
+              <h3>Cuidado de la herida</h3>
+            </section>
+            <section class="swiper-slide cont-categorias">
+              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
+              <h3>Nutricion especializada</h3>
+            </section>
+          </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -169,24 +182,34 @@
       <div class="ranking">
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <p></p>
+          <p>Farmacia algorta</p>
           <h4>Acetaminofén-GENFAR</h4>
+          <p class="ahorro-top-product">Antes $30.000</p>
           <h2>$20.640</h2>
           <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/apiretal.jpg" alt="">
+          <p>Paraiso</p>
           <h4>Apiretal</h4>
+          <p class="ahorro-top-product">Antes $20.000</p>
+          <h2>$12.700</h2>
           <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
+          <P>Farmacia el raso</P>
           <h4>TUKOL EXPECTORANTE D</h4>
+          <p class="ahorro-top-product">Antes $32.000</p>
+          <h2>$29.900</h2>
           <button class="comprar-tarje-comp">Comprar</button>
         </div>
         <div class="top-product" id="productos">
           <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
+          <p>Cruz verde</p>
           <h4>BISOLVON ADULTOS</h4>
+          <p class="ahorro-top-product">Antes $40.000</p>
+          <h2>$36.000</h2>
           <button class="comprar-tarje-comp">Comprar</button>
         </div>
       </div>
@@ -196,25 +219,23 @@
       <div class="swiper slider-farmacias">
         <div class="swiper-wrapper">
           <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F1.jpg" alt="Vitaminas y minerales">
             </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F2.jpg" alt="Dolor e inflamacion">
             </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F3.jpg" alt="Gripa y tos">
             </section>
-          </div>
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F4.jpg" alt="Estomago">
             </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F5.jpg" alt="Cuidado de la herida">
             </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
+            <section class="swiper-slide cont-farmacia">
+              <img src="../uploads/imgProductos/logo_F6.jpg" alt="Nutricion especializada">
             </section>
           </div>
         </div>

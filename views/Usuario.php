@@ -31,9 +31,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -61,18 +59,19 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         <article class="hoss">
           <?php
           if ($eps == 1) {
-            ?>
+          ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
                 Mis compras
               </div>
             </div>
-            <a href="inicio_tienda.php" class="toggle-dic">
+            <a href="#" class="toggle-dic" onclick="confirmRedirect()">
               <div>
                 <i class='bx bx-store'></i>
                 Tienda virtual
               </div>
+              <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
             </a>
             <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
               <div>
@@ -80,9 +79,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           } else {
-            ?>
+          ?>
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
@@ -104,11 +103,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
             </div>
 
-            <a href="inicio_tienda.php" class="toggle-dic">
+            <a href="#" class="toggle-dic" onclick="confirmRedirect()">
               <div>
                 <i class='bx bx-store'></i>
                 Tienda virtual
               </div>
+              <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
             </a>
 
             <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
@@ -117,7 +117,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           }
           ?>
 
@@ -148,31 +148,34 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
               <div class="options">
 
+
                 <?php
-                function existe_en_tabla($tabla, $usuario,$columna,$valorEstado)
+                function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
                 {
                   global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario' and $columna= '$valorEstado'";
-                  $resultado = $conexion->query($consulta);
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
+                  $stmt = $conexion->prepare($consulta);
+                  $stmt->bind_param("ss", $usuario, $valorEstado);
+                  $stmt->execute();
+                  $resultado = $stmt->get_result();
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id,'EstadoAcept','Aceptado')) {
+                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
                 }
-                if (existe_en_tabla('farmacias', $id,'EstadoSolicitud','Aceptado')) {
+                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
                 }
-                if (existe_en_tabla('usuarios', $id, 'estado','1')) {
+                if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
                   echo '<div class="option">
                   <i class="bx bx-user-circle"></i> Cuenta de usuario
                 </div>';
                 }
-
                 ?>
               </div>
             </div>
@@ -250,11 +253,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
 
           <div class="cards_formulas" id="LLEGARFR">
-
-          
-
-
-
             <!-- Comienzan tarjetas para formulas -->
             <div class="formula-info">
               <div class="card_info">
@@ -326,17 +324,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     </div>
                   </div>
 
-                  <div  class="contendor_info_formula">
+                  <div class="contendor_info_formula">
                     <h2>Datos de afiliación</h2>
-                    <div class="datos_afilicion"> 
-                      <div >
+                    <div class="datos_afilicion">
+                      <div>
                         <p class="subtitle_user">Entidad</p>
                         <p class="contenido">SALUCOOP</p>
                       </div>
 
                       <div>
                         <p class="subtitle_user">Plan de beneficios</p>
-                        <p  class="contenido">prepagado</p>
+                        <p class="contenido">prepagado</p>
                       </div>
 
                       <div>
@@ -359,59 +357,59 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                         officiis itaque aliquam.</p>
                     </div>
                   </div>
-                  <div  class="contendor_info_formula">
+                  <div class="contendor_info_formula">
                     <h2>Medicamentos</h2>
                     <div class="content_medicamentos">
 
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
                       </div>
 
                       <div class="medicamento">
-                          <img src="../assets/img/loratadina.webp" class="medicamento_img" alt="">
-                          <p>Loratadina</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/loratadina.webp" class="medicamento_img" alt="">
+                        <p>Loratadina</p>
+                        <p class="state_med">Disponible</p>
                       </div>
 
                       <div class="medicamento">
-                          <img src="../assets/img/Naproxeno.webp" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/Naproxeno.webp" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
                       </div>
-                      
-                      <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
-                      </div>
-                      
 
-                        <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
-                      </div>
-                      
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
                       </div>
-                      
+
+
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
                       </div>
-                      
+
                       <div class="medicamento">
-                          <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                          <p>Ibuprofeno</p>
-                          <p class="state_med">Disponible</p>
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
                       </div>
-                      
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
 
                     </div>
                   </div>
@@ -419,14 +417,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
             </div>
             <!-- Final de tarjetas -->
-
-
-            <div id="mensajeNoResultados" class="imgBusqueda">
+          </div>
+          <div id="mensajeNoResultados" class="imgBusqueda">
             <img src="../assets/img/notas.png" alt="">
-              No se encontraron resultados parecidos
-            </div>
+            No se encontraron resultados parecidos
           </div>
         </article>
+
       </section>
 
       <section class="paginas" id="dos">
@@ -460,12 +457,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/compras.php',
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Limpiar el cuerpo de la tabla
                   $('#tabla-body').empty();
 
                   // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function (item) {
+                  data.forEach(function(item) {
                     var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
@@ -476,14 +473,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     $('#tabla-body').append(row);
                   });
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los datos: ' + error);
                 }
               });
             }
 
             // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function () {
+            $(document).ready(function() {
               cargarDatos();
             });
           </script>
@@ -526,10 +523,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
-                  data.forEach(function (detalle) {
+                  data.forEach(function(detalle) {
                     var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
@@ -543,7 +540,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Abre la ventana modal
                   $('#modalDetalle').show();
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los detalles de la compra: ' + error);
                 }
               });
@@ -568,7 +565,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </article>
         </div>
       </section>
-      
+
       <section class="paginas" id="cuatro">
 
         <div class="column" id="opciones">
@@ -812,12 +809,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
       <button id="enviar">Enviar</button>
       </div>
       </div> -->
-
-
-
-
-
-
       <!-- </section>
       </section>
       </section> -->
@@ -866,7 +857,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
   <section class="contenedor-form" id="VentanaPropia">
-    <form class="abilisco" id="MedicamentosAdd"  enctype="multipart/form-data">
+    <form class="abilisco" id="MedicamentosAdd" enctype="multipart/form-data">
       <header>
         <h2>Agregar formula a mi historial</h2>
         <div class="x-cerrar" id="X22">
@@ -878,8 +869,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto"
-              autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -887,15 +877,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none"
-              placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
-              <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
-                  class="mauso-texto">
+                <p>Medico responsable</p>
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -905,15 +893,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico"
-                  class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos"
-              placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
           </div>
         </section>
         <section class="padre-medicamentos">
@@ -928,6 +914,41 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
     </form>
+  </section>
+
+
+  <section class="tamaño" id="CargaDiseño">
+    <section class="deco">
+    <div class="boxes">
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    </section>
+    <section class="daco">
+    <p>Cargando...</p>
+    </section>
   </section>
 
   <script src="../assets/js/CambiarMenu.js"></script>

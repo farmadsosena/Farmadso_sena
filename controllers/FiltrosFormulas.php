@@ -1,13 +1,15 @@
 <?php
+session_start();
 include("../config/Conexion.php"); 
 
 if (isset($_POST['filtros'])) {
+    $paciente= $_SESSION["id"];
     $filtros = json_decode($_POST['filtros'], true);
 
     // Construir la consulta SQL con múltiples condiciones de filtro
     $query = "SELECT * FROM formulas
     INNER JOIN diagnosticos ON formulas.idDiagnostico = diagnosticos.idDiag
-     WHERE 1";
+     WHERE 1 and idPaciente='$paciente'";
 
     foreach ($filtros as $tipo => $valor) {
         // Verificar si el valor no está vacío antes de agregar a la consulta

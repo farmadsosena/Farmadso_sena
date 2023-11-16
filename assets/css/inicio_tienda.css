@@ -161,6 +161,9 @@ body {
     cursor: pointer;
     color: #696464;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     border-radius: 3px;
     transition: all 0.3s ease;
 }
@@ -180,6 +183,37 @@ body {
 #menu a {
     color: #696464;
     font-size: 25px;
+}
+
+#buscador-header{
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background-color: #f5f5f5;
+    border-radius: 50px !important;
+    height: 30px;
+    cursor: context-menu !important;
+}
+
+#buscador-header>input{
+    background-color: transparent;
+    height: 100%;
+    border: none;
+    color: #1a1919;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 34px;
+}
+
+#buscador-header>input:focus{
+    outline: none;
+}
+
+#buscador-header>i{
+    color: var(--primary);
+    cursor: pointer;
 }
 
 #cardProfile {
@@ -241,6 +275,16 @@ body {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 985px) {
+    #menu{
+        gap: 1rem;
+    }
+    #menu>div>p{
+        display: none;
+    }
+}
+
 #paypal-button-container {
     height: 12rem !important;
     box-sizing: border-box;
@@ -354,24 +398,68 @@ INDEX PRINCIPAL DE LA PAGINA
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 17.5rem;
+    height: 23.5rem;
+    border-radius: 5px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.top-product:hover{
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
+
 .top-product >img{
     margin-top: .5em;
     width: 12rem;
     object-fit: cover;
-    height: 10rem;
+    height: 15rem;
     border-radius: 5px;
     margin-bottom: 1em;
 }
-.top-product h3, .top-product p{
+.top-product p{
+    color: #888;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
     text-align: center;
-    color: #696464;
-    flex: 1;
-    font-size: 16.8px;
-    font-family: Arial, Helvetica, sans-serif;
 }
+
+.ahorro-top-product{
+    text-decoration: line-through;
+}
+
+.top-product>h2{
+    color: var(--primary);
+}
+
+.comprar-tarje-comp{
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    background-color:var(--primary) !important;
+    color: #fff;
+    border: 1px solid var(--primary);
+    background: transparent;
+    min-height: 35px;
+    font-weight: 700;
+    transition: all .2s ease;
+}
+
+.top-product>h4{
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 85%;
+    color: #333;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+}
+
 .top-product div{
     color: #f1f2f3;
     font-size: 16px;
@@ -400,7 +488,6 @@ INDEX PRINCIPAL DE LA PAGINA
 
 .articles>section {
     display: flex;
-    margin-top:3em;
     width: 80%;
     align-self: center;
     justify-content: space-evenly;
@@ -433,7 +520,6 @@ INDEX PRINCIPAL DE LA PAGINA
 
 .visitP {
     margin-top: 3em;
-    margin-bottom: 1em;
     height: 4rem;
     width: 13rem;
     font-weight: bold;
@@ -441,7 +527,7 @@ INDEX PRINCIPAL DE LA PAGINA
     cursor: pointer;
     color: #fff !important;
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 21px;
     border: none;
     border-radius: 5px;
     padding: .5em 1em;
@@ -908,6 +994,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 2.76em 0 0 0;
     font-size: 1.31em;
     width: 100%;
+    cursor: pointer;
 }
 
 
@@ -1524,6 +1611,51 @@ input[type=number]::-webkit-outer-spin-button {
         visibility: visible !important;
     }
 
+    .buscador-responsive{
+        position: absolute;
+        right: 133%;
+    }
+
+    .cont-input-buscador-responsive{
+        color: var(--primary);
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        /* background-color: #f5f5f5; */
+        border-radius: 50px;
+        height: 30px;
+        font-size: 15px;
+        justify-content: flex-end;
+        transition: all 0.3s ease;
+    }
+
+    .cont-input-buscador-responsive>input{
+        background-color: transparent;
+        height: 100%;
+        border: none;
+        color: #1a1919;
+        font-style: normal;
+        font-weight: 700;
+        width: 100%;
+        font-size: 15px;
+        line-height: 34px;
+    }
+
+    .cont-input-buscador-responsive>input:focus{
+        outline: none;
+    }
+
+    .cont-input-buscador-responsive>i{
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .cont-input-buscador-responsive>i:nth-child(1){
+        color: #696464;
+        visibility: hidden;
+    }
+
     .menuResponsive {
         width: 85%;
         background-color: #fff;
@@ -1633,6 +1765,7 @@ input[type=number]::-webkit-outer-spin-button {
         display: flex;
         align-items: center;
         gap: 1em;
+        position: relative;
     }
 
 
