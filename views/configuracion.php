@@ -42,9 +42,6 @@ $imgUser = $_SESSION['img'];
       <div class="tab-respo" onclick=" mostrarContenido('notificaciones')">
         <img src="../assets/svg/notificaciones.svg" alt="" />
       </div>
-      <div class="tab-respo" onclick="mostrarContenido('misfavoritos')">
-        <img src="../assets/svg/favorite.svg" alt="" />
-      </div>
       <div class="tab-respo" onclick=" mostrarContenido('politicas')">
         <img src="../assets/svg/privacidad.svg" alt="" />
       </div>
@@ -93,11 +90,6 @@ $imgUser = $_SESSION['img'];
         </div>
       </div>
 
-      <div class="opc">
-        <div class="tab" onclick="mostrarContenido('misfavoritos')">
-          <img src="../assets/svg/favorite.svg" alt="" /> Mis favoritos
-        </div>
-      </div>
     </div>
 
     <div class="contenedor-pestañas ayuda">
@@ -288,10 +280,6 @@ $imgUser = $_SESSION['img'];
 
     <div id="notificaciones" class="contenido-pestaña">
       Contenido de la Pestaña 1
-    </div>
-
-    <div id="misfavoritos" class="contenido-pestaña">
-      Contenido de la Pestaña 3
     </div>
 
     <div id="politicas" class="contenido-pestaña">
