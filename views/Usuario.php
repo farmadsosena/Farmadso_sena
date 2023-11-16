@@ -1,14 +1,19 @@
 <?php
 session_start();
-require_once "../config/Conexion.php";
+include "../config/Conexion.php";
 
 if (!isset($_SESSION["usu"])) {
   echo "<script> window.location='login.php'</script>";
 }
 
 $id = $_SESSION["id"];
-?>
 
+$eps = $_SESSION["eps"];
+$imgUser = $_SESSION['img'];
+
+$consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
+$rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manualmente, por lo que se le permite el acceso a esta parte de la aplicación.
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,808 +21,814 @@ $id = $_SESSION["id"];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../assets/img/logoFarmadso.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/usuario.css">
+  <link rel="stylesheet" href="../assets/css/enlances_formulario_Usu.css">
+  <link rel="stylesheet" href="../assets/css/register_Usu.css">
+  <link rel="stylesheet" href="../assets/css/registros_domi_y_farmacia.css">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
 <body>
-  <header class="adder">
-    <section class="nabber">
-      <i class='bx bx-menu'></i>
-      <div>
-        <img src="../assets/img/logoFarmadso - cambio.png" alt="">
-        <p>Farmadso</p>
-      </div>
-    </section>
-    <section class="buscador">
-      <div>
-        <input type="search" name="" id="" placeholder="Buscar campo">
-        <i class='bx bx-search-alt-2'></i>
-      </div>
-    </section>
-    <section class="optio">
-      <section class="option-true">
-        <a href="configuracion.html"><i class='bx bx-cog'></i></a>
 
-        <div class="custom-select">
-          <div class="selected-option">
-            <?php
-            $opciones = array(); // Array para llevar un seguimiento de las opciones disponibles
 
-            function existe_en_tabla($tabla, $usuario)
-            {
-              global $conexion;
-              $consulta = "SELECT * FROM $tabla WHERE idusuario = '$usuario'";
-              $resultado = $conexion->query($consulta);
-              return $resultado->num_rows > 0;
-            }
+  <section class="yuli">
+    <div class="icon">
+      <i class="bx bx-menu"></i>
+    </div>
 
-            if (existe_en_tabla('usuarios', $id)) {
-              $opciones[] = '<i class="bx bx-user-circle"></i> Cuenta de usuario';
-            }
-            // Verificar y agregar las opciones disponibles
-            if (existe_en_tabla('domiciliario', $id)) {
-              $opciones[] = '<i class="bx bx-car"></i> Domiciliario';
-            }
-            if (existe_en_tabla('farmacias', $id)) {
-              $opciones[] = '<i class="bx bxs-business"></i> Farmaceutico';
-            }
+    <aside class="aside">
+      <!-- Nuevo proceso -->
+      <section class="nabber">
 
-            // Mostrar la opción seleccionada
-            if (!empty($opciones)) {
-              echo array_shift($opciones); // Muestra la primera opción y la elimina del array
-            }
-
-            $conexion->close();
-            ?>
-          </div>
-          <div class="options">
-            <?php
-            // Mostrar las opciones restantes
-            foreach ($opciones as $opcion) {
-              echo '<div class="option">' . $opcion . '</div>';
-            }
-            ?>
-            <i class='bx bx-car'></i> Opción 1
-          </div>
-          <div class="options">
-            <div class="option">
-              <i class='bx bx-user-circle'></i> Usuario estandar
-            </div>
-            <div class="option">
-              <i class='bx bx-car'></i> Domiciliario
-            </div>
-            <div class="option">
-              <i class='bx bxs-business'></i> Farmaceutico
-            </div>
-            <div class="option">
-              <i class='bx bx-world'></i> Super Admin
-            </div>
-            <div class="option">
-              <i class='bx bx-user-plus'></i> Invitado
-            </div>
+        <div class="logo-container">
+          <div class="logo">
+            <img src="../assets/img/logoFarmadso - cambio.png" alt="">
+            <p>Farmadso</p>
           </div>
         </div>
+      </section>
 
-        <section class="cont-usu" id="cuenta-fasd">
-          <section class="cont-img">
-            <img src="../assets/img/logoFarmadso.png" alt="">
-          </section>
+      <section class="naver">
+        <article class="hoss">
+          <?php
+          if ($eps == 1) {
+          ?>
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
+            </div>
+            <a href="#" class="toggle-dic" onclick="confirmRedirect()">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+              <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
+            </a>
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
+            </div>
+          <?php
+          } else {
+          ?>
+            <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
+              <div>
+                <i class='bx bx-notepad'></i>
+                Mis formulas
+              </div>
+            </div>
+
+            <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
+              <div>
+                <i class='bx bx-shopping-bag'></i>
+                Mis compras
+              </div>
+            </div>
+
+            <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+              <div>
+                <i class='bx bx-trash-alt'></i>
+                Papelera
+              </div>
+            </div>
+
+            <a href="#" class="toggle-dic" onclick="confirmRedirect()">
+              <div>
+                <i class='bx bx-store'></i>
+                Tienda virtual
+              </div>
+              <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
+            </a>
+
+            <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
+              <div>
+                <i class='bx bx-user-circle'></i>
+                Solicitar un nuevo rol
+              </div>
+            </div>
+          <?php
+          }
+          ?>
+
+        </article>
+      </section>
+    </aside>
+  </section>
+
+  <main class="mader">
+    <article class="menu">
+
+      <header class="adder">
+
+        <section class="buscador">
+          <div>
+            <input type="search" name="" id="" placeholder="Buscar campo">
+            <i class='bx bx-search-alt-2' id=""></i>
+          </div>
         </section>
 
-      </section>
-    </section>
-  </header>
-  <main class="mader">
-    <section class="naver">
-      <section class="hoss">
-        <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
-          <div>
-            <i class='bx bx-notepad'></i>
-            Mis formulas
-          </div>
-        </div>
-        <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
-          <div>
-            <i class='bx bx-shopping-bag'></i>
-            Mis compras
-          </div>
-        </div>
-        <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
-          <div>
-            <i class='bx bx-trash-alt'></i>
-            Papelera
-          </div>
-        </div>
-        <div class="toggle-dic">
-          <div>
-            <i class='bx bx-user-circle'></i>
-            Solicitar un nuevo rol
-          </div>
-        </div>
+        <section class="optio">
+          <section class="option-true">
+            <a href="configuracion.php"><i class='bx bx-cog'></i></a>
 
-        </div>
-      </section>
-    </section>
-    <section class="cuerpores">
-    
+            <div class="custom-select">
+              <div class="selected-option">
+                <i class='bx bx-user-circle'></i> Cuenta de usuario
+              </div>
+              <div class="options">
+
+
+                <?php
+                function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
+                {
+                  global $conexion;
+                  $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
+                  $stmt = $conexion->prepare($consulta);
+                  $stmt->bind_param("ss", $usuario, $valorEstado);
+                  $stmt->execute();
+                  $resultado = $stmt->get_result();
+                  return $resultado->num_rows > 0;
+                }
+
+                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
+                  echo '<div class="option">
+                  <i class="bx bx-car"></i> Domiciliario
+                </div>';
+                }
+                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+                  echo '<div class="option">
+                  <i class="bx bxs-business"></i> Farmaceutico
+                </div>';
+                }
+                if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+                  echo '<div class="option">
+                  <i class="bx bx-user-circle"></i> Cuenta de usuario
+                </div>';
+                }
+                ?>
+              </div>
+            </div>
+
+            <section class="cont-usu" id="cuenta-fasd">
+              <img src="<?php echo $imgUser ?>" alt="">
+            </section>
+
+          </section>
+        </section>
+      </header>
+
       <section class="paginas" id="uno">
-        <div class="formulas">
+        <article class="formulas">
+          <section class="new-formula">
+            <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+          </section>
           <div class="opt_config">
             <div class="search">
               <input type="search" placeholder="Buscar Formula..." />
-              <div class="lupa">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAp5JREFUSEuN1s3LFmUUBvDfIWkRWZBgugmTsBbmGwnRIoUSEg3aloEtlKCgWhi08A9Q2iRiYi4MVELwDxBXgkpFG18JpFAIRHFRZJL0pdWReWae97nn67V7Mczcc+Z8Xee67gnFCuTswuS+tGi2xvbbppOnynTQ0cy28XYfp2N5xey7ELKs4AlsI7aSc3U1MR/yVHIC10unvU40mdcVtN8+IuM4+Xq/RU0SdeNOYofwR/U0UGAdoqyAfAjfYi3+Fg7L2B/yxwaK1cGuDO9IDza2G4i7PbCapIsAk51j2E5cIzfj+zZEC3isk3E65MrkU3zUw2waoOjOs/gO/+CFYL7Oug1y0feNOIs7xJMhb7QmsBWg9nEgeD/5DB8MTNzQwH2Jt4jd5N76m3JYWhi4EjyVdf8vjYK2QI2Jo5eTM8R5sqqoU3FlM1u/owL5Afw30J1OBZMUHsMvxE1yWT9Au4LfgqXJw6iCDawe6Srb28TPIZdPMZvxacrk2tVFzGE9cWFMIzpkfBHf4EywqQ9yq0XxSciPk8/x3tjYlWUFR5O3cQAftlo0MKZrgh8y/CvLMR2dpw3kuebtelyYWpYD0pKK4EiGHdLV4NUMlwfVlOeI0+TjOIx3e2kUcJUa3EhFrA35V4ZD0j5ca/i2Bruwk1jS4FRhULH+9qC8Dyjio6gI9FqHxCUst6Q9eBPPYx6v4NYCExrHfTWdsXFVTlhqC9bhz6bPX+MgfkXFg4pocyEvZtgk3ZwRJko17czHSPMHrKogX+EZ4Yr0UvDT9CDsqmkxXIuIfKk59f3yyUSFp6WdwRftAGPC03dUn3o9HZk4WIE3sL9bZVeR/6dKlKdYKSHtbOsWjZ/riwbrsX0gTv+vYtGTvMvRhU73/2+a6PcASOINLVWIdesAAAAASUVORK5CYII=" />
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAp5JREFUSEuN1s3LFmUUBvDfIWkRWZBgugmTsBbmGwnRIoUSEg3aloEtlKCgWhi08A9Q2iRiYi4MVELwDxBXgkpFG18JpFAIRHFRZJL0pdWReWae97nn67V7Mczcc+Z8Xee67gnFCuTswuS+tGi2xvbbppOnynTQ0cy28XYfp2N5xey7ELKs4AlsI7aSc3U1MR/yVHIC10unvU40mdcVtN8+IuM4+Xq/RU0SdeNOYofwR/U0UGAdoqyAfAjfYi3+Fg7L2B/yxwaK1cGuDO9IDza2G4i7PbCapIsAk51j2E5cIzfj+zZEC3isk3E65MrkU3zUw2waoOjOs/gO/+CFYL7Oug1y0feNOIs7xJMhb7QmsBWg9nEgeD/5DB8MTNzQwH2Jt4jd5N76m3JYWhi4EjyVdf8vjYK2QI2Jo5eTM8R5sqqoU3FlM1u/owL5Afw30J1OBZMUHsMvxE1yWT9Au4LfgqXJw6iCDawe6Srb28TPIZdPMZvxacrk2tVFzGE9cWFMIzpkfBHf4EywqQ9yq0XxSciPk8/x3tjYlWUFR5O3cQAftlo0MKZrgh8y/CvLMR2dpw3kuebtelyYWpYD0pKK4EiGHdLV4NUMlwfVlOeI0+TjOIx3e2kUcJUa3EhFrA35V4ZD0j5ca/i2Bruwk1jS4FRhULH+9qC8Dyjio6gI9FqHxCUst6Q9eBPPYx6v4NYCExrHfTWdsXFVTlhqC9bhz6bPX+MgfkXFg4pocyEvZtgk3ZwRJko17czHSPMHrKogX+EZ4Yr0UvDT9CDsqmkxXIuIfKk59f3yyUSFp6WdwRftAGPC03dUn3o9HZk4WIE3sL9bZVeR/6dKlKdYKSHtbOsWjZ/riwbrsX0gTv+vYtGTvMvRhU73/2+a6PcASOINLVWIdesAAAAASUVORK5CYII=" />
-              </div>
+              <i class='bx bx-filter'></i>
             </div>
             <div class="filtros">
-              <div class="doctor config_filtros">
-                Doctor
-                <img class="img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAeZJREFUSEuVlT8vBFEUxX9XRFQShUKtQEgUZLVUdHwAH0BU24tOL6r9AKKno6K2UUhEKNQKhUQlIvtkZ97Mu++9O7NMsZl9f+655957zghtjwCu+PGnBMHV/1rvFpvD8+rRofx+AjAipA8Q4owCqPPOiARSGaZn6dkrBs30dUYtkU16UYmMZIrUi7oL4zjpC27ghHUcP3bB0p6lp3Rj45oegxx6BsP3I938jJlVIn0oafgqcAeM+XwGIB3B3VdDFucdQ9ccsuTLW5PAIzCXkH0FlhG+0rkNcVqmSIH1BPbLTGNeAj0nHNR90lOn3o3lemkLx1XIPJ40D7cNXDc1vJyiTCDF6jTCC44ZfUaD+Uq/A/PAhwUitnqLoxfATnwpO11tXwK7IwCiy3sCZ5UD2frIoPccnJf+E/wqUrKnPAs8C0wFi2t1hmrzE1gAeQsA0RTVDG6ADZ2fbRVmuW6BzXgoYqZdhBPlzn+0Hj0l0hXcqRZgBbEg8OBgwlReNm7Gd6Jc+gZWhmVOvwd9gbVIUMb4GnpLZqBoct8JnWEl1JjKk+AWkw+Y7WdNKCGhJwdLgYEttP9XSntCo5tmttjmk41KqaGUDrxjjC6ybTtqNU1JRzZ9qcVOTKPUuimb/OeyxLlkLmto7xdNs8gneRCFOwAAAABJRU5ErkJggg==" />
-                <img class="img"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAeZJREFUSEuVlT8vBFEUxX9XRFQShUKtQEgUZLVUdHwAH0BU24tOL6r9AKKno6K2UUhEKNQKhUQlIvtkZ97Mu++9O7NMsZl9f+655957zghtjwCu+PGnBMHV/1rvFpvD8+rRofx+AjAipA8Q4owCqPPOiARSGaZn6dkrBs30dUYtkU16UYmMZIrUi7oL4zjpC27ghHUcP3bB0p6lp3Rj45oegxx6BsP3I938jJlVIn0oafgqcAeM+XwGIB3B3VdDFucdQ9ccsuTLW5PAIzCXkH0FlhG+0rkNcVqmSIH1BPbLTGNeAj0nHNR90lOn3o3lemkLx1XIPJ40D7cNXDc1vJyiTCDF6jTCC44ZfUaD+Uq/A/PAhwUitnqLoxfATnwpO11tXwK7IwCiy3sCZ5UD2frIoPccnJf+E/wqUrKnPAs8C0wFi2t1hmrzE1gAeQsA0RTVDG6ADZ2fbRVmuW6BzXgoYqZdhBPlzn+0Hj0l0hXcqRZgBbEg8OBgwlReNm7Gd6Jc+gZWhmVOvwd9gbVIUMb4GnpLZqBoct8JnWEl1JjKk+AWkw+Y7WdNKCGhJwdLgYEttP9XSntCo5tmttjmk41KqaGUDrxjjC6ybTtqNU1JRzZ9qcVOTKPUuimb/OeyxLlkLmto7xdNs8gneRCFOwAAAABJRU5ErkJggg==" />
+              <div class="doctor config_filtros" data-tipo-filtro="IdMedico">
+                <div class="filtros-titulo">Doctor</div>
+                <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall rrrf">
+                  <?php
+                  $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
+                INNER JOIN medicos ON formulas.IdMedico = medicos.idmedico
+                WHERE idPaciente = '$id'");
+
+                  if ($medicos->num_rows > 0) {
+                    $nombres_impresos = array();
+
+                    while ($rg = mysqli_fetch_assoc($medicos)) {
+                      $usuario = $rg["idusuario"];
+                      $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $usuario");
+                      $row = mysqli_fetch_assoc($cons_med);
+
+                      $nombre_completo = $row["nombre"] . " " . $row["apellido"];
+
+                      // Verificar si el nombre ya se ha impreso
+                      if (!in_array($nombre_completo, $nombres_impresos)) {
+                        echo "<div data-valor='" . $rg["idmedico"] . "'>" . $nombre_completo . "</div>";
+                        // Agregar el nombre al array de nombres impresos
+                        $nombres_impresos[] = $nombre_completo;
+                      }
+                    }
+                  }
+                  ?>
+
+                </section>
+
               </div>
 
-              <div class="state config_filtros">
-                Estado
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAeZJREFUSEuVlT8vBFEUxX9XRFQShUKtQEgUZLVUdHwAH0BU24tOL6r9AKKno6K2UUhEKNQKhUQlIvtkZ97Mu++9O7NMsZl9f+655957zghtjwCu+PGnBMHV/1rvFpvD8+rRofx+AjAipA8Q4owCqPPOiARSGaZn6dkrBs30dUYtkU16UYmMZIrUi7oL4zjpC27ghHUcP3bB0p6lp3Rj45oegxx6BsP3I938jJlVIn0oafgqcAeM+XwGIB3B3VdDFucdQ9ccsuTLW5PAIzCXkH0FlhG+0rkNcVqmSIH1BPbLTGNeAj0nHNR90lOn3o3lemkLx1XIPJ40D7cNXDc1vJyiTCDF6jTCC44ZfUaD+Uq/A/PAhwUitnqLoxfATnwpO11tXwK7IwCiy3sCZ5UD2frIoPccnJf+E/wqUrKnPAs8C0wFi2t1hmrzE1gAeQsA0RTVDG6ADZ2fbRVmuW6BzXgoYqZdhBPlzn+0Hj0l0hXcqRZgBbEg8OBgwlReNm7Gd6Jc+gZWhmVOvwd9gbVIUMb4GnpLZqBoct8JnWEl1JjKk+AWkw+Y7WdNKCGhJwdLgYEttP9XSntCo5tmttjmk41KqaGUDrxjjC6ybTtqNU1JRzZ9qcVOTKPUuimb/OeyxLlkLmto7xdNs8gneRCFOwAAAABJRU5ErkJggg==" />
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAeZJREFUSEuVlT8vBFEUxX9XRFQShUKtQEgUZLVUdHwAH0BU24tOL6r9AKKno6K2UUhEKNQKhUQlIvtkZ97Mu++9O7NMsZl9f+655957zghtjwCu+PGnBMHV/1rvFpvD8+rRofx+AjAipA8Q4owCqPPOiARSGaZn6dkrBs30dUYtkU16UYmMZIrUi7oL4zjpC27ghHUcP3bB0p6lp3Rj45oegxx6BsP3I938jJlVIn0oafgqcAeM+XwGIB3B3VdDFucdQ9ccsuTLW5PAIzCXkH0FlhG+0rkNcVqmSIH1BPbLTGNeAj0nHNR90lOn3o3lemkLx1XIPJ40D7cNXDc1vJyiTCDF6jTCC44ZfUaD+Uq/A/PAhwUitnqLoxfATnwpO11tXwK7IwCiy3sCZ5UD2frIoPccnJf+E/wqUrKnPAs8C0wFi2t1hmrzE1gAeQsA0RTVDG6ADZ2fbRVmuW6BzXgoYqZdhBPlzn+0Hj0l0hXcqRZgBbEg8OBgwlReNm7Gd6Jc+gZWhmVOvwd9gbVIUMb4GnpLZqBoct8JnWEl1JjKk+AWkw+Y7WdNKCGhJwdLgYEttP9XSntCo5tmttjmk41KqaGUDrxjjC6ybTtqNU1JRzZ9qcVOTKPUuimb/OeyxLlkLmto7xdNs8gneRCFOwAAAABJRU5ErkJggg==" />
+              <div class="state config_filtros" data-tipo-filtro="EstadoFormula">
+                <div class="filtros-titulo">Estado</div>
+                <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <div data-valor="1">Pendiente</div>
+                  <div data-valor="2">No aceptando</div>
+                  <div data-valor="3">Entregado</div>
+                </section>
               </div>
 
-              <div class="date config_filtros">
-                Fecha
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAbJJREFUSEuNVstNRDEMHNeBhIQ4QDc0w4UOoCEK4bI3BBJ9GCVx4rHjwO5p9z3Hn/k4K8gfAaACgUL5XX8O2Os6psfHsy3eTsVKli+Vj0/5l3/nTkbqsoBl5p6rYdWmHHmKZOFFAcvEqc3dIUofNcykejngihM8AXgF5NGLGaZbgQiFFb4AeAbwzvNwUz8AbrY+ywf1SIB8Ano/JyaIehaCdMfjILhNUQLIPB0KNCD/I80hZTmuafrxXoAQZPbLwps43AxRO0ycHcryWrhc4wOGLMUv1UlqxmR3ojlaqzfMzndYjAPBKOD5IrPFGJtj614MmekDZ0FnR1Z2Qpi5cTLH2cnpJv8wAakoBPbnA4rp2LxCRgMOl8s0LSxLxFuTRfYHrbQRgg8YU4FOH+zIlpshhVUkp5Bs39ZMuxuscAHRSJqosy3XgHSZ9m9Zpr2AG3wtR9+yA3xlLTpEQUUh0XX77hy1DHxYdkxsBH+zRs1N7QMA3wBuY2MxZVJdcQfhS4A7dzjpF9B24bwBeKh3UZysuAE/oPICqF04u5NXR1dCUZqE91veResPwKnAefVMc8eIX5jHxyJ9drbKAAAAAElFTkSuQmCC" />
-                <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAbJJREFUSEuNVstNRDEMHNeBhIQ4QDc0w4UOoCEK4bI3BBJ9GCVx4rHjwO5p9z3Hn/k4K8gfAaACgUL5XX8O2Os6psfHsy3eTsVKli+Vj0/5l3/nTkbqsoBl5p6rYdWmHHmKZOFFAcvEqc3dIUofNcykejngihM8AXgF5NGLGaZbgQiFFb4AeAbwzvNwUz8AbrY+ywf1SIB8Ano/JyaIehaCdMfjILhNUQLIPB0KNCD/I80hZTmuafrxXoAQZPbLwps43AxRO0ycHcryWrhc4wOGLMUv1UlqxmR3ojlaqzfMzndYjAPBKOD5IrPFGJtj614MmekDZ0FnR1Z2Qpi5cTLH2cnpJv8wAakoBPbnA4rp2LxCRgMOl8s0LSxLxFuTRfYHrbQRgg8YU4FOH+zIlpshhVUkp5Bs39ZMuxuscAHRSJqosy3XgHSZ9m9Zpr2AG3wtR9+yA3xlLTpEQUUh0XX77hy1DHxYdkxsBH+zRs1N7QMA3wBuY2MxZVJdcQfhS4A7dzjpF9B24bwBeKh3UZysuAE/oPICqF04u5NXR1dCUZqE91veResPwKnAefVMc8eIX5jHxyJ9drbKAAAAAElFTkSuQmCC" />
+              <div class="date config_filtros" data-tipo-filtro="fechaOrden">
+                <div class="filtros-titulo">Fecha</div>
+                <i class='bx bx-chevron-right'></i>
+                <section class="ventana-sal scrall frrr">
+                  <input type="date" id="fecha">
+                </section>
               </div>
-
-
-
             </div>
           </div>
-          <div class="cards_formulas">
 
+          <div class="cards_formulas" id="LLEGARFR">
+            <!-- Comienzan tarjetas para formulas -->
+            <div class="formula-info">
+              <div class="card_info">
+                <div class="infoMedico">
+                  <h1 class="title_infoMedico">Medico</h1>
+                  <div class="medico">
+                    <img class="foto_medico" src="../assets/img/medico_img.jpg" alt="">
+                    <p class="name_medico">
+                      Andres Leonardo Castro Buitrago
+                    </p>
+                  </div>
+                  <div>
+                    <div class="tarjeta ">
+                      <p class="T_name">Tarjeta profesional</p>
+                      <p class="T_number">12345</p>
+                    </div>
+                    <div class="especialidad">
+                      <p class="E_name">Especialidad</p>
+                      <p class="E_espe">Gastroestologo</p>
+                    </div>
 
-            <div class="card" data-id="1">
-              <div class="firts_line">
-                <div class="date-card">
-                  <p>05 de Noviembre de 2023</p>
+                    <div class="fecha_expi">
+                      <p class="F_name">Fecha de expedision</p>
+                      <p class="F_date">05/11/22</p>
+                    </div>
+
+                  </div>
+
                 </div>
+                <div class="infoFormula">
+                  <div class="contendor_info_formula">
+                    <h2>Datos Personales</h2>
+                    <div class="datos_user">
 
-                <div class="state-card2">
-                  Entregado
+                      <div class="first_line_user">
+                        <div class="content_user">
+                          <p class="subtitle_user">Nombre paciente</p>
+                          <p class="contenido">Nicolas Caicedo</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Identificación</p>
+                          <p class="contenido">1006537933</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Telefono</p>
+                          <p class="contenido">3115866621</p>
+                        </div>
+
+                        <div class="content_user">
+                          <p class="subtitle_user">Fecha nacimiento</p>
+                          <p class="contenido">05/11/2002</p>
+                        </div>
+                      </div>
+
+
+                      <div class="second_line_user">
+                        <div>
+                          <p class="content_user">Fecha de orden</p>
+                          <p class="contenido">11/09/23</p>
+                        </div>
+                        <div>
+                          <p class="content_user">Edad actual</p>
+                          <p class="contenido">21 años</p>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="contendor_info_formula">
+                    <h2>Datos de afiliación</h2>
+                    <div class="datos_afilicion">
+                      <div>
+                        <p class="subtitle_user">Entidad</p>
+                        <p class="contenido">SALUCOOP</p>
+                      </div>
+
+                      <div>
+                        <p class="subtitle_user">Plan de beneficios</p>
+                        <p class="contenido">prepagado</p>
+                      </div>
+
+                      <div>
+                        <p class="subtitle_user">Tipo de afiliación</p>
+                        <p class="contenido">Beneficiario</p>
+                      </div>
+
+                      <div>
+                        <p class="subtitle_user">Causa externa</p>
+                        <p class="contenido">Enfermedad general</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h2>Diagnostico encontrados</h2>
+                    <div>
+                      <p>Descripción del diagnostico</p>
+                      <p class="contenido">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus nulla optio voluptas, vel
+                        quae ipsa est fugiat voluptates! Ducimus dicta a modi eum incidunt libero temporibus quidem
+                        officiis itaque aliquam.</p>
+                    </div>
+                  </div>
+                  <div class="contendor_info_formula">
+                    <h2>Medicamentos</h2>
+                    <div class="content_medicamentos">
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/loratadina.webp" class="medicamento_img" alt="">
+                        <p>Loratadina</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/Naproxeno.webp" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+                      <div class="medicamento">
+                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
+                        <p>Ibuprofeno</p>
+                        <p class="state_med">Disponible</p>
+                      </div>
+
+
+                    </div>
+                  </div>
                 </div>
-
-              </div>
-
-              <div class="second-line">
-                <h3 class="title_card">
-                  Formulación de software para el catéter de rodilla maxilar </h3>
-
-                <div class="doc">
-                  <p class="profesion">Profesional de la salud</p>
-                  <p class="name_doc">Diego Hoyos Linares</p>
-                </div>
-
-                <div class="eps">
-
-                </div>
-
-                <div class="opt-card">
-
-                </div>
-              </div>
-
-              <div class="third-line">
-
-                Descargar
-
-                <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-                <img class="open_menu"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-
-              </div>
-              <div class="menu_card">
-                <ul>
-                  <li>Abrir</li>
-                  <li class="delete">Eliminar</li>
-                </ul>
               </div>
             </div>
+            <!-- Final de tarjetas -->
+          </div>
+          <div id="mensajeNoResultados" class="imgBusqueda">
+            <img src="../assets/img/notas.png" alt="">
+            No se encontraron resultados parecidos
+          </div>
+        </article>
+
+      </section>
+
+      <section class="paginas" id="dos">
+
+        <div class="container-miscompras">
+
+          <table class="preview-detalle tablauno">
+            <thead>
+              <tr>
+                <th class="fecha">Fecha</th>
+                <th class="estado">Estado</th>
+                <th class="email">Email</th>
+                <th class="total">Total</th>
+                <th class="accion">Acción</th>
+              </tr>
+            </thead>
+
+            <tbody id="tabla-body">
+              <!-- Aquí se agregarán las filas dinámicamente -->
+
+            </tbody>
+
+          </table>
 
 
+          <script>
+            // Función para cargar datos desde el servidor
+            function cargarDatos() {
+              // Realizar una solicitud Ajax al servidor para obtener los datos
+              $.ajax({
+                url: '../controllers/compras.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  // Limpiar el cuerpo de la tabla
+                  $('#tabla-body').empty();
 
-              <div class="modal_card">
-          
-              </div>
+                  // Iterar a través de los datos y construir las filas de la tabla
+                  data.forEach(function(item) {
+                    var row = `<tr>
+                    <td class="fecha">${item.fecha}</td>
+                    <td class="estado">${item.estadocompra}</td>
+                    <td class="email">${item.email}</td>
+                    <td class="total">${item.total}</td>            
+                    <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
+                </tr>`;
+                    $('#tabla-body').append(row);
+                  });
+                },
+                error: function(error) {
+                  console.log('Error al cargar los datos: ' + error);
+                }
+              });
+            }
+
+            // Llamar a la función para cargar los datos al cargar la página
+            $(document).ready(function() {
+              cargarDatos();
+            });
+          </script>
+
+
+          <!-- Ventana modal -->
+          <div id="modalDetalle" class="modal"> 
+            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>      
+
+            <div class="modal-content">
+              <span class="close-button pc" onclick="cerrarModal()">&times;</span>
+
+              <table class="preview-detalle">
+                <thead>
+                  <tr>
+                    <th class="fecha">Fecha</th>
+                    <th class="estado">Estado de Compra</th>
+                    <th class="detalle">Detalle</th>
+                    <th class="cantidad">Cantidad</th>
+                    <th class="total">Total</th>
+                    <th class="subtotal">Subtotal</th>
+                  </tr>
+                </thead>
+
+                <tbody id="detallecompra">
+                  <!-- aqui va el contenido de detalles-->
+
+                </tbody>
+
+              </table>
             </div>
-
-            <div class="card" data-id="1">
-              <div class="firts_line">
-                <div class="date-card">
-                  <p>05 de Noviembre de 2023</p>
-                </div>
-
-                <div class="state-card2">
-                  Entregado
-                </div>
-
-              </div>
-
-              <div class="second-line">
-                <h3 class="title_card">
-                  Formulación de software para el catéter de rodilla maxilar </h3>
-
-                <div class="doc">
-                  <p class="profesion">Profesional de la salud</p>
-                  <p class="name_doc">Diego Hoyos Linares</p>
-                </div>
-
-                <div class="eps">
-
-                </div>
-
-                <div class="opt-card">
-
-                </div>
-              </div>
-
-              <div class="third-line">
-
-                Descargar
-
-                <img class="open_menu"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-
-              </div>
-              <div class="menu_card">
-                <ul>
-                  <li>Abrir</li>
-                  <li class="delete">Eliminar</li>
-                </ul>
-              </div>
+          </div>
 
 
-              <div class="modal_card">
-          
-              </div>
+          <script>
+            // Agrega una función para mostrar detalles de compra
+            function mostrarDetalleCompra(idcompra) {
+              // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
+              $.ajax({
+                url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  // Llena la ventana modal con los detalles de la compra
+                  $('#detallecompra').empty();
+                  data.forEach(function(detalle) {
+                    var row = `<tr>
+                        <td>${detalle.fecha}</td>
+                        <td>${detalle.estadocompra}</td>
+                        <td>${detalle.detallesventa}</td>
+                        <td>${detalle.cantidad}</td>
+                        <td>${detalle.total}</td>
+                        <td>${detalle.subtotal}</td>
+                      </tr>`;
+                    $('#detallecompra').append(row);
+                  });
+                  // Abre la ventana modal
+                  $('#modalDetalle').show();
+                },
+                error: function(error) {
+                  console.log('Error al cargar los detalles de la compra: ' + error);
+                }
+              });
+            }
+          </script>
+
+        </div>
+      </section>
+
+      <section class="paginas" id="tres">
+        <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
+        <div class="bt-form"><button>
+            <i class='bx bxs-leaf'></i>
+            <h1>Formulas</h1>
+          </button></div>
+
+        <div class="cont-p">
+          <article class="sect-p">
+            <?php
+            require_once '../templates/papelera.php';
+            ?>
+          </article>
+        </div>
+      </section>
+
+      <section class="paginas" id="cuatro">
+
+        <div class="column" id="opciones">
+          <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+            <div class="arrow-icon">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
-
-            <div class="card">
-              <div class="firts_line">
-                <div class="date-card">
-                  <p>10 de Diciembre de 2023</p>
-                </div>
-
-                <div class="state-card">
-                  Pendiente
-                </div>
-
-              </div>
-
-              <div class="second-line">
-                <h3 class="title_card">
-                  Formulación de software para el catéter de rodilla maxilar </h3>
-
-                <div class="doc">
-                  <p class="profesion">Profesional de la salud</p>
-                  <p class="name_doc">Diego Hoyos Linares</p>
-                </div>
-
-                <div class="eps">
-
-                </div>
-
-                <div class="opt-card">
-
-                </div>
-              </div>
-
-              <div class="third-line">
-
-                Descargar
-
-                <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-                <img class="open_menu"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-
-              </div>
-              <div class="menu_card">
-                <ul>
-                  <li>Abrir</li>
-                  <li class="delete">Eliminar</li>
-                </ul>
-              </div>
+          </div>
+          <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
+            <div class="arrow-icon">
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
-
-
-            <div class="card">
-              <div class="firts_line">
-                <div class="date-card">
-                  <p>10 de Diciembre de 2023</p>
-                </div>
-
-                <div class="state-card3">
-                  No pedido
-                No pedido
-                </div>
-
-              </div>
-
-              <div class="second-line">
-                <h3 class="title_card">
-                  Formulación de software para el catéter de rodilla maxilar </h3>
-
-                <div class="doc">
-                  <p class="profesion">Profesional de la salud</p>
-                  <p class="name_doc">Diego Hoyos Linares</p>
-                </div>
-
-                <div class="eps">
-
-                </div>
-
-                <div class="opt-card">
-
-                </div>
-              </div>
-
-              <div class="third-line">
-
-                Descargar
-
-                <img class="open_menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-                <img class="open_menu"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATlJREFUSEudVdsWwyAIw///6O54qQRIqmd92DqHJoSAzf55mpk942Pvxl/5PQbFfQ5fDm3W7AGINzQBfyEnkgkspl54rYX+RZ+vDS6MmcFBjNAEILL40n5Lgrc2aoAAhKrIgCK64PPvjkBqEPmKIEKrVHRlIFi/ck0AdIjSdAGAdFOig8ZXEhGHeh8QcogJAKrSyu/af65mW4XSsmAVgzu794jTCmooMt+ANg1ZVnmJliFI2W7RShkQFy0ANBy4aPlXN90ngJKrZnDRmdWcsYgyA5xmta9q25ZkcWHLlevOdJxnF4kGicO8mBIVWQqVHsNnEQn1M3sP0TuJzno+TdUsgiFyATFCBoBbHW0a08jJ7l2u6UFYNSWK3pcSlYF5N1pGvqLRDhc69cBrsyxXvjIVO5SF+J3fDc1+swO8Ib35RvAAAAAASUVORK5CYII=" />
-
-              </div>
-              <div class="menu_card">
-                <ul>
-                  <li>Abrir</li>
-                  <li class="delete">Eliminar</li>
-                </ul>
-              </div>
+          </div>
+        </div>
+        <div id="contenido-domiciliario" class="hidden">
+          <div class="container">
+            <div class="flecha_titulo" onclick="volverAopciones('domiciliario')">
+              <i class='bx bx-left-arrow-alt'></i>
+              <h1>Solicitud para ser domiciliario</h1>
             </div>
+            <section class="parte1-formulario">
+              <form action="../controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="user" value='<?php echo $id ?>'>
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="nombreCompleto">Nombre Completo</label>
+                    <?php echo $rr["nombre"] ?>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="numeroDocumento">Numero de documento</label>
+                    <?php echo $rr['documento']; ?>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="telefono">Teléfono</label>
+                    <?php echo $rr['telefono']; ?>
+                  </div>
+                </section>
+
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="correo">Correo de Contacto</label>
+                    <?php echo $rr['correo']; ?>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="imagen">Foto Perfil</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                </section>
+
+                <section class="parte1-formulario">
+                  <div class="contenedoresparte1">
+                    <label for="datetime">Fecha de Inicio</label>
+                    <input type="date" id="fechainicio" name="fechainicio" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="disponibilidad">Disponibilidad</label>
+                    <input type="text" id="disponibilidad" name="disponibilidad" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="imagen">Historial</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                </section>
+
+                <h2>Datos Sensibles</h2>
+
+                <section class="parte1-formulario">
+
+                  <div class="contenedoresparte1">
+                    <label for="Tipovehiculo">Tipo de Vehiculo</label>
+                    <select id="tipovehiculo" name="tipovehiculo" required>
+                      <option value="moto">Moto</option>
+                      <option value="carro">Carro</option>
+                    </select>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="Direcciónresidencia">Dirección de residencia</label>
+                    <input type="text" id="direccion" name="direccion" required>
+                  </div>
+
+                </section>
+
+                <section class="parte1-formulario">
+
+                  <div class="contenedoresparte1">
+                    <label for="imagen">Tarjeta de propiedad</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="imagen">Soat</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
+                    <label for="imagen">Licencia de conducir</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                </section>
+
+                <label for="tipoCuenta">Tipo de cuenta:</label>
+                <select name="tipoCuenta" id="tipoCuenta">
+                  <option value="nequi">Nequi</option>
+                  <option value="paypal">PayPal</option>
+                  <option value="bancolombia">Bancolombia</option>
+                </select>
+                <br>
+
+                <label for="numeroCuenta">Número de cuenta:</label>
+                <input type="text" name="numeroCuenta" id="numeroCuenta">
+                <br>
+
+                <button id="enviar" name="enviar">Enviar</button>
+              </form>
+            </section>
           </div>
         </div>
 
 
-      </section>
-      <section class="paginas" id="dos">
-        ejem 2
-      </section>
-      <section class="paginas" id="tres">
-        <div class="cont-p">
-          <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
-          <div class="bt-form"><button>
-              <h1>Formulas</h1>
-            </button></div>
 
-          <div class="sect-p">
-            <div class="rect">
-              <div class="cont-cd">
-                <input id="botonAlerta" type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
+
+
+        <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
+        <div id="contenido-farmacia" class="hidden">
+          <div class="container">
+            <div class="flecha_titulo" onclick="volverAopciones('farmacia')">
+              <i class='bx bx-left-arrow-alt'></i>
+              <h1>Solicitud para registrar farmacia</h1>
             </div>
 
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-            <div class="rect">
-              <div class="cont-cd">
-                <input type="checkbox" class="ui-checkbox">
-                <div>
-                  <h3>Razon de la formula</h3>
-                </div>
-              </div>
-              <div class="cont-cd">
-                <div class="icon-cuadro"><i class='bx bxs-user-circle'></i></i></div>
-                <div>
-                  <h3>Doctor</h3>
-                </div>
-              </div>
-              <div>
-                <h3>Fecha</h3>
-              </div>
-              <div><button>Estado</button></div>
-            </div>
-
-      
-
-      </section>
-    
-      <section class="paginas" id="dos">
-        ejem 2
-      </section>
-
-      <section class="paginas" id="tres">
-        <div class="cont-p">
-          <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
-            <div class="bt-form">
-
-              <button class="title-formula">
-                <h1>Formulas</h1>
-              </button>
-
-              <button class="eliminar-razon">Eliminar</button>
-
-              <div class="seleccion-todo">
-
-                <input type="checkbox" id="seleccionarTodo">
-                <p>Seleccionar todo</p>
-
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="nombreFarmacia">Nombre de la Farmacia</label>
+                <input type="text" id="nombreFarmacia" name="nombreFarmacia" required>
               </div>
 
-            </div>
-
-            <div class="sect-p">
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input id="botonAlerta" type="checkbox" class="ui-checkbox"> 
-                <div><h3>Razon de la formula 1</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
+              <div class="contenedoresparte1">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" required>
               </div>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula 2</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
+              <div class="contenedoresparte1">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="correo">Correo de Contacto</label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+              <div class="contenedoresparte1">
+                <label for="imagen"> Imagen de Presentación</label>
+                <input type="file" id="imagen" name="imagen" required>
+              </div>
+            </section>
+
+            <h2>Datos Sensibles</h2>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="departamento">Departamento</label>
+                <select id="departamento" name="departamento" required>
+                  <option value="departamento1">Caquetá</option>
+                  <option value="departamento2">Cundinamarca</option>
+                  <!-- Agrega más departamentos según sea necesario -->
+                </select>
               </div>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula 3</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
+              <div class="contenedoresparte1">
+                <label for="ciudad">Ciudad</label>
+                <select id="ciudad" name="ciudad" required>
+                  <option value="departamento1">Florencia</option>
+                  <option value="departamento2">Bogota</option>
+                  <!-- Agrega más ciudades según sea necesario -->
+                </select>
+              </div>
+            </section>
+
+            <section class="parte1-formulario">
+              <div class="contenedoresparte1">
+                <label for="codigoPostal">Código Postal</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" required>
               </div>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
+              <div class="contenedoresparte1">
+                <label for="horario">Días de Horario Laboral</label>
+                <select id="horario" name="horario" required>
+                  <option value="lunes">Lunes</option>
+                  <option value="martes">Martes</option>
+                  <!-- Agrega más días según sea necesario -->
+                </select>
               </div>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
+              <div class="contenedoresparte1">
+                <label for="jornada">Jornada</label>
+                <select id="jornada" name="jornada" required>
+                  <option value="manana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                </select>
               </div>
+            </section>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
+            <label for="epsRegistrado">¿Está registrado con una EPS?</label>
+            <select id="epsRegistrado" name="epsRegistrado" required>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
+            <label for="eps">EPS con la que está registrado</label>
+            <select id="eps" name="eps" required>
+              <option value="eps1">EPS 1</option>
+              <option value="eps2">IPS 2</option>
+              <!-- Agrega más EPS según sea necesario -->
+            </select>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
+            <label for="nitEps">NIT de EPS</label>
+            <input type="text" id="nitEps" name="nitEps" required>
 
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
-
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
-
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
-
-              <div class="rect">
-                <div class="cont-cd"> 
-                  <input type="checkbox" class="ui-checkbox">
-                <div><h3>Razon de la formula</h3></div>
-                </div>
-                <div class="cont-cd">          
-                  <div class="icon-cuadro"><i class='bx bxs-user-circle' ></i></i></div>
-                  <div><h3>Doctor</h3></div></div>
-                <div><h3>Fecha</h3></div>
-                <div><button>Estado</button></div>
-              </div>
-            </div>
+            <button id="enviar">Enviar</button>
           </div>
         </div>
+      </section> 
+      <!-- Etiqueta que termina el contenedor 4 -->
+
+
+      <!-- 
+      <button id="enviar">Enviar</button>
+      </form>
       </section>
-    </section>
+
+      <button id="enviar">Enviar</button>
+      </div>
+      </div> -->
+      <!-- </section>
+      </section>
+      </section> -->
+    </article>
   </main>
+
+  <?php
+  include "../models/funcionemail.php";
+  ?>
 
   <section class="cuentas" id="datos-user">
     <section class="overflow">
       <header>
-        <h2>diegohlinares2004@gmail.com</h2>
+        <h2>
+          <?php echo $correo_usuario; ?>
+        </h2>
         <section class="dash-img">
-          <img src="" alt="">
+          <img src="<?php echo $imgUser ?>" alt="">
         </section>
-        <button>
-          Configuracion de la cuenta
-        </button>
       </header>
       <section class="darf">
         <details class="fores-u">
@@ -825,31 +836,94 @@ $id = $_SESSION["id"];
           <section class="count">
             <section class="fal">
               <div>
-                <img src="" alt="">
+                <img src="<?php echo $rr["imgUser"] ?>" alt="">
               </div>
             </section>
             <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
-            </section>
-          </section>
-          <section class="count">
-            <section class="fal">
-              <div>
-                <img src="" alt="">
-              </div>
-            </section>
-            <section class="fole">
-              <h4>DIEGO ANDRES HOYOS</h4>
-              <p>diegohlinares2004@gmail.com</p>
+              <h4>
+                <?php echo $rr["nombre"] . " " . $rr["apellido"]; ?>
+              </h4>
+              <p>
+                <?php echo $correo_usuario; ?>
+              </p>
             </section>
           </section>
         </details>
         <form action="../config/cerrarSesion.php" method="post" class="from-details">
-        <form action="" method="post" class="from-details">
           <button><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesion en la cuenta</button>
         </form>
       </section>
+    </section>
+  </section>
+
+
+  <section class="contenedor-form" id="VentanaPropia">
+    <form class="abilisco" id="MedicamentosAdd" enctype="multipart/form-data">
+      <header>
+        <h2>Agregar formula a mi historial</h2>
+        <div class="x-cerrar" id="X22">
+          <i class='bx bx-x'></i>
+        </div>
+      </header>
+      <section class="cuerpo-abilisco">
+        <section class="scroll-abi">
+          <div class="mauso">
+            <p>Diagnostico</p>
+            <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
+            <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
+            <section id="resultados" class="mauso-resultados scrall">
+              <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
+            </section>
+          </div>
+          <div class="mauso">
+            <p>Causa externa</p>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+          </div>
+          <section class="flex-mauso">
+            <section class="mauso-boom">
+              <div class="mauso">
+                <p>Medico responsable</p>
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
+                <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
+                <section id="medicosResult" class="mauso-resultados scrall">
+                  <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
+                </section>
+              </div>
+            </section>
+            <section class="mauso-boom">
+              <div class="mauso">
+                <p>Foto de la formula</p>
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+              </div>
+            </section>
+          </section>
+          <div class="mauso">
+            <p>Cantidad de medicamentos recetados</p>
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+          </div>
+        </section>
+        <section class="padre-medicamentos">
+          <!-- Contenedor donde llegan el resto del fomulario (AgregarMedicamentoVentana.js) -->
+        </section>
+        <section class="botones-abi">
+          <button class="regresar" id="volverAlPrincipio" type="button">Volver a los datos basicos</button>
+          <button class="continuar" id="cambiarMedicamento" type="button">Continuar con el formulario</button>
+          <button class="continuar asss" id="EnviarPorComplero">Enviar formula</button>
+        </section>
+      </section>
+
+
+    </form>
+  </section>
+
+
+  <section class="tamaño" id="CargaDiseño">
+    <section class="deco">
+    <div class="spinner"></div>
+    </section>
+    <section class="daco">
+    <p>Cargando...</p>
     </section>
   </section>
 
@@ -858,6 +932,12 @@ $id = $_SESSION["id"];
   <script src="../assets/js/filtros_formulas.js"></script>
   <script src="../assets/js/eliminar.js"></script>
   <script src="../assets/js/menu_card.js"></script>
+  <script src="../assets/js/funcionusuario.js"></script>
+  <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
+  <script src="../assets/js/mostrar_opcionesparte4.js"></script>
+  <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
+  <script src="../assets/js/modalCompras.js"></script>
+  <script src="../assets/js/mostrar_ocultarEPS.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,13 @@
+:root {
+  --azulOscuro: #2d57a8;
+  --verdeClaro: #b5ddca;
+  --verdeOscuro: #33a892;
+  --blanco: #fffefe;
+  --grisClaro : #f1f2f5;
+  --azulClaro: #6d93c9;
+  --fuente: sans-serif;
+}
+
 body {
     display: flex;
     height: 100vh;
@@ -12,6 +22,7 @@ body {
     padding: 0 20px;
     display: flex;
     flex-direction: column;
+    margin-right: 1rem;
   }
 
   #menu .title-cuenta{
@@ -44,60 +55,43 @@ body {
 
   #contenido {
     flex: 1;
-    padding: 20px;
+    transition: all 0.2s ease;
   }
 
   .tab {
     cursor: pointer;
-    margin-bottom: 10px;
     font-size: 14px;
+    gap: 15px;
   }
 
   .tab img{
     width: 20px;
-    margin-right: 10px;
   }
 
   .contenido-pestaña {
     display: none;
   }
 
-  /* estilos del contenido de las pestaña de cupon */
+  
 
-  #cupon .cuponera-container p{
-    font-size: 20px;
-  }
-
-  .cuponera-container .form-cupon{
-    display: flex;
-    align-items: center;
-  }
-
-  .form-cupon p{
-    margin-right: 15px;
-  }
-
-  .form-cupon input{
-    border-radius: 15px;
-    border: 0.5px solid gray;
-    background-color: #fff;
-    width: 250px;
-    height: 30px;
-    padding: auto;
-    padding-left: 20px;
-  }
-
-  .form-cupon button{
-    	border: none; 
-      border-radius: 3px;
-      height: 28px;
-  }
 
   /* estilos del cotenido de mi perfil */
+
+  .vane{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100vh;
+
+  }
+
 
   .perfil{
     display: flex;
   }
+
 
   .perfil img{
     width: 100px;
@@ -112,29 +106,32 @@ body {
     margin-bottom: -15px;
   }
 
-  .form-datos{
-    width: 80%;
+  .formdatos{
+    width: 95%;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 8px;
+    /* border: 1px solid ; */
   }
 
-  .form-datos .left{
+  .formdatos .left{
     width: 48%;
+    height: 100%;
+    /* border: 1px solid; */
   }
 
-  .form-datos .dato{
+  .formdatos .dato{
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .form-datos .dato p{
+  .formdatos .dato p{
     font-size: 13px;
     color: gray;
   }
 
-  .form-datos .dato input{
+  .formdatos .dato input{
     border: none;
     width: 99%;
     height: 30px;
@@ -143,13 +140,30 @@ body {
     border: 0.1px solid gray;
   }
 
-  .form-datos .genero p{
+  .gnr-campo{
+    display: flex;
+    align-items: center;
+  }
+
+  .gnr-campo>input{
+    margin-top: -5px;
+  }
+  .celu{
     font-size: 13px;
     color: gray;
   }
 
-  .form-datos .right{
+  .formdatos .genero p{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .formdatos .right{
+    display: flex;
+    flex-direction: column;
     width: 48%;
+    /* border: 1px solid; */
+    height: 100%;
   }
 
   .right .pais select{
@@ -172,6 +186,11 @@ body {
     color: gray;
   }
 
+  .right .nacimiento{
+    height: 10rem;
+    margin-top: 33px;
+    /* border: 1px solid; */
+  }
   .right .nacimiento select{
     border: 0.1px solid gray;
     border-radius: 3px;
@@ -179,11 +198,20 @@ body {
     height: 30px;
   }
 
+  .right .nacimiento span{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .right .nacimiento button{
     border: none;
     background-color: #418fde;
-    width: 99%;
-    height: 30px;
+    width: 40%;
+    height: 2.5rem;
+    font-size: 15px;
+    color: #fff;
     border-radius: 5px;
     margin-top: 35px;
   }
@@ -231,12 +259,13 @@ body {
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
+  border-radius: 5px ;
   width: 80%;
   max-width: 600px; /* Limita el ancho de la ventana modal */
 }
 
 .close {
-  color: blue;
+  color: #418fde;
   float: right;
   font-size: 30px;
   font-weight: bold;
@@ -244,7 +273,7 @@ body {
 
 .close:hover,
 .close:focus {
-  color: red;
+  color: var(--azulOscuro);
   cursor: pointer;
 }
 
@@ -258,6 +287,7 @@ input[type="text"] {
   width: 100%; /* Ajusta el ancho de los campos */
   padding: 10px;
   margin-bottom: 10px;
+  height: 16px;
 }
 
 .address-fields {
@@ -266,12 +296,33 @@ input[type="text"] {
 }
 
 .field {
+  display: flex;
+  flex-direction: column;
   width: 45%; /* Ajusta el ancho de los campos en la fila */
 }
+
+.btn-guardar{
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content button{
+  border: none;
+  background-color: #418fde;
+  border-radius: 4px;
+  width: 30%;
+  margin-top: 20px;
+  color: white;
+  margin-bottom: 25px;
+  cursor: pointer;
+  padding: 1rem;
+}
+
 
   /* estilos del contenido de cambiar contraseña */
   #cambiarcontrasena{
     display: flex;
+    height: 99.8%;
   }
 
   #cambiarcontrasena .contraseña{
@@ -283,10 +334,11 @@ input[type="text"] {
     justify-content: center;
     padding: 20px;
     margin: auto;
+    height: 80%;
   }
 
   #cambiarcontrasena .form-contraseña{
-    background-color: #f0f0f0;
+    box-shadow: 1px 2px 2px 10px rgba(128, 128, 128, 0.222);
     width: 98%;
     text-align: center;
     border-radius: 10px;
@@ -294,8 +346,8 @@ input[type="text"] {
 
   #cambiarcontrasena .form-contraseña .contraseña-actual{
     border: 0.5px solid gray;
-    width: 90%;
-    height: 30px;
+    width: 70%;
+    height: 20px;
     border-radius: 4px;
     outline: none;
   } 
@@ -306,8 +358,8 @@ input[type="text"] {
   
   #cambiarcontrasena .form-contraseña .nueva-cntrs input{
     border: 0.5px solid gray;
-    height: 30px;
-    width: 44%;
+    height: 20px;
+    width: 40%;
     border-radius: 4px;
     outline: none;
   }
@@ -316,49 +368,180 @@ input[type="text"] {
     border: none;
     background-color: #418fde;
     border-radius: 4px;
-    width: 92%;
+    width: 60%;
     height: 27px;
     margin-top: 20px;
-    color: #fff;
+    color: white;
     margin-bottom: 25px;
+    cursor: pointer;
   }
 
-  /* estilos del contenido de mis compras */
 
-  #miscompras .title-miscompras{
-    width: 95%;
+.cont-icon{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.responsive_total{
+  margin-top: 20px;
+}
+
+.cont-icon>i{
+  cursor: pointer;
+}
+
+.cont-icon>i{
+  color: #000;
+  font-size: 24px;
+}
+
+.cerrar-sesion-nav{
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  justify-content: center;
+}
+
+/*estilos menu responsive*/
+.menu-respon{
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  z-index: 0;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-left: 1px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+.menu-respon-active{
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.tab-respo{
+  width: 50%;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.tab-respo>img{
+  width: 20px;
+}
+
+/*responsive contenido*/
+
+/* Estilos para pantallas pequeñas (menos de 768px de ancho) */
+@media screen and (max-width: 768px) {
+  #menu {
+    width: 100%; /* Ocupar el ancho completo */
+    margin-right: 0; /* Eliminar el margen derecho */
+  }
+
+  .contenedor-pestañas .opc {
+    height: auto; /* Ajustar la altura automáticamente */
+    margin-bottom: 5px; /* Espaciado entre pestañas */
+  }
+
+  .contenedor-pestañas .tab {
+    width: 100%; /* Ocupar el ancho completo */
+    height: auto; /* Ajustar la altura automáticamente */
+  }
+
+  .tab img {
+    width: 15px; /* Reducir el tamaño de la imagen */
+  }
+
+  .vane {
+    gap: 10px; /* Reducir el espacio entre elementos */
+  }
+
+  .perfil img {
+    width: 80px; /* Ajustar el tamaño de la imagen de perfil */
+  }
+
+  .formdatos {
+    flex-direction: column; /* Cambiar a diseño de columna */
+    align-items: center; /* Centrar elementos */
+  }
+
+  .formdatos .left, .formdatos .right {
+    width: 90%; /* Ocupar el ancho completo */
+  }
+
+  .right .pais select, .right .pais input {
+    width: 100%; /* Ocupar el ancho completo */
+  }
+
+  .right .nacimiento select, .right .nacimiento span {
+    width: 100%; /* Ocupar el ancho completo */
+  }
+
+/*cambiar contraseña responsive*/
+
+  #cambiarcontrasena {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Cambiar a diseño de columna */
+    align-items: center; /* Centrar elementos */
+    height: auto; /* Ajustar la altura automáticamente */
   }
 
-  #miscompras .title-miscompras h2{
-    color: gray;
+  #cambiarcontrasena .contraseña {
+    width: 100%; /* Ocupar el ancho completo */
+    padding: 10px; /* Reducir el relleno */
   }
 
-  #miscompras .title-miscompras a{
-    background-color: #418fde;
-    text-decoration: none;
-    width: 10%;
-    height: 25px;
-    border-radius: 4px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+  #cambiarcontrasena .form-contraseña {
+    width: 100%; /* Ocupar el ancho completo */
   }
 
-  #miscompras .compras-container{
-    background-color: #f0f0f0;
-    height: 150px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;  
+  #cambiarcontrasena .form-contraseña .contraseña-actual {
+    width: 80%; /* Ocupar el ancho completo */
   }
 
-  #miscompras .compras-container img{
-    width: 50px;  
-    margin-right: 20px;
+  #cambiarcontrasena .form-contraseña .nueva-cntrs {
+    margin-top: 10px; /* Reducir el margen superior */
   }
+
+  #cambiarcontrasena .form-contraseña .nueva-cntrs input {
+    width: 80%; /* Ocupar el ancho completo */
+  }
+
+  #cambiarcontrasena .form-contraseña button {
+    width: 90%; /* Ocupar el ancho completo */
+    margin-top: 10px; /* Reducir el margen superior */
+    margin-bottom: 10px; /* Reducir el margen inferior */
+  }
+}
+
+/* Estilos para pantallas muy pequeñas (menos de 480px de ancho) */
+@media screen and (max-width: 480px) {
+  .contenedor-pestañas .tab {
+    font-size: 12px; /* Reducir el tamaño de fuente en pestañas */
+    gap: 10px; /* Espaciado entre elementos */
+  }
+
+  .vane {
+    gap: px; /* Reducir el espacio entre elementos */
+  }
+
+  .perfil img {
+    width: 60px; /* Ajustar el tamaño de la imagen de perfil */
+  }
+
+  .formdatos .genero p {
+    font-size: 12px; /* Reducir el tamaño de fuente en género */
+  }
+}

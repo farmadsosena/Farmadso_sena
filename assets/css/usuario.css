@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -23,11 +22,27 @@ body{
   background-color: #f6f8fc;
 }
 
+
+.yuli{
+  display: flex;
+  flex-direction: column;
+  width: 40vh;
+  position: relative;
+  height: 100%;
+  padding-top: 30px;
+}
+
+.yuli .icon{
+  position: relative;
+  top: 15px;
+  display: none;
+}
 .aside{
   display: flex;
   flex-direction: column;
   /* border: 1px solid; */
-  width: 50vh;
+  margin-top: -40px;
+  width: 40vh;
 }
 .adder{
   display: flex;
@@ -115,7 +130,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 33%;
 }
 
 .option-true{
@@ -200,7 +215,7 @@ body{
 }
 .cuentas .dash-img{
   margin: 0.8rem 0rem;
-  width: 29%;
+  width: 25%;
   height: 5rem;
   border-radius: 50%;
 }
@@ -208,7 +223,7 @@ body{
 .cuentas .dash-img img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -280,7 +295,6 @@ body{
   color: rgb(20, 15, 15);
 }
 .count .fal div{
-  border: 1px solid black;
   width: 69%;
   height: 70%;
   border-radius: 50%;
@@ -331,7 +345,7 @@ body{
 
 /* Estilos para el custom select */
 .custom-select {
-  width: 60%;
+  width: 65%;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -383,6 +397,7 @@ body{
 .mader{
   display: flex;
   width: 100%;
+  height: 100vh;
 }
 
 .naver{
@@ -398,14 +413,16 @@ body{
   padding: 2rem 0rem;
   height: auto;
 }
+
 .doss{
   background-color: #d3e3fd;
-
+  
 }
 .doss div{
   color: #333; 
   font-weight: 550 !important; 
 }
+
 .hoss .toggle-dic{
   display: flex;
   align-items: center;
@@ -442,10 +459,93 @@ body{
 }
 
 .paginas{
-  height: 100%;
+  height: 90%;
   width: 100%;
   /* border: 1px solid; */
 }
+
+/* estilos de mis compras -----------------------------------*/
+.container-miscompras{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+/* Estilos para la ventana modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative; /* Agregamos esta propiedad para posicionar los elementos relativos a la ventana modal */
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  height: 40%;
+}
+
+.btnnmovil{
+  color: transparent;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.pc{
+  color: red;
+}
+
+/* Estilo para la tabla principal */
+.preview-detalle {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.preview-detalle thead{
+  position: sticky;
+  top: 0;
+}
+
+.preview-detalle th, .preview-detalle td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.preview-detalle th {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para el botón de "Ver Más" */
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
 
 
 
@@ -460,120 +560,418 @@ body{
   height: 100%;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  padding: 0.5rem 0rem;
+}
+/* Agregar nuevas formulas al sistema */
+
+.new-formula{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0rem 1rem;
+  padding-bottom: 0.5rem;
 }
 
+.new-formula button{
+  display: flex;
+  align-items: center;
+  background-color: #2d57a8;
+  width: auto;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.45rem 0.5rem;
+}
+
+.new-formula button i{
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+/* Modificaciones para mostrar las fomrulas establecidas en el sistema */
 
 .opt_config{
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  height: 70px;
-  width: 90%;
-  border: #3d83df91 solid 2px;
-  margin-top: 25px;
-  gap: 5px;
+  width: 98%;
+  height: 10%;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }
 
 .search{
+  position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  width: 40%;
+  width: 65%;
+  height: 100%;
   margin-left: 15px;
-  
 }
 
 .search input[type='search']{
   border: rgb(172, 172, 172) solid 1px;
   height: 35px;
+  border-radius: 3px;
   width: 100%;
   font-size: 1em;
-  padding-left: 5px;
-  border-radius: 10px 0 0 10px;
+  padding-left: 3rem;
+  background-color: transparent;
+  border: none;
+}
+.search i{
+  color: #6c6c6c;
+  position: absolute;
+  left: 14px;
+  font-size: 1.6rem;
 }
 
-input:focus{
+
+.search input:focus {
   outline: none;
+  border: 1px solid rgb(65, 84, 250);
 }
-
 .rotate{
   transform: rotate(0.5turn);
 }
 
-.lupa{
-  background-color: #3d83df;
-  height: 50%;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  border-radius: 0px 5px 5px  0px;
-
-}
-
 
 .filtros{
+  width: 35%;
+  height: 100%;
   display: flex;
-  margin-left: 15px;
-  gap: 15px;
-  
+  align-items: center;
+  justify-content: space-around;
+  color: #6c6c6c;
+  /* border: 1px solid; */
 }
 
+.filtros i{
+  transform: rotate(90deg);
+  font-size: 1.5rem;
+}
+.filtros div{
+  padding: 0.3rem 0.4rem;
+}
+.filtros .config_filtros:hover{
+  background-color: rgba(0,0,0,.06);
+}
+
+.filtros-titulo{
+  width: 4.5rem;
+  height: 2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.imgBusqueda{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.imgBusqueda img{
+  width: 40%;
+}
+
+
+
+.flex{
+  display: flex !important;
+}
 .config_filtros{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
  cursor:pointer;
 }
-
-.cards_formulas{
-  border: solid 1px black;
-  width: 90%;
-  height: 450px;
+/* CONTENEDOR PARA MOSTRAR LOS FILTROS */
+.ventana-sal{
+  width: 13rem;
+  height: auto;
+  max-height: 8rem;
+  border-radius: 7px;
+  /* border: 1px solid; */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  position: absolute;
+  top: 90%;
   overflow: auto;
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 35px;
+  background-color: #f0f0f0;
+  z-index: 2;
+}
+
+.ventana-sal div{
+  width: 100%;
+  height: 2rem;
+  overflow:hidden;
+}
+
+.rrrf{
+  position: absolute;
+  left: 0 !important;
+}
+.frrr{
+  position: absolute;
+  right: 0 !important;
+
+}
+
+.ventana-sal{
+  display: none;
+}
+
+.mostrar{
+  display: block;
 }
 
 
+.cards_formulas{
+  width: 98%;
+  height: 90%;
+  overflow: auto;
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+.cards_formulas::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+
+
+
 .card{
-  
-  width: 280px;
-  height: 220px;
+  width: 32.5%;
+  margin-top: 0.8rem;
+  height: 200px;
   border: rgb(197, 197, 197) 1px solid;
-  padding: 5px 5px;
+  padding: 0.8rem 0.8rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
+  border-radius: 5px;
   position: relative;
 }
 
 .firts_line{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 20px;
+}
+
+
+
+.formula-info{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33333345;
+  z-index: 5;
+}
+
+.card_info{
+  background-color: white;
+  height: 450px;
+  width: 80%;
+  display: flex;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 10px;
+}
+
+.infoMedico{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(250, 250, 250, 0.795);
+  width: 30%;
+  gap: 8px;
+}
+
+.medico{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:100% ;
+}
+
+.title_infoMedico{
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.name_medico{
+  text-align: center;
+  width: 100%;
+  text-wrap: wrap;
+  font-size: 0.8em;
+}
+
+.foto_medico{
+  width: 120px;
+  border-radius: 80%;
+}
+
+
+.tarjeta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+  width: 100%;
+}
+
+
+
+
+.infoFormula{
+  display: flex;
+  flex-direction: column;
+ overflow: auto;
+  width: 80%;
+  gap: 10px;
+}
+
+.datos_user{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.first_line_user{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5%;
+}
+
+.second_line_user{
+  display: flex;
+width: 100%;
+justify-content: center;
+gap: 5%;
+}
+
+.second_line_user div{
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.subtitle_user{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content_user{
+  display: flex;
+  justify-content: center;
+  align-items:center ;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contenido{
+  color: gray;
+}
+
+
+
+
+
+.datos_afilicion{
+  display: flex;
+  justify-content: space-around;
+ 
+}
+
+
+.content_medicamentos{
+  display: flex;
+ align-items: center;
+ gap: 10px;
+ width: 100%;
+ flex-wrap: wrap;
+}
+
+.medicamento{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  width: 18%;
+  height: 200px;
+  border-radius: 5px ;
+  gap: 5px;
+}
+
+.medicamento:hover{
+  background-color: rgb(219, 219, 219);
+}
+
+.medicamento_img{
+  width: 120px;
+
   
 }
+
+
+.state_med{
+  font-size: 0.8em;
+  background-color: rgb(1, 206, 1);
+  width: 80px;
+  text-align: center;
+  border-radius: 5px;
+}
+/* fin */
 
 /* modificaciones para papelera */
 .cont-p{
   display: flex;
   flex-direction: column;
-  width: 2000px;
-  height: 700px;
+  width: 100%;
   overflow: auto;
 }
+
+.cont-p {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
+
+.cont-p::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+
 .icon{
   display: flex;
   width: 3rem;
@@ -584,144 +982,162 @@ input:focus{
 }
 
 .bt-form button{
-  border: 1px solid black;
-  width: 10rem;
+  width: 15rem;
   height: 3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #33a892;
+  border: none;
+  padding: 0rem 1rem;
+  background-color: transparent;
+  border-bottom: 2px solid blue;
+ border-radius: 3px;
+ background-color: rgba(128, 128, 128, 0.068);
+ cursor: pointer;
 }
+.bt-form button i{
+  margin-right: 1rem;
+}
+
+.bt-form button:hover{
+  background-color: rgba(128, 128, 128, 0.164);
+}
+
 
 .sect-p{
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .rect{
-  border: 1px solid black;
+  border: 1px solid rgba(128, 128, 128, 0.116);
   height: 100px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.rect:hover{
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px 0px;
 }
 
 .icon-cuadro{
   font-size: 2em;
 }
 
-.cont-cd{
+.cont-cd1{
   display: flex;
-  justify-content:space-between;
   align-items: center;
-  gap: 15px;
+  width: 60%;
+  height: 100%;
+  font-size: 11px;
+  font-weight: 100;
+}
+
+.cont-cd1 div{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0rem 0.5rem;
+}
+
+.ppp{
+  width: 550px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.medico{
+  width: 170px !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* CLASES PARA ME¿ANEJAR EN CASO DE QUE NO EXITAN FORMULAS O FORMATOS EN EL USUARIO */
+.semantica-img{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.semantica-img img{
+  width: 40%;
+}
+
+.contenido-tactico{
+  display: flex;
+  width: 64%;
+}
+
+.part1-contenido{
+  width: 100%;
+  position: relative;
+}
+.part2-contenido{
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  background-color: white;
+  color: black;
+  display: none !important;
+  width: auto;
+  padding: 0rem 0rem;
+}
+.part2-contenido i{
+  font-size: 1.2rem;
+  margin: 0px 7px;
+  padding: 0.3rem;
+}
+
+.part2-contenido i:hover{
+  background-color: #33333315;
+  padding: 0.3rem;
+  border-radius: 50%;
+}
+
+
+.visible{
+  display: flex !important;
+}
+.cont-cd2{
+  display: flex;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  font-size: 11px;
+  font-weight: 100;
+}
+
+.cont-cd2 div{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  padding: 0rem 0.6rem;
+}
+.cont-cd2 div button{
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  padding: 0.1rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: red;
+  color: white;
+}
+
+.cont-cd2 section{
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 /* checkbox settings 👇 */
 
-.ui-checkbox {
-  --primary-color: #1677ff;
-  --secondary-color: #fff;
-  --primary-hover-color: #4096ff;
-  /* checkbox */
-  --checkbox-diameter: 20px;
-  --checkbox-border-radius: 5px;
-  --checkbox-border-color: black;
-  --checkbox-border-width: 1px;
-  --checkbox-border-style: solid;
-  /* checkmark */
-  --checkmark-size: 1.2;
-}
-
-.ui-checkbox, 
-.ui-checkbox *, 
-.ui-checkbox *::before, 
-.ui-checkbox *::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ui-checkbox {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: var(--checkbox-diameter);
-  height: var(--checkbox-diameter);
-  border-radius: var(--checkbox-border-radius);
-  background: var(--secondary-color);
-  border: var(--checkbox-border-width) var(--checkbox-border-style) var(--checkbox-border-color);
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-  cursor: pointer;
-  position: relative;
-}
-
-.ui-checkbox::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  -webkit-box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
-  box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
-  border-radius: inherit;
-  opacity: 0;
-  -webkit-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-  -o-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-  transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-}
-
-.ui-checkbox::before {
-  top: 40%;
-  left: 50%;
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 7px;
-  border-right: 2px solid var(--secondary-color);
-  border-bottom: 2px solid var(--secondary-color);
-  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  -ms-transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  opacity: 0;
-  -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-  -o-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-  transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-}
-
-/* actions */
-
-.ui-checkbox:hover {
-  border-color: var(--primary-color);
-}
-
-.ui-checkbox:checked {
-  background: var(--primary-color);
-  border-color: black;
-}
-
-.ui-checkbox:checked::before {
-  opacity: 1;
-  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  -ms-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-  -o-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-  transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-}
-
-.ui-checkbox:active:not(:checked)::after {
-  -webkit-transition: none;
-  -o-transition: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  transition: none;
-  opacity: 1;
-}
 
 .date-card{
   font-size: 0.8em;
@@ -735,30 +1151,12 @@ input:focus{
   justify-content: center;
   align-items: center;
   font-size: 0.8em;
+  border: none;
+  border-radius: 4px;
+  color: #333;
   background-color: orange;
 }
 
-.state-card2{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(9, 214, 9);
-}
-
-.state-card3{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(107, 107, 107);
-}
 
 .title_card{
   font-size: 1em;
@@ -771,7 +1169,7 @@ input:focus{
 }
 
 .profesion{
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 
 .name_doc{
@@ -782,6 +1180,7 @@ input:focus{
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-size: 1rem;
 }
 
 .menu_card{
@@ -814,3 +1213,512 @@ input:focus{
   color: red;
 }
 
+#tres{
+  display: flex;
+  flex-direction: column;
+}
+/* DISEÑO PARA LA VENTANA EMERGENTE DE FORMULAS */
+.contenedor-form{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33333345;
+}
+
+.abilisco{
+  background-color: white;
+  width: 60%;
+  height: 80%;
+  border-radius: 8px;
+  padding: 0rem 0.8rem 0.5rem 0.8rem;
+  position: relative;
+}
+
+.abilisco header{
+  border-bottom: 1px solid rgba(128, 128, 128, 0.401);
+  display: flex;
+  align-items: center;
+  height: 10%;
+}
+
+.abilisco header h2{
+  color: #1c1e21;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  flex: 1;
+  margin-top: 8px;
+}
+.abilisco header div{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  cursor: pointer;
+  height: 2rem;
+  font-size: 25px;
+}
+
+.cuerpo-abilisco{
+  height: 90%;
+}
+
+.cuerpo-abilisco .scroll-abi{
+  height: 90%;
+  /* display: none; */
+  overflow-y: scroll;
+}
+
+.cuerpo-abilisco .botones-abi{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.3rem 0rem;
+  height: 10%;
+
+}
+.scroll-abi .mauso{
+  position: relative;
+  height: auto;
+  margin: 0;
+  padding: 0.2rem 0rem;
+}
+
+.scroll-abi {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
+
+.scroll-abi::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+.mauso p{
+  color: #333;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.mauso div{
+  color: #606770;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: -5px 0px;
+}
+
+.mauso-texto{
+  width: 100%;
+  padding: 11px;
+  font-size: 15px;
+  line-height: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccd0d5;
+  color: #1c1e21;
+  background: #f5f6f7;
+  position: relative;
+  z-index: 1;
+  font-family: sans-serif;
+}
+.mauso-texto:focus{
+  outline: none;
+}
+.rezine-none{
+  resize: none;
+  height: 8rem;
+}
+.flex-mauso{
+  display: flex;
+  align-items: center;
+  height: 20%;
+}
+
+.flex-mauso .mauso-boom{
+  width: 50%;
+  height: 100%;
+  padding: 0rem 0.8rem 0rem 0rem;
+
+}
+
+.flex-mauso .mauso-boom input{
+  margin: 0;
+}
+.menor{
+  margin: 0;
+}
+.encojer{
+  height: 2.7rem;
+}
+
+.botones-abi button{
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.continuar{
+  display: none;
+  background-color: #2d57a8;
+}
+
+.asss{
+  margin-left: 0.8rem;
+  background-color: #a82d2d !important;
+}
+.regresar{
+  background-color: #33a892;
+  margin-right: 0.8rem;
+}
+
+/* DECORACION PARA MIRAR LOS MEDICAMENTOS UNO POR UNO */
+.padre-medicamentos{
+  display: none;
+  overflow: hidden;
+  height: 90%;
+}
+
+.medicamentos-abilisco{
+  height: 100%;
+  overflow-y: scroll;
+}
+.scrall {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
+}
+
+.scrall::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
+.cerrar{
+  display: none;
+}
+
+.abrir{
+  display: block !important;
+}
+
+.mauso-resultados{
+  display:none;
+  padding: 0.3rem 0rem;
+  left: 5px;
+  width: 98.5%;
+  position: absolute;
+  height: auto;
+  max-height: 10ch;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.mauso-resultados div{
+  padding: 0.2rem 0.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 15px;
+}
+
+.mauso-resultados div svg{
+  fill: #3030308a;
+  rotate: 150deg;
+  margin-right: 5px;
+}
+
+.mauso-resultados div p{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.agg{
+  display: block;
+  transition: display 0.5s all;
+}
+
+.aggdisplay{
+  display: flex;
+  transition: display 2s all;
+}
+
+.tamaño{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333333d0;
+  z-index: 3;
+}
+.daco{
+  color: white;
+  margin-top: 1rem;
+}
+
+/* ANIMACION DE CARGA PARA EL ENVIO DE FORMULAS  */
+.spinner {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* FINAL DE ANIMACION DE CARGAS */
+
+
+@media (max-width: 767px) {
+  .yuli {
+  display: flex;
+  width: 13vh !important;
+  height: 80vh;
+  position: relative; /* Agregamos posición relativa para controlar los iconos */
+}
+
+.yuli .aside {
+  width: 13%;
+  height: 80vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #eaf1fb;
+  transition: 0.5s;
+  overflow-x: hidden;
+  padding-top: 60px;
+  z-index: 1;
+}
+
+
+.yuli.active .aside {
+  width: 70%;
+  height: 100vh;
+}
+
+/* Estilo para los iconos cuando el aside no está activo */
+.yuli .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2; /* Asegura que los iconos estén por encima del aside */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.yuli.active .icon {
+  display: none; /* Oculta los iconos cuando el aside está activo */
+}
+
+.yuli .icon i {
+  color: #000;
+  font-size: 45px;
+  margin-top:50px;
+  margin-left: 15px;
+}
+
+.cuerpores{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 430px;
+  border-radius: 0;
+}
+
+.mader{
+  width: 100%;
+  padding: 0rem !important;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.menu{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hoss{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.toggle-dic div i{
+  font-size: 30px;
+
+}
+
+.doss{
+  background-color: #d3e3fd;
+  padding:1.7rem 0rem;
+}
+
+/* Oculta .logo-container cuando el aside no está activo */
+.yuli:not(.active) .logo-container .logo {
+  display: none;
+}
+
+/* Muestra .logo-container cuando el aside está activo */
+.yuli.active .logo-container .logo{
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.buscador{
+  width: 90%;
+}
+
+.adder{
+  flex-direction: column;
+  height: 8rem;
+}
+
+.optio{
+  width: 90%;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+/* responsive compras */
+
+.opt_config{
+  flex-direction: column;
+  height: 8rem;
+}
+
+.search{
+  width: 90%;
+}
+
+.filtros{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+
+.cards_formulas{
+  height: 73%;
+}
+
+
+.cards_formulas{
+  width: 98%;
+  height: 90%;
+  overflow: auto;
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card{
+  width: 100%;
+
+}
+
+
+
+
+/* fin */
+.cuentas{
+  width: 82%;
+}
+
+
+.paginas{
+  width: 93%;
+  height: 80vh;
+  padding: 4px 4px;
+  border: 1px solid;
+}
+
+.tablauno .email,
+.tablauno .total{
+  display: none;
+}
+
+.modal-content{
+  width: 98%;
+  height: 80%;
+  top: 0px;
+  left: 0;
+  overflow-x: auto;
+}
+
+#modalDetalle .btnnmovil{
+  position: relative;
+  color: red;
+  font-size: 30px;
+  top: 0;
+  left: 93%;
+}
+
+.pc{
+  color: transparent;
+}
+
+}

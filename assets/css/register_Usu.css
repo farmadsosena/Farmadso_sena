@@ -1,0 +1,135 @@
+.fondo {
+  justify-content: center;
+  display: flex;
+  padding: 1rem;
+  background-image: url(../img/fondo_salud.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.formulario {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 60%;
+  text-align: center;
+  background-image: url(../img/fondo_regisusuario.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.message {
+  font-size: 14px;
+  color: #000000;
+  margin: 10px 0;
+}
+
+/* Estilos de etiquetas y campos de entrada */
+.contenedor_label {
+  margin-bottom: 20px;
+}
+
+.parte1-formulario {
+  display: flex;
+}
+
+.contenedoresparte1,
+.contenedoresparte2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  width: 100%;
+}
+
+.contenedor_label input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.contendor_select {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Estilos de botón */
+.submit {
+  background: #2d57a8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 30%;
+  transition: background-color 0.3s;
+}
+
+.submit:hover {
+  background: #6d93c9;
+}
+
+.letra_label {
+  display: flex;
+  font-weight: bold;
+}
+
+/* Estilos para el enlace de inicio de sesión */
+.signin {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.signin a {
+  color: #006aff;
+  text-decoration: none;
+}
+
+.signin a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .formulario {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+  }
+  .contenedoresparte1,
+  .contenedoresparte2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .parte1-formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .submit {
+    width: 100%;
+  }
+}
