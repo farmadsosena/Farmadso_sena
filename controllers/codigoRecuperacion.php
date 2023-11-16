@@ -36,7 +36,6 @@ session_start();
     </div>
     <?php
 
-
     if (isset($_POST['validarCodigo'])) {
 
         $codigoSesion = $_SESSION['codigoSeguridad'];
@@ -87,19 +86,15 @@ session_start();
 
         if (!isset($_SESSION['envioUnico'])) {
 
-
             $hash = $_GET['email'];
             $correo = $_SESSION['correoHash'];
 
             if (password_verify($correo, $hash)) {
 
-
                 $id = $_SESSION['idUsuariogeneraradoCorreo'];
                 $_SESSION['idusaurioCambio'] = $id;
                 $_SESSION['envioUnico'] = true;
-
             }
-
 
             function generarCodigo()
             {
@@ -112,16 +107,10 @@ session_start();
 
             require_once 'enviarCodigo.php';
 
-
-
         }
-
 
     }
 
-
-
     ?>
 </body>
-
 </html>

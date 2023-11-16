@@ -798,7 +798,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <button id="enviar">Enviar</button>
           </div>
         </div>
-      </section> <!-- Etiqueta que termina el contenedor 4 -->
+      </section> 
+      <!-- Etiqueta que termina el contenedor 4 -->
 
 
       <!-- 
@@ -919,32 +920,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
-    <div class="boxes">
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+    <div class="spinner"></div>
     </section>
     <section class="daco">
     <p>Cargando...</p>

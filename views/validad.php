@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Obtener el hash, el valor cifrado y la clave secreta desde la URL
 $hashRecibido = $_GET['hash'];
 $cifradoRecibido = $_GET['cifrado'];
@@ -47,6 +48,8 @@ if (isset($_POST["claveEscrita"])) {
 
             if ($valorOriginal !== false) {
                 // Hacer algo con el valor original
+                $_SESSION["clave"]= $valorOriginal;
+                echo "<script>window.location='pagoFormula.php'</script>";
             } else {
                 // Error en el descifrado
                 echo "Error: No se pudo descifrar el valor.";

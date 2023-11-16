@@ -1,3 +1,11 @@
+<?php
+session_start();
+include("../config/Conexion.php");
+
+$idFormula= $_SESSION["clave"];
+
+echo $idFormula;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
