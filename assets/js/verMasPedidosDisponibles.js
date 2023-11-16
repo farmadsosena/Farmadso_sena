@@ -37,6 +37,7 @@
             // Agregar un cero delante si el día o el mes es menor que 10
             dia = dia < 10 ? '0' + dia : dia;
             mes = mes < 10 ? '0' + mes : mes;
+            
 
             var fechaFinal = dia + '/' + mes + '/' + anio;
 

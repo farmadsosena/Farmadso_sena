@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
       <!-- DG -->
       <script src="https://kit.fontawesome.com/5a100f3f01.js" crossorigin="anonymous"></script>
-    <title>ADMINDOMICILIARIO</title>
+    <title>Admin</title>
 </head>
 <body>
     <aside class="asideAdminDelivery">
@@ -49,7 +49,11 @@
                     </select>
                 </div>
                 <section class="deliverys">
-                    <div class="statusDelivery">
+
+                <?php
+        include("models/domiciliarios.php");
+        ?>
+                    <!-- <div class="statusDelivery">
                         <div class="imgStatusDelivery" onclick="openModal()">
                             <img src="assets/img/domiciliario1.jpg" alt="">
                         </div>
@@ -59,55 +63,11 @@
                         <span class="status">
                             INACTIVO
                         </span>
-                    </div>
+                    </div> -->
     
-                    <div class="statusDelivery">
-                        <div class="imgStatusDelivery">
-                            <img src="assets/img/domiciliario1.jpg" alt="">
-                        </div>
-                        <div class="fullName">
-                            <p>Mario Alexander Gomez Lozada</p>
-                        </div>
-                        <span class="statuss">
-                            ACTIVO
-                        </span>
-                    </div>
-    
-                    <div class="statusDelivery">
-                        <div class="imgStatusDelivery">
-                            <img src="assets/img/domiciliario1.jpg" alt="">
-                        </div>
-                        <div class="fullName">
-                            <p>Mario Alexander Gomez Lozada</p>
-                        </div>
-                        <span class="status">
-                            INACTIVO
-                        </span>
-                    </div>
-    
-                    <div class="statusDelivery">
-                        <div class="imgStatusDelivery">
-                            <img src="assets/img/domiciliario1.jpg" alt="">
-                        </div>
-                        <div class="fullName">
-                            <p>Mario Alexander Gomez Lozada</p>
-                        </div>
-                        <span class="status">
-                            INACTIVO
-                        </span>
-                    </div>
-    
-                    <div class="statusDelivery">
-                        <div class="imgStatusDelivery">
-                            <img src="assets/img/domiciliario1.jpg" alt="">
-                        </div>
-                        <div class="fullName">
-                            <p>Mario Alexander Gomez Lozada</p>
-                        </div>
-                        <span class="status">
-                            INACTIVO
-                        </span>
-                    </div>
+                 
+
+
                 </section>
             </section>
     
@@ -115,6 +75,7 @@
                 <section class="deliverysFreeMain">
                     <h3>Domiciliarios Disponibles</h3>
                     <section class="deliverysFree">
+
                         <div class="statusDeliveryFree">
                             <div class="imgStatusDeliveryFree">
                                 <img src="assets/img/domiciliario1.jpg" alt="">
@@ -256,26 +217,32 @@
                     </section>
                 </section>
                 
-            </section>
-        </section>
-        
+                 </section>
+              </section>
         <section id="sectionIcon2" class="sectionMain" style="display: none;">
             <div class="conte2">
                 <div class="personas-container">
+                    
+                <?php
+        include("models/domiPendiente.php");
+        ?>
+                    <!-- <div class="persona">
+                      <i class="fa-solid fa-circle-user"></i>
+                      <div class="nombre">Mario Alexander Gomez Losada</div>
+                      <button id="but" onclick="abrirG()" class="openModalButton">
+                        Ver
+                      </button>
+                    </div> -->
+
+
+<!--                     
                     <div class="persona">
                       <i class="fa-solid fa-circle-user"></i>
                       <div class="nombre">Mario Alexander Gomez Losada</div>
                       <button id="but" onclick="abrirG()" class="openModalButton">
                         Ver
                       </button>
-                    </div>
-                    <div class="persona">
-                      <i class="fa-solid fa-circle-user"></i>
-                      <div class="nombre">Mario Alexander Gomez Losada</div>
-                      <button id="but" onclick="abrirG()" class="openModalButton">
-                        Ver
-                      </button>
-                    </div>
+                    </div> -->
           
                     <!-- Agrega más divs "persona" según sea necesario -->
                   </div>
@@ -486,6 +453,7 @@
 <script src="assets/js/cambiarOpcionesAdminDomiciliario.js"></script>
 <script src="assets/js/calificacionDomiciliario.js"></script>
 <script src="assets/js/verInformacionDomiciliario.js"></script>
+
 
 <!-- Js DG -->
 <script src="assets/js/peligro.js"></script>
