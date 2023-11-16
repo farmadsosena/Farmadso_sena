@@ -15,7 +15,7 @@ while ($datos = $resultado->fetch_assoc()) {
         echo '<div class="persona">';
         echo '    <i class="fa-solid fa-circle-user"></i>';
         echo '    <div class="nombre">' . $nombre . ' ' . $apellido . '</div>';
-        echo '    <button id="but" onclick="abrirG()" class="openModalButton">';
+        echo '    <button id="but" onclick="abrirGa('. $idDomi . ')" class="openModalButton">';
         echo '        Ver';
         echo '    </button>';
         echo '</div>';

@@ -399,7 +399,7 @@
       </div>
       <div class="modal-infoDoss">
         <p>
-          <strong>Nombre: Diego Andres</strong>
+          <strong>Nombre: <p id="nombreDomi"></p></strong>
           <span id="modalNameDoss"></span>
         </p>
         <p>
@@ -430,6 +430,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 <!-- MODAL 3 -->
 <div id="myModalTress" class="modalTress">
