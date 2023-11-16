@@ -27,7 +27,6 @@ $(document).ready(function () {
             filtros[tipo] = valor;
         });
 
-        console.log(filtros);
 
         // Realizar la solicitud AJAX al servidor con todos los filtros
         $.ajax({

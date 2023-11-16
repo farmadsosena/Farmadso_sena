@@ -465,7 +465,6 @@ body{
 }
 
 /* estilos de mis compras -----------------------------------*/
-
 .container-miscompras{
   width: 100%;
   height: 100%;
@@ -496,12 +495,19 @@ body{
   height: 40%;
 }
 
+.btnnmovil{
+  color: transparent;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
   right: 2px;
   cursor: pointer;
   font-size: 30px;
+}
+
+.pc{
   color: red;
 }
 
@@ -539,9 +545,7 @@ button {
   border-radius: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
+
 
 
 
@@ -1453,7 +1457,62 @@ gap: 5%;
   transition: display 2s all;
 }
 
+.tamaño{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333333d0;
+  z-index: 3;
+}
+.daco{
+  color: white;
+  margin-top: 1rem;
+}
 
+/* ANIMACION DE CARGA PARA EL ENVIO DE FORMULAS  */
+.spinner {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* FINAL DE ANIMACION DE CARGAS */
 
 
 @media (max-width: 767px) {
@@ -1636,4 +1695,30 @@ gap: 5%;
   padding: 4px 4px;
   border: 1px solid;
 }
+
+.tablauno .email,
+.tablauno .total{
+  display: none;
+}
+
+.modal-content{
+  width: 98%;
+  height: 80%;
+  top: 0px;
+  left: 0;
+  overflow-x: auto;
+}
+
+#modalDetalle .btnnmovil{
+  position: relative;
+  color: red;
+  font-size: 30px;
+  top: 0;
+  left: 93%;
+}
+
+.pc{
+  color: transparent;
+}
+
 }

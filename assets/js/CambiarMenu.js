@@ -98,5 +98,18 @@ const config_filtrosElements = document.querySelectorAll(".config_filtros");
   });
 
 
+  //Seccion para pedir si realmente quiere redireccionar
+  function confirmRedirect() {
+    // Mostrar un cuadro de diálogo de confirmación
+    var confirmacion = confirm("¿Realmente quieres ir a la tienda virtual?");
+
+    // Si el usuario hace clic en "Aceptar", redirige
+    if (confirmacion) {
+      window.location.href = "inicio_tienda.php";
+    }
+    // Si el usuario hace clic en "Cancelar", no hace nada
+  }
+
+
 
 

@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmtMedicamento->execute()) {
                 // Registro de medicamento insertado con éxito
-                $response['success'] = true;
+            $response['success'] = true;
              $response['message'] = "Fórmula añadida con éxito";        
             } else {
                 // Error en la inserción del medicamento
@@ -67,15 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Cerrar la conexión a la base de datos
 
     // echo "<script>alert('Fórmula añadida con éxito')</script>";
- 
- 
     // echo "<script>window.location='../views/Usuario.php'</script>";
     header('Content-Type: application/json');
     echo json_encode($response);
-    
-
 }
-
-
-
 ?>
