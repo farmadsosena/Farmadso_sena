@@ -6,7 +6,8 @@ $claveSecretaRecibidaCodificada = $_GET['clave'];
 
 // Decodificar la clave secreta recibida
 $claveSecretaRecibida = base64_decode($claveSecretaRecibidaCodificada);
-ECHO $claveSecretaRecibida;
+
+require_once '../SMS.php';
 
 ?>
 <!DOCTYPE html>
@@ -46,7 +47,6 @@ if (isset($_POST["claveEscrita"])) {
 
             if ($valorOriginal !== false) {
                 // Hacer algo con el valor original
-                echo "Valor original: " . $valorOriginal;
             } else {
                 // Error en el descifrado
                 echo "Error: No se pudo descifrar el valor.";

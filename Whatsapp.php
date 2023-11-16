@@ -8,7 +8,8 @@ $client = new UltraMsg\WhatsAppApi($token,$instance_id);
     
 $to="+57".$numero; 
 
-$body="Bienvenido!!!!\nHemos visto que tiene una formula medica por reclamar, entre al siguiente enlace para acceder a las funciones: localhost/ADSO/FARMADSO-GIT/views/MostrarProductos.php?valor=".urlencode($valorCifrado)."";
+$body="Bienvenido!!!!\n
+Hemos visto que tiene una formula medica por reclamar, entre al siguiente enlace para acceder a las funciones: localhost/ADSO/FARMADSO-GIT/views/validad.php?hash=" . urlencode($hash) . "&cifrado=" . urlencode($cifrado) . "&clave=" . urlencode($claveSecretaCodificada)."";
 
 $api=$client->sendChatMessage($to,$body);
 
