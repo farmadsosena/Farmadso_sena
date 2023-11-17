@@ -2,12 +2,16 @@
 session_start();
 include("../config/Conexion.php");
 
-$idFormula= $_SESSION["clave"];
+$idFormula = $_SESSION["clave"];
 
 echo $idFormula;
+$sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
+$result = $conexion->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +19,7 @@ echo $idFormula;
     <script src="https://kit.fontawesome.com/6262aa5408.js" crossorigin="anonymous"></script>
     <title>Pago de Fórmula</title>
 </head>
+
 <body>
 
     <div class="container">
@@ -32,7 +37,7 @@ echo $idFormula;
             </section>
 
             <section>
-                <h1>Colombia(ESP <i class="fa-solid fa-arrow-down"></i>)</h1>  
+                <h1>Colombia(ESP <i class="fa-solid fa-arrow-down"></i>)</h1>
             </section>
         </header>
 
@@ -46,12 +51,12 @@ echo $idFormula;
                 </ul>
             </nav>
 
-        <img src="../assets/img/LogoFarmadsoLargo.png" alt="">
+            <img src="../assets/img/LogoFarmadsoLargo.png" alt="">
 
-        <article>
-            <i class="fa-solid fa-user"></i>
-            <i class="fa-solid fa-unlock-keyhole"></i>
-        </article>
+            <article>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-unlock-keyhole"></i>
+            </article>
         </section>
     </div>
 
@@ -86,7 +91,7 @@ echo $idFormula;
                                 <i class="fa-brands fa-paypal"></i>
                             </span>
                             <span>Pay</span><span>Pal</span>
-                          
+
                         </button>
                         <button><i class="fa-brands fa-google-pay"></i></button>
                     </article>
@@ -112,10 +117,11 @@ echo $idFormula;
                     <section>
                         <input type="text" placeholder="Correo Electrónico">
                         <div>
-                            <input type="checkbox" name="" id=""> <p>Enviarme novedades y ofertas por Correo Electrónico</p>
+                            <input type="checkbox" name="" id="">
+                            <p>Enviarme novedades y ofertas por Correo Electrónico</p>
                         </div>
                     </section>
-                    
+
 
                     <section>
                         <header>
@@ -129,7 +135,7 @@ echo $idFormula;
                                 <option value="">Perú</option>
                             </select>
                         </article>
-                    
+
                         <div>
                             <input type="text" placeholder="Nombres">
                             <input type="text" placeholder="Apellidos">
@@ -138,67 +144,69 @@ echo $idFormula;
                     </section>
                 </form>
             </article>
+            </article>
         </section>
 
         <section>
             <div class="contenedor">
-                <article>
-                    <div>
-                        <img src="" alt="">
-                        <p>1</p>
-                    </div>
-                    <div>
-                        <p>Acetaminofén</p>
-                        <p>100mg</p>
-                    </div>
-                    <div>
-                        <p>64.000 $</p>
-                    </div>
-                </article>
-    
-                <article>
-                    <div>
-                        <img src="" alt="">
-                        <p>2</p>
-                    </div>
-                    <div>
-                        <p>Hibuprofeno</p>
-                        <p>70mg</p>
-                    </div>
-                    <div>
-                        <p>24.000 $</p>
-                    </div>
-                </article>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $nombreMedicamento = $row["medicamento"];
+                        $datosMedicamento = mysqli_query($conexion, "SELECT * FROM medicamentos WHERE nombre='$nombreMedicamento'");
+                        $cos = mysqli_fetch_assoc($datosMedicamento);
 
-                <article>
-                    <div>
-                        <img src="" alt="">
-                        <p>3</p>
-                    </div>
-                    <div>
-                        <p>Noxpirin</p>
-                        <p>50mg</p>
-                    </div>
-                    <div>
-                        <p>14.000 $</p>
-                    </div>
-                </article>
-    
-                <article>
-                    <div>
-                        <img src="" alt="">
-                        <p>4</p>
-                    </div>
-                    <div>
-                        <p>Noxpirin</p>
-                        <p>50mg</p>
-                    </div>
-                    <div>
-                        <p>14.000 $</p>
-                    </div>
-                </article> <!-- border -->
+                        if (mysqli_num_rows($datosMedicamento) > 0) {
+                            echo ' <article>
+                            <div>
+                                <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
+                                <p>1</p>
+                            </div>
+                            <div>
+                                <p>' . $nombreMedicamento . '</p>
+                                <p>100mg</p>
+                            </div>
+                            ';
+                            $estadoMedicamento = $row["EstadoFRM"];
+                            if ($estadoMedicamento !== "Disponible") {
+                                echo '<div>
+                                    <p>' . $row["EstadoFRM"] . '</p>
+                                 </div>';
+                            } else {
+                                echo '<div>
+                                     <p>$' . $cos["precio"] . '</p>
+                                </div>';
+                            }
+                            echo "</article>";
+                        }else{
+                            echo ' <article>
+                            <div>
+                                <img src="../uploads/imgProductos/6536f99cb0c10_banner-formulas.png" alt="">
+                                <p>1</p>
+                            </div>
+                            <div>
+                                <p>' . $nombreMedicamento . '</p>
+                                <p>100mg</p>
+                            </div>
+                            ';
+                            $estadoMedicamento = $row["EstadoFRM"];
+                            if ($estadoMedicamento !== "Disponible") {
+                                echo '<div>
+                                    <p>' . $row["EstadoFRM"] . '</p>
+                                 </div>';
+                            } else {
+                                echo '<div>
+                                     <p>$' . $cos["precio"] . '</p>
+                                </div>';
+                            }
+                            echo "</article>";
+                        }
+                    }
+                }
+                ?>
+                <!-- border -->
             </div>
-            
+
             <article class="comprar">
                 <input type="text" placeholder="Tarjeta de Regalo o Código de descuento">
                 <button> Usar</button>
@@ -207,7 +215,7 @@ echo $idFormula;
             <article class="total">
                 <span>
                     <h2>Subtotal</h2>
-                    <h3>Envios</h3> 
+                    <h3>Envios</h3>
                 </span>
                 <span>
                     <h1>135.000 $</h1>
@@ -229,4 +237,5 @@ echo $idFormula;
     </main>
 
 </body>
+
 </html>

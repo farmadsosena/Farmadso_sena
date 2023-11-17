@@ -54,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         $stmtMedicamento->close();
-
-
            } else {
         $response['success'] = false;
         $response['message'] = "Error al insertar el registro de la fórmula: " . $stmt->error;
