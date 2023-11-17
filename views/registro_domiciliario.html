@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud para ser domiciliario</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+    </style>
+    <link rel="stylesheet" href="../assets/css/registros_domi_y_farmacia.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Solicitud para ser domiciliario</h1>
+
+        <section class="parte1-formulario">
+            <div class="contenedoresparte1">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="numeroDocumento">Numero de documento</label>
+                <input type="text" id="numerodocumento" name="numerodocumento" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+        </section>
+
+        <section class="parte1-formulario">
+            <div class="contenedoresparte1">
+                <label for="correo">Correo de Contacto</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="imagen"> Imagen de Presentación</label>
+                <input type="file" id="imagen" name="imagen" required>
+            </div>
+
+        </section>
+
+        <h2>Datos Sensibles</h2>
+
+        <section class="parte1-formulario">
+            <div class="contenedoresparte1">
+                <label for="Direcciónresidencia">Dirección de residencia</label>
+                <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="Tipo_vehiculo">Tipo de Vehiculo</label>
+                <select id="vehiculo" name="departamento" required>
+                    <option value="moto">Moto</option>
+                    <option value="carro">Carro</option>
+                    <!-- Agrega más departamentos según sea necesario -->
+                </select>
+            </div>
+
+        </section>
+
+        <section class="parte1-formulario">
+            <div class="contenedoresparte1">
+                <label for="imagen">Licencia de conducir</label>
+                <input type="file" id="imagen" name="imagen" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="imagen">Tarjeta de propiedad</label>
+                <input type="file" id="imagen" name="imagen" required>
+            </div>
+
+            <div class="contenedoresparte1">
+                <label for="imagen">Soat</label>
+                <input type="file" id="imagen" name="imagen" required>
+            </div>
+        </section>
+
+        <label for="cuenta_bancaria">Tipo de cuenta bancaria</label>
+        <select id="cuenta_bancaria" name="cuenta_bancaria" required>
+            <option>Escoge la opcion</option>
+            <option value="nequi">Nequi</option>
+            <option value="paypal">PayPal</option>
+            <option value="bancolombia">Bancolombia</option>
+        </select>
+
+        <section class="respuesta_select" id="respuesta_select">
+
+            <div id="nequi_info" class="info-container hidden">
+
+                <h3>Datos Sensible para Nequi</h3>
+
+                <section class="parte1-formulario">
+
+                    <div class="contenedoresparte1">
+                        <label for="nombre_usuario">Introduce nombre de usuario </label>
+                        <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                    </div>
+
+                    <div class="contenedoresparte1">
+                        <label for="telefono">Ingrese numero de teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                </section>
+            </div>
+
+            <div id="paypal_info" class="info-container hidden">
+
+                <h3>Datos Sensible para PayPal</h3>
+
+                <section class="parte1-formulario">
+                    <div class="contenedoresparte1">
+                        <label for="nombre_usuario">Introduce nombre de usuario </label>
+                        <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+                    </div>
+
+                    <div class="contenedoresparte1">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                </section>
+            </div>
+
+            <div id="bancolombia_info" class="info-container hidden">
+
+                <h3>Datos Sensible para Bancolombia<h3>
+
+                    
+                    <section class="parte2-formulario">
+                        <div class="contenedoresparte1">
+                            <label for="nombreCompleto">Nombre Completo</label>
+                            <input type="text" id="nombrecompleto" name="nombrecompleto" required>
+                        </div>
+            
+                        <div class="contenedoresparte1">
+                            <label for="numeroDocumento">Numero de documento</label>
+                            <input type="text" id="numerodocumento" name="numerodocumento" required>
+                        </div>
+                    </section>
+
+                    <section class="parte2-formulario">
+                        <div class="contenedoresparte1">
+                            <label for="telefono">Teléfonoo</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+               
+                        <div class="contenedoresparte1">
+                            <label for="correo">Correo de Contacto</label>
+                            <input type="email" id="correo" name="correo" required>
+                        </div>
+            
+                    </section>
+
+            </div>
+
+        </section>
+
+        <button id="enviar">Enviar</button>
+    </div>
+    <script src="../assets/js/select_cuentaUsuariobancario.js"></script>
+</body>
+
+</html>
