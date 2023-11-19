@@ -12,11 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $medicine['codigo'] = mysqli_real_escape_string($conexion, $_POST['cum']);
     $medicine['nombre'] = mysqli_real_escape_string($conexion, $_POST['medicineName']);
-    $medicine['descripcion'] = mysqli_real_escape_string($conexion, $_POST['description']);
     $medicine['precio'] = mysqli_real_escape_string($conexion, $_POST['priceMedicine']);
-    $medicine['fechavencimiento'] = mysqli_real_escape_string($conexion, $_POST['expirationDate']);
-    $medicine['instrucciones'] = mysqli_real_escape_string($conexion, $_POST['instructionMedicine']);
     $medicine['lote'] = mysqli_real_escape_string($conexion, $_POST['loteMedicine']);
+    $medicine['stock'] = mysqli_real_escape_string($conexion, $_POST['StockMedicine']);
+    $medicine['descripcion'] = mysqli_real_escape_string($conexion, $_POST['description']);
+    $medicine['instrucciones'] = mysqli_real_escape_string($conexion, $_POST['instructionMedicine']);
+    $medicine['fechavencimiento'] = mysqli_real_escape_string($conexion, $_POST['expirationDate']);
     $medicine['administracion'] = mysqli_real_escape_string($conexion, $_POST['formaAdminis']);
     $medicine['idcategoria'] = 1;
     $medicine['idproveedor'] = 1;
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (($result === null) ? null : false)
     ;
     $message = match($response){
-        true => 'Medicamento agregado correctamente pero la bd pailas',
+        true => 'Medicamento agregado correctamente',
         null => 'El medicamento ya existe con ese codigo',
         false => 'Paso algo'
     };

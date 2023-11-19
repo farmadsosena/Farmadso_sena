@@ -1,9 +1,9 @@
-
+/* reseteo */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 
 :root {
@@ -19,62 +19,47 @@
 
 body{
   display: flex;
+  flex-direction: column;
   height: 100vh;
   background-color: #f6f8fc;
 }
 
-.aside{
-  display: flex;
-  flex-direction: column;
-  /* border: 1px solid; */
-  width: 50vh;
-}
 .adder{
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 4rem;
-  width: 100%;
+  height: 11vh;
   background-color: #f6f8fc;
 }
 
-.nabber{
+.adder .nabber{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 5rem;
+  justify-content: center;
+  width: 15%;
 }
 
 .nabber i{
-  font-size: 1.8rem;
+  font-size: 2rem;
+  margin-right: 1.5rem;
+  margin-left: 0.8rem;
   cursor: pointer;
 }
-
-.nabber div{
+.adder .nabber div{
   display: flex;
   align-items: center;
-  gap: 10px;
+  width: 60%;
   font-size: 1rem;
 }
 
-.nabber div p{
-  font-size: 20px;
-  font-weight: 500;
-}
-
- .nabber div img{
+.adder .nabber div img{
   width: 30%;
-  height: 2rem;
-  object-fit: contain;
 }
 
 .buscador{
   display: flex;
   position: relative;
   align-items: center;
-  width: 60%;
-  height: 4rem;
+  width: 59%;
+  padding: 0rem 4rem;
 }
 
 .buscador div{
@@ -85,14 +70,11 @@ body{
   height: 90%;
 }
 .buscador div input{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   border-radius: 1.5rem;
   border: none;
   background: #eaf1fb;
-  height: 3rem;
+  height: 85%;
   font-size: 1rem;
   padding-left: 3.5rem;
 }
@@ -114,8 +96,7 @@ body{
 .optio{
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 30%;
+  width: 26%;
 }
 
 .option-true{
@@ -127,37 +108,38 @@ body{
   padding: 0rem 1.5rem;
 }
 .option-true i{
-  font-size: 1.5rem;
-  margin-top: 4px;
+  font-size: 1.6rem;
   color: #5f6368;
   cursor: pointer;
 }
 
 
 .cont-usu{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
-
+  width: 16.5%;
+  height: 70%;
+  border-radius: 50%;
+  border: 1px solid black;
 }
 
 .cont-usu:hover{
   transform: scale3d(1.1deg);
 }
 
-.cont-usu  img{
+.cont-usu .cont-img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.cont-usu .cont-img img{
   width: 100%;
   height: 100%;
   object-fit:contain;
-  border-radius: 50px;
+  border-radius: 50%;
 }
 
 .cuentas{
-  display: none;
+display: none;
   position: absolute;
   right: 2.5%;
   top: 11%;
@@ -338,16 +320,12 @@ body{
 }
 
 .selected-option {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   display: flex;
   align-items: center;
-
 }
 
 .selected-option i{
@@ -382,20 +360,15 @@ body{
 
 .mader{
   display: flex;
-  width: 100%;
+  height: 90vh;
 }
 
 .naver{
-  width: 95%;
-}
-
-.menu{
-  width: 100%;
-  height: 100vh;
+  width: 20%;
 }
 
 .hoss{
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
   height: auto;
 }
 .doss{
@@ -409,7 +382,7 @@ body{
 .hoss .toggle-dic{
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 95%;
   height: 2.2rem;
   cursor: pointer;
   border-radius: 0rem 0.9rem 0.9rem 0rem;
@@ -436,381 +409,11 @@ body{
 
 .cuerpores{
   border-radius: 1rem;
-  width: 99%;
-  height: 88.3%;
+  width: 79%;
   background-color: #ffffff;
 }
 
 .paginas{
-  height: 100%;
-  width: 100%;
-  /* border: 1px solid; */
-}
-
-
-
-
-/* modificaciones para Mis formulas */
-
-
-
-.formulas{
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-}
-
-
-.opt_config{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 70px;
-  width: 90%;
-  border: #3d83df91 solid 2px;
-  margin-top: 25px;
-  gap: 5px;
-  border-radius: 5px;
-}
-
-.search{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  width: 40%;
-  margin-left: 15px;
-  
-}
-
-.search input[type='search']{
-  border: rgb(172, 172, 172) solid 1px;
-  height: 35px;
-  width: 100%;
-  font-size: 1em;
-  padding-left: 5px;
-  border-radius: 10px 0 0 10px;
-}
-
-input:focus{
-  outline: none;
-}
-
-.rotate{
-  transform: rotate(0.5turn);
-}
-
-.lupa{
-  background-color: #3d83df;
-  height: 50%;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  border-radius: 0px 5px 5px  0px;
-
-}
-
-
-.filtros{
-  display: flex;
-  margin-left: 15px;
-  gap: 15px;
-  
-}
-
-.config_filtros{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
- cursor:pointer;
-}
-
-.cards_formulas{
-  border: solid 1px black;
-  width: 90%;
-  height: 450px;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 35px;
-}
-
-
-.card{
-  
-  width: 280px;
-  height: 220px;
-  border: rgb(197, 197, 197) 1px solid;
-  padding: 5px 5px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
-
-.firts_line{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 20px;
-  
-}
-
-/* modificaciones para papelera */
-.cont-p{
-  display: flex;
-  flex-direction: column;
-  width: 2000px;
-  height: 700px;
-  overflow: auto;
-}
-.icon{
-  display: flex;
-  width: 3rem;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-.bt-form button{
   border: 1px solid black;
-  width: 10rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #33a892;
-}
-
-.sect-p{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.rect{
-  border: 1px solid black;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.icon-cuadro{
-  font-size: 2em;
-}
-
-.cont-cd{
-  display: flex;
-  justify-content:space-between;
-  align-items: center;
-  gap: 15px;
-}
-
-/* checkbox settings 👇 */
-
-.ui-checkbox {
-  --primary-color: #1677ff;
-  --secondary-color: #fff;
-  --primary-hover-color: #4096ff;
-  /* checkbox */
-  --checkbox-diameter: 20px;
-  --checkbox-border-radius: 5px;
-  --checkbox-border-color: black;
-  --checkbox-border-width: 1px;
-  --checkbox-border-style: solid;
-  /* checkmark */
-  --checkmark-size: 1.2;
-}
-
-.ui-checkbox, 
-.ui-checkbox *, 
-.ui-checkbox *::before, 
-.ui-checkbox *::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ui-checkbox {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: var(--checkbox-diameter);
-  height: var(--checkbox-diameter);
-  border-radius: var(--checkbox-border-radius);
-  background: var(--secondary-color);
-  border: var(--checkbox-border-width) var(--checkbox-border-style) var(--checkbox-border-color);
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-  cursor: pointer;
-  position: relative;
-}
-
-.ui-checkbox::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  -webkit-box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
-  box-shadow: 0 0 0 calc(var(--checkbox-diameter) / 2.5) var(--primary-color);
-  border-radius: inherit;
-  opacity: 0;
-  -webkit-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-  -o-transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-  transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
-}
-
-.ui-checkbox::before {
-  top: 40%;
-  left: 50%;
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 7px;
-  border-right: 2px solid var(--secondary-color);
-  border-bottom: 2px solid var(--secondary-color);
-  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  -ms-transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  transform: translate(-50%, -50%) rotate(45deg) scale(0);
-  opacity: 0;
-  -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-  -o-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-  transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),opacity 0.1s;
-}
-
-/* actions */
-
-.ui-checkbox:hover {
-  border-color: var(--primary-color);
-}
-
-.ui-checkbox:checked {
-  background: var(--primary-color);
-  border-color: black;
-}
-
-.ui-checkbox:checked::before {
-  opacity: 1;
-  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  -ms-transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  transform: translate(-50%, -50%) rotate(45deg) scale(var(--checkmark-size));
-  -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-  -o-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-  transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-}
-
-.ui-checkbox:active:not(:checked)::after {
-  -webkit-transition: none;
-  -o-transition: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  transition: none;
-  opacity: 1;
-}
-
-.date-card{
-  font-size: 0.8em;
-}
-
-.state-card{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: orange;
-}
-
-.state-card2{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(9, 214, 9);
-}
-
-.state-card3{
-  border: 1px solid rgb(187, 187, 187);
-  height: 20px;
-  width: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8em;
-  background-color: rgb(107, 107, 107);
-}
-
-.title_card{
-  font-size: 1em;
-}
-
-.second-line{
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.profesion{
-  font-size: 0.8em;
-}
-
-.name_doc{
-  font-weight: bolder;
-}
-
-.third-line{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.menu_card{
-  display: none;
-  position: absolute;
-  right: 25px;
-  bottom: 10px;
-  width: 100px;
-  height: 80px;
-  background-color: white;
-  border: rgb(197, 197, 197) 1px solid;
-  padding-left: 5px;
-}
-
-.menu_card ul{
   height: 100%;
-  width: 100%;
-  display: flex;
- flex-direction: column;
-  gap: 10px; 
-  justify-content: center;
 }
-
-.menu_card ul li{
-  list-style: none;
-  font-size: 1.1em;
-}
-
-.delete{
-  color: red;
-}
-
