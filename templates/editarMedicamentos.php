@@ -13,7 +13,6 @@ $categorias = mysqli_fetch_all($result_categorias, MYSQLI_ASSOC);
 $result_proveedores = mysqli_query($conexion, "SELECT idproveedor, nombreproveedor FROM proveedor");
 $proveedores = mysqli_fetch_all($result_proveedores, MYSQLI_ASSOC);
 
-mysqli_close($conexion); // Cerrar la conexión
 ?>
 <!DOCTYPE html>
 <html lang="en">

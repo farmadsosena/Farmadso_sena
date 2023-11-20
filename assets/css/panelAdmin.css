@@ -4,7 +4,9 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-
+textarea{
+ resize: none;
+}
 :root {
     --blanco: #fff;
     --secundary: #f1f2f5;
@@ -982,7 +984,7 @@ input[type="date"]:focus {
 
 .itemHistorial {
     display: flex;
-    height: 5.5em;
+    min-height: 4em;
     align-items: center;
     padding: 0em 1em;
     box-sizing: border-box;
@@ -1010,9 +1012,13 @@ input[type="date"]:focus {
     text-align: center;
 }
 
+.itemHistorial>div:nth-child(2) {
+    flex: 1;
+    text-align: justify;
+}
 .itemHistorial>div:nth-child(3) {
     flex: 3;
-    text-align: justify;
+    text-align: center;
 }
 
 
