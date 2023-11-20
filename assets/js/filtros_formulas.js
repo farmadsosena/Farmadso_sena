@@ -1,5 +1,3 @@
-
-
 //AJAX PARA ENVIAR LOS DATOS RECOLECTADOS DE LOS FILTROS
 
 $(document).ready(function () {

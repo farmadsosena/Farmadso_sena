@@ -1,17 +1,32 @@
+<?php
+session_start();
+include "../config/Conexion.php";
+
+if (!isset($_SESSION["usu"])) {
+    echo "<script> window.location='login.php'</script>";
+}
+
+$id = $_SESSION["id"];
+
+$eps = $_SESSION["eps"];
+$imgUser = $_SESSION['img'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/panelAdmin.css" />
+    <link rel="stylesheet" href="../assets/css/panelAdmin.css" />
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-    <link rel="shortcut icon" href="assets/img/logoPerfilFarmacia.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../assets/img/logoPerfilFarmacia.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -29,7 +44,7 @@
                 <button id="profileView" onclick="alert('edit')">
                     <i class="bx bx-message-square-edit" style="color: #4d82bc"></i>
                 </button>
-                <img src="assets/img/logoPerfilFarmacia.png" alt="" />
+                <img src="../assets/img/logoPerfilFarmacia.png" alt="" />
             </picture>
             <section id="itemContainer">
                 <div class="item activeItem" onclick="mostrarContenido('inicio', this)">
@@ -60,20 +75,58 @@
                     <i class="bx bx-file"></i>
                     <p>Informe</p>
                 </div>
+
+                <div class="item">
+                    <div class="custom-select">
+                        <div class="selected-option">
+                            <i class="bx bxs-business"></i> Cuenta farmaceutico
+                        </div>
+                        <div class="options">
+                            <?php
+                            function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
+                            {
+                                global $conexion;
+                                $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
+                                $stmt = $conexion->prepare($consulta);
+                                $stmt->bind_param("ss", $usuario, $valorEstado);
+                                $stmt->execute();
+                                $resultado = $stmt->get_result();
+                                return $resultado->num_rows > 0;
+                            }
+
+                            if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
+                                echo '<div class="option">
+                                        <i class="bx bx-car"></i> Domiciliario
+                                    </div>';
+                            }
+                            // if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+                            //     echo '<div class="option">
+                            //             <i class="bx bxs-business"></i> Farmaceutico
+                            //         </div>';
+                            // }
+                            if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+                                echo '<div class="option">
+                                        <i class="bx bx-user-circle"></i> Cuenta de usuario
+                                    </div>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </section>
         </nav>
 
-        <button class="singOut item">
+        <a class="singOut item" href="../config/cerrarSesion.php">
             <i class="bx bx-log-out-circle"></i>
             <p>Cerrar Sesión</p>
-        </button>
-    </aside>    
+        </a>
+    </aside>
 
     <!-- Main -->
     <main id="main">
         <section class="artWrap">
             <article onclick="openModalInventario()" class="art" style="border-left: 0.27em solid #00c16c; cursor: pointer;">
-                <img src="assets/img/inventarioAdmin.jpg" alt="Icono de Receta Médica" />
+                <img src="../assets/img/inventarioAdmin.jpg" alt="Icono de Receta Médica" />
                 <span>
                     <h3>Inventario de Medicamentos</h3>
                     <p>Gestione su inventario de medicamentos.</p>
@@ -81,15 +134,15 @@
             </article>
 
             <article onclick="openModalOfertas()" class="art" style="border-left: 0.27em solid #9696ce">
-                <img src="assets/img/ofertasAdmin.jpg" alt="Imagen de la oferta" />
+                <img src="../assets/img/ofertasAdmin.jpg" alt="Imagen de la oferta" />
                 <span>
                     <h3>Ofertas</h3>
                     <p>Personaliza tus propias ofertas.</p>
                 </span>
-</article>
+            </article>
 
             <div onclick="openModalComentarios()" class="art" style="border-left: 0.27em solid #3b7dd3">
-                <img src="assets/img/opinionesClientes.jpg" alt="Imagen de la oferta" />
+                <img src="../assets/img/opinionesClientes.jpg" alt="Imagen de la oferta" />
                 <span>
                     <h3>Opiniones de Clientes</h3>
                     <p>Experiencias de clientes</p>
@@ -97,7 +150,7 @@
             </div>
 
             <div class="art" style="border-left: 0.27em solid #ffeb3b">
-                <img src="assets/img/facturacionAdmin.jpg" alt="Imagen de facturas" />
+                <img src="../assets/img/facturacionAdmin.jpg" alt="Imagen de facturas" />
                 <span>
                     <h3>Facturación</h3>
                     <p>Historial de facturas y transacciones</p>
@@ -118,24 +171,24 @@
 
                 <section class="page" id="medicamentos">
                     <!-- Primera vista -->
-                   
-                                <!-- INICIO DE ARTICULOS GENERADOS CON WHILE -->
-                   <?php 
-                   
-                   require_once 'templates/medicamentos.php';
-                   ?>
-                   
-                                <!-- CIERRA ARTICULOS QUE SERIAN GENERADOS CON WHILE -->
-                    
+
+                    <!-- INICIO DE ARTICULOS GENERADOS CON WHILE -->
+                    <?php
+
+                    require_once '../templates/medicamentos.php';
+                    ?>
+
+                    <!-- CIERRA ARTICULOS QUE SERIAN GENERADOS CON WHILE -->
+
                     <!-- cierrra primera vista -->
 
                     <!-- Abre formulario -->
-                  <?php
-                  require_once 'templates/FormularioMedicamentos.php';
-                  ?>
-                   <?php
-                  require_once 'templates/editarMedicamentos.php';
-                  ?>
+                    <?php
+                    require_once '../templates/FormularioMedicamentos.php';
+                    ?>
+                    <?php
+                    require_once '../templates/editarMedicamentos.php';
+                    ?>
                     <!-- cierra formulario -->
                 </section>
 
@@ -144,27 +197,24 @@
 
                     <!-- Primera vista categorias agregadas -->
                     <div class="container-categoria">
-                        <button onclick="openFormCategories()" class="btn-agregar">Agregar Categorias <i
-                            class="bx bx-plus-circle"></i> </button>
-                            <div class="scroll-categories">
-                        <div class="contenedorCategoria">
-                        <div class="category">
-                            <div class="nombre">
-                                <h1>Vitaminas</h1>
-                            </div>
-                            <div class="descripcion">
-                                <h1>Descripcion del producto</h1>
-                            </div>
-                            <div class="buttons">
-                                <button class="btn-editar">Editar<i
-                                    class="bx bx-pencil"></i> </button>
-                                    <button class="btn-eliminar">Eliminar <i
-                                        class="bx bx-trash"></i> </button>
+                        <button onclick="openFormCategories()" class="btn-agregar">Agregar Categorias <i class="bx bx-plus-circle"></i> </button>
+                        <div class="scroll-categories">
+                            <div class="contenedorCategoria">
+                                <div class="category">
+                                    <div class="nombre">
+                                        <h1>Vitaminas</h1>
+                                    </div>
+                                    <div class="descripcion">
+                                        <h1>Descripcion del producto</h1>
+                                    </div>
+                                    <div class="buttons">
+                                        <button class="btn-editar">Editar<i class="bx bx-pencil"></i> </button>
+                                        <button class="btn-eliminar">Eliminar <i class="bx bx-trash"></i> </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-            
-                        </div>
-                    </div>
                     </div>
                     <!-- Fin de primera vista de categorias -->
 
@@ -172,12 +222,10 @@
                     <div class="categorias">
                         <i class="bx bx-chevron-left" onclick="closeFormCategories()"></i>
 
-                        <form id="categoryAdd"
-                            onsubmit="sendForm(event, 'categoryAdd', 'controllers/agregarCategoria.php' )">
+                        <form id="categoryAdd" onsubmit="sendForm(event, 'categoryAdd', '../controllers/agregarCategoria.php' )">
                             <section class="separadores">
                                 <label for="">Nombre categoria</label>
-                                <input type="text" name="nombrecategoria" placeholder="Ingresa nombre categoria"
-                                    class="input">
+                                <input type="text" name="nombrecategoria" placeholder="Ingresa nombre categoria" class="input">
                             </section>
 
                             <section class="separadores">
@@ -300,30 +348,29 @@
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <div class="container-detalles">
-                            <div class="scroll-categories">
-                        <div class="contenedorCategoria">
-                        <div class="category">
-                            <div class="nombre">
-                                <h1>Acetaminofen</h1>
-                            </div>
-                            <div class="descripcion">
-                                <h1>dosmil peso</h1>
-                            </div>
-                            <div class="buttons">
-                                <button onclick="openDetalles()" class="btn-agregar">Ver detalles<i
-                                    class="fas fa-info-circle"></i> </button>
+                        <div class="scroll-categories">
+                            <div class="contenedorCategoria">
+                                <div class="category">
+                                    <div class="nombre">
+                                        <h1>Acetaminofen</h1>
+                                    </div>
+                                    <div class="descripcion">
+                                        <h1>dosmil peso</h1>
+                                    </div>
+                                    <div class="buttons">
+                                        <button onclick="openDetalles()" class="btn-agregar">Ver detalles<i class="fas fa-info-circle"></i> </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                
-                        </div>
-                    </div>
                     </div>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
                     <!-- INICIA DETALLES DE VENTA -->
                     <div class="detalles">
                         <i class="bx bx-chevron-left" onclick="closeDetalles()"></i>
- <pre>
+                        <pre>
                         Factura para la compra
 Cliente: Nombre Cliente (cliente@email.com)
 Fecha de compra: 2023-10-16
@@ -343,7 +390,7 @@ Total: $90
                     </pre>
 
                     </div>
-                   
+
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
                 <section class="page" id="informe">
@@ -366,33 +413,34 @@ Total: $90
     </main>
 
 
-<!-- VENTANAS MODALS YISHSHS MM QUE RIKI -->
+    <!-- VENTANAS MODALS YISHSHS MM QUE RIKI -->
 
 
-<!-- VENTANA QUE HIZO ESTIVENSON EL QUINTANA -->
-<?php
-require_once 'templates/inventario.php';
+    <!-- VENTANA QUE HIZO ESTIVENSON EL QUINTANA -->
+    <?php
+    require_once '../templates/inventario.php';
 
-require_once 'templates/comentarios.html';
+    require_once '../templates/comentarios.html';
 
-require_once 'templates/Ofertas.html';
-?>
-<!-- CIERRA LA VENTANA DEL ESTIVENSON -->
+    require_once '../templates/Ofertas.html';
+    ?>
+    <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
-<!-- VENTANA COMENTARIOS -->
+    <!-- VENTANA COMENTARIOS -->
 
-<!-- CIERRA VENTANA COMENTARIOS -->
+    <!-- CIERRA VENTANA COMENTARIOS -->
 
-<!-- CIERRA VENTANAS MODALS -->
+    <!-- CIERRA VENTANAS MODALS -->
 
-    <script src="assets/js/menuPanelAdmin.js"></script>
-    <script src="assets/js/funciones-farmacia.js"></script>
-    <script src="assets/js/formularioM.js"></script>
-    <script src="assets/js/graphisAdminFarmacia.js"></script>
-    <script src="assets/js/enviarFormsAdmin.js"></script>
-    <script src="assets/js/Ventanas-modals.js"></script>
-    <script src="assets/js/filtromedicamentos.js"></script>
-    <script src="assets/js/formularioEditar.js"></script>
+    <script src="../assets/js/menuPanelAdmin.js"></script>
+    <script src="../assets/js/usuarioJS.js"></script>
+    <script src="../assets/js/funciones-farmacia.js"></script>
+    <script src="../assets/js/formularioM.js"></script>
+    <script src="../assets/js/graphisAdminFarmacia.js"></script>
+    <script src="../assets/js/enviarFormsAdmin.js"></script>
+    <script src="../assets/js/Ventanas-modals.js"></script>
+    <script src="../assets/js/filtromedicamentos.js"></script>
+    <script src="../assets/js/formularioEditar.js"></script>
 </body>
 
 </html>

@@ -147,8 +147,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 <i class='bx bx-user-circle'></i> Cuenta de usuario
               </div>
               <div class="options">
-
-
                 <?php
                 function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
                 {
@@ -171,11 +169,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
                 }
-                if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
-                  echo '<div class="option">
-                  <i class="bx bx-user-circle"></i> Cuenta de usuario
-                </div>';
-                }
+                // if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+                //   echo '<div class="option">
+                //   <i class="bx bx-user-circle"></i> Cuenta de usuario
+                // </div>';
+                // }
                 ?>
               </div>
             </div>

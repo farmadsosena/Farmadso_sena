@@ -1,5 +1,5 @@
 <?php
-require_once('./models/conexion.php');
+require_once('../config/Conexion.php');
 
 $sql = "SELECT * FROM reporteestadofinal";
 $resultado = mysqli_query($conexion, $sql);

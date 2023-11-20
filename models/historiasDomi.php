@@ -1,5 +1,5 @@
 <?php
-require_once('./models/conexion.php');
+require_once('../config/Conexion.php');
 
 // Verificar si la conexión está establecida correctamente
 if (!$conexion) {

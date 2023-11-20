@@ -55,7 +55,7 @@ html {
 
 /* ESTILO DE SELECT DE OPCION DE PERFIL */
 .custom-select {
-  width: 30%;
+  width: 65%;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -98,9 +98,7 @@ html {
 .option i {
   margin-right: 10px;
 }
-.show{
-  display: block;
-}
+
 /* FIN DE SELECT DE OPCION DE PERFILES */
 
 #task,
@@ -982,6 +980,12 @@ input[type="file"] {
   width: 60;
   height: 70%;
 }
+
+.show{
+  display: block;
+}
+
+
 @media screen and (max-width: 700px) {
   html {
     height: 100%;
