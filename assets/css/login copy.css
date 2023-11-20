@@ -1,0 +1,273 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+:root{
+    --bg:#A0A0A0;
+    --primary:#353935;
+    --text:#353935;
+    --text2: #A0A0A0;
+    --input-bg:#f2f3f4;
+}
+.regresar{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 23px;
+    width: auto;
+    height: 10vh;
+    font-size: 0.9rem;
+    padding: 0rem 1.5rem;
+    float: right;
+}
+.regresar a{
+    display: flex;
+    align-items: center;
+    color: #353935;
+    text-decoration: none;
+    padding: 0rem 2rem;
+}
+.regresar a p{
+    margin-left: 5px;
+}
+.regresar:hover{
+    opacity: 0.8;
+}
+.regresar i{
+    color: #353935;
+    font-size: 20px;
+}
+.form-case{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    min-height: 100vh;
+}
+
+.padre{
+    display: flex;
+    height: 85vh;
+}
+
+.form-contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.imagen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+.imagen img{
+    width: 85%;
+}
+
+.form{
+    width: 75%;
+    height: 75%;
+}
+
+.form-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 30%;
+}
+.form-title img{
+    width: 13%;
+    border-radius: 50%;
+}
+
+.form-title h1{
+    color: #445963;
+    font-size: 2.5rem;
+}
+
+.form-title p{
+    color: var(--text2);
+    font-size: .8rem;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+}
+
+.form-field-input{
+    position: relative;
+}
+
+.form-field-input input{
+    width: 100%;
+    padding: 20px 13px 5px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.404);
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.form-field-input label{
+    position: absolute;
+    left: 15px;
+    top: 28px;
+    color: var(--primary);
+    pointer-events: none;
+    transition: .3s ease;
+}
+
+
+.form-field-input input:focus ~ label{
+    color: var(--primary);
+}
+
+.active label{
+    top: 20px;
+    font-size: .8rem;
+}
+
+input, button{
+    border: 2px solid transparent;
+    outline: none;
+    transition: .3s ease;
+}
+
+
+.hidepass, .showpass{
+    position: absolute;
+    right: 15px;
+    top: 35px;
+    font-size: 1.2rem;
+    color: var(--text2);
+    cursor: pointer;
+}
+
+.form-field-input a{
+    float: right;
+    text-decoration: none;
+    color: var(--primary);
+    font-size: .9rem;
+    margin: 0.7rem 0rem;
+}
+
+.divider{
+    display: flex;
+    color: var(--text);
+    font-size: .9rem;
+}
+
+.divider::before, .divider::after{
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: var(--text2);
+    margin: auto;
+}
+
+.divider::before{
+    margin-right: 10px;
+}
+
+.divider::after{
+    margin-left: 10px;
+}
+
+
+.secondary-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: #fff;
+    margin: 0.5rem 0rem;
+    color: var(--primary);
+    border: 2px solid #445963;
+    border-radius: 5px;
+    font-weight: 600;
+    height: 3rem;
+}
+
+.secondary-btn:hover{
+    background: #445963;
+    color: #fff;
+    transition: .3s ease;
+}
+
+button{
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.primary-btn{
+    background: #445963;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 0.5rem 0rem;
+}
+
+
+.primary-btn:hover{
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+ /*------ first mobile ------ */
+ @media  screen and (max-width: 767px) { /*------ first mobile ------ */
+    
+    .form-case{
+        height: 4rem;
+        width: 100%; 
+    }
+
+    .regresar{
+        justify-content: end;  
+        height: 4rem;
+    }
+
+    .padre{
+        flex-direction: column;
+        width: 100%;
+      
+    }
+
+    .form-contenedor{
+        width: 100%;
+    }
+
+    .form{
+        width: 90%;
+        height: 40rem;
+    }
+
+    .imagen{
+        width: 100%;
+        margin-top: -90px;
+        height: 30rem;
+    }
+
+    .imagen img{
+        width: 60%;
+    }
+ }

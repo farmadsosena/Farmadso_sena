@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e3ae44c63fcac0667f92f1010079ac3c9e922e4c
 
 // const Musica = document.querySelector('#Musica');
 // const Imagen = document.querySelector('#Imagen');
@@ -52,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //         NombreLabel.classList.add('active');
 //         const nombreCancion = Musica.files[0].name.replace('.mp3', ''); // Quita la extensión .mp3
 //         NombreLabel.textContent = 'Canción cargada';
+<<<<<<< HEAD
     
 //     } else {
 //         NombreLabel.classList.remove('active');
@@ -64,18 +68,18 @@ document.addEventListener('DOMContentLoaded', function() {
 =======
 function cleanFormMedicine(){
     var confirmacion = confirm("¿Estás seguro de que deseas limpiar el formulario?");
+=======
+>>>>>>> e3ae44c63fcac0667f92f1010079ac3c9e922e4c
     
-    if (confirmacion) {
-        // Obtener el contenedor del formulario
-        var contForm = document.querySelector('.cont-form');
+//     } else {
+//         NombreLabel.classList.remove('active');
+//         NombreLabel.textContent = 'Cargue alguna canción';
+//         InputNombre.value = '';
+//     }
 
-        if (contForm) {
-            // Limpiar el contenido del formulario
-            var formInputs = contForm.querySelectorAll('.custom-file-input');
-            formInputs.forEach(function(input) {
-                input.value = ''; // Limpiar el valor del input
-            });
+// }
 
+<<<<<<< HEAD
             var LabelInput = contForm.querySelectorAll('.no-file-selected');
             LabelInput.forEach(function(input) {
                 input.textContent = 'Selecciona una imagen.'; // Limpiar el valor del input
@@ -89,3 +93,5 @@ function cleanFormMedicine(){
     }
 }
 >>>>>>> 79e33395d1d1e9332f17ece2a66cb4569791ad21
+=======
+>>>>>>> e3ae44c63fcac0667f92f1010079ac3c9e922e4c

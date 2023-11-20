@@ -1,0 +1,76 @@
+:root {
+    --blanco: #fff;
+    --secundary: #f1f2f5;
+    --tertiary: #33a892;
+    --colorP: #363636;
+    --colorT: #000;
+
+}
+.container-categoria {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+    gap: 20px;
+    border: 1px solid red;
+}
+.contenedorCategoria{
+    display: flex;
+    flex-direction:column ;
+    width:100%;
+    gap:20px;
+    align-items: center;
+}
+.category {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    border: 1px solid black;
+}
+.category h1 {
+    margin: 0;
+}
+.nombre{
+    width:30%;
+    border-right: 1px solid ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10px;
+}
+.descripcion{
+    width:50%;
+    border-right: 1px solid ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+}
+.buttons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+   height: 100%;
+}
+.acciones{
+    width:40%;
+    height:30px;
+    background-color: var(--tertiary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+.AggCategoria{
+    width: 200px;
+    height: 40px;
+    background-color: var(--tertiary);
+    color:white;
+    border-radius:10px ;
+    border:none;
+
+}
