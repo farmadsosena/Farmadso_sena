@@ -1,31 +1,35 @@
-* {
-    margin: 0%;
-    padding: 0%;
-
-}
-
-h1{
+.titulo_solicitud{
     border-bottom: 1px solid black;
     padding-bottom: 0.5rem;
-}
+} 
 
-h3{
+.datos_titulos{
     display: flex;
     margin-top: 0.5rem;
+} 
+
+.flecha_titulo {
+    display: flex;
 }
 
+.flecha_titulo i{
+    display: flex;
+    font-size: 1.5rem;
+}
 
 .container {
-    font-family: 'Original Surfer', cursive;
-    width: 70%;
+    width: 100%;
+    height: calc(97vh - 2rem - 1rem);
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 1px 20px 10px 25px rgba(0, 0, 0, 0.1);
 }
+
+
 
 .parte1-formulario {
     display: flex;
@@ -44,16 +48,17 @@ label {
     margin-top: 10px;
 }
 
-select,
+.hidden select,
 input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-family: "Google Sans",Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
 
-button {
+#enviar {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -63,7 +68,6 @@ button {
     margin-top: 20px;
     font-size: 1rem;
     width: 20%;
-    font-family: 'Original Surfer', cursive;
 }
 
 .hidden {
