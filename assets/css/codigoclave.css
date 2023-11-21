@@ -134,14 +134,20 @@ body{
     
 }
 
-.container>article:nth-child(1)>form>article>i{
-    transform: translateX(-230px);
-    translate: 0px 37px;
-    color:rgb(0, 81, 255);
-
+.container>article:nth-child(1)>form>article>section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.container>article:nth-child(1)>form>article>input{
+.container>article:nth-child(1)>form>article>section>i{
+    transform: translate(35px);
+    color: rgb(0, 81, 255);
+}
+
+
+.container>article:nth-child(1)>form>article>section>input{
     width: 80%;
     height: 2.5rem;
     padding-left: 50px;
