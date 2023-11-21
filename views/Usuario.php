@@ -276,7 +276,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
         <div class="container-miscompras">
 
-          <table class="preview-detalle">
+          <table class="preview-detalle tablauno">
             <thead>
               <tr>
                 <th class="fecha">Fecha</th>
@@ -333,10 +333,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <!-- Ventana modal -->
-          <div id="modalDetalle" class="modal">
+          <div id="modalDetalle" class="modal"> 
+            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>      
 
             <div class="modal-content">
-              <span class="close-button" onclick="cerrarModal()">&times;</span>
+              <span class="close-button pc" onclick="cerrarModal()">&times;</span>
 
               <table class="preview-detalle">
                 <thead>
@@ -644,7 +645,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <button id="enviar">Enviar</button>
           </div>
         </div>
-      </section> <!-- Etiqueta que termina el contenedor 4 -->
+      </section> 
+      <!-- Etiqueta que termina el contenedor 4 -->
 
 
       <!-- 
@@ -770,6 +772,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
+    <div class="spinner"></div>
       <div class="boxes">
         <div class="box">
           <div></div>
@@ -812,6 +815,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="../assets/js/mostrar_opcionesparte4.js"></script>
   <script src="../assets/js/AgregarMedicamentoVentana.js"></script>
   <script src="../assets/js/modalCompras.js"></script>
+  <script src="../assets/js/mostrar_ocultarEPS.js"></script>
 </body>
 
 </html>

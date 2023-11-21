@@ -44,7 +44,7 @@ if (isset($_POST['newPassword'])) {
             </div>
             <input placeholder="Ingresa contraseña" title="Ingresa tu correo personal" name="newPassword"
                 type="password" class="input_field">
-            <button class="submit" type="submit">Submit</button>
+            <button class="submit" type="submit">Guardar</button>
         </form>
     </div>
 </body>

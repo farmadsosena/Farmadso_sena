@@ -7,8 +7,13 @@ $claveSecretaRecibidaCodificada = $_GET['clave'];
 // Decodificar la clave secreta recibida
 $claveSecretaRecibida = base64_decode($claveSecretaRecibidaCodificada);
 
-require_once '../SMS.php';
+// Verificar si el SMS ya se ha enviado
+$smsEnviado = isset($_COOKIE['smsEnviado']) ? $_COOKIE['smsEnviado'] : false;
 
+// Incluir el archivo SMS.php solo si el SMS no se ha enviado
+if (!$smsEnviado) {
+    require_once '../SMS.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,7 +33,6 @@ require_once '../SMS.php';
             <input type="text" id="clave" name="clave" required>
             <button type="submit" name="claveEscrita">Validar</button>
         </form>
-        
     </div>
 </body>
 
@@ -46,7 +50,12 @@ if (isset($_POST["claveEscrita"])) {
             $valorOriginal = openssl_decrypt($cifradoRecibido, 'aes-256-cbc', $claveSecretaRecibida, 0, '1234567890123456');
 
             if ($valorOriginal !== false) {
-                // Hacer algo con el valor original
+                // Establecer la cookie indicando que el SMS se ha enviado
+                setcookie('smsEnviado', 'true', time() + 3600);  // Expire en una hora
+
+                // Redirigir
+                header('Location: pagoFormula.php');
+                exit();
             } else {
                 // Error en el descifrado
                 echo "Error: No se pudo descifrar el valor.";

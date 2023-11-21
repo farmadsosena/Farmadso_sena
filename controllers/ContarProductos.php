@@ -1,11 +1,12 @@
 <?php
-
 // Valor a validar
 $valor = $id_solicit; // Cambia esto al valor que deseas validar
 $numero = $_SESSION["telefono"];
 
 // Consulta SQL para buscar el valor en la tabla
-$sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$valor'";
+$sql = "SELECT * FROM medicamentosformulas 
+INNER JOIN formulas ON  medicamentosformulas.IdFormula = formulas.idFormula
+WHERE medicamentosformulas.IdFormula = '$valor'";
 
 $result = $conexion->query($sql);
 
@@ -14,28 +15,29 @@ if ($result->num_rows > 0) {
     $NombreMedicamento = $row["medicamento"];
     $cantidad = $row["CantidadMedi"];
     $idMedicamentoFormuala = $row["IdMedi"];
-
+    $EPSusuario = $row["idEPS"];
 
     $ConsulMedi = mysqli_query($conexion, "SELECT * FROM medicamentos 
       INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
-      WHERE nombre = '$NombreMedicamento'");
+      INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
+      WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'");
     $rf = mysqli_fetch_assoc($ConsulMedi);
 
+    if (mysqli_num_rows($ConsulMedi) > 0) {
+      $Stiockcantidad = $rf["stock"];
 
-    $Stiockcantidad = $rf["stock"];
+      if ($cantidad <= $Stiockcantidad) {
+        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Disponible' WHERE IdMedi='$idMedicamentoFormuala'");
 
-    if ($cantidad <= $Stiockcantidad) {
-      $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Disponible' WHERE IdMedi='$idMedicamentoFormuala'");
+      } else {
+        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias' WHERE IdMedi='$idMedicamentoFormuala'");
 
-      if (mysqli_num_rows($ConsulMedi) > 0) {
-        // echo "Disponible". $NombreMedicamento ."<br>";
+        if (mysqli_num_rows($ConsulMedi) > 0) {
+          // echo "Sin unidades para". $NombreMedicamento."<br>";
+        }
       }
-    } else {
-      $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias' WHERE IdMedi='$idMedicamentoFormuala'");
-
-      if (mysqli_num_rows($ConsulMedi) > 0) {
-        // echo "Sin unidades para". $NombreMedicamento."<br>";
-      }
+    }else{// If para corroborar la existencia del medicamento
+      $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Medicamento inexistente' WHERE IdMedi='$idMedicamentoFormuala'");
     }
   }
 
