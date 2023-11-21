@@ -1,48 +1,66 @@
- <?php
-    session_start();
-    $id = $_SESSION["id"];
+<?php
+session_start();
+$id = $_SESSION["id"];
 
-    include("../config/conexion.php");
+include("../config/conexion.php");
 
-    $html = '';
+$html = '';
 
 
-    $consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = '$id' and EstadoFormula = 1 ORDER BY idFormula ASC");
+$consulta = mysqli_query($conexion, "SELECT * FROM formulas WHERE idPaciente = '$id' and Estado = 1");
 
-    if ($consulta->num_rows > 0) {
-        while ($card = mysqli_fetch_assoc($consulta)) {
-            $IdMedico = $card['IdMedico'];
-            $IdDiag = $card['idDiagnostico'];
-            $fecha = $card['fechaOrden'];
+if ($consulta->num_rows > 0) {
+    while ($card = mysqli_fetch_assoc($consulta)) {
+        $IdMedico = $card['IdMedico'];
+        $IdDiag = $card['idDiagnostico'];
+        $fecha = $card['fechaOrden'];
+        $Estado = $card['EstadoFormula'];
+        $pedido = "";
+        if ($Estado == 1) {
+            $pedido = " <div class='state-card1'>
+               No Asig.
+            </div>";
+        } else if ($Estado == 2) {
+            $pedido = " <div class='state-card2'>
+            Entregado
+        </div>";
+        }else if ($Estado == 3) {
+            $pedido = " <div class='state-card3'>
+           Pendiente
+        </div>";
+        } 
 
-            $fecha_timestamp = strtotime($fecha);
-            if ($fecha_timestamp !== false) {
-                $fecha_formateada = date("j F Y", $fecha_timestamp);
-            }
 
-            // Consulta Medico
-            $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
-            $user_doc = mysqli_fetch_assoc($doc);
-            $id_medico = $user_doc['idusuario'];
 
-            $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
-            $row = mysqli_fetch_assoc($cons_med);
-            $name_med = $row["nombre"];
-            $lastname = $row['apellido'];
-            // Consulta Diagnostico
-            $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
-            $di = mysqli_fetch_assoc($diagnostico);
-            $name_di = $di['nombreDiag'];
+        $fecha_timestamp = strtotime($fecha);
+        if ($fecha_timestamp !== false) {
+            $fecha_formateada = date("j F Y", $fecha_timestamp);
+        }
 
-            $html .= "<div class='card' data-id='{$card['idFormula']}' data-informacion='$name_di'>
+        // Consulta Medico
+        $doc = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $IdMedico");
+        $user_doc = mysqli_fetch_assoc($doc);
+        $id_medico = $user_doc['idusuario'];
+
+
+        $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $id_medico");
+        $row = mysqli_fetch_assoc($cons_med);
+        $name_med = $row["nombre"];
+        $lastname = $row['apellido'];
+
+        // Consulta Diagnostico
+        $diagnostico = mysqli_query($conexion, "SELECT * FROM diagnosticos WHERE idDiag = $IdDiag");
+        $di = mysqli_fetch_assoc($diagnostico);
+        $name_di = $di['nombreDiag'];
+
+        $html .= "<div class='card'  data-medico='{$IdMedico}'  data-id='{$card['idFormula']}' data-informacion='$name_di'>
         <div class='firts_line'>
             <div class='date-card'>
                 <p>$fecha_formateada</p>
             </div>
 
-            <div class='state-card'>
-                Entregado
-            </div>
+            $pedido
+            
         </div>
 
         <div class='second-line' data-medico='{$IdMedico}'>
@@ -65,16 +83,16 @@
             </ul>
         </div>
     </div>";
-        }
-    } else {
-        // Pendiente por colocar una mejor presentación para cuando 
-        // no se encuentren formulas
-        echo '<div class="imgBusqueda flex">
+    }
+} else {
+    // Pendiente por colocar una mejor presentación para cuando 
+    // no se encuentren formulas
+    echo '<div class="imgBusqueda flex">
     <img src="../assets/img/notas.png" alt="">
         Por ahora no hay formulas registradas a su nombre
   </div';
-    }
+}
 
 
-    echo $html;
-    ?>
+echo $html;
+?>

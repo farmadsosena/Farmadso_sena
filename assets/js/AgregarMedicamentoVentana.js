@@ -385,12 +385,6 @@ function cargarContenido() {
     });
 }
 
-<<<<<<< HEAD
-=======
-function EliminarFormula() {
-
-}
->>>>>>> 920d476145af0c2adfe09c6728e8c52dea0cc5e7
 
 
 
