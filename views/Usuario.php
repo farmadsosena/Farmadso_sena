@@ -31,7 +31,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
+    rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -59,7 +61,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         <article class="hoss">
           <?php
           if ($eps == 1) {
-          ?>
+            ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
@@ -79,9 +81,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-          <?php
+            <?php
           } else {
-          ?>
+            ?>
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
@@ -117,7 +119,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-          <?php
+            <?php
           }
           ?>
 
@@ -254,169 +256,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
           <div class="cards_formulas" id="LLEGARFR">
             <!-- Comienzan tarjetas para formulas -->
-            <div class="formula-info">
-              <div class="card_info">
-                <div class="infoMedico">
-                  <h1 class="title_infoMedico">Medico</h1>
-                  <div class="medico">
-                    <img class="foto_medico" src="../assets/img/medico_img.jpg" alt="">
-                    <p class="name_medico">
-                      Andres Leonardo Castro Buitrago
-                    </p>
-                  </div>
-                  <div>
-                    <div class="tarjeta ">
-                      <p class="T_name">Tarjeta profesional</p>
-                      <p class="T_number">12345</p>
-                    </div>
-                    <div class="especialidad">
-                      <p class="E_name">Especialidad</p>
-                      <p class="E_espe">Gastroestologo</p>
-                    </div>
 
-                    <div class="fecha_expi">
-                      <p class="F_name">Fecha de expedision</p>
-                      <p class="F_date">05/11/22</p>
-                    </div>
-
-                  </div>
-
-                </div>
-                <div class="infoFormula">
-                  <div class="contendor_info_formula">
-                    <h2>Datos Personales</h2>
-                    <div class="datos_user">
-
-                      <div class="first_line_user">
-                        <div class="content_user">
-                          <p class="subtitle_user">Nombre paciente</p>
-                          <p class="contenido">Nicolas Caicedo</p>
-                        </div>
-
-                        <div class="content_user">
-                          <p class="subtitle_user">Identificación</p>
-                          <p class="contenido">1006537933</p>
-                        </div>
-
-                        <div class="content_user">
-                          <p class="subtitle_user">Telefono</p>
-                          <p class="contenido">3115866621</p>
-                        </div>
-
-                        <div class="content_user">
-                          <p class="subtitle_user">Fecha nacimiento</p>
-                          <p class="contenido">05/11/2002</p>
-                        </div>
-                      </div>
-
-
-                      <div class="second_line_user">
-                        <div>
-                          <p class="content_user">Fecha de orden</p>
-                          <p class="contenido">11/09/23</p>
-                        </div>
-                        <div>
-                          <p class="content_user">Edad actual</p>
-                          <p class="contenido">21 años</p>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div class="contendor_info_formula">
-                    <h2>Datos de afiliación</h2>
-                    <div class="datos_afilicion">
-                      <div>
-                        <p class="subtitle_user">Entidad</p>
-                        <p class="contenido">SALUCOOP</p>
-                      </div>
-
-                      <div>
-                        <p class="subtitle_user">Plan de beneficios</p>
-                        <p class="contenido">prepagado</p>
-                      </div>
-
-                      <div>
-                        <p class="subtitle_user">Tipo de afiliación</p>
-                        <p class="contenido">Beneficiario</p>
-                      </div>
-
-                      <div>
-                        <p class="subtitle_user">Causa externa</p>
-                        <p class="contenido">Enfermedad general</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h2>Diagnostico encontrados</h2>
-                    <div>
-                      <p>Descripción del diagnostico</p>
-                      <p class="contenido">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus nulla optio voluptas, vel
-                        quae ipsa est fugiat voluptates! Ducimus dicta a modi eum incidunt libero temporibus quidem
-                        officiis itaque aliquam.</p>
-                    </div>
-                  </div>
-                  <div class="contendor_info_formula">
-                    <h2>Medicamentos</h2>
-                    <div class="content_medicamentos">
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/loratadina.webp" class="medicamento_img" alt="">
-                        <p>Loratadina</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/Naproxeno.webp" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-                      <div class="medicamento">
-                        <img src="../assets/img/ibuprofeno.png" class="medicamento_img" alt="">
-                        <p>Ibuprofeno</p>
-                        <p class="state_med">Disponible</p>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- Final de tarjetas -->
+          </div>
+ 
+          <div class="formula-info"  >
+         
           </div>
           <div id="mensajeNoResultados" class="imgBusqueda">
             <img src="../assets/img/notas.png" alt="">
@@ -425,6 +270,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </article>
 
       </section>
+
 
       <section class="paginas" id="dos">
 
@@ -457,12 +303,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/compras.php',
                 method: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                   // Limpiar el cuerpo de la tabla
                   $('#tabla-body').empty();
 
                   // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function(item) {
+                  data.forEach(function (item) {
                     var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
                     <td class="estado">${item.estadocompra}</td>
@@ -473,14 +319,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     $('#tabla-body').append(row);
                   });
                 },
-                error: function(error) {
+                error: function (error) {
                   console.log('Error al cargar los datos: ' + error);
                 }
               });
             }
 
             // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function() {
+            $(document).ready(function () {
               cargarDatos();
             });
           </script>
@@ -522,10 +368,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                 method: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
-                  data.forEach(function(detalle) {
+                  data.forEach(function (detalle) {
                     var row = `<tr>
                         <td>${detalle.fecha}</td>
                         <td>${detalle.estadocompra}</td>
@@ -539,7 +385,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Abre la ventana modal
                   $('#modalDetalle').show();
                 },
-                error: function(error) {
+                error: function (error) {
                   console.log('Error al cargar los detalles de la compra: ' + error);
                 }
               });
@@ -586,7 +432,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <h1>Solicitud para ser domiciliario</h1>
             </div>
             <section class="parte1-formulario">
-              <form action="../controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
+              <form action="../controllers/procesar_registro_domiciliario.php" method="post"
+                enctype="multipart/form-data">
                 <input type="hidden" name="user" value='<?php echo $id ?>'>
                 <section class="parte1-formulario">
                   <div class="contenedoresparte1">
@@ -868,7 +715,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto"
+              autocomplete="off" value="">
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -876,13 +724,15 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none"
+              placeholder="Causa de la cita medica"></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
+                  class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -892,13 +742,15 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico"
+                  class="mauso-texto encojer" accept=".png, .jpg,">
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos"
+              placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
           </div>
         </section>
         <section class="padre-medicamentos">
@@ -918,35 +770,35 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
-    <div class="boxes">
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="boxes">
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="box">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
     </section>
     <section class="daco">
-    <p>Cargando...</p>
+      <p>Cargando...</p>
     </section>
   </section>
 

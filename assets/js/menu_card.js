@@ -1,23 +1,34 @@
-// Obtén todas las referencias a los contenedores y botones
-const openMenus = document.querySelectorAll('.open_menu');
-const toggleButtons = document.querySelectorAll('.menu_card');
+function agregarClase() {
+  // Selecciona todos los elementos con la clase "open_menu"
+  const openMenuButtons = document.querySelectorAll('.open_menu');
 
-// Agrega un manejador de eventos a cada botón de abrir y cerrar
-for (let i = 0; i < openMenus.length; i++) {
-  openMenus[i].addEventListener('click', function() {
-    toggleDisplay(i);
+  // Itera sobre cada botón y agrega un evento de clic
+  openMenuButtons.forEach(function (button) {
+      button.addEventListener('click', function (event) {
+          // Detiene la propagación del clic para evitar cerrar inmediatamente
+          event.stopPropagation();
+
+          // Encuentra el contenedor hermano con la clase "menu_card"
+          const menuCard = this.parentNode.nextElementSibling;
+
+          // Desactiva todos los contenedores con la clase "menu_card"
+          document.querySelectorAll('.menu_card').forEach(function (menu) {
+              menu.classList.remove('active');
+          });
+
+          // Agrega la clase "active" al contenedor "menu_card"
+          menuCard.classList.add('active');
+      });
   });
-  
-  toggleButtons[i].addEventListener('click', function() {
-    toggleDisplay(i);
+
+  // Agrega un evento de clic al documento para cerrar el contenedor activo al hacer clic fuera de él
+  document.addEventListener('click', function () {
+      // Desactiva todos los contenedores con la clase "menu_card"
+      document.querySelectorAll('.menu_card').forEach(function (menu) {
+          menu.classList.remove('active');
+      });
   });
 }
 
-function toggleDisplay(index) {
-  // Alterna la clase "open" en el botón y cambia su visibilidad
-  if (toggleButtons[index].style.display === 'flex') {
-    toggleButtons[index].style.display = 'none';
-  } else {
-    toggleButtons[index].style.display = 'flex';
-  }
-}
+// Agrega la llamada a la función cuando se carga el DOM
+document.addEventListener('DOMContentLoaded', agregarClase);

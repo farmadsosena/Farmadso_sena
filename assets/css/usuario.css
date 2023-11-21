@@ -5,6 +5,8 @@
   font-family: 'Poppins', sans-serif;
 }
 
+
+
 :root {
   --azulOscuro: #2d57a8;
   --verdeClaro: #b5ddca;
@@ -790,8 +792,9 @@ button:hover {
   height: 450px;
   width: 80%;
   display: flex;
+  position: relative;
   padding: 5px;
-  gap: 5px;
+  gap: 10px;
   border-radius: 10px;
 }
 
@@ -803,6 +806,17 @@ button:hover {
   background-color: rgba(250, 250, 250, 0.795);
   width: 30%;
   gap: 8px;
+}
+
+
+.closeWionds{
+
+  position: absolute;
+  z-index: 5;
+  width: 20px;
+  top: 5px;
+  right: 30px;
+  cursor: pointer;
 }
 
 .medico{
@@ -822,14 +836,27 @@ button:hover {
   text-align: center;
   width: 100%;
   text-wrap: wrap;
-  font-size: 0.8em;
+ 
 }
+
+
 
 .foto_medico{
   width: 120px;
   border-radius: 80%;
 }
 
+.T_name{
+  font-weight: bold;
+}
+
+.E_name{
+  font-weight: bold;
+}
+
+.F_name{
+  font-weight: bold;
+}
 
 .tarjeta{
   display: flex;
@@ -839,8 +866,27 @@ button:hover {
   width: 100%;
 }
 
+.especialidad{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+  width: 100%;
+}
 
+.fecha_expi{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+  width: 100%;
+}
 
+.datos_medicoss{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .infoFormula{
   display: flex;
@@ -1190,6 +1236,10 @@ gap: 5%;
   border: rgb(197, 197, 197) 1px solid;
   padding-left: 5px;
 }
+
+.active{
+  display: flex;
+} 
 
 .menu_card ul{
   height: 100%;
@@ -1659,7 +1709,66 @@ gap: 5%;
 /* FINAL DE ANIMACION DE CARGAS */
 
 
+@media (max-width: 1215px){
+
+  .cards_formulas{
+    height: 73%;
+  }
+  
+  
+  .cards_formulas{
+    width: 98%;
+    height: 90%;
+    overflow: auto;
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .card{
+    width: 70%;
+  
+  }
+  
+  
+}
+
+
+
+@media (max-width: 1115px){
+
+  .cards_formulas{
+    height: 73%;
+  }
+  
+  
+  .cards_formulas{
+    width: 98%;
+    height: 90%;
+    overflow: auto;
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .card{
+    width: 45%;
+  
+  }
+  
+  
+}
+
+
+
 @media (max-width: 767px) {
+  body{
+    background-color: unset;
+  }
   .yuli {
   display: flex;
   width: 13vh !important;
