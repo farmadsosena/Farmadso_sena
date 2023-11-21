@@ -1,43 +1,78 @@
 <?php
 // Obtener el hash, el valor cifrado y la clave secreta desde la URL
-$hashRecibido = $_GET['hash'];
-$cifradoRecibido = $_GET['cifrado'];
-$claveSecretaRecibidaCodificada = $_GET['clave'];
+// $hashRecibido = $_GET['hash'];
+// $cifradoRecibido = $_GET['cifrado'];
+// $claveSecretaRecibidaCodificada = $_GET['clave'];
+
+// $hashRecibido = '0ad066a5d29f3f2a2a1c7c17dd082a79';
+// $cifradoRecibido = "MD5 HASG";
+// $claveSecretaRecibidaCodificada = 19;
 
 // Decodificar la clave secreta recibida
-$claveSecretaRecibida = base64_decode($claveSecretaRecibidaCodificada);
+$claveSecretaRecibida = 19;
 
 // Verificar si el SMS ya se ha enviado
 $smsEnviado = isset($_COOKIE['smsEnviado']) ? $_COOKIE['smsEnviado'] : false;
 
 // Incluir el archivo SMS.php solo si el SMS no se ha enviado
-if (!$smsEnviado) {
-    require_once '../SMS.php';
-}
+// if (!$smsEnviado) {
+//     require_once '../SMS.php';
+// }
 ?>
+
+
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/codigoclave.css" />
+    <script src="https://kit.fontawesome.com/6262aa5408.js" crossorigin="anonymous"></script>
+    <title>Title</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de Clave</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+  <body>
+    <header class="cabecera">
+      <section>
+        <div>
+          <h2>Registro</h2>
+          <h1>Gratuito en 360NRS</h1>
+        </div>
+        <p>Prueba de 360NRS sin compromiso con nuestro saldo de regalo</p>
+      </section>
+    </header>
 
-<body>
     <div class="container">
-        <h2>Introduce la Clave Secreta</h2>
-        <form method="POST">
-            <label for="clave">Clave:</label>
-            <input type="text" id="clave" name="clave" required>
-            <button type="submit" name="claveEscrita">Validar</button>
-        </form>
-    </div>
-</body>
+      <article>
+        <header>
+          <h2>Verifica</h2>
+          <h1>tu código SMS</h1>
+        </header>
+        <div>
+          <p>
+            Introduce el código que te acabamos de enviar por SMS para verificar
+            tu cuenta.
+          </p>
 
-</html>
+          <p>
+            Estás a punto de poder disfrutar de la mejor
+            <span>plataforma de marketing multicanal</span> al mejor precio.
+          </p>
+        </div>
 
+        <form action="">
+          <article>
+            <section>
+              <i class="fa-solid fa-pen-to-square"></i>
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Introduce aquí el código recibido"
+            />
+            </section>
+            
 <?php
 if (isset($_POST["claveEscrita"])) {
     $claveRegistrada = $_POST["clave"];
@@ -69,3 +104,41 @@ if (isset($_POST["claveEscrita"])) {
     }
 }
 ?>
+
+            <div>
+              <a href="">Volver a enviar el SMS</a>
+            </div>
+          </article>
+          <button>Verifica el código y <span> <h2>accede</h2></span></button>
+        </form>
+      </article>
+
+      <article>
+        <p class="text">
+          Si tienes algún problema durante el registro, por favor
+          <span>contacta</span> con nosotros.
+        </p>
+
+        <section>
+            <div>
+                <span><i class="fa-solid fa-phone"></i></span>
+                <section>
+                    <h3>Teléfono:</h3>
+                    <p>(+57) 324 345 67 89</p>
+                </section>
+              </div>
+      
+              <div>
+                <span><i class="fa-solid fa-envelope"></i></span>
+                <section>
+                    <h3>Email:</h3>
+                    <p id="info">info@360nrs.com</p>
+                </section>
+              </div>
+        </section>
+        
+      </article>
+    </div>
+  </body>
+</html>
+
