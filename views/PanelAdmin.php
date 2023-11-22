@@ -6,6 +6,15 @@ if (!isset($_SESSION["usu"])) {
     echo "<script> window.location='login.php'</script>";
 }
 
+if (!isset($_SESSION["domi"])) {
+    echo "<script> window.location='login.php'</script>";
+}
+
+if (!isset($_SESSION["farm"])) {
+    echo "<script> window.location='login.php'</script>";
+}
+
+
 $id = $_SESSION["id"];
 
 $eps = $_SESSION["eps"];

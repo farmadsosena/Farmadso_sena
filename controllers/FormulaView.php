@@ -179,6 +179,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>';
     echo $html;
   }
+?>
+<?php
 }
 
 ?>
@@ -189,6 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $("div.carde").click(function(e) {
       e.preventDefault();
+      console.log("HECHO")
 
       var isShowing = false;
 
