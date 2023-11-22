@@ -1,21 +1,5 @@
 <?php
-// session_start();
-
-// if (isset($_SESSION['compraSuccess']) && $_SESSION['compraSuccess'] === true) {
-//   require_once('views/valoracionCliente.php');
-// }
-
-// if (!isset($_SESSION['id_cliente'])) {
-//   if (!isset($_SESSION['sessionId'])) {
-//     // $sessionId = rand(0, 100);
-//     $sessionId = uniqid();
-//     $_SESSION['sessionId'] = $sessionId;
-//   }
-// } else {
-//   unset($_SESSION['sessionId']);
-// }
-
-// unset($_SESSION['productosCaja']);
+ require_once "validacion_usu_tienda.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,8 +62,18 @@
     </div>
     <div class="menuResponsive">
       <div class="profileResponsive">
-        <img src="../assets/img/guest.webp" alt="">
-        <p>Alex</p>
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>">
+          <p><?php echo $rr["nombre"] ?></p>
+        <?php
+        } else {
+        ?>
+          <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
+        <?php
+        }
+        ?>
       </div>
       <div class="contenedorEnlaces">
 
@@ -87,9 +81,15 @@
         <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
 
         <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
-        <div class="enlaceMenu" id="abrirEditar2"><i class="fa-solid fa-user"></i>Formulas</div>
-        <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div>
-        <a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
+        <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
+        <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <a href="../config/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
+        <?php
+        }
+        ?>
       </div>
     </div>
   </nav>
@@ -98,7 +98,7 @@
     <div class="menuRight">
       <section class="buscador-responsive">
         <div class="cont-input-buscador-responsive">
-        <i class="fa-solid fa-xmark" onclick="desactivar_buscador_responsive()"></i>
+          <i class="fa-solid fa-xmark" onclick="desactivar_buscador_responsive()"></i>
           <input type="search" id="" placeholder="¿Qué estás buscando?">
           <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
         </div>
@@ -116,14 +116,34 @@
   <header id="header">
     <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
     <nav id="menu">
-      <div id="inicio"><i class='bx bxs-home-alt-2'></i><p>Inicio</p></div>
-      <div id="productos"><i class='bx bxs-store'></i><p>Productos</p></div>
-      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i><p>Carrito</p></div>
-      <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="profile-user">
-        <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
+      <div id="inicio"><i class='bx bxs-home-alt-2'></i>
+        <p>Inicio</p>
       </div>
-
+      <div id="productos"><i class='bx bxs-store'></i>
+        <p>Productos</p>
+      </div>
+      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
+        <p>Carrito</p>
+      </div>
+      <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+          <i class="fa-solid fa-sheet-plastic"></i>
+          <p>Formulas</p>
+        </a>
+      </div>
+      <div class="profile-user">
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
+        <?php
+        } else {
+        ?>
+          <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
+        <?php
+        }
+        ?>
+      </div>
     </nav>
   </header>
   <!--Fin del encabezado-->
