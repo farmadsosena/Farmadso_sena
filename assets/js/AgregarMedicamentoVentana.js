@@ -404,10 +404,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (target.classList.contains('open')) {
           // Obtener el valor de data-medico del contenedor card
           const cardContainer = target.closest('.card');
-          console.log(cardContainer)
           if (cardContainer) {
               const dataMedico = cardContainer.dataset.medico;
-              console.log(dataMedico)
               // Enviar la solicitud al servidor
               fetch('../controllers/FormulaView.php', {
                   method: 'POST',
