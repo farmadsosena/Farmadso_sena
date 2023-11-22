@@ -261,7 +261,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
  
           <div class="formula-info"  >
-         
           </div>
           <div id="mensajeNoResultados" class="imgBusqueda">
             <img src="../assets/img/notas.png" alt="">
@@ -311,8 +310,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   data.forEach(function (item) {
                     var row = `<tr>
                     <td class="fecha">${item.fecha}</td>
-                    <td class="estado">${item.estadocompra}</td>
-                    <td class="email">${item.email}</td>
+                    <td class="estado">${item.idestadocompra}</td>
+                    <td class="email">${item.correo}</td>
                     <td class="total">${item.total}</td>            
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
@@ -344,10 +343,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <tr>
                     <th class="fecha">Fecha</th>
                     <th class="estado">Estado de Compra</th>
-                    <th class="detalle">Detalle</th>
-                    <th class="cantidad">Cantidad</th>
+                    <th class="detalle">Direccion</th>
+                    <th class="cantidad">Correo</th>
                     <th class="total">Total</th>
-                    <th class="subtotal">Subtotal</th>
+                    <th class="subtotal">Codigo postal</th>
                   </tr>
                 </thead>
 
@@ -375,11 +374,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   data.forEach(function (detalle) {
                     var row = `<tr>
                         <td>${detalle.fecha}</td>
-                        <td>${detalle.estadocompra}</td>
-                        <td>${detalle.detallesventa}</td>
-                        <td>${detalle.cantidad}</td>
+                        <td>${detalle.idestadocompra}</td>
+                        <td>${detalle.direccion}</td>
+                        <td>${detalle.correo}</td>
                         <td>${detalle.total}</td>
-                        <td>${detalle.subtotal}</td>
+                        <td>${detalle.codigopostal}</td>
                       </tr>`;
                     $('#detallecompra').append(row);
                   });

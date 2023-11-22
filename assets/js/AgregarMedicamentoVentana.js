@@ -385,12 +385,6 @@ function cargarContenido() {
     });
 }
 
-<<<<<<< HEAD
-=======
-function EliminarFormula() {
-
-}
->>>>>>> 920d476145af0c2adfe09c6728e8c52dea0cc5e7
 
 
 
@@ -410,10 +404,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (target.classList.contains('open')) {
           // Obtener el valor de data-medico del contenedor card
           const cardContainer = target.closest('.card');
-          console.log(cardContainer)
           if (cardContainer) {
               const dataMedico = cardContainer.dataset.medico;
-              console.log(dataMedico)
               // Enviar la solicitud al servidor
               fetch('../controllers/FormulaView.php', {
                   method: 'POST',

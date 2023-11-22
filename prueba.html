@@ -1,31 +1,19 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-include '../config/conexion.php';
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/prueba.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <title>Document</title>
+</head>
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-  if (isset($_POST['dataMedico'])) {
-    // Obtener el valor de dataMedico
-    $dataMedico = $_POST['dataMedico'];
-
-
-    // Ejemplo: Obtener información de un médico desde la base de datos
-    $query = mysqli_query($conexion, "SELECT * FROM medicos WHERE idmedico = $dataMedico");
-    $medico = mysqli_fetch_assoc($query);
-
-    $idM = $medico['idusuario'];
-
-    $InfoM = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $idM");
-    $row = mysqli_fetch_assoc($InfoM);
-
-
-
-
-    $html =  '
+<body>
+  <div class="formula-info">
     <section class="bloque-formula">
-      <i class="bx bx-x cass" onclick="removerClaseActiva()"></i>
+      <i class='bx bx-x cass'></i>
 
       <section class="info-formulas">
 
@@ -40,17 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
 
           <div class="nombre-datos">
-            <p>' . $row['nombre'] . " " . $row['apellido'] . '</p>
+            <p>Diego andres hoyos Linares</p>
             <h4>Tarjeta Profesional</h4>
-            <p>' . $medico['identificacionprofesional'] . '</p>
+            <p>0789683</p>
             <h4>Especialidad</h4>
-            <p>' . $medico['especialidad'] . '</p>
+            <p>Cirujano cardiovascular</p>
           </div>
         </section>
 
       </section>
       <section class="datos-formulas">
-        <div class="overflowe scroll">
+        <div class="overflow scroll">
           <section class="e">
             <div class="cabezera-formulas">
               Datos personales
@@ -144,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- COSAS DE VARIOSSSS -->
                 <div class="cards">
 
-                  <div class="carde">
+                  <div class="card">
                     <div class="card__image-holder">
                       <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
                     </div>
@@ -161,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card-flap flap1">
                       <div class="card-description">
                         This grid is an attempt to make something nice that works on touch devices. Ignoring hover
-                        states when theyre not available etc.
+                        states when they're not available etc.
                       </div>
                       <div class="card-flap flap2">
                         <div class="card-actions">
@@ -170,66 +158,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       </div>
                     </div>
                   </div>
+
+                  <div class="card">
+                    <div class="card__image-holder">
+                      <img class="card__image" src="https://source.unsplash.com/300x225/?beach" alt="beach" />
+                    </div>
+                    <div class="card-title">
+                      <a href="#" class="toggle-info btn">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                      </a>
+                      <h2>
+                        Card title
+                        <small>Image from unsplash.com</small>
+                      </h2>
+                    </div>
+                    <div class="card-flap flap1">
+                      <div class="card-description">
+                        This grid is an attempt to make something nice that works on touch devices. Ignoring hover
+                        states when they're not available etc.
+                      </div>
+                      <div class="card-flap flap2">
+                        <div class="card-actions">
+                          <a href="#" class="btn">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card__image-holder">
+                      <img class="card__image" src="https://source.unsplash.com/300x225/?mountain" alt="mountain" />
+                    </div>
+                    <div class="card-title">
+                      <a href="#" class="toggle-info btn">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                      </a>
+                      <h2>
+                        Card title
+                        <small>Image from unsplash.com</small>
+                      </h2>
+                    </div>
+                    <div class="card-flap flap1">
+                      <div class="card-description">
+                        This grid is an attempt to make something nice that works on touch devices. Ignoring hover
+                        states when they're not available etc.
+                      </div>
+                      <div class="card-flap flap2">
+                        <div class="card-actions">
+                          <a href="#" class="btn">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card__image-holder">
+                      <img class="card__image" src="https://source.unsplash.com/300x225/?field" alt="field" />
+                    </div>
+                    <div class="card-title">
+                      <a href="#" class="toggle-info btn">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                      </a>
+                      <h2>
+                        Card title
+                        <small>Image from unsplash.com</small>
+                      </h2>
+                    </div>
+                    <div class="card-flap flap1">
+                      <div class="card-description">
+                        This grid is an attempt to make something nice that works on touch devices. Ignoring hover
+                        states when they're not available etc.
+                      </div>
+                      <div class="card-flap flap2">
+                        <div class="card-actions">
+                          <a href="#" class="btn">Read more</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- TERMINA PRUEBA -->
               </section>
             </section>
           </section>
         </div>
       </section>
-    </section>';
-    echo $html;
-  }
-}
+    </section>
+  </div>
 
-?>
+  <script src="assets/js/decoracionTrajetas.js"></script>
+</body>
 
-<script>
-  $(document).ready(function() {
-    var zindex = 10;
-
-    $("div.carde").click(function(e) {
-      e.preventDefault();
-
-      var isShowing = false;
-
-      if ($(this).hasClass("show")) {
-        isShowing = true
-      }
-
-      if ($("div.cards").hasClass("showing")) {
-        // a card is already in view
-        $("div.card.show")
-          .removeClass("show");
-
-        if (isShowing) {
-          // this card was showing - reset the grid
-          $("div.cards")
-            .removeClass("showing");
-        } else {
-          // this card isn't showing - get in with it
-          $(this)
-            .css({
-              zIndex: zindex
-            })
-            .addClass("show");
-
-        }
-
-        zindex++;
-
-      } else {
-        // no cards in view
-        $("div.cards")
-          .addClass("showing");
-        $(this)
-          .css({
-            zIndex: zindex
-          })
-          .addClass("show");
-
-        zindex++;
-      }
-
-    });
-  });
-</script>
+</html>
