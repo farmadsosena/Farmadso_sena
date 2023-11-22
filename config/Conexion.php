@@ -2,15 +2,11 @@
 
 class Conexion
 {
-
     private $conexion = null;
     private $server = 'localhost';
     private $user = 'root';
     private $password = '';
     private $database = 'farmadso';
-
-
-
 
     public function __construct()
     {
@@ -20,8 +16,7 @@ class Conexion
     {
         return $this->conexion;
     }
-
 }
+
 $bd = new Conexion();
 $conexion = $bd->getConexion();  //Conexion database
-?>

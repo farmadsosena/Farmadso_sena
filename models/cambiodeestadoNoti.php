@@ -1,11 +1,14 @@
 <?php
 
+session_start();
+
+$idDomi = $_SESSION["id"];
 require_once('../models/conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibir el valor de idCompra desde la solicitud AJAX
     $idCompra = $_POST['idCompra'];
-    $idUsuario = 1;
+
 
     if ($idUsuario) {
         // Verificar si el usuario ya tiene asignada una compra con estado 2
@@ -42,9 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-
 } else {
     // Manejo de caso cuando no es una solicitud POST
     echo "No se realizó la consulta";
 }
-?>

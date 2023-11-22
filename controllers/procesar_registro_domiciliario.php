@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     }
 
     // Insertar los datos en la base de datos (debes ajustar la consulta SQL según tu base de datos)
-    $sql = "INSERT INTO domiciliario (idusuario, estadolaboral, direccion, fechainicio, disponibilidad, tipovehiculo, tarjetaPropiedad, soat, licencia, tipoCuenta, numeroCuenta, EstadoAcept, fotoperfil)
-            VALUES ('$id_usuario', '$estadolaboral', '$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$ruta_imagen', '$ruta_imagen','$ruta_imagen', '$tipoCuenta','$numeroCuenta','$estadoAcep','$ruta_imagen')";
+    $sql = "INSERT INTO domiciliario (idusuario, estadolaboral, direccion, fechainicio, disponibilidad, tipovehiculo, tarjetaPropiedad, soat, licencia, imagen, tipoCuenta, numeroCuenta, EstadoAcept)
+    VALUES ('$id_usuario', '$estadolaboral', '$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$ruta_imagen', '$ruta_imagen','$ruta_imagen', '$ruta_imagen','$tipoCuenta','$numeroCuenta','$estadoAcep')";
 
     if ($conexion->query($sql) === TRUE) {
         echo "<script>
