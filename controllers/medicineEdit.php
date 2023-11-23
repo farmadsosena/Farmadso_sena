@@ -3,7 +3,7 @@ use modeloMedicina\MedicineModel;
 
 require_once '../models/MedicineModel.php';
 require_once '../config/Conexion.php';
-
+require_once '../models/Log.php';
 
 // Validar solicitud 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,7 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status  = $modelMedicinaa->medicineUpdate($idMedicamento, $medicamentos, $inventario);
     if($status){
 
-        // Aqui deberia ir el log verdad?
+        $log  = new Log();
+
+        $ip = $log::getIp();
+        $type = $log::typeDispositive();
+        $info = array(
+            'nivel' => 'INFO',   
+            'mensaje' => "Se ha editado medicamento con el nombre  " . $medicamentos['nombre']  . " ",
+            'ip' => $ip,
+            'id_usuario' => 1 , //$_SESSION['id_farmacia']
+            'tipo' => $type 
+        );
+        $resultt = $log->insert($info);
 
         echo json_encode("Success");
     }else{

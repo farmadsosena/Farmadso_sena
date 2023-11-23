@@ -85,8 +85,6 @@ function enviarInforme(event) {
   
   
   document.getElementById("filtroInforme").addEventListener("submit", enviarInforme);
-  document.getElementById('abrirModalInforme').addEventListener('click', abrirModalInforme);
-  document.getElementById('cerrarModalInforme').addEventListener('click', cerrarModalInforme);
   document.getElementById("mesSeleccionado").addEventListener("change", actualizarFechasSegunMes);
   
   // Función para cerrar el modal si se hace clic fuera del contenedor

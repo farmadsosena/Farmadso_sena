@@ -19,19 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysqli_query($conexion, $sql) && mysqli_query($conexion, $sqlazo)) {
 
 
-        $log = new Log();
-
-        $ip = $log::getIp();
-        $type = $log::typeDispositive();
-        $info = array(
-            'nivel' => 'ERROR',
-            'mensaje' => "Se ha eliminado el medicamento con el codigo " . $medicamento['codigo'] . " y nombre  " . $medicamento['nombre'] . " ",
-            'ip' => $ip,
-            'id_usuario' => 1, //$_SESSION['id_farmacia']
-            'tipo' => $type
-        );
-        $resultt = $log->insert($info);
-
         echo "success";
     } else {
         echo "error";

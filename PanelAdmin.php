@@ -234,14 +234,16 @@
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <?php 
-                    require_once 'controllers/detallesVentas.php';
+                    require_once 'templates/detallesVentas.php';
                     ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
 
 
                     <!-- INICIA DETALLES DE VENTA -->
-                  
+                  <?php
+                  require_once 'templates/facturas.php'
+                  ?>
 
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
