@@ -239,8 +239,11 @@ require_once "validacion_usu_tienda.php";
               // Calcula el precio actual
               $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
 
+              $precio_antes = number_format($precio_antes, 0, ',', '.');
+              $precio_actual = number_format($precio_actual, 0, ',', '.');
+
               echo "<div class='top-product'>";
-              echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
               echo "<h4>" . $row['nombre'] . "</h4>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
