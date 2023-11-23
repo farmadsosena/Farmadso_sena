@@ -7,7 +7,7 @@
         // Realiza la consulta a la base de datos para obtener los detalles de la compra
         require_once '../config/Conexion.php';
 
-        $sql = "SELECT fecha, estadocompra, detallesventa, cantidad, total, subtotal FROM compras WHERE idcompra = $idcompra";
+        $sql = "SELECT fecha, idestadocompra, direccion, total, codigopostal,correo FROM compra WHERE idcompra = $idcompra";
         $result = $conexion->query($sql);
 
         // Crear un array para almacenar los detalles

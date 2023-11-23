@@ -1,19 +1,5 @@
 <?php
-//  session_start();
-
-//  if (isset($_SESSION['compraSuccess']) && $_SESSION['compraSuccess'] === true) {
-//    require_once('views/valoracionCliente.php');
-//  }
-//  if (!isset($_SESSION['id_cliente'])) {
-//    if (!isset($_SESSION['sessionId'])) {
-//      // $sessionId = rand(0, 100);
-//      $sessionId = uniqid();
-//      $_SESSION['sessionId'] = $sessionId;
-//    }
-//  } else {
-//    unset($_SESSION['sessionId']);
-//  }
-//  unset($_SESSION['productosCaja']);
+require_once "validacion_usu_tienda.php";
 ?>
 
 
@@ -27,6 +13,7 @@
   <link rel="stylesheet" href="../assets/css/inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
+  <link rel="stylesheet" href="../assets/css/detalles.css">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/toastr.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -94,8 +81,18 @@
     </div>
     <div class="menuResponsive">
       <div class="profileResponsive">
-        <img src="../assets/img/guest.webp" alt="">
-        <p>Alex</p>
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>">
+          <p><?php echo $rr["nombre"] ?></p>
+        <?php
+        } else {
+        ?>
+          <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
+        <?php
+        }
+        ?>
       </div>
       <div class="contenedorEnlaces">
 
@@ -103,10 +100,15 @@
         <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
 
         <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
-        <div class="enlaceMenu" id="abrirEditar2"><i class="fa-solid fa-user"></i>Formulas</div>
-        <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>
-          Mis compras</div>
-        <a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
+        <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
+        <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <a href="../config/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
+        <?php
+        }
+        ?>
       </div>
     </div>
   </nav>
@@ -143,15 +145,77 @@
         <p>Carrito</p>
       </div>
       <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="profile-user">
-        <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
+      <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+          <i class="fa-solid fa-sheet-plastic"></i>
+          <p>Formulas</p>
+        </a>
       </div>
-
+      <div class="profile-user">
+        <?php
+        if (isset($_SESSION["usu"])) {
+        ?>
+          <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
+        <?php
+        } else {
+        ?>
+          <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
+        <?php
+        }
+        ?>
+      </div>
     </nav>
   </header>
   <!--Fin del encabezado-->
   <!--Index principal-->
   <main id="index">
+    <section class="venergar-info" id="informacion-rapida">
+      <section class="container-rapido">
+        <i class='bx bx-x x2 salir-vista-medicamento'></i>
+        <section class="img-oferta">
+          <section class="produc">
+            <img src="../assets/img/banner-ecommer.png" alt="">
+          </section>
+          <section class="resto-product">
+            <div class="scroll2">
+              <section class="raster">
+                <img src="../assets/img/banner-formulas.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/banner3.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/logoFarmadso - cambio.png" alt="">
+              </section>
+            </div>
+          </section>
+        </section>
+        <section class="descript-pro">
+          <h2>Nutren</h2>
+          <h1>Nutren senior cafe con leche</h1>
+          <h4>Frasco x 100 tab</h4>
+          <h3>Nutren senior cafe con leche</h3>
+          <p>Referencia: 10001</p>
+          <div class="precio-antes">
+            <div class="precio-a">
+              Antes $ 65.900
+            </div>
+            <div class="ahorro">
+              Ahorra $15.600
+            </div>
+          </div>
+          <div class="precio">
+            $50.000
+          </div>
+          <div class="informacion">
+            <p>Incluye 0% de impuestos</p>
+            <p>Registro Sanitario: RSA-0009205-2019</p>
+          </div>
+
+          <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+          <button class="vermas">Ver mas detalles</button>
+        </section>
+      </section>
+    </section>
     <section class="content-main">
       <aside>
         <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
@@ -169,42 +233,99 @@
       <h1>Categorias destacadas</h1>
       <div class="swiper slider-categorias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
-              <h3>Vitaminas y minerales</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
-              <h3>Dolor e inflamacion</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
-              <h3>Gripa y tos</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
-              <h3>Estomago</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
-              <h3>Cuidado de la herida</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
-              <h3>Nutricion especializada</h3>
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM categoria ORDER BY idcategoria DESC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {              
+              echo "<a href='#' class='swiper-slide cont-categorias'>";
+              echo "<section>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
+              echo "<h3>" . $row['nombrecategoria'] . "</h3>";
+              echo "</section>";
+              echo "</a>";
+            }
+          } else {
+            echo "No hay categorías disponibles.";
+          }
+          
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>Ofertas</h1>
       <div class="ranking">
         <?php
-        include '../controllers/mostrarproductosTienda.php';
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "farmadso";
+
+        try {
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT p.*, m.*, f.Nombre as nombre_farmacia
+              FROM promocion p
+              INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
+              INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
+              ORDER BY p.valordescuento DESC
+              LIMIT 4";
+
+          $result = $conn->query($sql);
+
+          // Verifica si hay resultados en la consulta
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              $id_medicamento = $row['id_medicamento'];
+              $precio_antes = $row['precio'];
+              $descuento = $row['valordescuento'];
+
+              // Calcula el precio actual
+              $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
+
+              echo "<div class='top-product'>";
+              echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<h4>" . $row['nombre'] . "</h4>";
+              echo "<p>" . $row['nombre_farmacia'] . "</p>";
+              echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
+              echo "<h2>$" . $precio_actual . "</h2>";
+              echo "<button class='comprar-tarje-comp'>Comprar</button>";
+              echo "</div>";
+            }
+          } else {
+            echo "No hay ofertas disponibles.";
+          }
+        } catch (Exception $e) {
+          echo "Error: " . $e->getMessage();
+        } finally {
+          // Cierra la conexión
+          if (isset($conn)) {
+            $conn->close();
+          }
+        }
         ?>
       </div>
     </section>
@@ -261,5 +382,5 @@
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
-
+<script src="../assets/js/detallesRapidos.js"></script>
 </html>
