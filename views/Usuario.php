@@ -309,11 +309,21 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                   // Iterar a través de los datos y construir las filas de la tabla
                   data.forEach(function (item) {
+
+                    // Convertir la fecha a un objeto Date
+                    var fecha = new Date(item.fecha);
+                    // Formatear la fecha en español
+                    var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+
+                    // Formatear el total con separadores de miles
+                    var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
+
                     var row = `<tr>
-                    <td class="fecha">${item.fecha}</td>
-                    <td class="estado">${item.estadocompra}</td>
-                    <td class="email">${item.email}</td>
-                    <td class="total">${item.total}</td>            
+                    <td class="fecha">${fechaFormateada}</td>
+                    <td class="estado">${item.estado}</td>
+                    <td class="email">${item.correo_usuario}</td>
+                    <td class="total">${totalFormateado}</td> 
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
                     $('#tabla-body').append(row);
@@ -343,11 +353,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 <thead>
                   <tr>
                     <th class="fecha">Fecha</th>
-                    <th class="estado">Estado de Compra</th>
-                    <th class="detalle">Detalle</th>
+                    <th class="estado">Medicamento</th>
                     <th class="cantidad">Cantidad</th>
                     <th class="total">Total</th>
-                    <th class="subtotal">Subtotal</th>
                   </tr>
                 </thead>
 
@@ -373,13 +381,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
                   data.forEach(function (detalle) {
+
+                    // Formatea la fecha en español
+                    var fechaCompra = new Date(detalle.fecha_compra);
+                    var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var fechaFormateada = fechaCompra.toLocaleDateString('es-ES', opcionesFecha);
+
                     var row = `<tr>
-                        <td>${detalle.fecha}</td>
-                        <td>${detalle.estadocompra}</td>
-                        <td>${detalle.detallesventa}</td>
-                        <td>${detalle.cantidad}</td>
-                        <td>${detalle.total}</td>
-                        <td>${detalle.subtotal}</td>
+                    <td>${fechaFormateada}</td>
+                    <td>${detalle.nombre_medicamento}</td>
+                    <td>${detalle.cantidad}</td>    
+                    <td>${detalle.preciototal}</td>              
                       </tr>`;
                     $('#detallecompra').append(row);
                   });
