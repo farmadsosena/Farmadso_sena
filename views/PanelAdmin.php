@@ -6,10 +6,6 @@ if (!isset($_SESSION["usu"])) {
     echo "<script> window.location='login.php'</script>";
 }
 
-if (!isset($_SESSION["domi"])) {
-    echo "<script> window.location='login.php'</script>";
-}
-
 if (!isset($_SESSION["farm"])) {
     echo "<script> window.location='login.php'</script>";
 }
@@ -193,10 +189,10 @@ $imgUser = $_SESSION['img'];
 
                     <!-- Abre formulario -->
                     <?php
-                    require_once '../templates/FormularioMedicamentos.php';
+                    //require_once '../templates/FormularioMedicamentos.php';
                     ?>
                     <?php
-                    require_once '../templates/editarMedicamentos.php';
+                    //require_once '../templates/editarMedicamentos.php';
                     ?>
                     <!-- cierra formulario -->
                 </section>
@@ -427,11 +423,11 @@ Total: $90
 
     <!-- VENTANA QUE HIZO ESTIVENSON EL QUINTANA -->
     <?php
-    require_once '../templates/inventario.php';
+   // require_once '../templates/inventario.php';
 
-    require_once '../templates/comentarios.html';
+   // require_once '../templates/comentarios.html';
 
-    require_once '../templates/Ofertas.html';
+   // require_once '../templates/Ofertas.html';
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
