@@ -5,7 +5,7 @@ include '../config/Conexion.php';
 $html = '';
 
 
-$consulta = mysqli_query($conexion, "SELECT * FROM categoria");
+$consulta = mysqli_query($conexion, "SELECT * FROM categoria where Estado = 1");
 while ($row = mysqli_fetch_assoc($consulta)) {
 
     $html .= "<div class='category'>
