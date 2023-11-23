@@ -2,7 +2,7 @@
 define('BRAND_NAME', 'TuNombreDeMarca'); // Reemplaza 'TuNombreDeMarca' con el nombre de tu marca
 require_once __DIR__ . '/vendor/autoload.php';
 
-$basic  = new \Vonage\Client\Credentials\Basic("8510e706", "4IwW6wiFgGlkIJNL");
+$basic  = new \Vonage\Client\Credentials\Basic("fabdcb5a", "Y2vt6f0Zycf4eFr1");
 $client = new \Vonage\Client($basic);
 
 $response = $client->sms()->send(

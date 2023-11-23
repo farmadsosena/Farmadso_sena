@@ -165,11 +165,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
+
+                $_SESSION["domi"]= $id;
                 }
                 if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
+                $_SESSION["farm"]= $id;
                 }
                 // if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
                 //   echo '<div class="option">
@@ -258,7 +261,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <!-- Final de tarjetas -->
           </div>
  
-          <div class="formula-info"  >
+          <div class="formula-info">
           </div>
           <div id="mensajeNoResultados" class="imgBusqueda">
             <img src="../assets/img/notas.png" alt="">
@@ -494,6 +497,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   </div>
 
                   <div class="contenedoresparte1">
+                    <label for="imagen">Foto de su vehiculo</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
                     <label for="Direcciónresidencia">Dirección de residencia</label>
                     <input type="text" id="direccion" name="direccion" required>
                   </div>
@@ -606,19 +614,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
 
               <div class="contenedoresparte1">
-                <label for="horario">Días de Horario Laboral</label>
+                <label for="horario">Horario Laboral</label>
                 <select id="horario" name="horario" required>
                   <option value="lunes">Lunes</option>
                   <option value="martes">Martes</option>
                   <!-- Agrega más días según sea necesario -->
-                </select>
-              </div>
-
-              <div class="contenedoresparte1">
-                <label for="jornada">Jornada</label>
-                <select id="jornada" name="jornada" required>
-                  <option value="manana">Mañana</option>
-                  <option value="tarde">Tarde</option>
                 </select>
               </div>
             </section>
