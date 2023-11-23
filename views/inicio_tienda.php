@@ -11,6 +11,7 @@ require_once "validacion_usu_tienda.php";
   <link rel="stylesheet" href="../assets/css/inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
+  <link rel="stylesheet" href="../assets/css/detalles.css">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/toastr.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -149,6 +150,54 @@ require_once "validacion_usu_tienda.php";
   <!--Fin del encabezado-->
   <!--Index principal-->
   <main id="index">
+    <section class="venergar-info" id="informacion-rapida">
+      <section class="container-rapido">
+        <i class='bx bx-x x2 salir-vista-medicamento'></i>
+        <section class="img-oferta">
+          <section class="produc">
+            <img src="../assets/img/banner-ecommer.png" alt="">
+          </section>
+          <section class="resto-product">
+            <div class="scroll2">
+              <section class="raster">
+                <img src="../assets/img/banner-formulas.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/banner3.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/logoFarmadso - cambio.png" alt="">
+              </section>
+            </div>
+          </section>
+        </section>
+        <section class="descript-pro">
+          <h2>Nutren</h2>
+          <h1>Nutren senior cafe con leche</h1>
+          <h4>Frasco x 100 tab</h4>
+          <h3>Nutren senior cafe con leche</h3>
+          <p>Referencia: 10001</p>
+          <div class="precio-antes">
+            <div class="precio-a">
+              Antes $ 65.900
+            </div>
+            <div class="ahorro">
+              Ahorra $15.600
+            </div>
+          </div>
+          <div class="precio">
+            $50.000
+          </div>
+          <div class="informacion">
+            <p>Incluye 0% de impuestos</p>
+            <p>Registro Sanitario: RSA-0009205-2019</p>
+          </div>
+
+          <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+          <button class="vermas">Ver mas detalles</button>
+        </section>
+      </section>
+    </section>
     <section class="content-main">
       <aside>
         <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
@@ -318,5 +367,5 @@ require_once "validacion_usu_tienda.php";
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
-
+<script src="../assets/js/detallesRapidos.js"></script>
 </html>
