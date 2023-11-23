@@ -198,6 +198,18 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   justify-content: center;
   background-color: #f0f0f0;
 }
+
+.navConfigResponsive {
+  display: none;
+  width: 20%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+
 .containerMenuConfig {
   width: 90%;
   height: 90%;
@@ -261,9 +273,14 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   align-items: center;
   gap: 10px;
 }
+
+.opcionesConfig>i{
+  margin-left: 12px;
+}
+
 .iconUser {
   margin-left: 10px;
-  color: var(--azulOscuro);
+  color: #418fde;
 }
 .helpConfig {
   display: flex;
@@ -1082,6 +1099,28 @@ input[type="file"] {
     cursor: pointer;
     user-select: none;
   }
+
+  .navConfigResponsive {
+    display: flex;
+    width: 15%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+  }
+
+
+
+  .EncabezadoNavConfigresponsive{
+    font-size: 16px;
+  }
+
+  .LetraGrisResponsive{
+    font-size: 12px;
+  }
+
+
 
   /* Garaviz */
 

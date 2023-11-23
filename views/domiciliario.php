@@ -103,22 +103,21 @@ $id = $_SESSION["id"];
           <div class="EncabezadoNavConfig">
             <p>Mi cuenta</p>
           </div>
-          <div class="datosConfig">
-            <p class="LetraGris">Bienvenido:</p>
-            <div class="nameUserConfig">¿Que Deseas Hacer?</div>
-          </div>
+          
           <div class="optionNavConfig">
             <p class="LetraGris">Tu Cuenta:</p>
             <div class="optionGeneralesConfig">
               <article class="opcionesConfig" id="Micuenta">
-                <span class="material-symbols-outlined iconUser">
-                  account_circle
-                </span>
+                <i class="fa-solid fa-user" style="color: #418fde"></i>
                 <p>Mi perfil</p>
               </article>
               <article class="opcionesConfig" id="Detalles">
-                <span class="material-symbols-outlined iconUser"> info </span>
-                <p>Detalles</p>
+                <i class="fa-solid fa-motorcycle" style="color: #418fde"></i>
+                <p>Mi Moto</p>
+              </article>
+              <article class="opcionesConfig" id="Detalles">
+                <i class="fa-solid fa-lock" style="color: #418fde"></i>
+                <p>Cambiar Contraseña</p>
               </article>
             </div>
           </div>
@@ -146,7 +145,56 @@ $id = $_SESSION["id"];
         </div>
       </aside>
 
-      <div class="ContenedoresOptionConfig1" id="PerfilConfig">hola</div>
+      <aside class="navConfigResponsive">
+        <div class="containerMenuConfig">
+          <div class="EncabezadoNavConfigresponsive">
+            <p>Mi cuenta</p>
+          </div>
+          
+          <div class="optionNavConfig">
+          
+            <div class="optionGeneralesConfig">
+              <article class="opcionesConfig" id="MicuentaResponsive">
+                <i class="fa-solid fa-user" style="color: #418fde"></i>
+                <!-- <p>Mi perfil</p> -->
+              </article>
+              <article class="opcionesConfig" id="DetallesResponsive">
+                <i class="fa-solid fa-motorcycle" style="color: #418fde"></i>
+                <!-- <p>Mi Moto</p> -->
+              </article>
+              <article class="opcionesConfig" id="CambiarContraseñaResponsive">
+                <i class="fa-solid fa-lock" style="color: #418fde"></i>
+                <!-- <p>Cambiar Contraseña</p> -->
+              </article>
+            </div>
+          </div>
+          <div class="helpConfig">
+            <p class="LetraGrisResponsive">Ajustes y Ayuda:</p>
+            <div class="configCont">
+              <article class="opcionesConfig">
+                <span class="material-symbols-outlined iconUser">
+                  support_agent
+                </span>
+                <!-- <p>Contactanos</p> -->
+              </article>
+              <article class="opcionesConfig">
+                <span class="material-symbols-outlined iconUser"> help </span>
+                <!-- <p>Soporte</p> -->
+              </article>
+              <article class="opcionesConfig" id="CerrarSesionResponsive">
+                <span class="material-symbols-outlined iconUser">
+                  do_not_disturb_on
+                </span>
+                <!-- <p>Cerrar Sesión</p> -->
+              </article>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="ContenedoresOptionConfig1" id="PerfilConfig">
+        
+      </div>
       <div class="ContenedoresOptionConfig2" id="PerfilConfig">Goku</div>
       <div class="ContenedoresOptionConfig3" id="PerfilConfig">Vegeta</div>
     </div>
