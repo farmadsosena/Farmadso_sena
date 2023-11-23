@@ -23,6 +23,7 @@ class MedicineModel
         $instrucciones = $medicine['instrucciones'];
         $lote = $medicine['lote'];
         $idcategoria = $medicine['idcategoria'];
+        $idfarmacia=1;
         $idproveedor = $medicine['idproveedor'];
         $idpromocion = $medicine['idpromocion'];
         $formaadministracion = $medicine['administracion'];
@@ -35,7 +36,7 @@ class MedicineModel
         $status = $this->medicineQuery($codigo);
 
         if (!$status) {
-            $insertMedicine = $this->conn->query("INSERT INTO medicamentos (codigo, nombre, precio, imagenprincipal) VALUES ('$codigo', '$nombre', '$precio', '$imagenprincipal')");
+            $insertMedicine = $this->conn->query("INSERT INTO medicamentos (codigo, nombre, precio, imagenprincipal, idfarmacia) VALUES ('$codigo', '$nombre', '$precio', '$imagenprincipal','$idfarmacia')");
 
             if ($insertMedicine) {
 

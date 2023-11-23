@@ -228,52 +228,20 @@
                 <section class="page" id="graficas">
                     <h2>Graficas</h2>
                 </section>
+
+
+
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
-                    <div class="container-detalles">
-                        <div class="scroll-categories">
-                            <div class="contenedorCategoria">
-                                <div class="category">
-                                    <div class="nombre">
-                                        <h1>Acetaminofen</h1>
-                                    </div>
-                                    <div class="descripcion">
-                                        <h1>dosmil peso</h1>
-                                    </div>
-                                    <div class="buttons">
-                                        <button onclick="openDetalles()" class="btn-agregar">Ver detalles<i
-                                                class="fas fa-info-circle"></i> </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                    require_once 'controllers/detallesVentas.php';
+                    ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
+
+
                     <!-- INICIA DETALLES DE VENTA -->
-                    <div class="detalles">
-                        <i class="bx bx-chevron-left" onclick="closeDetalles()"></i>
-                        <pre>
-                        Factura para la compra
-Cliente: Nombre Cliente (cliente@email.com)
-Fecha de compra: 2023-10-16
-
-Detalles de la compra:
-Medicamento: Medicamento A
-Cantidad: 3
-Precio unitario: $10
-Subtotal: $30
-
-Medicamento: Medicamento B
-Cantidad: 4
-Precio unitario: $15
-Subtotal: $60
-
-Total: $90
-                    </pre>
-
-                    </div>
+                  
 
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>

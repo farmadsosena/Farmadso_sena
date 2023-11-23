@@ -64,15 +64,17 @@ function closeFormCategories() {
 
 
 function openDetalles(){
-    var contMedicine = document.querySelector('.container-detalles');
+    var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.detalles');
 
     contMedicine.style.display = 'none';
-    contForm.style.display = 'flex';
+    contForm.style.display = 'block';
+
+    
 }
 
 function closeDetalles() {
-    var contMedicine = document.querySelector('.container-detalles');
+    var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.detalles');
 
     // Mostrar alerta
@@ -88,6 +90,27 @@ function closeDetalles() {
         formInputs.forEach(function(input) {
             input.value = ''; // Limpiar el valor del input
         });
+    }
+}
+function openEstado(){
+    var contMedicine = document.querySelector('.container-ventas');
+    var contForm = document.querySelector('.estado');
+
+    contMedicine.style.display = 'none';
+    contForm.style.display = 'block';
+}
+
+function closeEstado() {
+    var contMedicine = document.querySelector('.container-ventas');
+    var contForm = document.querySelector('.estado');
+
+    // Mostrar alerta
+    var confirmClose = confirm("Deseas salir del vaino?");
+
+    if (confirmClose) {
+        // Cambiar el estilo de visualización
+        contMedicine.style.display = 'flex';
+        contForm.style.display = 'none';
     }
 }
 

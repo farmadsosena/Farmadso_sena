@@ -14,8 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     // Realiza la consulta para eliminar el medicamento
     $sql = "DELETE FROM medicamentos WHERE idmedicamento = $idMedicamento";
+    $sqlazo = "DELETE FROM inventario WHERE idmedicamento = $idMedicamento";
 
-    if (mysqli_query($conexion, $sql)) {
+    if (mysqli_query($conexion, $sql) && mysqli_query($conexion, $sqlazo)) {
 
 
         $log = new Log();
@@ -36,6 +37,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "error";
     }
 
-    mysqli_close($conexion);
 }
 ?>
