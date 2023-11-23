@@ -8,7 +8,6 @@ function ocultarContenedoresMenu() {
     boton.classList.remove('doss');
   });
 }
-
 function mostrarContenedoresMenu(contenedor, elemento) {
   ocultarContenedoresMenu();
   document.getElementById(contenedor).style.display = 'flex';
@@ -109,7 +108,3 @@ const config_filtrosElements = document.querySelectorAll(".config_filtros");
     }
     // Si el usuario hace clic en "Cancelar", no hace nada
   }
-
-
-
-

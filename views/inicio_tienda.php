@@ -215,72 +215,100 @@ require_once "validacion_usu_tienda.php";
       <h1>Categorias destacadas</h1>
       <div class="swiper slider-categorias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
-              <h3>Vitaminas y minerales</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
-              <h3>Dolor e inflamacion</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
-              <h3>Gripa y tos</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
-              <h3>Estomago</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
-              <h3>Cuidado de la herida</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
-              <h3>Nutricion especializada</h3>
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM categoria ORDER BY idcategoria DESC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {              
+              echo "<a href='#' class='swiper-slide cont-categorias'>";
+              echo "<section>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
+              echo "<h3>" . $row['nombrecategoria'] . "</h3>";
+              echo "</section>";
+              echo "</a>";
+            }
+          } else {
+            echo "No hay categorías disponibles.";
+          }
+          
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>Ofertas</h1>
       <div class="ranking">
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <p>Farmacia algorta</p>
-          <h4>Acetaminofén-GENFAR</h4>
-          <p class="ahorro-top-product">Antes $30.000</p>
-          <h2>$20.640</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/apiretal.jpg" alt="">
-          <p>Paraiso</p>
-          <h4>Apiretal</h4>
-          <p class="ahorro-top-product">Antes $20.000</p>
-          <h2>$12.700</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
-          <P>Farmacia el raso</P>
-          <h4>TUKOL EXPECTORANTE D</h4>
-          <p class="ahorro-top-product">Antes $32.000</p>
-          <h2>$29.900</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
-          <p>Cruz verde</p>
-          <h4>BISOLVON ADULTOS</h4>
-          <p class="ahorro-top-product">Antes $40.000</p>
-          <h2>$36.000</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "farmadso";
+
+        try {
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT p.*, m.*, f.Nombre as nombre_farmacia
+              FROM promocion p
+              INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
+              INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
+              ORDER BY p.valordescuento DESC
+              LIMIT 4";
+
+          $result = $conn->query($sql);
+
+          // Verifica si hay resultados en la consulta
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              $id_medicamento = $row['id_medicamento'];
+              $precio_antes = $row['precio'];
+              $descuento = $row['valordescuento'];
+
+              // Calcula el precio actual
+              $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
+
+              echo "<div class='top-product'>";
+              echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<h4>" . $row['nombre'] . "</h4>";
+              echo "<p>" . $row['nombre_farmacia'] . "</p>";
+              echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
+              echo "<h2>$" . $precio_actual . "</h2>";
+              echo "<button class='comprar-tarje-comp'>Comprar</button>";
+              echo "</div>";
+            }
+          } else {
+            echo "No hay ofertas disponibles.";
+          }
+        } catch (Exception $e) {
+          echo "Error: " . $e->getMessage();
+        } finally {
+          // Cierra la conexión
+          if (isset($conn)) {
+            $conn->close();
+          }
+        }
+        ?>
       </div>
     </section>
     <section class="articles">

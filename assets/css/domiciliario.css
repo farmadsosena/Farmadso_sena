@@ -1,0 +1,1639 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: system-ui;
+}
+
+:root {
+  --azulOscuro: #2d57a8;
+  --verdeClaro: #b5ddca;
+  --verdeOscuro: #33a892;
+  --blanco: #fffefe;
+  --grisClaro: #f1f2f5;
+  --azulClaro: #6d93c9;
+}
+
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.headerDelivery {
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  background-color: var(--azulOscuro);
+}
+
+.tittleDelivery {
+  display: flex;
+  align-items: center;
+  gap: 2vh;
+  width: 40%;
+}
+
+.tittleDelivery > h1 {
+  color: var(--blanco);
+}
+
+.tittleDelivery > span {
+  color: var(--blanco);
+  font-size: 9vh;
+}
+
+.navDelivery {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 60%;
+}
+
+/* ESTILO DE SELECT DE OPCION DE PERFIL */
+.custom-select {
+  width: 65%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+
+}
+
+.selected-option i{
+  margin-right: 0.7rem;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}
+
+.option {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.option i {
+  margin-right: 10px;
+}
+
+/* FIN DE SELECT DE OPCION DE PERFILES */
+
+#task,
+#notification,
+#history,
+#settings {
+  color: var(--grisClaro);
+  height: 100%;
+  width: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5vh;
+  position: relative;
+}
+
+/* #task:hover, #notification:hover,
+#history:hover, #settings:hover{
+    background-color: var(--azulClaro);
+} */
+
+/* CONTENEDOR PRINCIPAL (MAIN) */
+
+.mainDelivery {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* CONTENEDOR PRINCIPAL QUE CONTEDRA EL CONTENEDOR
+DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
+
+.mainDeliverySection {
+  flex: 1;
+}
+.navE {
+  cursor: pointer;
+}
+
+/* Garaviz */
+#conte {
+  border-top: 1px solid;
+  display: flex;
+  height: 92%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#datos {
+  border-right: 1px solid;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+#moto {
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#mot {
+  border: 1px solid;
+  width: 90%;
+  height: 90%;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#mo {
+  color: black;
+  font-size: 100px;
+}
+
+#nuevoContenido1 {
+  display: flex;
+  width: 100%;
+  height: 88vh;
+}
+.navConfig {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+.containerMenuConfig {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ventana de config */
+.EncabezadoNavConfig {
+  width: 100%;
+  height: 12%;
+  display: flex;
+}
+.EncabezadoNavConfig p {
+  font-size: 22px;
+  font-weight: 500;
+}
+.datosConfig {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+.LetraGris {
+  color: gray;
+}
+.nameUserConfig {
+  width: 100%;
+  height: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(214, 212, 212);
+}
+.optionNavConfig {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
+.optionGeneralesConfig {
+  background-color: #fff;
+  width: 100%;
+  height: 90%;
+}
+.opcionesConfig {
+  width: 100%;
+  height: 37px;
+  display: flex;
+  border-radius: 2px;
+  border-bottom: 1px solid rgb(214, 212, 212);
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+}
+.iconUser {
+  margin-left: 10px;
+  color: var(--azulOscuro);
+}
+.helpConfig {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: end;
+  align-items: start;
+}
+.configCont {
+  width: 100%;
+  height: 60%;
+  background-color: #fff;
+}
+.ContenedoresOptionConfig1 {
+  flex: 1;
+  background-color: var(--azulClaro);
+}
+.ContenedoresOptionConfig2 {
+  flex: 1;
+  background-color: var(--verdeClaro);
+}
+.ContenedoresOptionConfig3 {
+  flex: 1;
+  background-color: var(--verdeOscuro);
+}
+
+.contenido-nuevo {
+  display: flex;
+  width: 100%;
+}
+#nuevoContenido1 {
+  display: flex;
+}
+
+#nuevoContenido1,
+h1 {
+  text-align: center;
+}
+
+/* Historial */
+#nuevoContenido2 {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.botoneees {
+  width: 100%;
+  flex-direction: row;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  border-bottom: 1px solid rgb(214, 212, 212);
+}
+
+#sele {
+  width: 150px;
+}
+
+#codi {
+  width: 200px;
+}
+
+.his {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow-y: scroll;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.c {
+  margin-top: 10px;
+  border-radius: 12px;
+  width: 70%;
+  height: 40%;
+  background-color: #a5d8ff;
+}
+
+.inf {
+  height: 6rem;
+  margin: 10px;
+  display: flex;
+}
+.logo {
+  border: 1px solid;
+  width: 20%;
+  height: 70%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  font-size: 40px;
+}
+
+.infff {
+  width: 100%;
+  margin: 10px;
+}
+
+.infff h3 {
+  font-size: 15px;
+}
+
+.listo {
+  width: 30%;
+  margin: 10px;
+}
+
+.co {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 82%;
+  font-size: 20px;
+}
+
+#b {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#but {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--verdeOscuro);
+  color: var(--blanco);
+  text-decoration: none;
+  height: 6vh;
+  width: 20vh;
+  border-radius: 8px;
+  transition: all ease 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+#but:hover {
+  background-color: #288372;
+  box-shadow: 0px 0px 10px #288372;
+}
+
+/* Estilos para la ventana modal ver Garaviz */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-contenido {
+  background-color: #a5d8ff;
+  margin: 0% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 70vh;
+  position: relative;
+  height: 97vh;
+}
+
+#cerrarModal {
+  position: absolute;
+  top: -9px;
+  right: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
+/* finaliza */
+
+.cajja {
+  width: 95%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+.ti {
+  margin: 10px;
+  text-align: center;
+}
+
+.in {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.inn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+
+.un1 {
+  border: 1px solid;
+  width: 30px;
+  height: 20px;
+}
+
+.cajjjja {
+  margin: 10px;
+}
+
+.imaaa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iaam {
+  border: 1px solid;
+  width: 300px;
+  height: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centrar {
+  display: flex;
+  justify-content: center;
+}
+
+#ce {
+  width: 100px;
+  background-color: darkred;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Fin */
+
+/* CONTENEDOR DE LOS PEDIDOS DISPONIBLES */
+
+.notificationsDelivery {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.orderAvailable {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  height: 40vh;
+  padding: 2vh;
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px grey;
+}
+
+.orderAvailable > p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nameEPS {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 8vh;
+}
+
+.nameEPS > img {
+  width: 20vh;
+}
+
+.customerData {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+}
+
+.buttonSeeMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.seeMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--verdeOscuro);
+  color: var(--blanco);
+  text-decoration: none;
+  height: 6vh;
+  width: 20vh;
+  border-radius: 8px;
+  transition: all ease 0.3s;
+}
+
+.seeMore:hover {
+  background-color: #288372;
+  box-shadow: 0px 0px 10px #288372;
+}
+
+/* Estilos para la ventana modal de "Ver más" en pedidos disponibles */
+.modalVerMas {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalVerMas-content {
+  background-color: #fefefe;
+  margin: 12% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90vh;
+  height: 44vh;
+}
+
+.modalVerMas-content > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--azulOscuro);
+  color: var(--blanco);
+  height: 6vh;
+}
+
+.modalVerMas-content > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5vh;
+  height: 8vh;
+}
+
+.deliveryData {
+  display: flex;
+  flex-direction: row;
+}
+
+.epsInfo {
+  width: 40%;
+}
+
+.epsInfo > img {
+  width: 14vh;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 60%;
+}
+.fechaVer {
+  gap: 5px;
+  display: flex;
+}
+.mainAdresses {
+  display: flex;
+  flex-direction: column;
+  height: 7vh;
+  margin-bottom: 10px;
+}
+.mainAdresses span {
+  display: flex;
+}
+.aplicar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+}
+
+.aplicar > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--azulOscuro);
+  color: var(--blanco);
+  height: 100%;
+  width: 20vh;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all ease 0.3s;
+}
+
+.aplicar > a:hover {
+  background-color: #244588;
+  box-shadow: 0px 0px 10px #244588;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.footerDelivery {
+  display: none;
+}
+
+/* INTERFAZ DE TAREAS PENDIENTES */
+
+/* CONTENEDOR PRINCIPAL QUE CONTEDRA EL CONTENEDOR
+DE LAS TAREAS*/
+
+.mainDeliverySectionTask {
+  height: 80vh;
+  padding: 4vh;
+  width: 100%;
+}
+.contenedorAlertMm{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.imgMm{
+  width: 60;
+  height: 70%;
+}
+/* CONTENEDOR DE LAS TAREAS A REALIZAR */
+
+.pendingTask {
+  display: flex;
+  flex-direction: row;
+  height: 40vh;
+  width: 100%;
+  background-color: #154163;
+}
+
+.taskData {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.addressInformation {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 2vh;
+  gap: 2vh;
+}
+
+.addressInformation > img {
+  width: 30vh;
+}
+
+.addressData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vh;
+  color: var(--blanco);
+  width: 100%;
+  gap: 1vh;
+}
+
+.taskData > p {
+  padding-left: 3vh;
+  font-weight: 600;
+  color: var(--blanco);
+}
+
+.shippingStatus {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.shippingStatus > p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 6vh;
+  padding-right: 6vh;
+  color: var(--blanco);
+  font-weight: 700;
+}
+
+.stateDelivery {
+  height: 40vh;
+}
+
+.stateDelivery > span {
+  height: 4vh;
+  color: var(--blanco);
+  font-size: 3.5vh;
+}
+
+.DETE {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
+.DETE > span {
+  color: var(--blanco);
+  font-size: 12vh;
+}
+
+.DETE > p {
+  color: var(--blanco);
+}
+
+.optionsStateDelivery {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 9vh;
+}
+
+/* Estilo para ocultar el botón original */
+input[type="file"] {
+  display: none;
+}
+
+.upload,
+.deliver {
+  height: 7vh;
+  width: 20vh;
+}
+
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: burlywood;
+  border: none;
+  color: var(--blanco);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all ease 0.3s;
+}
+
+.upload:hover {
+  background-color: rgb(180, 142, 92);
+  box-shadow: 0px 0px 10px rgb(180, 142, 92);
+}
+
+.deliver {
+  background-color: var(--verdeOscuro);
+  border: none;
+  color: var(--blanco);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all ease 0.3s;
+}
+
+.deliver:hover {
+  background-color: #288372;
+  box-shadow: 0px 0px 10px #288372;
+}
+.azulClaro {
+  background-color: var(--azulClaro);
+}
+/* estilos filtro */
+
+.contenedorFiltro {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contenedorSecuFiltro {
+  width: 90%;
+  height: 4rem !important;
+  border-bottom: 1px solid #d4dade;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 100px;
+}
+#buscarFactura {
+  width: 200px;
+  height: 2rem;
+  margin-top: 13px;
+  text-indent: 10px;
+}
+.FechaInicial {
+  display: none;
+}
+.FechaInicial p {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--azulOscuro);
+}
+.FechaFinal {
+  display: none;
+}
+.FechaFinal p {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--azulOscuro);
+}
+#fechainicial {
+  width: 200px;
+  height: 2rem;
+  text-indent: 10px;
+}
+#fechaFinal {
+  width: 200px;
+  height: 2rem;
+  text-indent: 10px;
+}
+.containerFiltro {
+  width: 150px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerFiltro h5 {
+  color: var(--azulOscuro);
+  font-weight: 600;
+}
+.containerFiltro select {
+  width: 200px;
+  height: 2rem;
+}
+.circuloNoti {
+  display: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: red;
+  position: absolute;
+  top: 38%;
+  right: 35%;
+}
+.circuloTask{
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background-color: red;
+  position: absolute;
+  top: 35%;
+  right: 35%;
+}
+.formularioEntrega{
+  display: flex;
+  gap: 10px;
+}
+#ImgFact{
+  width: 90%;
+  height: 80%;
+}
+.NotNotification{
+  width: 70%;
+  height: 70%;
+}
+.ContenedorMss{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.ContenedorHisto{
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.gifHisto{
+  width: 60;
+  height: 70%;
+}
+
+.show{
+  display: block;
+}
+
+
+@media screen and (max-width: 700px) {
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 92.7vh;
+    padding: 0;
+    margin: 0;
+  }
+  .custom-select{
+    display: none;
+  }
+  #ImgFact{
+    width: 90%;
+    height: 80%;
+  }
+  .headerDelivery {
+    display: flex;
+    height: 12vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    background-color: var(--azulOscuro);
+  }
+
+  .containerFiltro {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contenedorSecuFiltro {
+    width: 90%;
+    height: 4rem !important;
+    border-bottom: 1px solid #d4dade;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+  }
+  .FechaFinal {
+    flex-direction: column;
+    width: 30%;
+  }
+  .FechaInicial {
+    flex-direction: column;
+    width: 30%;
+  }
+  #filtroSelect {
+    width: 80px;
+  }
+  #fechainicial {
+    width: 100px;
+  }
+  #fechaFinal {
+    width: 100px;
+  }
+  .tittleDelivery {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    width: 60%;
+  }
+
+  .tittleDelivery > h1 {
+    color: var(--blanco);
+    font-size: 3vh;
+  }
+
+  .tittleDelivery > span {
+    color: var(--blanco);
+    font-size: 7vh;
+  }
+
+  .navDelivery {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 40%;
+    cursor: pointer !important;
+    user-select: none;
+  }
+  .navDelivery span {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* Garaviz */
+
+  .his {
+    overflow: scroll;
+    flex: 1;
+    display: flex;
+  }
+
+  #task {
+    font-size: 40px;
+  }
+  #notification {
+    font-size: 40px;
+  }
+  #history {
+    font-size: 40px;
+  }
+
+  #conte {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #datos {
+    width: 90%;
+    height: 100%;
+    border: none;
+    border-bottom: 2px solid;
+    gap: 10px;
+  }
+
+  #moto {
+    width: 100%;
+    height: 100%;
+  }
+
+  #sele {
+    width: 100px;
+  }
+
+  #codi {
+    width: 100px;
+  }
+
+  .c {
+    font-size: 25px;
+    height: 60%;
+    width: 100%;
+  }
+
+  .inf {
+    height: 8rem;
+    margin: 10px;
+  }
+  .logo {
+    width: 100%;
+    height: 70%;
+    margin: 10px;
+  }
+
+  .infff {
+    font-size: 12px;
+    width: 100%;
+    margin: 10px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .listo {
+    width: 30%;
+  }
+
+  .co {
+    font-size: 20px;
+  }
+
+  #lis {
+    color: #09f10d;
+  }
+
+  .chulo {
+    font-size: 13px;
+  }
+
+  #b {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #but {
+    border: none;
+  }
+
+  .cajja {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .iaam {
+    width: 200px;
+    height: 150px;
+  }
+
+  #ce {
+    width: 80px;
+    font-size: 14px;
+  }
+
+  .modal-contenido {
+    max-width: 90%;
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .modalVerMas-content {
+    font-size: 14px;
+    width: 90%;
+    margin: 110px auto;
+  }
+
+  /* Fin Garaviz */
+
+  /* .search{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        height: 5vh;
+        width: 50vh;
+        gap: 1vh;
+        padding-right: 2vh;
+        border: 2px solid var(--grisClaro);
+        background-color: var(--azulOscuro);
+        border-radius: 20px;
+        margin-right: 10px;
+    } */
+
+  /* .search>span{
+        color: var(--grisClaro);
+    } */
+
+  /* .searchDelivery{
+        height: 100%;
+        width: 100%;
+        border-radius:20px;
+        border: none;
+        background:none;
+        padding-left: 2vh;
+        color: var(--blanco);
+    }
+    
+    .searchDelivery:focus{
+        outline: none;
+    } */
+
+  #task,
+  #notification,
+  #history,
+  #settings {
+    color: var(--grisClaro);
+    height: 100%;
+    width: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vh;
+  }
+
+  #task,
+  #notification,
+  #history {
+    display: none;
+  }
+
+  /* #task:hover, #notification:hover,
+    #history:hover, #settings:hover{
+        background-color: var(--azulClaro);
+    } */
+
+  /* CONTENEDOR PRINCIPAL (MAIN) */
+
+  .mainDelivery {
+    display: flex;
+    flex: 1;
+    overflow-y: scroll;
+  }
+
+  /* CONTENEDOR PRINCIPAL QUE CONTEDRA EL CONTENEDOR
+    DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
+
+  .mainDeliverySection {
+    display: flex;
+    flex: 1;
+  }
+
+  /* CONTENEDOR DE LOS PEDIDOS DISPONIBLES */
+
+  .notificationsDelivery {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 1;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    gap: 10px;
+  }
+
+  .orderAvailable {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 300px;
+    padding: 2vh;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px grey;
+  }
+
+  .orderAvailable > p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nameEPS {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 90px;
+  }
+
+  .nameEPS > img {
+    width: 20vh;
+  }
+
+  .customerData {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+  }
+
+  .buttonSeeMore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+  }
+
+  .seeMore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verdeOscuro);
+    color: var(--blanco);
+    text-decoration: none;
+    height: 6vh;
+    width: 20vh;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+  }
+
+  .seeMore:hover {
+    background-color: #288372;
+    box-shadow: 0px 0px 10px #288372;
+  }
+
+  /* Estilos para la ventana modal de "Ver más" en pedidos disponibles */
+  .modalVerMas {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .modalVerMas-content {
+    background-color: #fefefe;
+    margin: 50% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40vh;
+  }
+
+  .modalVerMas-content > h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azulOscuro);
+    color: var(--blanco);
+    height: 6vh;
+  }
+
+  .modalVerMas-content > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    height: 8vh;
+  }
+
+  .deliveryData {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .epsInfo {
+    width: 40%;
+  }
+
+  .epsInfo > img {
+    width: 14vh;
+  }
+
+  .orderInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 60%;
+  }
+
+  .mainAdresses {
+    display: flex;
+    flex-direction: column;
+    height: 7vh;
+  }
+
+  .aplicar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    margin-top: 16px;
+  }
+
+  .aplicar > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azulOscuro);
+    color: var(--blanco);
+    height: 100%;
+    width: 20vh;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+  }
+
+  .aplicar > a:hover {
+    background-color: #244588;
+    box-shadow: 0px 0px 10px #244588;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .footerDelivery {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 12vh;
+    background-color: var(--azulOscuro);
+  }
+
+  #footerTask,
+  #footerNotification,
+  #footerHistory {
+    color: var(--grisClaro);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5vh;
+    position: relative;
+  }
+
+  #footerTask:hover,
+  #footerNotification:hover,
+  #footerHistory:hover {
+    background-color: var(--azulClaro);
+  }
+
+  /* INTERFAZ DE TAREAS PENDIENTES */
+
+  /* CONTENEDOR PRINCIPAL QUE CONTEDRA EL CONTENEDOR
+DE LAS TAREAS*/
+
+  .mainDeliverySectionTask {
+    width: 100%;
+    height: 100%;
+    flex-wrap: 1;
+  }
+
+  /* CONTENEDOR DE LAS TAREAS A REALIZAR */
+
+  .pendingTask {
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    background-color: #154163;
+  }
+
+  .taskData {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+  }
+
+  .addressInformation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 2vh;
+    gap: 2vh;
+    font-size: 10px;
+  }
+
+  .addressInformation > img {
+    width: 20vh;
+    height: 20vh;
+  }
+
+  .addressData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 20vh;
+    color: var(--blanco);
+    width: 88%;
+    gap: 1vh;
+  }
+
+  .taskData > p {
+    padding-left: 3vh;
+    font-weight: 600;
+    color: var(--blanco);
+  }
+
+  .shippingStatus {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+  }
+
+  .shippingStatus > p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 6vh;
+    padding-right: 6vh;
+    color: var(--blanco);
+    font-size: 1.8vh;
+  }
+
+  .stateDelivery {
+    height: 40vh;
+  }
+
+  .stateDelivery > span {
+    height: 4vh;
+    color: var(--blanco);
+    font-size: 3vh;
+    font-weight: 700;
+  }
+
+  .DETE {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+  }
+
+  .DETE > span {
+    color: var(--blanco);
+    font-size: 12vh;
+  }
+
+  .DETE > p {
+    color: var(--blanco);
+  }
+
+  .optionsStateDelivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 18vh;
+  }
+.formularioEntrega{
+  display: flex;
+  flex-direction: column;
+}
+  .upload,
+  .deliver {
+    height: 6vh;
+    width: 15vh;
+  }
+
+  .upload {
+    background-color: burlywood;
+    border: none;
+    color: var(--blanco);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+  }
+
+  .upload:hover {
+    background-color: rgb(180, 142, 92);
+    box-shadow: 0px 0px 10px rgb(180, 142, 92);
+  }
+
+  .deliver {
+    background-color: var(--verdeOscuro);
+    border: none;
+    color: var(--blanco);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+  }
+
+  .deliver:hover {
+    background-color: #288372;
+    box-shadow: 0px 0px 10px #288372;
+  }
+
+  .navConfig {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .upload {
+    background-color: burlywood;
+    border: none;
+    color: var(--blanco);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+    font-size: 2vh;
+  }
+}
