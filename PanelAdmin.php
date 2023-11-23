@@ -279,6 +279,7 @@ Total: $90
                 </section>
                 <section class="page" id="informe">
                     <h2>Informe</h2>
+                    <?php require_once 'templates/generarInforme.html'; ?>
                 </section>
             </section>
 
@@ -324,6 +325,7 @@ Total: $90
     <script src="assets/js/Ventanas-modals.js"></script>
     <script src="assets/js/filtromedicamentos.js"></script>
     <script src="assets/js/formularioEditar.js"></script>
+    <script src="assets/js/generarInforme.js"></script>
 </body>
 
 </html>

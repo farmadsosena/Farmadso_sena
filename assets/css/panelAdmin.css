@@ -209,6 +209,12 @@ body {
     position: relative;
 }
 
+
+/* Stilos al contenedor del contenido del modal de generar informe */
+#informe{
+    place-items: center;
+}
+
 #calendar {
     transform: translate(-200%);
     height: 95%;

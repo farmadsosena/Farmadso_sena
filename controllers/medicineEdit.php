@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     $status  = $modelMedicinaa->medicineUpdate($idMedicamento, $medicamentos, $inventario);
     if($status){
+
+        // Aqui deberia ir el log verdad?
+
         echo json_encode("Success");
     }else{
         echo json_encode("Error");
