@@ -1,5 +1,5 @@
 {
-  "[php]": {
-    "editor.defaultFormatter": null
-  }
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
 }

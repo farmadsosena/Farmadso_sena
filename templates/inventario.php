@@ -9,7 +9,7 @@
     <div class="scroll-inventario">
     <div class="articles-inventario">
     <?php
-require_once 'config/Conexion.php';
+require_once '../config/Conexion.php';
 $bd = new Conexion();
 $conexion = $bd->getConexion();  // Debes asegurarte de que esto devuelve una instancia de mysqli
 // Verifica si esto imprime una instancia válida de mysqli
@@ -27,7 +27,7 @@ if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo '
         <div class="manilla medicamento" data-id="'. $row['idmedicamento'] .'">
-        <img src="uploads/imgProductos/'. $row['imagenprincipal'].'" alt="">
+        <img src="../uploads/imgProductos/'. $row['imagenprincipal'].'" alt="">
         <section class="seccion">
             <div class="articulo">
                 <p><strong>Nombre:</strong> <span class="nombre-medicamentos">'. $row['nombre'].'</span></p>

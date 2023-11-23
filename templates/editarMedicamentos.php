@@ -1,6 +1,6 @@
 
 <?php
-require_once 'config/Conexion.php';
+require_once '../config/Conexion.php';
 $bd = new Conexion();
 $conexion = $bd->getConexion();  // Obtener la conexión a la base de datos
 
@@ -13,6 +13,7 @@ $categorias = mysqli_fetch_all($result_categorias, MYSQLI_ASSOC);
 $result_proveedores = mysqli_query($conexion, "SELECT idproveedor, nombreproveedor FROM proveedor");
 $proveedores = mysqli_fetch_all($result_proveedores, MYSQLI_ASSOC);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@ $proveedores = mysqli_fetch_all($result_proveedores, MYSQLI_ASSOC);
     <div class="options-form">
     <i class="bx bx-chevron-left" onclick="closeEditar()"></i>
     </div>
-<form id="medicineEdit" onsubmit="sendForm(event, 'medicineEdit', 'controllers/medicineEdit.php' )" class="formAM" enctype="multipart/form-data"  >
+<form id="medicineEdit" onsubmit="sendForm(event, 'medicineEdit', '../controllers/medicineEdit.php' )" class="formAM" enctype="multipart/form-data"  >
 
 
     <div class="content-inputall">

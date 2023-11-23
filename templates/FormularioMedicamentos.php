@@ -1,5 +1,5 @@
 <?php
-require_once 'config/Conexion.php';
+require_once '../config/Conexion.php';
 $bd = new Conexion();
 $conexion = $bd->getConexion();  // Obtener la conexión a la base de datos
 
@@ -20,7 +20,7 @@ $proveedores = mysqli_fetch_all($result_proveedores, MYSQLI_ASSOC);
     <i class="bx bx-chevron-left" onclick="closeFormMedicine()"></i>
     <i class="bx bx-brush" onclick="cleanFormMedicine()"></i>
     </div>
-    <form id="medicineAdd" onsubmit="sendForm(event, 'medicineAdd', 'controllers/medicineAdd.php' )" class="formAM"
+    <form id="medicineAdd" onsubmit="sendForm(event, 'medicineAdd', '../controllers/medicineAdd.php' )" class="formAM"
         enctype="multipart/form-data">
         <div class="inputallimg">
             <div class="cont-inputimg">

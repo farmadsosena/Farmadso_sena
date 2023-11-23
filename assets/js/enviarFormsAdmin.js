@@ -1,5 +1,4 @@
 // Funcion para enviar formularios de agregar
-
 function sendForm(event, formulario, ruta) {
  
     event.preventDefault();
@@ -22,7 +21,6 @@ function sendForm(event, formulario, ruta) {
         .catch(error => {
             console.log(error);
         })
-
 }
 // Enviar form
 

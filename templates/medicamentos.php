@@ -7,7 +7,7 @@
     <div class="cont-allmedicine">
         <div class="articlesM-cont">
             <?php
-            require_once 'config/Conexion.php';
+            require_once '../config/Conexion.php';
             $sql = "SELECT m.codigo, m.nombre, m.precio, i.descripcion, i.stock, m.imagenprincipal
                     FROM medicamentos m
                     INNER JOIN inventario i ON m.idmedicamento = i.idmedicamento";
@@ -19,7 +19,7 @@
                     echo '
                         <article class="medicamento-cont">
                             <div class="img-medicine">
-                                <img src="uploads/imgProductos/' . $row["imagenprincipal"] . '" alt="">
+                                <img src="../uploads/imgProductos/' . $row["imagenprincipal"] . '" alt="">
                             </div>
                             <div class="datos-medicine">
                                 <div class="dist-datos"> 
