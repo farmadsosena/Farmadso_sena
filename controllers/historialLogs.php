@@ -1,7 +1,7 @@
 <?php
 
 
-require_once 'config/Conexion.php';
+require_once '../config/Conexion.php';
 traerDatos($conexion);
 
 

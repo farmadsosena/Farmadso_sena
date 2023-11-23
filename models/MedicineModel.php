@@ -38,11 +38,7 @@ class MedicineModel
         $status = $this->medicineQuery($codigo);
 
         if (!$status) {
-<<<<<<< HEAD
-            $insertMedicine = $this->conn->query("INSERT INTO medicamentos (codigo, nombre, precio, imagenprincipal, idfarmacia) VALUES ('$codigo', '$nombre', '$precio', '$imagenprincipal','$idfarmacia')");
-=======
             $insertMedicine = $this->conn->query("INSERT INTO medicamentos (codigo, nombre, precio, imagenprincipal,idfarmacia) VALUES ('$codigo', '$nombre', '$precio', '$imagenprincipal','$idFramacia')");
->>>>>>> 6be1e6e41f25543b45cbb8771ce9dd25fdf4583c
 
             if ($insertMedicine) {
 

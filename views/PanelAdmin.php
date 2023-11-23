@@ -189,10 +189,10 @@ $imgUser = $_SESSION['img'];
 
                     <!-- Abre formulario -->
                     <?php
-                    //require_once '../templates/FormularioMedicamentos.php';
+                    require_once '../templates/FormularioMedicamentos.php';
                     ?>
                     <?php
-                    //require_once '../templates/editarMedicamentos.php';
+                    require_once '../templates/editarMedicamentos.php';
                     ?>
                     <!-- cierra formulario -->
                 </section>
@@ -204,20 +204,11 @@ $imgUser = $_SESSION['img'];
                     <div class="container-categoria">
                         <button onclick="openFormCategories()" class="btn-agregar">Agregar Categorias <i class="bx bx-plus-circle"></i> </button>
                         <div class="scroll-categories">
-                            <div class="contenedorCategoria">
-                                <div class="category">
-                                    <div class="nombre">
-                                        <h1>Vitaminas</h1>
-                                    </div>
-                                    <div class="descripcion">
-                                        <h1>Descripcion del producto</h1>
-                                    </div>
-                                    <div class="buttons">
-                                        <button class="btn-editar">Editar<i class="bx bx-pencil"></i> </button>
-                                        <button class="btn-eliminar">Eliminar <i class="bx bx-trash"></i> </button>
-                                    </div>
-                                </div>
+                            <div class="contenedorCategoria" id="contenedorCategoria">
+                               
+                       
 
+                                
                             </div>
                         </div>
                     </div>
@@ -247,36 +238,39 @@ $imgUser = $_SESSION['img'];
                 </section>
                 <section class="page" id="backlog">
                     <button id="borrarHistorial">Borrar todo el historial</button>
-                    <?php require_once 'controllers/historialLogs.php'; ?>
+                    <?php 
+                    require_once '../controllers/historialLogs.php'; 
+                    
+                    ?>
                     <script>
-                        document.querySelector('#borrarHistorial').addEventListener('click', () => {
-                            const eliminarHistorial = 1;
-                            fetch('controllers/eliminarHistorial.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(eliminarHistorial)
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data === 'Correcto') {
-                                        // Cargar contenido.php usando fetch
-                                        fetch('models/logData.php')
-                                            .then(response => response.text())
-                                            .then(content => {
-                                                // Colocar el contenido en el contenedor VERHISTORIAL
-                                                document.querySelector('#backlog').innerHTML = content;
-                                            })
-                                            .catch(error => {
-                                                console.error('Error:', error);
-                                            });
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                });
-                        });
+                        // document.querySelector('#borrarHistorial').addEventListener('click', () => {
+                        //     const eliminarHistorial = 1;
+                        //     fetch('../controllers/eliminarHistorial.php', {
+                        //         method: 'POST',
+                        //         headers: {
+                        //             'Content-Type': 'application/json',
+                        //         },
+                        //         body: JSON.stringify(eliminarHistorial)
+                        //     })
+                        //         .then(response => response.json())
+                        //         .then(data => {
+                        //             if (data === 'Correcto') {
+                        //                 // Cargar contenido.php usando fetch
+                        //                 fetch('../models/logData.php')
+                        //                     .then(response => response.text())
+                        //                     .then(content => {
+                        //                         // Colocar el contenido en el contenedor VERHISTORIAL
+                        //                         document.querySelector('#backlog').innerHTML = content;
+                        //                     })
+                        //                     .catch(error => {
+                        //                         console.error('Error:', error);
+                        //                     });
+                        //             }
+                        //         })
+                        //         .catch(error => {
+                        //             console.error('Error:', error);
+                        //         });
+                        // });
                     </script>
                 </section>
                 <section class="page" id="graficas">
@@ -288,7 +282,7 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <?php 
-                    require_once 'templates/detallesVentas.php';
+                    // require_once '../templates/detallesVentas.php';
                     ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
@@ -296,14 +290,16 @@ $imgUser = $_SESSION['img'];
 
                     <!-- INICIA DETALLES DE VENTA -->
                   <?php
-                  require_once 'templates/facturas.php'
+                //   require_once '../templates/facturas.php';
                   ?>
 
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
                 <section class="page" id="informe">
                     <h2>Informe</h2>
-                    <?php require_once 'templates/generarInforme.html'; ?>
+                    <?php 
+                    // require_once '../templates/generarInforme.html';
+                     ?>
                 </section>
             </section>
 
@@ -327,7 +323,7 @@ $imgUser = $_SESSION['img'];
 
     <!-- VENTANA QUE HIZO ESTIVENSON EL QUINTANA -->
     <?php
-   // require_once '../templates/inventario.php';
+   require_once '../templates/inventario.php';
 
    // require_once '../templates/comentarios.html';
 
@@ -350,6 +346,7 @@ $imgUser = $_SESSION['img'];
     <script src="../assets/js/Ventanas-modals.js"></script>
     <script src="../assets/js/filtromedicamentos.js"></script>
     <script src="../assets/js/formularioEditar.js"></script>
+    <script src="../assets/js/Categoria.js"></script>
 </body>
 
 </html>
