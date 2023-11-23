@@ -1,22 +1,22 @@
 <?php
-// session_start();
+//  session_start();
 
-// if (isset($_SESSION['compraSuccess']) && $_SESSION['compraSuccess'] === true) {
-//   require_once('views/valoracionCliente.php');
-// }
-
-// if (!isset($_SESSION['id_cliente'])) {
-//   if (!isset($_SESSION['sessionId'])) {
-//     // $sessionId = rand(0, 100);
-//     $sessionId = uniqid();
-//     $_SESSION['sessionId'] = $sessionId;
-//   }
-// } else {
-//   unset($_SESSION['sessionId']);
-// }
-
-// unset($_SESSION['productosCaja']);
+//  if (isset($_SESSION['compraSuccess']) && $_SESSION['compraSuccess'] === true) {
+//    require_once('views/valoracionCliente.php');
+//  }
+//  if (!isset($_SESSION['id_cliente'])) {
+//    if (!isset($_SESSION['sessionId'])) {
+//      // $sessionId = rand(0, 100);
+//      $sessionId = uniqid();
+//      $_SESSION['sessionId'] = $sessionId;
+//    }
+//  } else {
+//    unset($_SESSION['sessionId']);
+//  }
+//  unset($_SESSION['productosCaja']);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,12 +49,23 @@
         <div class="contC">
           <label for="seleccionarTodo" style="color: #333333;">Seleccionar todos</label>
           <input class="" id="seleccionarTodo" type="checkbox">
-
         </div>
 
         <div id="tabla-contenedor">
 
           <section>
+            <?php
+            // Verificar si hay productos en el carrito
+            if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
+              // Iterar sobre los productos del carrito y mostrarlos
+              foreach ($_SESSION['carrito'] as $producto) {
+                // Mostrar los detalles del producto
+                echo "Producto:  " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
+              }
+            } else {
+              echo "El carrito está vacío.";
+            }
+            ?>
 
           </section>
         </div>
@@ -63,7 +74,12 @@
       <div class="contboton" id="contC">
         <button class="botonCarrito deleteCarrito">Quitar marcados</button>
         <a href="pago.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
-        <a href="views/pasarela.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
+        <a href="" class="pagar">
+          <form action="pagocontraentrega.php" method="post">
+            <input type="hidden" name="<?php $_SESSION ?>">
+            <button name="carrito" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></button>
+          </form>
+        </a>
       </div>
 
 
@@ -88,7 +104,8 @@
 
         <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
         <div class="enlaceMenu" id="abrirEditar2"><i class="fa-solid fa-user"></i>Formulas</div>
-        <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div>
+        <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>
+          Mis compras</div>
         <a href="controllers/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
       </div>
     </div>
@@ -98,7 +115,7 @@
     <div class="menuRight">
       <section class="buscador-responsive">
         <div class="cont-input-buscador-responsive">
-        <i class="fa-solid fa-xmark" onclick="desactivar_buscador_responsive()"></i>
+          <i class="fa-solid fa-xmark" onclick="desactivar_buscador_responsive()"></i>
           <input type="search" id="" placeholder="¿Qué estás buscando?">
           <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
         </div>
@@ -116,9 +133,15 @@
   <header id="header">
     <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
     <nav id="menu">
-      <div id="inicio"><i class='bx bxs-home-alt-2'></i><p>Inicio</p></div>
-      <div id="productos"><i class='bx bxs-store'></i><p>Productos</p></div>
-      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i><p>Carrito</p></div>
+      <div id="inicio"><i class='bx bxs-home-alt-2'></i>
+        <p>Inicio</p>
+      </div>
+      <div id="productos"><i class='bx bxs-store'></i>
+        <p>Productos</p>
+      </div>
+      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
+        <p>Carrito</p>
+      </div>
       <div id="buscador-header"><input type="search" id="" placeholder="¿Qué estás buscando?"><i class="fa-solid fa-magnifying-glass"></i></div>
       <div class="profile-user">
         <a href="configuracion.php"><i class='bx bxs-user-circle'></i></a>
@@ -180,38 +203,9 @@
     <section class="articles">
       <h1>Ofertas</h1>
       <div class="ranking">
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <p>Farmacia algorta</p>
-          <h4>Acetaminofén-GENFAR</h4>
-          <p class="ahorro-top-product">Antes $30.000</p>
-          <h2>$20.640</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/apiretal.jpg" alt="">
-          <p>Paraiso</p>
-          <h4>Apiretal</h4>
-          <p class="ahorro-top-product">Antes $20.000</p>
-          <h2>$12.700</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
-          <P>Farmacia el raso</P>
-          <h4>TUKOL EXPECTORANTE D</h4>
-          <p class="ahorro-top-product">Antes $32.000</p>
-          <h2>$29.900</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
-          <p>Cruz verde</p>
-          <h4>BISOLVON ADULTOS</h4>
-          <p class="ahorro-top-product">Antes $40.000</p>
-          <h2>$36.000</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
+        <?php
+        include '../controllers/mostrarproductosTienda.php';
+        ?>
       </div>
     </section>
     <section class="articles">

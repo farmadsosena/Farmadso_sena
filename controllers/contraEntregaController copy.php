@@ -2,35 +2,31 @@
 require_once '../config/Conexion.php';
 require_once '../models/contraEntregaModel.php';
 
-use contraentrega\registrarContraEntrega;
 use contraentrega\ContraEntregaModel;
 
 
+
+
+$response = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $conexion = new Conexion(); // Esto podría variar según tu configuración.
-
-    $contraentrega = new ContraEntregaModel($conexion->getConexion()); // Cambiado para obtener la conexión correctamente.
-
+    $conexion = new Conexion();
+    $contraentrega = new ContraEntregaModel($conexion->getConexion());
+    
     $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre']);
     $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido']);
     $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion']);
-    $datos['codigo_postal'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['codigo']);
     $datos['telefono'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['telefono']);
     $datos['correo'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['correo']);
     $datos['instrucciones'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['instrucciones']);
 
     $valid = array();
 
-    if (empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['direccion']) || empty($_POST['codigo']) || empty($_POST['telefono']) || empty($_POST['correo'])) {
+    if (empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['direccion'])  || empty($_POST['telefono']) || empty($_POST['correo'])) {
         $valid['error'] = 'Complete todos los campos';
     } elseif (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['nombre'])) {
         $valid['error'] = 'El nombre no debe contener números ni caracteres especiales.';
     } elseif (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['apellido'])) {
         $valid['error'] = 'El apellido no debe contener números ni caracteres especiales.';
-    } elseif (empty($_POST['codigo'])) {
-        $valid['error'] = 'El código postal es obligatorio.';
-    } elseif (!preg_match('/^\d{5}$/', $_POST['codigo'])) {
-        $valid['error'] = 'El código postal debe contener 5 dígitos.';
     } elseif (empty($_POST['telefono'])) {
         $valid['error'] = 'El teléfono es obligatorio.';
     } elseif (!preg_match('/^\d{10}$/', $_POST['telefono'])) {
@@ -70,3 +66,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($response);
     }
 }
+
+    

@@ -1,31 +1,55 @@
 <?php
 session_start();
-require_once('../models/conexion.php');
+require_once('../config/Conexion.php');
 $conexionDataBase = new Conexion();
 $conexion = $conexionDataBase->Getconexion();
 
 // Validamos si no existe sesion de cliente  #Trabajamos con el idsessionInvitado  
 
-$id_producto = $_POST['id_producto'];
-$cantidad = $_POST['cantidad'];
-buscarProductoInventario($id_producto, $cantidad);
+$idmedicamento = $_POST['idmedicamento'];
+$cantidadProducto  = $_POST['cantidad'];
+buscarProductoInventario($idmedicamento,$cantidadProducto);
 
-function buscarProductoInventario($id_producto, $cantidadProducto)
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos del formulario
+    $producto = [
+        'idmedicamento' => $_POST['idmedicamento'],
+        'nombre' => $_POST['nombre'],
+        'precio' => $_POST['precio'],
+        'cantidad' => $_POST['cantidadcarrito']
+        // Otros detalles del producto
+    ];
+
+    // Verificar si el carrito existe en la sesión o crearlo si no existe
+    if (!isset($_SESSION['carrito'])) {
+        $_SESSION['carrito'] = [];
+    }
+
+    // Agregar el producto al carrito
+    $_SESSION['carrito'][] = $producto;
+
+    // Redirigir a la página de productos o a donde sea conveniente
+    header("Location: productos.php");
+    exit();
+}
+function buscarProductoInventario($idmedicamento, $cantidadProducto)
 {
 
     global $conexion;
     $consulta_general =
-        "SELECT inventario.stock, inventario.valor, inventario.imagen
+        "SELECT inventario.stock, medicamentos.precio, inventario.imagendescrip
          FROM  inventario
-         JOIN producto ON inventario.id_producto = producto.id_producto
-         JOIN categoria ON inventario.id_categoria = categoria.id_categoria
-         WHERE inventario.id_producto = '$id_producto'";
+         JOIN medicamentos ON inventario.idmedicamento = medicamentos.idmedicamento
+         JOIN categoria ON inventario.idcategoria = categoria.idcategoria
+         WHERE inventario.idmedicamento = '$idmedicamento'";
 
     $resultado = mysqli_query($conexion, $consulta_general);
     $resultado_consult = mysqli_fetch_assoc($resultado);
     $candidadStock = $resultado_consult['stock'];
-    $precio = $resultado_consult['valor'];
-    $imagen = $resultado_consult['imagen'];
+    $precio = $resultado_consult['precio'];
+    $imagen = $resultado_consult['imagendescrip'];
     $costoTotal = $cantidadProducto * $precio;
 
 
@@ -33,25 +57,23 @@ function buscarProductoInventario($id_producto, $cantidadProducto)
 
         // En caso de que no haya suficiente stock en inventario del producto seleccionado
         echo json_encode('nostock');
-
     } else {
 
         // Llamamos a la función para consultar productos del carrito
-        $stateCart = cartQuery($id_producto);
+        $stateCart = cartQuery($idmedicamento);
 
         // Validamos el resultado de la funcion cartQuery()
-        $state = ($stateCart === null) ? insertCart($id_producto, $cantidadProducto, $costoTotal, $imagen) : updateCart($id_producto, $cantidadProducto, $costoTotal, $imagen);
-
+        $state = ($stateCart === null) ? insertCart($idmedicamento, $cantidadProducto, $costoTotal, $imagen) : updateCart($idmedicamento, $cantidadProducto, $costoTotal, $imagen);
     }
 }
-function cartQuery($id_producto)
+function cartQuery($idmedicamento)
 {
     global $conexion;
     // Validar la session que este activa  Usuario/Invitado
     if (isset($_SESSION['sessionId'])) {
 
         $idSession = $_SESSION['sessionId'];
-        $consulta = $conexion->query("SELECT id_carrito, cantidad, preciototal FROM carrito WHERE idsession = '$idSession' AND id_producto = '$id_producto'");
+        $consulta = $conexion->query("SELECT id_carrito, cantidadcarrito, precio FROM carrito WHERE idsession = '$idSession' AND idmedicamento = '$idmedicamento'");
 
         if ($consulta->num_rows > 0) {
             $data = $consulta->fetch_assoc();
@@ -59,11 +81,10 @@ function cartQuery($id_producto)
         } else {
             return null;
         }
+    } else if (isset($_SESSION['idusuario'])) {
 
-    } else if (isset($_SESSION['id_cliente'])) {
-
-        $id_cliente = $_SESSION['id_cliente'];
-        $consulta = $conexion->query("SELECT id_carrito, cantidad, preciototal FROM carrito WHERE id_cliente = '$id_cliente' AND id_producto = '$id_producto'");
+        $idusuario = $_SESSION['idusuario'];
+        $consulta = $conexion->query("SELECT id_carrito, cantidad, precio FROM carrito WHERE idusuario = '$idusuario' AND idmedicamento = '$idmedicamento'");
 
         if ($consulta->num_rows > 0) {
             $data = $consulta->fetch_assoc();
@@ -77,32 +98,30 @@ function cartQuery($id_producto)
 function userValidate()
 {
 
-    $idUser = (isset($_SESSION['sessionId'])) ? $data = array('sessionId' => $_SESSION['sessionId']) :
-        ((isset($_SESSION['id_cliente'])) ? $data = array('id_cliente' => $_SESSION['id_cliente']) : null);
+    $idUser = (isset($_SESSION['sessionId'])) ? $data = array('sessionId' => $_SESSION['sessionId']) : ((isset($_SESSION['idusuario'])) ? $data = array('idusuario' => $_SESSION['idusuario']) : null);
 
     return $idUser;
 }
 
 
-function insertCart($id_producto, $stock, $value, $img)
+function insertCart($idmedicamento, $stock, $img)
 {
 
     global $conexion;
     // Obtener el id de la session activa 
     $idUser = userValidate();
-    $idUserBd = (isset($idUser['sessionId'])) ? $idUser['sessionId'] :
-        ((isset($idUser['id_cliente'])) ? $idUser['id_cliente'] : null);
+    $idUserBd = (isset($idUser['sessionId'])) ? $idUser['sessionId'] : ((isset($idUser['idusuario'])) ? $idUser['idusuario'] : null);
 
     // Generar tipo de consulta INSERT apartir de la session
     $userType = (isset($idUser['sessionId'])) ?
 
         //  Insertar si es invitado
-        $insertCart = $conexion->query("INSERT INTO carrito (id_cliente, id_producto, cantidad, preciototal, idsession)
-    VALUES (null, '$id_producto', '$stock','$value', '$idUserBd')")
+        $insertCart = $conexion->query("INSERT INTO carrito (idusuario, idmedicamento, cantidadcarrito,  idinvitado)
+    VALUES (null, '$idmedicamento', '$stock', '$idUserBd')")
 
         // Insertar si es cliente
-        : $insertCart = $conexion->query("INSERT INTO carrito (id_cliente, id_producto, cantidad, preciototal, idsession)
-    VALUES ('$idUserBd', '$id_producto', '$stock','$value', null)");
+        : $insertCart = $conexion->query("INSERT INTO carrito(idusuario, idmedicamento, cantidadcarrito,idinvitado)
+    VALUES ('$idUserBd', '$idmedicamento', '$stock', null)");
 
     // Si no existe un registro, insertar un nuevo registro en el carrito
 
@@ -118,55 +137,51 @@ function insertCart($id_producto, $stock, $value, $img)
     echo json_encode($data);
 }
 
-function updateCart($id_producto, $cantidad, $amount, $img)
+function updateCart($idmedicamento, $cantidad, $amount, $img)
 {
 
     global $conexion;
     // Obtener el id de la session activa 
     $idUser = userValidate();
-    $idUserBd = (isset($idUser['sessionId'])) ? $idUser['sessionId'] :
-        ((isset($idUser['id_cliente'])) ? $idUser['id_cliente'] : null);
+    $idUserBd = (isset($idUser['sessionId'])) ? $idUser['sessionId'] : ((isset($idUser['idusuario'])) ? $idUser['idusuario'] : null);
 
     // Generar tipo de consulta UPDATE apartir de la session
     if (isset($idUser['sessionId'])) {
 
         //  Actualizar el carrito si es invitado / primero consultamos si existe ese producto 
-        $queryCart = $conexion->query("SELECT  cantidad, id_producto, cantidad, preciototal FROM carrito 
-        WHERE id_producto  = '$id_producto' and idsession = '$idUserBd'
+        $queryCart = $conexion->query("SELECT   idmedicamento, cantidadcarrito, precio FROM carrito 
+        WHERE idmedicamento  = '$idmedicamento' and idsession = '$idUserBd'
         ");
         if ($queryCart->num_rows > 0) {
 
             $cartArticle = $queryCart->fetch_assoc();
-            $amountBd = floatval($cartArticle['preciototal']);
-            $cantidadBd = intval($cartArticle['cantidad']);
+            $amountBd = floatval($cartArticle['precio']);
+            $cantidadBd = intval($cartArticle['cantidadcarrito']);
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidad;
-            $conexion->query("UPDATE  carrito  SET cantidad ='$newCantidad', preciototal = '$newAmount' 
-            WHERE  id_producto = '$id_producto'  and idsession = '$idUserBd'
+            $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
+            WHERE  idmedicamento = '$idmedicamento'  and idsession = '$idUserBd'
             ");
         }
-
-    } else if (isset($idUser['id_cliente'])) {
+    } else if (isset($idUser['idusuario'])) {
 
 
         //  Actualizar el carrito si es Usuario / primero consultamos si existe ese producto 
-        $queryCart = $conexion->query("SELECT  carrito.cantidad, carrito.id_producto, inventario.stock AS cantidadBodega, carrito.preciototal 
-        INNER JOIN inventario ON carrito.id_producto  = inventario.id_producto
-        WHERE id_producto  = '$id_producto' and id_cliente = '$idUserBd'
+        $queryCart = $conexion->query("SELECT  carrito.cantidad, carrito.idmedicamento, inventario.stock AS cantidadBodega, carrito.preciototal 
+        INNER JOIN inventario ON carrito.idmedicamento  = inventario.idmedicamento
+        WHERE idmedicamento  = '$idmedicamento' and idusuario = '$idUserBd'
         ");
         if ($queryCart->num_rows > 0) {
 
             $cartArticle = $queryCart->fetch_assoc();
-            $amountBd = floatval($cartArticle['preciototal']);
+            $amountBd = floatval($cartArticle['precio']);
             $cantidadBd = intval($cartArticle['cantidad']);
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidad;
-            $conexion->query("UPDATE  carrito  SET cantidad ='$newCantidad', preciototal = '$newAmount' 
-            WHERE  id_producto = '$id_producto'  and id_cliente = '$idUserBd'
+            $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
+            WHERE  idmedicamento = '$idmedicamento'  and idusuario = '$idUserBd'
             ");
         }
-
-
     }
 
     // Si no existe un registro, insertar un nuevo registro en el carrito
@@ -183,4 +198,3 @@ function updateCart($id_producto, $cantidad, $amount, $img)
 }
 // Cerrar la conexión a la base de datos
 $conexion->close();
-?>

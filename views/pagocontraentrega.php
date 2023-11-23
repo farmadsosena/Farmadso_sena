@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- toast.js -->
     <!-- Enlace a la hoja de estilos de Toastr.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <!-- Enlace al JavaScript de Toastr.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <title>Contraentrega</title>
@@ -47,7 +47,7 @@
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
                     <p id="cantidadFinal">6</p>
-                    <i class='bx bx-cart' id="viewCartIcon" ></i>
+                    <i class='bx bx-cart' id="viewCartIcon"></i>
                 </div>
 
 
@@ -57,91 +57,61 @@
                 <h3>Resumen de compra</h3>
 
                 <form method="POST" id="form-eliminar">
-                    <p>Monto final a pagar <b id="subtotal">$75.500</b></p>
+                    <p>Monto final a pagar <b id="subtotal"></b></p>
 
                     <div id="tabla-contenedor">
+                        <div class="itemCarrito">
+                            <?php
+                            session_start();
+
+                            // Verificar si hay productos en el carrito
+                            if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
+                                // Iterar sobre los productos del carrito y mostrarlos
+                                foreach ($_SESSION['carrito'] as $producto) {
+                                    // Mostrar los detalles del producto
+                                    echo "Producto: " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
+                                }
+                            } else {
+                                echo "El carrito está vacío.";
+                            }
+
+                            ?>
+                            <?php
+                            if (empty($itemsCarritoConMedicamentos)) {
+                                foreach ($itemsCarritoConMedicamentos as $item) : ?>
+                                    <div class="item-carrito">
+                                        <p><?php echo $item['idcarrito']; ?></p>
+
+                                        <img src="<?php echo $item['imagenprincipal'] ?>" alt="">
+                                        <div class="contenido">
+                                            <p><?php echo $item['nombre']; ?></p>
+                                            <p><?php echo $item['codigo']; ?></p>
+                                            <span class="costo"> <?php echo $item['precio']; ?></span>
+                                        </div>
+                                        <div class="cantidad">
+
+                                            <p></p>
+                                            <p>Nombre Medicamento: <?php echo $item['cantidadcarrito']; ?></p>
+
+                                            <span class="costo subtotal">$8.000</span>
+                                        </div>
+                                    </div>
+                            <?php endforeach;
+                            } else {
+                                echo "No hay elementos en el carrito.";
+                            }
+                            ?>
 
 
-                        <div id="medicamento1" class="itemCarrito">
-                            <img src="../uploads/imgProductos/aspirine.png" alt="Aspirina">
-                            <div class="contenido">
-                                <p>Aspirina</p>
-                                <p>Código #01</p>
-                                <span class="costo">$12.000</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$24.000</span>
-                            </div>
                         </div>
 
-                        <div id="medicamento2" class="itemCarrito">
-                            <img src="../uploads/imgProductos/paracetamol.png" alt="Paracetamol">
-                            <div class="contenido">
-                                <p>Paracetamol</p>
-                                <p>Código #02</p>
-                                <span class="costo ">$4000</span>
-                            </div>
-                            <div class="cantidad">
 
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$8.000</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento3" class="itemCarrito">
-                            <img src="../uploads/imgProductos/ibuprofeno.png" alt="Ibuprofeno">
-                            <div class="contenido">
-                                <p>Ibuprofeno</p>
-                                <p>Código #03</p>
-                                <span class="costo">$6.500</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 1</p>
-                                <span class="costo subtotal">$6.500</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento4" class="itemCarrito">
-                            <img src="../uploads/imgProductos/omeprazol.png" alt="Omeprazol">
-                            <div class="contenido">
-                                <p>Omeprazol</p>
-                                <p>Código #04</p>
-                                <span class="costo">$8.000</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$16.000</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento5" class="itemCarrito">
-                            <img src="../uploads/imgProductos/amoxi.png" alt="Amoxicilina">
-                            <div class="contenido">
-                                <p>Amoxicilina</p>
-                                <p>Código #05</p>
-                                <span class="costo">$7.000</span>
-                            </div>
-                            <div class="cantidad">
-                                <p></p>
-                                <p>Cantidad 3</p>
-                                <span class="costo subtotal">$21.000</span>
-                            </div>
-                        </div>
 
                     </div>
                 </form>
             </div>
 
-            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm"
-                onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaController.php')">
+            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
 
                 <article class="groupTwo">
@@ -166,18 +136,6 @@
                         </span>
                     </div>
 
-                    <div class="inputCont">
-                        <label for="codigo">Código postal</label>
-                        <select type="number" name="codigo" id="codigo">
-                            <option value="180001">180001</option>
-                            <option value="180002">180002</option>
-                            <option value="180007">180007</option>
-                            <option value="180008">180008</option>
-                        </select>
-                        <span> <i style="color: #2d57a8" class='bx bx-code-block'></i>
-
-                        </span>
-                    </div>
 
                 </article>
 
