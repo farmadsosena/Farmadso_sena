@@ -556,6 +556,8 @@ h1 {
   justify-content: flex-end;
 }
 
+ 
+
 .nameEPS {
   display: flex;
   align-items: center;
@@ -564,7 +566,8 @@ h1 {
 }
 
 .nameEPS > img {
-  width: 20vh;
+  display: flex;
+  height: 100%;
 }
 
 .customerData {
@@ -643,7 +646,7 @@ h1 {
 }
 
 .epsInfo > img {
-  width: 14vh;
+  width: 7vh;
 }
 
 .orderInfo {

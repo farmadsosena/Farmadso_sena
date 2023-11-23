@@ -161,19 +161,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                 if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
                   echo '<div class="option">
-                  <i class="bx bx-car"></i> Domiciliario
-                </div>';
+                 <i class="bx bx-car"></i> Domiciliario
+               </div>';
+
+                  $_SESSION["domi"] = $id;
                 }
                 if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
                   echo '<div class="option">
-                  <i class="bx bxs-business"></i> Farmaceutico
-                </div>';
+                 <i class="bx bxs-business"></i> Farmaceutico
+               </div>';
+                  $_SESSION["farm"] = $id;
                 }
-                // if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
-                //   echo '<div class="option">
-                //   <i class="bx bx-user-circle"></i> Cuenta de usuario
-                // </div>';
-                // }
                 ?>
               </div>
             </div>
@@ -485,8 +483,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <!-- Ventana modal -->
-          <div id="modalDetalle" class="modal"> 
-            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>      
+          <div id="modalDetalle" class="modal">
+            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>
 
             <div class="modal-content">
               <span class="close-button pc" onclick="cerrarModal()">&times;</span>
@@ -796,7 +794,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <button id="enviar">Enviar</button>
           </div>
         </div>
-      </section> 
+      </section>
       <!-- Etiqueta que termina el contenedor 4 -->
 
 
@@ -918,10 +916,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
-    <div class="spinner"></div>
+      <div class="spinner"></div>
     </section>
     <section class="daco">
-    <p>Cargando...</p>
+      <p>Cargando...</p>
     </section>
   </section>
 

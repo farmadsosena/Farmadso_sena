@@ -3,16 +3,21 @@
 session_start();
 
 $idDomi = $_SESSION["id"];
-require_once('../models/conexion.php');
+require_once('../config/Conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibir el valor de idCompra desde la solicitud AJAX
     $idCompra = $_POST['idCompra'];
 
+    $consultaDomi = "SELECT * FROM domiciliario WHERE iddomiciliario = $idDomi AND estadolaboral = 'Trabajando' ";
+    $resultadoDomi = mysqli_query($conexion, $consultaDomi);
+    $datosDomi = $resultadoDomi->fetch_assoc();
 
-    if ($idUsuario) {
+    
+
+    if ($resultadoDomi) {
         // Verificar si el usuario ya tiene asignada una compra con estado 2
-        $consultaVerificacion = "SELECT * FROM reporteestadofinal WHERE idrepartidor = $idUsuario AND idestadocompra = 2";
+        $consultaVerificacion = "SELECT * FROM reporteestadofinal WHERE idrepartidor = $idDomi AND idestadocompra = 2";
         $resultadorepartidor = mysqli_query($conexion, $consultaVerificacion);
         $usuarioExiste = mysqli_num_rows($resultadorepartidor) > 0;
 
@@ -31,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $idEstadoCompra = 2; // Puedes ajustar según sea necesario
 
                 // Consulta de inserción en reporteestadofinal
-                $consultaInsertar = "INSERT INTO reporteestadofinal (idrepartidor, idcompra, fechafinal, idestadocompra) VALUES ('$idUsuario', '$idCompra', '$fechaFinal', '$idEstadoCompra')";
+                $consultaInsertar = "INSERT INTO reporteestadofinal (idrepartidor, idcompra, fechafinal, idestadocompra) VALUES ('$IdDomiciliario', '$idCompra', '$fechaFinal', '$idEstadoCompra')";
 
                 $resultadoInsercion = mysqli_query($conexion, $consultaInsertar);
 

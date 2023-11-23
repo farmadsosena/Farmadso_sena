@@ -6,10 +6,11 @@ if (!isset($_SESSION["usu"])) {
   echo "<script> window.location='login.php'</script>";
 }
 
+if (!isset($_SESSION["domi"])) {
+  echo "<script> window.location='login.php'</script>";
+}
+
 $id = $_SESSION["id"];
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -262,8 +263,7 @@ $id = $_SESSION["id"];
       <div class="modal-details">
         <div class="deliveryData">
           <div class="epsInfo">
-            <p>EPS:</p>
-            <img src="../assets/img/logoEPS.png" alt="EPS Logo" />
+            <img src="../assets/img/kit-de-primeros-auxilios.png" alt="EPS Logo" />
           </div>
           <div class="orderInfo">
             <p>Número de Pedido: <span id="order-number"></span></p>

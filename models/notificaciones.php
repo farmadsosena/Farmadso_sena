@@ -70,7 +70,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     echo '<article data-id="' . $datosCompra["idcompra"] . '" class="orderAvailable">';
                     echo '<p> 000' . $datosCompra["idcompra"] . '</p>';
                     echo '<div class="nameEPS">';
-                    echo '<img src="assets/img/logoEPS.png" alt="" />';
+                    echo '<img class="ImgOrderAvailable" src="../assets/img/latido-del-corazon.png" alt="" />';
                     echo $nombreFarmacia; // Mostrar el nombre de la farmacia
                     echo '</div>';
                     echo '<hr />';
