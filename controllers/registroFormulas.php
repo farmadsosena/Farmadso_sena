@@ -11,18 +11,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_SESSION["id"];
     $eps = $_SESSION["eps"];
     $estadoFormula = 1;
-
+    $estado = 1;  
     $ruta = "../uploads/pdfUsuario";
     $nombres_archivo = $archivo["name"];
     $rutaCompleta = $ruta . "/" . $nombres_archivo;
     move_uploaded_file($archivo["tmp_name"], $rutaCompleta);
 
     // Insertar la fórmula principal en la tabla "formulas"
-    $sql = "INSERT INTO formulas (idPaciente, idEPS, IdMedico, fechaOrden, CausaExterna, idDiagnostico, EstadoFormula, pruebaFormula) 
-            VALUES (?, ?, ?, NOW(), ?, ?, ?, ?)";
+    $sql = "INSERT INTO formulas (idPaciente, idEPS, IdMedico, fechaOrden, CausaExterna, idDiagnostico, EstadoFormula, pruebaFormula, Estado) 
+            VALUES (?, ?, ?, NOW(), ?, ?, ?, ? , ?)";
 
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("sssssss", $id, $eps, $medico, $causa, $diag, $estadoFormula, $rutaCompleta);
+    $stmt->bind_param("ssssssss", $id, $eps, $medico, $causa, $diag, $estadoFormula, $rutaCompleta, $estado);
 
     if ($stmt->execute()) {
         $id_solicit= mysqli_insert_id($conexion);

@@ -1,7 +1,13 @@
+
+// Llama a la función eliminarFormula cuando el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", eliminarFormula);
+
+
+
 var botonAbrirVentana = document.getElementById("abrirNewVentana");
 var VentanaAbrir = document.getElementById("VentanaPropia");
 var CerrarVentanA = document.getElementById("X22");
-
+var OpenVentana = document.getElementsByClassName('formula-info');
 botonAbrirVentana.addEventListener("click", () => {
   VentanaAbrir.classList.add("aggdisplay");
 });
@@ -13,6 +19,54 @@ CerrarVentanA.addEventListener("click", () => {
 function CloseWindows() {
   VentanaAbrir.classList.remove("aggdisplay");
 }
+
+function AbrirWindows(){
+  
+}
+
+
+function eliminarFormula() {
+  // Obtén una NodeList de elementos con la clase 'delete'
+  const botonesEliminar = document.querySelectorAll(".delete");
+
+  // Itera sobre la NodeList y agrega un evento de clic a cada elemento
+  botonesEliminar.forEach((boton) => {
+    boton.addEventListener("click", async () => {
+      // Obtiene el valor del atributo data-delete del elemento actual
+      const idFormula = boton.dataset.delete;
+
+      try {
+        const response = await fetch("../controllers/DeleteFormula.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ idFormula }).toString(),
+        });
+
+        if (!response.ok) {
+          throw new Error("La solicitud no pudo completarse correctamente.");
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Eliminación exitosa
+          alert(data.message);
+          cargarContenido(); // Otra lógica que deseas realizar después de la eliminación
+        } else {
+          // Eliminación fallida
+          alert("Error: " + data.message);
+        }
+      } catch (error) {
+        console.error("Error en la solicitud", error);
+        alert("Error en la solicitud: " + error.message);
+      }
+    });
+  });
+}
+
+
 
 //MOSTRAR TODOS LOS DIAGNOSTICOS POSIBLES DEPENDIEDNO DEL CODIGO
 $(document).ready(function () {
@@ -262,9 +316,6 @@ document.addEventListener("DOMContentLoaded", function () {
                       .getElementById("resultados")
                       .classList.remove("agg");
                   });
-
-
-
                 },
               });
             });
@@ -276,77 +327,116 @@ document.addEventListener("DOMContentLoaded", function () {
   //Final de addEvenListener para agregar dinamicamente los contenedores
 });
 
-
-
 // funciones para cargar las formulas
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   var Medicamentos = document.querySelector("#MedicamentosAdd");
 
   Medicamentos.addEventListener("submit", function (event) {
-      event.preventDefault();
-      var diseño = document.getElementById('CargaDiseño');
+    event.preventDefault();
+    var diseño = document.getElementById("CargaDiseño");
 
-      diseño.classList.add('flex');
+    diseño.classList.add("flex");
 
-      var formData = new FormData(Medicamentos);
+    var formData = new FormData(Medicamentos);
 
-      fetch("../controllers/registroFormulas.php", {
-          method: "POST",
-          body: formData,
-      })
+    fetch("../controllers/registroFormulas.php", {
+      method: "POST",
+      body: formData,
+    })
       .then((response) => {
-          if (!response.ok) {
-              throw new Error("La solicitud no pudo completarse correctamente.");
-          }
-          return response.json();
+        if (!response.ok) {
+          throw new Error("La solicitud no pudo completarse correctamente.");
+        }
+        return response.json();
       })
       .then((data) => {
-          diseño.classList.remove('flex'); // Corregido 'classList.remove'
-          alert("Registro exitoso");
-          CloseWindows();
-          cargarContenido();
-          Medicamentos.reset();
+        diseño.classList.remove("flex"); // Corregido 'classList.remove'
+        alert("Registro exitoso");
+        CloseWindows();
+        cargarContenido();
+        Medicamentos.reset();
       })
       .catch((error) => {
-          console.log("Error en la solicitud", error);
-          alert("Error en la solicitud: " + error.message);
+        console.log("Error en la solicitud", error);
+        alert("Error en la solicitud: " + error.message);
       });
   });
 });
-
-
-
-
 function cargarContenido() {
+  var CargarDatos = document.getElementById("LLEGARFR");
+  CargarDatos.innerHTML = "";
+
   fetch("../controllers/cargar.php", {
     method: "GET",
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error("La solicitud no pudo completarse correctamente.");
       }
       return response.text();
     })
-    .then(data => {
-      document.getElementById("LLEGARFR").innerHTML = data;
+    .then((data) => {
+      CargarDatos.innerHTML = data;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error al cargar el contenido:", error);
       alert("Error al cargar el contenido.");
     });
 }
 
-function EliminarFormula() {
-
-}
 
 
 
 
 
-$(document).ready(function () {
-  cargarContenido();
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  cargarContenido(); // Asegúrate de cargar el contenido al iniciar la página
+
+  // Agrega un evento de clic al documento para manejar clics en elementos con la clase '.open'
+  document.addEventListener('click', function (event) {
+      const target = event.target;
+
+      // Verifica si el elemento clicado tiene la clase '.open'
+      if (target.classList.contains('open')) {
+          // Obtener el valor de data-medico del contenedor card
+          const cardContainer = target.closest('.card');
+          if (cardContainer) {
+              const dataID = cardContainer.dataset.id;
+              const dataMedico = cardContainer.dataset.medico;
+              // Enviar la solicitud al servidor
+              fetch('../controllers/FormulaView.php', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: `dataFormula=${dataID}&datamedico=${dataMedico}`,
+              })
+              .then(response => response.text())
+              .then(data => {
+                  // Mostrar la respuesta en el contenedor de información
+                  const infoContainer = document.querySelector('.formula-info');
+                  infoContainer.innerHTML = data;
+                  
+                  infoContainer.classList.add('active');
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error al realizar la operación.');
+              });
+          }
+      }
+  });
 });
+
+
+function removerClaseActiva() {
+  const infoContainer = document.querySelector('.formula-info');
+
+  if (infoContainer.classList.contains('active')) {
+      infoContainer.classList.remove('active');
+  }
+}
