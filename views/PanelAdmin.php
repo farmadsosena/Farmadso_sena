@@ -6,6 +6,11 @@ if (!isset($_SESSION["usu"])) {
     echo "<script> window.location='login.php'</script>";
 }
 
+if (!isset($_SESSION["farm"])) {
+    echo "<script> window.location='login.php'</script>";
+}
+
+
 $id = $_SESSION["id"];
 
 $eps = $_SESSION["eps"];
@@ -51,7 +56,7 @@ $imgUser = $_SESSION['img'];
                     <i class="bx bx-home"></i>
                     <p>Inicio</p>
                 </div>
-                <div class="item" onclick="mostrarContenido('medicamentos', this)">
+                <div class="item medicamnentos-btn" onclick="mostrarContenido('medicamentos', this)">
                     <i class="bx bxs-capsule"></i>
                     <p>Medicamentos</p>
                 </div>
@@ -199,20 +204,11 @@ $imgUser = $_SESSION['img'];
                     <div class="container-categoria">
                         <button onclick="openFormCategories()" class="btn-agregar">Agregar Categorias <i class="bx bx-plus-circle"></i> </button>
                         <div class="scroll-categories">
-                            <div class="contenedorCategoria">
-                                <div class="category">
-                                    <div class="nombre">
-                                        <h1>Vitaminas</h1>
-                                    </div>
-                                    <div class="descripcion">
-                                        <h1>Descripcion del producto</h1>
-                                    </div>
-                                    <div class="buttons">
-                                        <button class="btn-editar">Editar<i class="bx bx-pencil"></i> </button>
-                                        <button class="btn-eliminar">Eliminar <i class="bx bx-trash"></i> </button>
-                                    </div>
-                                </div>
+                            <div class="contenedorCategoria" id="contenedorCategoria">
+                               
+                       
 
+                                
                             </div>
                         </div>
                     </div>
@@ -241,77 +237,12 @@ $imgUser = $_SESSION['img'];
                     </div>
                 </section>
                 <section class="page" id="backlog">
-
-
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <div>Fecha</div>
-                        <div>Mensaje</div>
-                        <div>Usuario</div>
-                        <div>Ip</div>
-                        <div>Tipo dispositivo</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-                    <div class="itemHistorial">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <div>2023-10-18 00:38:00</div>
-                        <div>Se ha eliminado aspirina con codigo #3445 </div>
-                        <div>Administrador</div>
-                        <div>191.102.85.194</div>
-                        <div>Computadora</div>
-                    </div>
-
-
-
-
-                    <!-- <script>
+                 
+                    <?php 
+                    require_once '../controllers/historialLogs.php'; 
+                    
+                    ?>
+                    <script>
                         document.querySelector('#borrarHistorial').addEventListener('click', () => {
                             const eliminarHistorial = 1;
                             fetch('../controllers/eliminarHistorial.php', {
@@ -325,11 +256,11 @@ $imgUser = $_SESSION['img'];
                                 .then(data => {
                                     if (data === 'Correcto') {
                                         // Cargar contenido.php usando fetch
-                                        fetch('../controllers/historialLogs.php')
+                                        fetch('../models/logData.php')
                                             .then(response => response.text())
                                             .then(content => {
                                                 // Colocar el contenido en el contenedor VERHISTORIAL
-                                                document.querySelector('#VERHISTORIAL').innerHTML = content;
+                                                document.querySelector('#backlog').innerHTML = content;
                                             })
                                             .catch(error => {
                                                 console.error('Error:', error);
@@ -340,61 +271,33 @@ $imgUser = $_SESSION['img'];
                                     console.error('Error:', error);
                                 });
                         });
-                    </script> -->
+                    </script>
+                       <button id="borrarHistorial">Borrar todo el historial</button>
                 </section>
                 <section class="page" id="graficas">
                     <h2>Graficas</h2>
                 </section>
+
+
+
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
-                    <div class="container-detalles">
-                        <div class="scroll-categories">
-                            <div class="contenedorCategoria">
-                                <div class="category">
-                                    <div class="nombre">
-                                        <h1>Acetaminofen</h1>
-                                    </div>
-                                    <div class="descripcion">
-                                        <h1>dosmil peso</h1>
-                                    </div>
-                                    <div class="buttons">
-                                        <button onclick="openDetalles()" class="btn-agregar">Ver detalles<i class="fas fa-info-circle"></i> </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                    require_once '../templates/detallesVentas.php';
+                    ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
+                            
+                    <div class="detalles"></div>
                     <!-- INICIA DETALLES DE VENTA -->
-                    <div class="detalles">
-                        <i class="bx bx-chevron-left" onclick="closeDetalles()"></i>
-                        <pre>
-                        Factura para la compra
-Cliente: Nombre Cliente (cliente@email.com)
-Fecha de compra: 2023-10-16
-
-Detalles de la compra:
-Medicamento: Medicamento A
-Cantidad: 3
-Precio unitario: $10
-Subtotal: $30
-
-Medicamento: Medicamento B
-Cantidad: 4
-Precio unitario: $15
-Subtotal: $60
-
-Total: $90
-                    </pre>
-
-                    </div>
-
+         
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
                 <section class="page" id="informe">
                     <h2>Informe</h2>
+                    <?php 
+                    // require_once '../templates/generarInforme.html';
+                     ?>
                 </section>
             </section>
 
@@ -418,11 +321,11 @@ Total: $90
 
     <!-- VENTANA QUE HIZO ESTIVENSON EL QUINTANA -->
     <?php
-    require_once '../templates/inventario.php';
+   require_once '../templates/inventario.php';
 
-    require_once '../templates/comentarios.html';
+   // require_once '../templates/comentarios.html';
 
-    require_once '../templates/Ofertas.html';
+   // require_once '../templates/Ofertas.html';
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
@@ -441,6 +344,7 @@ Total: $90
     <script src="../assets/js/Ventanas-modals.js"></script>
     <script src="../assets/js/filtromedicamentos.js"></script>
     <script src="../assets/js/formularioEditar.js"></script>
+    <script src="../assets/js/Categoria.js"></script>
 </body>
 
 </html>

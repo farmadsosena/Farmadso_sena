@@ -3,8 +3,8 @@ use modeloMedicina\MedicineModel;
 
 require_once '../models/MedicineModel.php';
 require_once '../config/Conexion.php';
-
-
+require_once '../models/Log.php';
+session_start();
 // Validar solicitud 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -32,6 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     $status  = $modelMedicinaa->medicineUpdate($idMedicamento, $medicamentos, $inventario);
     if($status){
+        $log  = new Log();
+
+        $ip = $log::getIp();
+        $type = $log::typeDispositive();
+        $info = array(
+            'nivel' => 'INFO',   
+            'mensaje' => "Se ha editado un nuevo medicamento con el nombre  " . $medicamentos['nombre']  . " ",
+            'ip' => $ip,
+            'id_usuario' => $_SESSION['id'],
+            'tipo' => $type 
+        );
+        $resultt = $log->insert($info);
+
         echo json_encode("Success");
     }else{
         echo json_encode("Error");

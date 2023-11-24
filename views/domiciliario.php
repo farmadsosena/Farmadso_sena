@@ -5,10 +5,15 @@ include "../config/Conexion.php";
 if (!isset($_SESSION["usu"])) {
   echo "<script> window.location='login.php'</script>";
 }
+// realziar que solo domis aceptados puedan entrar al dashboard
 
 if (!isset($_SESSION["domi"])) {
   echo "<script> window.location='login.php'</script>";
 }
+
+// if (!isset($_SESSION["farm"])) {
+//   echo "<script> window.location='login.php'</script>";
+// }
 
 $id = $_SESSION["id"];
 
