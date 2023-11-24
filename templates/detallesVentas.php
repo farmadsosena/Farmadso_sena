@@ -39,16 +39,18 @@ $resultado = $conexion->query($sql);
 
                         <div class="category">
                             <div class="nombre">
+                                <strong><p>nombre: </p></strong>
                                 <h1>
                                     <?php echo $fila['nombre_compra']; ?>
                                 </h1>
                             </div>
-                            <div class="descripcion">
-                                <p>Fecha de compra:
+                            <div class="nombre">
+                                  <p>Fecha de compra:
                                     <?php echo $fila['fecha']; ?>
                                 </p>
-                                <p>Cliente:
-                                    <?php echo $fila['nombre_cliente']; ?> (
+                            </div>
+                            <div class="descripcion">
+                                <p>Correo:
                                     <?php echo $fila['correo_cliente']; ?>)
                                 </p>
                             </div>

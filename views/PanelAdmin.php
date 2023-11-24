@@ -179,7 +179,6 @@ $imgUser = $_SESSION['img'];
 
                     <!-- INICIO DE ARTICULOS GENERADOS CON WHILE -->
                     <?php
-
                     require_once '../templates/medicamentos.php';
                     ?>
 
@@ -190,8 +189,7 @@ $imgUser = $_SESSION['img'];
                     <!-- Abre formulario -->
                     <?php
                     require_once '../templates/FormularioMedicamentos.php';
-                    ?>
-                    <?php
+
                     require_once '../templates/editarMedicamentos.php';
                     ?>
                     <!-- cierra formulario -->
@@ -296,7 +294,7 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="informe">
                     <h2>Informe</h2>
                     <?php 
-                    // require_once '../templates/generarInforme.html';
+                    require_once '../templates/generarInforme.html';
                      ?>
                 </section>
             </section>
@@ -308,8 +306,6 @@ $imgUser = $_SESSION['img'];
 
                 <h3>ventas Por Categoria</h3>
                 <canvas class="graphic" id="ventasMensualesBarChart"></canvas>
-
-
 
             </aside>
         </section>
@@ -323,9 +319,9 @@ $imgUser = $_SESSION['img'];
     <?php
    require_once '../templates/inventario.php';
 
-   // require_once '../templates/comentarios.html';
+   require_once '../templates/comentarios.html';
 
-   // require_once '../templates/Ofertas.html';
+   require_once '../templates/Ofertas.html';
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
