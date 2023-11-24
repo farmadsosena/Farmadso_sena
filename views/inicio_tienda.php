@@ -228,6 +228,7 @@ require_once "validacion_usu_tienda.php";
 
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
               echo "<a href='#' class='swiper-slide cont-categorias'>";
               echo "<section>";
               echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
@@ -235,9 +236,12 @@ require_once "validacion_usu_tienda.php";
               echo "</section>";
               echo "</a>";
             }
+          }
+
           } else {
             echo "No hay categorías disponibles.";
           }
+
 
           echo "</div>";
 
@@ -309,35 +313,47 @@ require_once "validacion_usu_tienda.php";
         ?>
       </div>
     </section>
+
     <section class="articles">
       <h1>Farmacias destacadas</h1>
       <div class="swiper slider-farmacias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F1.jpg" alt="Vitaminas y minerales">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F2.jpg" alt="Dolor e inflamacion">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F3.jpg" alt="Gripa y tos">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F4.jpg" alt="Estomago">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F5.jpg" alt="Cuidado de la herida">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F6.jpg" alt="Nutricion especializada">
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM farmacias ORDER BY IdFarmacia ASC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<a href='' class='swiper-slide cont-farmacia'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
+              echo "</a>";
+            }
+          } else {
+            echo "No hay farmacias disponibles.";
+          }
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>¡Servicios excepcionales para nuestros clientes!</h1>
       <section>

@@ -3,8 +3,6 @@ session_start();
 include("../config/Conexion.php");
 
 $idFormula = $_SESSION["clave"];
-
-echo $idFormula;
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
 $result = $conexion->query($sql);
 

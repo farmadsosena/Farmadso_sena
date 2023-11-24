@@ -405,6 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
           // Obtener el valor de data-medico del contenedor card
           const cardContainer = target.closest('.card');
           if (cardContainer) {
+              const dataID = cardContainer.dataset.id;
               const dataMedico = cardContainer.dataset.medico;
               // Enviar la solicitud al servidor
               fetch('../controllers/FormulaView.php', {
@@ -412,13 +413,14 @@ document.addEventListener('DOMContentLoaded', function () {
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded',
                   },
-                  body: `dataMedico=${dataMedico}`,
+                  body: `dataFormula=${dataID}&datamedico=${dataMedico}`,
               })
               .then(response => response.text())
               .then(data => {
                   // Mostrar la respuesta en el contenedor de información
                   const infoContainer = document.querySelector('.formula-info');
                   infoContainer.innerHTML = data;
+                  
                   infoContainer.classList.add('active');
               })
               .catch(error => {
