@@ -148,28 +148,40 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide colum-categorias">
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
-              <h3>Vitaminas y minerales</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
+                <h3>Vitaminas y minerales</h3>
+              </a>
             </section>
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
-              <h3>Dolor e inflamacion</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
+                <h3>Dolor e inflamacion</h3>
+              </a>
             </section>
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
-              <h3>Gripa y tos</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
+                <h3>Gripa y tos</h3>
+              </a>              
             </section>
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
-              <h3>Estomago</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
+                <h3>Estomago</h3>
+              </a>              
             </section>
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
-              <h3>Cuidado de la herida</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
+                <h3>Cuidado de la herida</h3>
+              </a>              
             </section>
             <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
-              <h3>Nutricion especializada</h3>
+              <a href="#">
+                <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
+                <h3>Nutricion especializada</h3>
+              </a>              
             </section>
           </div>
         </div>
@@ -180,38 +192,66 @@
     <section class="articles">
       <h1>Ofertas</h1>
       <div class="ranking">
+      <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "farmadso";
+
+        // Crear conexión
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Verificar la conexión
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Realizar la consulta para obtener los primeros 6 productos con descuento
+        $sql_promociones = "SELECT p.id_medicamento, valordescuento
+        FROM promocion
+        WHERE valordescuento > 0
+        LIMIT 6";
+
+        $result_promociones = $conexion->query($sql_promociones);
+
+        if ($result_promociones->num_rows > 0) {
+        while ($row_promociones = $result_promociones->fetch_assoc()) {
+        // Obtener información completa del medicamento y la farmacia
+        $id_medicamento = $row_promociones['id_medicamento'];
+        $porcentaje_promocion = $row_promociones['porcentaje_promocion'];
+
+        $sql_medicamento_farmacia = "SELECT m.nombre, m.imagenprincipal, m.precio, f.Nombre AS nombre_farmacia
+                        FROM medicamentos m
+                        JOIN farmacias f ON m.idfarmacia = f.IdFarmacia
+                        WHERE m.idmedicamento = $id_medicamento";
+
+        $result_medicamento_farmacia = $conexion->query($sql_medicamento_farmacia);
+
+        if ($result_medicamento_farmacia->num_rows > 0) {
+        while ($row_medicamento_farmacia = $result_medicamento_farmacia->fetch_assoc()) {
+        // Calcular el precio actual con el porcentaje de promoción
+        $precio_anterior = $row_medicamento_farmacia['precio'];
+        $precio_actual = $precio_anterior - ($precio_anterior * $porcentaje_promocion / 100);
+        ?>
         <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <p>Farmacia algorta</p>
-          <h4>Acetaminofén-GENFAR</h4>
-          <p class="ahorro-top-product">Antes $30.000</p>
-          <h2>$20.640</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
+        <img src="<?php echo $row_medicamento_farmacia['imagenprincipal']; ?>" alt="">
+        <p><?php echo $row_medicamento_farmacia['nombre_farmacia']; ?></p>
+        <h4><?php echo $row_medicamento_farmacia['nombre']; ?></h4>
+        <p class="ahorro-top-product">Antes $<?php echo $precio_anterior; ?></p>
+        <h2>$<?php echo $precio_actual; ?></h2>
+        <button class="comprar-tarje-comp">Comprar</button>
         </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/apiretal.jpg" alt="">
-          <p>Paraiso</p>
-          <h4>Apiretal</h4>
-          <p class="ahorro-top-product">Antes $20.000</p>
-          <h2>$12.700</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
-          <P>Farmacia el raso</P>
-          <h4>TUKOL EXPECTORANTE D</h4>
-          <p class="ahorro-top-product">Antes $32.000</p>
-          <h2>$29.900</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
-          <p>Cruz verde</p>
-          <h4>BISOLVON ADULTOS</h4>
-          <p class="ahorro-top-product">Antes $40.000</p>
-          <h2>$36.000</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
+        <?php
+        }
+        }
+        }
+        } else {
+        echo "0 results";
+        }
+
+        // Cerrar la conexión (opcional si se usa el objeto mysqli)
+        //$conexion->close();
+        ?>
       </div>
     </section>
     <section class="articles">
