@@ -1,0 +1,1023 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui;
+}
+
+:root {
+    --azulOscuro: #2d57a8;
+    --verdeClaro: #b5ddca;
+    --verdeOscuro: #33a892;
+    --blanco: #fffefe;
+    --grisClaro: #f1f2f5;
+    --azulClaro: #6d93c9;
+}
+
+/* ESTILO SCROLL */
+/* Anchura del scrollbar */
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Estilo del scrollbar */
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+
+/* Fondo del área del scrollbar no cubierta por el thumb */
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+
+body{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+
+
+/* ESTILOS DEL ASIDE INTERFAZ ADMIN  */
+
+.asideAdminDelivery{
+    display: flex;
+    flex-direction: column;
+    width: 12%;
+    background-color: var(--azulOscuro);
+}
+
+.adminProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 30vh;
+    color: var(--blanco);
+}
+
+.adminProfile>span{
+    font-size: 5rem;
+}
+
+.navAdminProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50vh;
+    color: var(--blanco);
+    border-top: 1px solid var(--grisClaro);
+    border-bottom: 1px solid var(--grisClaro);
+}
+
+.navAdminProfile>span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.2rem;
+    font-size: 3.5rem;
+}
+
+.signOff{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+}
+
+.signOff>button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height:3rem;
+    width: 80%;
+    background: none;
+    border: 2px solid var(--blanco);
+    border-radius: 8px;
+    color: var(--blanco);
+    transition: all 0.3s ease;
+}
+
+.signOff>button:hover{
+    box-shadow: 0px 0px 14px var(--blanco);
+}
+
+/* ESTILOS DE EL MAIN DE LA INTERFAZ ADMIN */
+
+.mainAdminDelivery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 88%;
+    height: 100%;
+    gap: 30px;
+}
+
+.sectionMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    gap: 30px;
+}
+
+.deliveryActivedDesactived{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 40%;
+    gap: 4px;
+    box-shadow: 0px 0px 5px grey;
+}
+
+.titleSelect{
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#status{
+    display: flex;
+    height: 100%;
+    width: 7rem;
+    background-color: var(--azulClaro);
+    color: var(--blanco);
+    border-radius: 5px;
+    border: none;
+}
+
+/* ESTADO DEL DOMICILIARIO */
+
+.deliverys{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+    gap: 10px;
+    width: 90%;
+}
+
+.statusDelivery{
+    display: flex;
+    flex-direction: row;
+    height: 4.2rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--grisClaro);
+}
+
+.imgStatusDelivery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 10%;
+}
+
+.imgStatusDelivery>img{
+    height: 100%;
+}
+
+.fullName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+}
+
+.fullName>p{
+    font-size: 1.7rem;
+}
+
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: var(--blanco);
+    font-weight: 600;
+    width: 20%;
+    height: 70%;
+    border-radius: 8px 8px 8px 8px;
+}
+
+/* ESTILO QUE PROBABLEMENTE SE ELIMINE CUANDO SE REALICE EL BACKEND
+ESTE ESTILO ES PARA EL ESTADO ACTIVO */
+
+.statuss{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verdeOscuro);
+    color: var(--blanco);
+    font-weight: 600;
+    width: 20%;
+    height: 70%;
+    border-radius: 8px 8px 8px 8px;
+}
+
+
+/* ESTILOS PARA EL CONTENEDOR QUE CONTENDRA LOS DOMICILIARIOS
+ACTIVOS E INACTIVOS */
+
+.deliveryFreeBusy{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    height: 40%;
+    gap: 10px;
+    box-shadow: 0px 0px 5px grey;
+}
+
+/* --------------------- */
+
+.deliverysFreeMain{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.deliverysFree{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    gap: 10px;
+    align-items: center;
+}
+
+.statusDeliveryFree{
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    background-color: var(--grisClaro);
+    justify-content: space-between;
+}
+
+.imgStatusDeliveryFree{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 16%;
+}
+
+.imgStatusDeliveryFree>img{
+    height: 100%;
+}
+
+.fullNameFree{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+}
+
+.fullNameFree>p{
+    font-size: 1rem;
+}
+
+.statusFree{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verdeOscuro);
+    color: var(--blanco);
+    font-size: 14px;
+    letter-spacing:1px;
+    font-weight: 500;
+    width: 18%;
+    height: 70%;
+    border-radius: 8px 8px 8px 8px;
+}
+
+
+
+.deliveryBusyMain{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+
+.deliverysBusy{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    gap: 10px;
+    align-items: center;
+}
+
+.statusDeliveryBusy{
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    background-color: var(--grisClaro);
+    justify-content: space-between;
+}
+
+.imgStatusDeliveryBusy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 16%;
+}
+
+.imgStatusDeliveryBusy>img{
+    height: 100%;
+}
+
+.fullNameBusy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+}
+
+.fullNameBusy>p{
+    font-size: 1rem;
+}
+
+.statusBusy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: var(--blanco);
+    font-size: 14px;
+    letter-spacing:1px;
+    font-weight: 500;
+    width: 18%;
+    height: 70%;
+    border-radius: 8px 8px 8px 8px;
+}
+
+
+
+
+/* Estilos para la modal */
+.modal {
+    display: none; /* Por defecto, la modal está oculta */
+    position: fixed;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+}
+
+/* Contenido de la modal */
+.modal-content {
+    background-color: #fefefe;
+    margin: 6% auto;
+    border: 1px solid #888;
+    width: 30%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgStatusDeliveryModal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+}
+
+#modalImage{
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* Botón de cierre de la modal */
+.close {
+    display: flex;
+    justify-content: flex-end;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    width: 90%;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    height: 75%;
+}
+
+/* Estilos para la imagen del domiciliario en la modal */
+.modal-body .imgStatusDelivery img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Para una imagen redonda */
+    margin-bottom: 10px;
+}
+
+/* Estilos para la información del domiciliario en la modal */
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 11rem;
+    gap: 8px;
+}
+
+/* Estilos para los botones en la modal */
+.modal-buttons {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 5rem;
+    width: 17.5rem;
+    padding-right: 4px;
+}
+
+.DA{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.DA>button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.1rem;
+    width: 6rem;
+    color: var(--blanco);
+    border: none;
+    cursor: pointer;
+}
+
+.deactivate{
+    background-color: red;
+}
+
+.activate{
+    background-color: #33a892;
+}
+
+/* Estilos para los botones específicos */
+.modal-buttons>button {
+    font-size: 16px;
+    cursor: pointer;
+    width: 50%;
+    height: 2.1rem;
+    border: none;
+    background-color: orange;
+}
+
+
+/* Estilos para la segunda modal */
+#modalCalificacion {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    border: 1px solid #888;
+    width: 30%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header h2 {
+    text-align: center;
+}
+
+.modal-body {
+    margin-top: 20px;
+    width: 80%;
+    height: 70%;
+}
+
+#estrellas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+}
+
+#estrellas>span{
+    font-size: 2rem;
+}
+
+.comentarios-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+
+}
+
+#comentariosList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 1rem;
+}
+
+#comentariosList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.estrella {
+    font-size: 24px; /* Tamaño de la estrella */
+    color: gold; /* Color de la estrella */
+    cursor: pointer;
+}
+
+.estrella:hover {
+    color: orange; /* Cambiar el color al pasar el ratón por encima */
+}
+
+
+.avatar {
+    width: 30px; /* Ajusta el tamaño según tus preferencias */
+    height: 30px; /* Ajusta el tamaño según tus preferencias */
+    border-radius: 50%; /* Para una imagen redonda (puedes ajustar según tus preferencias) */
+    margin-right: 10px; /* Ajusta el espacio entre la imagen y el texto */
+}
+
+
+/* Estilo para el icono resaltado */
+.material-symbols-outlined.selected {
+    background-color: var(--azulClaro);
+}
+
+/* estilo para los iconos */
+
+.material-symbols-outlined {
+    /* Estilos para los iconos */
+    cursor: pointer;
+}
+
+.contenido-oculto {
+    display: none;
+}
+
+/* Tabla, iconos boton */
+/* Estilos para el contenido oculto (contenido2) */
+
+.conte2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.personas-container {
+    display: flex;
+    flex-direction: column; 
+    width: 90%;
+}
+
+.persona {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background: var(--grisClaro);
+    border-radius: 8px;
+    justify-content: space-between;
+    font-size: 28px;
+}
+
+.persona:nth-child(odd) {
+    background: var(--blanco); 
+}
+
+.fa-circle-user {
+    font-size: 45px;
+}
+
+.nombre {
+    flex: 1; 
+}
+
+#but {
+    background-color: #12b886;
+    border: none;
+    border: 2px solid black;
+    color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* MODAL 2*/
+/* Estilos para la modal */
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.889);
+  }
+  
+    .modal-contenido {
+      background-color: white;
+      margin: 8% auto;
+      padding: 20px;
+      width: 70vh;
+      position: relative;
+      height: 65%;
+    }
+  
+  #cerrarModal {
+    position: absolute;
+    top: -9px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+.modalDoss {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-contenidoDoss {
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 90%;
+    position: relative;
+    
+}
+
+.cerrar-modalDoss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modal-bodyDoss { 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+}
+
+.imgStatusDeliveryModlDoss{
+    border-bottom: 2px solid;
+    padding: 10px;
+}
+
+.modal-infoDoss {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    color: #0082c6;
+    height: 238px;
+}
+
+.modal-buttonsDoss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.DADoss{
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.acepDoss{
+    background-color: #40c057;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+.rechaDoss{
+    background-color: #ff0000;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #0082c6;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+
+/* Estilos contenedor 3 */
+.conte3 {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    height: 100%;
+}
+
+.botoneees {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.libres, .pendientes, .entregados {
+    border: 2px solid;
+    width: 250px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.libres {
+    background-color: #12b886;
+}
+
+.pendientes {
+    background-color: #fab005;
+}
+
+.entregados {
+    background-color: #ff0000;
+}
+
+.estaddos {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.da {
+    border-bottom: 1px solid;
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.NFC, .empre, .esta, .repor{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.minilibre, .minipendiente, .minientregado{
+    border: 1px solid;
+    width: 150px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.minilibre{
+    background-color: #12b886;
+}
+.minipendiente{
+    background-color: #fab005;
+}
+.minientregado{
+    background-color: #ff0000;
+}
+
+#peligro{
+    font-size: 60px;
+    color: #fab005;
+    cursor: pointer;
+}
+
+/* VENTANA MODAL 3 */
+.modalTress {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.889);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-contentTress {
+    background-color: #1971c2;
+    color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 30%;
+    height: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilos para el botón de cierre de la modal */
+.closeTress {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Estilos para el icono de peligro */
+#peligroTress {
+    cursor: pointer;
+}
+
+/* Estilo para ocultar el icono de peligro cuando se abre la modal */
+#peligroTress.openTress {
+    display: none;
+}
+
+.tiiituu{
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ccdomi{
+    width: 100px;
+    height: 25px;
+}
+
+.cen{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buu{
+    border: none;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: #ff0000;
+    width: 100px;
+    height: 2.5rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+/* Estilos para hacerlo responsive */
+@media (max-width: 768px) {
+    .modal-contenido{
+        max-width: 90%;
+        width: 80%;
+    }
+    .modal-infoDoss {
+        font-size: 14px;
+    }
+
+    .acepDoss{
+        width: 140px;
+        height: 35px;
+        font-size: 20px;
+    }
+    .rechaDoss{
+        background-color: #ff0000;
+        border: none;
+        cursor: pointer;
+        border: 1px solid #0082c6;
+        width: 140px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    .personas-container{
+        max-width: 70%;
+        width: 90%;
+    }
+    .persona i{
+        font-size: 10px;
+    }
+
+    .nombre{
+        font-size: 10px;
+    }
+
+    #but{
+        width: 50px;
+        height: 15px;
+        font-size: 10px;
+        border: none;
+
+    }
+
+    .asideAdminDelivery {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        background-color: var(--azulOscuro);
+    }
+
+    .personas-container{
+    overflow-x: auto;
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: scroll;
+    }
+}

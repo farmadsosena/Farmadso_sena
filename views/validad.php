@@ -1,23 +1,17 @@
 <?php
 // Obtener el hash, el valor cifrado y la clave secreta desde la URL
-// $hashRecibido = $_GET['hash'];
-// $cifradoRecibido = $_GET['cifrado'];
-// $claveSecretaRecibidaCodificada = $_GET['clave'];
+ $hashRecibido = $_GET['hash'];
+ $cifradoRecibido = $_GET['cifrado'];
+ $claveSecretaRecibida = $_GET['clave'];
 
-// $hashRecibido = '0ad066a5d29f3f2a2a1c7c17dd082a79';
-// $cifradoRecibido = "MD5 HASG";
-// $claveSecretaRecibidaCodificada = 19;
-
-// Decodificar la clave secreta recibida
-$claveSecretaRecibida = 19;
 
 // Verificar si el SMS ya se ha enviado
 $smsEnviado = isset($_COOKIE['smsEnviado']) ? $_COOKIE['smsEnviado'] : false;
 
 // Incluir el archivo SMS.php solo si el SMS no se ha enviado
-// if (!$smsEnviado) {
-//     require_once '../SMS.php';
-// }
+ if (!$smsEnviado) {
+     require_once '../SMS.php';
+ }
 ?>
 
 

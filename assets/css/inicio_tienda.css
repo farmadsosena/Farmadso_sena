@@ -406,7 +406,6 @@ INDEX PRINCIPAL DE LA PAGINA
   height: 23.5rem;
   border-radius: 5px;
   gap: 5px;
-  cursor: pointer;
 }
 
 .top-product:hover {
@@ -421,6 +420,7 @@ INDEX PRINCIPAL DE LA PAGINA
   height: 15rem;
   border-radius: 5px;
   margin-bottom: 1em;
+  cursor: pointer;
 }
 .top-product p {
   color: #888;
@@ -451,6 +451,7 @@ INDEX PRINCIPAL DE LA PAGINA
   background: transparent;
   min-height: 35px;
   font-weight: 700;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -751,6 +752,7 @@ INDEX PRINCIPAL DE LA PAGINA
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .contCarrito {

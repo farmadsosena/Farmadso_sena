@@ -1,627 +1,627 @@
 /* reseteo */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 :root {
-    --azulOscuro: #2d57a8;
-    --verdeClaro: #b5ddca;
-    --verdeOscuro: #33a892;
-    --blanco: #fffefe;
-    --grisClaro: #f1f2f5;
-    --azulClaro: #6d93c9;
-    --fuente: sans-serif;
+  --azulOscuro: #2d57a8;
+  --verdeClaro: #b5ddca;
+  --verdeOscuro: #33a892;
+  --blanco: #fffefe;
+  --grisClaro: #f1f2f5;
+  --azulClaro: #6d93c9;
+  --fuente: sans-serif;
 }
 
 body {
-    font-family: var(--fuente);
+  font-family: var(--fuente);
 }
 
 h1 {
-    color: var(--azulOscuro);
+  color: var(--azulOscuro);
 }
 
 .head {
-    height: 17vh;
+  height: 17vh;
 }
 
 .head .cabezera {
-    position: fixed;
-    height: 17vh;
-    width: 100%;
-    padding: 0rem 1.5rem;
-    background-color: white;
-    z-index: 2;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 1px -1px, rgba(0, 0, 0, 0.3) 0px 1px 6px -3px;
+  position: fixed;
+  height: 17vh;
+  width: 100%;
+  padding: 0rem 1.5rem;
+  background-color: white;
+  z-index: 2;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 1px -1px, rgba(0, 0, 0, 0.3) 0px 1px 6px -3px;
 }
 
 .rapido {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.326);
-    height: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.326);
+  height: 35%;
 }
 
 .rapido a {
-    color: #012c6d;
-    font-size: 14px;
-    margin-right: 0.8rem;
+  color: #012c6d;
+  font-size: 14px;
+  margin-right: 0.8rem;
 }
 
 
 .rapido a:hover {
-    color: #00c3a5;
+  color: #00c3a5;
 }
 
 .conten-he {
-    display: flex;
-    justify-content: space-between;
-    height: 65%;
+  display: flex;
+  justify-content: space-between;
+  height: 65%;
 }
 
 .conten-he .imgar {
-    display: flex;
-    align-items: center;
-    width: 30%;
+  display: flex;
+  align-items: center;
+  width: 30%;
 }
 
 .conten-he .imgar img {
-    width: 80%;
-    height: 90%;
-    object-fit: contain;
+  width: 80%;
+  height: 90%;
+  object-fit: contain;
 }
 
 .conten-he .menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 50%;
-    color: #012c6d;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  color: #012c6d;
 }
 
 .close-button{
-    display: none;
+  display: none;
 }
 .menu nav{
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 .menu nav ul{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 .menu nav li{
-    list-style: none;
+  list-style: none;
 }
 .menu nav a {
-    color: #012c6d;
-    font-weight: 350;
-    text-decoration: none;
+  color: #012c6d;
+  font-weight: 350;
+  text-decoration: none;
 }
 
 .menu  nav a:hover {
-    color: #00c3a5;
+  color: #00c3a5;
 }
 
 
 .hemberger {
-    display: none;
-  }
+  display: none;
+}
 
 .iniciar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width:100%;
-    height: 2.5rem;
-    border-radius: 10px;
-    padding: 5px 5px;
-    color: white !important;
-    background-color: #3d83df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  height: 2.5rem;
+  border-radius: 10px;
+  padding: 5px 5px;
+  color: white !important;
+  background-color: #3d83df;
 }
 
 /* DECORACION DEL CONTENIDO CABEZERA 2 */
 .presentacion {
-    display: flex;
-    background-color: #e8fbf9;
-    height: 62vh;
-    padding: 0rem 5rem;
-    overflow: hidden;
+  display: flex;
+  background-color: #e8fbf9;
+  height: 62vh;
+  padding: 0rem 5rem;
+  overflow: hidden;
 }
 
 .ficu {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  overflow: hidden;
 }
 
 .figura {
-    background-image: url(../img/figura-base.svg);
-    width: 60% !important;
-    height: 100%;
-    background-size: cover;
-    position: relative;
-    transform: translate(100px, 40px);
+  background-image: url(../img/figura-base.svg);
+  width: 60% !important;
+  height: 100%;
+  background-size: cover;
+  position: relative;
+  transform: translate(100px, 40px);
 }
 
 
 .descrip-present {
-    padding: 2rem 0rem;
-    width: 50%;
-    position: absolute;
+  padding: 2rem 0rem;
+  width: 50%;
+  position: absolute;
 }
 
 .descrip-present h3 {
-    width: 32%;
-    background-color: #e0f7f4;
-    color: #012c6d;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: bolder !important;
-    white-space: nowrap;
+  width: 32%;
+  background-color: #e0f7f4;
+  color: #012c6d;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bolder !important;
+  white-space: nowrap;
 }
 
 .descrip-present h2 {
-    width: 90%;
-    color: #012c6d;
-    font: 550 1.9rem/2.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    margin: 12px 0px;
+  width: 90%;
+  color: #012c6d;
+  font: 550 1.9rem/2.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  margin: 12px 0px;
 }
 
 .descrip-present div {
-    color: #012c6d;
-    font-size: 15px;
-    font-weight: 500;
-    font: 500 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    margin: 12px 0px;
-    text-align: left;
+  color: #012c6d;
+  font-size: 15px;
+  font-weight: 500;
+  font: 500 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  margin: 12px 0px;
+  text-align: left;
 }
 
 .descrip-present a {
-    background-color: hsl(214.1, 71.7%, 55.7%) !important;
-    border: none !important;
-    border-radius: 4px;
-    color: #fff !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    height: 45px !important;
-    width: 40%;
-    margin-top: 25px;
+  background-color: hsl(214.1, 71.7%, 55.7%) !important;
+  border: none !important;
+  border-radius: 4px;
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  height: 45px !important;
+  width: 40%;
+  margin-top: 25px;
 }
 
 .servicios {
-    display: flex;
-    flex-direction: column;
-   justify-content: center;
-   align-items: center;
-    padding: 1rem 3rem;
-    background-color: white;
-    width: 100%;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+ align-items: center;
+  padding: 1rem 3rem;
+  background-color: white;
+  width: 100%;
+  height: 100vh;
 }
 
 .servicios h2 {
-    text-align: center;
-    font: 550 1.5rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    width: 70%;
-    color: #012c6d;
+  text-align: center;
+  font: 550 1.5rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  width: 70%;
+  color: #012c6d;
 }
 
 .servicios h4 {
-    text-align: center;
-    font: 550 0.9rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    color: rgb(41, 38, 38);
+  text-align: center;
+  font: 550 0.9rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  color: rgb(41, 38, 38);
 }
 
 .cartera {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    height: 80%;
-    margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 80%;
+  margin-top: 15px;
 }
 
 .cartera a {
-    width: 47%;
-    height: 26rem;
-    border-radius: 7px;
-    transition: transform 0.5s;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  width: 47%;
+  height: 26rem;
+  border-radius: 7px;
+  transition: transform 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .cartera a:hover {
-    transform: translateY(-12px);
+  transform: translateY(-12px);
 }
 
 .cartera a {
-    color: #012c6d;
+  color: #012c6d;
 }
 
 .cartera a div {
-    height: 75%;
+  height: 75%;
 }
 
 .cartera a div img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px 5px 0px 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .cartera a section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 22%;
-    padding: 0.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 22%;
+  padding: 0.6rem 2rem;
 }
 
 .cartera a section p {
-    color: #353935;
+  color: #353935;
 }
 
 
 .banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #005e51;
-    color: white;
-    height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #005e51;
+  color: white;
+  height: 35vh;
 }
 
 .banner h2 {
-    font: 550 2rem/3rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  font: 550 2rem/3rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
 }
 
 .banner div {
-    text-align: center;
-    width: 50%;
-    font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  text-align: center;
+  width: 50%;
+  font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
 }
 
 .banner a {
-    margin-top: 15px;
-    text-align: center;
-    width: auto;
-    border-radius: 5px;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border: 1px solid white;
-    font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  margin-top: 15px;
+  text-align: center;
+  width: auto;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid white;
+  font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
 }
 
 .banner a:hover {
-    background-color: white;
-    color: #012c6d;
+  background-color: white;
+  color: #012c6d;
 }
 
 
 .proposito {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  height: 90vh;
 }
 
 .proposito h2 {
-    margin-top: 1rem;
-    text-align: center;
-    font: 550 1.9rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    width: 75%;
-    color: #012c6d;
+  margin-top: 1rem;
+  text-align: center;
+  font: 550 1.9rem/2rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  width: 75%;
+  color: #012c6d;
 }
 
 .divhes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
-    width: 100%;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  width: 100%;
+  height: 100vh;
 }
 
 .divhes .img-proposito{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .divhes .img-proposito img{
-    width: 70%;
-    height: 90%;
-    border-radius: 10px;
+  width: 70%;
+  height: 90%;
+  border-radius: 10px;
 }
 
 .divhes .contenido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .divhes .contenido details {
-    padding: 0.5em 1rem;
-    width: 78%;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.16);
-    box-shadow: none;
+  padding: 0.5em 1rem;
+  width: 78%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.16);
+  box-shadow: none;
 }
 
 .divhes .contenido details[open] {
-    transition: 2s;
-    border: none;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  transition: 2s;
+  border: none;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
 .divhes .contenido details summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 3rem;
-    cursor: pointer;
-    color: #012c6d;
-    font-size: 16px;
-    font-weight: bolder;
-    transition: border-color 0.3s, transform 0.3s; /* Agrega transiciones suaves al borde y a la rotación */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  cursor: pointer;
+  color: #012c6d;
+  font-size: 16px;
+  font-weight: bolder;
+  transition: border-color 0.3s, transform 0.3s; /* Agrega transiciones suaves al borde y a la rotación */
 }
 
 .divhes .contenido details[open] summary i.bx-chevron-down {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .fre {
-    margin-right: 10px;
-    color: #00c3a5;
-    font-size: 17px;
+  margin-right: 10px;
+  color: #00c3a5;
+  font-size: 17px;
 }
 
 .fugos {
-    width: 100%;
-    padding: 0.7rem;
-    color: rgb(39, 38, 38);
+  width: 100%;
+  padding: 0.7rem;
+  color: rgb(39, 38, 38);
 }
 
 .details-closed {
-    max-height: 0; 
-    overflow: hidden;
+  max-height: 0; 
+  overflow: hidden;
 }
 
 
- /*------ first mobile ------ */
- @media  screen and (max-width: 767px) {
-  
-  .rapido>a{
-    width: auto;
-    text-align: end;
-    font-size: 0.8em;
-  }
-  .conten-he{
-    width: 85%;
-    /* border: 1px solid; */
-  }
+/*------ first mobile ------ */
+@media  screen and (max-width: 767px) {
 
-  .conten-he .imgar {
-    display: flex;
-    align-items: center;
-    width: 100%;
+.rapido>a{
+  width: auto;
+  text-align: end;
+  font-size: 0.8em;
+}
+.conten-he{
+  width: 85%;
+  /* border: 1px solid; */
+}
+
+.conten-he .imgar {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .conten-he .imgar img {
-    width: 100%;
-    height: 10rem;
-    background-size: cover;
+  width: 100%;
+  height: 10rem;
+  background-size: cover;
 }
 
-  .imgar img{
-    height: 10rem;
-  }
+.imgar img{
+  height: 10rem;
+}
 
-  .hemberger {    
-    display: block;
-    cursor: pointer;
-    margin-left: 25vh;
-  }
+.hemberger {    
+  display: block;
+  cursor: pointer;
+  margin-left: 25vh;
+}
 
-  .hemberger .line {
-    width: 25px;
-    height: 3px;
-    border-radius: 10px;
-    background-color: #012c6d;
-    margin: 6px 0;
-  }
+.hemberger .line {
+  width: 25px;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #012c6d;
+  margin: 6px 0;
+}
 
 
-  .nav-bar {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    right: 0;
-    margin: -80px 0 0 0;
-    width: 100vw;
-    transition: 0.5s;
-    overflow: hidden;
-    height: 0;
-  }
+.nav-bar {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  margin: -80px 0 0 0;
+  width: 100vw;
+  transition: 0.5s;
+  overflow: hidden;
+  height: 0;
+}
 
-  .nav-bar ul {
-    display: flex;
-    flex-direction: column;
-    display: block;
-    width: fit-content;
-    gap: 80px;
-    transition: 0.5s ; 
-    opacity: 0;
-  }
+.nav-bar ul {
+  display: flex;
+  flex-direction: column;
+  display: block;
+  width: fit-content;
+  gap: 80px;
+  transition: 0.5s ; 
+  opacity: 0;
+}
 
-  .nav-bar ul li a{
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.4em;
-  }
+.nav-bar ul li a{
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.4em;
+}
 
-  .nav-bar.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      /* border: 1px solid; */
-      width: 100%;
-      background-color: #00000052;
-      backdrop-filter: blur(20px);
-    }
-
-    .nav-bar .close-button {
-        display: none;
-        font-size: 34px;
-        cursor: pointer;
-        position: absolute;
-        top: 40px;
-        right: 30px;
-        color: #fff;
-      }
-      
-      .nav-bar.active .close-button {
-        display: block;
-      }
-      
-    .nav-bar.active ul {
-      opacity: 1;
-    }
-
-  .nav-bar ul li a {
-    margin-bottom: 12px;
-  }
-
-  .iniciar{
-    height: 3.6rem;
-  }
-
-  .presentacion{
-    width: 100%;
-    height: 70vh;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .descrip-present{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 30rem;
-    padding: 20px;
-  }
-
-  .descrip-present h2{
-    width: 100%;
-  }
-
-  .descrip-present div{
-    text-align: justify;
-    font-size: 17px;
-  }
-
-  .descrip-present a{
-    width: 100%;
-    height: 2.5rem !important;
-  }
-  
-  .servicios{
-    width: 100%;
-    height: auto;
-    padding: 0.9rem 1.5rem !important;
-  }
-
-  .servicios h2{
-    width: 100%;
-    font: 550 1rem/1.4rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-  }
-
-  .servicios h4{
-    text-align: center;
-    font-size: 12px;
-    margin-top: 8px;
-  }
-
-  .cartera{
-    flex-direction: column;
-    width: 100%;
-    gap: 30px;
-    margin-bottom:60px;
-  }
-
-  .cartera a{
-    width: 100%;
-  }
-
-  .banner{
-    display: flex;
-    width: 100%;
-    padding: 0.5rem 0.7rem;
-  }
-
-  .banner h2{
-    width: 100%;
-    text-align: center;
-    font: 550 1.8rem/2.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-    height: auto;
-    padding: 0.5rem 0rem;
-  }
-
-  .banner div{
-    display: flex;
-    width: 100%;
-    height: auto;
-    font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-  }
-
-  .banner a{
-    width: 60%;
-    height: 2.5rem;
-    font-size: 17px;
+.nav-bar.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    /* border: 1px solid; */
+    width: 100%;
+    background-color: #00000052;
+    backdrop-filter: blur(20px);
   }
 
-  .proposito{
-    width: 100%;
-    height: auto;
-    padding: 0.5rem 1rem !important;
+  .nav-bar .close-button {
+      display: none;
+      font-size: 34px;
+      cursor: pointer;
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      color: #fff;
+    }
+    
+    .nav-bar.active .close-button {
+      display: block;
+    }
+    
+  .nav-bar.active ul {
+    opacity: 1;
   }
 
-  .proposito h2{
-    width: 100%;
-    font: 550 1.4rem/1.6rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
-  }
-  .divhes{
-    padding: 0 !important;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-  }
-  .img-proposito img{
-    width: 80% !important;
-  }
+.nav-bar ul li a {
+  margin-bottom: 12px;
+}
 
-  .contenido{
-    padding: 0.5rem 0rem !important;
-  }
-  .contenido details{
-    width: 95% !important;
-  }
-  
-     }
+.iniciar{
+  height: 3.6rem;
+}
+
+.presentacion{
+  width: 100%;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.descrip-present{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  padding: 20px;
+}
+
+.descrip-present h2{
+  width: 100%;
+}
+
+.descrip-present div{
+  text-align: justify;
+  font-size: 17px;
+}
+
+.descrip-present a{
+  width: 100%;
+  height: 2.5rem !important;
+}
+
+.servicios{
+  width: 100%;
+  height: auto;
+  padding: 0.9rem 1.5rem !important;
+}
+
+.servicios h2{
+  width: 100%;
+  font: 550 1rem/1.4rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+}
+
+.servicios h4{
+  text-align: center;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.cartera{
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+  margin-bottom:60px;
+}
+
+.cartera a{
+  width: 100%;
+}
+
+.banner{
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+}
+
+.banner h2{
+  width: 100%;
+  text-align: center;
+  font: 550 1.8rem/2.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+  height: auto;
+  padding: 0.5rem 0rem;
+}
+
+.banner div{
+  display: flex;
+  width: 100%;
+  height: auto;
+  font: 550 1rem/1.5rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+}
+
+.banner a{
+  width: 60%;
+  height: 2.5rem;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proposito{
+  width: 100%;
+  height: auto;
+  padding: 0.5rem 1rem !important;
+}
+
+.proposito h2{
+  width: 100%;
+  font: 550 1.4rem/1.6rem Work Sans, Roboto, Helvetica Neue, helvetica, Segoe UI, arial, sans-serif;
+}
+.divhes{
+  padding: 0 !important;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+.img-proposito img{
+  width: 80% !important;
+}
+
+.contenido{
+  padding: 0.5rem 0rem !important;
+}
+.contenido details{
+  width: 95% !important;
+}
+
+   }

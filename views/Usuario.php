@@ -149,8 +149,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 <i class='bx bx-user-circle'></i> Cuenta de usuario
               </div>
               <div class="options">
-
-
                 <?php
                 function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
                 {
@@ -167,17 +165,20 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
+
+                $_SESSION["domi"]= $id;
                 }
                 if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
+                $_SESSION["farm"]= $id;
                 }
-                if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
-                  echo '<div class="option">
-                  <i class="bx bx-user-circle"></i> Cuenta de usuario
-                </div>';
-                }
+                // if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+                //   echo '<div class="option">
+                //   <i class="bx bx-user-circle"></i> Cuenta de usuario
+                // </div>';
+                // }
                 ?>
               </div>
             </div>
@@ -260,8 +261,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <!-- Final de tarjetas -->
           </div>
  
-          <div class="formula-info"  >
-         
+          <div class="formula-info">
           </div>
           <div id="mensajeNoResultados" class="imgBusqueda">
             <img src="../assets/img/notas.png" alt="">
@@ -320,10 +320,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
 
                     var row = `<tr>
+<<<<<<< HEAD
                     <td class="fecha">${fechaFormateada}</td>
                     <td class="estado">${item.estado}</td>
                     <td class="email">${item.correo_usuario}</td>
                     <td class="total">${totalFormateado}</td> 
+=======
+                    <td class="fecha">${item.fecha}</td>
+                    <td class="estado">${item.idestadocompra}</td>
+                    <td class="email">${item.correo}</td>
+                    <td class="total">${item.total}</td>            
+>>>>>>> 9ac0154c9ba92861f3e165b2e85809a0f493606c
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
                     $('#tabla-body').append(row);
@@ -388,10 +395,19 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     var fechaFormateada = fechaCompra.toLocaleDateString('es-ES', opcionesFecha);
 
                     var row = `<tr>
+<<<<<<< HEAD
                     <td>${fechaFormateada}</td>
                     <td>${detalle.nombre_medicamento}</td>
                     <td>${detalle.cantidad}</td>    
                     <td>${detalle.preciototal}</td>              
+=======
+                        <td>${detalle.fecha}</td>
+                        <td>${detalle.idestadocompra}</td>
+                        <td>${detalle.direccion}</td>
+                        <td>${detalle.correo}</td>
+                        <td>${detalle.total}</td>
+                        <td>${detalle.codigopostal}</td>
+>>>>>>> 9ac0154c9ba92861f3e165b2e85809a0f493606c
                       </tr>`;
                     $('#detallecompra').append(row);
                   });
@@ -509,6 +525,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   </div>
 
                   <div class="contenedoresparte1">
+                    <label for="imagen">Foto de su vehiculo</label>
+                    <input type="file" id="imagen" name="imagen" required>
+                  </div>
+
+                  <div class="contenedoresparte1">
                     <label for="Direcciónresidencia">Dirección de residencia</label>
                     <input type="text" id="direccion" name="direccion" required>
                   </div>
@@ -621,19 +642,11 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
 
               <div class="contenedoresparte1">
-                <label for="horario">Días de Horario Laboral</label>
+                <label for="horario">Horario Laboral</label>
                 <select id="horario" name="horario" required>
                   <option value="lunes">Lunes</option>
                   <option value="martes">Martes</option>
                   <!-- Agrega más días según sea necesario -->
-                </select>
-              </div>
-
-              <div class="contenedoresparte1">
-                <label for="jornada">Jornada</label>
-                <select id="jornada" name="jornada" required>
-                  <option value="manana">Mañana</option>
-                  <option value="tarde">Tarde</option>
                 </select>
               </div>
             </section>
