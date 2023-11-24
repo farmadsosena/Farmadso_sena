@@ -2,13 +2,8 @@
 
 session_start();
 #Validacion de rol
-include('../controllers/Conexion.php');
-$rol = (isset($_SESSION['rol'])) ? $_SESSION['rol'] : null;
+include('../config/Conexion.php');
 
-
-if (!isset($_SESSION['rol'])) {
-  echo "<script>window.location.href = './index.php';</script>";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,30 +21,12 @@ if (!isset($_SESSION['rol'])) {
   <!-- alertas toast -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <?php
-
-  if ($rol == 2 or $rol == 3 or $rol == 4) {
-    echo " <style> 
-    .cambiar-num-inve{
-      display:none;
-    }
-
-    .acciones-inve-da{
-      display:none;
-    }
-    </style>";
-  }
-  ?>
-
-
-  </link>
-
   <title>Panel administrador</title>
 </head>
 
 <body>
-  
- 
+
+
 
   <div id="menuResponsive">
     <h2><img src="../assets/img/sena.png" alt="" class="sena"> Asignación ambiente</h2>
@@ -68,28 +45,7 @@ if (!isset($_SESSION['rol'])) {
 
   <!-- Ventana editar perfil -->
   <!-- EL PROPIO PROGRAMACONSUEÑOINADOR -->
-  <?php
-  if (isset($_SESSION['id'])) {
-    $id_usuario = $_SESSION['id'];
 
-    $sql = "SELECT * FROM usuario WHERE idusuario = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $id_usuario);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-      $row = $result->fetch_assoc();
-      $nombre_usuario = $row["nombre_usuario"];
-      $apellido = $row["apellido"];
-      $documento = $row["documento"];
-      $password_usuario = $row["password_usuario"];
-      $correo = $row["correo"];
-      $telefono = $row["telefono"];
-      $imagen = $row["imagen"];
-    }
-  }
-  ?>
 
   <div id="modal" class="modal">
     <div class="content-form">
@@ -148,27 +104,17 @@ if (!isset($_SESSION['rol'])) {
     <section class="logo">
       <img src="imgusuario/<?php echo $_SESSION['img']; ?>" alt="" />
       <span class="name_rol">
-        <?php
 
-        $sconsult = mysqli_query($conexion, "SELECT * FROM rol_usuario WHERE idrol = $rol");
-        $row = mysqli_fetch_assoc($sconsult);
-        echo '<p>';
-        echo $_SESSION['nombre'];
-        echo '</p>';
-        echo '<p>';
-        echo $row['nombre_rol'];
-        echo '</p>';
-        ?> 
       </span>
 
       <article class="BtnEditarPerfil" onclick="mostrarUserCard()" title='Editar perfil'>
         <i class="fa-solid fa-pen-to-square"></i>
       </article>
-      
+
       <article class='BtnCargueAsignacion' onclick='mostrarCargueAsignacion()' title='Cargar asignaciones'>
         <i class='fa-solid fa-upload'></i>
       </article>
-      
+
       <button class='Btninforme' id='abrirModalInforme' title='Generar informe'>
         <i class='fa-solid fa-file-export'></i>
       </button>
@@ -177,16 +123,7 @@ if (!isset($_SESSION['rol'])) {
 
     <!-- Anuncios sena mi papa -->
     <div id="anuncios">
-      <?php
-        if ($rol == 1) {
-          echo '
-          <button title="Gestionar noticias" id="EditarCarrusel" onclick="mostrarContenedor(\'carruselNoticias\', this)">
-            <p></p>
-            <i class="fa-solid fa-ellipsis"></i>
-          </button>
-                ';
-      }
-      ?>
+
 
       <div class="swiper mySwiper">
         <div class="swiper-wrapper"></div>
@@ -205,62 +142,24 @@ if (!isset($_SESSION['rol'])) {
 
 
     <nav id="contenedor-botones">
-      <button class="botones pri" id="1" onclick="mostrarContenedor('Ambientes',this)">
+      <button class="botones pri" id="1" onclick="mostrarContenedor('Inicio',this)">
         <i class="fas fa-building pri"></i>
+        <p class="pri">Gestión de Usuarios</p>
+      </button>
+      <button class="botones" id="2" onclick="mostrarContenedor('servicio',this)">
+        <i class="fa-solid fa-play"></i>
+        <p class="pri">Servicio al cliente</p>
+      </button>
+
+      <button class='botones' id='3' onclick="mostrarContenedor('medicamentos',this)">
+        <i class='fas fa-clipboard-list'></i>
         <p class="pri">Acceso de Medicamentos</p>
       </button>
-      <button class="botones" id="2" onclick="mostrarContenedor('descubre_asig',this)">
-        <i class="fa-solid fa-play"></i>
-        <p class="pri"> Servicio al cliente</p>
-      </button>
-      <!-- DE AQUI HACIA ABAJO MEJIA -->
-      <?php
-      if ($rol == 2 || $rol == 4) {
-        // ME PUSIERON ESTO A ULTIMA HORA MALDITOS DESGRACIADOS (CON TODO RESPETO)
-      ?>
-        <button class='botones' id='3' onclick="mostrarContenedor('verSolicitudes',this)">
-          <i class='fas fa-clipboard-list'></i>
-          <p>Tus reservas</p>
-        </button>
-      <?php
-      }
-      ?>
 
-      <!-- DE AQUI HACIA ARRIBA MEJIA  -->
-      <?php
-      // if ($rol == 3) {
-      //   echo '<button class="botones pri btn-open" onclick="mostrarFormularioN()">
-      //   <i class="fas fa-building pri"></i>
-      //   <p class="pri  ">Generar Novedad</p>
-      // </button>';
-      // }
-      ?>
-      <?php
-      if ($rol == 1) {
-        echo "
-      <button class='botones' id='4' onclick='mostrarContenedor(\"crearAmbiente\", this)'>
-        <i class='fas fa-plus-circle'></i>
-        <p> Estadisticas Generales</p>
+      <button class='botones' id='6' onclick='mostrarContenedor("Graficas",this)'>
+        <i class='fas fa-clipboard-list'></i>
+        <p>Graficas del software</p>
       </button>
-      ";
-      }
-      ?>
-      <?php
-      if ($rol == 1) {
-      ?>
-        <button class='botones' id='6' onclick='mostrarContenedor("Solicitudes",this)'>
-          <?php require_once '../controllers/num_solicutudes_nueva.php'; ?>
-          <i class='fas fa-clipboard-list'></i>
-          <p>Solicitudes de Usuarios</p>
-        </button>
-
-        <button class='botones' id='7' onclick='mostrarContenedor("Usuarios",this)'>
-          <i class='fas fa-users'></i>
-          <p>Gestión de Usuarios</p>
-        </button>
-      <?php
-      }
-      ?>
 
       <button class="botones" id="8" onclick="cerrarSesion()">
         <i class="fas fa-sign-out-alt"></i>
@@ -274,53 +173,27 @@ if (!isset($_SESSION['rol'])) {
       <h1>Inicio</h1>
     </section>
 
-    <section class="pages" id="Solicitudes">
+    <section class="pages" id="servicio">
       a
     </section>
 
-    <section class="pages" id="Ambientes">
-     e
+    <section class="pages" id="medicamentos">
+      e
     </section>
 
-    <section class="pages" id="descubre_asig">
+    <section class="pages" id="Graficas">
       o
     </section>
     <!-- CUALQUIER ERROR DE AQUI HACIA ABAJO -->
 
-   
 
-  <!-- CUALQUIER ERROR SALE DE AQUI V: HACIA ARRIBA -->
-  <?php
 
-  if ($rol == 1) {
-    //require_once 'informeAmbiente/generarInforme.html';
-    echo '
-    
-      <section class="pages" id="crearAmbiente">
-        <article id="containeruser">Hello</section>
-        <section class="form-group"></section>
+    <!-- CUALQUIER ERROR SALE DE AQUI V: HACIA ARRIBA -->
 
-        <section class="pages" id="crearUsuario">
-          <article id="containeruser"></article>
-        </section>
-
-        <section class="pages" id="Usuarios">
-        HOLA</section>
-    ';
-  }
-
-  ?>
-    <form method="post" enctype="multipart/form-data" class="pages" id="carruselNoticias">
-      <!--imagenes slider-->
-    </form>
-    <section class="novedad_celador" id="novedad" onclick="cerrarFormularioN()"></section>
-    <div id="form_novedad"></div>
 
   </main>
 
-  <script src="../assets/js/info_ambie_pisos.js" ></script>
   <script src="../assets/js/admin.js"></script>
-  <script src="../assets/js/modal1.js" ></script>
   <script src="../assets/js/menuResponsive.js"></script>
 
 </body>
