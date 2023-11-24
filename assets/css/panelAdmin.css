@@ -4,7 +4,9 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
-
+textarea{
+ resize: none;
+}
 :root {
     --blanco: #fff;
     --secundary: #f1f2f5;
@@ -205,6 +207,12 @@ body {
     height: 100%;
     width: 100%;
     position: relative;
+}
+
+
+/* Stilos al contenedor del contenido del modal de generar informe */
+#informe{
+    place-items: center;
 }
 
 #calendar {
@@ -558,7 +566,7 @@ body {
     background-color: #2e8f7b;
 }
 
-.btn-verdetalles {
+.btn-verdetalles , #borrarHistorial{
     background-color: #33a892;
     color: #fff;
     border: none;
@@ -875,7 +883,7 @@ input[type="date"]:focus {
     flex-direction: column;
     width: 100%;
     margin: 5px;
-    height: 2000px;
+    height: max-content;
     align-items: center;
 }
 
@@ -998,24 +1006,82 @@ input[type="date"]:focus {
 
 
 
-/*  */
+/* CSS VENTASS */
+.container-ventas {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: flex-start;
+    padding: .5em;
+    gap: 5px;
+    overflow-y: hidden;
+}
+/* Estilo para la factura */
+.contenido-factura{
+    display: flex;
+    gap: 1em
+}
+.atencion{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+}
+
+.factura {
+    border: 1px solid #000;
+    padding: 20px;
+    flex: 1;
+    margin: 0 auto;
+    height: 20em;
+    overflow: auto;
+}
+
+/* Estilo para cada detalle en la factura */
+.detalle {
+    margin-bottom: 10px;
+}
+
+/* Estilo para el total en la factura */
+.total {
+    margin-top: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+.estado{
+    margin-bottom: 10px;
+}
+
 
 /*VER HISTORIAL*/
 #backlog {
     flex-direction: column;
     overflow: auto;
     box-sizing: border-box;
+    position: relative;
     padding: 0em 0 1em 0;
 }
-
+#borrarHistorial{
+    position: absolute;
+    bottom: 3%;
+}
 .itemHistorial {
     display: flex;
-    height: 5.5em;
+    min-height: 4em;
     align-items: center;
     padding: 0em 1em;
     box-sizing: border-box;
     text-align: justify;
+    transition: all .4s ease;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.itemHistorial:hover{
+    background-color: #dce1e3;
 }
 
 .itemHistorial>div {
@@ -1023,7 +1089,7 @@ input[type="date"]:focus {
 }
 
 .itemHistorial:nth-child(1) {
-    height: 2.3em;
+    height: 2.3em !important;
     background-color: #f1f2f3;
 }
 
@@ -1038,9 +1104,13 @@ input[type="date"]:focus {
     text-align: center;
 }
 
+.itemHistorial>div:nth-child(2) {
+    flex: 1;
+    text-align: justify;
+}
 .itemHistorial>div:nth-child(3) {
     flex: 3;
-    text-align: justify;
+    text-align: center;
 }
 
 

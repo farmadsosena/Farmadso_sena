@@ -79,7 +79,7 @@ if ($consulta->num_rows > 0) {
         <div class='menu_card ' >
             <ul>
                 <li class='open' >Abrir</li>
-                <li class='delete' onclick='eliminarFormula()' data-delete='{$card['idFormula']}'>Eliminar</li>
+                <li class='delete' onclick='eliminarFormula({$card['idFormula']})' data-delete='{$card['idFormula']}'>Eliminar</li>
             </ul>
         </div>
     </div>";

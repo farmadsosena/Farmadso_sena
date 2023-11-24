@@ -62,17 +62,39 @@ function closeFormCategories() {
     }
 }
 
-
-function openDetalles(){
-    var contMedicine = document.querySelector('.container-detalles');
-    var contForm = document.querySelector('.detalles');
+function openDetalles(idcompra) {
+    var contMedicine = document.querySelector('.container-ventas');
+    var contform = document.querySelector('.detalles');
 
     contMedicine.style.display = 'none';
-    contForm.style.display = 'flex';
+    contform.style.display = 'block';
+
+
+    // Crear un objeto con el ID de la compra
+    var data = { idcompra: idcompra };
+
+    // Crear un objeto FormData y agregar los datos
+    var formData = new FormData();
+    formData.append('idcompra', idcompra);
+
+    fetch('../templates/facturas.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        contform.innerHTML = data;
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
 }
 
+
+
+
 function closeDetalles() {
-    var contMedicine = document.querySelector('.container-detalles');
+    var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.detalles');
 
     // Mostrar alerta
@@ -88,6 +110,28 @@ function closeDetalles() {
         formInputs.forEach(function(input) {
             input.value = ''; // Limpiar el valor del input
         });
+    }
+}
+
+function openEstado(){
+    var contMedicine = document.querySelector('.container-ventas');
+    var contForm = document.querySelector('.estado');
+
+    contMedicine.style.display = 'none';
+    contForm.style.display = 'block';
+}
+
+function closeEstado() {
+    var contMedicine = document.querySelector('.container-ventas');
+    var contForm = document.querySelector('.estado');
+
+    // Mostrar alerta
+    var confirmClose = confirm("Deseas salir del vaino?");
+
+    if (confirmClose) {
+        // Cambiar el estilo de visualización
+        contMedicine.style.display = 'flex';
+        contForm.style.display = 'none';
     }
 }
 

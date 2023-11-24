@@ -53,7 +53,21 @@ function editarMedicamento(idMedicamento) {
       console.error('Error en la consulta AJAX:', error.message);
   });
 
+ // Obtener todas las páginas y elementos
+ const pages = document.querySelectorAll('.page');
+ const items = document.querySelectorAll('.item');
 
+ // Ocultar todas las páginas y desactivar todos los elementos
+ pages.forEach(page => {
+     page.classList.remove('visiblePage');
+ });
+ items.forEach(item => {
+     item.classList.remove('activeItem');
+ });
+
+ // Mostrar la página correspondiente y activar el elemento de medicamentos
+ document.getElementById('medicamentos').classList.add('visiblePage');
+ document.querySelector('.medicamnentos-btn').classList.add('activeItem');
 
 function ActualizarM() {
 $.ajax({
