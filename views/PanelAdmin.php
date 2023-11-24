@@ -237,7 +237,7 @@ $imgUser = $_SESSION['img'];
                     </div>
                 </section>
                 <section class="page" id="backlog">
-                    <button id="borrarHistorial">Borrar todo el historial</button>
+                 
                     <?php 
                     require_once '../controllers/historialLogs.php'; 
                     
@@ -272,6 +272,7 @@ $imgUser = $_SESSION['img'];
                         //         });
                         // });
                     </script>
+                       <button id="borrarHistorial">Borrar todo el historial</button>
                 </section>
                 <section class="page" id="graficas">
                     <h2>Graficas</h2>
@@ -282,17 +283,14 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <?php 
-                    // require_once '../templates/detallesVentas.php';
+                    require_once '../templates/detallesVentas.php';
                     ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
-
-
+                            
+                    <div class="detalles"></div>
                     <!-- INICIA DETALLES DE VENTA -->
-                  <?php
-                //   require_once '../templates/facturas.php';
-                  ?>
-
+         
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
                 <section class="page" id="informe">
