@@ -519,11 +519,20 @@ INDEX PRINCIPAL DE LA PAGINA
   font-size: 3.2em;
 }
 
+<<<<<<< HEAD
+.article>a>h3 {
+    font-size: 16px;
+    color: #696464;
+    font-family: sans-serif;
+    text-align: center;
+    text-decoration: none;
+=======
 .article > h3 {
   font-size: 16px;
   color: #696464;
   font-family: sans-serif;
   text-align: center;
+>>>>>>> df180065ec7b5bd02b86c3861f02b6bde5a1aa15
 }
 
 .visitP {
