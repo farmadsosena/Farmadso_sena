@@ -320,17 +320,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
 
                     var row = `<tr>
-<<<<<<< HEAD
                     <td class="fecha">${fechaFormateada}</td>
                     <td class="estado">${item.estado}</td>
                     <td class="email">${item.correo_usuario}</td>
                     <td class="total">${totalFormateado}</td> 
-=======
-                    <td class="fecha">${item.fecha}</td>
-                    <td class="estado">${item.idestadocompra}</td>
-                    <td class="email">${item.correo}</td>
-                    <td class="total">${item.total}</td>            
->>>>>>> 9ac0154c9ba92861f3e165b2e85809a0f493606c
                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                 </tr>`;
                     $('#tabla-body').append(row);
@@ -395,19 +388,10 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     var fechaFormateada = fechaCompra.toLocaleDateString('es-ES', opcionesFecha);
 
                     var row = `<tr>
-<<<<<<< HEAD
                     <td>${fechaFormateada}</td>
                     <td>${detalle.nombre_medicamento}</td>
                     <td>${detalle.cantidad}</td>    
                     <td>${detalle.preciototal}</td>              
-=======
-                        <td>${detalle.fecha}</td>
-                        <td>${detalle.idestadocompra}</td>
-                        <td>${detalle.direccion}</td>
-                        <td>${detalle.correo}</td>
-                        <td>${detalle.total}</td>
-                        <td>${detalle.codigopostal}</td>
->>>>>>> 9ac0154c9ba92861f3e165b2e85809a0f493606c
                       </tr>`;
                     $('#detallecompra').append(row);
                   });

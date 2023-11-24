@@ -32,14 +32,11 @@
     
             $data[] = $row;
         }
-<<<<<<< HEAD
     } else {
         // Agregar un mensaje de "Sin compras" al arreglo de datos si no hay resultados
         $data[] = array(
             'mensaje' => 'Sin compras en el sistema'
         );
-=======
->>>>>>> 9ac0154c9ba92861f3e165b2e85809a0f493606c
     }
 
     // Devolver los datos como respuesta en formato JSON
