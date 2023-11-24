@@ -294,9 +294,6 @@ $imgUser = $_SESSION['img'];
       Contenido de la Pestaña contactenos
     </div>
 
-    <div id="cerrarsesion" class="contenido-pestaña">
-      Contenido de la Pestaña cerrar secion
-    </div>
   </div>
 
     <script src="../assets/js/micuenta.js"></script>
