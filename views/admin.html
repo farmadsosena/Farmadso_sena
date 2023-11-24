@@ -15,6 +15,7 @@ include('../config/Conexion.php');
   <link rel="stylesheet" href="../assets/css/admin.css" />
   <script src="https://kit.fontawesome.com/0015840e45.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -177,25 +178,29 @@ include('../config/Conexion.php');
         <section class="acciones-usuGes">
           <div class="acc">
             <select name="" id="">
-              <option value=""></option>
+              <option value="">Selecciona una opcion</option>
+              <option value="">Con rol de Usuario con EPS</option>
+              <option value="">Con rol de Usuario estandar</option>
+              <option value="">Con rol de Domiciliario</option>
+              <option value="">Con rol de Farmaceutico</option>
             </select>
-            <button class="agregar">Agregar Usuario</button>
+            <button class="agregar acoos aggg">+ Agregar Usuario</button>
           </div>
           <div class="button-solicitudes">
-            <button class="solcitudes" onclick="click_bot()">Solicitudes</button>
+            <button class="acoos solii" onclick="click_bot()"><i class='bx bxs-user-check'></i> Solicitudes</button>
           </div>
         </section>
         <section class="menu_gestion_user">
           <div class="menu_parte1">
             <section class="botones_random">
-              <button class="cantidad_registros">Cantidad Registros</button>
-              <button class="Excel">Excel</button>
-              <button class="Csv">Csv</button>
+              <button class="cantidad_registros acoos agre">Cantidad Registros</button>
+              <button class="Excel acoos agre">Excel</button>
+              <button class="Csv acoos agre">Csv</button>
             </section>
 
             <section class="tabla_acciones">
-              <div class="tabla_acciones_encabezado">
-                <div class="encabezado_part">Vacio</div>
+              <div class="tabla_acciones_encabezado remarcar">
+                <div class="encabezado_part"></div>
                 <div class="encabezado_part1">Nombre</div>
                 <div class="encabezado_part2">Correo</div>
                 <div class="encabezado_part3">Estado</div>
@@ -203,14 +208,48 @@ include('../config/Conexion.php');
                 <div class="encabezado_part5">Roles</div>
                 <div class="encabezado_part6">Acciones</div>
               </div>
-              <div class="tabla_acciones_filas">
-                <div class="filas_part">Vacio</div>
-                <div class="filas_part1">Kevin Stiven</div>
-                <div class="filas_part2">kevin@gmail.com</div>
-                <div class="filas_part3">Ocupado</div>
-                <div class="filas_part4">No tengo</div>
-                <div class="filas_part5">Super-admin</div>
-                <div class="filas_part6">1,2,3</div>
+
+              <div class="tabla_acciones_encabezado caer">
+                <div class="encabezado_part"></div>
+                <div class="encabezado_part1">
+                  <input type="search" name="" id="nombre" placeholder="Buscar Nombre de usuario">
+                </div>
+                <div class="encabezado_part2">
+                  <input type="search" name="" id="correo" placeholder="Buscar Correo de usuario">
+                </div>
+                <div class="encabezado_part3">
+                  <input type="search" name="" id="estado" placeholder="Buscar Estado">
+                </div>
+                <div class="encabezado_part4">
+                  <input type="search" name="" id="nombre" placeholder=" Buscar Telefono o fijo">
+                </div>
+                <div class="encabezado_part5">
+                  <input type="search" name="" id="nombre" placeholder="Buscar Rol">
+                </div>
+                <div class="encabezado_part6">
+                </div>
+              </div>
+
+
+              <div class="tabla_acciones_encabezado remarca">
+                <div class="encabezado_part">
+                  <section>
+                    <img src="../assets/img/banner-ecommer.png" alt="">
+                  </section>
+                </div>
+                <div class="encabezado_part1">Diego Andres Hoyos Linares</div>
+                <div class="encabezado_part2">daghoyos24@gmail.com</div>
+                <div class="encabezado_part3">
+                  <section>
+                    Suspendido
+                  </section>
+                </div>
+                <div class="encabezado_part4">3142280319</div>
+                <div class="encabezado_part5">Usuario, Farmaceutico, Domiciliario</div>
+                <div class="encabezado_part6">
+                  <button  class="activado"><i class='bx bx-power-off'></i></button>
+                  <button  class="desac"><i class='bx bx-power-off'></i></button>
+                </div>
               </div>
             </section>
           </div>

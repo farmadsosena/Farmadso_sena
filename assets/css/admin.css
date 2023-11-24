@@ -3774,7 +3774,6 @@ label {
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
-
   height: 50px;
   width: 200px;
 }
@@ -3803,14 +3802,48 @@ label {
 }
 
 .acciones-usuGes .acc{
-  width: 50%;
-  border: 1px solid;
+  display: flex;
+  width: 45%;
 }
 
 .acciones-usuGes .acc select{
-  height: 1.5rem;
+  height: 1.8rem;
   width: 70%;
 }
+
+.acoos{
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 5px -5px, rgba(0, 0, 0, 0.04) 0px 0px 0px -5px; 
+}
+
+.acoos i{
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+
+.aggg{
+  margin-left: 10px;
+  border: 1px solid #55e679;
+  background-color: #49bf67;
+}
+.solii{
+  background-color: #00acec;
+}
+
+.agre{
+  border: 1px solid rgb(27, 185, 66);
+  background-color: #49bf67;
+}
+
+.agre:hover{
+  background-color: #18c243;
+}
+
 
 /* ------------------- menu_gestion_use ------------------ */
 .menu_gestion_user{
@@ -3818,10 +3851,8 @@ label {
   width: 100%;
   /*padding: 0.7rem 0.4rem;*/
   height: 80%;
-  margin-top: 12px;
   border-radius: 5px;
   flex-direction: column;
-
   overflow: hidden;
 }
 
@@ -3847,32 +3878,141 @@ label {
   /*justify-content: space-between;*/
   padding: 0.7rem 0.0rem;
   height: auto;
-  gap: 3%;
-  border: 1px solid rgba(128, 128, 128, 0.744);
-  border-radius: 5px;
+  /* border: 1px solid rgba(128, 128, 128, 0.744); */
+}
+
+.tabla_acciones_encabezado div{
+  border: 1px solid #ddd; 
+  display: flex;
+  align-items: center;
+}
+
+.caer div{
+  display: flex;
+  justify-content: center;
+}
+
+.tabla_acciones_encabezado div input{
+  width: 90%;
+  height: 80%;
+  padding: 0rem 0.4rem;
+  border: 1px solid #bfc6c6;
+}
+.tabla_acciones_encabezado div input:focus{
+  outline: none;
+  border: 1px solid #717474;
+  color: #2b2d30;
+  background-color: #fff;
+}
+
+.remarcar div{
+  font-size: 15px;
+  padding: 0rem 0.5rem;
+}
+.remarcar div{
+  font-weight: 600;
+  color: #1c1e21;
+}
+
+.remarca div{
+  padding: 0rem 0.5rem;
+  font-size: 15px;
+}
+
+.remarca:hover div{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.098);
+}
+
+.encabezado_part{
+  width: 6%;
+  justify-content: center;
+}
+
+.encabezado_part1{
+  width: 26%;
+  text-align: left;
+}
+
+.encabezado_part2{
+  width: 22%;
+  text-align: left;
+}
+
+.encabezado_part3{
+  width: 10%;
+  justify-content: center;
+  text-align: left;
+}
+
+.encabezado_part4{
+  width: 10%;
+  text-align: left;
+}
+
+.encabezado_part5{
+  width: 200px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #222;
+}
+
+.encabezado_part6{
+  justify-content: space-around;
+  width: 7%;
+  text-align: left;
+}
+
+
+/* ---------------DECORACION DE CADA FILA--------------- */
+.encabezado_part section{
+  width: 75%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.encabezado_part section img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.encabezado_part6 button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  cursor: pointer;
+  color: white;
+  padding: 0.2rem 0.3rem;
+}
+.encabezado_part6 button i{
+  font-size: 18px;
+}
+
+.activado{
+  background-color: #f8a326;
 }
 
 /* ---------------tabla_acciones--------------*/
 
 .tabla_acciones{
-
   display: flex;
   width: 100%;
-  height: 90%;
-  border: 1px solid rgba(128, 128, 128, 0.744);
-  border-radius: 5px;
+  height: 100%;
+  margin-top: 15px;
   flex-direction: column;
 }
 
 /* ---------------tabla_acciones_encabezado--------------*/
 
 .tabla_acciones_encabezado{
-
   display: flex;
   width: 100%;
   height: 8%;
-  justify-content: space-between;
-
   border-radius: 5px;
 }
 
@@ -3883,7 +4023,6 @@ label {
   display: flex;
   width: 100%;
   height: 8%;
-  justify-content: space-between;
   border-radius: 5px;
 }
 
