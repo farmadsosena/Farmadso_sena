@@ -1,6 +1,7 @@
 <?php
 require_once '../config/Conexion.php';
 require_once '../models/Log.php';
+session_start();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,6 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_query($conexion, $sqlazo) && mysqli_query($conexion, $sql)) {
 
+        $log  = new Log();
+
+        $ip = $log::getIp();
+        $type = $log::typeDispositive();
+        $info = array(
+            'nivel' => 'ERROR',   
+            'mensaje' => "Se ha eliminado un nuevo medicamento con el nombre " . $medicamento['nombre']  . " ",
+            'ip' => $ip,
+            'id_usuario' => $_SESSION['id'],
+            'tipo' => $type 
+        );
+        $resultt = $log->insert($info);
 
         echo "success";
     } else {

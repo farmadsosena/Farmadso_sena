@@ -243,34 +243,34 @@ $imgUser = $_SESSION['img'];
                     
                     ?>
                     <script>
-                        // document.querySelector('#borrarHistorial').addEventListener('click', () => {
-                        //     const eliminarHistorial = 1;
-                        //     fetch('../controllers/eliminarHistorial.php', {
-                        //         method: 'POST',
-                        //         headers: {
-                        //             'Content-Type': 'application/json',
-                        //         },
-                        //         body: JSON.stringify(eliminarHistorial)
-                        //     })
-                        //         .then(response => response.json())
-                        //         .then(data => {
-                        //             if (data === 'Correcto') {
-                        //                 // Cargar contenido.php usando fetch
-                        //                 fetch('../models/logData.php')
-                        //                     .then(response => response.text())
-                        //                     .then(content => {
-                        //                         // Colocar el contenido en el contenedor VERHISTORIAL
-                        //                         document.querySelector('#backlog').innerHTML = content;
-                        //                     })
-                        //                     .catch(error => {
-                        //                         console.error('Error:', error);
-                        //                     });
-                        //             }
-                        //         })
-                        //         .catch(error => {
-                        //             console.error('Error:', error);
-                        //         });
-                        // });
+                        document.querySelector('#borrarHistorial').addEventListener('click', () => {
+                            const eliminarHistorial = 1;
+                            fetch('../controllers/eliminarHistorial.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(eliminarHistorial)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data === 'Correcto') {
+                                        // Cargar contenido.php usando fetch
+                                        fetch('../models/logData.php')
+                                            .then(response => response.text())
+                                            .then(content => {
+                                                // Colocar el contenido en el contenedor VERHISTORIAL
+                                                document.querySelector('#backlog').innerHTML = content;
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        });
                     </script>
                 </section>
                 <section class="page" id="graficas">

@@ -14,7 +14,8 @@ $resultado = $conexion->query($sql);
 
 <!-- Contenedor para mostrar compras en contenedorCategorias -->
 <div class="container-ventas">
-    <div class="scroll-categories"> <div class="contenedorCategoria">
+    <div class="scroll-categories"> 
+        <div class="contenedorCategoria">
         <?php
         $compra_actual = null; // Variable para controlar si ya se mostró la compra actual
         // Verifica si hay resultados

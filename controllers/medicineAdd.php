@@ -4,6 +4,7 @@ use modeloMedicina\MedicineModel;
 require_once '../models/MedicineModel.php';
 require_once '../config/Conexion.php';
 require_once '../models/Log.php';
+session_start();
 
 
 // Validar solicitud 
@@ -55,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         null => 'El medicamento ya existe con ese codigo',
         false => 'Paso algo'
     };
-
     if ($response === true) {
 
         $log  = new Log();
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'nivel' => 'SUCCESS',   
             'mensaje' => "Se ha registrado un nuevo medicamento con el nombre  " . $medicine['nombre']  . " ",
             'ip' => $ip,
-            'id_usuario' => 1 , //$_SESSION['id_farmacia']
+            'id_usuario' => $_SESSION['id'],
             'tipo' => $type 
         );
         $resultt = $log->insert($info);
