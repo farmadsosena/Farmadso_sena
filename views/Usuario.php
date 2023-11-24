@@ -662,19 +662,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </div>
       </section>
       <!-- Etiqueta que termina el contenedor 4 -->
-
-
-      <!-- 
-      <button id="enviar">Enviar</button>
-      </form>
-      </section>
-
-      <button id="enviar">Enviar</button>
-      </div>
-      </div> -->
-      <!-- </section>
-      </section>
-      </section> -->
     </article>
   </main>
 
