@@ -6,7 +6,7 @@ $conexion = $conexionDataBase->Getconexion();
 
 // Validamos si no existe sesion de cliente  #Trabajamos con el idsessionInvitado  
 
-
+$precio = $_POST['precio'];
 $imagen = $_POST['imagen'];
 $idmedicamento = $_POST['idmedicamento'];
 $cantidadProducto  = $_POST['cantidadcarrito'];
@@ -101,7 +101,7 @@ function userValidate()
 }
 
 
-function insertCart($idmedicamento, $stock, $imagen)
+function insertCart($idmedicamento, $stock, $imagen,$precio)
 {
 
     global $conexion;
@@ -117,8 +117,8 @@ function insertCart($idmedicamento, $stock, $imagen)
                                         VALUES (null, '$idmedicamento', '$stock', '$idUserBd')")
 
         // Insertar si es cliente
-        : $insertCart = $conexion->query("INSERT INTO carrito(idusuario, idmedicamento, cantidadcarrito,idinvitado)
-                                    VALUES ('$idUserBd', '$idmedicamento', '$stock', null)");
+        : $insertCart = $conexion->query("INSERT INTO carrito(idusuario, idmedicamento, cantidadcarrito,idinvitado,precio)
+                                    VALUES ('$idUserBd', '$idmedicamento', '$stock', null,$precio)");
 
     // Si no existe un registro, insertar un nuevo registro en el carrito
 
@@ -130,11 +130,10 @@ function insertCart($idmedicamento, $stock, $imagen)
     $data = array(
         'correcto' => $imagen
     );
-
     echo json_encode($data);
 }
 
-function updateCart($idmedicamento, $cantidad, $amount, $img)
+function updateCart($idmedicamento, $cantidadProducto, $amount, $img)
 {
     $imagen = null;
     global $conexion;
@@ -155,16 +154,14 @@ function updateCart($idmedicamento, $cantidad, $amount, $img)
             $amountBd = floatval($cartArticle['precio']);
             $cantidadBd = intval($cartArticle['cantidadcarrito']);
             $newAmount = $amount + $amountBd;
-            $newCantidad = $cantidadBd + $cantidad;
+            $newCantidad = $cantidadBd + $cantidadProducto;
             $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
             WHERE  idmedicamento = '$idmedicamento'  and idsession = '$idUserBd'
             ");
         }
     } else if (isset($idUser['idusuario'])) {
-
-
         //  Actualizar el carrito si es Usuario / primero consultamos si existe ese producto 
-        $queryCart = $conexion->query("SELECT  carrito.cantidad, carrito.idmedicamento, inventario.stock AS cantidadBodega, carrito.preciototal 
+        $queryCart = $conexion->query("SELECT  carrito.cantidad, carrito.idmedicamento, inventario.stock AS cantidadBodega, carrito.precio 
         INNER JOIN inventario ON carrito.idmedicamento  = inventario.idmedicamento
         WHERE idmedicamento  = '$idmedicamento' and idusuario = '$idUserBd'
         ");
@@ -174,7 +171,7 @@ function updateCart($idmedicamento, $cantidad, $amount, $img)
             $amountBd = floatval($cartArticle['precio']);
             $cantidadBd = intval($cartArticle['cantidad']);
             $newAmount = $amount + $amountBd;
-            $newCantidad = $cantidadBd + $cantidad;
+            $newCantidad = $cantidadBd + $cantidadProducto;
             $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
             WHERE  idmedicamento = '$idmedicamento'  and idusuario = '$idUserBd'
             ");

@@ -336,7 +336,7 @@ function generarIDInvitadoUnico()
               echo "<input type='hidden' name='imagen' value=" . $row['imagenprincipal'] . ">";
               echo "<input type='hidden' name='nombre' value=" . $row['nombre'] . ">";
               echo "<div class='top-product'>";
-              echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
+              echo "<input type='hidden' name='precio' value=" . $precio_actual . ">";
               echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
               echo "<h4>" . $row['nombre'] . "</h4>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
