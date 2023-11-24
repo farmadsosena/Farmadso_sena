@@ -199,7 +199,7 @@ body {
 .pages {
   height: 100vh;
   overflow: auto;
- 
+
   flex: 1;
 }
 
@@ -4111,6 +4111,7 @@ label {
 #servicio{
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .titulo-notificaciones{
@@ -4199,9 +4200,6 @@ label {
   
 }
 
-/* Ajustar el ancho de la columna de Comentario */
-
-
 /* Estilo para la primera columna (números) */
 .tbl-notificaciones tbody td:first-child {
   font-weight: bold;
@@ -4213,9 +4211,48 @@ label {
   margin-bottom: 5px;
 }
 
+.tbl-notificaciones .aut-nametel{
+  width: 79%;
+  flex-wrap: wrap;
+}
+
 .tbl-notificaciones .aut-nametel p{
   margin-bottom: 5px;
   margin-left: 5px;
+}
+
+/* version movil de notificaciones medicamentos agostados ------------------*/
+@media screen and (max-width: 600px) {
+
+#servicio{
+  justify-content: start;
+}
+
+.titulo-notificaciones{
+  margin-bottom: 10px;
+}
+
+.filtro-notificaciones{
+  margin-bottom: 10px;
+}
+
+.btns-aplicar{
+  margin-bottom: 10px;
+}
+
+.scroll-tabla{
+  height: 24%;
+}
+
+.tbl-notificaciones tbody img{
+  width: 20px;
+}
+
+.tbl-notificaciones td:nth-child(2) {
+  max-width: 80px;
+}
+
+
 }
 
 
