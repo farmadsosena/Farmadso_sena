@@ -270,6 +270,38 @@ include('../config/Conexion.php');
             </td>
   
           </tr>
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p>ss@gmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
   
         </tbody>
       </table>

@@ -4173,6 +4173,7 @@ label {
 .tbl-notificaciones th,
 .tbl-notificaciones td{
   vertical-align: top;
+  flex-wrap: wrap;
 }
 
 .tbl-notificaciones tbody tr:nth-of-type(even) {
