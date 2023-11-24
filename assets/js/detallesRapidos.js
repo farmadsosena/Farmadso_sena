@@ -1,21 +1,91 @@
-const rasterElements = document.querySelectorAll(".scroll2 .raster");
-const producElement = document.querySelector(".img-oferta .produc img");
+document.querySelector(".venergar-info").addEventListener("click",function(event){
+  var containerRapido = document.querySelector(".container-rapido");
 
-rasterElements.forEach((raster) => {
-  raster.addEventListener("click", () => {
-    const imageUrl = raster.querySelector("img").getAttribute("src");
-    producElement.setAttribute("src", imageUrl);
-  });
+  if (!containerRapido.contains(event.target)) {
+      this.classList.remove("active-venergar-info");
+  }
 });
 
 document.querySelectorAll(".top-product>img").forEach((card_medicamento) => {
+  var card = card_medicamento.parentNode;
   card_medicamento.addEventListener("click", function () {
-    var ventana_detalles_medicamentos =
-      document.querySelector(".venergar-info");
-    ventana_detalles_medicamentos.classList.add("active-venergar-info");
+    enviar_recibir_datos(card);
   });
 });
 
-document.querySelector(".salir-vista-medicamento").addEventListener("click", function (){
-  document.querySelector(".venergar-info").classList.remove("active-venergar-info");
-});
+document
+  .querySelector(".salir-vista-medicamento")
+  .addEventListener("click", function () {
+    document
+      .querySelector(".venergar-info")
+      .classList.remove("active-venergar-info");
+  });
+
+function enviar_recibir_datos(card) {
+  $(".container-rapido").css("display", "none");
+  $(".cont-spinner-deta_med").css("display", "flex");
+  $(".venergar-info").addClass("active-venergar-info");
+  var im = card.getAttribute("data-im");
+  var imd = atob(im);
+
+  $.ajax({
+    type: "POST",
+    url: "../controllers/detallesRapidos.php",
+    data: { im: imd },
+    dataType: "json",
+    success: function (datos) {
+      $(".cont-spinner-deta_med").css("display", "none");
+      $(".container-rapido").css("display", "flex");
+      mostrar_detallesMedi(datos);
+    },
+    error: function () {
+      console.log("ocurrio un error");
+    },
+  });
+}
+
+function mostrar_detallesMedi(datos) {
+  var nombreFarmacia = datos.medicamento.Nombre;
+  var nombreMedicamento = datos.medicamento.nombre;
+  var codigoReferencia = datos.medicamento.codigo;
+  var precioAntes = datos.medicamento.precio;
+  var descuento = datos.medicamento.valordescuento;
+  var precio_actual = precioAntes - precioAntes * (descuento / 100);
+  var ahorro = precioAntes - precio_actual;
+  var precio_antes_formateado = precioAntes.toLocaleString("es-ES");
+  var precio_actual_formateado = precio_actual.toLocaleString("es-ES");
+  var precio_ahorro_formateado = ahorro.toLocaleString("es-ES");
+  var descripcion = datos.inventario.descripcion;
+  var imgPrincipal = datos.medicamento.imagenprincipal;
+  var imagenes = datos.inventario.imagendescrip;
+
+  var arrayDeImagenes = imagenes.split(",");
+  $(".raster").remove();
+  arrayDeImagenes.forEach((imagen) => {
+    var img = imagen.trim();
+    var contImg = $(
+      "<section class='raster'><img src='../uploads/imgProductos/" +
+        img +
+        "' alt='" +
+        nombreMedicamento +
+        "'></section>"
+    );
+
+    contImg.click(function () {
+      var img_mostrar_principal = this.querySelector("img").src;
+      document.querySelector(".produc>img").src = img_mostrar_principal;
+  });
+
+    $(".scroll2").append(contImg);
+  });
+
+  $(".nombre_farmacia").text(nombreFarmacia);
+  $(".nombre_med").text(nombreMedicamento);
+  $(".c_m").text("Referencia: " + codigoReferencia);
+  $(".precio-a").text("Antes $ " + precio_antes_formateado);
+  $(".ahorro").text("Ahorra $" + precio_ahorro_formateado);
+  $(".precio").text("$" + precio_actual_formateado);
+  $(".descripcion_det_med>p").text(descripcion);
+  $(".produc>img").attr("src", "../uploads/imgProductos/" + imgPrincipal + "");
+  $(".produc>img").attr("alt", nombreMedicamento);
+}

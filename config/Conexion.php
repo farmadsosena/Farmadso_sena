@@ -2,13 +2,13 @@
 
 class Conexion
 {
-
     private $conexion = null;
     private $server = 'localhost';
     private $user = 'root';
     private $password = '';
     private $database = 'farmadso';
-
+    
+    // private $database = 'farmacia';
 
 
 
@@ -20,8 +20,7 @@ class Conexion
     {
         return $this->conexion;
     }
-
 }
+
 $bd = new Conexion();
 $conexion = $bd->getConexion();  //Conexion database
-?>

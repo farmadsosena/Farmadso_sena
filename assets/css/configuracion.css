@@ -339,19 +339,34 @@ input[type="text"] {
 
   #cambiarcontrasena .form-contraseña{
     box-shadow: 1px 2px 2px 10px rgba(128, 128, 128, 0.222);
-    width: 98%;
+    width: 100%;
     text-align: center;
     border-radius: 10px;
   }
 
-  #cambiarcontrasena .form-contraseña .contraseña-actual{
+  #cambiarcontrasena .form-contraseña #contraseña-actual {
     border: 0.5px solid gray;
     width: 70%;
     height: 20px;
     border-radius: 4px;
-    outline: none;
+    padding: 0.5rem;
   } 
 
+  #contraseña-actu{
+    padding: 0.5rem;
+  }
+
+  .nueva-cntrs{
+    display: flex;
+   gap:  10px;
+   margin-left: 1rem;
+
+  }
+  .boton-guardar-azul{
+    padding: 0.5rem;
+    width: 30%;
+
+  }
   #cambiarcontrasena .form-contraseña .nueva-cntrs{
     margin-top: 20px;
   } 
