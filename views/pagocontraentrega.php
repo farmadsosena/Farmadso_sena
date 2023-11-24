@@ -62,18 +62,18 @@
                     <div id="tabla-contenedor">
                         <div class="itemCarrito">
                             <?php
-                            session_start();
+                       
 
-                            // Verificar si hay productos en el carrito
-                            if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
-                                // Iterar sobre los productos del carrito y mostrarlos
-                                foreach ($_SESSION['carrito'] as $producto) {
-                                    // Mostrar los detalles del producto
-                                    echo "Producto: " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
-                                }
-                            } else {
-                                echo "El carrito está vacío.";
-                            }
+                            // // Verificar si hay productos en el carrito
+                            // if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
+                            //     // Iterar sobre los productos del carrito y mostrarlos
+                            //     foreach ($_SESSION['carrito'] as $producto) {
+                            //         // Mostrar los detalles del producto
+                            //         echo "Producto: " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
+                            //     }
+                            // } else {
+                            //     echo "El carrito está vacío.";
+                            // }
 
                             ?>
                             <?php

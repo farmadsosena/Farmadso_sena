@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre']);
     $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido']);
     $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion']);
-    $datos['codigo_postal'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['codigo']);
+    
     $datos['telefono'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['telefono']);
     $datos['correo'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['correo']);
     $datos['instrucciones'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['instrucciones']);

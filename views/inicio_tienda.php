@@ -1,5 +1,34 @@
 <?php
-require_once "validacion_usu_tienda.php";
+include "../config/Conexion.php";
+
+if (isset($_SESSION["usu"])) {
+  // header("Location: login.php");
+  $id = $_SESSION["id"];
+
+  $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
+  $rr = mysqli_fetch_assoc($consulta);
+}
+
+session_start();
+
+if (!isset($_SESSION['id'])) {
+  if (!isset($_SESSION['id_invitado'])) {
+    $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
+  }
+} else {
+  // Si hay un usuario autenticado, utilizar su ID
+  $idUsuario = $_SESSION['id'];
+  // Haz lo que necesites con el ID del usuario autenticado
+}
+
+function generarIDInvitadoUnico()
+{
+  $prefix = 'INVITADO_'; // Prefijo para identificar al invitado
+  $uniqueID = $prefix . uniqid(); // Generar un identificador único
+
+  return $uniqueID;
+}
+
 ?>
 
 
@@ -15,10 +44,14 @@ require_once "validacion_usu_tienda.php";
   <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/detalles.css">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
-  <link rel="stylesheet" href="../assets/css/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <!-- Enlace al JavaScript de Toastr.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <title>Tienda Farmadso</title>
 </head>
 
@@ -39,20 +72,8 @@ require_once "validacion_usu_tienda.php";
         </div>
 
         <div id="tabla-contenedor">
-
           <section>
-            <?php
-            // Verificar si hay productos en el carrito
-            if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
-              // Iterar sobre los productos del carrito y mostrarlos
-              foreach ($_SESSION['carrito'] as $producto) {
-                // Mostrar los detalles del producto
-                echo "Producto:  " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
-              }
-            } else {
-              echo "El carrito está vacío.";
-            }
-            ?>
+
 
           </section>
         </div>
@@ -251,7 +272,7 @@ require_once "validacion_usu_tienda.php";
           echo "<div class='swiper-slide colum-categorias'>";
 
           if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {              
+            while ($row = $result->fetch_assoc()) {
               echo "<a href='#' class='swiper-slide cont-categorias'>";
               echo "<section>";
               echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
@@ -262,7 +283,7 @@ require_once "validacion_usu_tienda.php";
           } else {
             echo "No hay categorías disponibles.";
           }
-          
+
           echo "</div>";
 
           $conn->close();
@@ -275,10 +296,10 @@ require_once "validacion_usu_tienda.php";
       <h1>Ofertas</h1>
       <div class="ranking">
         <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "farmadso";
+        // $servername = "localhost";
+        // $username = "root";
+        // $password = "";
+        // $dbname = "farmadso";
 
         try {
           $conn = new mysqli($servername, $username, $password, $dbname);
@@ -287,10 +308,11 @@ require_once "validacion_usu_tienda.php";
             die("Conexión fallida: " . $conn->connect_error);
           }
 
-          $sql = "SELECT p.*, m.*, f.Nombre as nombre_farmacia
+          $sql = "SELECT p.*, m.*,I.*, f.Nombre as nombre_farmacia
               FROM promocion p
               INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
               INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
+              INNER JOIN inventario I ON I.idinventario = m.idmedicamento
               ORDER BY p.valordescuento DESC
               LIMIT 4";
 
@@ -302,18 +324,29 @@ require_once "validacion_usu_tienda.php";
               $id_medicamento = $row['id_medicamento'];
               $precio_antes = $row['precio'];
               $descuento = $row['valordescuento'];
-
               // Calcula el precio actual
               $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
-
+              echo "<form action='' method='POST' class='card cardProductoS' >";
+              if (isset($_SESSION['id'])) {
+                echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
+              } else {
+                // Si  la sesión no está iniciada se envia el invitado
+                echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id_invitado'] . ">";
+              }
+              echo "<input type='hidden' name='imagen' value=" . $row['imagenprincipal'] . ">";
+              echo "<input type='hidden' name='nombre' value=" . $row['nombre'] . ">";
               echo "<div class='top-product'>";
+              echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
               echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
               echo "<h4>" . $row['nombre'] . "</h4>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
               echo "<h2>$" . $precio_actual . "</h2>";
-              echo "<button class='comprar-tarje-comp'>Comprar</button>";
+              echo "<input type='hidden' class='card-cantidad' name='idmedicamento' value='" . $row["idmedicamento"] . "'>";
+              echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $row["stock"] . "' value='1'>";
+              echo " <input type='submit' name='comprar' value='comprar' class='comprar-tarje-comp' >";
               echo "</div>";
+              echo "</form>";
             }
           } else {
             echo "No hay ofertas disponibles.";
@@ -377,10 +410,13 @@ require_once "validacion_usu_tienda.php";
     </section>
     <?php require '../templates/footer_inicio_tienda.html'; ?>
   </main>
+  <script src="../assets/js/agregarCarrito.js"></script>
+  <script src="../assets/js/carrito.js"></script>
+  <script src="../assets/js/slider_inicio_tienda.js"></script>
+  <script src="../assets/js/Font.js"></script>
+  <script src="../assets/js/carritoF.js"></script>
+  <script src="../assets/js/funcionMenutienda.js"></script>
+  <script src="../assets/js/detallesRapidos.js"></script>
 </body>
-<script src="../assets/js/slider_inicio_tienda.js"></script>
-<script src="../assets/js/Font.js"></script>
-<script src="../assets/js/carritoF.js"></script>
-<script src="../assets/js/funcionMenutienda.js"></script>
-<script src="../assets/js/detallesRapidos.js"></script>
+
 </html>

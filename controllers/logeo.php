@@ -38,8 +38,10 @@ if (isset($_POST["enviar"])) {
                     $_SESSION["telefono"] = $tel;
                     if ($rol == "1") {
                         echo "<script>window.location='../views/'</script>";
+                       
                     } elseif ($rol == "2") {
                         echo "<script>window.location='../views/Usuario.php'</script>";
+                       
                     }
                 } else {
                     // Contraseña incorrecta
