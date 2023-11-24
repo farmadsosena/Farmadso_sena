@@ -1,17 +1,20 @@
 <?php
+session_start();
 // Obtener el hash, el valor cifrado y la clave secreta desde la URL
- $hashRecibido = $_GET['hash'];
- $cifradoRecibido = $_GET['cifrado'];
- $claveSecretaRecibida = $_GET['clave'];
+$hashRecibido = $_GET['hash'];
+$cifradoRecibido = $_GET['cifrado'];
+$claveSecretaRecibidaCodificada= $_GET['clave'];
+// Decodificar la clave secreta recibida
+$claveSecretaRecibida = base64_decode($claveSecretaRecibidaCodificada);
 
-
+echo $claveSecretaRecibida;
 // Verificar si el SMS ya se ha enviado
 $smsEnviado = isset($_COOKIE['smsEnviado']) ? $_COOKIE['smsEnviado'] : false;
 
 // Incluir el archivo SMS.php solo si el SMS no se ha enviado
- if (!$smsEnviado) {
-     require_once '../SMS.php';
- }
+if (!$smsEnviado) {
+    require_once '../SMS.php';
+}
 ?>
 
 
@@ -55,55 +58,23 @@ $smsEnviado = isset($_COOKIE['smsEnviado']) ? $_COOKIE['smsEnviado'] : false;
           </p>
         </div>
 
-        <form action="">
+        <form method="post">
           <article>
             <section>
               <i class="fa-solid fa-pen-to-square"></i>
             <input
               type="text"
-              name=""
+              name="clave"
               id=""
               placeholder="Introduce aquí el código recibido"
             />
             </section>
-            
-<?php
-if (isset($_POST["claveEscrita"])) {
-    $claveRegistrada = $_POST["clave"];
-    if ($claveRegistrada == $claveSecretaRecibida) {
-        // Verificar el hash
-        $hashCalculado = hash('sha256', $cifradoRecibido);
-
-        if ($hashRecibido === $hashCalculado) {
-            // Hash válido, proceder con el descifrado
-            $valorOriginal = openssl_decrypt($cifradoRecibido, 'aes-256-cbc', $claveSecretaRecibida, 0, '1234567890123456');
-
-            if ($valorOriginal !== false) {
-                // Establecer la cookie indicando que el SMS se ha enviado
-                setcookie('smsEnviado', 'true', time() + 3600);  // Expire en una hora
-
-                // Redirigir
-                header('Location: pagoFormula.php');
-                exit();
-            } else {
-                // Error en el descifrado
-                echo "Error: No se pudo descifrar el valor.";
-            }
-        } else {
-            // Hash no válido, manejar el error
-            echo "Error: Hash no válido";
-        }
-    } else {
-        echo "La clave es incorrecta, por favor revise el número de clave.";
-    }
-}
-?>
 
             <div>
               <a href="">Volver a enviar el SMS</a>
             </div>
           </article>
-          <button>Verifica el código y <span> <h2>accede</h2></span></button>
+          <button name="claveEscrita">Verifica el código y <span> <h2>accede</h2></span></button>
         </form>
       </article>
 
@@ -135,4 +106,38 @@ if (isset($_POST["claveEscrita"])) {
     </div>
   </body>
 </html>
+
+
+<?php
+if (isset($_POST["claveEscrita"])) {
+    $claveRegistrada = $_POST["clave"];
+    if ($claveRegistrada == $claveSecretaRecibida) {
+        // Verificar el hash
+        $hashCalculado = hash('sha256', $cifradoRecibido);
+
+        if ($hashRecibido === $hashCalculado) {
+            // Hash válido, proceder con el descifrado
+            $valorOriginal = openssl_decrypt($cifradoRecibido, 'aes-256-cbc', $claveSecretaRecibida, 0, '1234567890123456');
+
+            if ($valorOriginal !== false) {
+                // Establecer la cookie indicando que el SMS se ha enviado
+               // setcookie('smsEnviado', 'true', time() + 3600);  // Expire en una hora
+
+                // Redirigir
+                header('Location: pagoFormula.php');
+                $_SESSION["clave"]= $valorOriginal;
+                exit();
+            } else {
+                // Error en el descifrado
+                echo "Error: No se pudo descifrar el valor.";
+            }
+        } else {
+            // Hash no válido, manejar el error
+            echo "Error: Hash no válido";
+        }
+    } else {
+        echo "La clave es incorrecta, por favor revise el número de clave.";
+    }
+}
+?>
 

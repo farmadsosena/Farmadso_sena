@@ -1,5 +1,5 @@
 <?php
- require_once "validacion_usu_tienda.php";
+require_once "validacion_usu_tienda.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
+  <link rel="stylesheet" href="../assets/css/detalles.css">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/toastr.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -149,6 +150,48 @@
   <!--Fin del encabezado-->
   <!--Index principal-->
   <main id="index">
+    <section class="venergar-info" id="informacion-rapida">
+      <section class="container-rapido">
+        <i class='bx bx-x x2 salir-vista-medicamento'></i>
+        <section class="img-oferta">
+          <section class="produc">
+            <img src="" alt="">
+          </section>
+          <section class="resto-product">
+            <div class="scroll2">
+              <section class="raster">
+                <img src="../assets/img/banner-formulas.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/banner3.png" alt="">
+              </section>
+              <section class="raster">
+                <img src="../assets/img/logoFarmadso - cambio.png" alt="">
+              </section>
+            </div>
+          </section>
+        </section>
+        <section class="descript-pro">
+          <h2 class="nombre_farmacia"></h2>
+          <h1 class="nombre_med"></h1>
+          <h3 class="nombre_med"></h3>
+          <p class="c_m"></p>
+          <div class="precio-antes">
+            <div class="precio-a"></div>
+            <div class="ahorro"></div>
+          </div>
+          <div class="precio"></div>
+          <div class="descripcion_det_med">
+            <p></p>
+          </div>
+          <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+          <button class="vermas">Ver mas detalles</button>
+        </section>
+      </section>
+      <div class="cont-spinner-deta_med" style="display: none;">
+        <span class="spinner-deta_med"></span>
+      </div>
+    </section>
     <section class="content-main">
       <aside>
         <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
@@ -166,103 +209,151 @@
       <h1>Categorias destacadas</h1>
       <div class="swiper slider-categorias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria1.jpeg" alt="Vitaminas y minerales">
-              <h3>Vitaminas y minerales</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria2.jpeg" alt="Dolor e inflamacion">
-              <h3>Dolor e inflamacion</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria5.jpeg" alt="Gripa y tos">
-              <h3>Gripa y tos</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria3.jpeg" alt="Estomago">
-              <h3>Estomago</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria6.jpeg" alt="Cuidado de la herida">
-              <h3>Cuidado de la herida</h3>
-            </section>
-            <section class="swiper-slide cont-categorias">
-              <img src="../uploads/imgProductos/categoria4.jpeg" alt="Nutricion especializada">
-              <h3>Nutricion especializada</h3>
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM categoria ORDER BY idcategoria DESC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<a href='#' class='swiper-slide cont-categorias'>";
+              echo "<section>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
+              echo "<h3>" . $row['nombrecategoria'] . "</h3>";
+              echo "</section>";
+              echo "</a>";
+            }
+          }
+
+          } else {
+            echo "No hay categorías disponibles.";
+          }
+
+
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>Ofertas</h1>
       <div class="ranking">
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/ACETAMINOFEN-GENFAR--500-MG_F.webp" alt="">
-          <p>Farmacia algorta</p>
-          <h4>Acetaminofén-GENFAR</h4>
-          <p class="ahorro-top-product">Antes $30.000</p>
-          <h2>$20.640</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/apiretal.jpg" alt="">
-          <p>Paraiso</p>
-          <h4>Apiretal</h4>
-          <p class="ahorro-top-product">Antes $20.000</p>
-          <h2>$12.700</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/TUKOL-EXPECTORANTE-D_L.webp" alt="">
-          <P>Farmacia el raso</P>
-          <h4>TUKOL EXPECTORANTE D</h4>
-          <p class="ahorro-top-product">Antes $32.000</p>
-          <h2>$29.900</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
-        <div class="top-product" id="productos">
-          <img src="../uploads/imgProductos/BISOLVON-ADULTOS_L.webp" alt="">
-          <p>Cruz verde</p>
-          <h4>BISOLVON ADULTOS</h4>
-          <p class="ahorro-top-product">Antes $40.000</p>
-          <h2>$36.000</h2>
-          <button class="comprar-tarje-comp">Comprar</button>
-        </div>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "farmadso";
+
+        try {
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT p.*, m.*, f.Nombre as nombre_farmacia
+              FROM promocion p
+              INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
+              INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
+              ORDER BY p.valordescuento DESC
+              LIMIT 4";
+
+          $result = $conn->query($sql);
+
+          // Verifica si hay resultados en la consulta
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              $id_medicamento = $row['id_medicamento'];
+              $precio_antes = $row['precio'];
+              $descuento = $row['valordescuento'];
+
+              // Calcula el precio actual
+              $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
+
+              $precio_antes = number_format($precio_antes, 0, ',', '.');
+              $precio_actual = number_format($precio_actual, 0, ',', '.');
+              $id_ofuscado = base64_encode($id_medicamento);
+
+              echo "<div class='top-product' data-im='$id_ofuscado'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<p>" . $row['nombre_farmacia'] . "</p>";
+              echo "<h3>" . $row['nombre'] . "</h3>";
+              echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
+              echo "<h2>$" . $precio_actual . "</h2>";
+              echo "<button class='comprar-tarje-comp'>Comprar</button>";
+              echo "</div>";
+            }
+          } else {
+            echo "No hay ofertas disponibles.";
+          }
+        } catch (Exception $e) {
+          echo "Error: " . $e->getMessage();
+        } finally {
+          // Cierra la conexión
+          if (isset($conn)) {
+            $conn->close();
+          }
+        }
+        ?>
       </div>
     </section>
+
     <section class="articles">
       <h1>Farmacias destacadas</h1>
       <div class="swiper slider-farmacias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F1.jpg" alt="Vitaminas y minerales">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F2.jpg" alt="Dolor e inflamacion">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F3.jpg" alt="Gripa y tos">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F4.jpg" alt="Estomago">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F5.jpg" alt="Cuidado de la herida">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F6.jpg" alt="Nutricion especializada">
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM farmacias ORDER BY IdFarmacia ASC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<a href='' class='swiper-slide cont-farmacia'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
+              echo "</a>";
+            }
+          } else {
+            echo "No hay farmacias disponibles.";
+          }
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>¡Servicios excepcionales para nuestros clientes!</h1>
       <section>
@@ -283,9 +374,11 @@
     <?php require '../templates/footer_inicio_tienda.html'; ?>
   </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../assets/js/slider_inicio_tienda.js"></script>
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
+<script src="../assets/js/detallesRapidos.js"></script>
 
 </html>

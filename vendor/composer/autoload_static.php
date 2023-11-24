@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea
+class ComposerStaticInitd9f63320d8cb1a7892254e52c31b3964
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -25,10 +25,6 @@ class ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea
         array (
             'Vonage\\NexmoBridge\\' => 19,
             'Vonage\\' => 7,
-        ),
-        'T' => 
-        array (
-            'Twilio\\' => 7,
         ),
         'S' => 
         array (
@@ -64,10 +60,6 @@ class ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea
         'Vonage\\' => 
         array (
             0 => __DIR__ . '/..' . '/vonage/client-core/src',
-        ),
-        'Twilio\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
         ),
         'StellaMaris\\Clock\\' => 
         array (
@@ -128,9 +120,9 @@ class ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit4818c310ffabe4c8fec84621ccc385ea::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd9f63320d8cb1a7892254e52c31b3964::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd9f63320d8cb1a7892254e52c31b3964::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd9f63320d8cb1a7892254e52c31b3964::$classMap;
 
         }, null, ClassLoader::class);
     }
