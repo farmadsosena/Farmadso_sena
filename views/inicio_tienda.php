@@ -155,7 +155,7 @@ require_once "validacion_usu_tienda.php";
         <i class='bx bx-x x2 salir-vista-medicamento'></i>
         <section class="img-oferta">
           <section class="produc">
-            <img src="../assets/img/banner-ecommer.png" alt="">
+            <img src="" alt="">
           </section>
           <section class="resto-product">
             <div class="scroll2">
@@ -172,31 +172,25 @@ require_once "validacion_usu_tienda.php";
           </section>
         </section>
         <section class="descript-pro">
-          <h2>Nutren</h2>
-          <h1>Nutren senior cafe con leche</h1>
-          <h4>Frasco x 100 tab</h4>
-          <h3>Nutren senior cafe con leche</h3>
-          <p>Referencia: 10001</p>
+          <h2 class="nombre_farmacia"></h2>
+          <h1 class="nombre_med"></h1>
+          <h3 class="nombre_med"></h3>
+          <p class="c_m"></p>
           <div class="precio-antes">
-            <div class="precio-a">
-              Antes $ 65.900
-            </div>
-            <div class="ahorro">
-              Ahorra $15.600
-            </div>
+            <div class="precio-a"></div>
+            <div class="ahorro"></div>
           </div>
-          <div class="precio">
-            $50.000
+          <div class="precio"></div>
+          <div class="descripcion_det_med">
+            <p></p>
           </div>
-          <div class="informacion">
-            <p>Incluye 0% de impuestos</p>
-            <p>Registro Sanitario: RSA-0009205-2019</p>
-          </div>
-
           <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
           <button class="vermas">Ver mas detalles</button>
         </section>
       </section>
+      <div class="cont-spinner-deta_med" style="display: none;">
+        <span class="spinner-deta_med"></span>
+      </div>
     </section>
     <section class="content-main">
       <aside>
@@ -233,7 +227,7 @@ require_once "validacion_usu_tienda.php";
           echo "<div class='swiper-slide colum-categorias'>";
 
           if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {              
+            while ($row = $result->fetch_assoc()) {
               echo "<a href='#' class='swiper-slide cont-categorias'>";
               echo "<section>";
               echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
@@ -244,7 +238,7 @@ require_once "validacion_usu_tienda.php";
           } else {
             echo "No hay categorías disponibles.";
           }
-          
+
           echo "</div>";
 
           $conn->close();
@@ -288,10 +282,14 @@ require_once "validacion_usu_tienda.php";
               // Calcula el precio actual
               $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
 
-              echo "<div class='top-product'>";
-              echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
-              echo "<h4>" . $row['nombre'] . "</h4>";
+              $precio_antes = number_format($precio_antes, 0, ',', '.');
+              $precio_actual = number_format($precio_actual, 0, ',', '.');
+              $id_ofuscado = base64_encode($id_medicamento);
+
+              echo "<div class='top-product' data-im='$id_ofuscado'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
+              echo "<h3>" . $row['nombre'] . "</h3>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
               echo "<h2>$" . $precio_actual . "</h2>";
               echo "<button class='comprar-tarje-comp'>Comprar</button>";
@@ -360,9 +358,11 @@ require_once "validacion_usu_tienda.php";
     <?php require '../templates/footer_inicio_tienda.html'; ?>
   </main>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../assets/js/slider_inicio_tienda.js"></script>
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/detallesRapidos.js"></script>
+
 </html>
