@@ -62,16 +62,36 @@ function closeFormCategories() {
     }
 }
 
-
-function openDetalles(){
+function openDetalles(idcompra) {
     var contMedicine = document.querySelector('.container-ventas');
-    var contForm = document.querySelector('.detalles');
+    var contform = document.querySelector('.detalles');
 
     contMedicine.style.display = 'none';
-    contForm.style.display = 'block';
+    contform.style.display = 'block';
 
-    
+
+    // Crear un objeto con el ID de la compra
+    var data = { idcompra: idcompra };
+
+    // Crear un objeto FormData y agregar los datos
+    var formData = new FormData();
+    formData.append('idcompra', idcompra);
+
+    fetch('../templates/facturas.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        contform.innerHTML = data;
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
 }
+
+
+
 
 function closeDetalles() {
     var contMedicine = document.querySelector('.container-ventas');
@@ -92,6 +112,7 @@ function closeDetalles() {
         });
     }
 }
+
 function openEstado(){
     var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.estado');

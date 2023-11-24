@@ -237,41 +237,42 @@ $imgUser = $_SESSION['img'];
                     </div>
                 </section>
                 <section class="page" id="backlog">
-                    <button id="borrarHistorial">Borrar todo el historial</button>
+                 
                     <?php 
                     require_once '../controllers/historialLogs.php'; 
                     
                     ?>
                     <script>
-                        // document.querySelector('#borrarHistorial').addEventListener('click', () => {
-                        //     const eliminarHistorial = 1;
-                        //     fetch('../controllers/eliminarHistorial.php', {
-                        //         method: 'POST',
-                        //         headers: {
-                        //             'Content-Type': 'application/json',
-                        //         },
-                        //         body: JSON.stringify(eliminarHistorial)
-                        //     })
-                        //         .then(response => response.json())
-                        //         .then(data => {
-                        //             if (data === 'Correcto') {
-                        //                 // Cargar contenido.php usando fetch
-                        //                 fetch('../models/logData.php')
-                        //                     .then(response => response.text())
-                        //                     .then(content => {
-                        //                         // Colocar el contenido en el contenedor VERHISTORIAL
-                        //                         document.querySelector('#backlog').innerHTML = content;
-                        //                     })
-                        //                     .catch(error => {
-                        //                         console.error('Error:', error);
-                        //                     });
-                        //             }
-                        //         })
-                        //         .catch(error => {
-                        //             console.error('Error:', error);
-                        //         });
-                        // });
+                        document.querySelector('#borrarHistorial').addEventListener('click', () => {
+                            const eliminarHistorial = 1;
+                            fetch('../controllers/eliminarHistorial.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(eliminarHistorial)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data === 'Correcto') {
+                                        // Cargar contenido.php usando fetch
+                                        fetch('../models/logData.php')
+                                            .then(response => response.text())
+                                            .then(content => {
+                                                // Colocar el contenido en el contenedor VERHISTORIAL
+                                                document.querySelector('#backlog').innerHTML = content;
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+                        });
                     </script>
+                       <button id="borrarHistorial">Borrar todo el historial</button>
                 </section>
                 <section class="page" id="graficas">
                     <h2>Graficas</h2>
@@ -282,17 +283,14 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <?php 
-                    // require_once '../templates/detallesVentas.php';
+                    require_once '../templates/detallesVentas.php';
                     ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
-
-
+                            
+                    <div class="detalles"></div>
                     <!-- INICIA DETALLES DE VENTA -->
-                  <?php
-                //   require_once '../templates/facturas.php';
-                  ?>
-
+         
                     <!-- CIERRA DETALLES DE VENTA -->
                 </section>
                 <section class="page" id="informe">
