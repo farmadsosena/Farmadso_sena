@@ -1,5 +1,5 @@
 {
     "[php]": {
-        "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
     }
 }

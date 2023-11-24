@@ -64,26 +64,33 @@ function closeFormCategories() {
 
 function openDetalles(idcompra) {
     var contMedicine = document.querySelector('.container-ventas');
-    var contForm = document.querySelector('.detalles');
+    var contform = document.querySelector('.detalles');
 
     contMedicine.style.display = 'none';
-    contForm.style.display = 'block';
+    contform.style.display = 'block';
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("contenido-factura").innerHTML = this.responseText;
-        } else if (this.readyState == 4 && this.status != 200) {
-            console.error("Error en la solicitud. Estado: " + this.status);
-        }
-    };
-    xhttp.onerror = function() {
-        console.error("La solicitud falló");
-    };
-    xhttp.open("POST", "../templates/facturas.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("idcomp=" + idcompra);
+
+    // Crear un objeto con el ID de la compra
+    var data = { idcompra: idcompra };
+
+    // Crear un objeto FormData y agregar los datos
+    var formData = new FormData();
+    formData.append('idcompra', idcompra);
+
+    fetch('../templates/facturas.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        contform.innerHTML = data;
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
 }
+
+
 
 
 function closeDetalles() {

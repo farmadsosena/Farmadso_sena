@@ -566,7 +566,7 @@ body {
     background-color: #2e8f7b;
 }
 
-.btn-verdetalles {
+.btn-verdetalles , #borrarHistorial{
     background-color: #33a892;
     color: #fff;
     border: none;
@@ -1063,9 +1063,13 @@ input[type="date"]:focus {
     flex-direction: column;
     overflow: auto;
     box-sizing: border-box;
+    position: relative;
     padding: 0em 0 1em 0;
 }
-
+#borrarHistorial{
+    position: absolute;
+    bottom: 3%;
+}
 .itemHistorial {
     display: flex;
     min-height: 4em;
@@ -1073,7 +1077,11 @@ input[type="date"]:focus {
     padding: 0em 1em;
     box-sizing: border-box;
     text-align: justify;
+    transition: all .4s ease;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.itemHistorial:hover{
+    background-color: #dce1e3;
 }
 
 .itemHistorial>div {
@@ -1081,7 +1089,7 @@ input[type="date"]:focus {
 }
 
 .itemHistorial:nth-child(1) {
-    height: 2.3em;
+    height: 2.3em !important;
     background-color: #f1f2f3;
 }
 
