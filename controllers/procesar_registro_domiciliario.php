@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $disponibilidad = $_POST["disponibilidad"];
     $tipo_vehiculo = $_POST["tipovehiculo"];
     $estadolaboral = "Trabajando";
-    $estadoAcep = "Pendiente";
+    $estadoAcep = 1;
     
     if (isset($_POST["tipoCuenta"])) {
         $tipoCuenta = $_POST["tipoCuenta"];
@@ -49,13 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     }
 
     // Insertar los datos en la base de datos (debes ajustar la consulta SQL según tu base de datos)
-<<<<<<< HEAD
-    $sql = "INSERT INTO domiciliario (idusuario, estadolaboral, direccion, fechainicio, disponibilidad, tipovehiculo, tarjetaPropiedad, soat, licencia, imagen, tipoCuenta, numeroCuenta, EstadoAcept)
-    VALUES ('$id_usuario', '$estadolaboral', '$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$ruta_imagen', '$ruta_imagen','$ruta_imagen', '$ruta_imagen','$tipoCuenta','$numeroCuenta','$estadoAcep')";
-=======
     $sql = "INSERT INTO domiciliario (idusuario, estadolaboral, direccion, fechainicio, disponibilidad, tipovehiculo, tarjetaPropiedad, soat, licencia, tipoCuenta, numeroCuenta, EstadoAcept, imagen, fotovehiculo)
             VALUES ('$id_usuario', '$estadolaboral', '$direccion','$fecha_inicio','$disponibilidad','$tipo_vehiculo', '$ruta_imagen', '$ruta_imagen','$ruta_imagen', '$tipoCuenta','$numeroCuenta','$estadoAcep','$ruta_imagen', '$ruta_imagen')";
->>>>>>> c803d47cf4906933eca191234a67a21de09df2d4
 
     if ($conexion->query($sql) === TRUE) {
         echo "<script>

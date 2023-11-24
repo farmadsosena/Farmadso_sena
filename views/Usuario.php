@@ -155,24 +155,29 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   global $conexion;
                   $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
                   $stmt = $conexion->prepare($consulta);
-                  $stmt->bind_param("ss", $usuario, $valorEstado);
+
+                  // Cambié "ss" a "is" para reflejar que $usuario es un número (asumiendo que es numérico).
+                  $stmt->bind_param("ii", $usuario, $valorEstado);
+
                   $stmt->execute();
                   $resultado = $stmt->get_result();
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
+                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 2)) {
                   echo '<div class="option">
-                  <i class="bx bx-car"></i> Domiciliario
-                </div>';
+                      <i class="bx bx-car"></i> Domiciliario
+                  </div>';
 
-                $_SESSION["domi"]= $id;
+                  $_SESSION["domi"] = $id;
                 }
-                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+
+                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 2)) {
                   echo '<div class="option">
-                  <i class="bx bxs-business"></i> Farmaceutico
-                </div>';
-                $_SESSION["farm"]= $id;
+                      <i class="bx bxs-business"></i> Farmaceutico
+                  </div>';
+
+                  $_SESSION["farm"] = $id;
                 }
                 ?>
               </div>
@@ -255,7 +260,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
             <!-- Final de tarjetas -->
           </div>
- 
+
           <div class="formula-info">
           </div>
           <div id="mensajeNoResultados" class="imgBusqueda">
@@ -764,7 +769,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
-    <div class="spinner"></div>
+      <div class="spinner"></div>
     </section>
     <section class="daco">
       <p>Cargando...</p>
