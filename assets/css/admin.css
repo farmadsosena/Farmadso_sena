@@ -4111,7 +4111,6 @@ label {
 #servicio{
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
 }
 
 .titulo-notificaciones{
@@ -4135,7 +4134,7 @@ label {
   height: 30px;
   border-radius: 3px;
   padding: 3px 10px;
-  background-color: #ccc;
+  border: 1px solid #a7a6a6;
   margin-right: 10px;
 }
 
@@ -4174,6 +4173,7 @@ label {
 .tbl-notificaciones td{
   vertical-align: top;
   flex-wrap: wrap;
+  max-width: 20%;
 }
 
 .tbl-notificaciones tbody tr:nth-of-type(even) {
@@ -4185,13 +4185,22 @@ label {
 }
 
 .tbl-notificaciones tbody img{
-  width: 30%;
+  width: 20%;
+}
+
+.correo-notificacion{
+  max-width: 100px;
+}
+
+.tbl-notificaciones td:nth-child(2) {
+  max-width: 250px; /* Ajusta el ancho según tus necesidades */
+  white-space: normal;
+  word-wrap: break-word;
+  
 }
 
 /* Ajustar el ancho de la columna de Comentario */
-.tbl-notificaciones td:nth-child(3) {
-  width: 70%; /* Ajusta el ancho según tus necesidades */
-}
+
 
 /* Estilo para la primera columna (números) */
 .tbl-notificaciones tbody td:first-child {
