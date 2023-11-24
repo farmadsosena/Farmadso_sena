@@ -2,7 +2,6 @@
 
 class Conexion
 {
-
     private $conexion = null;
     private $server = 'localhost';
     private $user = 'root';
@@ -20,8 +19,7 @@ class Conexion
     {
         return $this->conexion;
     }
-
 }
+
 $bd = new Conexion();
 $conexion = $bd->getConexion();  //Conexion database
-?>

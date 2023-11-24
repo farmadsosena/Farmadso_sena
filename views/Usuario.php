@@ -174,11 +174,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 </div>';
                 $_SESSION["farm"]= $id;
                 }
-                // if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
-                //   echo '<div class="option">
-                //   <i class="bx bx-user-circle"></i> Cuenta de usuario
-                // </div>';
-                // }
                 ?>
               </div>
             </div>
@@ -333,8 +328,8 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <!-- Ventana modal -->
-          <div id="modalDetalle" class="modal"> 
-            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>      
+          <div id="modalDetalle" class="modal">
+            <span class="close-button btnnmovil" onclick="cerrarModal()">&times;</span>
 
             <div class="modal-content">
               <span class="close-button pc" onclick="cerrarModal()">&times;</span>
@@ -642,7 +637,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <button id="enviar">Enviar</button>
           </div>
         </div>
-      </section> 
+      </section>
       <!-- Etiqueta que termina el contenedor 4 -->
 
 
@@ -770,32 +765,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
     <div class="spinner"></div>
-      <div class="boxes">
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
     </section>
     <section class="daco">
       <p>Cargando...</p>

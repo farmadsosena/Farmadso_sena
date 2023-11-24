@@ -3,19 +3,19 @@ session_start();
 include "../config/Conexion.php";
 
 if (!isset($_SESSION["usu"])) {
-    echo "<script> window.location='login.php'</script>";
+  echo "<script> window.location='login.php'</script>";
 }
+// realziar que solo domis aceptados puedan entrar al dashboard
 
 if (!isset($_SESSION["domi"])) {
   echo "<script> window.location='login.php'</script>";
 }
 
-if (!isset($_SESSION["farm"])) {
-  echo "<script> window.location='login.php'</script>";
-}
+// if (!isset($_SESSION["farm"])) {
+//   echo "<script> window.location='login.php'</script>";
+// }
 
 $id = $_SESSION["id"];
-
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ $id = $_SESSION["id"];
       <span class="material-symbols-outlined"> directions_bike </span>
       <h1>DOMICILIARIO</h1>
     </div>
-    
+
     <nav class="navDelivery">
       <!-- <div class="search">
             <input class="searchDelivery" type="search" name="" id="">
@@ -52,44 +52,44 @@ $id = $_SESSION["id"];
                 search
             </span>
         </div> -->
-          <!-- SELECT DE OPCIONES DE PERFIL -->
+      <!-- SELECT DE OPCIONES DE PERFIL -->
       <div class="custom-select">
-              <div class="selected-option">
-                <i class='bx bx-user-circle'></i> Cuenta de usuario
-              </div>
-              <div class="options">
-                
-              <?php
-                function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
-                {
-                  global $conexion;
-                  $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
-                  $stmt = $conexion->prepare($consulta);
-                  $stmt->bind_param("ss", $usuario, $valorEstado);
-                  $stmt->execute();
-                  $resultado = $stmt->get_result();
-                  return $resultado->num_rows > 0;
-                }
+        <div class="selected-option">
+          <i class='bx bx-user-circle'></i> Cuenta de usuario
+        </div>
+        <div class="options">
 
-                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
-                  echo '<div class="option">
+          <?php
+          function existe_en_tabla($tabla, $usuario, $columna, $valorEstado)
+          {
+            global $conexion;
+            $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
+            $stmt = $conexion->prepare($consulta);
+            $stmt->bind_param("ss", $usuario, $valorEstado);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+            return $resultado->num_rows > 0;
+          }
+
+          if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+            echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                }
-                 if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
-                 echo '<div class="option">
+          }
+          if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+            echo '<div class="option">
                    <i class="bx bx-user-circle"></i> Cuenta de usuario
                  </div>';
-                 }
-                ?>
-              </div>
+          }
+          ?>
+        </div>
       </div>
-            <!-- FIN DE SELECT DE OPCIONES DE PERFIL -->
+      <!-- FIN DE SELECT DE OPCIONES DE PERFIL -->
       <span id="task" class="material-symbols-outlined tareas" onclick="showTasks()" style="cursor: pointer; user-select: none">
         quick_reference_all <article class="circuloTask"></article>
       </span>
       <span id="notification" class="material-symbols-outlined notificacion" onclick="showNotifications()" style="cursor: pointer; user-select: none">
-        notifications      <article class="circuloNoti"></article>
+        notifications <article class="circuloNoti"></article>
       </span>
       <span id="history" class="material-symbols-outlined historial" onclick="showNuevoContenido2()" style="cursor: pointer; user-select: none">
         history
@@ -108,22 +108,21 @@ $id = $_SESSION["id"];
           <div class="EncabezadoNavConfig">
             <p>Mi cuenta</p>
           </div>
-          <div class="datosConfig">
-            <p class="LetraGris">Bienvenido:</p>
-            <div class="nameUserConfig">¿Que Deseas Hacer?</div>
-          </div>
+          
           <div class="optionNavConfig">
             <p class="LetraGris">Tu Cuenta:</p>
             <div class="optionGeneralesConfig">
               <article class="opcionesConfig" id="Micuenta">
-                <span class="material-symbols-outlined iconUser">
-                  account_circle
-                </span>
+                <i class="fa-solid fa-user" style="color: #418fde"></i>
                 <p>Mi perfil</p>
               </article>
               <article class="opcionesConfig" id="Detalles">
-                <span class="material-symbols-outlined iconUser"> info </span>
-                <p>Detalles</p>
+                <i class="fa-solid fa-motorcycle" style="color: #418fde"></i>
+                <p>Mi Moto</p>
+              </article>
+              <article class="opcionesConfig" id="Detalles">
+                <i class="fa-solid fa-lock" style="color: #418fde"></i>
+                <p>Cambiar Contraseña</p>
               </article>
             </div>
           </div>
@@ -151,7 +150,56 @@ $id = $_SESSION["id"];
         </div>
       </aside>
 
-      <div class="ContenedoresOptionConfig1" id="PerfilConfig">hola</div>
+      <aside class="navConfigResponsive">
+        <div class="containerMenuConfig">
+          <div class="EncabezadoNavConfigresponsive">
+            <p>Mi cuenta</p>
+          </div>
+          
+          <div class="optionNavConfig">
+          
+            <div class="optionGeneralesConfig">
+              <article class="opcionesConfig" id="MicuentaResponsive">
+                <i class="fa-solid fa-user" style="color: #418fde"></i>
+                <!-- <p>Mi perfil</p> -->
+              </article>
+              <article class="opcionesConfig" id="DetallesResponsive">
+                <i class="fa-solid fa-motorcycle" style="color: #418fde"></i>
+                <!-- <p>Mi Moto</p> -->
+              </article>
+              <article class="opcionesConfig" id="CambiarContraseñaResponsive">
+                <i class="fa-solid fa-lock" style="color: #418fde"></i>
+                <!-- <p>Cambiar Contraseña</p> -->
+              </article>
+            </div>
+          </div>
+          <div class="helpConfig">
+            <p class="LetraGrisResponsive">Ajustes y Ayuda:</p>
+            <div class="configCont">
+              <article class="opcionesConfig">
+                <span class="material-symbols-outlined iconUser">
+                  support_agent
+                </span>
+                <!-- <p>Contactanos</p> -->
+              </article>
+              <article class="opcionesConfig">
+                <span class="material-symbols-outlined iconUser"> help </span>
+                <!-- <p>Soporte</p> -->
+              </article>
+              <article class="opcionesConfig" id="CerrarSesionResponsive">
+                <span class="material-symbols-outlined iconUser">
+                  do_not_disturb_on
+                </span>
+                <!-- <p>Cerrar Sesión</p> -->
+              </article>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="ContenedoresOptionConfig1" id="PerfilConfig">
+        
+      </div>
       <div class="ContenedoresOptionConfig2" id="PerfilConfig">Goku</div>
       <div class="ContenedoresOptionConfig3" id="PerfilConfig">Vegeta</div>
     </div>
@@ -177,26 +225,21 @@ $id = $_SESSION["id"];
           </div>
         </div>
       </div>
-<!-- mostramos el historial -->
+      <!-- mostramos el historial -->
 
 
       <div class="his">
 
-      <section class="ContenedorHisto">
-        <img src="assets/img/dizzy-notebook-2.gif" alt="" srcset="" class="gifHisto">
+        <section class="ContenedorHisto">
+          <img src="assets/img/dizzy-notebook-2.gif" alt="" srcset="" class="gifHisto">
 
-                  <h2>No tienes Historias</h2>
+          <h2>No tienes Historias</h2>
         </section>
 
 
-      <?php
-       include("../models/historiasDomi.php");
+        <?php
+        include("../models/historiasDomi.php");
         ?>
-
-
-       
-
-
 
       </div>
 
@@ -209,9 +252,9 @@ $id = $_SESSION["id"];
     <section class="mainDeliverySection" id="notificationsSection">
       <section class="notificationsDelivery">
 
-      <section class="ContenedorMss">
-        <img src="assets/svg/emptyNotification.svg" alt="" srcset="" class="NotNotification" >
-                  <h2>No tienes notificaciones</h2>
+        <section class="ContenedorMss">
+          <img src="assets/svg/emptyNotification.svg" alt="" srcset="" class="NotNotification">
+          <h2>No tienes notificaciones</h2>
         </section>
         <?php include("../models/notificaciones.php") ?>
 
@@ -219,15 +262,15 @@ $id = $_SESSION["id"];
     </section>
 
     <section class="mainDeliverySectionTask" id="tasksSection" style="display: none">
-    <section class="contenedorAlertMm">
-      <img class="imgMm" src="assets/img/Scrum board-rafiki.svg" alt="" srcset="">
-      <h2>No tienes Tareas</h2>
-    </section>
+      <section class="contenedorAlertMm">
+        <img class="imgMm" src="assets/img/Scrum board-rafiki.svg" alt="" srcset="">
+        <h2>No tienes Tareas</h2>
+      </section>
       <?php
-        include("../models/tareas.php")
-        ?>
+      include("../models/tareas.php")
+      ?>
 
-        <!-- <div class="taskData">
+      <!-- <div class="taskData">
           <div class="addressInformation">
             <img src="assets/img/domiciliario1.jpg" alt="" />
             <div class="addressData">
@@ -257,9 +300,9 @@ $id = $_SESSION["id"];
             </div>
           </div>
         </div> -->
-  
-<form action="" method="post"></form>
-      
+
+      <form action="" method="post"></form>
+
     </section>
   </main>
 
@@ -273,8 +316,7 @@ $id = $_SESSION["id"];
       <div class="modal-details">
         <div class="deliveryData">
           <div class="epsInfo">
-            <p>EPS:</p>
-            <img src="../assets/img/logoEPS.png" alt="EPS Logo" />
+            <img src="../assets/img/kit-de-primeros-auxilios.png" alt="EPS Logo" />
           </div>
           <div class="orderInfo">
             <p>Número de Pedido: <span id="order-number"></span></p>
@@ -283,26 +325,27 @@ $id = $_SESSION["id"];
           </div>
         </div>
         <div class="mainAdresses">
-          <span>Dirección principal:<p id="DireccionPrincipal"></p></span>
-          <span>Dirección 2:<p id="DireccionTwo"></p></span>
+        <div id="medication-addresses"></div>
         </div>
         <div class="customer-info">
           <p>Cliente: <span id="customer-name"></span></p>
           <p>Dirección: <span id="customer-address"></span></p>
         </div>
+        <!-- Nuevo elemento para mostrar direcciones de farmacias de medicamentos -->
+        
       </div>
       <div class="aplicar">
         <form id="miFormulario">
           <!-- Campo oculto para almacenar el valor de idCompra -->
           <input type="hidden" name="idCompra" id="idCompraField" value="">
-
           <!-- Botón de envío del formulario -->
           <button type="button" id="aplicarButton">APLICAR</button>
         </form>
-
       </div>
     </div>
   </div>
+
+
 
   <!-- Ventana modal para "Historial" GARAVIZ-->
   <div id="miModal" class="modal" onclick="cerrarG()">
@@ -321,15 +364,24 @@ $id = $_SESSION["id"];
           </div>
 
         </div>
-        <p style="margin: 10px;">Direccion: <principal:div id="DpFact"></principal:div></p>
-        <p style="margin: 10px;">Direcccion 2: <div id="dtFact"></div></p>
+        <p style="margin: 10px;">Direccion: <principal:div id="DpFact"></principal:div>
+        </p>
+        <p style="margin: 10px;">Direcccion 2:
+        <div id="dtFact"></div>
+        </p>
 
 
 
         <div class="cajjjja">
-          <p>Cliente: <div id="ClienteFact"></div></p>
-          <p>Dirección: <div id="DIREFact"></div></p>
-          <p>Fecha: <div id="FechFact"></div></p>
+          <p>Cliente:
+          <div id="ClienteFact"></div>
+          </p>
+          <p>Dirección:
+          <div id="DIREFact"></div>
+          </p>
+          <p>Fecha:
+          <div id="FechFact"></div>
+          </p>
 
           <div class="imaaa">
             <div class="iaam">
@@ -347,10 +399,10 @@ $id = $_SESSION["id"];
 
   <footer class="footerDelivery">
     <span id="footerTask" class="material-symbols-outlined" onclick="showTasks()">
-      quick_reference_all  <article class="circuloTask"></article>
+      quick_reference_all <article class="circuloTask"></article>
     </span>
     <span id="footerNotification" class="material-symbols-outlined" onclick="showNotifications()">
-      notifications   <article class="circuloNoti"></article>
+      notifications <article class="circuloNoti"></article>
     </span>
     <span id="footerHistory" class="material-symbols-outlined" onclick="showNuevoContenido2()">
       history
