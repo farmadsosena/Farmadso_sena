@@ -45,8 +45,9 @@ function cargarContenido() {
             })
             .then((data) => {
                 // Procesar la respuesta del servidor
+                cargarContenido();
                 alert(data); // Muestra la respuesta en una alerta
-                cargarContenido(); // Vuelve a cargar el contenido después de la eliminación
+                 // Vuelve a cargar el contenido después de la eliminación
             })
             .catch((error) => {
                 console.error("Error al eliminar la categoría:", error);
@@ -54,3 +55,4 @@ function cargarContenido() {
             });
     }
 }
+
