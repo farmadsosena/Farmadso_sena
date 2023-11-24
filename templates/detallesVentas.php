@@ -1,5 +1,5 @@
 <?php
-require_once 'config/Conexion.php';
+require_once '../config/Conexion.php';
 
 // CONSULTA PARA OBTENER LOS DETALLES DE LA COMPRA
 $sql = "SELECT c.idcompra AS idCompra, c.nombre AS nombre_compra, c.fecha, c.direccion, c.nombre AS nombre_cliente, c.correo AS correo_cliente,
@@ -35,7 +35,7 @@ $resultado = $conexion->query($sql);
                                 <p>Cliente: <?php echo $fila['nombre_cliente']; ?> (<?php echo $fila['correo_cliente']; ?>)</p>
                             </div>
                             <div class="buttons">
-                                <button onclick="openDetalles()" class="btn-agregar">Ver detalles<i class="fas fa-info-circle"></i> </button>                            </div>
+                                <button onclick="openDetalles(<?php echo $idcompra; ?>)" class="btn-agregar">Ver detalles<i class="fas fa-info-circle"></i> </button>                            </div>
                         </div>
               
         <?php

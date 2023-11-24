@@ -8,7 +8,7 @@ class Conexion
     private $user = 'root';
     private $password = '';
     // private $database = 'farmadso';
-    private $database = 'farmacia';
+    private $database = 'farmadso';
 
 
 

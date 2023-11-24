@@ -62,16 +62,29 @@ function closeFormCategories() {
     }
 }
 
-
-function openDetalles(){
+function openDetalles(idcompra) {
     var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.detalles');
 
     contMedicine.style.display = 'none';
     contForm.style.display = 'block';
 
-    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("contenido-factura").innerHTML = this.responseText;
+        } else if (this.readyState == 4 && this.status != 200) {
+            console.error("Error en la solicitud. Estado: " + this.status);
+        }
+    };
+    xhttp.onerror = function() {
+        console.error("La solicitud falló");
+    };
+    xhttp.open("POST", "../templates/facturas.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("idcomp=" + idcompra);
 }
+
 
 function closeDetalles() {
     var contMedicine = document.querySelector('.container-ventas');
@@ -92,6 +105,7 @@ function closeDetalles() {
         });
     }
 }
+
 function openEstado(){
     var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.estado');

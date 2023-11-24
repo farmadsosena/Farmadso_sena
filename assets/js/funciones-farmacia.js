@@ -3,7 +3,7 @@ function eliminarMedicamento(idMedicamento) {
     if (confirmacion) {
         $.ajax({
             type: "POST",
-            url: "controllers/eliminar_medicamento.php", 
+            url: "../controllers/eliminar_medicamento.php", 
             data: { idMedicamento: idMedicamento },
             success: function(response) {
                 // Verifica si la eliminación fue exitosa

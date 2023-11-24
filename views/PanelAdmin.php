@@ -282,7 +282,7 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="ventas">
                     <!-- INICIA PRIMERA VISTA DE VENTAS -->
                     <?php 
-                    // require_once '../templates/detallesVentas.php';
+                   require_once '../templates/detallesVentas.php';
                     ?>
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
@@ -290,7 +290,7 @@ $imgUser = $_SESSION['img'];
 
                     <!-- INICIA DETALLES DE VENTA -->
                   <?php
-                //   require_once '../templates/facturas.php';
+               require_once '../templates/facturas.php';
                   ?>
 
                     <!-- CIERRA DETALLES DE VENTA -->
@@ -298,7 +298,7 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="informe">
                     <h2>Informe</h2>
                     <?php 
-                    // require_once '../templates/generarInforme.html';
+                    require_once '../templates/generarInforme.html';
                      ?>
                 </section>
             </section>
@@ -325,9 +325,9 @@ $imgUser = $_SESSION['img'];
     <?php
    require_once '../templates/inventario.php';
 
-   // require_once '../templates/comentarios.html';
+   require_once '../templates/comentarios.html';
 
-   // require_once '../templates/Ofertas.html';
+   require_once '../templates/Ofertas.html';
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
