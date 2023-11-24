@@ -199,7 +199,6 @@ body {
 .pages {
   height: 100vh;
   overflow: auto;
- 
   flex: 1;
 }
 
@@ -3784,6 +3783,369 @@ label {
 .my-button2:hover {
   background-color: #0056b3;
 }
+
+.llevar-completo{
+  width: 100%;
+  height: 100vh;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+}
+
+.acciones-usuGes{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.4rem;
+  height: auto;
+  margin-top: 12px;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+}
+
+.acciones-usuGes .acc{
+  width: 50%;
+  border: 1px solid;
+}
+
+.acciones-usuGes .acc select{
+  height: 1.5rem;
+  width: 70%;
+}
+
+/* ------------------- menu_gestion_use ------------------ */
+.menu_gestion_user{
+  display: flex;
+  width: 100%;
+  /*padding: 0.7rem 0.4rem;*/
+  height: 80%;
+  margin-top: 12px;
+  border-radius: 5px;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/*------------------ menu paarte 1-------------------------*/
+
+.menu_parte1{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: none;
+}
+
+/* ---------------- Botones random -------------------*/
+
+.botones_random{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /*justify-content: space-between;*/
+  padding: 0.7rem 0.0rem;
+  height: auto;
+  gap: 3%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 5px;
+}
+
+/* ---------------tabla_acciones--------------*/
+
+.tabla_acciones{
+
+  display: flex;
+  width: 100%;
+  height: 90%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+/* ---------------tabla_acciones_encabezado--------------*/
+
+.tabla_acciones_encabezado{
+
+  display: flex;
+  width: 100%;
+  height: 8%;
+  justify-content: space-between;
+
+  border-radius: 5px;
+}
+
+/* ---------------tabla_acciones_filas--------------*/
+
+.tabla_acciones_filas{
+
+  display: flex;
+  width: 100%;
+  height: 8%;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+/*------------------ menu paarte 2-------------------------*/
+
+#menu_parte2{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  
+  flex: none;
+}
+
+/*------------------ barra_datos-------------------------*/
+
+.barra_datos{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.0rem;
+  height: auto;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 5px;
+}
+
+/*------------------ barra_datos_parte1-------------------------*/
+
+.barra_datos_parte1{
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-around;
+  height: auto;
+}
+
+/*------------------ b_d_circulo-------------------------*/
+
+.b_d_circulo{
+  width: 10%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.744);
+  border-radius: 50%;
+}
+
+
+/*------------------ barra_datos_parte2-------------------------*/
+
+.barra_datos_parte2{
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: space-around;
+  height: auto;
+}
+
+/* ---------------datos_menu_parte2--------------*/
+
+.datos_menu_parte2{
+
+  display: flex;
+  width: 100%;
+  height: 90%;
+  margin-top: 2px;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+
+}
+
+/* ---------------datos_mp2_contacto--------------*/
+
+.datos_mp2_contacto{
+
+  display: flex;
+  width: 30%;
+  height: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 5px;
+  flex-direction: column;
+  
+}
+
+/* ---------------contain_datos_circulo--------------*/
+
+.contain_datos_circulo{
+
+  display: flex;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------circulo_externo--------------*/
+
+.circulo_externo{
+
+  display: flex;
+  width: 50%;
+  height: 80%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------circulo_interno--------------*/
+
+.circulo_interno{
+
+  display: flex;
+  width: 90%;
+  height: 90%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 50%;
+  
+}
+
+/* ---------------contain_contacto--------------*/
+
+.contain_contacto{
+
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------contain_info--------------*/
+
+.contain_info{
+
+  display: flex;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  
+}
+
+
+/* ---------------datos_mp2_infoGeneral--------------*/
+
+.datos_mp2_infoGeneral{
+
+  display: flex;
+  width: 68%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  
+}
+
+/* ---------------infoG_nombre--------------*/
+
+.infoG_nombre{
+
+  display: flex;
+  width: 100%;
+  border-top: 1px solid ;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  flex-direction: column;
+  
+}
+
+/* ---------------infoG_datos--------------*/
+
+.infoG_datos{
+
+  display: flex;
+  width: 100%;
+  height: 70%;
+  border-radius: 5px;
+
+}
+
+/* ---------------infoG_parte1--------------*/
+
+.infoG_parte1{
+
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+/* ---------------infoG_parte2--------------*/
+
+.infoG_parte2{
+
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+/* ---------------infoG_parte3--------------*/
+
+.infoG_parte3{
+
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+/* ---------------IGparte3_imagen--------------*/
+
+.IGparte3_imagen{
+
+  display: flex;
+  width: 100%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* ---------------contain_imagen_parte3--------------*/
+
+.contain_imagen_parte3{
+
+  display: flex;
+  width: 80%;
+  height: 80%;
+  border: 1px solid;
+
+}
+
+/* ---------------IGparte3_botones--------------*/
+
+.IGparte3_botones{
+
+  display: flex;
+  width: 100%;
+  height: 20%;
+  justify-content: space-around;
+
+}
+
+
+
+
+
+
+
 
 /* Responsive para dispositivos moviles menores a 500px */
 

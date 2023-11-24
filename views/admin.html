@@ -1,10 +1,10 @@
-<?php
+<!-- <?php
 
 session_start();
 #Validacion de rol
 include('../config/Conexion.php');
 
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +50,8 @@ include('../config/Conexion.php');
   <div id="modal" class="modal">
     <div class="content-form">
 
-      <form class="formularo-edit" action="../controllers/actualizar_ints_ap.php" method="POST" enctype="multipart/form-data">
+      <form class="formularo-edit" action="../controllers/actualizar_ints_ap.php" method="POST"
+        enctype="multipart/form-data">
         <span class="closeProfile" onclick="ocultarUserCard()">&times;</span>
         <h1 class="card-title">Editar Perfil</h1>
         <div class="campos-data">
@@ -88,7 +89,8 @@ include('../config/Conexion.php');
         </div>
         <div class="imgaa">
           <label for="imagen">Imagen Actual:</label>
-          <img src="imgusuario/<?php echo $imagen; ?>" alt="Imagen Actual" class="imga" ondblclick="mostrarImagenAmpliada(this)" onclick="cerrarImagen(this)">
+          <img src="imgusuario/<?php echo $imagen; ?>" alt="Imagen Actual" class="imga"
+            ondblclick="mostrarImagenAmpliada(this)" onclick="cerrarImagen(this)">
         </div>
         <div class="imgaa">
           <label for="new-imagen" class="btn-img">Subir nueva imagen</label>
@@ -170,7 +172,146 @@ include('../config/Conexion.php');
 
   <main id="main">
     <section class="pages" id="Inicio">
-      <h1>Inicio</h1>
+      <section class="llevar-completo">
+        <h1>Gestion de usuarios en el sistema</h1>
+        <section class="acciones-usuGes">
+          <div class="acc">
+            <select name="" id="">
+              <option value=""></option>
+            </select>
+            <button class="agregar">Agregar Usuario</button>
+          </div>
+          <div class="button-solicitudes">
+            <button class="solcitudes" onclick="click_bot()">Solicitudes</button>
+          </div>
+        </section>
+        <section class="menu_gestion_user">
+          <div class="menu_parte1">
+            <section class="botones_random">
+              <button class="cantidad_registros">Cantidad Registros</button>
+              <button class="Excel">Excel</button>
+              <button class="Csv">Csv</button>
+            </section>
+
+            <section class="tabla_acciones">
+              <div class="tabla_acciones_encabezado">
+                <div class="encabezado_part">Vacio</div>
+                <div class="encabezado_part1">Nombre</div>
+                <div class="encabezado_part2">Correo</div>
+                <div class="encabezado_part3">Estado</div>
+                <div class="encabezado_part4">Telefono</div>
+                <div class="encabezado_part5">Roles</div>
+                <div class="encabezado_part6">Acciones</div>
+              </div>
+              <div class="tabla_acciones_filas">
+                <div class="filas_part">Vacio</div>
+                <div class="filas_part1">Kevin Stiven</div>
+                <div class="filas_part2">kevin@gmail.com</div>
+                <div class="filas_part3">Ocupado</div>
+                <div class="filas_part4">No tengo</div>
+                <div class="filas_part5">Super-admin</div>
+                <div class="filas_part6">1,2,3</div>
+              </div>
+            </section>
+          </div>
+
+          <div id="menu_parte2">
+            <section class="barra_datos">
+              <div class="barra_datos_parte1">
+                <div class="b_d_circulo">
+
+                </div>
+                <div class="b_d_nombre">
+                  Diego Andres Hoyos
+                </div>
+                <div class="b_d_solicitar">
+                  Solicitar Rol Domiciliario
+                </div>
+              </div>
+              <div class="barra_datos_parte2">
+                <div class="b_d_fecha">
+                  10 de diciembre del 2023
+                </div>
+                <button class="b_d_estado">
+                  Estado
+                </button>
+              </div>
+            </section>
+            <div class="datos_menu_parte2">
+              <div class="datos_mp2_contacto">
+                <div class="contain_datos_circulo">
+                  <div class="circulo_externo">
+                    <div class="circulo_interno"></div>
+                  </div>
+                </div>
+                <div class="contain_contacto">
+                  Contacto
+                </div>
+                <div class="contain_info">
+                  <p>______________________</p>
+                  <p>______________________</p>
+                  <p>Direccion</p>
+                </div>
+              </div>
+              <div class="datos_mp2_infoGeneral">
+                <section class="infoG_nombre">
+                  <p>Diego Andres Hoyos Linares</p>
+                  <p>Aspirante a ##</p>
+                </section>
+                <section class="infoG_datos">
+                  <section class="infoG_parte1">
+                    <div class="IGparte1_contain">
+                      <p>Tipo de vehiculo</p>
+                      <p>_________________</p>
+                    </div>
+                    <div class="IGparte1_contain">
+                      <p>Tarjeta de propiedad</p>
+                      <p>_________________</p>
+                    </div>
+                    <p>Datos Bancarios</p>
+                    <div class="IGparte1_contain">
+                      <p>Tipo de cuenta</p>
+                      <p>_________________</p>
+                    </div>
+                  </section>
+                  <section class="infoG_parte2">
+                    <div class="IGparte1_contain">
+                      <p>Soat</p>
+                      <p>Visualizar archivo</p>
+                    </div>
+                    <div class="IGparte1_contain">
+                      <p>Licencia</p>
+                      <p>Visualizar archivo</p>
+                    </div>
+                    <p>  </p>
+                    <div class="IGparte1_contain">
+                      <p>Numero de cuenta</p>
+                      <p>_________________</p>
+                    </div>
+                  </section>
+                  <section class="infoG_parte3">
+                    <div class="IGparte3_imagen">
+                      <div class="contain_imagen_parte3">
+                        
+                      </div>
+                    </div>
+                    <div class="IGparte3_botones">
+                      <button class="IGparte3_boton_rechazar">Rechazar</button>
+                      <button class="IGparte3_boton_aceptar">Aceptar</button>
+                    </div>
+
+                  </section>
+                </section>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+
+      </section>
     </section>
 
     <section class="pages" id="servicio">
@@ -195,7 +336,12 @@ include('../config/Conexion.php');
 
   <script src="../assets/js/admin.js"></script>
   <script src="../assets/js/menuResponsive.js"></script>
+  <script>
 
+    function click_bot(){
+      window.location.href="#menu_parte2";
+    }
+  </script>
 </body>
 
 </html>
