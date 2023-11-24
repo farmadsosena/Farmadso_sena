@@ -4106,6 +4106,110 @@ label {
   border-radius: 5px;
 }
 
+
+/* estilos notificaciones medicamentos agostados ------------------*/
+#servicio{
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.titulo-notificaciones{
+  width: 97%;
+}
+
+.filtro-notificaciones{
+  width: 97%;
+}
+
+.filtro-notificaciones a{
+  margin-right: 30px;
+  color: #004dff;
+}
+
+.btns-aplicar{
+  width: 97%;
+}
+
+.btns-aplicar button{
+  height: 30px;
+  border-radius: 3px;
+  padding: 3px 10px;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.scroll-tabla{
+  width: 97%;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.tbl-notificaciones{
+  width: 100%;
+  height: 100%;
+  font-size: 0.9em;
+  border-collapse: collapse;
+}
+
+.tbl-notificaciones thead{
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.tbl-notificaciones tr{
+  border: 1px solid #ddd;
+  height: 20px;
+  margin: 30px;
+}
+
+.tbl-notificaciones thead th {
+  background-color: #e2dfdf;
+  text-align: left;
+  padding: 8px;
+}
+
+.tbl-notificaciones th,
+.tbl-notificaciones td{
+  vertical-align: top;
+}
+
+.tbl-notificaciones tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.tbl-notificaciones tbody td {
+  padding: 8px;
+}
+
+.tbl-notificaciones tbody img{
+  width: 30%;
+}
+
+/* Ajustar el ancho de la columna de Comentario */
+.tbl-notificaciones td:nth-child(3) {
+  width: 70%; /* Ajusta el ancho según tus necesidades */
+}
+
+/* Estilo para la primera columna (números) */
+.tbl-notificaciones tbody td:first-child {
+  font-weight: bold;
+}
+
+.tbl-notificaciones .aut{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.tbl-notificaciones .aut-nametel p{
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+
+
 @media screen and (max-width: 1100px) {
   .card-storage {
     width: 100%;
