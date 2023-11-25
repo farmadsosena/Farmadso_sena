@@ -406,6 +406,7 @@ INDEX PRINCIPAL DE LA PAGINA
   height: 23.5rem;
   border-radius: 5px;
   gap: 5px;
+  position: relative;
 }
 
 .top-product:hover {
@@ -2326,4 +2327,32 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 35px;
   height: 35px;
   animation: spin 1s linear infinite;
+}
+
+.result_buscador{
+  position: absolute;
+  right: 16%;
+  top: 105%;
+  scale: 0.6;
+  height: 26rem;
+  width: 35rem;
+  max-width: 96%;
+  border-radius: 7px;
+  z-index: 0;
+  background-color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,.25);
+}
+
+.muestra_ahorro{
+  position: absolute;
+  top: 10px;
+  left: 1rem;
+  padding: 7px 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #fff;
+  background-color: var(--primary);
+  border: none;
 }
