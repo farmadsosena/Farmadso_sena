@@ -8,12 +8,11 @@ if (isset($_SESSION["usu"])) {
   $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
   $rr = mysqli_fetch_assoc($consulta);
 }
-
 session_start();
 
 if (!isset($_SESSION['id'])) {
-  if (!isset($_SESSION['id_invitado'])) {
-    $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
+  if (!isset($_SESSION['idinvitado'])) {
+    $_SESSION['idinvitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
   }
 } else {
   // Si hay un usuario autenticado, utilizar su ID
@@ -194,7 +193,7 @@ function generarIDInvitadoUnico()
         <i class='bx bx-x x2 salir-vista-medicamento'></i>
         <section class="img-oferta">
           <section class="produc">
-            <img src="../assets/img/banner-ecommer.png" alt="">
+            <img src="" alt="">
           </section>
           <section class="resto-product">
             <div class="scroll2">
@@ -211,31 +210,25 @@ function generarIDInvitadoUnico()
           </section>
         </section>
         <section class="descript-pro">
-          <h2>Nutren</h2>
-          <h1>Nutren senior cafe con leche</h1>
-          <h4>Frasco x 100 tab</h4>
-          <h3>Nutren senior cafe con leche</h3>
-          <p>Referencia: 10001</p>
+          <h2 class="nombre_farmacia"></h2>
+          <h1 class="nombre_med"></h1>
+          <h3 class="nombre_med"></h3>
+          <p class="c_m"></p>
           <div class="precio-antes">
-            <div class="precio-a">
-              Antes $ 65.900
-            </div>
-            <div class="ahorro">
-              Ahorra $15.600
-            </div>
+            <div class="precio-a"></div>
+            <div class="ahorro"></div>
           </div>
-          <div class="precio">
-            $50.000
+          <div class="precio"></div>
+          <div class="descripcion_det_med">
+            <p></p>
           </div>
-          <div class="informacion">
-            <p>Incluye 0% de impuestos</p>
-            <p>Registro Sanitario: RSA-0009205-2019</p>
-          </div>
-
           <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
           <button class="vermas">Ver mas detalles</button>
         </section>
       </section>
+      <div class="cont-spinner-deta_med" style="display: none;">
+        <span class="spinner-deta_med"></span>
+      </div>
     </section>
     <section class="content-main">
       <aside>
@@ -284,6 +277,7 @@ function generarIDInvitadoUnico()
             echo "No hay categorías disponibles.";
           }
 
+
           echo "</div>";
 
           $conn->close();
@@ -326,20 +320,33 @@ function generarIDInvitadoUnico()
               $descuento = $row['valordescuento'];
               // Calcula el precio actual
               $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
-              echo "<form action='' method='POST' class='card cardProductoS' >";
+
+              $precio_antes = number_format($precio_antes, 0, ',', '.');
+              $precio_actual = number_format($precio_actual, 0, ',', '.');
+              $id_ofuscado = base64_encode($id_medicamento);
+              $id_medicamento = $row['id_medicamento'];
+              $precio_antes = $row['precio'];
+              $descuento = $row['valordescuento'];
+              // Calcula el precio actual
+              $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
+
+
+
+
+              echo "<form action='' method='POST' class='card ' class='cardProductoS'>";
               if (isset($_SESSION['id'])) {
                 echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
               } else {
                 // Si  la sesión no está iniciada se envia el invitado
                 echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id_invitado'] . ">";
               }
-              echo "<input type='hidden' name='imagen' value=" . $row['imagenprincipal'] . ">";
               echo "<input type='hidden' name='nombre' value=" . $row['nombre'] . ">";
-              echo "<div class='top-product'>";
-              echo "<input type='hidden' name='precio' value=" . $precio_actual . ">";
-              echo "<img src='../assets/img/" . $row['imagenprincipal'] . "' alt=''>";
-              echo "<h4>" . $row['nombre'] . "</h4>";
+              
+              echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
+              echo "<div class='top-product' data-im='$id_ofuscado'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
+              echo "<h3>" . $row['nombre'] . "</h3>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
               echo "<h2>$" . $precio_actual . "</h2>";
               echo "<input type='hidden' class='card-cantidad' name='idmedicamento' value='" . $row["idmedicamento"] . "'>";
@@ -362,35 +369,47 @@ function generarIDInvitadoUnico()
         ?>
       </div>
     </section>
+
     <section class="articles">
       <h1>Farmacias destacadas</h1>
       <div class="swiper slider-farmacias">
         <div class="swiper-wrapper">
-          <div class="swiper-slide colum-categorias">
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F1.jpg" alt="Vitaminas y minerales">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F2.jpg" alt="Dolor e inflamacion">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F3.jpg" alt="Gripa y tos">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F4.jpg" alt="Estomago">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F5.jpg" alt="Cuidado de la herida">
-            </section>
-            <section class="swiper-slide cont-farmacia">
-              <img src="../uploads/imgProductos/logo_F6.jpg" alt="Nutricion especializada">
-            </section>
-          </div>
+          <?php
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "farmadso";
+
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+          }
+
+          $sql = "SELECT * FROM farmacias ORDER BY IdFarmacia ASC LIMIT 6";
+          $result = $conn->query($sql);
+
+          echo "<div class='swiper-slide colum-categorias'>";
+
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<a href='' class='swiper-slide cont-farmacia'>";
+              echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
+              echo "</a>";
+            }
+          } else {
+            echo "No hay farmacias disponibles.";
+          }
+          echo "</div>";
+
+          $conn->close();
+          ?>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </section>
+
     <section class="articles">
       <h1>¡Servicios excepcionales para nuestros clientes!</h1>
       <section>
@@ -412,11 +431,13 @@ function generarIDInvitadoUnico()
   </main>
   <script src="../assets/js/agregarCarrito.js"></script>
   <script src="../assets/js/carrito.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="../assets/js/slider_inicio_tienda.js"></script>
   <script src="../assets/js/Font.js"></script>
   <script src="../assets/js/carritoF.js"></script>
   <script src="../assets/js/funcionMenutienda.js"></script>
   <script src="../assets/js/detallesRapidos.js"></script>
 </body>
+
 
 </html>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/pagoConCard.css" />
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -46,7 +47,8 @@
 
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
-                    <p id="cantidadFinal">6</p>
+                    <p id="cantidadFinal">0</p>
+                    <script src="../assets/javascript/cantidadP.js"></script>
                     <i class='bx bx-cart' id="viewCartIcon"></i>
                 </div>
 
@@ -62,47 +64,7 @@
                     <div id="tabla-contenedor">
                         <div class="itemCarrito">
                             <?php
-                       
-
-                            // // Verificar si hay productos en el carrito
-                            // if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0) {
-                            //     // Iterar sobre los productos del carrito y mostrarlos
-                            //     foreach ($_SESSION['carrito'] as $producto) {
-                            //         // Mostrar los detalles del producto
-                            //         echo "Producto: " . $producto['nombre'] . ", Precio: " . $producto['precio'] . ", Cantidad: " . $producto['cantidad'] . "<br>";
-                            //     }
-                            // } else {
-                            //     echo "El carrito está vacío.";
-                            // }
-
                             ?>
-                            <?php
-                            if (empty($itemsCarritoConMedicamentos)) {
-                                foreach ($itemsCarritoConMedicamentos as $item) : ?>
-                                    <div class="item-carrito">
-                                        <p><?php echo $item['idcarrito']; ?></p>
-
-                                        <img src="<?php echo $item['imagenprincipal'] ?>" alt="">
-                                        <div class="contenido">
-                                            <p><?php echo $item['nombre']; ?></p>
-                                            <p><?php echo $item['codigo']; ?></p>
-                                            <span class="costo"> <?php echo $item['precio']; ?></span>
-                                        </div>
-                                        <div class="cantidad">
-
-                                            <p></p>
-                                            <p>Nombre Medicamento: <?php echo $item['cantidadcarrito']; ?></p>
-
-                                            <span class="costo subtotal">$8.000</span>
-                                        </div>
-                                    </div>
-                            <?php endforeach;
-                            } else {
-                                echo "No hay elementos en el carrito.";
-                            }
-                            ?>
-
-
                         </div>
 
 
@@ -167,7 +129,7 @@
 
     </main>
     <script src="../assets/js/contraEntrega.js"></script>
-    <!-- <script>
+    <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
             // Obtén la altura de la ventana gráfica en vh
@@ -179,7 +141,7 @@
             // Establece la altura del elemento en px
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
-    </script> -->
+    </script>
 
 </body>
 

@@ -23,7 +23,9 @@
 .container-rapido {
   display: flex;
   position: relative;
-  width: 66%;
+  width: 59rem;
+  height: 28rem;
+  max-width: 96%;
   border-radius: 20px;
   background-color: white;
 }
@@ -164,8 +166,19 @@
     sans-serif;
 }
 
-.informacion p {
+.descripcion_det_med{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.descripcion_det_med > p {
   color: #919191 !important;
+  height: 4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  line-height: 1.34 !important;
 }
 
 .carrito {

@@ -12,10 +12,8 @@ class ContraEntregaModel
     {
         $this->conexion = $conexion;
     }
-
-
     // registrar datos invitado
-    public function registrarContraEntrega($datos, $esInvitado)
+    public function registrarContraEntrega($datos, $idUsuario)
     {
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
@@ -23,8 +21,8 @@ class ContraEntregaModel
         $telefono = $datos['telefono'];
         $email = $datos['correo'];
         $instrucciones = $datos['instrucciones'];
-
-        if ($esInvitado) {
+        
+        if ($idUsuario) {
             $query = "INSERT INTO invitado (nombre, apellido, telefono, direccion, correo, instrucciones) 
                   VALUES (?,?,?,?,?,?)";
         } else {
@@ -36,10 +34,9 @@ class ContraEntregaModel
         $stmt->bind_param("ssisss", $nombre, $apellido, $telefono, $direccion, $email, $instrucciones);
         $stmt->execute();
         $stmt->close();
+
+        return true;
     }
-
-
-
 
     public function obtenerCarritoUsuario($idUsuario)
     {
@@ -59,7 +56,6 @@ class ContraEntregaModel
         }
         return $_SESSION['carrito'];
     }
-
 
     public function consultar($consultardatos)
     {
