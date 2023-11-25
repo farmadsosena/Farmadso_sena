@@ -4,21 +4,22 @@
 
     <div class="categorias">
         <i class="bx bx-chevron-left" onclick="closeFormCategories()"></i>
-        <form id="categoryAdd" method="post" action="" enctype="multipart/form-data">
+        <form id="categoryAdd" class="form_edit" method="post" action="" enctype="multipart/form-data">
             <section class="separadores">
+                <input type="hidden" id="number999" value="">
                 <label for="nombrecategoria">Nombre categoría</label>
-                <input type="text" name="nombrecategoria" placeholder="Ingresa nombre categoría" class="input">
+                <input type="text" name="nombrecategoria" id="nombrecategoria" placeholder="Ingresa nombre categoría" class="input">
             </section>
             <section class="separadores">
                 <label for="descripcion">Descripción</label>
-                <input type="text" name="descripcion" placeholder="Descripción" class="input">
+                <input type="text" name="descripcion" id="descripcioncategoria" placeholder="Descripción" class="input">
             </section>
             <section class="separadores">
                 <label for="imgCategory">Agregar imagen:</label>
-                <input type="file" name="imgCategory" accept="image/*" />
+                <input type="file"  name="imgCategory" accept="image/*" />
             </section>
         
-            <input type="submit" value="Agregar Categoría" class="boton_aggcategoria">
+            <input type="submit" name="enviar" value="Agregar Categoría" class="boton_aggcategoria">
             <input type="reset" value="Limpiar formulario" class="boton_limpiar">
         </form>
         
