@@ -5,9 +5,9 @@ if (isset($_POST["im"])) {
     $id_medicamento = intval($_POST["im"]);
 
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
-                                INNER JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+                                LEFT JOIN promocion ON medicamentos.idmedicamento = promocion.id_medicamento 
                                 INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia 
-                                WHERE idmedicamento = ?");
+                                WHERE medicamentos.idmedicamento = ?");
 
     $stmt->bind_param("i", $id_medicamento);
     $stmt->execute();
