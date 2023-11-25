@@ -62,10 +62,7 @@
                     <p>Monto final a pagar <b id="subtotal"></b></p>
 
                     <div id="tabla-contenedor">
-                        <div class="itemCarrito">
-                            <?php
-                            ?>
-                        </div>
+                    
 
 
 
@@ -142,7 +139,7 @@
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
-
+ <script src="../assets/js/consultarCart.js"></script>
 </body>
 
-</html>
+</html> 

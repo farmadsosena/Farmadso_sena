@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $disponibilidad = $_POST["disponibilidad"];
     $tipo_vehiculo = $_POST["tipovehiculo"];
     $estadolaboral = "Trabajando";
-    $estadoAcep = "Pendiente";
+    $estadoAcep = 1;
     
     if (isset($_POST["tipoCuenta"])) {
         $tipoCuenta = $_POST["tipoCuenta"];

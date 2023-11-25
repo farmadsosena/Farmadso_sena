@@ -23,6 +23,7 @@ class MedicineModel
         $instrucciones = $medicine['instrucciones'];
         $lote = $medicine['lote'];
         $idcategoria = $medicine['idcategoria'];
+        $idfarmacia=1;
         $idproveedor = $medicine['idproveedor'];
         $idpromocion = $medicine['idpromocion'];
         $formaadministracion = $medicine['administracion'];

@@ -37,84 +37,9 @@
         <h3>Resumen de compra</h3>
 
         <form method="POST" id="form-eliminar">
-            <p>Monto final a pagar <b id="subtotal">$75.500</b></p>
+            <p>Monto final a pagar <b id="subtotal"></b></p>
 
             <div id="tabla-contenedor">
-
-
-                <div id="medicamento1" class="itemCarrito">
-                    <img src="../uploads/imgProductos/aspirine.png" alt="Aspirina">
-                    <div class="contenido">
-                        <p>Aspirina</p>
-                        <p>Código #01</p>
-                        <span class="costo">$12.000</span>
-                    </div>
-                    <div class="cantidad">
-
-                        <p></p>
-                        <p>Cantidad 2</p>
-                        <span class="costo subtotal">$24.000</span>
-                    </div>
-                </div>
-
-                <div id="medicamento2" class="itemCarrito">
-                    <img src="../uploads/imgProductos/paracetamol.png" alt="Paracetamol">
-                    <div class="contenido">
-                        <p>Paracetamol</p>
-                        <p>Código #02</p>
-                        <span class="costo ">$4000</span>
-                    </div>
-                    <div class="cantidad">
-
-                        <p></p>
-                        <p>Cantidad 2</p>
-                        <span class="costo subtotal">$8.000</span>
-                    </div>
-                </div>
-
-                <div id="medicamento3" class="itemCarrito">
-                    <img src="../uploads/imgProductos/ibuprofeno.png" alt="Ibuprofeno">
-                    <div class="contenido">
-                        <p>Ibuprofeno</p>
-                        <p>Código #03</p>
-                        <span class="costo">$6.500</span>
-                    </div>
-                    <div class="cantidad">
-
-                        <p></p>
-                        <p>Cantidad 1</p>
-                        <span class="costo subtotal">$6.500</span>
-                    </div>
-                </div>
-
-                <div id="medicamento4" class="itemCarrito">
-                    <img src="../uploads/imgProductos/omeprazol.png" alt="Omeprazol">
-                    <div class="contenido">
-                        <p>Omeprazol</p>
-                        <p>Código #04</p>
-                        <span class="costo">$8.000</span>
-                    </div>
-                    <div class="cantidad">
-
-                        <p></p>
-                        <p>Cantidad 2</p>
-                        <span class="costo subtotal">$16.000</span>
-                    </div>
-                </div>
-
-                <div id="medicamento5" class="itemCarrito">
-                    <img src="../uploads/imgProductos/amoxi.png" alt="Amoxicilina">
-                    <div class="contenido">
-                        <p>Amoxicilina</p>
-                        <p>Código #05</p>
-                        <span class="costo">$7.000</span>
-                    </div>
-                    <div class="cantidad">
-                        <p></p>
-                        <p>Cantidad 3</p>
-                        <span class="costo subtotal">$21.000</span>
-                    </div>
-                </div>
 
             </div>
         </form>
@@ -141,8 +66,8 @@
         window.addEventListener('orientationchange', adjustHeight);
 
     </script>
-    <script src="../assets/js/paymentProcess.js"></script>
     <script src="../assets/js/checkAmount.js"></script>
+    <script src="../assets/js/consultarCart.js"></script>
 </body>
 
 </html>

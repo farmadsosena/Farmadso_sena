@@ -1,0 +1,141 @@
+main {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+/* Estilos para la sección de filtros */
+#filterOptions {
+  background-color: #fff;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 0 1rem 1rem 0;
+  text-align: center;
+  width: 10rem;
+  padding: 2rem;
+  flex-shrink: 0;
+  height: 20rem;
+}
+
+#filter-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clasificacion {
+  width: 8rem;
+  color: #aa8d8d;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clasificacion:hover {
+  color: #009efd;
+}
+
+.clasificacion:focus {
+  color: #074e79;
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.contenedorCards {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+@media (max-width: 500px) {
+  body {
+    width: 425px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    max-width: auto;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filterOptions {
+    width: 90%;
+    height: 5rem;
+    display: flex;
+    padding: 0 0.8rem;
+    margin: 1rem;
+    border-radius: 1rem;
+  }
+
+  #filter-buttons {
+    width: 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    overflow-x: scroll;
+  }
+
+  .clasificacion {
+    width: 6rem;
+  }
+
+  #prod {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 170px;
+  }
+
+  #prod:hover {
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+      rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  }
+
+  #prod > img {
+    margin-top: 0.5em;
+    width: 12rem;
+    object-fit: cover;
+    height: 15rem;
+    border-radius: 5px;
+    margin-bottom: 1em;
+  }
+
+  #prod p {
+    color: #888;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .descri {
+    display: flex;
+    flex-direction: column;
+    background-color: #ebebeb;
+  }
+
+  .contenedorCards {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

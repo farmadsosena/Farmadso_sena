@@ -28,6 +28,7 @@
   max-width: 96%;
   border-radius: 20px;
   background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,.25);
 }
 
 .x2 {
@@ -43,6 +44,7 @@
   flex-direction: column;
   width: 45%;
   border-radius: 20px 0px 0px 20px;
+  position: relative;
 }
 
 .img-oferta .produc {
@@ -174,11 +176,12 @@
 
 .descripcion_det_med > p {
   color: #919191 !important;
-  height: 4rem;
+  height: 5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  line-height: 1.34 !important;
+  line-height: 1.3 !important;
+  margin-top: 7px;
 }
 
 .carrito {

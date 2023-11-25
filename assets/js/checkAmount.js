@@ -6,7 +6,7 @@ function consultarMonto(callback) {
                 window.location.href = "index.php";
             } else if (data.state === true) {
                 const monto = data.amount;
-
+    
                 convertirPesosADolares(monto, function (pesoFinal) {
                     paypal.Buttons({
                         style: {
@@ -92,3 +92,5 @@ function convertirPesosADolares(cantidad, callback) {
         }
     });
 }
+
+

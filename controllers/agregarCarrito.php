@@ -7,32 +7,32 @@ $conexion = $conexionDataBase->Getconexion();
 // Validamos si no existe sesion de cliente  #Trabajamos con el idsessionInvitado  
 
 $precio = $_POST['precio'];
-$imagen = $_POST['imagen'];
+
 $idmedicamento = $_POST['idmedicamento'];
 $cantidadProducto  = $_POST['cantidadcarrito'];
 buscarProductoInventario($idmedicamento, $cantidadProducto);
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $producto = [
-        'idmedicamento' => $_POST['idmedicamento'],
-        'nombre' => $_POST['nombre'],
-        'precio' => $_POST['precio'],
-        'cantidad' => $_POST['cantidadcarrito']
-    ];
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Obtener los datos del formulario
+//     $producto = [
+//         'idmedicamento' => $_POST['idmedicamento'],
+//         'nombre' => $_POST['nombre'],
+//         'precio' => $_POST['precio'],
+//         'cantidad' => $_POST['cantidadcarrito']
+//     ];
 
-    if (!isset($_SESSION['carrito'])) {
-        $_SESSION['carrito'] = [];
-    }
+//     if (!isset($_SESSION['carrito'])) {
+//         $_SESSION['carrito'] = [];
+//     }
 
-    $_SESSION['carrito'][] = $producto;
+//     $_SESSION['carrito'][] = $producto;
 
-    // Redirigir a la página de productos o a donde sea conveniente
-    // header("Location: ../views/pagocontraentrega.php");
-    // exit();
-}
+//     // Redirigir a la página de productos o a donde sea conveniente
+//     // header("Location: ../views/pagocontraentrega.php");
+//     // exit();
+// }
 function buscarProductoInventario($idmedicamento, $cantidadProducto)
 {
     global $conexion;
@@ -48,6 +48,7 @@ function buscarProductoInventario($idmedicamento, $cantidadProducto)
     $candidadStock = $resultado_consult['stock'];
     $precio = $resultado_consult['precio'];
     $imagen = $resultado_consult['imagendescrip'];
+
     $costoTotal = $cantidadProducto * $precio;
 
 
@@ -101,7 +102,7 @@ function userValidate()
 }
 
 
-function insertCart($idmedicamento, $stock, $imagen,$precio)
+function insertCart($idmedicamento, $stock,$precio,$img)
 {
 
     global $conexion;
@@ -113,8 +114,8 @@ function insertCart($idmedicamento, $stock, $imagen,$precio)
     $userType = (isset($idUser['idinvitado'])) ?
 
         //  Insertar si es invitado
-        $insertCart = $conexion->query("INSERT INTO carrito (idusuario, idmedicamento, cantidadcarrito,  idinvitado)
-                                        VALUES (null, '$idmedicamento', '$stock', '$idUserBd')")
+        $insertCart = $conexion->query("INSERT INTO carrito (idusuario, idmedicamento, cantidadcarrito,  idinvitado,precio)
+                                        VALUES (null, '$idmedicamento', '$stock', '$idUserBd,$precio')")
 
         // Insertar si es cliente
         : $insertCart = $conexion->query("INSERT INTO carrito(idusuario, idmedicamento, cantidadcarrito,idinvitado,precio)
@@ -124,8 +125,8 @@ function insertCart($idmedicamento, $stock, $imagen,$precio)
 
 
     $modificarRuta = '../';
-    if (strpos($imagen, $modificarRuta) === 0) {
-        $imagen = str_replace($modificarRuta, '', $imagen);
+    if (strpos($img, $modificarRuta) === 0) {
+        $imagen = str_replace($modificarRuta, '', $img);
     }
     $data = array(
         'correcto' => $imagen

@@ -174,7 +174,346 @@ include('../config/Conexion.php');
     </section>
 
     <section class="pages" id="servicio">
-      a
+
+      <aticle class="miniheader">
+        <header>
+          <article>
+            <h1>Nofiticaciones de Medicamentos agotados</h1>
+          </article>
+          <article>
+            <div>
+              <i class="fa-solid fa-check"></i>
+              <p>Todos(12)</p>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-xmark"></i>
+              <p>Pendientes (12)</p>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-stamp"></i>
+              <p>Spam (12)</p>
+            </div>
+           
+            
+          </article>
+        </header>
+  
+        <section>
+          <button>Acción por lote</button>
+          <button>Aplicar</button>
+        </section>
+      </aticle>
+      
+      <main class="menuservicios">
+        <article>  <!--Container-->
+          <section></section>
+
+          <section>
+            <p>Autor</p>
+          </section>
+
+          <section>
+            <p>Comentarios</p>
+          </section>
+          
+          <section>
+            <p>Enviado el</p>
+          </section>
+        </article>
+
+        <section> <!--Contenedor de servicios al cliente-->
+          <article>
+            <section></section>
+            <section>
+              <div>
+                <img src="" alt="">
+                <article>
+                  <h4>Alexander Caicedo</h4>
+                  <p>3144645485</p>
+                </article>
+              </div>
+              <h4>alexandercaicedo@gmail.com</h4>
+            </section>
+
+            <section>
+              <h4>Aqui si no se</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore sapiente, 
+                tenetur vel aliquam qui nisi ipsam beatae sunt suscipit quae quos similique 
+                adipisci recusandae ratione nesciunt impedit quia voluptate ea.</p>
+            </section>
+
+            <section>
+              <p>24/11/2023</p>
+              <p>A las 6:OOAM</p>
+            </section>
+          </article>
+
+
+          <article>
+            <section></section>
+            <section>
+              <div>
+                <img src="" alt="">
+                <article>
+                  <h4>Alexander Caicedo</h4>
+                  <p>3144645485</p>
+                </article>
+              </div>
+              <h4>alexandercaicedo@gmail.com</h4>
+            </section>
+
+            <section>
+              <h4>Aqui si no se</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore sapiente, 
+                tenetur vel aliquam qui nisi ipsam beatae sunt suscipit quae quos similique 
+                adipisci recusandae ratione nesciunt impedit quia voluptate ea.</p>
+            </section>
+
+            <section>
+              <p>24/11/2023</p>
+              <p>A las 6:OOAM</p>
+            </section>
+          </article>
+        </section>
+      </main>
+      
+    <div class="titulo-notificaciones">
+      <h2>Notificaciones de medicamentos agotados</h2>
+    </div>
+
+    <div class="filtro-notificaciones">
+      <a href="">Todos (0)</a>
+      <a href="">Pendientes (3)</a>
+      <a href="">Spam (5)</a>
+    </div>
+
+    <div class="btns-aplicar">
+
+      <button>Accion por lote</button>
+      <button>Aplicar</button>
+
+    </div>
+
+    <div class="scroll-tabla">
+
+      <table class="tbl-notificaciones">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox">
+            </th>
+            <th>Autor</ht>
+            <th>Comentario</th>
+            <th>Enviado el</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>2345612376543987654</p>
+                </div>
+              </div>
+              <p>svvvvvvvvfffffffffhhhhhhhhhhhhhhhhttttttttttttttts@gmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p>ssfewgdtferergmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis, quis aut, quas culpa nemo praesentium cum ipsum nisi quidem deserunt optio mollitia rem! Eius culpa aliquid commodi repellendus aliquam laudantium, ut enim! Culpa deserunt, nesciunt, impedit fugiat, nisi beatae corporis aliquam explicabo delectus autem doloribus. Odit ea dolores quod. Cum?
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, consequatur officia? Consequatur eius soluta praesentium molestias repellendus nisi, animi provident aliquid aut necessitatibus facilis. Quis, officiis! Necessitatibus tempora ratione cumque dolore repellendus doloremque esse doloribus deserunt, sint amet impedit delectus reprehenderit vel architecto culpa aut aperiam, eos beatae tenetur pariatur nulla nihil animi! Et voluptatibus ratione facere fuga architecto porro deserunt animi nulla autem fugit, reiciendis earum maxime error eaque odio temporibus quaerat iste molestiae nesciunt! Doloremque fuga, voluptates tempora, dolorum quisquam facilis cupiditate, id laborum repellendus ab corrupti debitis rem voluptate provident fugit reprehenderit dolores quae unde minus porro?
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p class="correo-notificacion">ss@gmail.com</p>
+  
+            </td>
+  
+            <td class="">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p>svvvs@gmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p>ss@gmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+
+
+          <tr>
+  
+            <td>
+              <input type="checkbox">
+            </td>
+  
+            <td>
+  
+              <div class="aut">
+                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                <div class="aut-nametel">
+                  <p>Nombre</p>
+                  <p>23456123</p>
+                </div>
+              </div>
+              <p>ss@gmail.com</p>
+  
+            </td>
+  
+            <td>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Incidunt accusantium earum minima tempora fugiat magnam beatae 
+                facere aut delectus odio.
+              </p>
+            </td>
+  
+            <td>
+              <p>20-11-2023</p>
+            </td>
+  
+          </tr>
+  
+        </tbody>
+      </table>
+
+    </div>
+
+
+
     </section>
 
     <section class="pages" id="medicamentos">

@@ -1,3 +1,4 @@
+$(document).ready(function () {
 $('.cardProductoS').submit(function (e) {
   e.preventDefault();
   var form = $(this);
@@ -55,3 +56,4 @@ var formData = form.serialize();
   });
 });
 
+});

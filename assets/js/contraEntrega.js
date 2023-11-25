@@ -39,7 +39,8 @@ btn.addEventListener('click', () => {
         formcontraentrega.classList.add('desactiveForm');
         formcontraentrega.classList.remove('activeForm');
         cartCont.classList.remove('desactiveForm');
-        cartCont.classList.add('activeForm');
+        cartCont.classList.add('activeForm')
+        TraerDataCart();
 
 
     } else {
@@ -57,10 +58,10 @@ btn.addEventListener('click', () => {
 })
 
 
-function ocultarElemento(id){
+function ocultarElemento(id) {
     document.getElementById(id).style.display = 'none';
 }
-function mostrarElemento(id){
+function mostrarElemento(id) {
     document.getElementById(id).style.display = 'flex';
 }
 
@@ -71,16 +72,18 @@ function animateText() {
     const textElement = document.getElementById("animated-text");
     let opacity = 0;
 
-    const fadeInInterval = setInterval(function() {
-      opacity += 0.01; // Ajusta la velocidad de la animación cambiando este valor
-      textElement.style.opacity = opacity;
-      if (opacity >= 1) {
-        clearInterval(fadeInInterval);
-        // La animación ha terminado
-    
-      }
-    }, 20); // El intervalo en milisegundos
-  }
+    const fadeInInterval = setInterval(function () {
+        opacity += 0.01; // Ajusta la velocidad de la animación cambiando este valor
+        textElement.style.opacity = opacity;
+        if (opacity >= 1) {
+            clearInterval(fadeInInterval);
+            // La animación ha terminado
 
-  // Llama a la función de animación cuando el documento esté listo
-  document.addEventListener("DOMContentLoaded", animateText);
+        }
+    }, 20); // El intervalo en milisegundos
+}
+
+// Llama a la función de animación cuando el documento esté listo
+document.addEventListener("DOMContentLoaded", animateText);
+
+

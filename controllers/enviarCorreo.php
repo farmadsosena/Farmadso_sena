@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -32,84 +33,32 @@ try {
 
     // Contenido del correo en formato HTML
 
-    // Contenido del correo en formato HTML (tabla con los 5 medicamentos)
+
+    // Contenido del correo en formato HTML (ejemplo de factura)
     $mail->Body = '
-<html>
-<head>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>    <h2 style="color: #2d57a8">Su compra ha sido realizada con éxito</h2>
-<table>
-    <tr>
-        <th>Nombre Medicamento</th>
-        <th>Código</th>
-        <th>Precio Unitario</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-    </tr>
-    <tr>
-        <td>Aspirina</td>
-        <td>Código #01</td>
-        <td>$12.000</td>
-        <td>2</td>
-        <td>$24.000</td>
-    </tr>
-    <tr>
-        <td>Paracetamol</td>
-        <td>Código #02</td>
-        <td>$4.000</td>
-        <td>2</td>
-        <td>$8.000</td>
-    </tr>
-    <tr>
-        <td>Ibuprofeno</td>
-        <td>Código #03</td>
-        <td>$6.500</td>
-        <td>1</td>
-        <td>$6.500</td>
-    </tr>
-    <tr>
-        <td>Omeprazol</td>
-        <td>Código #04</td>
-        <td>$8.000</td>
-        <td>2</td>
-        <td>$16.000</td>
-    </tr>
-    <tr>
-        <td>Amoxicilina</td>
-        <td>Código #05</td>
-        <td>$7.000</td>
-        <td>3</td>
-        <td>$21.000</td>
-    </tr>
-</table>
-<a style="
-width: 150px;
-height: 50px;
-background-color: #9f9f9;
-display: inline-flex;
-"  href="adso24.com">Ver compra</a>
-<p>Subtotal de compra: $75.500</p>
-</body>
-</html>';
+<h2 style=" text-aling:center ; ">Desayunos sorpresa</h2>
+<table border="1px" style="border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio unitario</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+';
 
 
-    // Envía el correo
-    $mail->send();
+    for ($i = 0; $i < sizeof($DATA_ALL); $i++) {
+        $mail->Body .= $DATA_ALL[$i];
+    }
+
+    $mail->Body .= '</table><br> <p>Subtotal de compra <b>' . intval($total) . '</b></p>';
+
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; // Cuerpo alternativo en texto plano para clientes que no admiten HTML
+
+    // Envía el correo y manejo de excepciones
+    $mail->send(); // Envía el correo
 
 } catch (Exception $e) {
-
 }
