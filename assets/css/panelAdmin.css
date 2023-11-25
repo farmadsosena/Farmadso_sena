@@ -1133,7 +1133,12 @@ input[type="date"]:focus {
     padding: 5px;
 }
 
-
+.imagencontenedorincial{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
 
 
 

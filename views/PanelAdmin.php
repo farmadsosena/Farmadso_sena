@@ -169,8 +169,10 @@ $imgUser = $_SESSION['img'];
             <section id="contentUpdate">
 
                 <section class="page visiblePage" id="inicio">
-                    <h2>Contenido inicio</h2>
-                    <img src="" alt="">
+                    <div class="imagencontenedorincial">
+                    <img src="../assets/img/¡Bienvenido!.png" style="width:70%; ailing-self:center;" alt="">
+
+                    </div>
                 </section>
 
 
@@ -306,7 +308,6 @@ $imgUser = $_SESSION['img'];
 
    require_once '../templates/Ofertas.php';
 
-   require_once '../templates/historialCompras.php';
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
