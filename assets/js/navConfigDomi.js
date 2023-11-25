@@ -5,8 +5,10 @@ let Contenedor1 = document.getElementsByClassName("ContenedoresOptionConfig1");
 let Contenedor2 = document.getElementsByClassName("ContenedoresOptionConfig2");
 let Contenedor3 = document.getElementsByClassName("ContenedoresOptionConfig3");
 
-
-
+let BtnMicuentaResponsive = document.getElementById("MicuentaResponsive");
+let BtnDetallesResponsive = document.getElementById("DetallesResponsive");
+let BtnCambiarContraseñaResponsive = document.getElementById("CambiarContraseñaResponsive");
+let BtnCerrarSesionResponsive = document.getElementById("CerrarSesionResponsive");
 
 // Agregado: Obtener el botón "History"
 let BtnHistory = document.getElementById("history");
@@ -30,8 +32,6 @@ function ocultarTodosLosContenedores() {
         contenedor.style.display = "none";
     }
 }
-
-let ventanaPrincipal = false;
 
 // Función para obtener el nombre de la función activa almacenada en sessionStorage
 function obtenerFuncionActiva() {
@@ -75,6 +75,23 @@ BtnHistory.addEventListener("click", function() {
     guardarFuncionActiva("BtnMicuenta");
 });
 
+// Eventos click con la persistencia del estado para la versión móvil
+BtnMicuentaResponsive.addEventListener("click", function() {
+    mostrarContenedorYGuardar("BtnMicuentaResponsive", Contenedor1);
+});
+
+BtnDetallesResponsive.addEventListener("click", function() {
+    mostrarContenedorYGuardar("BtnDetallesResponsive", Contenedor2);
+});
+
+BtnCambiarContraseñaResponsive.addEventListener("click", function() {
+    mostrarContenedorYGuardar("BtnCambiarContraseñaResponsive", Contenedor3);
+});
+
+BtnCerrarSesionResponsive.addEventListener("click", function() {
+    mostrarContenedorYGuardar("BtnCerrarSesionResponsive", Contenedor3);
+});
+
 // Al cargar la página, restaurar la función activa almacenada
 document.addEventListener("DOMContentLoaded", function () {
     const funcionActiva = obtenerFuncionActiva();
@@ -88,6 +105,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
             case "BtnCerrarSesion":
                 mostrarContenedorYGuardar("BtnCerrarSesion", Contenedor3);
+                break;
+            case "BtnMicuentaResponsive":
+                mostrarContenedorYGuardar("BtnMicuentaResponsive", Contenedor1);
+                break;
+            case "BtnDetallesResponsive":
+                mostrarContenedorYGuardar("BtnDetallesResponsive", Contenedor2);
+                break;
+            case "BtnCambiarContraseñaResponsive":
+                mostrarContenedorYGuardar("BtnCambiarContraseñaResponsive", Contenedor3);
+                break;
+            case "BtnCerrarSesionResponsive":
+                mostrarContenedorYGuardar("BtnCerrarSesionResponsive", Contenedor3);
                 break;
             default:
                 ocultarTodosLosContenedores();
