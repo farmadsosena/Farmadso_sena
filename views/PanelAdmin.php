@@ -324,6 +324,7 @@ $imgUser = $_SESSION['img'];
     <script src="../assets/js/graphisAdminFarmacia.js"></script>
     <script src="../assets/js/enviarFormsAdmin.js"></script>
     <script src="../assets/js/Ventanas-modals.js"></script>
+    <script src="../assets/js/medicamentos-Form.js"></script>
     <script src="../assets/js/filtromedicamentos.js"></script>
     <script src="../assets/js/formularioEditar.js"></script>
     <script src="../assets/js/Categoria.js"></script>
