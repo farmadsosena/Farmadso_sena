@@ -520,20 +520,11 @@ INDEX PRINCIPAL DE LA PAGINA
   font-size: 3.2em;
 }
 
-<<<<<<< HEAD
-.article>a>h3 {
-    font-size: 16px;
-    color: #696464;
-    font-family: sans-serif;
-    text-align: center;
-    text-decoration: none;
-=======
 .article > h3 {
   font-size: 16px;
   color: #696464;
   font-family: sans-serif;
   text-align: center;
->>>>>>> df180065ec7b5bd02b86c3861f02b6bde5a1aa15
 }
 
 .visitP {
@@ -639,6 +630,9 @@ INDEX PRINCIPAL DE LA PAGINA
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1010px) {
+  .logo > b{
+    font-size: 19px;
+  }
   .cont-product {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -2364,4 +2358,8 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #fff;
   background-color: var(--primary);
   border: none;
+}
+
+#productos>a{
+  font-size: 16px;
 }

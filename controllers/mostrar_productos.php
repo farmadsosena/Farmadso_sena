@@ -1,10 +1,20 @@
 <?php
 require_once "../config/Conexion.php";
 
-$stmt = $conexion->prepare("SELECT * FROM medicamentos 
-LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
-INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");
+$stmt = "";
 
+if (isset($_GET['AsPZ'])) {
+    $id_encriptado = $_GET['AsPZ'];
+    $id_farmacia_tienda = base64_decode($id_encriptado);
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia WHERE medicamentos.idfarmacia = ?");
+    $stmt->bind_param("i", $id_farmacia_tienda);
+} else {
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");
+}
 $stmt->execute();
 
 $result = $stmt->get_result();
