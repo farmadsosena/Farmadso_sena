@@ -15,7 +15,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
     }
 
     // Obtener nombre y apellido del paciente
-    $consultaPaciente = "SELECT nombre, apellido FROM usuarios WHERE idusuario = ?";
+    $consultaPaciente = "SELECT nombre, apellido, telefono FROM usuarios WHERE idusuario = ?";
     $stmtPaciente = mysqli_prepare($conexion, $consultaPaciente);
     mysqli_stmt_bind_param($stmtPaciente, "i", $idpaciente);
     mysqli_stmt_execute($stmtPaciente);
@@ -25,6 +25,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
         $filaUsuarios = $resultadoconsultaPaciente->fetch_assoc();
         $nombrePaciente = $filaUsuarios["nombre"];
         $apellidoCliente = $filaUsuarios["apellido"];
+        $telefonoCliente = $filaUsuarios["telefono"];
     }
 
     if ($idCompra) {
@@ -77,6 +78,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     echo '<div class="customerData">';
                     echo '<span>Dirección: B/' . $direccionpaciente . '</span>';
                     echo '<span>Cliente: ' . $nombrePaciente . ' ' . $apellidoCliente . ' </span>';
+                    echo '<a href="tel: + '. $telefonoCliente .'">' .$telefonoCliente .'</a>';
                     echo '</div>';
                     echo '<div class="buttonSeeMore" onclick="abrirNoti(' . $datosCompra["idcompra"] . ')">';
                     echo '<a href="#" class="seeMore" >Ver más</a>';

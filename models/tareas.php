@@ -17,8 +17,8 @@ if ($idDomiciliario) {
     while ($datosReporte = $resultado->fetch_assoc()) {
         $idcompra = $datosReporte["idcompra"];
 
-        // Si el estado de compra no es 2, no mostrar nada
-        if ($datosReporte["idestadocompra"] != 2) {
+        // Si el estado de compra no es 2 o 3, no mostrar nada
+        if ($datosReporte["idestadocompra"] != 2 && $datosReporte["idestadocompra"] != 3) {
             continue; // Salta a la siguiente iteración del bucle
         }
 

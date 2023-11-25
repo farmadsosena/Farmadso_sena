@@ -24,15 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($usuarioExiste) {
             echo 'No puedes aceptar otro pedido';
         } else {
-            // Obtener la cantidad de farmacias según los productos que tiene la compra
-            $consultaCantidadFarmacias = "SELECT COUNT(DISTINCT medicamentos.idfarmacia) as cantidadFarmacias
+            // Obtener la cantidad de direcciones únicas de farmacias asociadas a los productos de la compra
+            $consultaCantidadDirecciones = "SELECT COUNT(DISTINCT farmacias.Direccion) as cantidadDirecciones
                 FROM detallecompra
                 INNER JOIN medicamentos ON detallecompra.idmedicamento = medicamentos.idmedicamento
+                INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.IdFarmacia
                 WHERE detallecompra.idcompra = $idCompra";
 
-            $resultadoCantidadFarmacias = mysqli_query($conexion, $consultaCantidadFarmacias);
-            $datosCantidadFarmacias = $resultadoCantidadFarmacias->fetch_assoc();
-            $cantidadFarmacias = $datosCantidadFarmacias["cantidadFarmacias"];
+            $resultadoCantidadDirecciones = mysqli_query($conexion, $consultaCantidadDirecciones);
+            $datosCantidadDirecciones = $resultadoCantidadDirecciones->fetch_assoc();
+            $cantidadDirecciones = $datosCantidadDirecciones["cantidadDirecciones"];
+
+            // Calcular la hora de los medicamentos
+            $horaMedicamentos = date('Y-m-d H:i:s', strtotime("+" . ($cantidadDirecciones * 10) . " minutes"));
 
             // Actualizar el estado de la compra
             $sql = "UPDATE compra SET idestadocompra = 2 WHERE idcompra = $idCompra";
@@ -41,21 +45,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($resultado) {
                 echo "Excelente, Revisa tu bandeja de tareas";
 
-                // Obtener información necesaria para la inserción
+                // Obtener información necesaria para la inserción en reporteestadofinal
                 $fechaFinal = date('Y-m-d H:i:s'); // Puedes ajustar el formato según sea necesario
                 $idEstadoCompra = 2; // Puedes ajustar según sea necesario
 
                 // Consulta de inserción en reporteestadofinal
-                $consultaInsertar = "INSERT INTO reporteestadofinal (idrepartidor, idcompra, fechafinal, idestadocompra) VALUES ('$idDomiciliario', '$idCompra', '$fechaFinal', '$idEstadoCompra')";
+                $consultaInsertar = "INSERT INTO reporteestadofinal (idrepartidor, idcompra, fechafinal, horaMedicamentos, idestadocompra) 
+                                    VALUES ('$idDomiciliario', '$idCompra', '$fechaFinal', '$horaMedicamentos', '$idEstadoCompra')";
 
                 $resultadoInsercion = mysqli_query($conexion, $consultaInsertar);
 
                 if ($resultadoInsercion) {
-                    // Insertar la cantidad de farmacias en la tabla comprasmasivas
-                    $consultaInsertarCantidadFarmacias = "INSERT INTO comprasmasivas (idcompra, cantidadFarmacias, cantidadConfirmada) VALUES ('$idCompra', '$cantidadFarmacias', 0)";
-                    $resultadoInsertarCantidadFarmacias = mysqli_query($conexion, $consultaInsertarCantidadFarmacias);
+                    // Insertar la cantidad de direcciones en la tabla comprasmasivas
+                    $consultaInsertarCantidadDirecciones = "INSERT INTO comprasmasivas (idcompra, cantidadFarmacias, cantidadConfirmada, HoraReclamada, estadoReclamo) 
+                                                             VALUES ('$idCompra', '$cantidadDirecciones', 0, NULL, 1)";
+                    $resultadoInsertarCantidadDirecciones = mysqli_query($conexion, $consultaInsertarCantidadDirecciones);
 
-                    if ($resultadoInsertarCantidadFarmacias) {
+                    if ($resultadoInsertarCantidadDirecciones) {
                         // echo "Se insertó en comprasmasivas correctamente";
                     } else {
                         echo "Error al insertar en comprasmasivas: " . mysqli_error($conexion);

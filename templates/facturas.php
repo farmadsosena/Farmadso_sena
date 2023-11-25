@@ -1,69 +1,71 @@
-<html lang="en">
+<?php
+session_start();
+$idusuario = $_SESSION["id"];
+// Incluye el archivo de conexión a la base de datos (asumiendo que está en '../config/Conexion.php')
+require_once '../config/Conexion.php';
+$idCompra;
 
+// Valida si se recibe el ID de la compra
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtiene el ID de la compra
+    $ID = $_POST['idcompra'];
 
-<i class="bx bx-chevron-left" onclick="closeDetalles()"></i>
-<div class="contenido-factura" id="contenido-factura">
-    <?php
-    // Include the database connection file (assuming it's in '../config/Conexion.php')
-    require_once '../config/Conexion.php';
-    $idCompra;
-    // Validate if the ID of the purchase is received
-    
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtiene el IdFarmacia del usuario actual
+    $consultaFarmacia = "SELECT IdFarmacia FROM farmacias WHERE idusuario = $idusuario";
+    $resultadoFarmacia = $conexion->query($consultaFarmacia);
 
-        // Get the ID of the purchase
-        $ID = $_POST['idcompra'];
+    if ($resultadoFarmacia && $resultadoFarmacia->num_rows > 0) {
+        $filaFarmacia = $resultadoFarmacia->fetch_assoc();
+        $idFarmacia = $filaFarmacia['IdFarmacia'];
 
-        // Use prepared statements to prevent SQL injection
-        $consulta = "SELECT * FROM detallecompra WHERE idcompra = $ID";
+        // Utiliza declaraciones preparadas para evitar la inyección SQL
+        $consulta = "SELECT dc.*, m.nombre AS nombre_medicamento
+                     FROM detallecompra dc
+                     INNER JOIN medicamentos m ON dc.idmedicamento = m.idmedicamento
+                     WHERE dc.idcompra = $ID
+                     AND m.idfarmacia = $idFarmacia";
+
         $resultado = $conexion->query($consulta);
 
-
-
-
-        // Check if the query was successful
+        // Verifica si la consulta fue exitosa
         if ($resultado) {
-            // Check if there are details of the purchase
+            // Verifica si hay detalles de la compra
             if ($resultado->num_rows > 0) {
                 echo '<div class="factura">';
-                echo '<h2>Detalles de compra</h2>';
+                echo '<h2>Detalles de compra: ' .  $ID . '</h2>';
                 echo '<hr>';
 
-                // Display details of the purchase
+                // Muestra los detalles de la compra
                 while ($fila = $resultado->fetch_assoc()) {
-
+                    $idmedicamento = $fila["idmedicamento"];
                     $idCompra = $fila['idcompra'];
+
                     echo '<div class="detalle">';
+                    echo '<p><strong>Nombre del Medicamento:</strong> ' . $fila['nombre_medicamento'] . '</p>';
                     echo '<p><strong>Cantidad:</strong> ' . $fila['cantidad'] . '</p>';
                     // Puedes agregar más detalles según sea necesario
                     echo '</div>';
                 }
 
-                // End of the purchase details container
+                // Fin del contenedor de detalles de la compra
                 echo '</div>';
             } else {
                 echo 'No hay detalles de compra para el ID proporcionado.';
             }
         }
-
-
-        // Cierra la conexión a la base de datos después de usarla
-    
     }
 
-    ?>
+    // Cierra la conexión a la base de datos después de usarla
+}
+?>
 
-    <div class="atencion">
-        <p>Si cambias estado indicarás la reclamación de medicamentos por parte del domiciliario</p>
-    </div>
-
-    <!-- Button to change the state (without purchase ID) -->
-    <form action="../controllers/updateState.php" method="post" >
-        <input type="hidden" name="idCompra" value="<?php echo $idCompra; ?>">
-        <button type="submit" class="btn-editar">Cambiar Estado</button>
-    </form>
-    <div id="detalleCompra"></div>
+<div class="atencion">
+    <p>Si cambias el estado, indicarás la reclamación de medicamentos por parte del domiciliario</p>
 </div>
 
-
-</html>
+<!-- Botón para cambiar el estado (sin ID de compra) -->
+<form action="../controllers/updateState.php" method="post">
+    <input type="hidden" name="idCompra" value="<?php echo $idCompra; ?>">
+    <button type="submit" class="btn-editar">Cambiar Estado</button>
+</form>
+<div id="detalleCompra"></div>
