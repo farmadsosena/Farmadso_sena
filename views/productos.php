@@ -13,6 +13,7 @@ require_once "../controllers/validacion_usu_tienda.php";
     <link rel="stylesheet" href="../assets/css/productos.css">
     <link rel="stylesheet" href="../assets/css/inicio_tienda.css" />
     <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
+    <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
     <link rel="stylesheet" href="../assets/css/detalles.css">
     <link rel="stylesheet" href="../assets/css/toastr.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -20,6 +21,8 @@ require_once "../controllers/validacion_usu_tienda.php";
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -289,6 +292,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             if ($result_farmacia->num_rows > 0) {
                 $fila_farmacia = $result_farmacia->fetch_assoc();
         ?>
+                <p style="color: #888;font-style: normal;font-weight: 400;font-size: 14px;line-height: 14px;margin-left: 0.7rem;display: flex;align-items: center;text-align: start;">Farmacia</p>
                 <div class="cont_farmacia_tienda">
                     <div class="cont_imgFarmacia">
                         <img src="../uploads/imgProductos/<?php echo $fila_farmacia["imgfarmacia"] ?>" alt="<?php echo $fila_farmacia["Nombre"] ?>">
@@ -298,6 +302,29 @@ require_once "../controllers/validacion_usu_tienda.php";
                         <p class="direccion_farmacia_tienda"><?php echo $fila_farmacia["Direccion"] ?></p>
                         <p class="contac_farmacia_tienda"><?php echo $fila_farmacia["telefono"] ?></p>
                         <button class="ciu_farmacia_tienda"><?php echo $fila_farmacia["ciudad"] ?></button>
+                    </div>
+                </div>
+            <?php
+            }
+        } else if (isset($_GET['ZjAPa'])) {
+            $id_encriptado = $_GET['ZjAPa'];
+            $id_categoria_tienda = base64_decode($id_encriptado);
+            $stmt_categoria = $conexion->prepare("SELECT * FROM categoria WHERE idcategoria = ?");
+            $stmt_categoria->bind_param("i", $id_categoria_tienda);
+            $stmt_categoria->execute();
+            $result_categoria = $stmt_categoria->get_result();
+
+            if ($result_categoria->num_rows > 0) {
+                $fila_categoria = $result_categoria->fetch_assoc();
+            ?>
+                <p style="color: #888;font-style: normal;font-weight: 400;font-size: 14px;line-height: 14px;margin-left: 0.7rem;display: flex;align-items: center;text-align: start;">Categoria</p>
+                <div class="cont_farmacia_tienda">
+                    <div class="cont_imgCategoria">
+                        <img src="../uploads/imgProductos/<?php echo $fila_categoria["imgCategoria"] ?>" alt="<?php echo $fila_categoria["nombrecategoria"] ?>">
+                    </div>
+                    <div class="cont_infoFarmacia">
+                        <h1><?php echo $fila_categoria["nombrecategoria"] ?></h1>
+                        <p class="descripcion_categoria"><?php echo $fila_categoria["descripcion"] ?></p>
                     </div>
                 </div>
         <?php
@@ -326,6 +353,45 @@ require_once "../controllers/validacion_usu_tienda.php";
                 </div>
             </section>
         </article>
+        <?php if (isset($_GET['AsPZ'])) {
+        ?>
+            <section class="articles">
+                <h1>Mas farmacias</h1>
+                <div class="swiper slider-farmacias">
+                    <div class="swiper-wrapper">
+                        <?php
+                        $sql = "SELECT * FROM farmacias";
+                        $result = $conexion->query($sql);
+
+                        echo "<div class='swiper-slide colum-categorias'>";
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $id_encriptado = $_GET['AsPZ'];
+                                $id_farmacia_tienda = base64_decode($id_encriptado);
+                                $id_farmacia = $row['IdFarmacia'];
+                                if ($id_farmacia !== $id_farmacia_tienda) {
+                                    $id_encriptado = base64_encode($id_farmacia);
+                                    echo "<a href='productos.php?AsPZ=$id_encriptado' class='swiper-slide cont-farmacia'>";
+                                    echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
+                                    echo "</a>";
+                                }
+                            }
+                        } else {
+                            echo "No hay farmacias disponibles.";
+                        }
+                        echo "</div>";
+
+                        $conexion->close();
+                        ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+        <?php
+        }
+        ?>
         <section class="venergar-info" id="informacion-rapida">
             <section class="container-rapido">
                 <i class='bx bx-x x2 salir-vista-medicamento'></i>
@@ -349,11 +415,12 @@ require_once "../controllers/validacion_usu_tienda.php";
                         <div class="ahorro"></div>
                     </div>
                     <div class="precio"></div>
+                    <p class="stock_detaM"></p>
                     <div class="descripcion_det_med">
                         <p></p>
                     </div>
                     <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
-                    <button class="vermas">Ver mas detalles</button>
+                    <!-- <button class="vermas">Ver mas detalles</button> -->
                 </section>
             </section>
             <div class="cont-spinner-deta_med" style="display: none;">

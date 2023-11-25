@@ -184,6 +184,19 @@ main {
     flex-shrink: 0;
 }
 
+.cont_imgCategoria{
+    width: 12rem;
+    height: 7rem;
+    flex-shrink: 0;
+}
+
+.cont_imgCategoria >img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
 .cont_imgFarmacia >img{
     width: 100%;
     height: 100%;

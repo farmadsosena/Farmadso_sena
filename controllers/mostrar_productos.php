@@ -10,7 +10,18 @@ if (isset($_GET['AsPZ'])) {
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
     INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia WHERE medicamentos.idfarmacia = ?");
     $stmt->bind_param("i", $id_farmacia_tienda);
-} else {
+}
+//  elseif (isset($_GET['ZjAPa'])) {
+//     $id_encriptado = $_GET['ZjAPa'];
+//     $id_categoria_tienda = base64_decode($id_encriptado);
+//     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+//     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+//     INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia 
+//     INNER JOIN categoria ON categoria.idcategoria = inventario.idcategoria
+//     WHERE categoria.idcategoria = ?");
+//     $stmt->bind_param("i", $id_categoria_tienda);
+// }
+ else {
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
     INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");

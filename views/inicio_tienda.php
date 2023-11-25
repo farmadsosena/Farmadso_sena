@@ -302,11 +302,11 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div class="ahorro"></div>
           </div>
           <div class="precio"></div>
+          <p class="stock_detaM"></p>
           <div class="descripcion_det_med">
             <p></p>
           </div>
           <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
-          <button class="vermas">Ver mas detalles</button>
         </section>
       </section>
       <div class="cont-spinner-deta_med" style="display: none;">
@@ -350,7 +350,9 @@ require_once "../controllers/validacion_usu_tienda.php";
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               while ($row = $result->fetch_assoc()) {
-                echo "<a href='#' class='swiper-slide cont-categorias'>";
+                $id_categoria = $row['idcategoria'];
+                $id_encriptado = base64_encode($id_categoria);
+                echo "<a href='productos.php?ZjAPa=$id_encriptado' class='swiper-slide cont-categorias'>";
                 echo "<section>";
                 echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
                 echo "<h3>" . $row['nombrecategoria'] . "</h3>";
