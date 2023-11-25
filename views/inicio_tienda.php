@@ -79,9 +79,7 @@ require_once "../controllers/validacion_usu_tienda.php";
       <div class="contenedorEnlaces">
 
         <div class="enlaceMenu" id="inicio"><i class="fa-solid fa-home"></i>Inicio</div>
-        <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
-
-        <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
+        <div class="enlaceMenu" id="productos"><a href="productos.php" style="display: flex; gap: 5px;align-items: center;font-size: 20px !important;color: #454343; width:100%; height:100%;"><i class="fa-solid fa-store" style="color:#3d83df;"></i>Productos</a></div>
         <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
         <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
         <?php
@@ -121,7 +119,9 @@ require_once "../controllers/validacion_usu_tienda.php";
         <p>Inicio</p>
       </div>
       <div id="productos"><i class='bx bxs-store'></i>
-        <p>Productos</p>
+        <a href="productos.php">
+          <p>Productos</p>
+        </a>
       </div>
       <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
         <p>Carrito</p>
@@ -458,7 +458,9 @@ require_once "../controllers/validacion_usu_tienda.php";
 
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              echo "<a href='' class='swiper-slide cont-farmacia'>";
+              $id_farmacia = $row['IdFarmacia'];
+              $id_encriptado = base64_encode($id_farmacia);
+              echo "<a href='productos.php?AsPZ=$id_encriptado' class='swiper-slide cont-farmacia'>";
               echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
               echo "</a>";
             }

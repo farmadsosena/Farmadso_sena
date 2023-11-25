@@ -1,3 +1,6 @@
+<?php
+require_once "../controllers/validacion_usu_tienda.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,11 +78,8 @@
                 ?>
             </div>
             <div class="contenedorEnlaces">
-
-                <div class="enlaceMenu" id="inicio"><i class="fa-solid fa-home"></i>Inicio</div>
+                <div class="enlaceMenu" id="inicio" style="color: #454343 !important;"><a href="inicio_tienda.php" style="display: flex; gap: 5px;align-items: center;font-size: 20px !important;color: #454343; width:100%; height:100%;"><i class="fa-solid fa-home"></i>Inicio</a></div>
                 <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
-
-                <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
                 <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
                 <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
                 <?php
@@ -116,7 +116,9 @@
         <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
         <nav id="menu">
             <div id="inicio"><i class='bx bxs-home-alt-2'></i>
-                <p>Inicio</p>
+                <a href="inicio_tienda.php">
+                    <p>Inicio</p>
+                </a>
             </div>
             <div id="productos"><i class='bx bxs-store'></i>
                 <p>Productos</p>
@@ -275,26 +277,55 @@
         </nav>
     </header>
     <main>
-        <section id="filterOptions">
-            <div id="filter-buttons">
-                <a class="clasificacion" data-category="todos">Todo</a>
-                <a class="clasificacion" data-category="Acetaminofén">Acetaminofen</a>
-                <a class="clasificacion" data-category="Paracetamol">paracetamol</a>
-                <a class="clasificacion" data-category="Loratadina">Loratadina</a>
-                <a class="clasificacion" data-category="antibioticos">Antibioticos</a>
-                <a class="clasificacion" data-category="asepsia">Asepsia</a>
-                <a class="clasificacion" data-category="corazon">Corazón</a>
-                <a class="clasificacion" data-category="dermatologicos">Dermatológicos</a>
-            </div>
-        </section>
+        <?php
+        if (isset($_GET['AsPZ'])) {
+            $id_encriptado = $_GET['AsPZ'];
+            $id_farmacia_tienda = base64_decode($id_encriptado);
+            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias WHERE IdFarmacia = ?");
+            $stmt_farmacia->bind_param("i", $id_farmacia_tienda);
+            $stmt_farmacia->execute();
+            $result_farmacia = $stmt_farmacia->get_result();
 
-        <section id="results">
-            <div id="con">
-                <div class="contenedorCards">
-                    <?php require_once '../controllers/mostrar_productos.php'; ?>
+            if ($result_farmacia->num_rows > 0) {
+                $fila_farmacia = $result_farmacia->fetch_assoc();
+        ?>
+                <div class="cont_farmacia_tienda">
+                    <div class="cont_imgFarmacia">
+                        <img src="../uploads/imgProductos/<?php echo $fila_farmacia["imgfarmacia"] ?>" alt="<?php echo $fila_farmacia["Nombre"] ?>">
+                    </div>
+                    <div class="cont_infoFarmacia">
+                        <h1><?php echo $fila_farmacia["Nombre"] ?></h1>
+                        <p class="direccion_farmacia_tienda"><?php echo $fila_farmacia["Direccion"] ?></p>
+                        <p class="contac_farmacia_tienda"><?php echo $fila_farmacia["telefono"] ?></p>
+                        <button class="ciu_farmacia_tienda"><?php echo $fila_farmacia["ciudad"] ?></button>
+                    </div>
                 </div>
-            </div>
-        </section>
+        <?php
+            }
+        }
+        ?>
+        <article class="cont_produc_filtro">
+            <section id="filterOptions">
+                <div id="filter-buttons">
+                    <a class="clasificacion" data-category="todos">Todo</a>
+                    <a class="clasificacion" data-category="Acetaminofén">Acetaminofen</a>
+                    <a class="clasificacion" data-category="Paracetamol">paracetamol</a>
+                    <a class="clasificacion" data-category="Loratadina">Loratadina</a>
+                    <a class="clasificacion" data-category="antibioticos">Antibioticos</a>
+                    <a class="clasificacion" data-category="asepsia">Asepsia</a>
+                    <a class="clasificacion" data-category="corazon">Corazón</a>
+                    <a class="clasificacion" data-category="dermatologicos">Dermatológicos</a>
+                </div>
+            </section>
+
+            <section id="results">
+                <div id="con">
+                    <div class="contenedorCards">
+                        <?php require_once '../controllers/mostrar_productos.php'; ?>
+                    </div>
+                </div>
+            </section>
+        </article>
         <section class="venergar-info" id="informacion-rapida">
             <section class="container-rapido">
                 <i class='bx bx-x x2 salir-vista-medicamento'></i>
@@ -329,8 +360,8 @@
                 <span class="spinner-deta_med"></span>
             </div>
         </section>
+        <?php require '../templates/footer_inicio_tienda.html'; ?>
     </main>
-    <?php require '../templates/footer_inicio_tienda.html'; ?>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
