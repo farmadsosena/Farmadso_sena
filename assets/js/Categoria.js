@@ -56,3 +56,38 @@ function cargarContenido() {
     }
 }
 
+
+
+function openEditCategoria(idCategoria){
+  console.log(idCategoria)
+  var contMedicine = document.querySelector('.container-categoria');
+  var contForm = document.querySelector('.categorias');
+
+  contMedicine.style.display = 'none';
+  contForm.style.display = 'flex';
+
+  fetch("../controllers/editarCategoria.php", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "idCategoria=" + idCategoria,
+})
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("La solicitud no pudo completarse correctamente.");
+        }
+        return response.text();
+    })
+    .then((data) => {
+        // Procesar la respuesta del servidor
+        cargarContenido();
+        alert(data); // Muestra la respuesta en una alerta
+         // Vuelve a cargar el contenido después de la eliminación
+    })
+    .catch((error) => {
+        console.error("Error al eliminar la categoría:", error);
+        alert("Error al eliminar la categoría.");
+    });
+}
+  

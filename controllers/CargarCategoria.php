@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         <h1>{$row['descripcion']}</h1>
                     </div>
                     <div class='buttons'>
-                        <button class='btn-editar'>Editar<i class='bx bx-pencil'></i> </button>
+                        <button class='btn-editar'onclick='openEditCategoria({$row['idcategoria']})'>Editar<i class='bx bx-pencil'></i> </button>
                         <button class='btn-eliminar' onclick='eliminarCategoria({$row['idcategoria']})' data-delete='{$row['idcategoria']}' >Eliminar <i class='bx bx-trash'></i> </button>
                     </div>
                 </div>";

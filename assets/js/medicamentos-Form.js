@@ -145,3 +145,6 @@ function closeModalInventario() {
         contForm.style.display = 'none';
 }
 
+
+
+

@@ -26,4 +26,5 @@
         </form>
 
 </div>
+<script src="../assets/js/medicamentos-Form.js"></script>
 </html>
