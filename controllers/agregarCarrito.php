@@ -82,7 +82,7 @@ function cartQuery($idmedicamento)
     } else if (isset($_SESSION['id'])) {
 
         $idusuario = $_SESSION['id'];
-        $consulta = $conexion->query("SELECT idcarrito, cantidadCarrito, precio FROM carrito WHERE idusuario = '$idusuario' AND idmedicamento = '$idmedicamento'");
+        $consulta = $conexion->query("SELECT idcarrito, cantidadcarrito, precio FROM carrito WHERE idusuario = '$idusuario' AND idmedicamento = '$idmedicamento'");
 
         if ($consulta->num_rows > 0) {
             $data = $consulta->fetch_assoc();
@@ -102,7 +102,7 @@ function userValidate()
 }
 
 
-function insertCart($idmedicamento, $stock,$precio,$img)
+function insertCart($idmedicamento,$cantidadProducto,$precio,)
 {
 
     global $conexion;
@@ -115,28 +115,28 @@ function insertCart($idmedicamento, $stock,$precio,$img)
 
         //  Insertar si es invitado
         $insertCart = $conexion->query("INSERT INTO carrito (idusuario, idmedicamento, cantidadcarrito,  idinvitado,precio)
-                                        VALUES (null, '$idmedicamento', '$stock', '$idUserBd,$precio')")
+                                        VALUES (null, '$idmedicamento', '$cantidadProducto', '$idUserBd','$precio')")
 
         // Insertar si es cliente
         : $insertCart = $conexion->query("INSERT INTO carrito(idusuario, idmedicamento, cantidadcarrito,idinvitado,precio)
-                                    VALUES ('$idUserBd', '$idmedicamento', '$stock', null,$precio)");
+                                    VALUES ('$idUserBd', '$idmedicamento', '$cantidadProducto', null,'$precio')");
 
     // Si no existe un registro, insertar un nuevo registro en el carrito
 
 
-    $modificarRuta = '../';
-    if (strpos($img, $modificarRuta) === 0) {
-        $imagen = str_replace($modificarRuta, '', $img);
-    }
+    // $modificarRuta = '../';
+    // if (strpos($img, $modificarRuta) === 0) {
+    //     $imagen = str_replace($modificarRuta, '', $img);
+    // }
     $data = array(
-        'correcto' => $imagen
+        'correcto' => 'medicamento añadido al carrito'
     );
     echo json_encode($data);
 }
 
 function updateCart($idmedicamento, $cantidadProducto, $amount, $img)
 {
-    $imagen = null;
+    
     global $conexion;
     // Obtener el id de la session activa 
     $idUser = userValidate();
@@ -156,13 +156,13 @@ function updateCart($idmedicamento, $cantidadProducto, $amount, $img)
             $cantidadBd = intval($cartArticle['cantidadcarrito']);
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidadProducto;
-            $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
+            $conexion->query("UPDATE carrito SET cantidadcarrito = '$newCantidad', precio = '$newAmount' 
             WHERE  idmedicamento = '$idmedicamento'  and idsession = '$idUserBd'
             ");
         }
     } else if (isset($idUser['idusuario'])) {
         //  Actualizar el carrito si es Usuario / primero consultamos si existe ese producto 
-        $queryCart = $conexion->query("SELECT  carrito.cantidad, carrito.idmedicamento, inventario.stock AS cantidadBodega, carrito.precio 
+        $queryCart = $conexion->query("SELECT  carrito.cantidadcarrito, carrito.idmedicamento, inventario.stock AS cantidadBodega, carrito.precio 
         INNER JOIN inventario ON carrito.idmedicamento  = inventario.idmedicamento
         WHERE idmedicamento  = '$idmedicamento' and idusuario = '$idUserBd'
         ");
@@ -170,7 +170,7 @@ function updateCart($idmedicamento, $cantidadProducto, $amount, $img)
 
             $cartArticle = $queryCart->fetch_assoc();
             $amountBd = floatval($cartArticle['precio']);
-            $cantidadBd = intval($cartArticle['cantidad']);
+            $cantidadBd = intval($cartArticle['cantidadcarrito']);
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidadProducto;
             $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
@@ -181,12 +181,12 @@ function updateCart($idmedicamento, $cantidadProducto, $amount, $img)
 
     // Si no existe un registro, insertar un nuevo registro en el carrito
 
-    $modificarRuta = '../';
-    if (strpos($img, $modificarRuta) === 0) {
-        $imagen = str_replace($modificarRuta, '', $img);
-    }
+    // $modificarRuta = '../';
+    // if (strpos($img, $modificarRuta) === 0) {
+    //     $imagen = str_replace($modificarRuta, '', $img);
+    // }
     $data = array(
-        'correcto' => $imagen
+        'correcto' => 'producto actualizado en carrito'
     );
 
     echo json_encode($data);

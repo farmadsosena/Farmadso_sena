@@ -1,6 +1,7 @@
 <?php
 require_once "../controllers/validacion_usu_tienda.php";
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@ session_start();
   <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
   <link rel="stylesheet" href="../assets/css/detalles.css">
   <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -384,10 +386,10 @@ session_start();
       <h1>Ofertas</h1>
       <div class="ranking">
         <?php
-        // $servername = "localhost";
-        // $username = "root";
-        // $password = "";
-        // $dbname = "farmadso";
+         $servername = "localhost";
+         $username = "root";
+         $password = "";
+         $dbname = "farmadso";
 
         try {
           $conn = new mysqli($servername, $username, $password, $dbname);
@@ -424,17 +426,14 @@ session_start();
               // Calcula el precio actual
               $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
 
-
-
-
-              echo "<form action='' method='POST' class='card cardProductoS' >";
+              echo " <form class='cardProductoS' autocomplete='off'  method='post'>";
               if (isset($_SESSION['id'])) {
                 echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
               } else {
                 // Si  la sesión no está iniciada se envia el invitado
                 echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id_invitado'] . ">";
               }
-              echo "<input type='hidden' name='nombre' value=" . $row['nombre'] . ">";
+              echo "<input type='hidden' name='idmedicamento' value=" . $row['idmedicamento'] . ">";
               
               echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
               echo "<div class='top-product' data-im='$id_ofuscado'>";
@@ -443,6 +442,7 @@ session_start();
               echo "<h3>" . $row['nombre'] . "</h3>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
               echo "<h2>$" . $precio_actual . "</h2>";
+              echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $row["stock"] . "' value='1'>";
               echo "<button class='comprar-tarje-comp'>Comprar</button>";
               echo "<button class='muestra_ahorro'>Ahorra $descuento%</button>";
               echo "</div>";
@@ -524,7 +524,7 @@ session_start();
   </main>
   <script src="../assets/js/agregarCarrito.js"></script>
   <script src="../assets/js/carrito.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
   <script src="../assets/js/slider_inicio_tienda.js"></script>
   <script src="../assets/js/Font.js"></script>
   <script src="../assets/js/carritoF.js"></script>

@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +16,12 @@ session_start();
     <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
     <link rel="stylesheet" href="../assets/css/detalles.css">
     <link rel="stylesheet" href="../assets/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/76894f3292.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <!-- Enlace al JavaScript de Toastr.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
     </style>
