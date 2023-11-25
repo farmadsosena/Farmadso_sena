@@ -6,7 +6,7 @@ include('../config/Conexion.php');
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Inicia la sesión
     session_start();
-
+    $_SESSION['id'] = 1;
     $where = '';
 
     // Verifica si está establecido el id de usuario en la sesión

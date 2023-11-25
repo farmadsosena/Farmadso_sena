@@ -92,5 +92,3 @@ function convertirPesosADolares(cantidad, callback) {
         }
     });
 }
-
-
