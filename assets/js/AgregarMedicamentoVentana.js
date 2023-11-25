@@ -25,46 +25,81 @@ function AbrirWindows(){
 }
 
 
-function eliminarFormula() {
-  // Obtén una NodeList de elementos con la clase 'delete'
-  const botonesEliminar = document.querySelectorAll(".delete");
 
-  // Itera sobre la NodeList y agrega un evento de clic a cada elemento
-  botonesEliminar.forEach((boton) => {
-    boton.addEventListener("click", async () => {
-      // Obtiene el valor del atributo data-delete del elemento actual
-      const idFormula = boton.dataset.delete;
 
-      try {
-        const response = await fetch("../controllers/DeleteFormula.php", {
+function eliminarFormula(IdFormula) {
+  console.log(IdFormula)
+  var confirmar = confirm("¿Estás seguro de que quieres eliminar este registro?");
+
+  if (confirmar) {
+      fetch("../controllers/DeleteFormula.php", {
           method: "POST",
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+              "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: new URLSearchParams({ idFormula }).toString(),
-        });
-
-        if (!response.ok) {
-          throw new Error("La solicitud no pudo completarse correctamente.");
-        }
-
-        const data = await response.json();
-
-        if (data.success) {
-          // Eliminación exitosa
-          alert(data.message);
-          cargarContenido(); // Otra lógica que deseas realizar después de la eliminación
-        } else {
-          // Eliminación fallida
-          alert("Error: " + data.message);
-        }
-      } catch (error) {
-        console.error("Error en la solicitud", error);
-        alert("Error en la solicitud: " + error.message);
-      }
-    });
-  });
+          body: "idFormula=" + IdFormula,
+      })
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error("La solicitud no pudo completarse correctamente.");
+              }
+              return response.text();
+          })
+          .then((data) => {
+              // Procesar la respuesta del servidor
+              cargarContenido();
+             // Muestra la respuesta en una alerta
+               // Vuelve a cargar el contenido después de la eliminación
+          })
+          .catch((error) => {
+              console.error("Error al eliminar la categoría:", error);
+              alert("Error al eliminar la categoría.");
+          });
+  }
 }
+
+
+
+// function eliminarFormula() {
+//   // Obtén una NodeList de elementos con la clase 'delete'
+//   const botonesEliminar = document.querySelectorAll(".delete");
+
+//   // Itera sobre la NodeList y agrega un evento de clic a cada elemento
+//   botonesEliminar.forEach((boton) => {
+//     boton.addEventListener("click", async () => {
+//       // Obtiene el valor del atributo data-delete del elemento actual
+//       const idFormula = boton.dataset.delete;
+
+//       try {
+//         const response = await fetch("../controllers/DeleteFormula.php", {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/x-www-form-urlencoded",
+//           },
+//           body: new URLSearchParams({ idFormula }).toString(),
+//         });
+
+//         if (!response.ok) {
+//           throw new Error("La solicitud no pudo completarse correctamente.");
+//         }
+
+//         const data = await response.json();
+
+//         if (data.success) {
+//           // Eliminación exitosa
+//           alert(data.message);
+//           cargarContenido(); // Otra lógica que deseas realizar después de la eliminación
+//         } else {
+//           // Eliminación fallida
+//           alert("Error: " + data.message);
+//         }
+//       } catch (error) {
+//         console.error("Error en la solicitud", error);
+//         alert("Error en la solicitud: " + error.message);
+//       }
+//     });
+//   });
+// }
 
 
 

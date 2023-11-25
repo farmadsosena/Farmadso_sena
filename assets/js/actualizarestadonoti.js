@@ -7,7 +7,7 @@ $(document).ready(function () {
         // Realiza la solicitud AJAX
         $.ajax({
             type: "POST",
-            url: "models/cambiodeestadoNoti.php", // Reemplaza con la ruta correcta a tu script PHP
+            url: "../models/cambiodeestadoNoti.php", // Reemplaza con la ruta correcta a tu script PHP
             data: { idCompra: idCompra },
             success: function (response) {
                 // Muestra la alerta al usuario

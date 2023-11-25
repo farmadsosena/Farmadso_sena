@@ -204,6 +204,10 @@ body {
 .pages {
   height: 100vh;
   overflow: auto;
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb7280f1f72b9c5adc8a5b1f0c3dbc14ea4c0e31
   flex: 1;
 }
 
@@ -3513,6 +3517,157 @@ body {
   color: #fff;
   border-radius: 5px;
 }
+
+
+/* estilos notificaciones medicamentos agostados ------------------*/
+#servicio{
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.titulo-notificaciones{
+  width: 97%;
+}
+
+.filtro-notificaciones{
+  width: 97%;
+}
+
+.filtro-notificaciones a{
+  margin-right: 30px;
+  color: #004dff;
+}
+
+.btns-aplicar{
+  width: 97%;
+}
+
+.btns-aplicar button{
+  height: 30px;
+  border-radius: 3px;
+  padding: 3px 10px;
+  border: 1px solid #a7a6a6;
+  margin-right: 10px;
+}
+
+.scroll-tabla{
+  width: 97%;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.tbl-notificaciones{
+  width: 100%;
+  height: 100%;
+  font-size: 0.9em;
+  border-collapse: collapse;
+}
+
+.tbl-notificaciones thead{
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.tbl-notificaciones tr{
+  border: 1px solid #ddd;
+  height: 20px;
+  margin: 30px;
+}
+
+.tbl-notificaciones thead th {
+  background-color: #e2dfdf;
+  text-align: left;
+  padding: 8px;
+}
+
+.tbl-notificaciones th,
+.tbl-notificaciones td{
+  vertical-align: top;
+  flex-wrap: wrap;
+  max-width: 20%;
+}
+
+.tbl-notificaciones tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.tbl-notificaciones tbody td {
+  padding: 8px;
+}
+
+.tbl-notificaciones tbody img{
+  width: 20%;
+}
+
+.correo-notificacion{
+  max-width: 100px;
+}
+
+.tbl-notificaciones td:nth-child(2) {
+  max-width: 250px; /* Ajusta el ancho según tus necesidades */
+  white-space: normal;
+  word-wrap: break-word;
+  
+}
+
+/* Estilo para la primera columna (números) */
+.tbl-notificaciones tbody td:first-child {
+  font-weight: bold;
+}
+
+.tbl-notificaciones .aut{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.tbl-notificaciones .aut-nametel{
+  width: 79%;
+  flex-wrap: wrap;
+}
+
+.tbl-notificaciones .aut-nametel p{
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+/* version movil de notificaciones medicamentos agostados ------------------*/
+@media screen and (max-width: 600px) {
+
+#servicio{
+  justify-content: start;
+}
+
+.titulo-notificaciones{
+  margin-bottom: 10px;
+}
+
+.filtro-notificaciones{
+  margin-bottom: 10px;
+}
+
+.btns-aplicar{
+  margin-bottom: 10px;
+}
+
+.scroll-tabla{
+  height: 24%;
+}
+
+.tbl-notificaciones tbody img{
+  width: 20px;
+}
+
+.tbl-notificaciones td:nth-child(2) {
+  max-width: 80px;
+}
+
+
+}
+
+
 
 @media screen and (max-width: 1100px) {
   .card-storage {

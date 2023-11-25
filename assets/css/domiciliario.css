@@ -198,6 +198,18 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   justify-content: center;
   background-color: #f0f0f0;
 }
+
+.navConfigResponsive {
+  display: none;
+  width: 20%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+
 .containerMenuConfig {
   width: 90%;
   height: 90%;
@@ -261,9 +273,14 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   align-items: center;
   gap: 10px;
 }
+
+.opcionesConfig>i{
+  margin-left: 12px;
+}
+
 .iconUser {
   margin-left: 10px;
-  color: var(--azulOscuro);
+  color: #418fde;
 }
 .helpConfig {
   display: flex;
@@ -556,6 +573,8 @@ h1 {
   justify-content: flex-end;
 }
 
+ 
+
 .nameEPS {
   display: flex;
   align-items: center;
@@ -564,7 +583,8 @@ h1 {
 }
 
 .nameEPS > img {
-  width: 20vh;
+  display: flex;
+  height: 100%;
 }
 
 .customerData {
@@ -643,7 +663,7 @@ h1 {
 }
 
 .epsInfo > img {
-  width: 14vh;
+  width: 7vh;
 }
 
 .orderInfo {
@@ -730,7 +750,10 @@ DE LAS TAREAS*/
   flex-direction: row;
   height: 40vh;
   width: 100%;
-  background-color: #154163;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px grey;
 }
 
 .taskData {
@@ -757,7 +780,6 @@ DE LAS TAREAS*/
   flex-direction: column;
   justify-content: center;
   height: 30vh;
-  color: var(--blanco);
   width: 100%;
   gap: 1vh;
 }
@@ -765,7 +787,6 @@ DE LAS TAREAS*/
 .taskData > p {
   padding-left: 3vh;
   font-weight: 600;
-  color: var(--blanco);
 }
 
 .shippingStatus {
@@ -780,7 +801,6 @@ DE LAS TAREAS*/
   justify-content: flex-end;
   height: 6vh;
   padding-right: 6vh;
-  color: var(--blanco);
   font-weight: 700;
 }
 
@@ -790,7 +810,6 @@ DE LAS TAREAS*/
 
 .stateDelivery > span {
   height: 4vh;
-  color: var(--blanco);
   font-size: 3.5vh;
 }
 
@@ -803,12 +822,11 @@ DE LAS TAREAS*/
 }
 
 .DETE > span {
-  color: var(--blanco);
   font-size: 12vh;
 }
 
 .DETE > p {
-  color: var(--blanco);
+  color: #000;
 }
 
 .optionsStateDelivery {
@@ -1079,6 +1097,28 @@ input[type="file"] {
     cursor: pointer;
     user-select: none;
   }
+
+  .navConfigResponsive {
+    display: flex;
+    width: 15%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+  }
+
+
+
+  .EncabezadoNavConfigresponsive{
+    font-size: 16px;
+  }
+
+  .LetraGrisResponsive{
+    font-size: 12px;
+  }
+
+
 
   /* Garaviz */
 

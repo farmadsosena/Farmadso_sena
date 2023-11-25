@@ -3,6 +3,8 @@ use modeloMedicina\MedicineModel;
 
 require_once '../models/MedicineModel.php';
 require_once '../config/Conexion.php';
+require_once '../models/Log.php';
+session_start();
 
 
 // Validar solicitud 
@@ -29,31 +31,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $imagenes = $_FILES['img']['name'];
     $rutaFinal = '../uploads/imgProductos/';
     $imagenesBd = array();
-    
+
     for ($i = 0; $i < count($imagenes); $i++) {
         $nombreOriginal = $imagenes[$i];
-        $nombreUnico = uniqid() . '_' . $nombreOriginal; // Genera un nombre único
+        $nombreUnico = uniqid() . '_'.$nombreOriginal; // Genera un nombre único
         $rutaDestino = $rutaFinal . $nombreUnico;
-    
+
         if (move_uploaded_file($_FILES['img']['tmp_name'][$i], $rutaDestino)) {
             $imagenesBd[] = $nombreUnico;
         } else {
             echo "Error al mover el archivo: " . $_FILES['img']['error'][$i];
         }
     }
-    
-    
+
+
 
     // Insertar en el modelo
     $result = $modelMedicinaa->medicineInsert($medicine, $imagenesBd);
-    $response = ($result) ? true : 
-    (($result === null) ? null : false)
+    $response = ($result) ? true :
+        (($result === null) ? null : false)
     ;
-    $message = match($response){
+    $message = match ($response) {
         true => 'Medicamento agregado correctamente',
         null => 'El medicamento ya existe con ese codigo',
         false => 'Paso algo'
     };
+    if ($response === true) {
+
+        $log  = new Log();
+
+        $ip = $log::getIp();
+        $type = $log::typeDispositive();
+        $info = array(
+            'nivel' => 'SUCCESS',   
+            'mensaje' => "Se ha registrado un nuevo medicamento con el nombre  " . $medicine['nombre']  . " ",
+            'ip' => $ip,
+            'id_usuario' => $_SESSION['id'],
+            'tipo' => $type 
+        );
+        $resultt = $log->insert($info);
+
+    }
     $response = array(
         'status' => $response,
         'message' => $message
