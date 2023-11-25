@@ -1,6 +1,5 @@
 
 // Llama a la función eliminarFormula cuando el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", eliminarFormula);
 
 
 
@@ -29,7 +28,7 @@ function AbrirWindows(){
 
 function eliminarFormula(IdFormula) {
   console.log(IdFormula)
-  var confirmar = confirm("¿Estás seguro de que quieres eliminar este registro?");
+ var confirmar = confirm("¿Estás seguro de que quieres eliminar este registro?");
 
   if (confirmar) {
       fetch("../controllers/DeleteFormula.php", {

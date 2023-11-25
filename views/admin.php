@@ -1,10 +1,9 @@
-<?php
-
+ <?php
 session_start();
 #Validacion de rol
 include('../config/Conexion.php');
 
-?>
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +14,7 @@ include('../config/Conexion.php');
   <link rel="stylesheet" href="../assets/css/admin.css" />
   <script src="https://kit.fontawesome.com/0015840e45.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -45,12 +45,11 @@ include('../config/Conexion.php');
 
   <!-- Ventana editar perfil -->
   <!-- EL PROPIO PROGRAMACONSUEÑOINADOR -->
-
-
   <div id="modal" class="modal">
     <div class="content-form">
 
-      <form class="formularo-edit" action="../controllers/actualizar_ints_ap.php" method="POST" enctype="multipart/form-data">
+      <form class="formularo-edit" action="../controllers/actualizar_ints_ap.php" method="POST"
+        enctype="multipart/form-data">
         <span class="closeProfile" onclick="ocultarUserCard()">&times;</span>
         <h1 class="card-title">Editar Perfil</h1>
         <div class="campos-data">
@@ -88,7 +87,8 @@ include('../config/Conexion.php');
         </div>
         <div class="imgaa">
           <label for="imagen">Imagen Actual:</label>
-          <img src="imgusuario/<?php echo $imagen; ?>" alt="Imagen Actual" class="imga" ondblclick="mostrarImagenAmpliada(this)" onclick="cerrarImagen(this)">
+          <img src="imgusuario/<?php echo $imagen; ?>" alt="Imagen Actual" class="imga"
+            ondblclick="mostrarImagenAmpliada(this)" onclick="cerrarImagen(this)">
         </div>
         <div class="imgaa">
           <label for="new-imagen" class="btn-img">Subir nueva imagen</label>
@@ -151,11 +151,6 @@ include('../config/Conexion.php');
         <p class="pri">Servicio al cliente</p>
       </button>
 
-      <button class='botones' id='3' onclick="mostrarContenedor('medicamentos',this)">
-        <i class='fas fa-clipboard-list'></i>
-        <p class="pri">Acceso de Medicamentos</p>
-      </button>
-
       <button class='botones' id='6' onclick='mostrarContenedor("Graficas",this)'>
         <i class='fas fa-clipboard-list'></i>
         <p>Graficas del software</p>
@@ -170,354 +165,349 @@ include('../config/Conexion.php');
 
   <main id="main">
     <section class="pages" id="Inicio">
-      <h1>Inicio</h1>
+      <section class="llevar-completo">
+        <h1>Gestion de usuarios en el sistema</h1>
+        <section class="acciones-usuGes">
+          <div class="acc">
+            <select name="" id="">
+              <option value="">Selecciona una opcion</option>
+              <option value="">Con rol de Usuario con EPS</option>
+              <option value="">Con rol de Usuario estandar</option>
+              <option value="">Con rol de Domiciliario</option>
+              <option value="">Con rol de Farmaceutico</option>
+            </select>
+            <button class="agregar acoos aggg">+ Agregar Usuario</button>
+          </div>
+          <div class="button-solicitudes">
+            <button class="llamarAJAX acoos solii" id="resgistros" data-estado="1"><i class='bx bxs-user-check'></i> Solicitudes</button>
+          </div>
+        </section>
+        <section class="menu_gestion_user">
+          <div class="menu_parte1">
+            <section class="botones_random">
+              <button class="cantidad_registros acoos agre">Cantidad Registros</button>
+              <button class="Excel acoos agre">Excel</button>
+              <button class="Csv acoos agre">Csv</button>
+              <button class="Csv acoos agre none" id="limpiar">Lista de Usuarios</button>
+            </section>
+
+            <section class="tabla_acciones">
+              <div class="tabla_acciones_encabezado remarcar">
+                <div class="encabezado_part"></div>
+                <div class="encabezado_part1">Nombre</div>
+                <div class="encabezado_part2">Correo</div>
+                <div class="encabezado_part3">Estado</div>
+                <div class="encabezado_part4">Telefono</div>
+                <div class="encabezado_part5">Roles</div>
+                <div class="encabezado_part6">Acciones</div>
+              </div>
+
+              <div class="tabla_acciones_encabezado caer">
+                <div class="encabezado_part"></div>
+                <div class="encabezado_part1">
+                  <input type="search" name="" id="nombre" placeholder="Buscar Nombre de usuario">
+                </div>
+                <div class="encabezado_part2">
+                  <input type="search" name="" id="correo" placeholder="Buscar Correo de usuario">
+                </div>
+                <div class="encabezado_part3">
+                  <input type="search" name="" id="estado" placeholder="Buscar Estado">
+                </div>
+                <div class="encabezado_part4">
+                  <input type="search" name="" id="nombre" placeholder=" Buscar Telefono o fijo">
+                </div>
+                <div class="encabezado_part5">
+                  <input type="search" name="" id="nombre" placeholder="Buscar Rol">
+                </div>
+                <div class="encabezado_part6">
+                </div>
+              </div>
+
+              <section class="overfloww scroll none" id="reemplazar"></section>
+              <section class="overfloww scroll" id="iniciar">
+              <?php include "../models/UsuarioSuper-admin.php";?>
+              </section>
+            </section>
+          </div>
+
+          <div id="menu_parte2">
+            <section class="barra_datos">
+              <div class="barra_datos_parte1">
+                <div class="b_d_circulo">
+
+                </div>
+                <div class="b_d_nombre">
+                  Diego Andres Hoyos
+                </div>
+                <div class="b_d_solicitar">
+                  Solicitar Rol Domiciliario
+                </div>
+              </div>
+              <div class="barra_datos_parte2">
+                <div class="b_d_fecha">
+                  10 de diciembre del 2023
+                </div>
+                <button class="b_d_estado">
+                  Estado
+                </button>
+              </div>
+            </section>
+
+        </section>
+
+
+
+      </section>
     </section>
 
     <section class="pages" id="servicio">
 
-      <aticle class="miniheader">
-        <header>
-          <article>
-            <h1>Nofiticaciones de Medicamentos agotados</h1>
-          </article>
-          <article>
-            <div>
-              <i class="fa-solid fa-check"></i>
-              <p>Todos(12)</p>
-            </div>
+      <div class="titulo-notificaciones">
+        <h2>Notificaciones de medicamentos agotados</h2>
+      </div>
 
-            <div>
-              <i class="fa-solid fa-xmark"></i>
-              <p>Pendientes (12)</p>
-            </div>
+      <div class="filtro-notificaciones">
+        <a href="">Todos (0)</a>
+        <a href="">Pendientes (3)</a>
+        <a href="">Spam (5)</a>
+      </div>
 
-            <div>
-              <i class="fa-solid fa-stamp"></i>
-              <p>Spam (12)</p>
-            </div>
-           
-            
-          </article>
-        </header>
-  
-        <section>
-          <button>Acción por lote</button>
-          <button>Aplicar</button>
-        </section>
-      </aticle>
-      
-      <main class="menuservicios">
-        <article>  <!--Container-->
-          <section></section>
+      <div class="btns-aplicar">
 
-          <section>
-            <p>Autor</p>
-          </section>
+        <button>Accion por lote</button>
+        <button>Aplicar</button>
 
-          <section>
-            <p>Comentarios</p>
-          </section>
-          
-          <section>
-            <p>Enviado el</p>
-          </section>
-        </article>
+      </div>
 
-        <section> <!--Contenedor de servicios al cliente-->
-          <article>
-            <section></section>
-            <section>
-              <div>
-                <img src="" alt="">
-                <article>
-                  <h4>Alexander Caicedo</h4>
-                  <p>3144645485</p>
-                </article>
-              </div>
-              <h4>alexandercaicedo@gmail.com</h4>
-            </section>
+      <div class="scroll-tabla scroll">
 
-            <section>
-              <h4>Aqui si no se</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore sapiente, 
-                tenetur vel aliquam qui nisi ipsam beatae sunt suscipit quae quos similique 
-                adipisci recusandae ratione nesciunt impedit quia voluptate ea.</p>
-            </section>
+        <table class="tbl-notificaciones">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox">
+              </th>
+              <th>Autor</ht>
+              <th>Comentario</th>
+              <th>Enviado el</th>
+            </tr>
+          </thead>
 
-            <section>
-              <p>24/11/2023</p>
-              <p>A las 6:OOAM</p>
-            </section>
-          </article>
+          <tbody>
+            <tr>
 
+              <td>
+                <input type="checkbox">
+              </td>
 
-          <article>
-            <section></section>
-            <section>
-              <div>
-                <img src="" alt="">
-                <article>
-                  <h4>Alexander Caicedo</h4>
-                  <p>3144645485</p>
-                </article>
-              </div>
-              <h4>alexandercaicedo@gmail.com</h4>
-            </section>
+              <td>
 
-            <section>
-              <h4>Aqui si no se</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore sapiente, 
-                tenetur vel aliquam qui nisi ipsam beatae sunt suscipit quae quos similique 
-                adipisci recusandae ratione nesciunt impedit quia voluptate ea.</p>
-            </section>
-
-            <section>
-              <p>24/11/2023</p>
-              <p>A las 6:OOAM</p>
-            </section>
-          </article>
-        </section>
-      </main>
-      
-    <div class="titulo-notificaciones">
-      <h2>Notificaciones de medicamentos agotados</h2>
-    </div>
-
-    <div class="filtro-notificaciones">
-      <a href="">Todos (0)</a>
-      <a href="">Pendientes (3)</a>
-      <a href="">Spam (5)</a>
-    </div>
-
-    <div class="btns-aplicar">
-
-      <button>Accion por lote</button>
-      <button>Aplicar</button>
-
-    </div>
-
-    <div class="scroll-tabla">
-
-      <table class="tbl-notificaciones">
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox">
-            </th>
-            <th>Autor</ht>
-            <th>Comentario</th>
-            <th>Enviado el</th>
-          </tr>
-        </thead>
-  
-        <tbody>
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>2345612376543987654</p>
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p>svvvvvvvvfffffffffhhhhhhhhhhhhhhhhttttttttttttttts@gmail.com</p>
-  
-            </td>
-  
-            <td>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
+                <p>svvvvvvvvfffffffffhhhhhhhhhhhhhhhhttttttttttttttts@gmail.com</p>
 
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>23456123</p>
+              </td>
+
+              <td>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <input type="checkbox">
+              </td>
+
+              <td>
+
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p>ssfewgdtferergmail.com</p>
-  
-            </td>
-  
-            <td>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis, quis aut, quas culpa nemo praesentium cum ipsum nisi quidem deserunt optio mollitia rem! Eius culpa aliquid commodi repellendus aliquam laudantium, ut enim! Culpa deserunt, nesciunt, impedit fugiat, nisi beatae corporis aliquam explicabo delectus autem doloribus. Odit ea dolores quod. Cum?
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, consequatur officia? Consequatur eius soluta praesentium molestias repellendus nisi, animi provident aliquid aut necessitatibus facilis. Quis, officiis! Necessitatibus tempora ratione cumque dolore repellendus doloremque esse doloribus deserunt, sint amet impedit delectus reprehenderit vel architecto culpa aut aperiam, eos beatae tenetur pariatur nulla nihil animi! Et voluptatibus ratione facere fuga architecto porro deserunt animi nulla autem fugit, reiciendis earum maxime error eaque odio temporibus quaerat iste molestiae nesciunt! Doloremque fuga, voluptates tempora, dolorum quisquam facilis cupiditate, id laborum repellendus ab corrupti debitis rem voluptate provident fugit reprehenderit dolores quae unde minus porro?
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
+                <p>ssfewgdtferergmail.com</p>
 
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>23456123</p>
+              </td>
+
+              <td>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis, quis aut, quas culpa nemo
+                  praesentium cum ipsum nisi quidem deserunt optio mollitia rem! Eius culpa aliquid commodi repellendus
+                  aliquam laudantium, ut enim! Culpa deserunt, nesciunt, impedit fugiat, nisi beatae corporis aliquam
+                  explicabo delectus autem doloribus. Odit ea dolores quod. Cum?
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, consequatur officia? Consequatur eius
+                  soluta praesentium molestias repellendus nisi, animi provident aliquid aut necessitatibus facilis.
+                  Quis, officiis! Necessitatibus tempora ratione cumque dolore repellendus doloremque esse doloribus
+                  deserunt, sint amet impedit delectus reprehenderit vel architecto culpa aut aperiam, eos beatae
+                  tenetur pariatur nulla nihil animi! Et voluptatibus ratione facere fuga architecto porro deserunt
+                  animi nulla autem fugit, reiciendis earum maxime error eaque odio temporibus quaerat iste molestiae
+                  nesciunt! Doloremque fuga, voluptates tempora, dolorum quisquam facilis cupiditate, id laborum
+                  repellendus ab corrupti debitis rem voluptate provident fugit reprehenderit dolores quae unde minus
+                  porro?
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <input type="checkbox">
+              </td>
+
+              <td>
+
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p class="correo-notificacion">ss@gmail.com</p>
-  
-            </td>
-  
-            <td class="">
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
+                <p class="correo-notificacion">ss@gmail.com</p>
 
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
+              </td>
 
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>23456123</p>
+              <td class="">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <input type="checkbox">
+              </td>
+
+              <td>
+
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p>svvvs@gmail.com</p>
-  
-            </td>
-  
-            <td>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
+                <p>svvvs@gmail.com</p>
 
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>23456123</p>
+              </td>
+
+              <td>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>
+                <input type="checkbox">
+              </td>
+
+              <td>
+
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p>ss@gmail.com</p>
-  
-            </td>
-  
-            <td>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
+                <p>ss@gmail.com</p>
+
+              </td>
+
+              <td>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
 
 
-          <tr>
-  
-            <td>
-              <input type="checkbox">
-            </td>
-  
-            <td>
-  
-              <div class="aut">
-                <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
-                <div class="aut-nametel">
-                  <p>Nombre</p>
-                  <p>23456123</p>
+            <tr>
+
+              <td>
+                <input type="checkbox">
+              </td>
+
+              <td>
+
+                <div class="aut">
+                  <img src="../assets/img/acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="imagen">
+                  <div class="aut-nametel">
+                    <p>Nombre</p>
+                    <p>23456123</p>
+                  </div>
                 </div>
-              </div>
-              <p>ss@gmail.com</p>
-  
-            </td>
-  
-            <td>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                Incidunt accusantium earum minima tempora fugiat magnam beatae 
-                facere aut delectus odio.
-              </p>
-            </td>
-  
-            <td>
-              <p>20-11-2023</p>
-            </td>
-  
-          </tr>
-  
-        </tbody>
-      </table>
+                <p>ss@gmail.com</p>
 
-    </div>
+              </td>
 
+              <td>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Incidunt accusantium earum minima tempora fugiat magnam beatae
+                  facere aut delectus odio.
+                </p>
+              </td>
+
+              <td>
+                <p>20-11-2023</p>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
 
 
-    </section>
 
-    <section class="pages" id="medicamentos">
-      e
     </section>
 
     <section class="pages" id="Graficas">
@@ -526,15 +516,19 @@ include('../config/Conexion.php');
     <!-- CUALQUIER ERROR DE AQUI HACIA ABAJO -->
 
 
+    <section class="viltrum" id="datos-solicitud">
 
+    <!-- LLegada de los datos que se hacen por solictud, archivo DatosSolicitud.php -->
+      
+    </section>
     <!-- CUALQUIER ERROR SALE DE AQUI V: HACIA ARRIBA -->
 
 
   </main>
 
   <script src="../assets/js/admin.js"></script>
+  <script src="../assets/js/Super-AdminControles.js"></script>
   <script src="../assets/js/menuResponsive.js"></script>
-
 </body>
 
 </html>
