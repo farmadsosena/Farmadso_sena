@@ -15,24 +15,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $where = 'carrito.idinvitado =' . $_SESSION['idinvitado'];
     }
 
-    $query = "SELECT medicamentos.nombre, carrito.idmedicamento, medicamentos.precio, medicamentos.codigo, medicamentos.imagenprincipal, carrito.cantidadcarrito, (medicamentos.precio * carrito.cantidadcarrito) AS costo FROM carrito INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento WHERE $where";
+    $query = "SELECT  medicamentos.nombre, carrito.idmedicamento, medicamentos.precio, medicamentos.codigo, medicamentos.imagenprincipal, carrito.cantidadcarrito, (medicamentos.precio * carrito.cantidadcarrito) AS costo FROM carrito INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento WHERE $where";
     $result = $conexion->query($query);
 
+   
     if ($result) {
         $medicamentos = array();
         $subtotal = 0;
         $medicamentosList  = array();
-
-
+       
         while ($producto = $result->fetch_assoc()) {
             $costo = $producto['precio'] * $producto['cantidadcarrito'];
             $subtotal += $costo;
             $id = $producto['idmedicamento'];
-
             // Agrega el producto al array $medicamentos
             $producto['costo'] = $costo;
             $medicamentosList[$id]=$producto['cantidadcarrito'];
             $medicamentos[] = $producto;
+            
         }
 
         $response = array(
