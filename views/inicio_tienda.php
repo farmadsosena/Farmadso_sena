@@ -118,8 +118,9 @@ require_once "../controllers/validacion_usu_tienda.php";
       <div id="inicio"><i class='bx bxs-home-alt-2'></i>
         <p>Inicio</p>
       </div>
-      <div id="productos"><i class='bx bxs-store'></i>
-        <a href="productos.php">
+      <div id="productos">
+        <a href="productos.php" class="ancla_menu_tienda">
+          <i class='bx bxs-store'></i>
           <p>Productos</p>
         </a>
       </div>
@@ -127,7 +128,7 @@ require_once "../controllers/validacion_usu_tienda.php";
         <p>Carrito</p>
       </div>
       <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+      <div id="mis-formulas"><a href="Usuario.php" class="ancla_menu_tienda">
           <i class="fa-solid fa-sheet-plastic"></i>
           <p>Formulas</p>
         </a>
@@ -154,7 +155,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           <span class="spinner-result_buscador"></span>
         </section>
         <section class="produc_no" style="display: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400" class="empty">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="300" height="300" class="empty">
             <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
               <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
               <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
@@ -278,7 +279,7 @@ require_once "../controllers/validacion_usu_tienda.php";
   </header>
   <!--Fin del encabezado-->
   <!--Index principal-->
-  <main id="index">
+  <main id="index" class="scrollableContent" onscroll="saveScrollPosition()">
     <section class="venergar-info" id="informacion-rapida">
       <section class="container-rapido">
         <i class='bx bx-x x2 salir-vista-medicamento'></i>
@@ -318,7 +319,31 @@ require_once "../controllers/validacion_usu_tienda.php";
         <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
         <p>Farmadso te brinda la capacidad de que lleguen medicamentos a la puerta de tu casa, Compralos a tu farmacia de eps o para un mejor precio desde otras farmacias encontradas en FARMADSO.</p>
         <button type="button" class="visitP" id="crearProductos">
-          <i class='bx bxs-store'></i> Mi farmacia
+          <?php
+          if (isset($_SESSION["usu"])) {
+            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias WHERE idusuario = ?");
+            $stmt_farmacia->bind_param("i", $id);
+            $stmt_farmacia->execute();
+            $result_farmacia = $stmt_farmacia->get_result();
+
+            $id_encriptado_miFarm = 0;
+            if ($result_farmacia->num_rows > 0) {
+              $fila_farmacia = $result_farmacia->fetch_assoc();
+              $id_encriptado_miFarm = base64_encode($fila_farmacia["IdFarmacia"]);
+            }
+          ?>
+            <a href="productos.php?AsPZ=<?php echo $id_encriptado_miFarm; ?>">
+              <i class='bx bxs-store'></i> Mi farmacia
+            </a>
+          <?php
+          } else {
+          ?>
+            <a href="login.php?_mlzO">
+              <i class='bx bxs-store'></i> Mi farmacia
+            </a>
+          <?php
+          }
+          ?>
         </button>
 
       </aside>
@@ -505,5 +530,5 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/detallesRapidos.js"></script>
-
+<script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
 </html>

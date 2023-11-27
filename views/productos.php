@@ -118,8 +118,9 @@ require_once "../controllers/validacion_usu_tienda.php";
     <header id="header">
         <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
         <nav id="menu">
-            <div id="inicio"><i class='bx bxs-home-alt-2'></i>
-                <a href="inicio_tienda.php">
+            <div id="inicio">
+                <a href="inicio_tienda.php" class="ancla_menu_tienda">
+                    <i class='bx bxs-home-alt-2'></i>
                     <p>Inicio</p>
                 </a>
             </div>
@@ -130,7 +131,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <p>Carrito</p>
             </div>
             <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
-            <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+            <div id="mis-formulas"><a href="Usuario.php" class="ancla_menu_tienda">
                     <i class="fa-solid fa-sheet-plastic"></i>
                     <p>Formulas</p>
                 </a>
@@ -157,7 +158,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <span class="spinner-result_buscador"></span>
                 </section>
                 <section class="produc_no" style="display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400" class="empty">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="300" height="300" class="empty">
                         <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
                             <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
                             <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
@@ -279,12 +280,13 @@ require_once "../controllers/validacion_usu_tienda.php";
             </section>
         </nav>
     </header>
-    <main>
+    <main class="scrollableContent" onscroll="saveScrollPosition()">
         <?php
         if (isset($_GET['AsPZ'])) {
             $id_encriptado = $_GET['AsPZ'];
             $id_farmacia_tienda = base64_decode($id_encriptado);
-            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias WHERE IdFarmacia = ?");
+            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias
+            INNER JOIN usuarios ON usuarios.idusuario = farmacias.idusuario WHERE IdFarmacia = ?");
             $stmt_farmacia->bind_param("i", $id_farmacia_tienda);
             $stmt_farmacia->execute();
             $result_farmacia = $stmt_farmacia->get_result();
@@ -298,7 +300,21 @@ require_once "../controllers/validacion_usu_tienda.php";
                         <img src="../uploads/imgProductos/<?php echo $fila_farmacia["imgfarmacia"] ?>" alt="<?php echo $fila_farmacia["Nombre"] ?>">
                     </div>
                     <div class="cont_infoFarmacia">
-                        <h1><?php echo $fila_farmacia["Nombre"] ?></h1>
+                        <div class="nombre_farmacia_usu_tineda">
+                            <h1><?php echo $fila_farmacia["Nombre"] ?></h1>
+                            <?php
+                            if (isset($fila_farmacia["idusuario"]) && isset($id)) {
+                                if ($fila_farmacia["idusuario"] == $id) {
+                            ?>
+                                    <div class="mi_farmacia_tienda">
+                                        <img src="<?php echo $fila_farmacia["imgUser"] ?>" alt="<?php echo $fila_farmacia["nombre"] ?>">
+                                        <p>Mi farmacia</p>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </div>
                         <p class="direccion_farmacia_tienda"><?php echo $fila_farmacia["Direccion"] ?></p>
                         <p class="contac_farmacia_tienda"><?php echo $fila_farmacia["telefono"] ?></p>
                         <button class="ciu_farmacia_tienda"><?php echo $fila_farmacia["ciudad"] ?></button>
@@ -390,6 +406,55 @@ require_once "../controllers/validacion_usu_tienda.php";
                 </div>
             </section>
         <?php
+        } else if (isset($_GET['ZjAPa'])) {
+        ?>
+            <section class="articles">
+                <h1>Mas categorias</h1>
+                <div class="swiper slider-categorias">
+                    <div class="swiper-wrapper">
+                        <?php
+                        $sql = "SELECT * FROM categoria";
+                        $result = $conexion->query($sql);
+
+                        echo "<div class='swiper-slide colum-categorias'>";
+
+                        if ($result->num_rows > 0) {
+                            $contador = 0;
+                            while ($row = $result->fetch_assoc()) {
+                                $id_categoria = $row['idcategoria'];
+                                $id_encriptado_categoria = $_GET['ZjAPa'];
+                                $id_categoria_tienda = base64_decode($id_encriptado_categoria);
+
+                                if ($id_categoria !== $id_categoria_tienda) {
+                                    $id_encriptado = base64_encode($id_categoria);
+                                    echo "<a href='productos.php?ZjAPa=$id_encriptado' class='swiper-slide cont-categorias'>";
+                                    echo "<section>";
+                                    echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
+                                    echo "<h3>" . $row['nombrecategoria'] . "</h3>";
+                                    echo "</section>";
+                                    echo "</a>";
+
+                                    $contador++;
+
+                                    if ($contador % 6 == 0) {
+                                        echo "</div>";
+                                        echo "<div class='swiper-slide colum-categorias'>";
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "No hay categorías disponibles.";
+                        }
+                        echo "</div>";
+
+                        $conexion->close();
+                        ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+        <?php
         }
         ?>
         <section class="venergar-info" id="informacion-rapida">
@@ -430,10 +495,29 @@ require_once "../controllers/validacion_usu_tienda.php";
         <?php require '../templates/footer_inicio_tienda.html'; ?>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/slider_inicio_tienda.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
     <script src="../assets/js/funcionMenutienda.js"></script>
     <script src="../assets/js/detallesRapidos.js"></script>
+
+    <script>
+        function saveScrollPosition() {
+            var scrollableContent = document.querySelector(".scrollableContent");
+            localStorage.setItem("scrollPosition_producto", scrollableContent.scrollTop);
+        }
+
+        function restoreScrollPosition() {
+            var scrollableContent = document.querySelector(".scrollableContent");
+            var savedScrollPosition = localStorage.getItem("scrollPosition_producto");
+            if (savedScrollPosition !== null) {
+                scrollableContent.scrollTop = savedScrollPosition;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", restoreScrollPosition);
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.clasificacion');
