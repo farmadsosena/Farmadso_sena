@@ -1,24 +1,5 @@
 <?php
 require_once "../controllers/validacion_usu_tienda.php";
-session_start();
-
-if (!isset($_SESSION['id'])) {
-  if (!isset($_SESSION['id_invitado'])) {
-   $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
-  }
-} else {
-  // Si hay un usuario autenticado, utilizar su ID
-  $idUsuario = $_SESSION['id'];
-  // Haz lo que necesites con el ID del usuario autenticado
-}
-
-function generarIDInvitadoUnico()
-{
-  $prefix = 'INVITADO_'; // Prefijo para identificar al invitado
-  $uniqueID = $prefix . uniqid(); // Generar un identificador único
-
-  return $uniqueID;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -430,10 +411,10 @@ function generarIDInvitadoUnico()
       <h1>Ofertas</h1>
       <div class="ranking">
         <?php
-         $servername = "localhost";
-         $username = "root";
-         $password = "";
-         $dbname = "farmadso";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "farmadso";
 
         try {
           $conn = new mysqli($servername, $username, $password, $dbname);
@@ -478,7 +459,7 @@ function generarIDInvitadoUnico()
                 echo "<input type='hidden' name='idinvitado' value=" . $idinvitado . ">";
               }
               echo "<input type='hidden' name='idmedicamento' value=" . $row['idmedicamento'] . ">";
-              
+
               echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
               echo "<div class='top-product' data-im='$id_ofuscado'>";
               echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
@@ -570,20 +551,16 @@ function generarIDInvitadoUnico()
   </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
+<script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
+<script src="../assets/js/agregarCarrito.js"></script>
 <script src="../assets/js/slider_inicio_tienda.js"></script>
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/detallesRapidos.js"></script>
-<script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
-  <script src="../assets/js/agregarCarrito.js"></script>
-  <script src="../assets/js/carrito.js"></script>
-  
-  <script src="../assets/js/slider_inicio_tienda.js"></script>
-  <script src="../assets/js/Font.js"></script>
-  <script src="../assets/js/carritoF.js"></script>
-  <script src="../assets/js/funcionMenutienda.js"></script>
-  <script src="../assets/js/detallesRapidos.js"></script>
 </body>
 
 

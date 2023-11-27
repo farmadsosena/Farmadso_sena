@@ -24,7 +24,8 @@ if (isset($_GET['AsPZ'])) {
 } else {
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
-    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento");
 }
 $stmt->execute();
 
