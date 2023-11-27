@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
             echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
         } else {
             // Si  la sesión no está iniciada se envia el invitado
-            echo "<input type='hidden' name='idusuario' value=" . $_SESSION['idinvitado'] . ">";
+            echo "<input type='hidden' name='idinvitado' value=". $_SESSION['idinvitado'].">";
         }
         echo "<input type='hidden' name='idmedicamento' value=" . $fila['idmedicamento'] . ">";
 
