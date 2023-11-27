@@ -107,9 +107,7 @@ function generarIDInvitadoUnico()
       <div class="contenedorEnlaces">
 
         <div class="enlaceMenu" id="inicio"><i class="fa-solid fa-home"></i>Inicio</div>
-        <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
-
-        <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
+        <div class="enlaceMenu" id="productos"><a href="productos.php" style="display: flex; gap: 5px;align-items: center;font-size: 20px !important;color: #454343; width:100%; height:100%;"><i class="fa-solid fa-store" style="color:#3d83df;"></i>Productos</a></div>
         <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
         <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
         <?php
@@ -148,14 +146,17 @@ function generarIDInvitadoUnico()
       <div id="inicio"><i class='bx bxs-home-alt-2'></i>
         <p>Inicio</p>
       </div>
-      <div id="productos"><i class='bx bxs-store'></i>
-        <p>Productos</p>
+      <div id="productos">
+        <a href="productos.php" class="ancla_menu_tienda">
+          <i class='bx bxs-store'></i>
+          <p>Productos</p>
+        </a>
       </div>
       <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
         <p>Carrito</p>
       </div>
       <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+      <div id="mis-formulas"><a href="Usuario.php" class="ancla_menu_tienda">
           <i class="fa-solid fa-sheet-plastic"></i>
           <p>Formulas</p>
         </a>
@@ -182,7 +183,7 @@ function generarIDInvitadoUnico()
           <span class="spinner-result_buscador"></span>
         </section>
         <section class="produc_no" style="display: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400" class="empty">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="300" height="300" class="empty">
             <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
               <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
               <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
@@ -306,7 +307,7 @@ function generarIDInvitadoUnico()
   </header>
   <!--Fin del encabezado-->
   <!--Index principal-->
-  <main id="index">
+  <main id="index" class="scrollableContent" onscroll="saveScrollPosition()">
     <section class="venergar-info" id="informacion-rapida">
       <section class="container-rapido">
         <i class='bx bx-x x2 salir-vista-medicamento'></i>
@@ -330,11 +331,11 @@ function generarIDInvitadoUnico()
             <div class="ahorro"></div>
           </div>
           <div class="precio"></div>
+          <p class="stock_detaM"></p>
           <div class="descripcion_det_med">
             <p></p>
           </div>
           <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
-          <button class="vermas">Ver mas detalles</button>
         </section>
       </section>
       <div class="cont-spinner-deta_med" style="display: none;">
@@ -346,7 +347,31 @@ function generarIDInvitadoUnico()
         <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
         <p>Farmadso te brinda la capacidad de que lleguen medicamentos a la puerta de tu casa, Compralos a tu farmacia de eps o para un mejor precio desde otras farmacias encontradas en FARMADSO.</p>
         <button type="button" class="visitP" id="crearProductos">
-          <i class='bx bxs-store'></i> Mi farmacia
+          <?php
+          if (isset($_SESSION["usu"])) {
+            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias WHERE idusuario = ?");
+            $stmt_farmacia->bind_param("i", $id);
+            $stmt_farmacia->execute();
+            $result_farmacia = $stmt_farmacia->get_result();
+
+            $id_encriptado_miFarm = 0;
+            if ($result_farmacia->num_rows > 0) {
+              $fila_farmacia = $result_farmacia->fetch_assoc();
+              $id_encriptado_miFarm = base64_encode($fila_farmacia["IdFarmacia"]);
+            }
+          ?>
+            <a href="productos.php?AsPZ=<?php echo $id_encriptado_miFarm; ?>">
+              <i class='bx bxs-store'></i> Mi farmacia
+            </a>
+          <?php
+          } else {
+          ?>
+            <a href="login.php?_mlzO">
+              <i class='bx bxs-store'></i> Mi farmacia
+            </a>
+          <?php
+          }
+          ?>
         </button>
 
       </aside>
@@ -378,7 +403,9 @@ function generarIDInvitadoUnico()
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               while ($row = $result->fetch_assoc()) {
-                echo "<a href='#' class='swiper-slide cont-categorias'>";
+                $id_categoria = $row['idcategoria'];
+                $id_encriptado = base64_encode($id_categoria);
+                echo "<a href='productos.php?ZjAPa=$id_encriptado' class='swiper-slide cont-categorias'>";
                 echo "<section>";
                 echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
                 echo "<h3>" . $row['nombrecategoria'] . "</h3>";
@@ -503,7 +530,9 @@ function generarIDInvitadoUnico()
 
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              echo "<a href='' class='swiper-slide cont-farmacia'>";
+              $id_farmacia = $row['IdFarmacia'];
+              $id_encriptado = base64_encode($id_farmacia);
+              echo "<a href='productos.php?AsPZ=$id_encriptado' class='swiper-slide cont-farmacia'>";
               echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
               echo "</a>";
             }
@@ -539,6 +568,14 @@ function generarIDInvitadoUnico()
     </section>
     <?php require '../templates/footer_inicio_tienda.html'; ?>
   </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../assets/js/slider_inicio_tienda.js"></script>
+<script src="../assets/js/Font.js"></script>
+<script src="../assets/js/carritoF.js"></script>
+<script src="../assets/js/funcionMenutienda.js"></script>
+<script src="../assets/js/detallesRapidos.js"></script>
+<script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
   <script src="../assets/js/agregarCarrito.js"></script>
   <script src="../assets/js/carrito.js"></script>
   

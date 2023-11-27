@@ -2,11 +2,30 @@
 
 require_once "../config/Conexion.php";
 
-$stmt = $conexion->prepare("SELECT * FROM medicamentos 
-LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
-INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia
-INNER JOIN inventario ON inventario.idinventario = medicamentos.idmedicamento");
+$stmt = "";
 
+if (isset($_GET['AsPZ'])) {
+    $id_encriptado = $_GET['AsPZ'];
+    $id_farmacia_tienda = base64_decode($id_encriptado);
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia WHERE medicamentos.idfarmacia = ?");
+    $stmt->bind_param("i", $id_farmacia_tienda);
+} elseif (isset($_GET['ZjAPa'])) {
+    $id_encriptado = $_GET['ZjAPa'];
+    $id_categoria_tienda = base64_decode($id_encriptado);
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia 
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento
+    INNER JOIN categoria ON categoria.idcategoria = inventario.idcategoria
+    WHERE categoria.idcategoria = ?");
+    $stmt->bind_param("i", $id_categoria_tienda);
+} else {
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");
+}
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -56,7 +75,7 @@ if ($result->num_rows > 0) {
 } else {
 ?>
     <div class="no_existen_productos">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="600" height="600" class="empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400" class="empty">
             <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
                 <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
                 <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>

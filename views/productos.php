@@ -1,5 +1,8 @@
 <?php
 require_once "../controllers/validacion_usu_tienda.php";
+?>
+<?php
+require_once "../controllers/validacion_usu_tienda.php";
 session_start();
 
 if (!isset($_SESSION['id'])) {
@@ -33,6 +36,7 @@ function generarIDInvitadoUnico()
     <link rel="stylesheet" href="../assets/css/productos.css">
     <link rel="stylesheet" href="../assets/css/inicio_tienda.css" />
     <link rel="stylesheet" href="../assets/css/footer_inicio_tienda.css" />
+    <link rel="stylesheet" href="../assets/css/slider_inicio_tienda.css" />
     <link rel="stylesheet" href="../assets/css/detalles.css">
     <link rel="stylesheet" href="../assets/css/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -44,6 +48,8 @@ function generarIDInvitadoUnico()
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -105,13 +111,9 @@ function generarIDInvitadoUnico()
                 ?>
             </div>
             <div class="contenedorEnlaces">
-
-                <div class="enlaceMenu" id="inicio"><i class="fa-solid fa-home"></i>Inicio</div>
+                <div class="enlaceMenu" id="inicio" style="color: #454343 !important;"><a href="inicio_tienda.php" style="display: flex; gap: 5px;align-items: center;font-size: 20px !important;color: #454343; width:100%; height:100%;"><i class="fa-solid fa-home"></i>Inicio</a></div>
                 <div class="enlaceMenu" id="productos"><i class="fa-solid fa-store"></i>Productos</div>
-
-                <div id="abrirModalPedido" class="enlaceMenu"><i class="fa-solid fa-bag-shopping"></i>Farmacias</div>
-                <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i
-                            class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
+                <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
                 <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
                 <?php
                 if (isset($_SESSION["usu"])) {
@@ -147,8 +149,11 @@ function generarIDInvitadoUnico()
     <header id="header">
         <span class="logo"><img src="../assets/img/logoFarmadso - cambio.png"><b>Tienda Farmadso</b></span>
         <nav id="menu">
-            <div id="inicio"><i class='bx bxs-home-alt-2'></i>
-                <p>Inicio</p>
+            <div id="inicio">
+                <a href="inicio_tienda.php" class="ancla_menu_tienda">
+                    <i class='bx bxs-home-alt-2'></i>
+                    <p>Inicio</p>
+                </a>
             </div>
             <div id="productos"><i class='bx bxs-store'></i>
                 <p>Productos</p>
@@ -156,9 +161,8 @@ function generarIDInvitadoUnico()
             <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
                 <p>Carrito</p>
             </div>
-            <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i
-                    class="fa-solid fa-magnifying-glass"></i></div>
-            <div id="mis-formulas"><a href="Usuario.php" class="formulas-menu-tienda">
+            <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div id="mis-formulas"><a href="Usuario.php" class="ancla_menu_tienda">
                     <i class="fa-solid fa-sheet-plastic"></i>
                     <p>Formulas</p>
                 </a>
@@ -186,172 +190,55 @@ function generarIDInvitadoUnico()
                     <span class="spinner-result_buscador"></span>
                 </section>
                 <section class="produc_no" style="display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400"
-                        class="empty">
-                        <g class="empty_svg__animable empty_svg__animator-active"
-                            style="transform-origin: 227.87px 256.639px;">
-                            <path
-                                d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z"
-                                fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;">
-                            </path>
-                            <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b"
-                                class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
-                            <path fill="#e4897b" d="M131.76 254.17l-7.19 2.94-4.46-4.65 8.5-3.96 3.15 5.67z"
-                                class="empty_svg__animable" style="transform-origin: 125.935px 252.805px;"></path>
-                            <path d="M277.41 250.07A72 72 0 11357 186.5a72 72 0 01-79.59 63.57z" fill="#fafafa"
-                                opacity=".4" class="empty_svg__animable" style="transform-origin: 285.444px 178.52px;">
-                            </path>
-                            <path
-                                d="M329.79 121.79l-109.5 87.49c-.46-1-.91-2-1.33-3a71.24 71.24 0 01-5.21-20.48l94.58-75.57a71.15 71.15 0 0121.46 11.56z"
-                                fill="#fafafa" opacity=".4" class="empty_svg__animable"
-                                style="transform-origin: 271.77px 159.755px;"></path>
-                            <path
-                                d="M355.06 160.12l-102.95 82.25a71.86 71.86 0 01-24.77-21.28l112.41-89.82a72 72 0 0115.31 28.85z"
-                                fill="#fafafa" opacity=".4" class="empty_svg__animable"
-                                style="transform-origin: 291.2px 186.82px;"></path>
-                            <path
-                                d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z"
-                                fill="#407bff" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;">
-                            </path>
-                            <path
-                                d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z"
-                                opacity=".3" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;">
-                            </path>
-                            <path
-                                d="M359.87 141.74a83 83 0 00-152.65 64.73c-6.68 2.34-13.28 4.85-19.84 7.44q-14.19 5.63-28.12 11.76c-9.28 4.11-18.52 8.3-27.67 12.68-4.59 2.15-9.12 4.42-13.69 6.62a19.79 19.79 0 00-6.34 4.35 19.15 19.15 0 00-2.57 3.37 17.25 17.25 0 00-2 4.63 12.72 12.72 0 007.33 14.85 17.56 17.56 0 004.86 1.26 18.88 18.88 0 004.25 0 19.76 19.76 0 007.3-2.39c4.53-2.29 9.09-4.5 13.59-6.85 9-4.59 18-9.38 26.89-14.24S189 240 197.68 234.78c6-3.63 12.06-7.34 18-11.22a83 83 0 00144.21-81.82zm-45.46 95.53a65.53 65.53 0 1129.75-87.78 65.53 65.53 0 01-29.75 87.78z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 237.695px 184.169px;"></path>
-                            <path
-                                d="M359.87 141.74a83 83 0 00-152.65 64.73c-6.68 2.34-13.28 4.85-19.84 7.44q-14.19 5.63-28.12 11.76c-9.28 4.11-18.52 8.3-27.67 12.68-4.59 2.15-9.12 4.42-13.69 6.62a19.79 19.79 0 00-6.34 4.35 19.15 19.15 0 00-2.57 3.37 17.25 17.25 0 00-2 4.63 12.72 12.72 0 007.33 14.85 17.56 17.56 0 004.86 1.26 18.88 18.88 0 004.25 0 19.76 19.76 0 007.3-2.39c4.53-2.29 9.09-4.5 13.59-6.85 9-4.59 18-9.38 26.89-14.24S189 240 197.68 234.78c6-3.63 12.06-7.34 18-11.22a83 83 0 00144.21-81.82zm-45.46 95.53a65.53 65.53 0 1129.75-87.78 65.53 65.53 0 01-29.75 87.78z"
-                                opacity=".3" class="empty_svg__animable" style="transform-origin: 237.695px 184.169px;">
-                            </path>
-                            <path d="M158 158.55c0 .59.31 1.07.7 1.07s.7-.48.7-1.07-.31-1.07-.7-1.07-.7.52-.7 1.07z"
-                                fill="#263238" class="empty_svg__animable" style="transform-origin: 158.7px 158.55px;">
-                            </path>
-                            <path d="M158.28 159.62a21.33 21.33 0 002.83 5.07 3.41 3.41 0 01-2.83.53z" fill="#de5753"
-                                class="empty_svg__animable" style="transform-origin: 159.695px 162.473px;"></path>
-                            <path
-                                d="M155.93 155.26a.37.37 0 01-.29-.14.36.36 0 01.08-.49 3.43 3.43 0 013.13-.53.35.35 0 11-.25.65 2.73 2.73 0 00-2.47.45.36.36 0 01-.2.06z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 157.343px 154.596px;"></path>
-                            <path
-                                d="M137.8 163c1 5.37 2.1 15.22-1.66 18.81 0 0 1.47 5.45 11.46 5.45 11 0 5.24-5.45 5.24-5.45-6-1.44-5.83-5.88-4.79-10.06z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 145.244px 175.13px;"></path>
-                            <path
-                                d="M131.65 184.64c1.19-1.85-.81-6.34-.81-6.34s17.68-4.45 24.91 2.38c1.5 1.41-.16 3.49-.16 3.49z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 143.609px 180.758px;"></path>
-                            <path
-                                d="M131.65 184.64c1.19-1.85-.81-6.34-.81-6.34s17.68-4.45 24.91 2.38c1.5 1.41-.16 3.49-.16 3.49z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 143.609px 180.758px;">
-                            </path>
-                            <path
-                                d="M102.4 388.67c-.93 0-2.42-1.55-2.86-2.13a.17.17 0 010-.19.18.18 0 01.16-.09c.11 0 2.56.22 3.23 1.09a.81.81 0 01.16.66.72.72 0 01-.52.65zm-2.32-2c.73.84 1.9 1.79 2.4 1.67 0 0 .2-.05.26-.37a.45.45 0 00-.1-.38 4.67 4.67 0 00-2.56-.94z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 101.308px 387.465px;"></path>
-                            <path
-                                d="M100.19 386.65a2.68 2.68 0 01-.54 0 .16.16 0 01-.14-.11.2.2 0 010-.18c.07-.06 1.54-1.59 2.65-1.59a.94.94 0 01.71.3.57.57 0 01.14.7c-.29.56-1.82.88-2.82.88zm-.13-.35c1 0 2.45-.31 2.69-.75 0 0 .07-.13-.09-.29a.59.59 0 00-.46-.19 4.23 4.23 0 00-2.14 1.23z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 101.281px 385.717px;"></path>
-                            <path
-                                d="M168.39 411.37a13.25 13.25 0 01-2.26-.21.16.16 0 01-.13-.16.18.18 0 01.08-.18c.11-.06 2.67-1.53 3.9-1.19a.86.86 0 01.55.4.66.66 0 010 .76c-.29.45-1.2.58-2.14.58zm-1.69-.47c1.36.2 3.22.19 3.56-.29.05-.06.09-.17 0-.38a.56.56 0 00-.34-.25c-.78-.2-2.33.46-3.22.92z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 168.324px 410.475px;"></path>
-                            <path
-                                d="M166.17 411.17a.18.18 0 01-.1 0 .16.16 0 01-.07-.17 4.88 4.88 0 011.14-2.83 1.25 1.25 0 011-.29c.48 0 .62.29.65.48.13.83-1.62 2.42-2.51 2.82zm1.79-3a.91.91 0 00-.6.22 4 4 0 00-1 2.27c.9-.55 2.1-1.79 2-2.29 0 0 0-.17-.34-.2z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 167.396px 409.523px;"></path>
-                            <path fill="#e4897b" d="M158.09 410.99h7.35l.73-17.01h-7.35l-.73 17.01z"
-                                class="empty_svg__animable" style="transform-origin: 162.13px 402.485px;"></path>
-                            <path fill="#e4897b" d="M92.64 381.79l6.14 4.02 13.56-11.45-6.15-4.03-13.55 11.46z"
-                                class="empty_svg__animable" style="transform-origin: 102.49px 378.07px;"></path>
-                            <path
-                                d="M99.79 385.43l-6.38-5.23a.63.63 0 00-.8 0l-5.26 4.13a1.08 1.08 0 000 1.69c2.26 1.79 3.45 2.55 6.26 4.85 1.73 1.41 6 5.73 8.41 7.68s4.62-.15 3.82-1.16c-3.59-4.55-5-8.44-5.41-10.85a1.81 1.81 0 00-.64-1.11z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 96.4747px 389.704px;"></path>
-                            <path
-                                d="M165.39 410.14h-8a.65.65 0 00-.63.5l-1.45 6.53a1.07 1.07 0 001.06 1.31c2.89-.05 7.07-.22 10.71-.22 4.25 0 7.93.23 12.91.23 3 0 3.86-3.05 2.59-3.32-5.74-1.26-10.44-1.39-15.4-4.46a3.44 3.44 0 00-1.79-.57z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 169.215px 414.315px;"></path>
-                            <path
-                                d="M121.66 184c-6.37 3-10 23.1-10 23.1l15.57 6.21a115.83 115.83 0 005.51-17.15c2.14-9.26-4.56-15.26-11.08-12.16z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 122.403px 198.243px;"></path>
-                            <path
-                                d="M129.92 195.33c-3.85 3.9-5.61 11.54-6.38 16.51l3.73 1.49a116.7 116.7 0 005.4-16.65c-.33-2.12-1.15-2.97-2.75-1.35z"
-                                fill="#203048" class="empty_svg__animable"
-                                style="transform-origin: 128.105px 203.907px;"></path>
-                            <path
-                                d="M164.14 183.86s7.82 8.84.44 63.5h-39.29c-.27-6 3.52-35.45-2.3-63.87a100.56 100.56 0 0113.15-1.66 140.87 140.87 0 0116.7 0 74.19 74.19 0 0111.3 2.03z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 145.37px 214.471px;"></path>
-                            <path
-                                d="M167.73 205.08l-6.62-11.41a58.31 58.31 0 00-1.55 16.27c.18 3.92 3.77 18.44 7 20.56a230.84 230.84 0 001.17-25.42z"
-                                fill="#203048" class="empty_svg__animable"
-                                style="transform-origin: 163.619px 212.085px;"></path>
-                            <path
-                                d="M168.65 191.67c1 4.86 2 9.84 3.07 14.72s2.18 9.78 3.47 14.51c.33 1.17.64 2.37 1 3.49l.27.86.13.43v-.05c-.07-.09-.15-.1-.09 0a3.35 3.35 0 001.52.95 17.84 17.84 0 002.91.81 77.79 77.79 0 0014.3.93l.95 5.44c-1.34.43-2.59.74-3.91 1.05s-2.62.57-3.95.77a42.73 42.73 0 01-8.33.56 22.61 22.61 0 01-4.6-.6 13.39 13.39 0 01-5.28-2.45 9.65 9.65 0 01-2.47-3c-.16-.3-.3-.64-.43-.93l-.18-.47-.37-1c-.51-1.27-.93-2.52-1.39-3.77-1.69-5-3.1-10.05-4.34-15.09s-2.31-10.07-3.2-15.24z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 176.955px 213.915px;"></path>
-                            <path
-                                d="M154.33 189.22c-2.07 6.71 6.32 26.72 6.32 26.72l16.71-4.2s-.64-10.4-4.45-18.65c-5.74-12.44-16.1-11.92-18.58-3.87z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 165.681px 199.68px;"></path>
-                            <path
-                                d="M195.09 228.32l8.32-.21-4 8.66s-3.39.45-6.17-4.12l-2.93-3.5 3.37-.67a7.52 7.52 0 011.41-.16z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 196.86px 232.446px;"></path>
-                            <path fill="#e4897b" d="M208.66 229.72l-4.76 7.18-4.49-.13 4-8.66 5.25 1.61z"
-                                class="empty_svg__animable" style="transform-origin: 204.035px 232.505px;"></path>
-                            <path fill="#ce6f64" d="M166.17 393.98l-.38 8.77h-7.35l.38-8.77h7.35z"
-                                class="empty_svg__animable" style="transform-origin: 162.305px 398.365px;"></path>
-                            <path fill="#ce6f64" d="M106.19 370.33l6.15 4.03-7 5.9-6.14-4.02 6.99-5.91z"
-                                class="empty_svg__animable" style="transform-origin: 105.77px 375.295px;"></path>
-                            <path
-                                d="M138.26 157.28c.44 7.27.33 11.56 4 15.29 5.52 5.63 14.51 2.3 16.25-5 1.57-6.54.59-17.34-6.53-20.24a10 10 0 00-13.72 9.95z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 148.696px 161.003px;"></path>
-                            <path
-                                d="M129.7 156c1.81 6.63 6.07 14.27 11.58 14.76 6.84.6 9.93-6.47 10.83-13.77 4.1-2.81 1.95-5.9 6.06-6.29 5.28-.5 3.59-10.16-3.36-11.71 0 0 2.33 4.35-2.56 2.15a28.22 28.22 0 00-14.94-2.59s6.24 3.12.14 4.51-7.92 5.15-5.11 7.42c0 .01-3.83 1.16-2.64 5.52z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 145.37px 154.602px;"></path>
-                            <path
-                                d="M147.94 158.49a8.22 8.22 0 002.07 4.87c1.6 1.77 3.27.67 3.55-1.48.26-1.93-.27-5.18-2.23-6.16s-3.52.59-3.39 2.77z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 150.777px 159.832px;"></path>
-                            <path
-                                d="M150.64 247.36s7.16 51.85 1.52 72.63c-8.94 32.9-43.12 60.67-43.12 60.67l-11.59-7.6s29.11-23.45 32.67-51c3.2-24.73-4.83-54.64-4.83-74.71z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 125.888px 314.005px;"></path>
-                            <path
-                                d="M150.64 247.36s7.16 51.85 1.52 72.63c-8.94 32.9-43.12 60.67-43.12 60.67l-11.59-7.6s29.11-23.45 32.67-51c3.2-24.73-4.83-54.64-4.83-74.71z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 125.888px 314.005px;">
-                            </path>
-                            <path
-                                d="M153.6 277a48.4 48.4 0 00-6.27-6c1.22 16.83 2.22 41.76 1.11 59.47a76.41 76.41 0 003.72-10.47c2.75-10.15 2.46-27.68 1.44-43z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 150.829px 300.735px;"></path>
-                            <path
-                                d="M153.6 277a48.4 48.4 0 00-6.27-6c1.22 16.83 2.22 41.76 1.11 59.47a76.41 76.41 0 003.72-10.47c2.75-10.15 2.46-27.68 1.44-43z"
-                                opacity=".3" class="empty_svg__animable" style="transform-origin: 150.829px 300.735px;">
-                            </path>
-                            <path d="M113.71 378.07c.05 0-4.49 3-4.49 3l-12.66-8.3 4-3.31z" fill="#407bff"
-                                class="empty_svg__animable" style="transform-origin: 105.135px 375.265px;"></path>
-                            <path d="M113.71 378.07c.05 0-4.49 3-4.49 3l-12.66-8.3 4-3.31z" opacity=".3"
-                                class="empty_svg__animable" style="transform-origin: 105.135px 375.265px;"></path>
-                            <path
-                                d="M164.58 247.36s11.06 46.9 11.84 69.31c.88 25.12-7.89 84.38-7.89 84.38h-12.45s-1.53-59.72-2.08-82.6c-.61-24.95-15.25-71.09-15.25-71.09z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 157.616px 324.205px;"></path>
-                            <path
-                                d="M164.58 247.36s11.06 46.9 11.84 69.31c.88 25.12-7.89 84.38-7.89 84.38h-12.45s-1.53-59.72-2.08-82.6c-.61-24.95-15.25-71.09-15.25-71.09z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 157.616px 324.205px;">
-                            </path>
-                            <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" fill="#407bff"
-                                class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
-                            <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" opacity=".3"
-                                class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="300" height="300" class="empty">
+                        <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
+                            <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
+                            <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
+                            <path fill="#e4897b" d="M131.76 254.17l-7.19 2.94-4.46-4.65 8.5-3.96 3.15 5.67z" class="empty_svg__animable" style="transform-origin: 125.935px 252.805px;"></path>
+                            <path d="M277.41 250.07A72 72 0 11357 186.5a72 72 0 01-79.59 63.57z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 285.444px 178.52px;"></path>
+                            <path d="M329.79 121.79l-109.5 87.49c-.46-1-.91-2-1.33-3a71.24 71.24 0 01-5.21-20.48l94.58-75.57a71.15 71.15 0 0121.46 11.56z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 271.77px 159.755px;"></path>
+                            <path d="M355.06 160.12l-102.95 82.25a71.86 71.86 0 01-24.77-21.28l112.41-89.82a72 72 0 0115.31 28.85z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 291.2px 186.82px;"></path>
+                            <path d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;"></path>
+                            <path d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z" opacity=".3" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;"></path>
+                            <path d="M359.87 141.74a83 83 0 00-152.65 64.73c-6.68 2.34-13.28 4.85-19.84 7.44q-14.19 5.63-28.12 11.76c-9.28 4.11-18.52 8.3-27.67 12.68-4.59 2.15-9.12 4.42-13.69 6.62a19.79 19.79 0 00-6.34 4.35 19.15 19.15 0 00-2.57 3.37 17.25 17.25 0 00-2 4.63 12.72 12.72 0 007.33 14.85 17.56 17.56 0 004.86 1.26 18.88 18.88 0 004.25 0 19.76 19.76 0 007.3-2.39c4.53-2.29 9.09-4.5 13.59-6.85 9-4.59 18-9.38 26.89-14.24S189 240 197.68 234.78c6-3.63 12.06-7.34 18-11.22a83 83 0 00144.21-81.82zm-45.46 95.53a65.53 65.53 0 1129.75-87.78 65.53 65.53 0 01-29.75 87.78z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 237.695px 184.169px;"></path>
+                            <path d="M359.87 141.74a83 83 0 00-152.65 64.73c-6.68 2.34-13.28 4.85-19.84 7.44q-14.19 5.63-28.12 11.76c-9.28 4.11-18.52 8.3-27.67 12.68-4.59 2.15-9.12 4.42-13.69 6.62a19.79 19.79 0 00-6.34 4.35 19.15 19.15 0 00-2.57 3.37 17.25 17.25 0 00-2 4.63 12.72 12.72 0 007.33 14.85 17.56 17.56 0 004.86 1.26 18.88 18.88 0 004.25 0 19.76 19.76 0 007.3-2.39c4.53-2.29 9.09-4.5 13.59-6.85 9-4.59 18-9.38 26.89-14.24S189 240 197.68 234.78c6-3.63 12.06-7.34 18-11.22a83 83 0 00144.21-81.82zm-45.46 95.53a65.53 65.53 0 1129.75-87.78 65.53 65.53 0 01-29.75 87.78z" opacity=".3" class="empty_svg__animable" style="transform-origin: 237.695px 184.169px;"></path>
+                            <path d="M158 158.55c0 .59.31 1.07.7 1.07s.7-.48.7-1.07-.31-1.07-.7-1.07-.7.52-.7 1.07z" fill="#263238" class="empty_svg__animable" style="transform-origin: 158.7px 158.55px;"></path>
+                            <path d="M158.28 159.62a21.33 21.33 0 002.83 5.07 3.41 3.41 0 01-2.83.53z" fill="#de5753" class="empty_svg__animable" style="transform-origin: 159.695px 162.473px;"></path>
+                            <path d="M155.93 155.26a.37.37 0 01-.29-.14.36.36 0 01.08-.49 3.43 3.43 0 013.13-.53.35.35 0 11-.25.65 2.73 2.73 0 00-2.47.45.36.36 0 01-.2.06z" fill="#263238" class="empty_svg__animable" style="transform-origin: 157.343px 154.596px;"></path>
+                            <path d="M137.8 163c1 5.37 2.1 15.22-1.66 18.81 0 0 1.47 5.45 11.46 5.45 11 0 5.24-5.45 5.24-5.45-6-1.44-5.83-5.88-4.79-10.06z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 145.244px 175.13px;"></path>
+                            <path d="M131.65 184.64c1.19-1.85-.81-6.34-.81-6.34s17.68-4.45 24.91 2.38c1.5 1.41-.16 3.49-.16 3.49z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 143.609px 180.758px;"></path>
+                            <path d="M131.65 184.64c1.19-1.85-.81-6.34-.81-6.34s17.68-4.45 24.91 2.38c1.5 1.41-.16 3.49-.16 3.49z" opacity=".1" class="empty_svg__animable" style="transform-origin: 143.609px 180.758px;"></path>
+                            <path d="M102.4 388.67c-.93 0-2.42-1.55-2.86-2.13a.17.17 0 010-.19.18.18 0 01.16-.09c.11 0 2.56.22 3.23 1.09a.81.81 0 01.16.66.72.72 0 01-.52.65zm-2.32-2c.73.84 1.9 1.79 2.4 1.67 0 0 .2-.05.26-.37a.45.45 0 00-.1-.38 4.67 4.67 0 00-2.56-.94z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 101.308px 387.465px;"></path>
+                            <path d="M100.19 386.65a2.68 2.68 0 01-.54 0 .16.16 0 01-.14-.11.2.2 0 010-.18c.07-.06 1.54-1.59 2.65-1.59a.94.94 0 01.71.3.57.57 0 01.14.7c-.29.56-1.82.88-2.82.88zm-.13-.35c1 0 2.45-.31 2.69-.75 0 0 .07-.13-.09-.29a.59.59 0 00-.46-.19 4.23 4.23 0 00-2.14 1.23z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 101.281px 385.717px;"></path>
+                            <path d="M168.39 411.37a13.25 13.25 0 01-2.26-.21.16.16 0 01-.13-.16.18.18 0 01.08-.18c.11-.06 2.67-1.53 3.9-1.19a.86.86 0 01.55.4.66.66 0 010 .76c-.29.45-1.2.58-2.14.58zm-1.69-.47c1.36.2 3.22.19 3.56-.29.05-.06.09-.17 0-.38a.56.56 0 00-.34-.25c-.78-.2-2.33.46-3.22.92z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 168.324px 410.475px;"></path>
+                            <path d="M166.17 411.17a.18.18 0 01-.1 0 .16.16 0 01-.07-.17 4.88 4.88 0 011.14-2.83 1.25 1.25 0 011-.29c.48 0 .62.29.65.48.13.83-1.62 2.42-2.51 2.82zm1.79-3a.91.91 0 00-.6.22 4 4 0 00-1 2.27c.9-.55 2.1-1.79 2-2.29 0 0 0-.17-.34-.2z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 167.396px 409.523px;"></path>
+                            <path fill="#e4897b" d="M158.09 410.99h7.35l.73-17.01h-7.35l-.73 17.01z" class="empty_svg__animable" style="transform-origin: 162.13px 402.485px;"></path>
+                            <path fill="#e4897b" d="M92.64 381.79l6.14 4.02 13.56-11.45-6.15-4.03-13.55 11.46z" class="empty_svg__animable" style="transform-origin: 102.49px 378.07px;"></path>
+                            <path d="M99.79 385.43l-6.38-5.23a.63.63 0 00-.8 0l-5.26 4.13a1.08 1.08 0 000 1.69c2.26 1.79 3.45 2.55 6.26 4.85 1.73 1.41 6 5.73 8.41 7.68s4.62-.15 3.82-1.16c-3.59-4.55-5-8.44-5.41-10.85a1.81 1.81 0 00-.64-1.11z" fill="#263238" class="empty_svg__animable" style="transform-origin: 96.4747px 389.704px;"></path>
+                            <path d="M165.39 410.14h-8a.65.65 0 00-.63.5l-1.45 6.53a1.07 1.07 0 001.06 1.31c2.89-.05 7.07-.22 10.71-.22 4.25 0 7.93.23 12.91.23 3 0 3.86-3.05 2.59-3.32-5.74-1.26-10.44-1.39-15.4-4.46a3.44 3.44 0 00-1.79-.57z" fill="#263238" class="empty_svg__animable" style="transform-origin: 169.215px 414.315px;"></path>
+                            <path d="M121.66 184c-6.37 3-10 23.1-10 23.1l15.57 6.21a115.83 115.83 0 005.51-17.15c2.14-9.26-4.56-15.26-11.08-12.16z" fill="#263238" class="empty_svg__animable" style="transform-origin: 122.403px 198.243px;"></path>
+                            <path d="M129.92 195.33c-3.85 3.9-5.61 11.54-6.38 16.51l3.73 1.49a116.7 116.7 0 005.4-16.65c-.33-2.12-1.15-2.97-2.75-1.35z" fill="#203048" class="empty_svg__animable" style="transform-origin: 128.105px 203.907px;"></path>
+                            <path d="M164.14 183.86s7.82 8.84.44 63.5h-39.29c-.27-6 3.52-35.45-2.3-63.87a100.56 100.56 0 0113.15-1.66 140.87 140.87 0 0116.7 0 74.19 74.19 0 0111.3 2.03z" fill="#263238" class="empty_svg__animable" style="transform-origin: 145.37px 214.471px;"></path>
+                            <path d="M167.73 205.08l-6.62-11.41a58.31 58.31 0 00-1.55 16.27c.18 3.92 3.77 18.44 7 20.56a230.84 230.84 0 001.17-25.42z" fill="#203048" class="empty_svg__animable" style="transform-origin: 163.619px 212.085px;"></path>
+                            <path d="M168.65 191.67c1 4.86 2 9.84 3.07 14.72s2.18 9.78 3.47 14.51c.33 1.17.64 2.37 1 3.49l.27.86.13.43v-.05c-.07-.09-.15-.1-.09 0a3.35 3.35 0 001.52.95 17.84 17.84 0 002.91.81 77.79 77.79 0 0014.3.93l.95 5.44c-1.34.43-2.59.74-3.91 1.05s-2.62.57-3.95.77a42.73 42.73 0 01-8.33.56 22.61 22.61 0 01-4.6-.6 13.39 13.39 0 01-5.28-2.45 9.65 9.65 0 01-2.47-3c-.16-.3-.3-.64-.43-.93l-.18-.47-.37-1c-.51-1.27-.93-2.52-1.39-3.77-1.69-5-3.1-10.05-4.34-15.09s-2.31-10.07-3.2-15.24z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 176.955px 213.915px;"></path>
+                            <path d="M154.33 189.22c-2.07 6.71 6.32 26.72 6.32 26.72l16.71-4.2s-.64-10.4-4.45-18.65c-5.74-12.44-16.1-11.92-18.58-3.87z" fill="#263238" class="empty_svg__animable" style="transform-origin: 165.681px 199.68px;"></path>
+                            <path d="M195.09 228.32l8.32-.21-4 8.66s-3.39.45-6.17-4.12l-2.93-3.5 3.37-.67a7.52 7.52 0 011.41-.16z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 196.86px 232.446px;"></path>
+                            <path fill="#e4897b" d="M208.66 229.72l-4.76 7.18-4.49-.13 4-8.66 5.25 1.61z" class="empty_svg__animable" style="transform-origin: 204.035px 232.505px;"></path>
+                            <path fill="#ce6f64" d="M166.17 393.98l-.38 8.77h-7.35l.38-8.77h7.35z" class="empty_svg__animable" style="transform-origin: 162.305px 398.365px;"></path>
+                            <path fill="#ce6f64" d="M106.19 370.33l6.15 4.03-7 5.9-6.14-4.02 6.99-5.91z" class="empty_svg__animable" style="transform-origin: 105.77px 375.295px;"></path>
+                            <path d="M138.26 157.28c.44 7.27.33 11.56 4 15.29 5.52 5.63 14.51 2.3 16.25-5 1.57-6.54.59-17.34-6.53-20.24a10 10 0 00-13.72 9.95z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 148.696px 161.003px;"></path>
+                            <path d="M129.7 156c1.81 6.63 6.07 14.27 11.58 14.76 6.84.6 9.93-6.47 10.83-13.77 4.1-2.81 1.95-5.9 6.06-6.29 5.28-.5 3.59-10.16-3.36-11.71 0 0 2.33 4.35-2.56 2.15a28.22 28.22 0 00-14.94-2.59s6.24 3.12.14 4.51-7.92 5.15-5.11 7.42c0 .01-3.83 1.16-2.64 5.52z" fill="#263238" class="empty_svg__animable" style="transform-origin: 145.37px 154.602px;"></path>
+                            <path d="M147.94 158.49a8.22 8.22 0 002.07 4.87c1.6 1.77 3.27.67 3.55-1.48.26-1.93-.27-5.18-2.23-6.16s-3.52.59-3.39 2.77z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 150.777px 159.832px;"></path>
+                            <path d="M150.64 247.36s7.16 51.85 1.52 72.63c-8.94 32.9-43.12 60.67-43.12 60.67l-11.59-7.6s29.11-23.45 32.67-51c3.2-24.73-4.83-54.64-4.83-74.71z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 125.888px 314.005px;"></path>
+                            <path d="M150.64 247.36s7.16 51.85 1.52 72.63c-8.94 32.9-43.12 60.67-43.12 60.67l-11.59-7.6s29.11-23.45 32.67-51c3.2-24.73-4.83-54.64-4.83-74.71z" opacity=".1" class="empty_svg__animable" style="transform-origin: 125.888px 314.005px;"></path>
+                            <path d="M153.6 277a48.4 48.4 0 00-6.27-6c1.22 16.83 2.22 41.76 1.11 59.47a76.41 76.41 0 003.72-10.47c2.75-10.15 2.46-27.68 1.44-43z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 150.829px 300.735px;"></path>
+                            <path d="M153.6 277a48.4 48.4 0 00-6.27-6c1.22 16.83 2.22 41.76 1.11 59.47a76.41 76.41 0 003.72-10.47c2.75-10.15 2.46-27.68 1.44-43z" opacity=".3" class="empty_svg__animable" style="transform-origin: 150.829px 300.735px;"></path>
+                            <path d="M113.71 378.07c.05 0-4.49 3-4.49 3l-12.66-8.3 4-3.31z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 105.135px 375.265px;"></path>
+                            <path d="M113.71 378.07c.05 0-4.49 3-4.49 3l-12.66-8.3 4-3.31z" opacity=".3" class="empty_svg__animable" style="transform-origin: 105.135px 375.265px;"></path>
+                            <path d="M164.58 247.36s11.06 46.9 11.84 69.31c.88 25.12-7.89 84.38-7.89 84.38h-12.45s-1.53-59.72-2.08-82.6c-.61-24.95-15.25-71.09-15.25-71.09z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 157.616px 324.205px;"></path>
+                            <path d="M164.58 247.36s11.06 46.9 11.84 69.31c.88 25.12-7.89 84.38-7.89 84.38h-12.45s-1.53-59.72-2.08-82.6c-.61-24.95-15.25-71.09-15.25-71.09z" opacity=".1" class="empty_svg__animable" style="transform-origin: 157.616px 324.205px;"></path>
+                            <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
+                            <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" opacity=".3" class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
                         </g>
                         <g data-name="Character" class="empty_svg__animable"
                             style="transform-origin: 337.551px 287.938px;">
@@ -531,27 +418,183 @@ function generarIDInvitadoUnico()
             </section>
         </nav>
     </header>
-    <main>
-        <section id="filterOptions">
-            <div id="filter-buttons">
-                <a class="clasificacion" data-category="todos">Todo</a>
-                <a class="clasificacion" data-category="Acetaminofén">Acetaminofen</a>
-                <a class="clasificacion" data-category="Paracetamol">paracetamol</a>
-                <a class="clasificacion" data-category="Loratadina">Loratadina</a>
-                <a class="clasificacion" data-category="antibioticos">Antibioticos</a>
-                <a class="clasificacion" data-category="asepsia">Asepsia</a>
-                <a class="clasificacion" data-category="corazon">Corazón</a>
-                <a class="clasificacion" data-category="dermatologicos">Dermatológicos</a>
-            </div>
-        </section>
+    <main class="scrollableContent" onscroll="saveScrollPosition()">
+        <?php
+        if (isset($_GET['AsPZ'])) {
+            $id_encriptado = $_GET['AsPZ'];
+            $id_farmacia_tienda = base64_decode($id_encriptado);
+            $stmt_farmacia = $conexion->prepare("SELECT * FROM farmacias
+            INNER JOIN usuarios ON usuarios.idusuario = farmacias.idusuario WHERE IdFarmacia = ?");
+            $stmt_farmacia->bind_param("i", $id_farmacia_tienda);
+            $stmt_farmacia->execute();
+            $result_farmacia = $stmt_farmacia->get_result();
 
-        <section id="results">
-            <div id="con">
-                <div class="contenedorCards">
-                    <?php require_once '../controllers/mostrar_productos.php'; ?>
+            if ($result_farmacia->num_rows > 0) {
+                $fila_farmacia = $result_farmacia->fetch_assoc();
+        ?>
+                <p style="color: #888;font-style: normal;font-weight: 400;font-size: 14px;line-height: 14px;margin-left: 0.7rem;display: flex;align-items: center;text-align: start;">Farmacia</p>
+                <div class="cont_farmacia_tienda">
+                    <div class="cont_imgFarmacia">
+                        <img src="../uploads/imgProductos/<?php echo $fila_farmacia["imgfarmacia"] ?>" alt="<?php echo $fila_farmacia["Nombre"] ?>">
+                    </div>
+                    <div class="cont_infoFarmacia">
+                        <div class="nombre_farmacia_usu_tineda">
+                            <h1><?php echo $fila_farmacia["Nombre"] ?></h1>
+                            <?php
+                            if (isset($fila_farmacia["idusuario"]) && isset($id)) {
+                                if ($fila_farmacia["idusuario"] == $id) {
+                            ?>
+                                    <div class="mi_farmacia_tienda">
+                                        <img src="<?php echo $fila_farmacia["imgUser"] ?>" alt="<?php echo $fila_farmacia["nombre"] ?>">
+                                        <p>Mi farmacia</p>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                        <p class="direccion_farmacia_tienda"><?php echo $fila_farmacia["Direccion"] ?></p>
+                        <p class="contac_farmacia_tienda"><?php echo $fila_farmacia["telefono"] ?></p>
+                        <button class="ciu_farmacia_tienda"><?php echo $fila_farmacia["ciudad"] ?></button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            <?php
+            }
+        } else if (isset($_GET['ZjAPa'])) {
+            $id_encriptado = $_GET['ZjAPa'];
+            $id_categoria_tienda = base64_decode($id_encriptado);
+            $stmt_categoria = $conexion->prepare("SELECT * FROM categoria WHERE idcategoria = ?");
+            $stmt_categoria->bind_param("i", $id_categoria_tienda);
+            $stmt_categoria->execute();
+            $result_categoria = $stmt_categoria->get_result();
+
+            if ($result_categoria->num_rows > 0) {
+                $fila_categoria = $result_categoria->fetch_assoc();
+            ?>
+                <p style="color: #888;font-style: normal;font-weight: 400;font-size: 14px;line-height: 14px;margin-left: 0.7rem;display: flex;align-items: center;text-align: start;">Categoria</p>
+                <div class="cont_farmacia_tienda">
+                    <div class="cont_imgCategoria">
+                        <img src="../uploads/imgProductos/<?php echo $fila_categoria["imgCategoria"] ?>" alt="<?php echo $fila_categoria["nombrecategoria"] ?>">
+                    </div>
+                    <div class="cont_infoFarmacia">
+                        <h1><?php echo $fila_categoria["nombrecategoria"] ?></h1>
+                        <p class="descripcion_categoria"><?php echo $fila_categoria["descripcion"] ?></p>
+                    </div>
+                </div>
+        <?php
+            }
+        }
+        ?>
+        <article class="cont_produc_filtro">
+            <section id="filterOptions">
+                <div id="filter-buttons">
+                    <a class="clasificacion" data-category="todos">Todo</a>
+                    <a class="clasificacion" data-category="Acetaminofén">Acetaminofen</a>
+                    <a class="clasificacion" data-category="Paracetamol">paracetamol</a>
+                    <a class="clasificacion" data-category="Loratadina">Loratadina</a>
+                    <a class="clasificacion" data-category="antibioticos">Antibioticos</a>
+                    <a class="clasificacion" data-category="asepsia">Asepsia</a>
+                    <a class="clasificacion" data-category="corazon">Corazón</a>
+                    <a class="clasificacion" data-category="dermatologicos">Dermatológicos</a>
+                </div>
+            </section>
+
+            <section id="results">
+                <div id="con">
+                    <div class="contenedorCards">
+                        <?php require_once '../controllers/mostrar_productos.php'; ?>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <?php if (isset($_GET['AsPZ'])) {
+        ?>
+            <section class="articles">
+                <h1>Mas farmacias</h1>
+                <div class="swiper slider-farmacias">
+                    <div class="swiper-wrapper">
+                        <?php
+                        $sql = "SELECT * FROM farmacias";
+                        $result = $conexion->query($sql);
+
+                        echo "<div class='swiper-slide colum-categorias'>";
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $id_encriptado = $_GET['AsPZ'];
+                                $id_farmacia_tienda = base64_decode($id_encriptado);
+                                $id_farmacia = $row['IdFarmacia'];
+                                if ($id_farmacia !== $id_farmacia_tienda) {
+                                    $id_encriptado = base64_encode($id_farmacia);
+                                    echo "<a href='productos.php?AsPZ=$id_encriptado' class='swiper-slide cont-farmacia'>";
+                                    echo "<img src='../uploads/imgProductos/" . $row['imgfarmacia'] . "' alt='" . $row['Nombre'] . "'>";
+                                    echo "</a>";
+                                }
+                            }
+                        } else {
+                            echo "No hay farmacias disponibles.";
+                        }
+                        echo "</div>";
+
+                        $conexion->close();
+                        ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+        <?php
+        } else if (isset($_GET['ZjAPa'])) {
+        ?>
+            <section class="articles">
+                <h1>Mas categorias</h1>
+                <div class="swiper slider-categorias">
+                    <div class="swiper-wrapper">
+                        <?php
+                        $sql = "SELECT * FROM categoria";
+                        $result = $conexion->query($sql);
+
+                        echo "<div class='swiper-slide colum-categorias'>";
+
+                        if ($result->num_rows > 0) {
+                            $contador = 0;
+                            while ($row = $result->fetch_assoc()) {
+                                $id_categoria = $row['idcategoria'];
+                                $id_encriptado_categoria = $_GET['ZjAPa'];
+                                $id_categoria_tienda = base64_decode($id_encriptado_categoria);
+
+                                if ($id_categoria !== $id_categoria_tienda) {
+                                    $id_encriptado = base64_encode($id_categoria);
+                                    echo "<a href='productos.php?ZjAPa=$id_encriptado' class='swiper-slide cont-categorias'>";
+                                    echo "<section>";
+                                    echo "<img src='../uploads/imgProductos/" . $row['imgCategoria'] . "' alt='" . $row['nombrecategoria'] . "'>";
+                                    echo "<h3>" . $row['nombrecategoria'] . "</h3>";
+                                    echo "</section>";
+                                    echo "</a>";
+
+                                    $contador++;
+
+                                    if ($contador % 6 == 0) {
+                                        echo "</div>";
+                                        echo "<div class='swiper-slide colum-categorias'>";
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "No hay categorías disponibles.";
+                        }
+                        echo "</div>";
+
+                        $conexion->close();
+                        ?>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+        <?php
+        }
+        ?>
         <section class="venergar-info" id="informacion-rapida">
             <section class="container-rapido">
                 <i class='bx bx-x x2 salir-vista-medicamento'></i>
@@ -575,29 +618,45 @@ function generarIDInvitadoUnico()
                         <div class="ahorro"></div>
                     </div>
                     <div class="precio"></div>
+                    <p class="stock_detaM"></p>
                     <div class="descripcion_det_med">
                         <p></p>
                     </div>
-
-                    <button type='submit' name='' class='carrito'><i class='bx bx-cart'></i> Añadir al
-                        carrito</button>
-
-
-                    <button class="vermas">Ver mas detalles</button>
+                    <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+                    <!-- <button class="vermas">Ver mas detalles</button> -->
                 </section>
             </section>
             <div class="cont-spinner-deta_med" style="display: none;">
                 <span class="spinner-deta_med"></span>
             </div>
         </section>
+        <?php require '../templates/footer_inicio_tienda.html'; ?>
     </main>
-    <?php require '../templates/footer_inicio_tienda.html'; ?>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/slider_inicio_tienda.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
     <script src="../assets/js/agregarCarrito.js"></script>
     <script src="../assets/js/funcionMenutienda.js"></script>
     <script src="../assets/js/detallesRapidos.js"></script>
+
+    <script>
+        function saveScrollPosition() {
+            var scrollableContent = document.querySelector(".scrollableContent");
+            localStorage.setItem("scrollPosition_producto", scrollableContent.scrollTop);
+        }
+
+        function restoreScrollPosition() {
+            var scrollableContent = document.querySelector(".scrollableContent");
+            var savedScrollPosition = localStorage.getItem("scrollPosition_producto");
+            if (savedScrollPosition !== null) {
+                scrollableContent.scrollTop = savedScrollPosition;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", restoreScrollPosition);
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const filterButtons = document.querySelectorAll('.clasificacion');

@@ -204,10 +204,6 @@ body {
 .pages {
   height: 100vh;
   overflow: auto;
-<<<<<<< HEAD
-=======
-
->>>>>>> eb7280f1f72b9c5adc8a5b1f0c3dbc14ea4c0e31
   flex: 1;
 }
 
@@ -3187,7 +3183,6 @@ body {
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
-
   height: 50px;
   width: 200px;
 }
@@ -3196,6 +3191,562 @@ body {
 .my-button2:hover {
   background-color: #0056b3;
 }
+
+.llevar-completo{
+  width: 100%;
+  height: 100vh;
+  padding: 0.5rem 1rem;
+}
+
+.acciones-usuGes{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.4rem;
+  height: auto;
+  margin-top: 12px;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+}
+
+.acciones-usuGes .acc{
+  display: flex;
+  width: 45%;
+}
+
+.acciones-usuGes .acc select{
+  height: 1.8rem;
+  width: 70%;
+}
+
+.acoos{
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 5px -5px, rgba(0, 0, 0, 0.04) 0px 0px 0px -5px; 
+}
+
+.acoos i{
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+
+.aggg{
+  margin-left: 10px;
+  border: 1px solid #55e679;
+  background-color: #49bf67;
+}
+.solii{
+  background-color: #00acec;
+}
+
+.agre{
+  border: 1px solid rgb(27, 185, 66);
+  background-color: #49bf67;
+}
+
+.agre:hover{
+  background-color: #18c243;
+}
+
+
+/* ------------------- menu_gestion_use ------------------ */
+.menu_gestion_user{
+  display: flex;
+  width: 100%;
+  /*padding: 0.7rem 0.4rem;*/
+  height: 85%;
+  border-radius: 5px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+/*------------------ menu paarte 1-------------------------*/
+
+.menu_parte1{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: none;
+}
+
+/* ---------------- Botones random -------------------*/
+
+.botones_random{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /*justify-content: space-between;*/
+  padding: 0.7rem 0.0rem;
+  height: auto;
+  /* border: 1px solid rgba(128, 128, 128, 0.744); */
+}
+
+.tabla_acciones_encabezado div{
+  border: 1px solid #ddd; 
+  display: flex;
+  align-items: center;
+}
+
+.caer div{
+  display: flex;
+  justify-content: center;
+}
+
+.tabla_acciones_encabezado div input{
+  width: 90%;
+  height: 80%;
+  padding: 0rem 0.4rem;
+  border: 1px solid #bfc6c6;
+}
+.tabla_acciones_encabezado div input:focus{
+  outline: none;
+  border: 1px solid #717474;
+  color: #2b2d30;
+  background-color: #fff;
+}
+
+.remarcar div{
+  font-size: 15px;
+  padding: 0rem 0.5rem;
+}
+.remarcar div{
+  font-weight: 600;
+  color: #1c1e21;
+}
+
+.remarca div{
+  padding: 0rem 0.5rem;
+  font-size: 15px;
+}
+
+.remarca:hover div{
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.098);
+}
+
+.encabezado_part{
+  width: 6%;
+  justify-content: center;
+}
+
+.encabezado_part1{
+  width: 26%;
+  text-align: left;
+}
+
+.encabezado_part2{
+  width: 22%;
+  text-align: left;
+}
+
+.encabezado_part3{
+  width: 10%;
+  justify-content: center;
+  text-align: left;
+}
+
+.encabezado_part4{
+  width: 10%;
+  text-align: left;
+}
+
+.encabezado_part5{
+  width: 200px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #222;
+}
+
+.encabezado_part6{
+  justify-content: space-between;
+  width: 7%;
+  text-align: left;
+}
+
+
+/* ---------------DECORACION DE CADA FILA--------------- */
+.encabezado_part section{
+  width: 75%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.encabezado_part section img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.encabezado_part6 button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  cursor: pointer;
+  color: white;
+  padding: 0.2rem 0.3rem;
+}
+.encabezado_part6 button i{
+  font-size: 16px;
+}
+
+.activado{
+  background-color: #f8a326;
+}
+
+.desac{
+  background-color: #00acec;
+}
+
+
+/* ---------------tabla_acciones--------------*/
+
+.tabla_acciones{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-top: 15px;
+  flex-direction: column;
+}
+
+
+.overfloww{
+  height: 100%;
+  overflow-x: scroll;
+}
+
+/* ---------------tabla_acciones_encabezado--------------*/
+
+.tabla_acciones_encabezado{
+  display: flex;
+  width: 100%;
+  height: 8%;
+  border-radius: 5px;
+}
+
+/* ---------------tabla_acciones_filas--------------*/
+
+.tabla_acciones_filas{
+
+  display: flex;
+  width: 100%;
+  height: 8%;
+  border-radius: 5px;
+}
+
+/*------------------ menu paarte 2-------------------------*/
+
+#menu_parte2{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+  
+  flex: none;
+}
+
+/*------------------ barra_datos-------------------------*/
+
+.barra_datos{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 0.0rem;
+  height: auto;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 5px;
+}
+
+/*------------------ barra_datos_parte1-------------------------*/
+
+.barra_datos_parte1{
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-around;
+  height: auto;
+}
+
+/*------------------ b_d_circulo-------------------------*/
+
+.b_d_circulo{
+  width: 10%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.744);
+  border-radius: 50%;
+}
+
+
+/*------------------ barra_datos_parte2-------------------------*/
+
+.barra_datos_parte2{
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: space-around;
+  height: auto;
+}
+
+/* ---------------datos_menu_parte2--------------*/
+
+.datos_menu_parte2{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+/* ---------------datos_mp2_contacto--------------*/
+
+.datos_mp2_contacto{
+  display: flex;
+  width: 25%;
+  height: 100%;
+  background-color: #376dad;
+  color: white;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  flex-direction: column;
+}
+
+/* ---------------contain_datos_circulo--------------*/
+
+.contain_datos_circulo{
+
+  display: flex;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------circulo_externo--------------*/
+
+.circulo_externo{
+
+  display: flex;
+  width: 45%;
+  height: 80%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------circulo_interno--------------*/
+
+.circulo_interno{
+  display: flex;
+  width: 90%;
+  height: 90%;
+  border: 1px solid rgba(128, 128, 128, 0.744);
+  border-radius: 50%;
+}
+
+.circulo_interno img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---------------contain_contacto--------------*/
+
+.contain_contacto{
+
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* ---------------contain_info--------------*/
+
+.contain_info{
+
+  display: flex;
+  width: 100%;
+  height: 30%;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  
+}
+
+
+/* ---------------datos_mp2_infoGeneral--------------*/
+
+.datos_mp2_infoGeneral{
+  display: flex;
+  width: 75%;
+  height: 100%;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+/* ---------------infoG_nombre--------------*/
+
+.infoG_nombre{
+  display: flex;
+  width: 100%;
+  padding: 0.4rem 0.9rem;
+  border-top: 1px solid ;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  text-align: left;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 17px;
+  color: white;
+  background-color: #133f72;
+}
+
+
+/* ---------------infoG_datos--------------*/
+
+.infoG_datos{
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+
+/* ---------------infoG_parte1--------------*/
+
+.infoG_parte1{
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0rem 0.6rem;
+}
+/* ---------------infoG_parte2--------------*/
+.infoG_parte2{
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.ecoeco a{
+  color: #004dff;
+  cursor: pointer;
+}
+
+
+/* ---------------infoG_parte3--------------*/
+
+.infoG_parte3{
+  display: flex;
+  width: 33%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+/* ---------------IGparte3_imagen--------------*/
+
+.IGparte3_imagen{
+
+  display: flex;
+  width: 100%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* ---------------contain_imagen_parte3--------------*/
+
+.contain_imagen_parte3{
+  display: flex;
+  width: 80%;
+  height: 80%;
+}
+
+.contain_imagen_parte3 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* ---------------IGparte3_botones--------------*/
+
+.IGparte3_botones{
+  display: flex;
+  width: 100%;
+  height: 20%;
+  justify-content: space-around;
+}
+
+.IGparte3_botones button{
+  width: auto;
+  height: 2rem;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  padding: 0.2rem 0.9rem;
+}
+
+.add{
+  background-color: red;
+}
+
+.ree{
+  background-color: rgb(10, 194, 10);
+}
+
+.redirec{
+  text-align: center;
+}
+
+.cerrarr{
+  position: absolute;
+  right: 0;
+  color: white;
+  font-size: 1.8rem;
+}
+/* --------------Sin solicutdes nuevas ------------- */
+.no-solicitudes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2.5rem;
+  font-size: 14px;
+  border: 1px solid rgba(128, 128, 128, 0.174);
+}
+
+.none{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+.flex{
+  display: flex !important;
+}
+
+
 
 /* Responsive para dispositivos moviles menores a 500px */
 
@@ -3532,6 +4083,7 @@ body {
 
 .filtro-notificaciones{
   width: 97%;
+  padding: 0.4rem 0rem;
 }
 
 .filtro-notificaciones a{
@@ -3541,8 +4093,18 @@ body {
 
 .btns-aplicar{
   width: 97%;
+  padding: 0.4rem 0rem;
+
+}
+.scroll {
+  scrollbar-width: none;
+  /* Oculta la barra de desplazamiento */
 }
 
+.scroll::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* Oculta el pulgar de la barra de desplazamiento */
+}
 .btns-aplicar button{
   height: 30px;
   border-radius: 3px;
@@ -3611,6 +4173,32 @@ body {
   word-wrap: break-word;
   
 }
+
+
+/* ----------------VENTANA EMERGENTE DATOS DE LA SOLCITUD-------------------- */
+.viltrum{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #111111a1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left:0 ;
+  top: 0;
+  bottom: 0;
+}
+
+.ventana-datos{
+  position: relative;
+  background-color: white;
+  width: 70%;
+  height: 70%;
+}
+
+/* Ajustar el ancho de la columna de Comentario */
+
+
 
 /* Estilo para la primera columna (números) */
 .tbl-notificaciones tbody td:first-child {
