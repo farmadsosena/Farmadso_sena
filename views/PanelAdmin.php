@@ -169,8 +169,10 @@ $imgUser = $_SESSION['img'];
             <section id="contentUpdate">
 
                 <section class="page visiblePage" id="inicio">
-                    <h2>Contenido inicio</h2>
-                    <img src="" alt="">
+                    <div class="imagencontenedorincial">
+                    <img src="../assets/img/¡Bienvenido!.png" style="width:70%; ailing-self:center;" alt="">
+
+                    </div>
                 </section>
 
 
@@ -179,7 +181,6 @@ $imgUser = $_SESSION['img'];
 
                     <!-- INICIO DE ARTICULOS GENERADOS CON WHILE -->
                     <?php
-
                     require_once '../templates/medicamentos.php';
                     ?>
 
@@ -190,8 +191,7 @@ $imgUser = $_SESSION['img'];
                     <!-- Abre formulario -->
                     <?php
                     require_once '../templates/FormularioMedicamentos.php';
-                    ?>
-                    <?php
+
                     require_once '../templates/editarMedicamentos.php';
                     ?>
                     <!-- cierra formulario -->
@@ -205,36 +205,17 @@ $imgUser = $_SESSION['img'];
                         <button onclick="openFormCategories()" class="btn-agregar">Agregar Categorias <i class="bx bx-plus-circle"></i> </button>
                         <div class="scroll-categories">
                             <div class="contenedorCategoria" id="contenedorCategoria">
-                               
-                       
-
-                                
+       
                             </div>
                         </div>
                     </div>
                     <!-- Fin de primera vista de categorias -->
+                    <!-- Formulario agregar categorias -->
+                    <?php
+                    require_once '../templates/FormularioCategorias.html';
+                    ?>
+                    <!-- Fin formulario agregar categorias -->
 
-
-                    <div class="categorias">
-                        <i class="bx bx-chevron-left" onclick="closeFormCategories()"></i>
-
-                        <form id="categoryAdd" onsubmit="sendForm(event, 'categoryAdd', '../controllers/agregarCategoria.php' )">
-                            <section class="separadores">
-                                <label for="">Nombre categoria</label>
-                                <input type="text" name="nombrecategoria" placeholder="Ingresa nombre categoria" class="input">
-                            </section>
-
-                            <section class="separadores">
-                                <label for="">Descripcion</label>
-                                <input type="text" name="descripcion" placeholder="Descripción" class="input">
-                            </section>
-
-
-                            <input type="submit" value="Agregar Categoria" class="boton_aggcategoria">
-
-                        </form>
-
-                    </div>
                 </section>
                 <section class="page" id="backlog">
                  
@@ -288,7 +269,9 @@ $imgUser = $_SESSION['img'];
                     <!-- CIERRA PRIMERA VISTA DE VENTAS -->
 
                             
-                    <div class="detalles"></div>
+                    <div class="detalles">
+
+                    </div>
                     <!-- INICIA DETALLES DE VENTA -->
          
                     <!-- CIERRA DETALLES DE VENTA -->
@@ -296,7 +279,7 @@ $imgUser = $_SESSION['img'];
                 <section class="page" id="informe">
                     <h2>Informe</h2>
                     <?php 
-                    // require_once '../templates/generarInforme.html';
+                    require_once '../templates/generarInforme.html';
                      ?>
                 </section>
             </section>
@@ -308,8 +291,6 @@ $imgUser = $_SESSION['img'];
 
                 <h3>ventas Por Categoria</h3>
                 <canvas class="graphic" id="ventasMensualesBarChart"></canvas>
-
-
 
             </aside>
         </section>
@@ -323,9 +304,10 @@ $imgUser = $_SESSION['img'];
     <?php
    require_once '../templates/inventario.php';
 
-   // require_once '../templates/comentarios.html';
+   require_once '../templates/comentarios.php';
 
-   // require_once '../templates/Ofertas.html';
+   require_once '../templates/Ofertas.php';
+
     ?>
     <!-- CIERRA LA VENTANA DEL ESTIVENSON -->
 
@@ -342,6 +324,7 @@ $imgUser = $_SESSION['img'];
     <script src="../assets/js/graphisAdminFarmacia.js"></script>
     <script src="../assets/js/enviarFormsAdmin.js"></script>
     <script src="../assets/js/Ventanas-modals.js"></script>
+    <script src="../assets/js/medicamentos-Form.js"></script>
     <script src="../assets/js/filtromedicamentos.js"></script>
     <script src="../assets/js/formularioEditar.js"></script>
     <script src="../assets/js/Categoria.js"></script>
