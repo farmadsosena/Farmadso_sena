@@ -42,10 +42,6 @@ require_once "../controllers/validacion_usu_tienda.php";
         </div>
 
         <div id="tabla-contenedor">
-          <section>
-
-
-          </section>
         </div>
       </form>
 
@@ -560,6 +556,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
+<script src="../assets/js/consultarCarrito.js" ></script>
 <script src="../assets/js/detallesRapidos.js"></script>
 </body>
 

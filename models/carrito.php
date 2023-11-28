@@ -124,3 +124,119 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
 echo json_encode($response);
 
 ?>
+
+
+
+// require_once('../config/Conexion.php');
+
+// // Crear una conexión a la base de datos
+// $conexionDataBase = new Conexion();
+// $conexion = $conexionDataBase->Getconexion();
+
+// // Validar usuario
+// function userValidate()
+// {
+//     if (isset($_SESSION['idinvitado'])) {
+//         return array('idinvitado' => $_SESSION['idinvitado']);
+//     } elseif (isset($_SESSION['id'])) {
+//         return array('id' => $_SESSION['id']);
+//     } else {
+//         return null;
+//     }
+// }
+
+// // Verificar si un usuario ha iniciado sesión (identificado por 'id' en la sesión)
+// $idUserSession = userValidate();
+
+// if ($idUserSession) {
+//     if (isset($idUserSession['idinvitado'])) {
+//         $idUserBd = $idUserSession['idinvitado'];
+//         $consultaCarrito = "SELECT * FROM carrito
+//             INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento
+//             INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+//             WHERE carrito.idcarrito = '$idUserBd'";
+//     } elseif (isset($idUserSession['id'])) {
+//         $idUserBd = $idUserSession['id'];
+//         $consultaCarrito = "SELECT * FROM carrito
+//             INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento
+//             INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+//             WHERE carrito.idusuario = '$idUserBd'";
+//     }
+
+//     $resultadoCarrito = mysqli_query($conexion, $consultaCarrito);
+
+//     if ($resultadoCarrito) {
+//         if (mysqli_num_rows($resultadoCarrito) === 0) {
+//             $response = array(
+<!-- //                 'message' => 'No hay productos en el carrito <style>#contC,.contC,.successCarrito,#paypal-button-container,#form-eliminar  > p{display:none; }#carritoIcono{color: #363636;}</style>', -->
+//                 'html' => '',
+//                 'subtotal' => 0,
+//                 'datosPedido' => ""
+//             );
+//         } else {
+//             $html = '';
+//             $subtotal = 0;
+//             $datosPedido = array();
+
+//             while ($fila = mysqli_fetch_assoc($resultadoCarrito)) {
+//                 $idProducto = $fila['idmedicamento'];
+//                 $cantidadProducto = $fila['cantidadcarrito'];
+//                 $datosPedido[$idProducto] = $cantidadProducto;
+
+//                 $total = $fila['precio'];
+//                 $subtotal += $total;
+
+//                 $imagen = $fila['imagenprincipal'];
+//                 $modificarRuta = '../';
+//                 if (strpos($imagen, $modificarRuta) === 0) {
+//                     $imagen = str_replace($modificarRuta, '', $imagen);
+//                 }
+//                 $precio = intval($fila['precio']);
+//                 $html .= '
+<!-- //                     <div id="itemCarrito">
+//                         <input type="checkbox" class="checkboxMarcados" value="' . $idProducto . '" name="id_productos[]">
+//                         <img src="' . $imagen . '" alt="">
+//                         <div class="contenido">
+//                             <p>' . $fila['nombre'] . '</p>
+//                             <p>Code #' . $fila['codigo'] . '</p>
+//                             <span class="costo">$' . $precio . '</span>
+//                         </div>
+//                         <div class="cantidad">
+//                             <p>Cantidad ' . $fila['cantidadcarrito'] . '</p>
+//                             <div class="eliminarProducto" data-id="' . $fila['idmedicamento'] . '">Eliminar <i class="fa-solid fa-trash"></i></div>
+//                             <input type="hidden" name="idProductos[]" value="' . $fila['idmedicamento'] . '  => ' . $fila['cantidadcarrito'] . '">
+//                         </div>
+//                     </div>'; -->
+//             }
+
+<!-- //             $html .= '</tbody></table>'; -->
+
+//             $response = array(
+//                 'message' => '',
+//                 'html' => $html,
+//                 'subtotal' => $subtotal
+//             );
+
+//             $_SESSION['datosPedido'] = $datosPedido;
+//             $_SESSION['subtotal'] = $subtotal;
+//         }
+//     } else {
+        
+//         $response = array(
+//             'message' => 'Error en la consulta: ' . $error,
+//             'html' => '',
+//             'subtotal' => 0,
+//             'datosPedido' => ""
+//         );
+//     }
+// } else {
+//     $response = array(
+//         'message' => 'No hay sesión de usuario',
+//         'html' => '',
+//         'subtotal' => 0,
+//         'datosPedido' => ""
+//     );
+// }
+// echo $error = mysqli_error($conexion);
+// echo json_encode($response);
+?>
