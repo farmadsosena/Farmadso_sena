@@ -153,8 +153,48 @@ require_once "../controllers/validacion_usu_tienda.php";
       </div>
       <section class="result_buscador">
         <article class="resultado_busqueda">
-          <h2>Medicamentos relacionados</h2>
-
+          <h3>Medicamentos relacionados</h3>
+          <section class="cont_medicamento_result">
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+            <a href="" class="medicamento_result">
+              <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg" alt="">
+              <p>Acetaminofen</p>
+            </a>
+          </section>
+          <section class="todos_medicamento_result">
+            <a href="">Ver todos los 100 medicamentos relacionados</a>
+          </section>
         </article>
         <section class="cont-spinner-result_buscador" style="display: none;">
           <span class="spinner-result_buscador"></span>
@@ -449,7 +489,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 
               echo " <form class='cardProductoS' autocomplete='off'  method='post'>";
               if (isset($_SESSION['id'])) {
-                echo "<input type='hidden' name='idusuario' value=" . $idUsuario . ">";
+                echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id'] . ">";
               } else {
                 // Si  la sesión no está iniciada se envia el invitado
                 echo "<input type='hidden' name='idinvitado' value=" . $idinvitado . ">";
@@ -558,7 +598,6 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/consultarCarrito.js" ></script>
 <script src="../assets/js/detallesRapidos.js"></script>
+<script src="../assets/js/consultarCarrito.js"></script>
 </body>
-
-
 </html>
