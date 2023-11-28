@@ -1,18 +1,13 @@
 <?php
 session_start();
-require_once('conexion.php');
-
-// Crear una conexión a la base de datos
-$conexionDataBase = new Conexion();
-$conexion = $conexionDataBase->Getconexion();
-
+require_once "../config/Conexion.php";
 
 // Validar usuario
 function userValidate()
 {
 
-    $idUser = (isset($_SESSION['sessionId'])) ? $data = array('sessionId' => $_SESSION['sessionId']) :
-        ((isset($_SESSION['id_cliente'])) ? $data = array('id_cliente' => $_SESSION['id_cliente']) : null);
+    $idUser = (isset($_SESSION['id_invitado'])) ? $data = array('sessionId' => $_SESSION['id_invitado']) :
+        ((isset($_SESSION['id'])) ? $data = array('id_cliente' => $_SESSION['id']) : null);
 
     return $idUser;
 }
@@ -38,17 +33,15 @@ elseif (isset($idUserSession['id_cliente'])) {
 
     if (!empty($idUserSession['sessionId'])) {
         $consultaCarrito = "SELECT * FROM carrito
-            INNER JOIN producto ON carrito.id_producto = producto.id_producto
-            INNER JOIN inventario ON producto.id_producto = inventario.id_producto
-            WHERE idsession = '$idUserBd'";
+            INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento
+            INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+            WHERE idinvitado = '$idUserBd'";
     } elseif (!empty($idUserSession['id_cliente'])) {
-
-
         $id = $idUserSession['id_cliente'];
         $consultaCarrito = "SELECT * FROM carrito
-            INNER JOIN producto ON carrito.id_producto = producto.id_producto
-            INNER JOIN inventario ON producto.id_producto = inventario.id_producto
-            WHERE carrito.id_cliente = '$id'";
+            INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento
+            INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+            WHERE carrito.idusuario = '$id'";
     } else {
         $consultaCarrito = null;
     }
@@ -74,35 +67,35 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
     // Recorrer cada producto en el carrito
     while ($fila = mysqli_fetch_assoc($resultadoCarrito)) {
         // Datos para la pasarela de pago
-        $idProducto = $fila['id_producto'];
-        $cantidadProducto = $fila['cantidad'];
+        $idProducto = $fila['idmedicamento'];
+        $cantidadProducto = $fila['cantidadcarrito'];
 
         // Agregar los datos al arreglo $datosPedido directamente sin sobrescribir variables de sesión
         $datosPedido[$idProducto] = $cantidadProducto;
 
-        $total = $fila['preciototal'];
+        $total = $fila['precio'];
         $subtotal += $total;
 
         // Generar filas para la tabla con los detalles del producto en el carrito
-        $imagen = $fila['imagen'];
+        $imagen = $fila['imagenprincipal'];
         $modificarRuta = '../';
         if (strpos($imagen, $modificarRuta) === 0) {
             $imagen = str_replace($modificarRuta, '', $imagen);
         }
-        $precio = intval($fila['preciototal']);
+        $precio = intval($fila['precio']);
         $html .= '
                 <div id="itemCarrito">
                     <input type="checkbox" class="checkboxMarcados" value="' . $idProducto . '" name="id_productos[]">
                     <img src="' . $imagen . '" alt="">
                     <div class="contenido">
-                        <p>' . $fila['nombre_producto'] . '</p>
-                        <p>Code #' . $fila['codigo_producto'] . '</p>
+                        <p>' . $fila['nombre'] . '</p>
+                        <p>Code #' . $fila['codigo'] . '</p>
                         <span class="costo">$' . $precio . '</span>
                     </div>
                     <div class="cantidad">
-                        <p>Cantidad ' . $fila['cantidad'] . '</p>
-                        <div class="eliminarProducto" data-id="' . $fila['id_producto'] . '">Eliminar <i class="fa-solid fa-trash"></i></div>
-                        <input type="hidden" name="idProductos[]" value="' . $fila['id_producto'] . '  => ' . $fila['cantidad'] . '">
+                        <p>Cantidad ' . $fila['cantidadcarrito'] . '</p>
+                        <div class="eliminarProducto" data-id="' . $fila['idmedicamento'] . '">Eliminar <i class="fa-solid fa-trash"></i></div>
+                        <input type="hidden" name="idProductos[]" value="' . $fila['idmedicamento'] . '  => ' . $fila['cantidadcarrito'] . '">
                     </div>
                 </div>';
     }

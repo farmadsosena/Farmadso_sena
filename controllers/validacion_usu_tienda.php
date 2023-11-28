@@ -16,9 +16,7 @@ if (!isset($_SESSION['id'])) {
    $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
   }
 } else {
-  // Si hay un usuario autenticado, utilizar su ID
-  $idUsuario = $_SESSION['id'];
-  // Haz lo que necesites con el ID del usuario autenticado
+    unset($_SESSION['id_invitado']);
 }
 
 function generarIDInvitadoUnico()

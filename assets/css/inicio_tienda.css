@@ -901,7 +901,6 @@ a {
   font-size: 16.5px;
 }
 form.cardProductoS {
-  
   display: flex;
   flex-direction: column;
 }
@@ -2349,6 +2348,81 @@ input[type="number"]::-webkit-outer-spin-button {
   visibility: hidden;
   opacity: 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.active-result_buscador {
+  scale: 1 !important;
+  z-index: 2 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.resultado_busqueda {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cont_medicamento_result {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  flex-shrink: 0;
+  padding-top: 7px;
+}
+
+.resultado_busqueda > h3 {
+  padding: 9px;
+  border: 1px solid #ddd;
+  color: var(--primary);
+}
+
+.medicamento_result {
+  display: flex;
+  width: 100%;
+}
+
+.medicamento_result:hover{
+  text-decoration: underline;
+}
+
+.medicamento_result > img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.medicamento_result > p {
+  color: #888;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  margin-left: 0.7rem;
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+
+.todos_medicamento_result {
+  padding: 7px;
+  border-top: 1px solid #ddd;
+}
+
+.todos_medicamento_result > a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px !important;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: start;
+}
+
+.todos_medicamento_result > a:hover{
+  text-decoration: underline;
 }
 
 .muestra_ahorro {
@@ -2363,6 +2437,6 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
 }
 
-#productos>a>i{
+#productos > a > i {
   font-size: 20px;
 }

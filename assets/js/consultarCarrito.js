@@ -2,7 +2,7 @@
 function consultarCarrito() {
 
   $.ajax({
-    url: 'models/carrito.php',
+    url: '../models/carrito.php',
     method: 'POST',
     dataType: 'json',
     success: function (response) {
@@ -41,55 +41,55 @@ $(document).ready(function () {
 
 
 
-paypal.Buttons({
-  style: {
-    shape: 'pill',
-    label: 'pay'
-  },
+// paypal.Buttons({
+//   style: {
+//     shape: 'pill',
+//     label: 'pay'
+//   },
 
-  createOrder: function (data, actions) {
-    return actions.order.create({
-      purchase_units: [{
-        amount: {
-          value: MONTO
-        }
-      }]
-    });
-  },
+//   createOrder: function (data, actions) {
+//     return actions.order.create({
+//       purchase_units: [{
+//         amount: {
+//           value: MONTO
+//         }
+//       }]
+//     });
+//   },
 
-  onApprove: function (data, actions) {
-    actions.order.capture().then(function (detalles) {
-      return fetch('controllers/procesarCompra.php', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          detalles: detalles
-        })
-      })
-      .then(function (response) {
-        if (response.ok) {
-          // Mostrar el Toast "Compra realizada correctamente"
-          toastr.success("Compra realizada correctamente");
-          // Redirigir a index.php después de 3 segundos
-          // setTimeout(function () {
-          //   window.location.href = "index.php";
-          // }, 2000);
-        } else {
-          alert("Error al procesar la compra");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        // Puedes agregar aquí algún procesamiento adicional de la respuesta si es necesario.
-      });
-    });
-  },
+//   onApprove: function (data, actions) {
+//     actions.order.capture().then(function (detalles) {
+//       return fetch('controllers/procesarCompra.php', {
+//         method: "POST",
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//           detalles: detalles
+//         })
+//       })
+//       .then(function (response) {
+//         if (response.ok) {
+//           // Mostrar el Toast "Compra realizada correctamente"
+//           toastr.success("Compra realizada correctamente");
+//           // Redirigir a index.php después de 3 segundos
+//           // setTimeout(function () {
+//           //   window.location.href = "index.php";
+//           // }, 2000);
+//         } else {
+//           alert("Error al procesar la compra");
+//         }
+//         return response.json();
+//       })
+//       .then(function (data) {
+//         // Puedes agregar aquí algún procesamiento adicional de la respuesta si es necesario.
+//       });
+//     });
+//   },
 
-  onCancel: function (data) {
-    if (!confirm("¿Desea seguir con la compra?")) {
-      window.location.href = "index.php";
-    }
-  }
-}).render('#paypal-button-container');
+//   onCancel: function (data) {
+//     if (!confirm("¿Desea seguir con la compra?")) {
+//       window.location.href = "index.php";
+//     }
+//   }
+// }).render('#paypal-button-container');
