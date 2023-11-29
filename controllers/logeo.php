@@ -3,7 +3,7 @@ session_start();
 include "../config/Conexion.php";
 
 if (isset($_POST["enviar"])) {
-    $user = $_POST["usuario"];
+    $user = mysqli_real_escape_string($conexion, $_POST["usuario"]);
     $contraseña = $_POST["contraseña"];
 
     // Validar que el usuario sea una cadena de números válida 
@@ -17,7 +17,7 @@ if (isset($_POST["enviar"])) {
         window.location='../views/login.php'</script>";
     }
     else {
-        $consul = mysqli_query($conexion, "SELECT * FROM usuarios WHERE documento='$user'");
+        $consul = mysqli_query($conexion, "SELECT * FROM usuarios WHERE documento='$user' and estado='2'");
         if (mysqli_num_rows($consul) > 0) {
             $des = mysqli_fetch_array($consul);
             $password_hash = $des["passwordusuario"];
@@ -37,7 +37,7 @@ if (isset($_POST["enviar"])) {
                     $_SESSION["img"] = $img;
                     $_SESSION["telefono"] = $tel;
                     if ($rol == "1") {
-                        echo "<script>window.location='../views/'</script>";
+                        echo "<script>window.location='../views/admin.php'</script>";
                     } elseif ($rol == "2") {
                         echo "<script>window.location='../views/Usuario.php'</script>";
                     }

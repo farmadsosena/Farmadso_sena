@@ -71,12 +71,12 @@ $id = $_SESSION["id"];
             return $resultado->num_rows > 0;
           }
 
-          if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+          if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', '2')) {
             echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
           }
-          if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+          if (existe_en_tabla('usuarios', $id, 'estado', '2')) {
             echo '<div class="option">
                    <i class="bx bx-user-circle"></i> Cuenta de usuario
                  </div>';
