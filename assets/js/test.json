@@ -1,0 +1,74 @@
+{
+    "id": "9P6754344J0748607",
+    "intent": "CAPTURE",
+    "status": "COMPLETED",
+    "purchase_units": [
+        {
+            "reference_id": "default",
+            "amount": {
+                "currency_code": "USD",
+                "value": "36.12"
+            },
+            "payee": {
+                "email_address": "sb-b1p8n26933915@business.example.com",
+                "merchant_id": "M9VB4K95M6STQ"
+            },
+            "soft_descriptor": "PAYPAL *TEST STORE",
+            "shipping": {
+                "name": {
+                    "full_name": "Yohany Mejia"
+                },
+                "address": {
+                    "address_line_1": "Alpes ",
+                    "address_line_2": "calle 12-4 sur",
+                    "admin_area_2": "florencia",
+                    "admin_area_1": "CAQUETÁ",
+                    "postal_code": "180001",
+                    "country_code": "CO"
+                }
+            },
+            "payments": {
+                "captures": [
+                    {
+                        "id": "4T049012U42090023",
+                        "status": "COMPLETED",
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": "36.12"
+                        },
+                        "final_capture": true,
+                        "seller_protection": {
+                            "status": "ELIGIBLE",
+                            "dispute_categories": [
+                                "ITEM_NOT_RECEIVED",
+                                "UNAUTHORIZED_TRANSACTION"
+                            ]
+                        },
+                        "create_time": "2023-11-25T08:11:16Z",
+                        "update_time": "2023-11-25T08:11:16Z"
+                    }
+                ]
+            }
+        }
+    ],
+    "payer": {
+        "name": {
+            "given_name": "John",
+            "surname": "Doe"
+        },
+        "email_address": "sb-obn8s26934157@personal.example.com",
+        "payer_id": "NMKA6KKMKVK8J",
+        "address": {
+            "country_code": "CO"
+        }
+    },
+    "create_time": "2023-11-25T08:11:10Z",
+    "update_time": "2023-11-25T08:11:16Z",
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/9P6754344J0748607",
+            "rel": "self",
+            "method": "GET"
+        }
+    ]
+}

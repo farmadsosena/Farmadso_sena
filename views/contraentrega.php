@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/pagoConCard.css" />
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -16,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- toast.js -->
     <!-- Enlace a la hoja de estilos de Toastr.js -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <!-- Enlace al JavaScript de Toastr.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <title>Contraentrega</title>
@@ -46,8 +47,9 @@
 
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
-                    <p id="cantidadFinal">6</p>
-                    <i class='bx bx-cart' id="viewCartIcon" ></i>
+                    <p id="cantidadFinal">0</p>
+                    <script src="../assets/javascript/cantidadP.js"></script>
+                    <i class='bx bx-cart' id="viewCartIcon"></i>
                 </div>
 
 
@@ -57,91 +59,18 @@
                 <h3>Resumen de compra</h3>
 
                 <form method="POST" id="form-eliminar">
-                    <p>Monto final a pagar <b id="subtotal">$75.500</b></p>
+                    <p>Monto final a pagar <b id="subtotal"></b></p>
 
                     <div id="tabla-contenedor">
+                    
 
 
-                        <div id="medicamento1" class="itemCarrito">
-                            <img src="../uploads/imgProductos/aspirine.png" alt="Aspirina">
-                            <div class="contenido">
-                                <p>Aspirina</p>
-                                <p>Código #01</p>
-                                <span class="costo">$12.000</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$24.000</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento2" class="itemCarrito">
-                            <img src="../uploads/imgProductos/paracetamol.png" alt="Paracetamol">
-                            <div class="contenido">
-                                <p>Paracetamol</p>
-                                <p>Código #02</p>
-                                <span class="costo ">$4000</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$8.000</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento3" class="itemCarrito">
-                            <img src="../uploads/imgProductos/ibuprofeno.png" alt="Ibuprofeno">
-                            <div class="contenido">
-                                <p>Ibuprofeno</p>
-                                <p>Código #03</p>
-                                <span class="costo">$6.500</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 1</p>
-                                <span class="costo subtotal">$6.500</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento4" class="itemCarrito">
-                            <img src="../uploads/imgProductos/omeprazol.png" alt="Omeprazol">
-                            <div class="contenido">
-                                <p>Omeprazol</p>
-                                <p>Código #04</p>
-                                <span class="costo">$8.000</span>
-                            </div>
-                            <div class="cantidad">
-
-                                <p></p>
-                                <p>Cantidad 2</p>
-                                <span class="costo subtotal">$16.000</span>
-                            </div>
-                        </div>
-
-                        <div id="medicamento5" class="itemCarrito">
-                            <img src="../uploads/imgProductos/amoxi.png" alt="Amoxicilina">
-                            <div class="contenido">
-                                <p>Amoxicilina</p>
-                                <p>Código #05</p>
-                                <span class="costo">$7.000</span>
-                            </div>
-                            <div class="cantidad">
-                                <p></p>
-                                <p>Cantidad 3</p>
-                                <span class="costo subtotal">$21.000</span>
-                            </div>
-                        </div>
 
                     </div>
                 </form>
             </div>
 
-            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm"
-                onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaController.php')">
+            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
 
                 <article class="groupTwo">
@@ -166,18 +95,6 @@
                         </span>
                     </div>
 
-                    <div class="inputCont">
-                        <label for="codigo">Código postal</label>
-                        <select type="number" name="codigo" id="codigo">
-                            <option value="180001">180001</option>
-                            <option value="180002">180002</option>
-                            <option value="180007">180007</option>
-                            <option value="180008">180008</option>
-                        </select>
-                        <span> <i style="color: #2d57a8" class='bx bx-code-block'></i>
-
-                        </span>
-                    </div>
 
                 </article>
 
@@ -209,7 +126,7 @@
 
     </main>
     <script src="../assets/js/contraEntrega.js"></script>
-    <!-- <script>
+    <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
             // Obtén la altura de la ventana gráfica en vh
@@ -221,8 +138,8 @@
             // Establece la altura del elemento en px
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
-    </script> -->
-
+    </script>
+ <script src="../assets/js/consultarCart.js"></script>
 </body>
 
-</html>
+</html> 

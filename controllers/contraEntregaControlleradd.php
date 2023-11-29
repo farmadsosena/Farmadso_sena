@@ -1,36 +1,50 @@
 <?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['id_invitado'])) {
+       $idinvitado = $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
+    }
+} else {
+    $idUsuario = $_SESSION['id'];
+}
+
+function generarIDInvitadoUnico()
+{
+    $numero = rand(1, 5);
+    $prefix = 'INVITADO_'; // Prefijo para identificar al invitado
+    $uniqueID = $prefix . uniqid() . $numero; // Generar un identificador único
+    return $uniqueID;
+}
+
+// Importar conexion y modelo contraentrega
 require_once '../config/Conexion.php';
 require_once '../models/contraEntregaModel.php';
 
-use contraentrega\registrarContraEntrega;
+// Definimos el espacio d
 use contraentrega\ContraEntregaModel;
 
+$conexion = new Conexion(); // Esto podría variar según tu configuración.
+
+$contraentrega = new ContraEntregaModel($conexion->getConexion()); // Cambiado para 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $conexion = new Conexion(); // Esto podría variar según tu configuración.
 
-    $contraentrega = new ContraEntregaModel($conexion->getConexion()); // Cambiado para obtener la conexión correctamente.
 
     $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre']);
     $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido']);
     $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion']);
-    $datos['codigo_postal'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['codigo']);
     $datos['telefono'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['telefono']);
     $datos['correo'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['correo']);
     $datos['instrucciones'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['instrucciones']);
 
     $valid = array();
 
-    if (empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['direccion']) || empty($_POST['codigo']) || empty($_POST['telefono']) || empty($_POST['correo'])) {
+    if (empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['direccion']) || empty($_POST['telefono']) || empty($_POST['correo'])) {
         $valid['error'] = 'Complete todos los campos';
     } elseif (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['nombre'])) {
         $valid['error'] = 'El nombre no debe contener números ni caracteres especiales.';
     } elseif (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['apellido'])) {
         $valid['error'] = 'El apellido no debe contener números ni caracteres especiales.';
-    } elseif (empty($_POST['codigo'])) {
-        $valid['error'] = 'El código postal es obligatorio.';
-    } elseif (!preg_match('/^\d{5}$/', $_POST['codigo'])) {
-        $valid['error'] = 'El código postal debe contener 5 dígitos.';
     } elseif (empty($_POST['telefono'])) {
         $valid['error'] = 'El teléfono es obligatorio.';
     } elseif (!preg_match('/^\d{10}$/', $_POST['telefono'])) {
@@ -42,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($valid['error'])) {
-        $result = $contraentrega->registrarContraEntrega($datos);
+
+        $result = $contraentrega->registrarContraEntrega($datos, $_SESSION);
         $response = ($result) ? true : (($result === null) ? null : false);
         $message = match ($response) {
             true => 'registro éxitoso.',

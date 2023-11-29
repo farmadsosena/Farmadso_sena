@@ -1,15 +1,44 @@
+
 <?php
-function consultarMonto(){
+include('../config/Conexion.php');
 
-  $monto = 75500;
-  $state = true;
-  $data = array(
-    'state' => $state,
-    'amount' =>  $monto
-  );
+// Verifica si la solicitud es un método GET
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Inicia la sesión
+    session_start();
+    $_SESSION['id'] = 1;
+    $where = '';
 
-  echo json_encode ($data);
+    // Verifica si está establecido el id de usuario en la sesión
+    if (isset($_SESSION['id'])) {
+        $where = 'carrito.idusuario =' . $_SESSION['id'];
+    } elseif (isset($_SESSION['idinvitado'])) {
+        $where = 'carrito.idinvitado =' . $_SESSION['idinvitado'];
+    }
+
+
+    $query = "SELECT medicamentos.precio, carrito.cantidadcarrito FROM carrito INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento WHERE $where";
+    $result = $conexion->query($query);
+
+
+    if ($result) {
+        $dataAll = array();
+      $Subtotal = 0;
+        while ($productos = $result->fetch_assoc()) {
+
+            $costo  = $productos['precio'] *  $productos['cantidadcarrito'];
+            $Subtotal = $costo +$Subtotal;
+        }
+        $monto = intVal($Subtotal);
+        $state = true;
+        $data = array(
+          'state' => $state,
+          'amount' =>  $monto
+        );
+      
+        echo json_encode ($data);
+    } else {
+        echo json_encode(array('error' => 'Error en la consulta'));
+    }
 }
-
-consultarMonto();
-
+?>

@@ -1,4 +1,5 @@
 <?php
+
 require_once "../config/Conexion.php";
 
 $stmt = "";
@@ -10,10 +11,21 @@ if (isset($_GET['AsPZ'])) {
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
     INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia WHERE medicamentos.idfarmacia = ?");
     $stmt->bind_param("i", $id_farmacia_tienda);
+} elseif (isset($_GET['ZjAPa'])) {
+    $id_encriptado = $_GET['ZjAPa'];
+    $id_categoria_tienda = base64_decode($id_encriptado);
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia 
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento
+    INNER JOIN categoria ON categoria.idcategoria = inventario.idcategoria
+    WHERE categoria.idcategoria = ?");
+    $stmt->bind_param("i", $id_categoria_tienda);
 } else {
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
-    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia");
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento");
 }
 $stmt->execute();
 
@@ -32,6 +44,18 @@ if ($result->num_rows > 0) {
         $precio_actual = number_format($precio_actual, 0, ',', '.');
         $id_ofuscado = base64_encode($id_medicamento);
 
+        echo " <form class='cardProductoS' autocomplete='off'  method='post'>";
+
+        if (isset($_SESSION['id'])) {
+            echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
+        } else {
+            // Si  la sesión no está iniciada se envia el invitado
+            echo "<input type='hidden' name='idinvitado' value=". $_SESSION['idinvitado'].">";
+        }
+        echo "<input type='hidden' name='idmedicamento' value=" . $fila['idmedicamento'] . ">";
+
+        echo "<input type='hidden' name='precio' value=" . $precio_actual . ">";
+
         echo "<div class='top-product' data-im='$id_ofuscado'>";
         echo "<img src='../uploads/imgProductos/" . $fila['imagenprincipal'] . "' alt=''>";
         echo "<p>" . $fila['Nombre'] . "</p>";
@@ -43,20 +67,25 @@ if ($result->num_rows > 0) {
         } else {
             echo "<h2>$" . $precio_antes . "</h2>";
         }
-        echo "<button class='comprar-tarje-comp'>Comprar</button>";
+
+        echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $fila["stock"] . "' value='1'>";
+        echo "<input type='submit' name='comprar' value='comprar' class='comprar-tarje-comp'>";
         echo "</div>";
+        echo "</form>";
     }
 } else {
 ?>
     <div class="no_existen_productos">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="600" height="600" class="empty">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="400" height="400" class="empty">
             <g class="empty_svg__animable empty_svg__animator-active" style="transform-origin: 227.87px 256.639px;">
                 <path d="M130.36 194.26c-.88 2-1.85 4.16-2.7 6.27s-1.73 4.28-2.5 6.44a91.35 91.35 0 00-3.79 12.93l-.29 1.6-.1.6c0 .17 0 .39-.06.59a24.53 24.53 0 00.06 2.92c.19 2.11.53 4.37 1 6.63.84 4.53 1.91 9.2 3 13.8l-5.13 2a92.65 92.65 0 01-6.09-13.59 57 57 0 01-2.12-7.47 26.81 26.81 0 01-.56-4.26v-1.21c0-.43 0-.91.07-1.19l.2-2a63 63 0 011.37-7.65c.56-2.5 1.28-4.93 2-7.33s1.62-4.76 2.57-7.08c.47-1.16 1-2.31 1.46-3.46s1-2.25 1.64-3.48z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 120.72px 218.68px;"></path>
                 <path d="M124.71 244.69l3.9 3.81-8.51 4s-2.06-3.61-.63-6.87z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 123.787px 248.595px;"></path>
                 <path fill="#e4897b" d="M131.76 254.17l-7.19 2.94-4.46-4.65 8.5-3.96 3.15 5.67z" class="empty_svg__animable" style="transform-origin: 125.935px 252.805px;"></path>
                 <path d="M277.41 250.07A72 72 0 11357 186.5a72 72 0 01-79.59 63.57z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 285.444px 178.52px;"></path>
-                <path d="M329.79 121.79l-109.5 87.49c-.46-1-.91-2-1.33-3a71.24 71.24 0 01-5.21-20.48l94.58-75.57a71.15 71.15 0 0121.46 11.56z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 271.77px 159.755px;"></path>
-                <path d="M355.06 160.12l-102.95 82.25a71.86 71.86 0 01-24.77-21.28l112.41-89.82a72 72 0 0115.31 28.85z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 291.2px 186.82px;"></path>
+                <path d="M329.79 121.79l-109.5 87.49c-.46-1-.91-2-1.33-3a71.24 71.24 0 01-5.21-20.48l94.58-75.57a71.15 71.15 0 0121.46 11.56z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 271.77px 159.755px;">
+                </path>
+                <path d="M355.06 160.12l-102.95 82.25a71.86 71.86 0 01-24.77-21.28l112.41-89.82a72 72 0 0115.31 28.85z" fill="#fafafa" opacity=".4" class="empty_svg__animable" style="transform-origin: 291.2px 186.82px;">
+                </path>
                 <path d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;"></path>
                 <path d="M204.39 151l-.95-.32a87.68 87.68 0 016.18-14.05l.87.48a86.93 86.93 0 00-6.1 13.89zm12.14-23.34l-.81-.59a86.7 86.7 0 0131.37-26.21l.45.9a85.74 85.74 0 00-31.01 25.93zm109.59-24.53A83.6 83.6 0 00316 98.54l.36-.94a85.62 85.62 0 0110.22 4.68z" opacity=".3" class="empty_svg__animable" style="transform-origin: 265.01px 124.3px;"></path>
                 <path d="M359.87 141.74a83 83 0 00-152.65 64.73c-6.68 2.34-13.28 4.85-19.84 7.44q-14.19 5.63-28.12 11.76c-9.28 4.11-18.52 8.3-27.67 12.68-4.59 2.15-9.12 4.42-13.69 6.62a19.79 19.79 0 00-6.34 4.35 19.15 19.15 0 00-2.57 3.37 17.25 17.25 0 00-2 4.63 12.72 12.72 0 007.33 14.85 17.56 17.56 0 004.86 1.26 18.88 18.88 0 004.25 0 19.76 19.76 0 007.3-2.39c4.53-2.29 9.09-4.5 13.59-6.85 9-4.59 18-9.38 26.89-14.24S189 240 197.68 234.78c6-3.63 12.06-7.34 18-11.22a83 83 0 00144.21-81.82zm-45.46 95.53a65.53 65.53 0 1129.75-87.78 65.53 65.53 0 01-29.75 87.78z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 237.695px 184.169px;"></path>

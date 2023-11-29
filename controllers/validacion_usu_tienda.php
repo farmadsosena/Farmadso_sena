@@ -9,3 +9,23 @@ if (isset($_SESSION["usu"])) {
     $consulta = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = '$id'");
     $rr = mysqli_fetch_assoc($consulta);
 }
+
+
+if (!isset($_SESSION['id'])) {
+  if (!isset($_SESSION['id_invitado'])) {
+   $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
+  }
+} else {
+    unset($_SESSION['id_invitado']);
+}
+
+function generarIDInvitadoUnico()
+{
+  $prefix = 'INVITADO_'; // Prefijo para identificar al invitado
+  $uniqueID = $prefix . uniqid(); // Generar un identificador único
+
+  return $uniqueID;
+}
+?>
+
+

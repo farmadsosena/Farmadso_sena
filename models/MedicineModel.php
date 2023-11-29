@@ -65,7 +65,7 @@ class MedicineModel
     public function medicineQuery($cum)
     {
         $cum = mysqli_real_escape_string($this->conn, $cum);
-        $query = $this->conn->query("SELECT idmedicamento FROM medicamentos WHERE codigo = '$cum' ");
+        $query = $this->conn->query("SELECT idmedicamento FROM medicamentos WHERE codigo = '$cum'");
         if ($query->num_rows > 0) {
             return true;
         } else {

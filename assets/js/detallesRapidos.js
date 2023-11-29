@@ -59,6 +59,7 @@ function mostrar_detallesMedi(datos) {
   var descripcion = datos.inventario.descripcion;
   var imgPrincipal = datos.medicamento.imagenprincipal;
   var imagenes = datos.inventario.imagendescrip;
+  var stock = datos.inventario.stock;
 
   var arrayDeImagenes = imagenes.split(",");
   $(".raster").remove();
@@ -81,6 +82,7 @@ function mostrar_detallesMedi(datos) {
   });
 
   if(idpromocion){
+    $(".descripcion_det_med > p").css("height","5rem");
     $(".precio-antes").css("display","flex");
     $(".img-oferta>button").css("display","flex");
     $(".precio-a").text("Antes $ " + precio_antes_formateado);
@@ -88,6 +90,7 @@ function mostrar_detallesMedi(datos) {
     $(".precio").text("$" + precio_actual_formateado);
     $(".img-oferta>button").text("Ahorra "+descuento+"%");
   }else{
+    $(".descripcion_det_med > p").css("height","8rem");
     $(".precio-a").text("");
     $(".ahorro").text("");
     $(".img-oferta>button").text("");
@@ -99,8 +102,7 @@ function mostrar_detallesMedi(datos) {
   $(".nombre_farmacia").text(nombreFarmacia);
   $(".nombre_med").text(nombreMedicamento);
   $(".c_m").text("Referencia: " + codigoReferencia);
-
-
+  $(".stock_detaM").text("Cantidad: " + stock);
   $(".descripcion_det_med>p").text(descripcion);
   $(".produc>img").attr("src", "../uploads/imgProductos/" + imgPrincipal + "");
   $(".produc>img").attr("alt", nombreMedicamento);
