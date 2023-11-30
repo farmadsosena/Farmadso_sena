@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
         echo "<input type='hidden' name='precio' value=" . $precio_actual . ">";
 
         echo "<div class='top-product' data-im='$id_ofuscado'>";
-        echo "<img src='../uploads/imgProductos/" . $fila['imagenprincipal'] . "' alt=''>";
+        echo "<img src='../uploads/imgProductos/" . $fila['imagenprincipal'] . "' class='abrirDetalles_medicamentos' alt=''>";
         echo "<p>" . $fila['Nombre'] . "</p>";
         echo "<h3 class='card-description'>" . $fila['nombre'] . "</h3>";
         if (isset($id_promocion)) {

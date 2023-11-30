@@ -67,7 +67,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 
   <!-- Resultado de buscador -->
   <section class="result_buscador">
-    <article class="resultado_busqueda">
+    <article class="resultado_busqueda" style="display: none;">
       <h3>Medicamentos relacionados</h3>
       <section class="cont_medicamento_result">
         <a href="" class="medicamento_result">
@@ -78,6 +78,20 @@ require_once "../controllers/validacion_usu_tienda.php";
       <section class="todos_medicamento_result">
         <a href="">Ver todos los 100 medicamentos relacionados</a>
       </section>
+    </article>
+    <article class="vista_prede_buscador">
+      <h4>Medicamentos mas buscados</h4>
+      <div class="medi_masBuscados">
+        <?php
+        require_once "../controllers/get_medi_masBuscados.php";
+        ?>
+      </div>
+      <h4>Las mejores ofertas</h4>
+      <div class="cont_mejores_ofertas_medicamentos">
+        <?php
+        require_once "../controllers/ofertas_buscador.php";
+        ?>
+      </div>
     </article>
     <section class="cont-spinner-result_buscador" style="display: none;">
       <span class="spinner-result_buscador"></span>
@@ -438,6 +452,7 @@ require_once "../controllers/validacion_usu_tienda.php";
               INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
               INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
               INNER JOIN inventario I ON I.idinventario = m.idmedicamento
+              WHERE I.stock > 0
               ORDER BY p.valordescuento DESC
               LIMIT 4";
 
@@ -472,7 +487,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 
               echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
               echo "<div class='top-product' data-im='$id_ofuscado'>";
-              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' class='abrirDetalles_medicamentos' alt=''>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
               echo "<h3>" . $row['nombre'] . "</h3>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";

@@ -6,10 +6,10 @@ document.querySelector(".venergar-info").addEventListener("click",function(event
   }
 });
 
-document.querySelectorAll(".top-product>img").forEach((card_medicamento) => {
+document.querySelectorAll(".abrirDetalles_medicamentos").forEach((card_medicamento) => {
   var card = card_medicamento.parentNode;
   card_medicamento.addEventListener("click", function () {
-    enviar_recibir_datos(card);
+    enviar_recibir_datos(card,card_medicamento);
   });
 });
 
@@ -21,11 +21,11 @@ document
       .classList.remove("active-venergar-info");
   });
 
-function enviar_recibir_datos(card) {
+function enviar_recibir_datos(card,card_medicamento) {
   $(".container-rapido").css("display", "none");
   $(".cont-spinner-deta_med").css("display", "flex");
   $(".venergar-info").addClass("active-venergar-info");
-  var im = card.getAttribute("data-im");
+  var im = (card.getAttribute("data-im")) ? card.getAttribute("data-im") : card_medicamento.getAttribute("data-im");
   var imd = atob(im);
 
   $.ajax({
