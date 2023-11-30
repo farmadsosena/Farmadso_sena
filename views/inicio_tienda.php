@@ -47,9 +47,9 @@ require_once "../controllers/validacion_usu_tienda.php";
 
       <div class="contboton" id="contC">
         <button class="botonCarrito deleteCarrito">Quitar marcados</button>
-        <a href="pago.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
+        <a href="paypal.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
         <a href="" class="pagar">
-          <form action="pagocontraentrega.php" method="post">
+          <form action="contraentrega.php" method="post">
             <input type="hidden" name="<?php $_SESSION ?>">
             <button name="carrito" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></button>
           </form>
@@ -442,7 +442,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           // Verifica si hay resultados en la consulta
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              $id_medicamento = $row['id_medicamento'];
+              $id_medicamento = $row['idmedicamento'];
               $precio_antes = $row['precio'];
               $descuento = $row['valordescuento'];
               // Calcula el precio actual
@@ -451,7 +451,7 @@ require_once "../controllers/validacion_usu_tienda.php";
               $precio_antes = number_format($precio_antes, 0, ',', '.');
               $precio_actual = number_format($precio_actual, 0, ',', '.');
               $id_ofuscado = base64_encode($id_medicamento);
-              $id_medicamento = $row['id_medicamento'];
+              $id_medicamento = $row['idmedicamento'];
               $precio_antes = $row['precio'];
               $descuento = $row['valordescuento'];
               // Calcula el precio actual
@@ -462,7 +462,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                 echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id'] . ">";
               } else {
                 // Si  la sesión no está iniciada se envia el invitado
-                echo "<input type='hidden' name='idinvitado' value=" . $idinvitado . ">";
+                echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
               }
               echo "<input type='hidden' name='idmedicamento' value=" . $row['idmedicamento'] . ">";
 
@@ -559,16 +559,15 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
-
+<script src="../assets/js/carrito.js" ></script>
 <script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
-<script src="../assets/js/agregarCarrito.js"></script>
 <script src="../assets/js/slider_inicio_tienda.js"></script>
 <script src="../assets/js/Font.js"></script>
 <script src="../assets/js/carritoF.js"></script>
 <script src="../assets/js/funcionMenutienda.js"></script>
-<script src="../assets/js/consultarCarrito.js" ></script>
 <script src="../assets/js/detallesRapidos.js"></script>
 <script src="../assets/js/consultarCarrito.js"></script>
+
 <script src="../assets/js/buscador_medicamentos.js"></script>
 </body>
 
