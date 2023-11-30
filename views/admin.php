@@ -195,9 +195,9 @@ include('../config/Conexion.php');
               <button class="Csv acoos agre none" id="limpiar">Lista de Usuarios</button>
 
               <div class="botonesAcciones">
-              <button class="desactivado desactivar accer"><i class="bx bx-power-off"></i></button>
-              <button class="activado activarCuenta accer"><i class="bx bx-power-off"></i></button>
-              <button class="desac accer"><i class="bx bxs-user"></i></i></button>
+              <button class="desactivado desactivar accer" id="desactivar"><i class="bx bx-power-off"></i></button>
+              <button class="activado activarCuenta accer" id="activar"><i class="bx bx-power-off"></i></button>
+              <button class="desac accer" id="Editar"><i class="bx bxs-user"></i></i></button>
               </div>
 
             </section>
@@ -599,6 +599,26 @@ include('../config/Conexion.php');
           </div>
         </div>
       </section>
+    </section>
+
+
+    <section class="atom" id="ActivarAtom">
+      <section class="alerta-ac column" id="custom-dialog">
+        <header>
+          <h3>¿Que rol deseas Activar?</h3>
+        </header>
+        <div class="seleccionar">
+          <select id="selectRoleAC">
+          </select><br>
+          <div>
+            <button class="buuton-canel" id="removeVentanaAC">Cancelar</button>
+            <button class="button-aceptl" id="selectRoleBtnAC">Aceptar</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="atom" id="EditarUsuario">
     </section>
 
 

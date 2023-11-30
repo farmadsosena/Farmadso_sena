@@ -83,10 +83,7 @@ if (isset($_POST["filtros"])) {
                         </div>
                         <div class="encabezado_part4">' . $telefono . '</div>
                         <div class="encabezado_part5">' . implode(', ', $roles) . '</div>
-                        <div class="encabezado_part6">
-                            <button class="activado"><i class="bx bx-power-off"></i></button>
-                            <button class="desac"><i class="bx bxs-user"></i></i></button>
-                        </div>
+                        
                     </div>';
         }
       }

@@ -25,6 +25,7 @@ if (isset($_POST["enviar"])) {
             $eps = $des["IdEps"];
             $img = $des["imgUser"];
             $tel = $des["telefono"];
+            $estado = $des["estado"];
 
             // Verificar si la contraseña proporcionada coincide con la almacenada en la base de datos
             // if (password_verify($contraseña, $password_hash)) {  Cuando se hace por hash

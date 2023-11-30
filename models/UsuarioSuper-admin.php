@@ -82,5 +82,190 @@ if ($Usuarios_generale) {
 }
 ?>
 <script>
-  
+
+  (function () {
+    // Almacena la referencia al último elemento clicado
+    let ultimoElementoClicado = null;
+    var role;
+
+    function manejarClic(checkbox) {
+      if (ultimoElementoClicado !== null) {
+        ultimoElementoClicado.classList.remove('marcar');
+      }
+      checkbox.classList.add('marcar');
+      ultimoElementoClicado = checkbox;
+
+      var userId = checkbox.getAttribute('data-id');
+      var totalRoles = checkbox.getAttribute('data-total');
+      var rolesList = checkbox.getAttribute('data-roles-list');
+
+      // Solo adjunta los eventos una vez fuera del bucle
+      $('#activar').off('click').on('click', function () {
+        activarCuenta(userId, totalRoles, rolesList);
+      });
+
+      $('#desactivar').off('click').on('click', function () {
+        desactivarCuenta(userId, totalRoles, rolesList);
+      });
+
+      $('#Editar').off('click').on('click', function () {
+        editarUsu(userId);
+      });
+    }
+
+
+
+    function editarUsu(userId) {
+    
+      $.ajax({
+        type: 'POST',
+        url: '../controllers/EditarUsuario.php',
+        data: { id_editar: userId},
+        success: function (response) {
+          document.getElementById('EditarUsuario').classList.add('flex');
+          $("#EditarUsuario").html(response);
+        },
+        error: function (error) {
+          console.error('Error en la solicitud AJAX:', error);
+        }
+      });
+    }
+
+
+    function activarCuenta(userId, totalRoles, rolesList) {
+      var VentanaSeleccionar = document.getElementById('ActivarAtom');
+      var CerrarVentanaSeleccionada = document.getElementById('removeVentanaAC'); // Reemplaza 'CerrarVentana' con el ID correcto
+      var AbrirVentanas = document.getElementById('desactivar');
+
+
+      if (parseInt(totalRoles) >= 2) {
+        // Agrega un evento de clic para abrir la ventana para cada botón 'AbrirVentana'
+        VentanaSeleccionar.classList.add('flex');
+
+
+        // Agrega un evento de clic para cerrar la ventana
+        CerrarVentanaSeleccionada.addEventListener('click', () => {
+          VentanaSeleccionar.classList.remove('flex');
+        });
+
+        $.ajax({
+          type: 'POST',
+          url: '../controllers/ConsultarRol.php',
+          data: { id_pedido: userId },
+          success: function (response) {
+            var roles = JSON.parse(response);
+            $('#selectRoleAC').html(roles.join(''));
+          },
+          error: function (error) {
+            console.error('Error en la solicitud AJAX:', error);
+          }
+        });
+
+        // Manejar el evento del botón de aceptar
+        $('#selectRoleBtnAC').on('click', function () {
+          var selectedRole = $('#selectRoleAC').val();
+          if (selectedRole !== null) {
+            // El usuario hizo una selección
+            VentanaSeleccionar.classList.remove('flex');
+            ConfirmaeactivarCuenta(userId, selectedRole);
+          }
+        });
+      } else {
+        // Si tiene solo un rol, desactivar directamente
+        ConfirmaeactivarCuenta(userId);
+      }
+    }
+
+
+
+    function ConfirmaeactivarCuenta(userId, selectedRole) {
+      $.ajax({
+        type: 'POST',
+        url: '../controllers/CambiarEstadoCuenta.php',
+        data: { id_activar: userId, selected_role: selectedRole },
+        success: function (response) {
+          $("#iniciar").html(response);
+          alert("Cuenta Activada con éxito");
+        },
+        error: function (error) {
+          console.error('Error en la solicitud AJAX:', error);
+        }
+      });
+    }
+
+
+    function desactivarCuenta(userId, totalRoles, rolesList) {
+      var VentanaSeleccionar = document.getElementById('VentanaAtom');
+      var CerrarVentanaSeleccionada = document.getElementById('removeVentana'); // Reemplaza 'CerrarVentana' con el ID correcto
+      var AbrirVentanas = document.getElementById('desactivar');
+
+
+      if (parseInt(totalRoles) >= 2) {
+        console.log("Entró al if" + totalRoles);
+        // Agrega un evento de clic para abrir la ventana para cada botón 'AbrirVentana'
+        VentanaSeleccionar.classList.add('flex');
+
+
+        // Agrega un evento de clic para cerrar la ventana
+        CerrarVentanaSeleccionada.addEventListener('click', () => {
+          VentanaSeleccionar.classList.remove('flex');
+        });
+
+
+        // Si tiene más de un rol, mostrar un cuadro de diálogo personalizado
+        var roali = rolesList.split(', ');
+
+        // Rellenar el cuadro de selección con opciones
+        var select = $('#selectRole');
+        select.empty();
+        roali.forEach(function (role) {
+          select.append($('<option>', {
+            value: role,
+            text: role
+          }));
+        });
+
+        // Manejar el evento del botón de aceptar
+        $('#selectRoleBtn').on('click', function () {
+          var selectedRole = $('#selectRole').val();
+          if (selectedRole !== null) {
+            // El usuario hizo una selección
+            document.getElementById('VentanaAtom').classList.remove('flex');
+            ConfirmoDesactivar(userId, selectedRole);
+          }
+        });
+      } else {
+        // Si tiene solo un rol, desactivar directamente
+        ConfirmoDesactivar(userId);
+      }
+    }
+
+
+    // Muestra los valores en la consola (puedes hacer lo que quieras con estos valores)
+    function ConfirmoDesactivar(userId, selectedRole) {
+      $.ajax({
+        type: 'POST',
+        url: '../controllers/CambiarEstadoCuenta.php',
+        data: { id_desactivar: userId, selected_role: selectedRole },
+        success: function (response) {
+          $("#iniciar").html(response);
+          alert("Cuenta Desactivada con éxito");
+        },
+        error: function (error) {
+          console.error('Error en la solicitud AJAX:', error);
+        }
+      });
+    }
+
+
+    const checkboxes = document.querySelectorAll('.tabla_acciones_encabezado');
+
+    // Agrega un evento de clic a cada checkbox
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('click', function () {
+        manejarClic(checkbox);
+      });
+    });
+  })();
+
 </script>
