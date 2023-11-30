@@ -31,9 +31,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <script src="https://kit.fontawesome.com/7cbae3222d.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Pacifico&family=Poppins:wght@200;500;600&family=Roboto:wght@500&display=swap" rel="stylesheet">
   <title>Farmadso cuenta verificada</title>
 </head>
 
@@ -61,7 +59,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         <article class="hoss">
           <?php
           if ($eps == 1) {
-            ?>
+          ?>
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
@@ -81,9 +79,9 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           } else {
-            ?>
+          ?>
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
@@ -119,7 +117,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 Solicitar un nuevo rol
               </div>
             </div>
-            <?php
+          <?php
           }
           ?>
 
@@ -303,17 +301,21 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/compras.php',
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Limpiar el cuerpo de la tabla
                   $('#tabla-body').empty();
 
                   // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function (item) {
+                  data.forEach(function(item) {
 
                     // Convertir la fecha a un objeto Date
                     var fecha = new Date(item.fecha);
                     // Formatear la fecha en español
-                    var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var opcionesFecha = {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    };
                     var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
 
                     // Formatear el total con separadores de miles
@@ -329,14 +331,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                     $('#tabla-body').append(row);
                   });
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los datos: ' + error);
                 }
               });
             }
 
             // Llamar a la función para cargar los datos al cargar la página
-            $(document).ready(function () {
+            $(document).ready(function() {
               cargarDatos();
             });
           </script>
@@ -377,14 +379,18 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
                 method: 'GET',
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                   // Llena la ventana modal con los detalles de la compra
                   $('#detallecompra').empty();
-                  data.forEach(function (detalle) {
+                  data.forEach(function(detalle) {
 
                     // Formatea la fecha en español
                     var fechaCompra = new Date(detalle.fecha_compra);
-                    var opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var opcionesFecha = {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    };
                     var fechaFormateada = fechaCompra.toLocaleDateString('es-ES', opcionesFecha);
 
                     var row = `<tr>
@@ -398,7 +404,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   // Abre la ventana modal
                   $('#modalDetalle').show();
                 },
-                error: function (error) {
+                error: function(error) {
                   console.log('Error al cargar los detalles de la compra: ' + error);
                 }
               });
@@ -425,18 +431,29 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
       </section>
 
       <section class="paginas" id="cuatro">
-
         <div class="column" id="opciones">
-          <div class="option2" onclick="mostrarContenido('domiciliario')">Quiero ser domiciliario del sistema
+          <?php
+          if (!isset($_SESSION["domi"])){
+            echo '
+            <div class="option2" onclick=mostrarContenido("domiciliario")>Quiero ser domiciliario del sistema
+             <div class="arrow-icon">
+               <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+            ';
+          }
+
+          if (!isset($_SESSION["farm"])){
+            echo '<div class="option2" onclick=mostrarContenido("farmacia")>Quiero registrar mi farmacia en el sistema
             <div class="arrow-icon">
               <i class="fa-solid fa-arrow-right"></i>
             </div>
-          </div>
-          <div class="option2" onclick="mostrarContenido('farmacia')">Quiero registrar mi farmacia en el sistema
-            <div class="arrow-icon">
-              <i class="fa-solid fa-arrow-right"></i>
-            </div>
-          </div>
+          </div>';
+          }
+          else{
+            echo "Ya tiene todos los roles disponibles en el sistema";
+          }
+          ?>
         </div>
         <div id="contenido-domiciliario" class="hidden">
           <div class="container">
@@ -445,8 +462,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <h1>Solicitud para ser domiciliario</h1>
             </div>
             <section class="parte1-formulario">
-              <form action="../controllers/procesar_registro_domiciliario.php" method="post"
-                enctype="multipart/form-data">
+              <form action="../controllers/procesar_registro_domiciliario.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="user" value='<?php echo $id ?>'>
                 <section class="parte1-formulario">
                   <div class="contenedoresparte1">
@@ -557,10 +573,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
         </div>
 
-
-
-
-
         <!-- SECCION PARA COMENZAR EL CONTENIDO DE FARMACIA -->
         <div id="contenido-farmacia" class="hidden">
           <div class="container">
@@ -639,14 +651,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
               <label for="epsRegistrado">¿Está registrado con una EPS?</label>
               <select id="epsRegistradof" name="epsRegistradof" required>
-              <option>Escoge la opción</option>
+                <option>Escoge la opción</option>
                 <option value="si">Sí</option>
                 <option value="no">No</option>
               </select>
 
               <label for="eps">EPS con la que está registrado</label>
               <select id="idEpsf" name="idEpsf">
-              <option>Escoge la opción</option>
+                <option>Escoge la opción</option>
                 <option value="2">COOMEVA ENTIDAD PROMOTORA DE SALUD S.A. "COOMEVA E.P.S. S.A.</option>
                 <option value="3">ASMET SALUD EPS S.A.S.</option>
                 <option value="4">NUEVA EPS S.A.</option>
@@ -719,8 +731,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto"
-              autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -728,15 +739,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none"
-              placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional"
-                  class="mauso-texto">
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -746,15 +755,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico"
-                  class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos"
-              placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
           </div>
         </section>
         <section class="padre-medicamentos">
@@ -771,7 +778,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
     </form>
   </section>
 
-
+<!-- ANIMACIION DE CARGA GENERAL -->
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
       <div class="spinner"></div>

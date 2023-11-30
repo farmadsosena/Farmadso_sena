@@ -56,10 +56,6 @@ if (isset($_POST['query'])) {
                 </div>
                 <div class="encabezado_part4">' . $row["telefono"] . '</div>
                 <div class="encabezado_part5">Pedido: ' . $rol . '</div>
-                <div class="encabezado_part6">
-                    <button class="activado"><i class="bx bx-power-off"></i></button>
-                    <button class="desac"><i class="bx bxs-user"></i></i></button>
-                </div>
             </div>';
     }
 } else {
@@ -86,7 +82,7 @@ $(document).ready(function () {
       url: ruta,
       data: { id: id, rol: rol }, // Enviar el id y el rol como datos
       success: function (data) {
-        document.getElementById('datos-solicitud').classList.add('flex');
+        document.querySelector('.viltrum').classList.add('flex');
         $("#datos-solicitud").html(data);
       },
     });

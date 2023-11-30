@@ -41,27 +41,3 @@ $(document).ready(function () {
     });
 });
 
-
-$(document).ready(function () {
-    $(".search input").on("input", function () {
-        var searchTerm = $(this).val().toLowerCase();
-
-        // Oculta todos los resultados
-        $(".card").hide();
-        $("#mensajeNoResultados").hide();
-
-        // Filtra y muestra solo los resultados que coinciden con la búsqueda
-        var resultadosFiltrados = $(".card").filter(function () {
-            return $(this).data("informacion").toLowerCase().includes(searchTerm);
-        });
-
-        if (resultadosFiltrados.length > 0) {
-            // Mostrar los resultados filtrados si hay coincidencias
-            resultadosFiltrados.show();
-            document.getElementById('mensajeNoResultados').classList.remove('flex')
-        } else {
-            // Mostrar un mensaje cuando no hay coincidencias
-            document.getElementById('mensajeNoResultados').classList.add('flex')
-        }
-    });
-});

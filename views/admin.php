@@ -1,9 +1,9 @@
- <?php
+<?php
 session_start();
 #Validacion de rol
 include('../config/Conexion.php');
 
-?> 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -157,8 +157,10 @@ include('../config/Conexion.php');
       </button>
 
       <button class="botones" id="8" onclick="cerrarSesion()">
-        <i class="fas fa-sign-out-alt"></i>
-        <p>Cerrar sesión</p>
+        <a href="../config/cerrarSesion.php">
+          <i class="fas fa-sign-out-alt"></i>
+          <p>Cerrar sesión</p>
+        </a>
       </button>
     </nav>
   </aside>
@@ -179,7 +181,9 @@ include('../config/Conexion.php');
             <button class="agregar acoos aggg">+ Agregar Usuario</button>
           </div>
           <div class="button-solicitudes">
-            <button class="llamarAJAX acoos solii" id="resgistros" data-estado="1"><i class='bx bxs-user-check'></i> Solicitudes</button>
+            <!--  Archivo controlador del ajax en assets/js/Super-AdminControles.js linea (1-25)-->
+            <button class="llamarAJAX acoos solii" id="resgistros" data-estado="1"><i class='bx bxs-user-check'></i>
+              Solicitudes</button>
           </div>
         </section>
         <section class="menu_gestion_user">
@@ -189,8 +193,16 @@ include('../config/Conexion.php');
               <button class="Excel acoos agre">Excel</button>
               <button class="Csv acoos agre">Csv</button>
               <button class="Csv acoos agre none" id="limpiar">Lista de Usuarios</button>
+
+              <div class="botonesAcciones">
+              <button class="desactivado desactivar accer" id="desactivar"><i class="bx bx-power-off"></i></button>
+              <button class="activado activarCuenta accer" id="activar"><i class="bx bx-power-off"></i></button>
+              <button class="desac accer" id="Editar"><i class="bx bxs-user"></i></i></button>
+              </div>
+
             </section>
 
+            <!-- inicio de tabla de usuarios -->
             <section class="tabla_acciones">
               <div class="tabla_acciones_encabezado remarcar">
                 <div class="encabezado_part"></div>
@@ -199,33 +211,35 @@ include('../config/Conexion.php');
                 <div class="encabezado_part3">Estado</div>
                 <div class="encabezado_part4">Telefono</div>
                 <div class="encabezado_part5">Roles</div>
-                <div class="encabezado_part6">Acciones</div>
               </div>
 
+              <!-- BUSCADORES DE DATOS PRECISOS Y SENSIBLES -->
               <div class="tabla_acciones_encabezado caer">
                 <div class="encabezado_part"></div>
                 <div class="encabezado_part1">
-                  <input type="search" name="" id="nombre" placeholder="Buscar Nombre de usuario">
+                  <input type="search" class="search" data-column="1" id="nombre"
+                    placeholder="Buscar Nombre de usuario">
                 </div>
                 <div class="encabezado_part2">
-                  <input type="search" name="" id="correo" placeholder="Buscar Correo de usuario">
+                  <input type="search" class="search" data-column="2" id="correo"
+                    placeholder="Buscar Correo de usuario">
                 </div>
                 <div class="encabezado_part3">
-                  <input type="search" name="" id="estado" placeholder="Buscar Estado">
+                  <input type="search" class="search" data-column="3" id="estado" placeholder="Buscar Estado">
                 </div>
                 <div class="encabezado_part4">
-                  <input type="search" name="" id="nombre" placeholder=" Buscar Telefono o fijo">
+                  <input type="search" class="search" data-column="4" id="telefono"
+                    placeholder="Buscar Teléfono o fijo">
                 </div>
                 <div class="encabezado_part5">
-                  <input type="search" name="" id="nombre" placeholder="Buscar Rol">
-                </div>
-                <div class="encabezado_part6">
+                  <input type="search" class="search" data-column="5" id="rol" placeholder="Buscar Rol">
                 </div>
               </div>
-
+              <!-- Aqui llegan los resultados del ajax ../assets/js/Super-AdminControles.js linea (1-25) -->
               <section class="overfloww scroll none" id="reemplazar"></section>
               <section class="overfloww scroll" id="iniciar">
-              <?php include "../models/UsuarioSuper-admin.php";?>
+                <!-- Todas las cuentas existentes en el siistema -->
+                <?php include "../models/UsuarioSuper-admin.php"; ?>
               </section>
             </section>
           </div>
@@ -261,7 +275,7 @@ include('../config/Conexion.php');
     </section>
 
     <section class="pages" id="servicio">
-
+      <!-- No tificaciones de alertas, o los mismos comentarios -->
       <div class="titulo-notificaciones">
         <h2>Notificaciones de medicamentos agotados</h2>
       </div>
@@ -516,12 +530,97 @@ include('../config/Conexion.php');
     <!-- CUALQUIER ERROR DE AQUI HACIA ABAJO -->
 
 
-    <section class="viltrum" id="datos-solicitud">
+    <section class="viltrum">
+      <section class="ventana-datos" id="datos-solicitud">
+      </section>
 
-    <!-- LLegada de los datos que se hacen por solictud, archivo DatosSolicitud.php -->
-      
+      <!-- LLegada de los datos que se hacen por solictud, archivo DatosSolicitud.php -->
+      <section class="alerta-ac" id="alerta-dene">
+        <header>
+          <h3>Confirmar Rechazar</h3>
+        </header>
+        <section class="cuerpo-alertaf">
+          <div class="texto-alerta">
+            <div>Motivo de rechazo</div>
+            <textarea id="miTextarea" cols="30" rows="10"></textarea>
+            <!-- ¿Seguro de su decisión?, tenga en cuenta que en el momento que decida Rechazar la solicitud se le informara al remitente
+               de su decision. -->
+          </div>
+          <div class="botones-alerta">
+            <button class="buuton-canel" id="cancel-rechazar">Cancelar</button>
+            <button class="button-aceptl" id="confirm-rechazar">Rechazar</button>
+          </div>
+        </section>
+      </section>
+
+      <!-- CODIGO PARA ACEPTAR LA SOLICITUD -->
+      <section class="alerta-ac" id="alerta-ac" data-id="">
+        <header>
+          <h3>Confirmar Aceptar</h3>
+
+        </header>
+        <section class="cuerpo-alertaf">
+          <div class="texto-alerta">
+            ¿Seguro de su decisión?, tenga en cuenta que en el momento que decida aceptar la solicitud se le
+            informara
+            al remitente
+            de su decision.
+          </div>
+          <div class="botones-alerta">
+            <button class="buuton-canel" id="cancel-accept">Cancelar</button>
+            <button class="button-aceptl" id="confirm-acceptboton">Aceptar</button>
+          </div>
+        </section>
+      </section>
+
     </section>
     <!-- CUALQUIER ERROR SALE DE AQUI V: HACIA ARRIBA -->
+    <section class="tamaño" id="CargaDiseño">
+      <section class="deco">
+        <div class="spinner"></div>
+      </section>
+      <section class="daco">
+        <p>Cargando...</p>
+      </section>
+    </section>
+
+
+    <section class="atom" id="VentanaAtom">
+      <section class="alerta-ac column" id="custom-dialog">
+        <header>
+          <h3>¿Que rol deseas desactivar?</h3>
+        </header>
+        <div class="seleccionar">
+          <select id="selectRole">
+          </select><br>
+          <div>
+            <button class="buuton-canel" id="removeVentana">Cancelar</button>
+            <button class="button-aceptl" id="selectRoleBtn">Aceptar</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+
+    <section class="atom" id="ActivarAtom">
+      <section class="alerta-ac column" id="custom-dialog">
+        <header>
+          <h3>¿Que rol deseas Activar?</h3>
+        </header>
+        <div class="seleccionar">
+          <select id="selectRoleAC">
+          </select><br>
+          <div>
+            <button class="buuton-canel" id="removeVentanaAC">Cancelar</button>
+            <button class="button-aceptl" id="selectRoleBtnAC">Aceptar</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="atom" id="EditarUsuario">
+    </section>
+
 
 
   </main>

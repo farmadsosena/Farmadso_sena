@@ -6,8 +6,6 @@ if (isset($_SESSION["usu"])) {
     exit; // Asegúrate de salir del script para evitar que se ejecute más código no deseado
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +54,7 @@ if (isset($_SESSION["usu"])) {
                 <div class="form-field">
                     <div class="form-field-input">
                         <input id="email" name="usuario" class="js-user" type="text">
-                        <label for="email">Nombre de usuario</label>
+                        <label for="email">Numero de cedula</label>
                     </div>
                     <div class="form-field-input">
                         <input id="password" name="contraseña" class="js-pass" type="password">
