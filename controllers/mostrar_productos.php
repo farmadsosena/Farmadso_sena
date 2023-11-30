@@ -9,7 +9,10 @@ if (isset($_GET['AsPZ'])) {
     $id_farmacia_tienda = base64_decode($id_encriptado);
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
-    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia WHERE medicamentos.idfarmacia = ?");
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia 
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento
+    INNER JOIN categoria ON categoria.idcategoria = inventario.idcategoria
+    WHERE medicamentos.idfarmacia = ?");
     $stmt->bind_param("i", $id_farmacia_tienda);
 } elseif (isset($_GET['ZjAPa'])) {
     $id_encriptado = $_GET['ZjAPa'];
