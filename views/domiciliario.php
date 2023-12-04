@@ -231,16 +231,12 @@ $id = $_SESSION["id"];
       <div class="his">
 
         <section class="ContenedorHisto">
-          <img src="assets/img/dizzy-notebook-2.gif" alt="" srcset="" class="gifHisto">
+          <img src="../assets/img/dizzy-notebook-2.gif" alt="" srcset="" class="gifHisto">
 
           <h2>No tienes Historias</h2>
         </section>
 
-
-        <?php
-        include("../models/historiasDomi.php");
-        ?>
-
+<!-- aqui va donde se va a mostrar las historias -->
       </div>
 
 
@@ -253,7 +249,7 @@ $id = $_SESSION["id"];
       <section class="notificationsDelivery">
 
         <section class="ContenedorMss">
-          <img src="assets/svg/emptyNotification.svg" alt="" srcset="" class="NotNotification">
+          <img src="../assets/svg/emptyNotification.svg" alt="" srcset="" class="NotNotification">
           <h2>No tienes notificaciones</h2>
         </section>
         <?php include("../models/notificaciones.php") ?>
@@ -263,7 +259,7 @@ $id = $_SESSION["id"];
 
     <section class="mainDeliverySectionTask" id="tasksSection" style="display: none">
       <section class="contenedorAlertMm">
-        <img class="imgMm" src="assets/img/Scrum board-rafiki.svg" alt="" srcset="">
+        <img class="imgMm" src="../assets/img/Scrum board-rafiki.svg" alt="" srcset="">
         <h2>No tienes Tareas</h2>
       </section>
       <?php
