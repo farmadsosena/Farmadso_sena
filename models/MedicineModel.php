@@ -23,13 +23,12 @@ class MedicineModel
         $instrucciones = $medicine['instrucciones'];
         $lote = $medicine['lote'];
         $idcategoria = $medicine['idcategoria'];
-        $idfarmacia=1;
         $idproveedor = $medicine['idproveedor'];
         $idpromocion = $medicine['idpromocion'];
         $formaadministracion = $medicine['administracion'];
         $idpromocion = $medicine['idpromocion'];
         $stock = $medicine['stock'];
-        $idFramacia="1";
+        $idFramacia= $_SESSION["farm"];
 
         $imagenesComa = implode (', ', $imagenesBd);
 

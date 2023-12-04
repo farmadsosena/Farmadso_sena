@@ -140,6 +140,13 @@ function openModalInventario(){
     contModal.style.display = 'block';
 }
 
+
+document.querySelector('.modal-inventario').addEventListener('click', function(event) {
+    if (!event.target.closest('.productos-container')) {
+        closeModalInventario();
+    }
+});
+
 function closeModalInventario() {
     var contModal = document.querySelector('.modal-inventario');
     contModal.style.display = 'none';
@@ -204,9 +211,30 @@ function openModalOfertas(){
     contModalP.style.display = 'block';
 }
 
+
+document.querySelector('.Modal-Ofertas').addEventListener('click', function(event) {
+    if (!event.target.closest('.productos-container')) {
+        closeModalOfertas();
+    }
+});
 function closeModalOfertas() {
     var contModalP = document.querySelector('.Modal-Ofertas');
     contModalP.style.display = 'none';
 
 }
 
+function openModalFarmaciaP(){
+    var contModalP = document.querySelector('.modalEditF');
+    contModalP.style.display = 'flex';
+}
+
+document.querySelector('.modalEditF').addEventListener('click', function(event) {
+    if (!event.target.closest('.containerEditarFarmacia')) {
+        closeModalFarmaciaP();
+    }
+});
+
+function closeModalFarmaciaP() {
+    var contModalP = document.querySelector('.modalEditF');
+    contModalP.style.display = 'none';
+}

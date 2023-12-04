@@ -3,7 +3,7 @@
     <div class="Modal-Ofertas">
         <div class="productos-container">
             <div class="opciones-vol-busc">
-                <i class="bx bx-chevron-left" onclick="closeModalOfertas()"></i>
+                <i class="bx bx-chevron-left bx-x" onclick="closeModalOfertas()"></i>
                 <input type="text" id="filtroNombre" placeholder="Filtrar por nombre o código">
             </div>
             <div class="scroll-inventario">

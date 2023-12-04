@@ -21,7 +21,7 @@
             </section>
 
 
-            <input type="submit" value="Agregar Categoria" class="boton_aggcategoria">
+            <input type="submit" value="Actualizar Categoria" class="boton_aggcategoria">
 
         </form>
 

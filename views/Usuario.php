@@ -155,24 +155,28 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   global $conexion;
                   $consulta = "SELECT * FROM $tabla WHERE idusuario = ? AND $columna = ?";
                   $stmt = $conexion->prepare($consulta);
-                  $stmt->bind_param("ii", $usuario, $valorEstado);
+                  $stmt->bind_param("ss", $usuario, $valorEstado);
                   $stmt->execute();
                   $resultado = $stmt->get_result();
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 2)) {
+                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
 
                 $_SESSION["domi"]= $id;
                 }
-                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 2)) {
+                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                $_SESSION["farm"]= $id;
+                $con = mysqli_query($conexion, "SELECT * FROM farmacias WHERE idusuario = '$id'");
+                if($con){
+                  $fila_farm = mysqli_fetch_assoc($con);
+                  $_SESSION["farm"] = $fila_farm["IdFarmacia"];
+                }
                 }
                 ?>
               </div>

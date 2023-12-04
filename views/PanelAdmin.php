@@ -46,10 +46,31 @@ $imgUser = $_SESSION['img'];
     <aside id="sidebar">
         <nav id="topNav">
             <picture id="logoSena">
-                <button id="profileView" onclick="alert('edit')">
+                <button id="profileView" onclick="openModalFarmaciaP()">
                     <i class="bx bx-message-square-edit" style="color: #4d82bc"></i>
                 </button>
-                <img src="../assets/img/logoPerfilFarmacia.png" alt="" />
+                <?php
+    
+                $query = "SELECT * FROM farmacias WHERE idusuario = $id";
+                $result = $conexion->query($query);
+                
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                
+                    // Mostrar la imagen
+                    $imgPath = "../uploads/imgPerfilFarmacia/".$row["imgfarmacia"];
+   
+                    if (file_exists($imgPath)) {
+                        echo '<img onclick="openModalFarmaciaP()" src="' . $imgPath . '" alt="" />';
+                    } else {
+                        echo '<img style="border:1px solid gray;" src="../assets/img/default.jpg" alt="Imagen predeterminada" />';
+                    }
+               require_once '../templates/editarFarmacia.php';
+   
+                   }
+   
+                ?>
+                
             </picture>
             <section id="itemContainer">
                 <div class="item activeItem" onclick="mostrarContenido('inicio', this)">
@@ -145,14 +166,14 @@ $imgUser = $_SESSION['img'];
                     <p>Personaliza tus propias ofertas.</p>
                 </span>
             </article>
-
+<!-- 
             <div onclick="openModalComentarios()" class="art" style="border-left: 0.27em solid #3b7dd3">
                 <img src="../assets/img/opinionesClientes.jpg" alt="Imagen de la oferta" />
                 <span>
                     <h3>Opiniones de Clientes</h3>
                     <p>Experiencias de clientes</p>
                 </span>
-            </div>
+            </div> -->
 
             <div class="art" style="border-left: 0.27em solid #ffeb3b">
                 <img src="../assets/img/facturacionAdmin.jpg" alt="Imagen de facturas" />
@@ -218,45 +239,24 @@ $imgUser = $_SESSION['img'];
 
                 </section>
                 <section class="page" id="backlog">
-                 
+             
                     <?php 
                     require_once '../controllers/historialLogs.php'; 
                     
                     ?>
-                    <script>
-                        document.querySelector('#borrarHistorial').addEventListener('click', () => {
-                            const eliminarHistorial = 1;
-                            fetch('../controllers/eliminarHistorial.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(eliminarHistorial)
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data === 'Correcto') {
-                                        // Cargar contenido.php usando fetch
-                                        fetch('../models/logData.php')
-                                            .then(response => response.text())
-                                            .then(content => {
-                                                // Colocar el contenido en el contenedor VERHISTORIAL
-                                                document.querySelector('#backlog').innerHTML = content;
-                                            })
-                                            .catch(error => {
-                                                console.error('Error:', error);
-                                            });
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                });
-                        });
-                    </script>
-                       <button id="borrarHistorial">Borrar todo el historial</button>
+<form action="../controllers/eliminarHistorial.php" method="post">
+    <input type="submit" value="Eliminar Historial" name="eliminar_historial" id="borrarHistorial">
+</form>
+
                 </section>
+
+
                 <section class="page" id="graficas">
-                    <h2>Graficas</h2>
+                 
+                <?php
+
+                ?>
+
                 </section>
 
 

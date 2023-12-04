@@ -1,10 +1,11 @@
 <?php
+session_start();
 use modeloMedicina\MedicineModel;
 
 require_once '../models/MedicineModel.php';
 require_once '../config/Conexion.php';
 require_once '../models/Log.php';
-session_start();
+
 
 
 // Validar solicitud 
