@@ -1,13 +1,10 @@
 <?php
 include('../config/Conexion.php');
-
+session_start();
 // Verifica si la solicitud es un método GET
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Inicia la sesión
-    session_start();
-
     $where = '';
-
     // Verifica si está establecido el id de usuario en la sesión
     if (isset($_SESSION['id'])) {
         $where = 'carrito.idusuario =' . $_SESSION['id'];
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $producto['costo'] = $costo;
             $medicamentosList[$id]=$producto['cantidadcarrito'];
             $medicamentos[] = $producto;
-            
         }
 
         $response = array(
@@ -43,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $_SESSION['medicamentos'] = $medicamentosList;
 
         echo json_encode($response);
-        // echo json_encode($response);
+       
     } else {
         echo json_encode(array('error' => 'Error en la consulta'));
     }

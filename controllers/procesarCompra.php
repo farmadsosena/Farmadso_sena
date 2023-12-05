@@ -51,11 +51,8 @@ if (is_array($datos)) {
 
     if ($insertarCompra) {
         $idCompra = $conexion->insert_id;
-
         // Obtener los productos del carrito desde los datos de la sesión
         $productos = $_SESSION['medicamentos'];
-
-
         foreach ($productos as $key => $stock) {
             // Obtener la información del producto desde la base de datos
             $data = $conexion->query("SELECT medicamentos.precio, inventario.stock, medicamentos.nombre FROM medicamentos INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento WHERE medicamentos.idmedicamento = '$key'");

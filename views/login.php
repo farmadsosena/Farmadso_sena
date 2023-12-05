@@ -29,7 +29,7 @@ if (isset($_SESSION["usu"])) {
 <body>
     <div class="form-case">
         <section class="regresar" id="caso">
-            <a href="../index.html">
+            <a href="../index.php">
                 <p>Pagina principal</p>
             </a>
             <a href="inicio_tienda.php">

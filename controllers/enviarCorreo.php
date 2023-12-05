@@ -53,7 +53,7 @@ try {
         $mail->Body .= $DATA_ALL[$i];
     }
 
-    $mail->Body .= '</table><br> <p>Subtotal de compra <b>' . intval($total) . '</b></p>';
+    $mail->Body .= '</table><br> <p>Subtotal de compra <b>' . intval($subtotal) . '</b></p>';
 
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; // Cuerpo alternativo en texto plano para clientes que no admiten HTML
 

@@ -57,8 +57,8 @@ require_once "../controllers/validacion_usu_tienda.php";
 
             <div class="contboton" id="contC">
                 <button class="botonCarrito deleteCarrito">Quitar marcados</button>
-                <a href="pago.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
-                <a href="views/pasarela.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
+                <a href="paypal.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
+                <a href="contraentrega.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
             </div>
 
 

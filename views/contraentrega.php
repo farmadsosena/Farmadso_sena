@@ -1,3 +1,7 @@
+<?php
+require '../controllers/validacion_usu_tienda.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +52,8 @@
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
                     <p id="cantidadFinal">0</p>
-                    <script src="../assets/javascript/cantidadP.js"></script>
+
+                    <script src="../assets/js/cantidadPcarrito.js"></script>
                     <i class='bx bx-cart' id="viewCartIcon"></i>
                 </div>
 
@@ -62,17 +67,14 @@
                     <p>Monto final a pagar <b id="subtotal"></b></p>
 
                     <div id="tabla-contenedor">
-                    
-
-
 
                     </div>
                 </form>
             </div>
 
-            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
+            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm"
+                onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
-
                 <article class="groupTwo">
                     <div class="inputCont">
                         <label for="nombre">Nombre</label>
@@ -114,7 +116,7 @@
 
                 <div class="inputCont">
                     <label for="instrucciones">Instrucciones de envio</label>
-                    <textarea name="instrucciones" id="instrucciones" rows="3"></textarea>
+                    <textarea name="instrucciones" id="instrucciones" rows="3" placeholder="campo opcional"></textarea>
                 </div>
 
                 <div class="groupOne">
@@ -139,7 +141,7 @@
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
- <script src="../assets/js/consultarCart.js"></script>
+    <script src="../assets/js/consultarCart.js"></script>
 </body>
 
-</html> 
+</html>

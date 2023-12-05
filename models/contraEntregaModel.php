@@ -1,5 +1,4 @@
 <?php
-// ContraEntregaModel.php
 namespace contraentrega;
 
 require_once '../config/Conexion.php';
@@ -12,60 +11,192 @@ class ContraEntregaModel
     {
         $this->conexion = $conexion;
     }
-    // registrar datos invitado
-    public function registrarContraEntrega($datos, $idUsuario)
+
+    public function registrarContraEntrega($datos)
     {
+
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $direccion = $datos['direccion'];
         $telefono = $datos['telefono'];
         $email = $datos['correo'];
         $instrucciones = $datos['instrucciones'];
-        
-        if ($idUsuario) {
-            $query = "INSERT INTO invitado (nombre, apellido, telefono, direccion, correo, instrucciones) 
-                  VALUES (?,?,?,?,?,?)";
+        $fecha_formateada = date('Y-m-d H:i:s');
+        $subtotal = $datos[''];
+        $stmt = null;
+
+        if (isset($_SESSION['id'])) {
+            $idusuario = $_SESSION['id'];
+            $query = "INSERT INTO pedido (fecha, total,idestado, nombre, apellido, direccion, telefono, correo, instrucciones,idtipopago, idusuario, idinvitado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)";
+            $stmt = $this->conexion->prepare($query);
+            $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
+            $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
+            $stmt->bind_param("sissssisssi", $fecha_formateada, $total, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idusuario);
+
+            // Inicializar un array para almacenar las filas de la tabla de la factura
+            $facturaTable = [];
+
+            if ($stmt->execute()) {
+                $idpedido = $this->conexion->insert_id;
+                // Obtener los productos del carrito desde los datos de la sesión
+                $productos = $_SESSION['medicamentos'];
+                foreach ($productos as $key => $stock) {
+                    // Obtener la información del producto desde la base de datos
+                    $data = $this->conexion->query("SELECT medicamentos.precio, inventario.stock, medicamentos.nombre FROM medicamentos INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento WHERE medicamentos.idmedicamento = '$key'");
+
+                    if ($data) {
+                        // Extraer los detalles del producto desde el resultado de la base de datos
+                        $DATA = $data->fetch_assoc();
+                        $precio = intval($DATA['precio']);
+                        $stockActual = intval($DATA['stock']);
+                        $cantidadS = intval($stock);
+                        $stockFinal = $stockActual - $cantidadS;
+
+                        // Actualizar el stock del producto en el inventario
+                        $actualizarInventario = $this->conexion->query("UPDATE inventario SET stock = '$stockFinal' WHERE idmedicamento = '$key'");
+
+                        // Calcular el subtotal para el producto
+                        $totaNum = intval($stock);
+                        $subtotal = $totaNum * $precio;
+
+                        // Crear una fila de tabla para la factura
+                        $productoNombre = $DATA['nombre'];
+                        $facturaTable[] = '
+                    <tr>
+                        <td>' . $productoNombre . '</td>
+                        <td>' . $precio . '</td>
+                        <td>' . $stock . '</td>
+                        <td>' . $subtotal . '</td>
+                    </tr>
+                ';
+                        // Insertar los detalles de la compra en la tabla "detalle_pedido"
+                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallepedido 
+                (idpedido,idmedicamento, cantidad, preciototal) VALUES
+                ('$idpedido','$key', '$stock', '$subtotal')");
+                        // Eliminar los productos del carrito para este usuario
+                        $eliminar = $this->conexion->query("DELETE FROM carrito WHERE idusuario = '$idusuario'");
+
+                        // Vaciar los datos de la sesión del carrito
+                        unset($_SESSION['medicamentos']);
+                    } else {
+                        echo 'Error al obtener datos del producto';
+                        exit;
+                    }
+                }
+
+                // Almacenar los datos de la tabla de la factura en una variable
+                $DATA_ALL = $facturaTable;
+
+                $respuesta = array(
+                    'success' => true,
+                );
+                // Imprimir una respuesta de éxito en formato JSON
+
+                // Requerir el archivo para enviar el correo electrónico
+                require_once 'enviarCorreo.php';
+
+                $respuesta = array(
+                    'success' => true,
+
+                );
+                echo json_encode($respuesta);
+            } else {
+                echo 'Error al insertar el pedido';
+            }
+
+
+        } elseif (isset($_SESSION['idinvitado'])) {
+            $idinvitado = $_SESSION['idinvitado'];
+            $query = "INSERT INTO pedido (fecha, total,idestado, nombre, apellido, direccion, telefono, correo, instrucciones,idtipopago, idusuario, idinvitado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL,?)";
+            $stmt = $this->conexion->prepare($query);
+            $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
+            $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
+            $stmt->bind_param("sissssisssi", $fecha_formateada, $subtotal, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idinvitado);
+
+            $facturaTable = [];
+
+            if ($stmt->execute()) {
+                $idpedido = $this->conexion->insert_id;
+                // Obtener los productos del carrito desde los datos de la sesión
+                $productos = $_SESSION['medicamentos'];
+                foreach ($productos as $key => $stock) {
+                    // Obtener la información del producto desde la base de datos
+                    $data = $this->conexion->query("SELECT medicamentos.precio, inventario.stock, medicamentos.nombre FROM medicamentos INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento WHERE medicamentos.idmedicamento = '$key'");
+
+                    if ($data) {
+                        // Extraer los detalles del producto desde el resultado de la base de datos
+                        $DATA = $data->fetch_assoc();
+                        $precio = intval($DATA['precio']);
+                        $stockActual = intval($DATA['stock']);
+                        $cantidadS = intval($stock);
+                        $stockFinal = $stockActual - $cantidadS;
+
+                        // Actualizar el stock del producto en el inventario
+                        $actualizarInventario = $this->conexion->query("UPDATE inventario SET stock = '$stockFinal'  WHERE idmedicamento = '$key' ");
+
+                        // Calcular el subtotal para el producto
+                        $totaNum = intval($stock);
+                        $subtotal = $totaNum * $precio;
+
+                        // Crear una fila de tabla para la factura
+                        $productoNombre = $DATA['nombre'];
+                        $facturaTable[] = '
+                    <tr>
+                        <td>' . $productoNombre . '</td>
+                        <td>' . $precio . '</td>
+                        <td>' . $stock . '</td>
+                        <td>' . $subtotal . '</td>
+                    </tr>
+                ';
+
+                        // Insertar los detalles de la compra en la tabla "detalle_compra"
+                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallepedido 
+                (idpedido,idmedicamento, cantidad, preciototal) VALUES
+                ('$idpedido','$key', '$stock', '$subtotal')");
+
+                        // Eliminar los productos del carrito para este usuario
+                        $eliminar = $this->conexion->query("DELETE FROM carrito WHERE idinvitado = '$idinvitado'");
+
+                        // Vaciar los datos de la sesión del carrito
+                        unset($_SESSION['medicamentos']);
+                    } else {
+                        echo 'Error al obtener datos del producto';
+                        exit;
+                    }
+                }
+
+                // Almacenar los datos de la tabla de la factura en una variable
+                $DATA_ALL = $facturaTable;
+
+                $respuesta = array(
+                    'success' => true,
+
+                );
+                // Imprimir una respuesta de éxito en formato JSON
+
+                // Requerir el archivo para enviar el correo electrónico
+                require_once 'enviarCorreo.php';
+
+                $respuesta = array(
+                    'success' => true,
+
+                );
+                echo json_encode($respuesta);
+            } else {
+                echo 'Error al insertar el pedido';
+            }
+
+
+
         } else {
-            $query = "INSERT INTO usuarios (nombre, apellido, telefono, direccion, correo, instrucciones) 
-                  VALUES (?,?,?,?,?,?)";
+            return false; // Manejar el caso en el que no haya una sesión válida
         }
 
-        $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param("ssisss", $nombre, $apellido, $telefono, $direccion, $email, $instrucciones);
+
         $stmt->execute();
         $stmt->close();
 
         return true;
-    }
-
-    public function obtenerCarritoUsuario($idUsuario)
-    {
-        session_start(); // Iniciar la sesión
-        if (!isset($_SESSION['carrito']) || $_SESSION['idusuario'] !== $idUsuario) {
-            $_SESSION['idusuario'] = $idUsuario;
-            $_SESSION['carrito'] = array();
-        }
-        return $_SESSION['carrito'];
-    }
-    public function obtenerCarritoInvitado($idInvitado)
-    {
-        session_start();
-        if (!isset($_SESSION['carrito']) || $_SESSION['id_invitado'] !== $idInvitado) {
-            $_SESSION['id_invitado'] = $idInvitado;
-            $_SESSION['carrito'] = array();
-        }
-        return $_SESSION['carrito'];
-    }
-
-    public function consultar($consultardatos)
-    {
-        $consultardatos = mysqli_real_escape_string($this->conexion, $consultardatos);
-        $query = $this->conexion->query("SELECT idusuario FROM usuarios WHERE idusuario = '$consultardatos' ");
-        if ($query->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public function cerrarConexion()

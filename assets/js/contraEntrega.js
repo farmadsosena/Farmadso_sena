@@ -12,14 +12,15 @@ function sendForm(event, formcontraentrega, link) {
             if (data.status === true) {
                 toastr.success(data.message);
                 form.reset();
-            } else if (data.status === null) {
-                toastr.warning(data.message);
+            } else if (data.status === false) {
+                toastr.error(data.message);
             } else if (data.status === 'error') {
-                toastr.error(data.error); // Mostrar el mensaje de error
+                toastr.error(data.message); // Mostrar el mensaje de error
             }
         })
         .catch((error) => console.error('Error:', error));
 }
+
 
 
 
