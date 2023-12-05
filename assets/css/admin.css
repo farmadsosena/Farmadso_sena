@@ -4491,6 +4491,10 @@ body {
   width: 100%;
 }
 
+.tbl-notificaciones thead tr{
+  height: 40px;
+}
+
 .tbl-notificaciones tr {
   border: 1px solid #ddd;
   height: 20px;
