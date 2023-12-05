@@ -207,7 +207,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <?php
                   $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
                 INNER JOIN medicos ON formulas.IdMedico = medicos.idmedico
-                WHERE idPaciente = '$id'");
+                WHERE idPaciente = '$id' and Estado='1'");
 
                   if ($medicos->num_rows > 0) {
                     $nombres_impresos = array();

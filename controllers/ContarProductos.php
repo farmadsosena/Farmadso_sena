@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
       INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
       INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
       WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'  
-      ORDER BY inventario.precio ASC LIMIT 1");
+      ORDER BY medicamentos.precio ASC LIMIT 1");
 
     if (mysqli_num_rows($ConsulMedi) > 0) {
       $rf = mysqli_fetch_assoc($ConsulMedi);
