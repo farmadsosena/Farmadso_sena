@@ -13,12 +13,12 @@ $result_medi_masBusca = $conexion->query($sql_medi_masBusca);
 
 // Verifica si hay resultados en la consulta
 if ($result_medi_masBusca->num_rows > 0) {
-    while ($row = $result_medi_masBusca->fetch_assoc()) {
-        $id_medicamento_medi_masBusca = $row['idmedicamento'];
+    while ($row_medi_masBusca = $result_medi_masBusca->fetch_assoc()) {
+        $id_medicamento_medi_masBusca = $row_medi_masBusca['idmedicamento'];
         $id_ofuscado_medi_masBusca = base64_encode($id_medicamento_medi_masBusca);
 ?>
         <button class="abrirDetalles_medicamentos" data-im='<?php echo $id_ofuscado_medi_masBusca; ?>'>
-            <?php echo $row['nombre']; ?>
+            <?php echo $row_medi_masBusca['nombre']; ?>
         </button>
 <?php
     }

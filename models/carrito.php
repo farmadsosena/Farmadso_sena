@@ -53,7 +53,7 @@ $resultadoCarrito = mysqli_query($conexion, $consultaCarrito);
 // Verificar si el carrito de compras está vacío para el usuario actual
 if (mysqli_num_rows($resultadoCarrito) == 0) {
     $response = array(
-        'message' => 'No hay productos en el carrito <style>#contC,.contC,.successCarrito,#paypal-button-container,#form-eliminar  > p{display:none; }#carritoIcono{color: #363636;}</style>',
+        'message' => '<div class="no_existe_produc_carrito"><img src="../assets/svg/noExiste.svg"><h2>No hay productos en el carrito</h2></div> <style>#contC,.contC,.successCarrito,#paypal-button-container,#form-eliminar  > p{display:none; }#carritoIcono{color: #363636;}</style>',
         'html' => '',
         'subtotal' => 0,
         'datosPedido' => ""

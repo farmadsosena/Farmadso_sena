@@ -15,7 +15,7 @@ var formData = form.serialize();
       // Manejar la respuesta del servidor
       if (response.correcto !== undefined) {
         var message = response.correcto;
-
+        recibir_cantida_produc_carrito();
         // Mostrar la alerta de éxito con imagen
         toastr.success(message, {
           "timeOut": 1000,

@@ -18,4 +18,5 @@ cerrarCarrito.addEventListener('click', function() {
   // modalCarrito.style.display = "none";
   // contenedorPD.style.display = 'flex';
   document.querySelector('.modalCarrito').style.display = 'none';
+  recibir_cantida_produc_carrito();
 });

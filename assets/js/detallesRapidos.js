@@ -45,6 +45,7 @@ function enviar_recibir_datos(card,card_medicamento) {
 }
 
 function mostrar_detallesMedi(datos) {
+  var idmedicamento = datos.medicamento.idmedicamento;
   var idpromocion = datos.medicamento.idpromocion;
   var nombreFarmacia = datos.medicamento.Nombre;
   var nombreMedicamento = datos.medicamento.nombre;
@@ -89,6 +90,7 @@ function mostrar_detallesMedi(datos) {
     $(".ahorro").text("Ahorra $" + precio_ahorro_formateado);
     $(".precio").text("$" + precio_actual_formateado);
     $(".img-oferta>button").text("Ahorra "+descuento+"%");
+    $(".precio_detalles_r").val(precio_actual);
   }else{
     $(".descripcion_det_med > p").css("height","8rem");
     $(".precio-a").text("");
@@ -97,8 +99,11 @@ function mostrar_detallesMedi(datos) {
     $(".precio-antes").css("display","none");
     $(".img-oferta>button").css("display","none");
     $(".precio").text("$" + precio_antes_formateado);
+    $(".precio_detalles_r").val(precioAntes);
   }
-
+  $(".idmedicamento_detalles_r").val(idmedicamento);
+  $(".cantidadcarrito_detalles_r").attr("max",stock);
+  $(".cantidadcarrito_detalles_r").val(1);
   $(".nombre_farmacia").text(nombreFarmacia);
   $(".nombre_med").text(nombreMedicamento);
   $(".c_m").text("Referencia: " + codigoReferencia);
