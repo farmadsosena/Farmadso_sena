@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         echo json_encode(['error' => 'No se proporcionó un ID de usuario o de invitado']);
         exit();
     }
-
     
+    $datos['subtotal'] = mysqli_real_escape_string($conexion->getConexion(),$_SESSION['subtotal'] ?? '');
 
     $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre'] ?? '');
     $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido'] ?? '');

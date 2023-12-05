@@ -14,7 +14,7 @@ class ContraEntregaModel
 
     public function registrarContraEntrega($datos)
     {
-
+        
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $direccion = $datos['direccion'];
@@ -22,7 +22,7 @@ class ContraEntregaModel
         $email = $datos['correo'];
         $instrucciones = $datos['instrucciones'];
         $fecha_formateada = date('Y-m-d H:i:s');
-        $subtotal = $datos[''];
+        $subtotal = $datos['subtotal'];
         $stmt = null;
 
         if (isset($_SESSION['id'])) {
@@ -31,7 +31,7 @@ class ContraEntregaModel
             $stmt = $this->conexion->prepare($query);
             $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
             $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
-            $stmt->bind_param("sissssisssi", $fecha_formateada, $total, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idusuario);
+            $stmt->bind_param("sissssisssi", $fecha_formateada, $subtotal, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idusuario);
 
             // Inicializar un array para almacenar las filas de la tabla de la factura
             $facturaTable = [];
@@ -93,7 +93,7 @@ class ContraEntregaModel
                 // Imprimir una respuesta de éxito en formato JSON
 
                 // Requerir el archivo para enviar el correo electrónico
-                require_once 'enviarCorreo.php';
+                require_once 'enviarCorreoContraentrega.php';
 
                 $respuesta = array(
                     'success' => true,

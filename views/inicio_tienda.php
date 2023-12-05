@@ -50,6 +50,7 @@ require_once "../controllers/validacion_usu_tienda.php";
         <a href="paypal.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
        
           <form action="contraentrega.php" method="post">
+            <input type="hidden" name="subtotal" value="$_SESSION['subtotal']">
             <button name="carrito" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></button>
           </form>
         
