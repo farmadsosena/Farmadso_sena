@@ -1,26 +1,23 @@
-//FUNCION PARA ENVIAR PRODUCTOS A LA TABLA CARRITO
+// $(document).ready(function () {
+  
 $('.cardProductoS').submit(function (e) {
   e.preventDefault();
   var form = $(this);
-  var productoId = form.data('id');
-  var cantidad = form.find('.cantidad_').val();
+var formData = form.serialize();
 
   $.ajax({
-    url: 'controllers/agregarCarrito.php',
+    url: '../controllers/agregarCarrito.php',
     type: 'POST',
     dataType: 'json', // Especificar que la respuesta será tratada como JSON
-    data: {
-      id_producto: productoId,
-      cantidad: cantidad
-    },
+    data: formData,
     success: function (response) {
       console.log(response);
       // Manejar la respuesta del servidor
       if (response.correcto !== undefined) {
-        var img = response.correcto;
-
+        var message = response.correcto;
+        recibir_cantida_produc_carrito();
         // Mostrar la alerta de éxito con imagen
-        toastr.success('<img src="' + img + '" width="80px" heigh="80px" >', 'Producto añadido al carrito', {
+        toastr.success(message, {
           "timeOut": 1000,
           "progressBar": true
         });
@@ -59,6 +56,7 @@ $('.cardProductoS').submit(function (e) {
     }
   });
 });
+
 
 
 //-------ELIMINAR CARRITO------------------//
@@ -122,14 +120,17 @@ function updateDeleteCarritoDisplay() {
 
 
 
+
+
+// individual
 // Función para eliminar un solo producto del carrito
 function eliminarProductoDelCarrito(idProducto) {
   $.ajax({
-    url: 'controllers/eliminarCarrito.php',
+    url: '../controllers/eliminarCarrito.php',
     type: 'POST',
-    data: { id_Productounitario: idProducto },
+    data: {id_Productounitario:idProducto },
     success: function (response) {
-      toastr.success("El producto se eliminó del carrito", "Correcto", toastrOptions);
+      toastr.success("El medicamento se eliminó del carrito", "Correcto", toastrOptions);
       consultarCarrito();
     },
     error: function (xhr, status, error) {
@@ -141,7 +142,7 @@ function eliminarProductoDelCarrito(idProducto) {
 // Función para eliminar varios productos del carrito
 function eliminarProductosDelCarrito(idsProductos) {
   $.ajax({
-    url: 'controllers/eliminarCarrito.php',
+    url: '../controllers/eliminarCarrito.php',
     type: 'POST',
     data: { id_Productos: idsProductos },
     success: function (response) {

@@ -6,12 +6,11 @@ require_once "../config/Conexion.php";
 function userValidate()
 {
 
-    $idUser = (isset($_SESSION['id_invitado'])) ? $data = array('sessionId' => $_SESSION['id_invitado']) :
+    $idUser = (isset($_SESSION['idinvitado'])) ? $data = array('sessionId' => $_SESSION['idinvitado']) :
         ((isset($_SESSION['id'])) ? $data = array('id_cliente' => $_SESSION['id']) : null);
 
     return $idUser;
 }
-
 
 // Verificar si un usuario ha iniciado sesión (identificado por 'id_cliente' en la sesión)
 
@@ -54,7 +53,7 @@ $resultadoCarrito = mysqli_query($conexion, $consultaCarrito);
 // Verificar si el carrito de compras está vacío para el usuario actual
 if (mysqli_num_rows($resultadoCarrito) == 0) {
     $response = array(
-        'message' => 'No hay productos en el carrito <style>#contC,.contC,.successCarrito,#paypal-button-container,#form-eliminar  > p{display:none; }#carritoIcono{color: #363636;}</style>',
+        'message' => '<div class="no_existe_produc_carrito"><img src="../assets/svg/noExiste.svg"><h2>No hay productos en el carrito</h2></div> <style>#contC,.contC,.successCarrito,#paypal-button-container,#form-eliminar  > p{display:none; }#carritoIcono{color: #363636;}</style>',
         'html' => '',
         'subtotal' => 0,
         'datosPedido' => ""
@@ -78,15 +77,15 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
 
         // Generar filas para la tabla con los detalles del producto en el carrito
         $imagen = $fila['imagenprincipal'];
-        $modificarRuta = '../';
-        if (strpos($imagen, $modificarRuta) === 0) {
-            $imagen = str_replace($modificarRuta, '', $imagen);
-        }
+        // $modificarRuta = '../';
+        // if (strpos($imagen, $modificarRuta) === 0) {
+        //     $imagen = str_replace($modificarRuta, '', $imagen);
+        // }
         $precio = intval($fila['precio']);
         $html .= '
                 <div id="itemCarrito">
                     <input type="checkbox" class="checkboxMarcados" value="' . $idProducto . '" name="id_productos[]">
-                    <img src="' . $imagen . '" alt="">
+                    <img src="../uploads/imgProductos/' . $fila['imagenprincipal'] . '" alt="">
                     <div class="contenido">
                         <p>' . $fila['nombre'] . '</p>
                         <p>Code #' . $fila['codigo'] . '</p>
@@ -117,3 +116,5 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
 echo json_encode($response);
 
 ?>
+
+

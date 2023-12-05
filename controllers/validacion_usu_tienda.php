@@ -12,11 +12,11 @@ if (isset($_SESSION["usu"])) {
 
 
 if (!isset($_SESSION['id'])) {
-  if (!isset($_SESSION['id_invitado'])) {
-   $_SESSION['id_invitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
+  if (!isset($_SESSION['idinvitado'])) {
+   $_SESSION['idinvitado'] = generarIDInvitadoUnico(); // Generar un ID único para el invitado si no hay sesión de usuario
   }
 } else {
-    unset($_SESSION['id_invitado']);
+    unset($_SESSION['idinvitado']);
 }
 
 function generarIDInvitadoUnico()

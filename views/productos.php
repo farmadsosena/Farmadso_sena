@@ -22,8 +22,8 @@ require_once "../controllers/validacion_usu_tienda.php";
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/76894f3292.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-  <!-- Enlace al JavaScript de Toastr.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- Enlace al JavaScript de Toastr.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
     </style>
@@ -58,8 +58,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div class="contboton" id="contC">
                 <button class="botonCarrito deleteCarrito">Quitar marcados</button>
                 <a href="pago.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
-                <a href="views/pasarela.php" class="pagar">Pago contra entrega <i
-                        class="fa-solid fa-money-bill"></i></a>
+                <a href="views/pasarela.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
             </div>
 
 
@@ -76,16 +75,16 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div class="profileResponsive">
                 <?php
                 if (isset($_SESSION["usu"])) {
-                    ?>
+                ?>
                     <img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>">
                     <p>
                         <?php echo $rr["nombre"] ?>
                     </p>
-                    <?php
+                <?php
                 } else {
-                    ?>
+                ?>
                     <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
@@ -96,10 +95,9 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
                 <?php
                 if (isset($_SESSION["usu"])) {
-                    ?>
-                    <a href="../config/cerrarSesion.php" class="enlaceMenu"><i
-                            class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
-                    <?php
+                ?>
+                    <a href="../config/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
+                <?php
                 }
                 ?>
             </div>
@@ -115,7 +113,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
                 </div>
             </section>
-            <div id="abrirCarrito" class="addCarrito">
+            <div id="abrirCarrito" class="addCarrito abrirCarrito">
                 <i class='bx bx-cart-alt'></i>
             </div>
             <div class="openMenu">
@@ -137,7 +135,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div id="productos"><i class='bx bxs-store'></i>
                 <p>Productos</p>
             </div>
-            <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
+            <div id="abrirCarrito" class="abrirCarrito"><i class='bx bx-cart-alt'></i>
                 <p>Carrito</p>
             </div>
             <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
@@ -149,14 +147,13 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div class="profile-user">
                 <?php
                 if (isset($_SESSION["usu"])) {
-                    ?>
-                    <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img
-                            src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
-                    <?php
+                ?>
+                    <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
+                <?php
                 } else {
-                    ?>
+                ?>
                     <button class="boton-login-tienda"><a href="login.php">Iniciar Sesión</a></button>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
@@ -219,155 +216,57 @@ require_once "../controllers/validacion_usu_tienda.php";
                             <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
                             <path d="M170.92 396.1c.06 0-.7 5.16-.7 5.16h-15.14l-.41-4.61z" opacity=".3" class="empty_svg__animable" style="transform-origin: 162.797px 398.68px;"></path>
                         </g>
-                        <g data-name="Character" class="empty_svg__animable"
-                            style="transform-origin: 337.551px 287.938px;">
-                            <path
-                                d="M356 202.29c.85.8 1.52 1.48 2.22 2.24s1.36 1.5 2 2.27c1.3 1.53 2.52 3.14 3.7 4.76a76.27 76.27 0 016.27 10.26l.37.73a7.05 7.05 0 01.45 1.1 9.12 9.12 0 01.44 2.26 11 11 0 01-.55 4 20.16 20.16 0 01-3.21 5.92 42.68 42.68 0 01-8.8 8.46l-2.49-2.86c1.17-1.37 2.39-2.84 3.48-4.31a36.76 36.76 0 003-4.5 15.63 15.63 0 001.82-4.42 4.58 4.58 0 00.07-1.7 2.22 2.22 0 00-.18-.55 1.59 1.59 0 00-.13-.22l-.32-.54a105.06 105.06 0 00-6.27-9.11c-1.11-1.47-2.3-2.88-3.5-4.27-.59-.7-1.2-1.38-1.81-2.06s-1.27-1.36-1.8-1.89z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 361.111px 223.29px;"></path>
-                            <path d="M357.36 240.59l-7.47-1.22 3.91 6.54s4.81-.17 6.18-3z" fill="#e4897b"
-                                class="empty_svg__animable" style="transform-origin: 354.935px 242.64px;"></path>
-                            <path fill="#e4897b" d="M344.37 242.39l3.56 5.31 5.87-1.79-3.91-6.54-5.52 3.02z"
-                                class="empty_svg__animable" style="transform-origin: 349.085px 243.535px;"></path>
-                            <path
-                                d="M357 411.28a2.15 2.15 0 01-1.43-.39 1 1 0 01-.29-.94.59.59 0 01.35-.5c.87-.39 3.15 1.07 3.41 1.24a.16.16 0 01.07.18.16.16 0 01-.13.14 8.85 8.85 0 01-1.98.27zm-1-1.55a.72.72 0 00-.22 0 .26.26 0 00-.15.23.67.67 0 00.18.63c.38.34 1.36.39 2.67.13a6.59 6.59 0 00-2.48-.99z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 357.187px 410.336px;"></path>
-                            <path
-                                d="M359 411h-.09c-.71-.41-2.08-2-1.91-2.87a.65.65 0 01.6-.5.9.9 0 01.75.24c.82.72.83 2.88.83 3a.19.19 0 01-.09.15zm-1.28-3h-.08c-.22 0-.27.12-.29.21-.1.51.75 1.73 1.46 2.3a4.09 4.09 0 00-.69-2.36.57.57 0 00-.45-.15z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 358.083px 409.32px;"></path>
-                            <path
-                                d="M322.92 411.28a2.77 2.77 0 01-1.81-.46 1 1 0 01-.33-.86.58.58 0 01.3-.47c.93-.52 3.91 1 4.25 1.19a.2.2 0 01.09.19.17.17 0 01-.14.14 12.47 12.47 0 01-2.36.27zm-1.33-1.55a.62.62 0 00-.33.07.21.21 0 00-.12.19.65.65 0 00.2.57c.46.41 1.69.48 3.35.2a9.73 9.73 0 00-3.1-1.03z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 323.097px 410.337px;"></path>
-                            <path
-                                d="M325.25 411h-.08c-.89-.4-2.66-2-2.52-2.87 0-.2.18-.45.67-.5a1.32 1.32 0 011 .31c.94.78 1.12 2.8 1.12 2.89a.17.17 0 01-.07.16.19.19 0 01-.12.01zm-1.79-3h-.11c-.32 0-.34.16-.35.2-.08.51 1.12 1.78 2 2.33a4.16 4.16 0 00-1-2.31.93.93 0 00-.54-.22z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 324.042px 409.314px;"></path>
-                            <path
-                                d="M337.07 179.3c-.29 4.52-1.07 13.7 2.4 16.24 0 0-.63 4.63-8.82 5.71-9 1.17-4.89-3.91-4.89-3.91 4.77-1.82 4.16-5.45 2.86-8.77z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 332.147px 190.363px;"></path>
-                            <path
-                                d="M318.44 171.31a.34.34 0 01-.26-.12 2.83 2.83 0 00-2.35-1 .35.35 0 01-.41-.3.36.36 0 01.31-.4 3.51 3.51 0 013 1.26.36.36 0 01-.27.59z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 317.115px 170.409px;"></path>
-                            <path d="M316.88 175.74a16.28 16.28 0 01-1.63 4.1 2.58 2.58 0 002.19.12z" fill="#de5753"
-                                class="empty_svg__animable" style="transform-origin: 316.345px 177.944px;"></path>
-                            <path d="M317.28 174.64c.08.6-.17 1.12-.56 1.18s-.78-.4-.85-1 .17-1.12.56-1.17.78.35.85.99z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 316.576px 174.736px;"></path>
-                            <path d="M316.61 173.66l-1.49-.23s.88 1.03 1.49.23z" fill="#263238"
-                                class="empty_svg__animable" style="transform-origin: 315.865px 173.697px;"></path>
-                            <path fill="#e4897b" d="M333.49 410.84h-7.5l-.5-17.35h7.5l.5 17.35z"
-                                class="empty_svg__animable" style="transform-origin: 329.49px 402.165px;"></path>
-                            <path fill="#e4897b" d="M367.54 410.84h-7.5l-2.41-17.35h7.5l2.41 17.35z"
-                                class="empty_svg__animable" style="transform-origin: 362.585px 402.165px;"></path>
-                            <path
-                                d="M359.58 410H368a.59.59 0 01.59.51l1 6.67a1.2 1.2 0 01-1.2 1.33c-2.93-.05-4.35-.22-8.05-.22-2.28 0-5.61.23-8.75.23s-3.31-3.11-2-3.39c5.87-1.26 6.8-3 8.77-4.67a2 2 0 011.22-.46z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 359.208px 414.26px;"></path>
-                            <path
-                                d="M325.74 410h8.41a.6.6 0 01.6.51l1 6.67a1.2 1.2 0 01-1.2 1.33c-2.93-.05-4.35-.22-8.05-.22-2.28 0-7 .23-10.14.23s-3.31-3.11-2-3.39c5.87-1.26 8.18-3 10.16-4.67a2 2 0 011.22-.46z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 324.673px 414.26px;"></path>
-                            <path fill="#ce6f64" d="M325.49 393.49l.26 8.95h7.5l-.26-8.95h-7.5z"
-                                class="empty_svg__animable" style="transform-origin: 329.37px 397.965px;"></path>
-                            <path fill="#ce6f64" d="M365.13 393.49h-7.5l1.25 8.95h7.49l-1.24-8.95z"
-                                class="empty_svg__animable" style="transform-origin: 362px 397.965px;"></path>
-                            <path
-                                d="M337.17 169.94c.51 7.42.88 10.55-2.34 14.82-4.85 6.41-14.07 5.42-16.79-1.7-2.45-6.41-2.87-17.46 3.95-21.34a10.15 10.15 0 0115.18 8.22z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 326.957px 174.705px;"></path>
-                            <path
-                                d="M341.49 176.83c4.16 2.32 7.25-3.4 7.25-3.4s-7.46.81-6.79-3.63c.88-5.89-3.34-13.05-13.92-12.13-.59.05-1.15.12-1.7.21a5.44 5.44 0 00-6.58 1.52c-3 .25-7.05 3.83-4.3 8.56a4.35 4.35 0 01.88-1.47c.23 2.77 2.65 7.17 5.67 7.46.65 3.79-1.87 8.18-1 12.14 1.29 5.71 10.92 7 10.92 7a4.17 4.17 0 01.56-4.41c6.54 3 10.85.07 10.85.07-4.46-1.66-3.11-4.62-3.11-4.62a6.51 6.51 0 008.49-3.09 7.68 7.68 0 01-7.22-4.21z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 331.638px 175.223px;"></path>
-                            <path
-                                d="M324.61 175.09a5.4 5.4 0 01-1.5 3.87c-1.32 1.37-2.94.41-3.38-1.34-.39-1.58-.17-4.19 1.55-4.91a2.44 2.44 0 013.33 2.38z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 322.089px 176.076px;"></path>
-                            <path
-                                d="M330.84 244.22s1.9 49.36 6.42 78.34c3.64 23.42 19.81 78.14 19.81 78.14h10.22s-8.43-52.85-10.28-76c-4.68-58.59 7.47-71.17-4-83.37z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 349.065px 321.015px;"></path>
-                            <path
-                                d="M339.38 259.83s-4.62-.8-7.32 8c1 16.67 2.71 38.79 5.2 54.73.55 3.55 1.39 7.83 2.42 12.52-1.95-28.16-.3-75.25-.3-75.25z"
-                                fill="#161f33" class="empty_svg__animable"
-                                style="transform-origin: 335.87px 297.446px;"></path>
-                            <path
-                                d="M322.87 245.26s-8.42 54.61-7.93 77.46c.51 23.77 9.22 78 9.22 78h10.13s-1.6-52.82-.71-76.16c1-25.45 11.39-82.17 11.39-82.17z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 329.945px 321.555px;"></path>
-                            <path fill="#407bff" d="M368.77 401.18h-13.59l-1.06-4.56 14.55.1.1 4.46z"
-                                class="empty_svg__animable" style="transform-origin: 361.445px 398.9px;"></path>
-                            <path opacity=".2" d="M368.77 401.18h-13.59l-1.06-4.56 14.55.1.1 4.46z"
-                                class="empty_svg__animable" style="transform-origin: 361.445px 398.9px;"></path>
-                            <path
-                                d="M352.5 195.55c3.91.38 9.85 11.49 9.85 11.49l-9.87 7.57s-8.17-7.17-7.2-11.2c1.01-4.19 3.47-8.21 7.22-7.86z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 353.775px 205.069px;"></path>
-                            <path
-                                d="M352.5 195.55c3.91.38 9.85 11.49 9.85 11.49l-9.87 7.57s-8.17-7.17-7.2-11.2c1.01-4.19 3.47-8.21 7.22-7.86z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 353.775px 205.069px;">
+                        <g data-name="Character" class="empty_svg__animable" style="transform-origin: 337.551px 287.938px;">
+                            <path d="M356 202.29c.85.8 1.52 1.48 2.22 2.24s1.36 1.5 2 2.27c1.3 1.53 2.52 3.14 3.7 4.76a76.27 76.27 0 016.27 10.26l.37.73a7.05 7.05 0 01.45 1.1 9.12 9.12 0 01.44 2.26 11 11 0 01-.55 4 20.16 20.16 0 01-3.21 5.92 42.68 42.68 0 01-8.8 8.46l-2.49-2.86c1.17-1.37 2.39-2.84 3.48-4.31a36.76 36.76 0 003-4.5 15.63 15.63 0 001.82-4.42 4.58 4.58 0 00.07-1.7 2.22 2.22 0 00-.18-.55 1.59 1.59 0 00-.13-.22l-.32-.54a105.06 105.06 0 00-6.27-9.11c-1.11-1.47-2.3-2.88-3.5-4.27-.59-.7-1.2-1.38-1.81-2.06s-1.27-1.36-1.8-1.89z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 361.111px 223.29px;"></path>
+                            <path d="M357.36 240.59l-7.47-1.22 3.91 6.54s4.81-.17 6.18-3z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 354.935px 242.64px;"></path>
+                            <path fill="#e4897b" d="M344.37 242.39l3.56 5.31 5.87-1.79-3.91-6.54-5.52 3.02z" class="empty_svg__animable" style="transform-origin: 349.085px 243.535px;"></path>
+                            <path d="M357 411.28a2.15 2.15 0 01-1.43-.39 1 1 0 01-.29-.94.59.59 0 01.35-.5c.87-.39 3.15 1.07 3.41 1.24a.16.16 0 01.07.18.16.16 0 01-.13.14 8.85 8.85 0 01-1.98.27zm-1-1.55a.72.72 0 00-.22 0 .26.26 0 00-.15.23.67.67 0 00.18.63c.38.34 1.36.39 2.67.13a6.59 6.59 0 00-2.48-.99z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 357.187px 410.336px;"></path>
+                            <path d="M359 411h-.09c-.71-.41-2.08-2-1.91-2.87a.65.65 0 01.6-.5.9.9 0 01.75.24c.82.72.83 2.88.83 3a.19.19 0 01-.09.15zm-1.28-3h-.08c-.22 0-.27.12-.29.21-.1.51.75 1.73 1.46 2.3a4.09 4.09 0 00-.69-2.36.57.57 0 00-.45-.15z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 358.083px 409.32px;"></path>
+                            <path d="M322.92 411.28a2.77 2.77 0 01-1.81-.46 1 1 0 01-.33-.86.58.58 0 01.3-.47c.93-.52 3.91 1 4.25 1.19a.2.2 0 01.09.19.17.17 0 01-.14.14 12.47 12.47 0 01-2.36.27zm-1.33-1.55a.62.62 0 00-.33.07.21.21 0 00-.12.19.65.65 0 00.2.57c.46.41 1.69.48 3.35.2a9.73 9.73 0 00-3.1-1.03z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 323.097px 410.337px;"></path>
+                            <path d="M325.25 411h-.08c-.89-.4-2.66-2-2.52-2.87 0-.2.18-.45.67-.5a1.32 1.32 0 011 .31c.94.78 1.12 2.8 1.12 2.89a.17.17 0 01-.07.16.19.19 0 01-.12.01zm-1.79-3h-.11c-.32 0-.34.16-.35.2-.08.51 1.12 1.78 2 2.33a4.16 4.16 0 00-1-2.31.93.93 0 00-.54-.22z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 324.042px 409.314px;"></path>
+                            <path d="M337.07 179.3c-.29 4.52-1.07 13.7 2.4 16.24 0 0-.63 4.63-8.82 5.71-9 1.17-4.89-3.91-4.89-3.91 4.77-1.82 4.16-5.45 2.86-8.77z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 332.147px 190.363px;"></path>
+                            <path d="M318.44 171.31a.34.34 0 01-.26-.12 2.83 2.83 0 00-2.35-1 .35.35 0 01-.41-.3.36.36 0 01.31-.4 3.51 3.51 0 013 1.26.36.36 0 01-.27.59z" fill="#263238" class="empty_svg__animable" style="transform-origin: 317.115px 170.409px;"></path>
+                            <path d="M316.88 175.74a16.28 16.28 0 01-1.63 4.1 2.58 2.58 0 002.19.12z" fill="#de5753" class="empty_svg__animable" style="transform-origin: 316.345px 177.944px;"></path>
+                            <path d="M317.28 174.64c.08.6-.17 1.12-.56 1.18s-.78-.4-.85-1 .17-1.12.56-1.17.78.35.85.99z" fill="#263238" class="empty_svg__animable" style="transform-origin: 316.576px 174.736px;"></path>
+                            <path d="M316.61 173.66l-1.49-.23s.88 1.03 1.49.23z" fill="#263238" class="empty_svg__animable" style="transform-origin: 315.865px 173.697px;"></path>
+                            <path fill="#e4897b" d="M333.49 410.84h-7.5l-.5-17.35h7.5l.5 17.35z" class="empty_svg__animable" style="transform-origin: 329.49px 402.165px;"></path>
+                            <path fill="#e4897b" d="M367.54 410.84h-7.5l-2.41-17.35h7.5l2.41 17.35z" class="empty_svg__animable" style="transform-origin: 362.585px 402.165px;"></path>
+                            <path d="M359.58 410H368a.59.59 0 01.59.51l1 6.67a1.2 1.2 0 01-1.2 1.33c-2.93-.05-4.35-.22-8.05-.22-2.28 0-5.61.23-8.75.23s-3.31-3.11-2-3.39c5.87-1.26 6.8-3 8.77-4.67a2 2 0 011.22-.46z" fill="#263238" class="empty_svg__animable" style="transform-origin: 359.208px 414.26px;"></path>
+                            <path d="M325.74 410h8.41a.6.6 0 01.6.51l1 6.67a1.2 1.2 0 01-1.2 1.33c-2.93-.05-4.35-.22-8.05-.22-2.28 0-7 .23-10.14.23s-3.31-3.11-2-3.39c5.87-1.26 8.18-3 10.16-4.67a2 2 0 011.22-.46z" fill="#263238" class="empty_svg__animable" style="transform-origin: 324.673px 414.26px;"></path>
+                            <path fill="#ce6f64" d="M325.49 393.49l.26 8.95h7.5l-.26-8.95h-7.5z" class="empty_svg__animable" style="transform-origin: 329.37px 397.965px;"></path>
+                            <path fill="#ce6f64" d="M365.13 393.49h-7.5l1.25 8.95h7.49l-1.24-8.95z" class="empty_svg__animable" style="transform-origin: 362px 397.965px;"></path>
+                            <path d="M337.17 169.94c.51 7.42.88 10.55-2.34 14.82-4.85 6.41-14.07 5.42-16.79-1.7-2.45-6.41-2.87-17.46 3.95-21.34a10.15 10.15 0 0115.18 8.22z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 326.957px 174.705px;"></path>
+                            <path d="M341.49 176.83c4.16 2.32 7.25-3.4 7.25-3.4s-7.46.81-6.79-3.63c.88-5.89-3.34-13.05-13.92-12.13-.59.05-1.15.12-1.7.21a5.44 5.44 0 00-6.58 1.52c-3 .25-7.05 3.83-4.3 8.56a4.35 4.35 0 01.88-1.47c.23 2.77 2.65 7.17 5.67 7.46.65 3.79-1.87 8.18-1 12.14 1.29 5.71 10.92 7 10.92 7a4.17 4.17 0 01.56-4.41c6.54 3 10.85.07 10.85.07-4.46-1.66-3.11-4.62-3.11-4.62a6.51 6.51 0 008.49-3.09 7.68 7.68 0 01-7.22-4.21z" fill="#263238" class="empty_svg__animable" style="transform-origin: 331.638px 175.223px;"></path>
+                            <path d="M324.61 175.09a5.4 5.4 0 01-1.5 3.87c-1.32 1.37-2.94.41-3.38-1.34-.39-1.58-.17-4.19 1.55-4.91a2.44 2.44 0 013.33 2.38z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 322.089px 176.076px;"></path>
+                            <path d="M330.84 244.22s1.9 49.36 6.42 78.34c3.64 23.42 19.81 78.14 19.81 78.14h10.22s-8.43-52.85-10.28-76c-4.68-58.59 7.47-71.17-4-83.37z" fill="#263238" class="empty_svg__animable" style="transform-origin: 349.065px 321.015px;"></path>
+                            <path d="M339.38 259.83s-4.62-.8-7.32 8c1 16.67 2.71 38.79 5.2 54.73.55 3.55 1.39 7.83 2.42 12.52-1.95-28.16-.3-75.25-.3-75.25z" fill="#161f33" class="empty_svg__animable" style="transform-origin: 335.87px 297.446px;"></path>
+                            <path d="M322.87 245.26s-8.42 54.61-7.93 77.46c.51 23.77 9.22 78 9.22 78h10.13s-1.6-52.82-.71-76.16c1-25.45 11.39-82.17 11.39-82.17z" fill="#263238" class="empty_svg__animable" style="transform-origin: 329.945px 321.555px;"></path>
+                            <path fill="#407bff" d="M368.77 401.18h-13.59l-1.06-4.56 14.55.1.1 4.46z" class="empty_svg__animable" style="transform-origin: 361.445px 398.9px;"></path>
+                            <path opacity=".2" d="M368.77 401.18h-13.59l-1.06-4.56 14.55.1.1 4.46z" class="empty_svg__animable" style="transform-origin: 361.445px 398.9px;"></path>
+                            <path d="M352.5 195.55c3.91.38 9.85 11.49 9.85 11.49l-9.87 7.57s-8.17-7.17-7.2-11.2c1.01-4.19 3.47-8.21 7.22-7.86z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 353.775px 205.069px;"></path>
+                            <path d="M352.5 195.55c3.91.38 9.85 11.49 9.85 11.49l-9.87 7.57s-8.17-7.17-7.2-11.2c1.01-4.19 3.47-8.21 7.22-7.86z" opacity=".1" class="empty_svg__animable" style="transform-origin: 353.775px 205.069px;">
                             </path>
-                            <path
-                                d="M349.55 200.33a10.13 10.13 0 00-3.06-.34 16.91 16.91 0 00-1.21 3.42c-1 4 7.2 11.2 7.2 11.2l.73-.56z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 349.203px 207.296px;"></path>
-                            <path
-                                d="M349.55 200.33a10.13 10.13 0 00-3.06-.34 16.91 16.91 0 00-1.21 3.42c-1 4 7.2 11.2 7.2 11.2l.73-.56z"
-                                opacity=".3" class="empty_svg__animable" style="transform-origin: 349.203px 207.296px;">
+                            <path d="M349.55 200.33a10.13 10.13 0 00-3.06-.34 16.91 16.91 0 00-1.21 3.42c-1 4 7.2 11.2 7.2 11.2l.73-.56z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 349.203px 207.296px;"></path>
+                            <path d="M349.55 200.33a10.13 10.13 0 00-3.06-.34 16.91 16.91 0 00-1.21 3.42c-1 4 7.2 11.2 7.2 11.2l.73-.56z" opacity=".3" class="empty_svg__animable" style="transform-origin: 349.203px 207.296px;">
                             </path>
-                            <path
-                                d="M319.52 211c-2.85 7.21-5.85 14.54-8.24 21.77-.16.46-.29.9-.43 1.35l-.34 1.11a1.83 1.83 0 000 1 7.52 7.52 0 002.59 3.1 42.19 42.19 0 009.69 5.19l-.9 3.68a34.69 34.69 0 01-12.08-3.94 12.93 12.93 0 01-5.39-5.46 8.37 8.37 0 01-.69-4.76 5.58 5.58 0 01.1-.59l.1-.42.17-.76c.12-.51.24-1 .37-1.5 1-4 2.28-7.8 3.63-11.57s2.76-7.49 4.35-11.2z"
-                                fill="#e4897b" class="empty_svg__animable" style="transform-origin: 313.215px 228.1px;">
+                            <path d="M319.52 211c-2.85 7.21-5.85 14.54-8.24 21.77-.16.46-.29.9-.43 1.35l-.34 1.11a1.83 1.83 0 000 1 7.52 7.52 0 002.59 3.1 42.19 42.19 0 009.69 5.19l-.9 3.68a34.69 34.69 0 01-12.08-3.94 12.93 12.93 0 01-5.39-5.46 8.37 8.37 0 01-.69-4.76 5.58 5.58 0 01.1-.59l.1-.42.17-.76c.12-.51.24-1 .37-1.5 1-4 2.28-7.8 3.63-11.57s2.76-7.49 4.35-11.2z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 313.215px 228.1px;">
                             </path>
-                            <path
-                                d="M313.45 200.88s-3.38 1.71 9.42 44.38l30.18-3.94c-2.12-12.22-3.12-19.79-.55-45.77a91 91 0 00-13 0 95.5 95.5 0 00-13.71 1.8c-5.79 1.29-12.34 3.53-12.34 3.53z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 333.048px 220.289px;"></path>
-                            <path
-                                d="M313.45 200.88s-3.38 1.71 9.42 44.38l30.18-3.94c-2.12-12.22-3.12-19.79-.55-45.77a91 91 0 00-13 0 95.5 95.5 0 00-13.71 1.8c-5.79 1.29-12.34 3.53-12.34 3.53z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 333.048px 220.289px;">
+                            <path d="M313.45 200.88s-3.38 1.71 9.42 44.38l30.18-3.94c-2.12-12.22-3.12-19.79-.55-45.77a91 91 0 00-13 0 95.5 95.5 0 00-13.71 1.8c-5.79 1.29-12.34 3.53-12.34 3.53z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 333.048px 220.289px;"></path>
+                            <path d="M313.45 200.88s-3.38 1.71 9.42 44.38l30.18-3.94c-2.12-12.22-3.12-19.79-.55-45.77a91 91 0 00-13 0 95.5 95.5 0 00-13.71 1.8c-5.79 1.29-12.34 3.53-12.34 3.53z" opacity=".1" class="empty_svg__animable" style="transform-origin: 333.048px 220.289px;">
                             </path>
-                            <path
-                                d="M353.27 239.49L355 242c.13.2-.09.44-.43.49l-31.65 4.14c-.27 0-.52-.07-.56-.24l-.62-2.67c-.05-.18.17-.37.47-.41l30.56-4a.55.55 0 01.5.18z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 338.385px 242.967px;"></path>
-                            <path
-                                d="M353.27 239.49L355 242c.13.2-.09.44-.43.49l-31.65 4.14c-.27 0-.52-.07-.56-.24l-.62-2.67c-.05-.18.17-.37.47-.41l30.56-4a.55.55 0 01.5.18z"
-                                opacity=".2" class="empty_svg__animable" style="transform-origin: 338.385px 242.967px;">
+                            <path d="M353.27 239.49L355 242c.13.2-.09.44-.43.49l-31.65 4.14c-.27 0-.52-.07-.56-.24l-.62-2.67c-.05-.18.17-.37.47-.41l30.56-4a.55.55 0 01.5.18z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 338.385px 242.967px;"></path>
+                            <path d="M353.27 239.49L355 242c.13.2-.09.44-.43.49l-31.65 4.14c-.27 0-.52-.07-.56-.24l-.62-2.67c-.05-.18.17-.37.47-.41l30.56-4a.55.55 0 01.5.18z" opacity=".2" class="empty_svg__animable" style="transform-origin: 338.385px 242.967px;">
                             </path>
-                            <path
-                                d="M349.61 243.44l.82-.11c.16 0 .27-.12.25-.22l-.84-3.46a.29.29 0 00-.34-.14l-.82.1c-.17 0-.28.12-.25.23l.84 3.45c.02.11.18.17.34.15z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 349.554px 241.471px;"></path>
-                            <path
-                                d="M329.77 246l.82-.11c.16 0 .28-.12.25-.22l-.84-3.46a.31.31 0 00-.34-.15l-.82.11c-.16 0-.28.12-.25.22l.84 3.46c.02.15.18.21.34.15z"
-                                fill="#263238" class="empty_svg__animable"
-                                style="transform-origin: 329.715px 244.038px;"></path>
-                            <path d="M314.86 215.36c.83 3.86 2 8.75 3.71 14.94l.37-15.69z" fill="#407bff"
-                                class="empty_svg__animable" style="transform-origin: 316.9px 222.455px;"></path>
-                            <path d="M314.86 215.36c.83 3.86 2 8.75 3.71 14.94l.37-15.69z" opacity=".3"
-                                class="empty_svg__animable" style="transform-origin: 316.9px 222.455px;"></path>
-                            <path
-                                d="M313.45 200.88c-3.75 1.51-7 14.34-7 14.34l12.9 6.28s6.23-15.69 3.44-18.75-5.02-3.6-9.34-1.87z"
-                                fill="#407bff" class="empty_svg__animable"
-                                style="transform-origin: 314.979px 210.702px;"></path>
-                            <path
-                                d="M313.45 200.88c-3.75 1.51-7 14.34-7 14.34l12.9 6.28s6.23-15.69 3.44-18.75-5.02-3.6-9.34-1.87z"
-                                opacity=".1" class="empty_svg__animable" style="transform-origin: 314.979px 210.702px;">
+                            <path d="M349.61 243.44l.82-.11c.16 0 .27-.12.25-.22l-.84-3.46a.29.29 0 00-.34-.14l-.82.1c-.17 0-.28.12-.25.23l.84 3.45c.02.11.18.17.34.15z" fill="#263238" class="empty_svg__animable" style="transform-origin: 349.554px 241.471px;"></path>
+                            <path d="M329.77 246l.82-.11c.16 0 .28-.12.25-.22l-.84-3.46a.31.31 0 00-.34-.15l-.82.11c-.16 0-.28.12-.25.22l.84 3.46c.02.15.18.21.34.15z" fill="#263238" class="empty_svg__animable" style="transform-origin: 329.715px 244.038px;"></path>
+                            <path d="M314.86 215.36c.83 3.86 2 8.75 3.71 14.94l.37-15.69z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 316.9px 222.455px;"></path>
+                            <path d="M314.86 215.36c.83 3.86 2 8.75 3.71 14.94l.37-15.69z" opacity=".3" class="empty_svg__animable" style="transform-origin: 316.9px 222.455px;"></path>
+                            <path d="M313.45 200.88c-3.75 1.51-7 14.34-7 14.34l12.9 6.28s6.23-15.69 3.44-18.75-5.02-3.6-9.34-1.87z" fill="#407bff" class="empty_svg__animable" style="transform-origin: 314.979px 210.702px;"></path>
+                            <path d="M313.45 200.88c-3.75 1.51-7 14.34-7 14.34l12.9 6.28s6.23-15.69 3.44-18.75-5.02-3.6-9.34-1.87z" opacity=".1" class="empty_svg__animable" style="transform-origin: 314.979px 210.702px;">
                             </path>
-                            <path fill="#407bff" d="M336.02 401.18h-13.59l-1.06-4.56 15.13.1-.48 4.46z"
-                                class="empty_svg__animable" style="transform-origin: 328.935px 398.9px;"></path>
-                            <path opacity=".2" d="M336.02 401.18h-13.59l-1.06-4.56 15.13.1-.48 4.46z"
-                                class="empty_svg__animable" style="transform-origin: 328.935px 398.9px;"></path>
-                            <path
-                                d="M323 243.28l-1.09-.45a1.64 1.64 0 00-2.24 1.76l.79 5.21a1.78 1.78 0 002.36 1.42 4 4 0 001.1-.61 3 3 0 001.08-2.48l-.11-2.16a3 3 0 00-1.89-2.69z"
-                                fill="#e4897b" class="empty_svg__animable"
-                                style="transform-origin: 322.329px 247.016px;"></path>
+                            <path fill="#407bff" d="M336.02 401.18h-13.59l-1.06-4.56 15.13.1-.48 4.46z" class="empty_svg__animable" style="transform-origin: 328.935px 398.9px;"></path>
+                            <path opacity=".2" d="M336.02 401.18h-13.59l-1.06-4.56 15.13.1-.48 4.46z" class="empty_svg__animable" style="transform-origin: 328.935px 398.9px;"></path>
+                            <path d="M323 243.28l-1.09-.45a1.64 1.64 0 00-2.24 1.76l.79 5.21a1.78 1.78 0 002.36 1.42 4 4 0 001.1-.61 3 3 0 001.08-2.48l-.11-2.16a3 3 0 00-1.89-2.69z" fill="#e4897b" class="empty_svg__animable" style="transform-origin: 322.329px 247.016px;"></path>
                         </g>
                         <defs>
                             <filter id="empty_svg__active" height="200%">
@@ -588,21 +487,35 @@ require_once "../controllers/validacion_usu_tienda.php";
                     </section>
                 </section>
                 <section class="descript-pro">
-                    <h2 class="nombre_farmacia"></h2>
-                    <h1 class="nombre_med"></h1>
-                    <h3 class="nombre_med"></h3>
-                    <p class="c_m"></p>
-                    <div class="precio-antes">
-                        <div class="precio-a"></div>
-                        <div class="ahorro"></div>
-                    </div>
-                    <div class="precio"></div>
-                    <p class="stock_detaM"></p>
-                    <div class="descripcion_det_med">
-                        <p></p>
-                    </div>
-                    <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
-                    <!-- <button class="vermas">Ver mas detalles</button> -->
+                    <form class='cardProductoS' autocomplete='off' method='post'>
+                        <?php
+                        if (isset($_SESSION['id'])) {
+                            echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id'] . ">";
+                        } else {
+                            // Si  la sesión no está iniciada se envia el invitado
+                            echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
+                        }
+                        ?>
+                        <input type='hidden' name='idmedicamento' class="idmedicamento_detalles_r">
+                        <input type='hidden' name='precio' class="precio_detalles_r">
+                        <h2 class="nombre_farmacia"></h2>
+                        <h1 class="nombre_med"></h1>
+                        <h3 class="nombre_med"></h3>
+                        <p class="c_m"></p>
+                        <div class="precio-antes">
+                            <div class="precio-a"></div>
+                            <div class="ahorro"></div>
+                        </div>
+                        <div class='cont_precio_cantidad detalles_cont_precio_cantidad'>
+                            <div class="precio"></div>
+                            <input type='number' class='card-cantidad cantidadcarrito_detalles_r' name='cantidadcarrito' min='1' value='1'>
+                        </div>
+                        <p class="stock_detaM"></p>
+                        <div class="descripcion_det_med">
+                            <p></p>
+                        </div>
+                        <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+                    </form>
                 </section>
             </section>
             <div class="cont-spinner-deta_med" style="display: none;">
@@ -612,6 +525,7 @@ require_once "../controllers/validacion_usu_tienda.php";
         <?php require '../templates/footer_inicio_tienda.html'; ?>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/mostrarCantidad_produc_carrito.js"></script>
     <script src="../assets/js/slider_inicio_tienda.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
@@ -619,6 +533,7 @@ require_once "../controllers/validacion_usu_tienda.php";
     <script src="../assets/js/funcionMenutienda.js"></script>
     <script src="../assets/js/detallesRapidos.js"></script>
     <script src="../assets/js/consultarCarrito.js"></script>
+    <script src="../assets/js/carrito.js"></script>
 
     <script>
         function saveScrollPosition() {
@@ -638,12 +553,12 @@ require_once "../controllers/validacion_usu_tienda.php";
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.clasificacion');
             const cards = document.querySelectorAll('.top-product');
 
             filterButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const category = button.getAttribute('data-category').toLowerCase();
 
                     cards.forEach(card => {
