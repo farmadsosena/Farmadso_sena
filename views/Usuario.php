@@ -450,7 +450,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </div>
           </div>';
           }
-          else{
+          else if(isset($_SESSION["farm"]) and isset($_SESSION["domi"]) ){
             echo "Ya tiene todos los roles disponibles en el sistema";
           }
           ?>

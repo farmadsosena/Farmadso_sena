@@ -20,10 +20,12 @@ if ($result->num_rows > 0) {
     $ConsulMedi = mysqli_query($conexion, "SELECT * FROM medicamentos 
       INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
       INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
-      WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'");
-    $rf = mysqli_fetch_assoc($ConsulMedi);
+      WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'  
+      ORDER BY inventario.precio ASC LIMIT 1");
 
     if (mysqli_num_rows($ConsulMedi) > 0) {
+      $rf = mysqli_fetch_assoc($ConsulMedi);
+      $idMedicamento = $rf['idmedicamento']; // Obtén el ID del medicamento
       $Stiockcantidad = $rf["stock"];
 
       if ($cantidad <= $Stiockcantidad) {
@@ -31,10 +33,6 @@ if ($result->num_rows > 0) {
 
       } else {
         $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias' WHERE IdMedi='$idMedicamentoFormuala'");
-
-        if (mysqli_num_rows($ConsulMedi) > 0) {
-          // echo "Sin unidades para". $NombreMedicamento."<br>";
-        }
       }
     }else{// If para corroborar la existencia del medicamento
       $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Medicamento inexistente' WHERE IdMedi='$idMedicamentoFormuala'");
