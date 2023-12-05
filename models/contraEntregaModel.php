@@ -14,7 +14,7 @@ class ContraEntregaModel
 
     public function registrarContraEntrega($datos)
     {
-        
+
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $direccion = $datos['direccion'];
@@ -27,17 +27,17 @@ class ContraEntregaModel
 
         if (isset($_SESSION['id'])) {
             $idusuario = $_SESSION['id'];
-            $query = "INSERT INTO pedido (fecha, total,idestado, nombre, apellido, direccion, telefono, correo, instrucciones,idtipopago, idusuario, idinvitado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)";
+            $query = "INSERT INTO compra (fecha, total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario, idinvitado, instrucciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,NULL, ? )";
             $stmt = $this->conexion->prepare($query);
             $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
             $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
-            $stmt->bind_param("sissssisssi", $fecha_formateada, $subtotal, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idusuario);
+            $stmt->bind_param("siisssissis", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idusuario, $instrucciones);
 
             // Inicializar un array para almacenar las filas de la tabla de la factura
             $facturaTable = [];
 
             if ($stmt->execute()) {
-                $idpedido = $this->conexion->insert_id;
+                $idcompra = $this->conexion->insert_id;
                 // Obtener los productos del carrito desde los datos de la sesión
                 $productos = $_SESSION['medicamentos'];
                 foreach ($productos as $key => $stock) {
@@ -70,9 +70,9 @@ class ContraEntregaModel
                     </tr>
                 ';
                         // Insertar los detalles de la compra en la tabla "detalle_pedido"
-                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallepedido 
-                (idpedido,idmedicamento, cantidad, preciototal) VALUES
-                ('$idpedido','$key', '$stock', '$subtotal')");
+                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallecompra 
+                (idcompra,idmedicamento,cantidad,preciototal) VALUES
+                ('$idcompra','$key', '$stock', '$subtotal')");
                         // Eliminar los productos del carrito para este usuario
                         $eliminar = $this->conexion->query("DELETE FROM carrito WHERE idusuario = '$idusuario'");
 
@@ -87,19 +87,18 @@ class ContraEntregaModel
                 // Almacenar los datos de la tabla de la factura en una variable
                 $DATA_ALL = $facturaTable;
 
-                $respuesta = array(
-                    'success' => true,
-                );
+                // $respuesta = array(
+                //     'success' => true,
+                // );
                 // Imprimir una respuesta de éxito en formato JSON
 
                 // Requerir el archivo para enviar el correo electrónico
                 require_once 'enviarCorreoContraentrega.php';
 
-                $respuesta = array(
-                    'success' => true,
-
-                );
-                echo json_encode($respuesta);
+                // $respuesta = array(
+                //     'success' => true,
+                // );
+                // echo json_encode($respuesta);
             } else {
                 echo 'Error al insertar el pedido';
             }
@@ -107,16 +106,16 @@ class ContraEntregaModel
 
         } elseif (isset($_SESSION['idinvitado'])) {
             $idinvitado = $_SESSION['idinvitado'];
-            $query = "INSERT INTO pedido (fecha, total,idestado, nombre, apellido, direccion, telefono, correo, instrucciones,idtipopago, idusuario, idinvitado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL,?)";
+            $query = "INSERT INTO compra (fecha,total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario,idinvitado,instrucciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,NULL,?,?)";
             $stmt = $this->conexion->prepare($query);
             $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
             $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
-            $stmt->bind_param("sissssisssi", $fecha_formateada, $subtotal, $estadoCompra, $nombre, $apellido, $direccion, $telefono, $email, $instrucciones, $tipoPago, $idinvitado);
+            $stmt->bind_param("siisssssssss", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idinvitado, $instrucciones);
 
             $facturaTable = [];
 
             if ($stmt->execute()) {
-                $idpedido = $this->conexion->insert_id;
+                $idcompra = $this->conexion->insert_id;
                 // Obtener los productos del carrito desde los datos de la sesión
                 $productos = $_SESSION['medicamentos'];
                 foreach ($productos as $key => $stock) {
@@ -140,19 +139,17 @@ class ContraEntregaModel
 
                         // Crear una fila de tabla para la factura
                         $productoNombre = $DATA['nombre'];
-                        $facturaTable[] = '
-                    <tr>
-                        <td>' . $productoNombre . '</td>
-                        <td>' . $precio . '</td>
-                        <td>' . $stock . '</td>
-                        <td>' . $subtotal . '</td>
-                    </tr>
-                ';
+                        $facturaTable[] = '<tr>
+                            <td>' . $productoNombre . '</td>
+                            <td>' . $precio . '</td>
+                            <td>' . $stock . '</td>
+                            <td>' . $subtotal . '</td>
+                        </tr>';
 
                         // Insertar los detalles de la compra en la tabla "detalle_compra"
-                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallepedido 
-                (idpedido,idmedicamento, cantidad, preciototal) VALUES
-                ('$idpedido','$key', '$stock', '$subtotal')");
+                        $insertDetalleCompra = $this->conexion->query("INSERT INTO detallecompra 
+                (idcompra,idmedicamento,cantidad,preciototal) VALUES
+                ('$idcompra','$key', '$stock', '$subtotal')");
 
                         // Eliminar los productos del carrito para este usuario
                         $eliminar = $this->conexion->query("DELETE FROM carrito WHERE idinvitado = '$idinvitado'");
@@ -168,20 +165,19 @@ class ContraEntregaModel
                 // Almacenar los datos de la tabla de la factura en una variable
                 $DATA_ALL = $facturaTable;
 
-                $respuesta = array(
-                    'success' => true,
+                // $respuesta = array(
+                //     'success' => true,
 
-                );
+                // );
                 // Imprimir una respuesta de éxito en formato JSON
 
                 // Requerir el archivo para enviar el correo electrónico
-                require_once 'enviarCorreo.php';
+                require_once 'enviarCorreoContraentrega.php';
 
-                $respuesta = array(
-                    'success' => true,
-
-                );
-                echo json_encode($respuesta);
+                // $respuesta = array(
+                //     'success' => true,
+                // );
+                // echo json_encode($respuesta);
             } else {
                 echo 'Error al insertar el pedido';
             }

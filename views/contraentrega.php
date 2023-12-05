@@ -7,7 +7,7 @@ require '../controllers/validacion_usu_tienda.php';
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../assets/css/contraentrega.css" />
     <link rel="stylesheet" href="../assets/css/pagoConCard.css" />
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
@@ -72,7 +72,7 @@ require '../controllers/validacion_usu_tienda.php';
                 </form>
             </div>
 
-            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm"
+            <form class="formulario_contraentrega activeForm" autocomplete="off" method="post" id="contraentregaForm"
                 onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
                 <article class="groupTwo">
@@ -128,6 +128,7 @@ require '../controllers/validacion_usu_tienda.php';
 
     </main>
     <script src="../assets/js/contraEntrega.js"></script>
+    <script src="../assets/js/consultarCart.js"></script>
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
@@ -141,7 +142,7 @@ require '../controllers/validacion_usu_tienda.php';
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
-    <script src="../assets/js/consultarCart.js"></script>
+    
 </body>
 
 </html>

@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $where = '';
     // Verifica si está establecido el id de usuario en la sesión
     if (isset($_SESSION['id'])) {
-        $where = 'carrito.idusuario =' . $_SESSION['id'];
+        $where = $_SESSION['id'];
     } elseif (isset($_SESSION['idinvitado'])) {
-        $where = 'carrito.idinvitado =' . $_SESSION['idinvitado'];
+        $where =  $_SESSION['idinvitado'];
     }
 
-    $query = "SELECT  medicamentos.nombre, carrito.idmedicamento, medicamentos.precio, medicamentos.codigo, medicamentos.imagenprincipal, carrito.cantidadcarrito, (medicamentos.precio * carrito.cantidadcarrito) AS costo FROM carrito INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento WHERE $where";
+    $query = "SELECT medicamentos.nombre, carrito.idmedicamento, medicamentos.precio, medicamentos.codigo, medicamentos.imagenprincipal, carrito.cantidadcarrito, (medicamentos.precio * carrito.cantidadcarrito) AS costo FROM carrito INNER JOIN medicamentos ON carrito.idmedicamento = medicamentos.idmedicamento WHERE  carrito.idinvitado ='$where' or carrito.idusuario = '$where'";
     $result = $conexion->query($query);
 
    

@@ -27,7 +27,6 @@ function generarIDInvitadoUnico()
 {
     $prefix = 'INVITADO_'; // Prefijo para identificar al invitado
     $uniqueID = $prefix . uniqid(); // Generar un identificador único
-
     return $uniqueID;
 }
 ?>

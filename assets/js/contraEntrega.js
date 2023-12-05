@@ -9,18 +9,16 @@ function sendForm(event, formcontraentrega, link) {
     })
         .then((response) => response.json())
         .then((data) => {
+            console.log(data); // Cambiado 'response' a 'data'
             if (data.status === true) {
                 toastr.success(data.message);
                 form.reset();
-            } else if (data.status === false) {
+            } else if (data.status === false || data.status === 'error') {
                 toastr.error(data.message);
-            } else if (data.status === 'error') {
-                toastr.error(data.message); // Mostrar el mensaje de error
             }
         })
         .catch((error) => console.error('Error:', error));
 }
-
 
 
 

@@ -20,36 +20,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         echo json_encode(['error' => 'No se proporcionó un ID de usuario o de invitado']);
         exit();
     }
-    
-    $datos['subtotal'] = mysqli_real_escape_string($conexion->getConexion(),$_SESSION['subtotal'] ?? '');
 
-    $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre'] ?? '');
-    $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido'] ?? '');
-    $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion'] ?? '');
-    $datos['telefono'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['telefono'] ?? '');
-    $datos['correo'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['correo'] ?? '');
-    $datos['instrucciones'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['instrucciones'] ?? '');
+    $datos['subtotal'] = mysqli_real_escape_string($conexion->getConexion(), $_SESSION['subtotal']);
+
+    $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre']);
+    $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido']);
+    $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion']);
+    $datos['telefono'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['telefono']);
+    $datos['correo'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['correo']);
+    $datos['instrucciones'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['instrucciones']);
 
     $validacion = validarDatos($datos);
+
+    $response = []; // Objeto para almacenar la respuesta final
 
     if (empty($validacion)) {
         $resultado = $contraentrega->registrarContraEntrega($datos);
 
         if ($resultado !== false) {
-            $mensaje = $resultado === null ? 'Tus datos ya fueron registrados' : 'Registro exitoso';
-            echo json_encode(['status' => true, 'message' => $mensaje]);
+            $mensaje = $resultado === null ? 'Tu pedido ya fue registrado' : 'pedido exitoso';
+            $response['status'] = true;
+            $response['message'] = $mensaje;
         } else {
-            echo json_encode(['status' => false, 'message' => 'Ocurrió un problema al registrar los datos']);
+            $response['status'] = false;
+            $response['message'] = 'Ocurrió un problema al registrar los datos';
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => $validacion]);
+        $response['status'] = 'error';
+        $response['message'] = $validacion;
     }
+
+    echo json_encode($response);
 }
 
 function validarDatos($datos)
 {
     $valid = [];
-
     if (empty($datos['nombre']) || empty($datos['apellido']) || empty($datos['direccion']) || empty($datos['telefono']) || empty($datos['correo'])) {
         $valid['error'] = 'Complete todos los campos';
     } elseif (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $datos['nombre'])) {
@@ -65,6 +71,5 @@ function validarDatos($datos)
     } elseif (!filter_var($datos['correo'], FILTER_VALIDATE_EMAIL)) {
         $valid['error'] = 'El correo electrónico no tiene un formato válido.';
     }
-
     return empty($valid['error']) ? '' : $valid['error'];
 }
