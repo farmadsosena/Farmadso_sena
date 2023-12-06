@@ -27,7 +27,6 @@
         <p>Cargando...</p>
     </section>
     <?php
-
     require_once 'pay.php';
     ?>
 
@@ -40,7 +39,6 @@
             <p>Monto final a pagar <b id="subtotal"></b></p>
 
             <div id="tabla-contenedor">
-
             </div>
         </form>
     </div>

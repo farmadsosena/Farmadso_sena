@@ -65,9 +65,7 @@ require '../controllers/validacion_usu_tienda.php';
 
                 <form method="POST" id="form-eliminar">
                     <p>Monto final a pagar <b id="subtotal"></b></p>
-
                     <div id="tabla-contenedor">
-
                     </div>
                 </form>
             </div>
@@ -96,8 +94,6 @@ require '../controllers/validacion_usu_tienda.php';
                         <span> <i style="color: #2d57a8" class='bx bxs-map-pin'></i>
                         </span>
                     </div>
-
-
                 </article>
 
                 <article class="groupTwo">

@@ -2,24 +2,28 @@ function sendForm(event, formcontraentrega, link) {
     event.preventDefault();
     const form = document.getElementById(formcontraentrega);
     const contra = new FormData(form);
-
+    document.getElementById('modalCargar').style.display = 'flex';
     fetch(link, {
         method: 'POST',
         body: contra,
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data); // Cambiado 'response' a 'data'
+            console.log(data);
             if (data.status === true) {
-                toastr.success(data.message);
+                document.getElementById('modalCargar').style.display = 'none' ;
                 form.reset();
+                toastr.success(data.message);
+                // Retraso antes de redirigir a la página de inicio
+                setTimeout(() => {
+                    window.location.href = "inicio_tienda.php";
+                }, 3000); // Tiempo de espera en milisegundos (ejemplo: 3 segundos)
             } else if (data.status === false || data.status === 'error') {
                 toastr.error(data.message);
             }
         })
         .catch((error) => console.error('Error:', error));
 }
-
 
 
 

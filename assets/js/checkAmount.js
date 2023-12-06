@@ -3,7 +3,7 @@ function consultarMonto(callback) {
         .then((response) => response.json())
         .then(data => {
             if (data.state === false) {
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
             } else if (data.state === true) {
                 const monto = data.amount;
     
@@ -26,8 +26,6 @@ function consultarMonto(callback) {
                                 }]
                                 
                             });
-
-                           
 
                         },
                         onApprove: function (data, actions) {
