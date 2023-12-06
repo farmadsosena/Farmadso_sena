@@ -78,3 +78,10 @@ input {
 display: flex;
 flex-wrap: wrap;
 }
+
+@media (max-width: 767px){
+    #enviar{
+        width: 100%;
+        border: 1px solid;
+    }
+}

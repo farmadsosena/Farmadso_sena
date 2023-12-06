@@ -63,20 +63,20 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
-                Mis compras
+                <p>Mis compras</p>
               </div>
             </div>
             <a href="#" class="toggle-dic" onclick="confirmRedirect()">
               <div>
                 <i class='bx bx-store'></i>
-                Tienda virtual
+                <p> Tienda virtual</p>
+                <span> <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i></span>
               </div>
-              <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
             </a>
             <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
               <div>
                 <i class='bx bx-user-circle'></i>
-                Solicitar un nuevo rol
+                <p>Solicitar un nuevo rol</p>
               </div>
             </div>
           <?php
@@ -85,28 +85,28 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <div class="toggle-dic doss" id="Inic" onclick="mostrarContenedoresMenu('uno', this)">
               <div>
                 <i class='bx bx-notepad'></i>
-                Mis formulas
+                <p>Mis formulas</p>
               </div>
             </div>
 
             <div class="toggle-dic" id="DAS" onclick="mostrarContenedoresMenu('dos', this)">
               <div>
                 <i class='bx bx-shopping-bag'></i>
-                Mis compras
+                <p>Mis compras</p>
               </div>
             </div>
 
             <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
               <div>
                 <i class='bx bx-trash-alt'></i>
-                Papelera
+                <p>Papelera</p>
               </div>
             </div>
 
             <a href="#" class="toggle-dic" onclick="confirmRedirect()">
               <div>
                 <i class='bx bx-store'></i>
-                Tienda virtual
+                <p>Tienda virtual</p>
               </div>
               <i class='bx bx-right-top-arrow-circle' style="color: #444746"></i>
             </a>
@@ -114,7 +114,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <div class="toggle-dic" id="cuarta" onclick="mostrarContenedoresMenu('cuatro', this)">
               <div>
                 <i class='bx bx-user-circle'></i>
-                Solicitar un nuevo rol
+                <p>Solicitar un nuevo rol</p>
               </div>
             </div>
           <?php
@@ -435,7 +435,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <?php
           if (!isset($_SESSION["domi"])){
             echo '
-            <div class="option2" onclick=mostrarContenido("domiciliario")>Quiero ser domiciliario del sistema
+            <div class="option2" onclick=mostrarContenido("domiciliario")><p>Quiero ser domiciliario del sistema</p>
              <div class="arrow-icon">
                <i class="fa-solid fa-arrow-right"></i>
               </div>
@@ -444,7 +444,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           }
 
           if (!isset($_SESSION["farm"])){
-            echo '<div class="option2" onclick=mostrarContenido("farmacia")>Quiero registrar mi farmacia en el sistema
+            echo '<div class="option2" onclick=mostrarContenido("farmacia")><p>Quiero registrar mi farmacia en el sistema</p>
             <div class="arrow-icon">
               <i class="fa-solid fa-arrow-right"></i>
             </div>
@@ -567,7 +567,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                 <input type="text" name="numeroCuenta" id="numeroCuenta">
                 <br>
 
-                <button id="enviar" name="enviar">Enviar</button>
+                <button class="enviar" id="enviar" name="enviar">Enviar</button>
               </form>
             </section>
           </div>
@@ -668,7 +668,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <label for="nitEps" class="niteps">NIT de EPS</label>
               <input type="text" id="nitEPS" name="nitEPS">
 
-              <button id="enviar">Enviar</button>
+              <button id="enviar" class="enviar">Enviar</button>
             </form>
           </div>
         </div>
