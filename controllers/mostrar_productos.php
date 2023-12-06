@@ -53,26 +53,31 @@ if ($result->num_rows > 0) {
             echo "<input type='hidden' name='idusuario' value=" . $_SESSION["id"] . ">";
         } else {
             // Si  la sesión no está iniciada se envia el invitado
-            echo "<input type='hidden' name='idinvitado' value=". $_SESSION['idinvitado'].">";
+            echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
         }
         echo "<input type='hidden' name='idmedicamento' value=" . $fila['idmedicamento'] . ">";
 
         echo "<input type='hidden' name='precio' value=" . $precio_actual . ">";
 
         echo "<div class='top-product' data-im='$id_ofuscado'>";
-        echo "<img src='../uploads/imgProductos/" . $fila['imagenprincipal'] . "' alt=''>";
+        echo "<img src='../uploads/imgProductos/" . $fila['imagenprincipal'] . "' class='abrirDetalles_medicamentos' alt=''>";
         echo "<p>" . $fila['Nombre'] . "</p>";
         echo "<h3 class='card-description'>" . $fila['nombre'] . "</h3>";
         if (isset($id_promocion)) {
             echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
-            echo "<button class='muestra_ahorro'>Ahorra $descuento%</button>";
+            echo "<p class='muestra_ahorro'>Ahorra $descuento%</p>";
+            echo "<div class='cont_precio_cantidad'>";
             echo "<h2>$" . $precio_actual . "</h2>";
         } else {
+            echo "<div class='cont_precio_cantidad'>";
             echo "<h2>$" . $precio_antes . "</h2>";
         }
 
+
         echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $fila["stock"] . "' value='1'>";
-        echo "<input type='submit' name='comprar' value='comprar' class='comprar-tarje-comp'>";
+        echo "</div>";
+        echo "<button class='comprar-tarje-comp'>Comprar</button>";
+        // echo "<input type='submit' name='comprar' value='Comprar' class='comprar-tarje-comp'>";
         echo "</div>";
         echo "</form>";
     }

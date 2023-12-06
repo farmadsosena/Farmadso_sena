@@ -113,7 +113,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
                 </div>
             </section>
-            <div id="abrirCarrito" class="addCarrito">
+            <div id="abrirCarrito" class="addCarrito abrirCarrito">
                 <i class='bx bx-cart-alt'></i>
             </div>
             <div class="openMenu">
@@ -135,7 +135,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             <div id="productos"><i class='bx bxs-store'></i>
                 <p>Productos</p>
             </div>
-            <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
+            <div id="abrirCarrito" class="abrirCarrito"><i class='bx bx-cart-alt'></i>
                 <p>Carrito</p>
             </div>
             <div id="buscador-header"><input type="search" id="" placeholder="Nombre medicamento"><i class="fa-solid fa-magnifying-glass"></i></div>
@@ -487,22 +487,35 @@ require_once "../controllers/validacion_usu_tienda.php";
                     </section>
                 </section>
                 <section class="descript-pro">
-                    <h2 class="nombre_farmacia"></h2>
-                    <h1 class="nombre_med"></h1>
-                    <h3 class="nombre_med"></h3>
-                    <p class="c_m"></p>
-                    <div class="precio-antes">
-                        <div class="precio-a"></div>
-                        <div class="ahorro"></div>
-                    </div>
-                    <div class="precio"></div>
-                    <p class="stock_detaM"></p>
-                    <div class="descripcion_det_med">
-                        <p></p>
-                    </div>
-                    <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
-                    
-                    <!-- <button class="vermas">Ver mas detalles</button> -->
+                    <form class='cardProductoS' autocomplete='off' method='post'>
+                        <?php
+                        if (isset($_SESSION['id'])) {
+                            echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id'] . ">";
+                        } else {
+                            // Si  la sesión no está iniciada se envia el invitado
+                            echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
+                        }
+                        ?>
+                        <input type='hidden' name='idmedicamento' class="idmedicamento_detalles_r">
+                        <input type='hidden' name='precio' class="precio_detalles_r">
+                        <h2 class="nombre_farmacia"></h2>
+                        <h1 class="nombre_med"></h1>
+                        <h3 class="nombre_med"></h3>
+                        <p class="c_m"></p>
+                        <div class="precio-antes">
+                            <div class="precio-a"></div>
+                            <div class="ahorro"></div>
+                        </div>
+                        <div class='cont_precio_cantidad detalles_cont_precio_cantidad'>
+                            <div class="precio"></div>
+                            <input type='number' class='card-cantidad cantidadcarrito_detalles_r' name='cantidadcarrito' min='1' value='1'>
+                        </div>
+                        <p class="stock_detaM"></p>
+                        <div class="descripcion_det_med">
+                            <p></p>
+                        </div>
+                        <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+                    </form>
                 </section>
             </section>
             <div class="cont-spinner-deta_med" style="display: none;">
@@ -512,10 +525,11 @@ require_once "../controllers/validacion_usu_tienda.php";
         <?php require '../templates/footer_inicio_tienda.html'; ?>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/mostrarCantidad_produc_carrito.js"></script>
     <script src="../assets/js/slider_inicio_tienda.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
-    <script src="../assets/js/agregarCarrito.js"></script>
+    
     <script src="../assets/js/funcionMenutienda.js"></script>
     <script src="../assets/js/detallesRapidos.js"></script>
     <script src="../assets/js/consultarCarrito.js"></script>

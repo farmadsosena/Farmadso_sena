@@ -5,7 +5,6 @@ include("../config/Conexion.php");
 $idFormula = $_SESSION["clave"];
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
 $result = $conexion->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +30,7 @@ $result = $conexion->query($sql);
             <section>
                 <h1>Nueva Fomula por Reclamar</h1>
                 <i class="fa-solid fa-chevron-right"></i>
-                <a href="">Tienda Virtual</a>
+                <a href="inicio_tienda.php">Tienda Virtual</a>
             </section>
 
             <section>
@@ -83,7 +82,7 @@ $result = $conexion->query($sql);
                     <h1>Pagos por</h1>
 
                     <article>
-                        <button>SHOP <i class="fa-brands fa-cc-amazon-pay"></i></button>
+                        <button>tienda<i class="fa-brands fa-cc-amazon-pay"></i></button>
                         <button>
                             <span>
                                 <i class="fa-brands fa-paypal"></i>
@@ -91,7 +90,7 @@ $result = $conexion->query($sql);
                             <span>Pay</span><span>Pal</span>
 
                         </button>
-                        <button><i class="fa-brands fa-google-pay"></i></button>
+                        <!-- <button><i class="fa-brands fa-google-pay"></i></button> -->
                     </article>
                 </section>
 
@@ -111,7 +110,7 @@ $result = $conexion->query($sql);
                     </div>
                 </section>
 
-                <form action="">
+                <!-- <form action="">
                     <section>
                         <input type="text" placeholder="Correo Electrónico">
                         <div>
@@ -140,7 +139,7 @@ $result = $conexion->query($sql);
                         </div>
                         <input type="text" placeholder="Dirección de la Casa">
                     </section>
-                </form>
+                </form> -->
             </article>
             </article>
         </section>

@@ -63,7 +63,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 
   <!-- Resultado de buscador -->
   <section class="result_buscador">
-    <article class="resultado_busqueda">
+    <article class="resultado_busqueda" style="display: none;">
       <h3>Medicamentos relacionados</h3>
       <section class="cont_medicamento_result">
         <a href="" class="medicamento_result">
@@ -75,6 +75,20 @@ require_once "../controllers/validacion_usu_tienda.php";
       <section class="todos_medicamento_result">
         <a href="">Ver todos los 100 medicamentos relacionados</a>
       </section>
+    </article>
+    <article class="vista_prede_buscador">
+      <h4>Medicamentos mas buscados</h4>
+      <div class="medi_masBuscados">
+        <?php
+        require_once "../controllers/get_medi_masBuscados.php";
+        ?>
+      </div>
+      <h4>Las mejores ofertas</h4>
+      <div class="cont_mejores_ofertas_medicamentos">
+        <?php
+        require_once "../controllers/ofertas_buscador.php";
+        ?>
+      </div>
     </article>
     <section class="cont-spinner-result_buscador" style="display: none;">
       <span class="spinner-result_buscador"></span>
@@ -400,7 +414,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
         </div>
       </section>
-      <div id="abrirCarrito" class="addCarrito">
+      <div id="abrirCarrito" class="addCarrito abrirCarrito">
         <i class='bx bx-cart-alt'></i>
       </div>
       <div class="openMenu">
@@ -422,7 +436,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           <p>Productos</p>
         </a>
       </div>
-      <div id="abrirCarrito"><i class='bx bx-cart-alt'></i>
+      <div id="abrirCarrito" class="abrirCarrito"><i class='bx bx-cart-alt'></i>
         <p>Carrito</p>
       </div>
       <div id="buscador-header"><input type="search" id="buscador_medicamento2" class="buscador_medicamentos"
@@ -465,20 +479,35 @@ require_once "../controllers/validacion_usu_tienda.php";
           </section>
         </section>
         <section class="descript-pro">
-          <h2 class="nombre_farmacia"></h2>
-          <h1 class="nombre_med"></h1>
-          <h3 class="nombre_med"></h3>
-          <p class="c_m"></p>
-          <div class="precio-antes">
-            <div class="precio-a"></div>
-            <div class="ahorro"></div>
-          </div>
-          <div class="precio"></div>
-          <p class="stock_detaM"></p>
-          <div class="descripcion_det_med">
-            <p></p>
-          </div>
-          <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+          <form class='cardProductoS' autocomplete='off' method='post'>
+            <?php
+            if (isset($_SESSION['id'])) {
+              echo "<input type='hidden' name='idusuario' value=" . $_SESSION['id'] . ">";
+            } else {
+              // Si  la sesión no está iniciada se envia el invitado
+              echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
+            }
+            ?>
+            <input type='hidden' name='idmedicamento' class="idmedicamento_detalles_r">
+            <input type='hidden' name='precio' class="precio_detalles_r">
+            <h2 class="nombre_farmacia"></h2>
+            <h1 class="nombre_med"></h1>
+            <h3 class="nombre_med"></h3>
+            <p class="c_m"></p>
+            <div class="precio-antes">
+              <div class="precio-a"></div>
+              <div class="ahorro"></div>
+            </div>
+            <div class='cont_precio_cantidad detalles_cont_precio_cantidad'>
+              <div class="precio"></div>
+              <input type='number' class='card-cantidad cantidadcarrito_detalles_r' name='cantidadcarrito' min='1' value='1'>
+            </div>
+            <p class="stock_detaM"></p>
+            <div class="descripcion_det_med">
+              <p></p>
+            </div>
+            <button class="carrito"><i class='bx bx-cart'></i> Añadir al carrito</button>
+          </form>
         </section>
       </section>
       <div class="cont-spinner-deta_med" style="display: none;">
@@ -591,6 +620,7 @@ require_once "../controllers/validacion_usu_tienda.php";
               INNER JOIN medicamentos m ON p.id_medicamento = m.idmedicamento
               INNER JOIN farmacias f ON m.idFarmacia = f.idFarmacia
               INNER JOIN inventario I ON I.idinventario = m.idmedicamento
+              WHERE I.stock > 0
               ORDER BY p.valordescuento DESC
               LIMIT 4";
 
@@ -599,7 +629,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           // Verifica si hay resultados en la consulta
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-              $id_medicamento = $row['idmedicamento'];
+              $id_medicamento_ofertas_inicio = $row['id_medicamento'];
               $precio_antes = $row['precio'];
               $descuento = $row['valordescuento'];
               // Calcula el precio actual
@@ -607,12 +637,9 @@ require_once "../controllers/validacion_usu_tienda.php";
 
               $precio_antes = number_format($precio_antes, 0, ',', '.');
               $precio_actual = number_format($precio_actual, 0, ',', '.');
-              $id_ofuscado = base64_encode($id_medicamento);
-              $id_medicamento = $row['idmedicamento'];
-              $precio_antes = $row['precio'];
+              $id_ofuscado = base64_encode($id_medicamento_ofertas_inicio);
               $descuento = $row['valordescuento'];
               // Calcula el precio actual
-              $precio_actual = $precio_antes - ($precio_antes * ($descuento / 100));
 
               echo " <form class='cardProductoS' autocomplete='off'  method='post'>";
               if (isset($_SESSION['id'])) {
@@ -621,18 +648,20 @@ require_once "../controllers/validacion_usu_tienda.php";
                 // Si  la sesión no está iniciada se envia el invitado
                 echo "<input type='hidden' name='idinvitado' value=" . $_SESSION['idinvitado'] . ">";
               }
-              echo "<input type='hidden' name='idmedicamento' value=" . $row['idmedicamento'] . ">";
+              echo "<input type='hidden' name='idmedicamento' value=" . $id_medicamento_ofertas_inicio . ">";
 
               echo "<input type='hidden' name='precio' value=" . $row['precio'] . ">";
               echo "<div class='top-product' data-im='$id_ofuscado'>";
-              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' alt=''>";
+              echo "<img src='../uploads/imgProductos/" . $row['imagenprincipal'] . "' class='abrirDetalles_medicamentos' alt=''>";
               echo "<p>" . $row['nombre_farmacia'] . "</p>";
               echo "<h3>" . $row['nombre'] . "</h3>";
               echo "<p class='ahorro-top-product'>Antes $" . $precio_antes . "</p>";
+              echo "<div class='cont_precio_cantidad'>";
               echo "<h2>$" . $precio_actual . "</h2>";
               echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $row["stock"] . "' value='1'>";
+              echo "</div>";
               echo "<button class='comprar-tarje-comp'>Comprar</button>";
-              echo "<button class='muestra_ahorro'>Ahorra $descuento%</button>";
+              echo "<p class='muestra_ahorro'>Ahorra $descuento%</p>";
               echo "</div>";
               echo "</form>";
             }
@@ -715,7 +744,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
+<script src="../assets/js/mostrarCantidad_produc_carrito.js"></script>
 <script src="../assets/js/carrito.js"></script>
 <script src="../assets/js/restaurar_ultimaVez_scroll.js"></script>
 <script src="../assets/js/slider_inicio_tienda.js"></script>

@@ -27,10 +27,10 @@ class ContraEntregaModel
 
         if (isset($_SESSION['id'])) {
             $idusuario = $_SESSION['id'];
-            $query = "INSERT INTO compra (fecha, total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario, idinvitado, instrucciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,NULL, ? )";
+            $query = "INSERT INTO compra (fecha, total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario, idinvitado, instrucciones) VALUES (?,?,?,?,?,?,?,?,?,?,NULL,?)";
             $stmt = $this->conexion->prepare($query);
             $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
-            $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
+            $tipoPago = 3; // Reemplaza esto con el valor correcto de tipo de pago
             $stmt->bind_param("siisssissis", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idusuario, $instrucciones);
 
             // Inicializar un array para almacenar las filas de la tabla de la factura
@@ -106,11 +106,11 @@ class ContraEntregaModel
 
         } elseif (isset($_SESSION['idinvitado'])) {
             $idinvitado = $_SESSION['idinvitado'];
-            $query = "INSERT INTO compra (fecha,total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario,idinvitado,instrucciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,NULL,?,?)";
+            $query = "INSERT INTO compra (fecha,total,idestadocompra, direccion,nombre, apellido,telefono,correo,idtipopago, idusuario,idinvitado,instrucciones) VALUES (?,?,?,?,?,?,?,?,?,NULL,?,?)";
             $stmt = $this->conexion->prepare($query);
             $estadoCompra = 1; // Reemplaza esto con el valor correcto de estado de compra
-            $tipoPago = 'contraentrega'; // Reemplaza esto con el valor correcto de tipo de pago
-            $stmt->bind_param("siisssssssss", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idinvitado, $instrucciones);
+            $tipoPago = 3; // Reemplaza esto con el valor correcto de tipo de pago
+            $stmt->bind_param("siissssssss", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idinvitado, $instrucciones);
 
             $facturaTable = [];
 
