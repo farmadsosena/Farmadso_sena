@@ -498,13 +498,14 @@ body{
 
 .modal-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 2px 20px;
   border-radius: 5px;
   position: relative; /* Agregamos esta propiedad para posicionar los elementos relativos a la ventana modal */
   top: 30%;
   left: 10%;
   width: 80%;
   height: 40%;
+  overflow-y: auto;
 }
 
 .btnnmovil{
@@ -2203,7 +2204,7 @@ div.carde.show {
   height: 80%;
   top: 0px;
   left: 0;
-  overflow-x: auto;
+  overflow: auto;
 }
 
 #modalDetalle .btnnmovil{

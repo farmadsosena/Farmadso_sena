@@ -298,54 +298,52 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <script>
-            // Función para cargar datos desde el servidor
             function cargarDatos() {
-              // Realizar una solicitud Ajax al servidor para obtener los datos
-              $.ajax({
-                url: '../controllers/compras.php',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                  // Limpiar el cuerpo de la tabla
-                  $('#tabla-body').empty();
+                $.ajax({
+                    url: '../controllers/compras.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#tabla-body').empty();
 
-                  // Iterar a través de los datos y construir las filas de la tabla
-                  data.forEach(function(item) {
+                        if (data.length === 1 && data[0].mensaje === 'Sin compras en el sistema') {
+                            $('#tabla-body').html('<tr><td colspan="5">No tienes compras realizadas</td></tr>');
+                        } else {
+                            data.forEach(function(item) {
+                                var fecha = new Date(item.fecha);
+                                var opcionesFecha = {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                };
+                                var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
 
-                    // Convertir la fecha a un objeto Date
-                    var fecha = new Date(item.fecha);
-                    // Formatear la fecha en español
-                    var opcionesFecha = {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    };
-                    var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+                                var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
 
-                    // Formatear el total con separadores de miles
-                    var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
-
-                    var row = `<tr>
-                    <td class="fecha">${fechaFormateada}</td>
-                    <td class="estado">${item.estado}</td>
-                    <td class="email">${item.correo_usuario}</td>
-                    <td class="total">${totalFormateado}</td> 
-                    <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
-                </tr>`;
-                    $('#tabla-body').append(row);
-                  });
-                },
-                error: function(error) {
-                  console.log('Error al cargar los datos: ' + error);
-                }
-              });
+                                var row = `<tr>
+                                    <td class="fecha">${fechaFormateada}</td>
+                                    <td class="estado">${item.estado}</td>
+                                    <td class="email">${item.correo_usuario}</td>
+                                    <td class="total">${totalFormateado}</td> 
+                                    <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
+                                </tr>`;
+                                $('#tabla-body').append(row);
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error al cargar los datos:');
+                        console.log(xhr.responseText);
+                        console.log(status);
+                        console.log(error);
+                    }
+                });
             }
 
-            // Llamar a la función para cargar los datos al cargar la página
             $(document).ready(function() {
-              cargarDatos();
+                cargarDatos();
             });
-          </script>
+        </script>
 
 
           <!-- Ventana modal -->
@@ -358,7 +356,6 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               <table class="preview-detalle">
                 <thead>
                   <tr>
-                    <th class="fecha">Fecha</th>
                     <th class="estado">Medicamento</th>
                     <th class="cantidad">Cantidad</th>
                     <th class="total">Total</th>
@@ -376,44 +373,35 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
 
           <script>
-            // Agrega una función para mostrar detalles de compra
             function mostrarDetalleCompra(idcompra) {
-              // Realiza una solicitud Ajax al servidor para obtener los detalles de la compra con el idcompra
-              $.ajax({
-                url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                  // Llena la ventana modal con los detalles de la compra
-                  $('#detallecompra').empty();
-                  data.forEach(function(detalle) {
+                $.ajax({
+                    url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#detallecompra').empty();
 
-                    // Formatea la fecha en español
-                    var fechaCompra = new Date(detalle.fecha_compra);
-                    var opcionesFecha = {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    };
-                    var fechaFormateada = fechaCompra.toLocaleDateString('es-ES', opcionesFecha);
+                        if (data.length === 1 && data[0].mensaje === 'No se encontraron detalles de compra para el ID proporcionado.') {
+                            $('#detallecompra').html('<tr><td colspan="3">Esta compra no tiene detalles</td></tr>');
+                        } else {
+                            data.forEach(function(detalle) {
+                                var row = `<tr>
+                                    <td>${detalle.nombre_medicamento}</td>
+                                    <td>${detalle.cantidad}</td>    
+                                    <td>${detalle.preciototal}</td>              
+                                </tr>`;
+                                $('#detallecompra').append(row);
+                            });
+                        }
 
-                    var row = `<tr>
-                    <td>${fechaFormateada}</td>
-                    <td>${detalle.nombre_medicamento}</td>
-                    <td>${detalle.cantidad}</td>    
-                    <td>${detalle.preciototal}</td>              
-                      </tr>`;
-                    $('#detallecompra').append(row);
-                  });
-                  // Abre la ventana modal
-                  $('#modalDetalle').show();
-                },
-                error: function(error) {
-                  console.log('Error al cargar los detalles de la compra: ' + error);
-                }
-              });
+                        $('#modalDetalle').show();
+                    },
+                    error: function(error) {
+                        console.log('Error al cargar los detalles de la compra: ' + error);
+                    }
+                });
             }
-          </script>
+        </script>
 
         </div>
       </section>
