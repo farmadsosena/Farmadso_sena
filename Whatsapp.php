@@ -2,8 +2,8 @@
 require 'vendor/autoload.php'; // if you use Composer
 //require_once('ultramsg.class.php'); // if you download ultramsg.class.php
     
-$token="u9etupvvgktetb1o"; // Ultramsg.com token
-$instance_id="instance70747"; // Ultramsg.com instance id
+$token="p1vah8ekxdrpmdql"; // Ultramsg.com token
+$instance_id="instance71174"; // Ultramsg.com instance id
 $client = new UltraMsg\WhatsAppApi($token,$instance_id);
     
 $to="+57".$numero; 

@@ -235,7 +235,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
                 </div>
 
-                <div class="state config_filtros" data-tipo-filtro="EstadoFormula">
+                <div class="state config_filtros" data-tipo-filtro="estado">
                   <div class="filtros-titulo">Estado</div>
                   <i class='bx bx-chevron-right'></i>
                   <section class="ventana-sal scrall frrr">
@@ -730,7 +730,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica" required></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
@@ -746,13 +746,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg," required>
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor" required>
           </div>
         </section>
         <section class="padre-medicamentos">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../config/Conexion.php";
+require_once "../config/Conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cantidadMedicamentos = $_POST["cantidadMedicamentos"];

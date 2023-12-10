@@ -1,9 +1,7 @@
 <?php
-include "../config/Conexion.php";
 // Valor a validar
-//$valor = $id_solicit; // Cambia esto al valor que deseas validar
-$valor = "51"; // Cambia esto al valor que deseas validar
-//$numero = $_SESSION["telefono"];
+$valor = $id_solicit; // Cambia esto al valor que deseas validar
+$numero = $_SESSION["telefono"];
 
 // Consulta SQL para buscar el valor en la tabla
 $sql = "SELECT * FROM medicamentosformulas 
@@ -45,7 +43,7 @@ if ($result->num_rows > 0) {
 
         // Verifica si el aviso no ha sido insertado antes
         if (!$avisoInsertado) {
-          $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdfarmaciaAviso, IdFormulaAviso, FechaAviso) VALUES ('$idFarmacia', '$valor', NOW())");
+          $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdFormulaAviso, FechaAviso) VALUES ('$valor', NOW())");
           $avisoInsertado = true; // Establece la variable para que no se inserte nuevamente
         }
       }
@@ -55,7 +53,7 @@ if ($result->num_rows > 0) {
 
       // Verifica si el aviso no ha sido insertado antes
       if (!$avisoInsertado) {
-        $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdfarmaciaAviso, IdFormulaAviso, FechaAviso) VALUES ('$idFarmacia', '$valor', NOW())");
+        $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdFormulaAviso, FechaAviso) VALUES ('$valor', NOW())");
         $avisoInsertado = true; // Establece la variable para que no se inserte nuevamente
       }
     }
@@ -85,7 +83,7 @@ if ($result->num_rows > 0) {
   // Codificar la clave secreta antes de enviarla
   $claveSecretaCodificada = base64_encode($claveSecretaGenerada);
 
-  //require_once "../Whatsapp.php";
+  require_once "../Whatsapp.php";
 } else {
   echo "El valor no existe en la tabla.";
 }

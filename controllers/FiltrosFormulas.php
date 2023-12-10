@@ -9,7 +9,7 @@ if (isset($_POST['filtros'])) {
     // Construir la consulta SQL con múltiples condiciones de filtro
     $query = "SELECT * FROM formulas
     INNER JOIN diagnosticos ON formulas.idDiagnostico = diagnosticos.idDiag
-     WHERE 1 and idPaciente='$paciente'";
+     WHERE 1 and idPaciente='$paciente' and estado='1'";
 
     foreach ($filtros as $tipo => $valor) {
         // Verificar si el valor no está vacío antes de agregar a la consulta
