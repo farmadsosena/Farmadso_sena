@@ -27,6 +27,24 @@ if (isset($_POST['filtros'])) {
           $fecha = $row['fechaOrden'];
           $IdDiag = $row['nombreDiag'];
           $IdMedico = $row['IdMedico']; //Id del medico en la tabla Formulas
+          $Estado = $row['EstadoFormula'];
+          $pedido = "";
+          if ($Estado == 1) {
+              $pedido = " <div class='state-card1'>
+                 No Asig.
+              </div>";
+          } else if ($Estado == 2) {
+              $pedido = " <div class='state-card2'>
+              Entregado
+          </div>";
+          }else if ($Estado == 3) {
+              $pedido = " <div class='state-card3'>
+             Pendiente
+          </div>";
+          } 
+
+
+
 
 
           $doc = mysqli_query($conexion, "SELECT * FROM medicos
@@ -41,15 +59,13 @@ if (isset($_POST['filtros'])) {
           }
 
         
-          echo "<div class='card' data-id='{$row['idFormula']}'>
+          echo "<div class='card' data-id='{$row['idFormula']}' data-informacion='$IdDiag'>
           <div class='firts_line'>
               <div class='date-card'>
                   <p>$fecha_formateada</p>
               </div>
   
-              <div class='state-card'>
-                  Entregado
-              </div>
+              $pedido
           </div>
   
           <div class='second-line'>
@@ -83,3 +99,5 @@ if (isset($_POST['filtros'])) {
 } else {
     echo "No se proporcionaron filtros.";
 }
+?>
+
