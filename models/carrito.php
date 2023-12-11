@@ -61,7 +61,7 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
     );
 } else {
     $html = '';
-    $subtotal = 0;
+    $subtotalCarrito = 0;
     $datosPedido = array(); // Crear un arreglo para almacenar los datos del pedido
 
     // Recorrer cada producto en el carrito
@@ -72,9 +72,11 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
 
         // Agregar los datos al arreglo $datosPedido directamente sin sobrescribir variables de sesión
         $datosPedido[$idProducto] = $cantidadProducto;
+ 
+        $subtotalCart = $fila['precio'] * $cantidadProducto;
+        $subtotalCarrito += $subtotalCart;
 
-        $total = $fila['precio'];
-        $subtotal += $total;
+        
 
         // Generar filas para la tabla con los detalles del producto en el carrito
         // $imagen = $fila['imagenprincipal'];
@@ -105,12 +107,10 @@ if (mysqli_num_rows($resultadoCarrito) == 0) {
     $response = array(
         'message' => '',
         'html' => $html,
-        'subtotal' => $subtotal
-
-    );
+        'subtotal' => $subtotalCarrito);
 
     $_SESSION['datosPedido'] = $datosPedido; // Guardar el arreglo en la variable de sesión
-    $_SESSION['subtotal'] = $subtotal;
+    $_SESSION['subtotal'] = $subtotalCarrito;
 }
 
 // Devolver la respuesta en formato JSON

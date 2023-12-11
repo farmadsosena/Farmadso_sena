@@ -58,8 +58,9 @@ if (isset($_SESSION['id'])) {
         $facturaTable = [];
 
         if ($insertarCompra) {
-            $idCompra = $conexion->insert_id;
+            $idcompra = $conexion->insert_id;
             // Obtener los productos del carrito desde los datos de la sesión
+            $_SESSION['idcompraContraentrega'] = $idcompra;
             $productos = $_SESSION['medicamentos'];
             foreach ($productos as $key => $stock) {
                 // Obtener la información del producto desde la base de datos
@@ -94,7 +95,7 @@ if (isset($_SESSION['id'])) {
                     // Insertar los detalles de la compra en la tabla "detalle_compra"
                     $insertDetalleCompra = $conexion->query("INSERT INTO detallecompra 
                 (idmedicamento, cantidad, preciototal, idcompra) VALUES
-                ('$key', '$stock','$subtotal', '$idCompra')");
+                ('$key', '$stock','$subtotal', '$idcompra')");
 
                     // Eliminar los productos del carrito para este usuario
                     $eliminar = $conexion->query("DELETE FROM carrito WHERE idusuario = '$idUser'");
@@ -121,9 +122,12 @@ if (isset($_SESSION['id'])) {
 
             $respuesta = array(
                 'success' => true,
-
+                'idcompra' => $_SESSION['idcompraContraentrega']
             );
+            
+            unset($_SESSION['idcompraContraentrega']);
             echo json_encode($respuesta);
+            
         } else {
             echo 'Error al insertar la compra';
         }
@@ -163,8 +167,9 @@ if (isset($_SESSION['id'])) {
         $facturaTable = [];
 
         if ($insertarCompra) {
-            $idCompra = $conexion->insert_id;
+            $idcompra = $conexion->insert_id;
             // Obtener los productos del carrito desde los datos de la sesión
+            $_SESSION['idcompraContraentrega'] = $idcompra;
             $productos = $_SESSION['medicamentos'];
             foreach ($productos as $key => $stock) {
                 // Obtener la información del producto desde la base de datos
@@ -199,7 +204,7 @@ if (isset($_SESSION['id'])) {
                     // Insertar los detalles de la compra en la tabla "detalle_compra"
                     $insertDetalleCompra = $conexion->query("INSERT INTO detallecompra 
                 (idmedicamento, cantidad,preciototal,idcompra) VALUES
-                ('$key', '$stock', '$subtotal', '$idCompra')");
+                ('$key', '$stock', '$subtotal', '$idcompra')");
 
                     // Eliminar los productos del carrito para este usuario
                     $eliminar = $conexion->query("DELETE FROM carrito WHERE idinvitado = '$idinvitado'");
@@ -216,8 +221,9 @@ if (isset($_SESSION['id'])) {
             $DATA_ALL = $facturaTable;
 
             $respuesta = array(
-                'success' => true,
+                'success' => true, 
             );
+            
             // Imprimir una respuesta de éxito en formato JSON
 
             // Requerir el archivo para enviar el correo electrónico
@@ -225,9 +231,12 @@ if (isset($_SESSION['id'])) {
 
             $respuesta = array(
                 'success' => true,
-
+                'idcompra' => $_SESSION['idcompraContraentrega']
             );
+            
+            unset($_SESSION['idcompraContraentrega']);
             echo json_encode($respuesta);
+            
         } else {
             echo 'Error al insertar la compra';
         }

@@ -50,7 +50,6 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <div id="tabla-contenedor">
 
                     <section>
-
                     </section>
                 </div>
             </form>
@@ -74,7 +73,7 @@ require_once "../controllers/validacion_usu_tienda.php";
         <div class="menuResponsive">
             <div class="profileResponsive">
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>">
                     <p>
@@ -94,11 +93,12 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
                 <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <a href="../config/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
                 <?php
                 }
+                
                 ?>
             </div>
         </div>
@@ -112,6 +112,9 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <input type="search" id="" placeholder="¿Qué estás buscando?">
                     <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
                 </div>
+                <?php
+                    echo $_SESSION["id"];
+                    ?>
             </section>
             <div id="abrirCarrito" class="addCarrito abrirCarrito">
                 <i class='bx bx-cart-alt'></i>
@@ -146,7 +149,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             </div>
             <div class="profile-user">
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
                 <?php

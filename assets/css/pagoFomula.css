@@ -15,6 +15,7 @@ body{
     flex-direction: column;
     height: 100vh;
     background-color: #f9f9fa;
+    overflow: hidden;
 }
 
 .container{
@@ -149,7 +150,7 @@ body{
     justify-content: center;
     /* border: 1px solid; */
     width: 100%;
-    height: 6rem;
+    height: 2rem;
 }
 
 .menu>section:nth-child(1)>.menu-uno>section:nth-child(1) span{
@@ -165,7 +166,7 @@ body{
     justify-content: center;
     /* border: 1px solid; */
     width: 100%;
-    height: 4rem;
+    height: 2rem;
 }
 
 .menu>section:nth-child(1)>.menu-uno>section:nth-child(2)>nav{
@@ -199,7 +200,7 @@ body{
     justify-content: center;
     /* border: 1px solid; */
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     gap: 5px;
 }
 
@@ -232,29 +233,29 @@ body{
    font-size: 15px;
 }
 
-.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(2){
+.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(1){
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fcc419;
 }
 
-.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(2)>span{
+.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(1)>span{
    font-size: 15px;
    font-weight: 700;       
    font-family: cursive ;
 }
 
-.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(2)>span:nth-child(1)>i{
+.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(1)>span:nth-child(1)>i{
     color: rgb(12, 12, 175);
     font-size: 15px;
 }
 
-.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(2) span:nth-child(2){
+.menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(1) span:nth-child(1){
     color: blue;
  }
  
- .menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(2) span:nth-child(3){
+ .menu>section:nth-child(1)>.menu-uno>section:nth-child(3)>article>button:nth-child(1) span:nth-child(3){
     color: rgb(0, 132, 255)
  }
  
@@ -295,7 +296,7 @@ body{
     padding: 30px 30px;
     width: 100%;
     font-size: 15px;
-    height: 3rem;
+    height: 2rem;
     /* border: 1px solid; */
 }
 
@@ -311,15 +312,85 @@ body{
    text-decoration: none;
 }
 
+
+:root {
+    --azulOscuro: #2d57a8;
+    --verdeClaro: #b5ddca;
+    --verdeOscuro: #33a892;
+    --blanco: #f0f2f5;
+    --grisClaro: #f1f2f5;
+    --azulClaro: #6d93c9;
+    --fuente: 'Open Sans', sans-serif;
+    ;
+}
+
+.saveContraentrega,
+.inputCont>textarea {
+    position: relative;
+ border: none;
+    width: 100%;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    padding: .8em 1.5em;
+    color: rgb(99, 104, 112);
+    border-radius: .3em;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.inputCont>textarea {
+    flex: 1;
+    resize: none;
+    width: 100% !important;
+}
+
+.saveContraentrega {
+    height: 5rem;
+    width: 50%;
+    background-color: var(--azulClaro);
+    color: var(--blanco);
+    cursor: pointer;
+    transition: all .45s ease;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    position: relative;
+}
+
+.saveContraentrega::after{
+    content: 'Realizar compra';
+    width: 100%;
+    height:100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    left: 0;
+    transition: all .3s ease;
+    background-color: var(--azulOscuro);
+    clip-path: polygon(0% 0%, 95% 0, 100% 50%, 94% 100%, 0% 100%);
+}
+
+
+.saveContraentrega:hover::after {
+    clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%);
+
+}
+
 .menu>section:nth-child(1)>.menu-dos>form{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* align-items: center; */
     padding: 0px 30px 30px 30px;
     width: 100%;
     font-size: 15px;
-    height: 15rem;
+    height: 18rem;
+    gap: 10px;
     transition: .3s ease;
+    overflow: auto;
     /* border: 1px solid; */
   
 }
@@ -328,7 +399,7 @@ body{
     /* border: 1px solid; */
     width: 100%;
     display: flex;
-    height: 6rem;
+    height: 10rem;
     flex-direction: column;
 }
 
@@ -338,6 +409,7 @@ body{
     border-radius: 10px;
     padding-left: 20px;
     transition: .3s ease;
+    width: 100%;
 }
 
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>input::placeholder{
@@ -350,11 +422,29 @@ body{
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>div{
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     padding-top: 10px;
-    padding-left: 2px;
+    padding-left: 2px; 
+    flex: 1;
     gap: 10px;
     width: 100%;
+}
+
+.menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>div>textarea{
+    padding: 2px;
+    width: 100%;
+    border: 2px solid #c7c7c7;
+    border-radius: 10px;
+    transition: .3s ease;
+}
+
+.menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>div>input{
+    width: 100%;
+    border: 2px solid #c7c7c7;
+    height: 2rem;
+    border-radius: 10px;
+    padding-left: 20px;
+    transition: .3s ease;
 }
 
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(2){

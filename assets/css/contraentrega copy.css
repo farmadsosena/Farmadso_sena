@@ -291,7 +291,7 @@ background-color: transparent;
     width: 100% !important;
 }
 
-.saveContraentrega {
+#btn-compra {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -304,6 +304,11 @@ background-color: transparent;
     text-transform: capitalize;
     font-size: 15px;
     margin-bottom: .5em;
+}
+
+#btn-compra>i{
+    position: absolute;
+    z-index: 2;
 }
 
 .saveContraentrega:hover {

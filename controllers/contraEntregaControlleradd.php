@@ -21,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         exit();
     }
 
-    $datos['subtotal'] = mysqli_real_escape_string($conexion->getConexion(), $_SESSION['subtotal']);
-
+    $datos['subtotal'] = $_SESSION['subtotal'];
     $datos['nombre'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['nombre']);
     $datos['apellido'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['apellido']);
     $datos['direccion'] = mysqli_real_escape_string($conexion->getConexion(), $_POST['direccion']);
@@ -41,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             $mensaje = $resultado === null ? 'Tu pedido ya fue registrado' : 'pedido exitoso';
             $response['status'] = true;
             $response['message'] = $mensaje;
+            $idCompra = $_SESSION['idcompraContraentrega'];
+            $response['idcompra'] =$idCompra ;
+            unset($_SESSION['idcompraContraentrega']);
         } else {
             $response['status'] = false;
             $response['message'] = 'Ocurrió un problema al registrar los datos';

@@ -61,6 +61,7 @@ require_once "../controllers/validacion_usu_tienda.php";
   </div>
   <!--End cont-car-->
 
+
   <!-- Resultado de buscador -->
   <section class="result_buscador">
     <article class="resultado_busqueda" style="display: none;">
@@ -753,7 +754,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/detallesRapidos.js"></script>
 <script src="../assets/js/consultarCarrito.js"></script>
-
+<script src="../assets/js/obtenerFactura.js"></script>
 <script src="../assets/js/buscador_medicamentos.js"></script>
 </body>
 

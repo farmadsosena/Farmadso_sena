@@ -14,7 +14,7 @@ class ContraEntregaModel
 
     public function registrarContraEntrega($datos)
     {
-
+ 
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $direccion = $datos['direccion'];
@@ -38,6 +38,8 @@ class ContraEntregaModel
 
             if ($stmt->execute()) {
                 $idcompra = $this->conexion->insert_id;
+          
+                $_SESSION['idcompraContraentrega'] = $idcompra;
                 // Obtener los productos del carrito desde los datos de la sesión
                 $productos = $_SESSION['medicamentos'];
                 foreach ($productos as $key => $stock) {
@@ -78,6 +80,8 @@ class ContraEntregaModel
 
                         // Vaciar los datos de la sesión del carrito
                         unset($_SESSION['medicamentos']);
+                        unset($_SESSION['subtotal']);
+                       
                     } else {
                         echo 'Error al obtener datos del producto';
                         exit;
@@ -116,6 +120,8 @@ class ContraEntregaModel
 
             if ($stmt->execute()) {
                 $idcompra = $this->conexion->insert_id;
+
+                $_SESSION['idcompraContraentrega'] = $idcompra;
                 // Obtener los productos del carrito desde los datos de la sesión
                 $productos = $_SESSION['medicamentos'];
                 foreach ($productos as $key => $stock) {

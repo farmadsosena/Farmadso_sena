@@ -1,25 +1,33 @@
 function sendForm(event, formcontraentrega, link) {
+
     event.preventDefault();
     const form = document.getElementById(formcontraentrega);
+    document.getElementById('btn-compra').innerHTML =`Validando...`; 
+    document.getElementById('btn-compra').disabled =true;
     const contra = new FormData(form);
-    document.getElementById('modalCargar').style.display = 'flex';
     fetch(link, {
         method: 'POST',
         body: contra,
     })
         .then((response) => response.json())
         .then((data) => {
+            document.getElementById('modalCargar').style.display = 'flex';
+
             console.log(data);
             if (data.status === true) {
-                document.getElementById('modalCargar').style.display = 'none' ;
                 form.reset();
+                setTimeout(()=>{
+                    document.getElementById('modalCargar').style.display = 'none';
+                },
+                2000)
+                IDCOMPRA = data.idcompra;
+                ConsultarDataFactura(IDCOMPRA);
                 toastr.success(data.message);
-                // Retraso antes de redirigir a la página de inicio
-                setTimeout(() => {
-                    window.location.href = "inicio_tienda.php";
-                }, 3000); // Tiempo de espera en milisegundos (ejemplo: 3 segundos)
             } else if (data.status === false || data.status === 'error') {
+                document.getElementById('btn-compra').innerHTML =`Comprar`; 
+                document.getElementById('btn-compra').disabled =false;
                 toastr.error(data.message);
+                document.getElementById('modalCargar').style.display = 'none';
             }
         })
         .catch((error) => console.error('Error:', error));
