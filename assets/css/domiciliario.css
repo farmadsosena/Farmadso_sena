@@ -55,7 +55,8 @@ html {
 
 /* ESTILO DE SELECT DE OPCION DE PERFIL */
 .custom-select {
-  width: 65%;
+  width: 35%;
+  margin-right: 10px;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -80,6 +81,7 @@ html {
 
 .options {
   display: none;
+  right: 0px;
   position: absolute;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -184,141 +186,128 @@ DE LAS NOTIFICACIONES SOBRE PEDIDOS DISPONIBLES */
   font-size: 100px;
 }
 
+
+
 #nuevoContenido1 {
   display: flex;
   width: 100%;
   height: 88vh;
 }
-.navConfig {
-  width: 20%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0;
-}
 
-.navConfigResponsive {
-  display: none;
-  width: 20%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0;
-}
-
-
-.containerMenuConfig {
-  width: 90%;
+.contenedorProfile{
+  width: 50%;
   height: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  box-shadow: 0px 10px 10px grey;
 
-/* ventana de config */
-.EncabezadoNavConfig {
+}
+  .formEditar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+
+
+.EncabezadoOne{
   width: 100%;
-  height: 12%;
-  display: flex;
-}
-.EncabezadoNavConfig p {
-  font-size: 22px;
-  font-weight: 500;
-}
-.datosConfig {
-  width: 100%;
-  height: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
-}
-.LetraGris {
-  color: gray;
-}
-.nameUserConfig {
-  width: 100%;
-  height: 50%;
-  background-color: #fff;
+  height: 3rem;
+  background-color: var(--azulOscuro);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
-  border-bottom: 1px solid rgb(214, 212, 212);
-}
-.optionNavConfig {
-  width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  color: var(--blanco);
 }
 
-.optionGeneralesConfig {
-  background-color: #fff;
-  width: 100%;
-  height: 90%;
-}
-.opcionesConfig {
-  width: 100%;
-  height: 37px;
+.CampoForm{
+  width: 64%;
+  height: 4rem;
   display: flex;
-  border-radius: 2px;
-  border-bottom: 1px solid rgb(214, 212, 212);
-  cursor: pointer;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
 }
 
-.opcionesConfig>i{
-  margin-left: 12px;
+
+
+.CampoForm input{
+  width: 60%;
+  height: 2.5rem;
+  border-radius: 5px;
+  text-indent: 10px;
+  border: none;
+  outline: none;
+  border-bottom: 4px grey solid;
 }
 
-.iconUser {
-  margin-left: 10px;
-  color: #418fde;
-}
-.helpConfig {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: end;
-  align-items: start;
-}
-.configCont {
-  width: 100%;
-  height: 60%;
-  background-color: #fff;
-}
-.ContenedoresOptionConfig1 {
-  flex: 1;
-  background-color: var(--azulClaro);
-}
-.ContenedoresOptionConfig2 {
-  flex: 1;
-  background-color: var(--verdeClaro);
-}
-.ContenedoresOptionConfig3 {
-  flex: 1;
+
+
+.CampoForm  select{
+  width: 170px;
+  height: 40px;
+  padding-left: 6px;
   background-color: var(--verdeOscuro);
+  color: #fff;
+  font-size: 2vh;
+  font-weight: 600;
 }
+
+.ContenedorTwoc{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ContenedorPimagen{
+  width: 80%;
+  height: 30%;
+  border-bottom: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ContainerImagen{
+  width: 100px;
+  height: 100px;
+  border: 1px solid;
+}
+.BuscarImg{
+  width: 150px;
+}
+.ContenedorBotones{
+  width: 80%;
+  height: 6rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 100px;
+}
+
+
+
+.BtnAct{
+  width: 100px;
+  height: 2.5rem;
+  background-color: var(--verdeOscuro);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2.5vh;
+}
+
+
 
 .contenido-nuevo {
   display: flex;
   width: 100%;
-}
-#nuevoContenido1 {
-  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#nuevoContenido1,
-h1 {
-  text-align: center;
-}
 
 /* Historial */
 #nuevoContenido2 {
@@ -354,6 +343,7 @@ h1 {
   overflow-y: scroll;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .c {
@@ -361,7 +351,8 @@ h1 {
   border-radius: 12px;
   width: 70%;
   height: 40%;
-  background-color: #a5d8ff;
+  background-color: #F6F8FC;
+  box-shadow: 0px 0px 10px grey;
 }
 
 .inf {
@@ -370,9 +361,8 @@ h1 {
   display: flex;
 }
 .logo {
-  border: 1px solid;
   width: 20%;
-  height: 70%;
+  height: 100%;
   margin: 10px;
   display: flex;
   align-items: center;
@@ -382,12 +372,21 @@ h1 {
 }
 
 .infff {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   margin: 10px;
+  border-bottom: #2d57a8 3px solid;
+}
+
+.infff>p{
+  font-size: 3vh;
 }
 
 .infff h3 {
-  font-size: 15px;
+  font-size: 3vh;
 }
 
 .listo {
@@ -400,6 +399,10 @@ h1 {
   justify-content: flex-end;
 }
 
+.co>p{
+  font-weight: 600;
+}
+
 .chulo {
   display: flex;
   flex-direction: column;
@@ -407,6 +410,11 @@ h1 {
   justify-content: center;
   height: 82%;
   font-size: 20px;
+}
+
+.chulo>i{
+  color: #288372;
+  font-size: 4.3vh;
 }
 
 #b {
@@ -427,6 +435,7 @@ h1 {
   height: 6vh;
   width: 20vh;
   border-radius: 8px;
+  font-size: 2.8vh;
   transition: all ease 0.3s;
   cursor: pointer;
   border: none;
@@ -450,14 +459,14 @@ h1 {
 }
 
 .modal-contenido {
-  background-color: #a5d8ff;
-  margin: 0% auto;
-  padding: 10px;
-  border: 1px solid #888;
   border-radius: 20px;
   width: 70vh;
   position: relative;
   height: 97vh;
+  left: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #cerrarModal {
@@ -471,13 +480,15 @@ h1 {
 
 .cajja {
   width: 95%;
-  max-width: 100%;
   height: auto;
   border-radius: 5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2px;
+  border: 8px solid #6d93c9;
+  background-color: #F6F8FC;
+  font-size: 2.3vh;
 }
 
 .ti {
@@ -493,6 +504,8 @@ h1 {
   justify-content: space-between;
   height: 30px;
   margin: 5px 0;
+  font-weight: 600;
+  border-bottom: 4px solid #33a892;
 }
 
 .inn {
@@ -501,12 +514,11 @@ h1 {
   gap: 10px;
   margin: 5px 0;
 }
-
-.un1 {
-  border: 1px solid;
-  width: 30px;
-  height: 20px;
+.cONTENEDORd{
+  margin: 10px;
+  border-bottom: 4px solid #33a892;
 }
+
 
 .cajjjja {
   margin: 10px;
@@ -519,12 +531,12 @@ h1 {
 }
 
 .iaam {
-  border: 1px solid;
-  width: 300px;
-  height: 230px;
+  width: 250px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .centrar {
@@ -540,6 +552,15 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+#ImgFact{
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -1px 1px 5px #9b9b9b66;
+  border: 1px solid #9b9b9b66;
 }
 
 /* Fin */
@@ -710,6 +731,14 @@ h1 {
   box-shadow: 0px 0px 10px #244588;
 }
 
+#aplicarButton{
+  height: 4vh;
+  width: 220px;
+  background-color: var(--verdeOscuro);
+  border: none;
+  color: #fff;
+}
+
 .close {
   color: #aaa;
   float: right;
@@ -750,6 +779,7 @@ DE LAS TAREAS*/
   flex-direction: row;
   height: 40vh;
   width: 100%;
+  margin-top: 40px;
   background-color: #ffffff;
   color: #000;
   border-radius: 10px;
@@ -766,6 +796,7 @@ DE LAS TAREAS*/
 .addressInformation {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
   padding-left: 2vh;
   gap: 2vh;
@@ -773,6 +804,7 @@ DE LAS TAREAS*/
 
 .addressInformation > img {
   width: 30vh;
+  height: 20vh;
 }
 
 .addressData {
@@ -782,6 +814,10 @@ DE LAS TAREAS*/
   height: 30vh;
   width: 100%;
   gap: 1vh;
+}
+
+.addressData>span{
+  font-size: 20px;
 }
 
 .taskData > p {
@@ -838,10 +874,12 @@ DE LAS TAREAS*/
 }
 
 /* Estilo para ocultar el botón original */
-input[type="file"] {
+/* input[type="file"] {
+  display: none;
+} */
+.fileUpload{
   display: none;
 }
-
 .upload,
 .deliver {
   height: 7vh;
@@ -898,28 +936,29 @@ input[type="file"] {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 100px;
+  gap: 66px;
 }
 #buscarFactura {
   width: 200px;
   height: 2rem;
-  margin-top: 13px;
+  margin-top: 17px;
+  font-size: 2vh;
   text-indent: 10px;
 }
 .FechaInicial {
   display: none;
 }
 .FechaInicial p {
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 2.5vh;
+  font-weight: 600;
   color: var(--azulOscuro);
 }
 .FechaFinal {
   display: none;
 }
 .FechaFinal p {
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 2.5vh;
+  font-weight: 600;
   color: var(--azulOscuro);
 }
 #fechainicial {
@@ -942,11 +981,19 @@ input[type="file"] {
 .containerFiltro h5 {
   color: var(--azulOscuro);
   font-weight: 600;
+  font-size: 2.4vh;
 }
 .containerFiltro select {
   width: 200px;
   height: 2rem;
+  padding-left: 2vh;
+  background-color: #F6F8FC;
+  border: none;
+  font-size: 2vh;
+  border-bottom: 4px solid #2d57a8;
+  font-family: system-ui;  
 }
+
 .circuloNoti {
   display: none;
   width: 8px;
@@ -1000,7 +1047,8 @@ input[type="file"] {
 }
 
 .show{
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -1019,7 +1067,28 @@ input[type="file"] {
     margin: 0;
   }
   .custom-select{
+    position: relative;
+    display: flex;
+    margin: 0;
+    width: 20%;
+    margin-right: 5px;
+  }
+  .selected-option{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .selected-option i{
+    margin: 0;
+  }
+  .selected-option a{
     display: none;
+  }
+  .options{
+    position: absolute;
+    top: 70px;
+
   }
   #ImgFact{
     width: 90%;
@@ -1033,40 +1102,88 @@ input[type="file"] {
     background-color: var(--azulOscuro);
   }
 
-  .containerFiltro {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+ 
+  /* estilos filtro */
 
-  .contenedorSecuFiltro {
-    width: 90%;
-    height: 4rem !important;
-    border-bottom: 1px solid #d4dade;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 5px;
-  }
-  .FechaFinal {
-    flex-direction: column;
-    width: 30%;
-  }
-  .FechaInicial {
-    flex-direction: column;
-    width: 30%;
-  }
-  #filtroSelect {
-    width: 80px;
-  }
-  #fechainicial {
-    width: 100px;
-  }
-  #fechaFinal {
-    width: 100px;
-  }
+.contenedorFiltro {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contenedorSecuFiltro {
+  width: 90%;
+  height: 4rem !important;
+  border-bottom: 1px solid #d4dade;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+#buscarFactura {
+  width: 40%;
+  height: 2rem;
+  margin-top: 17px;
+  font-size: 2vh;
+  text-indent: 10px;
+}
+.FechaInicial {
+  display: none;
+  flex-direction: column;
+  width: 10vh;
+
+}
+.FechaInicial p {
+  font-size: 1.5vh;
+  font-weight: 600;
+  color: var(--azulOscuro);
+}
+.FechaFinal {
+  display: none;
+  flex-direction: column;
+  width: 10vh;
+}
+.FechaFinal p {
+  font-size: 1.5vh;
+  font-weight: 600;
+  color: var(--azulOscuro);
+}
+#fechainicial {
+  width: 100%;
+  height: 2rem;
+  text-indent: 10px;
+}
+#fechaFinal {
+  width: 100%;
+  height: 2rem;
+  text-indent: 10px;
+}
+.containerFiltro {
+  width: 120px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.containerFiltro h5 {
+  color: var(--azulOscuro);
+  font-weight: 600;
+  font-size: 2.4vh;
+}
+.containerFiltro select {
+  width: 80%;
+  height: 2rem;
+  padding-left: 2vh;
+  background-color: #F6F8FC;
+  border: none;
+  font-size: 2vh;
+  border-bottom: 4px solid #2d57a8;
+  font-family: system-ui;  
+}
+
+
   .tittleDelivery {
     display: flex;
     align-items: center;
@@ -1082,6 +1199,14 @@ input[type="file"] {
   .tittleDelivery > span {
     color: var(--blanco);
     font-size: 7vh;
+  }
+
+  .optionGeneralesConfig{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    height: 70%;
   }
 
   .navDelivery {
@@ -1104,11 +1229,34 @@ input[type="file"] {
     height: 100%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: #f0f0f0;
+    padding: 1vh;
   }
 
+  .opcionesConfig{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
 
+  .opcionesConfig>i{
+    margin: 0;
+  }
+
+  .configCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  /* .contenidoRes{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    height: 100%;
+  } */
 
   .EncabezadoNavConfigresponsive{
     font-size: 16px;
@@ -1119,10 +1267,114 @@ input[type="file"] {
   }
 
 
+  #nuevoContenido1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .contenedorProfile{
+    width: 90%;
+    height: 90%;
+
+  }
+    .formEditar{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+    }
+    
+  .CampoForm{
+    width: 90%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  
+  
+  .CampoForm input{
+    width: 60%;
+    height: 2.5rem;
+    border-radius: 5px;
+    text-indent: 10px;
+    border: none;
+    outline: none;
+    border-bottom: 4px grey solid;
+  }
+  
+  
+  
+  .CampoForm  select{
+    width: 170px;
+    height: 40px;
+    padding-left: 6px;
+    background-color: var(--verdeOscuro);
+    color: #fff;
+    font-size: 2vh;
+    font-weight: 600;
+    outline: none;
+  }
+  
+  .ContenedorTwoc{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .ContenedorPimagen{
+    width: 80%;
+    height: 30%;
+    border-bottom: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .ContainerImagen{
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+  }
+  .BuscarImg{
+    width: 150px;
+    
+  }
+  .ContenedorBotones{
+    width: 90%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  
+  
+  .BtnAct{
+    width: 120px;
+    height: 2.2rem;
+    background-color: var(--verdeOscuro);
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2vh;
+  }
+
 
   /* Garaviz */
 
   .his {
+    width: 100%;
     overflow: scroll;
     flex: 1;
     display: flex;
@@ -1168,61 +1420,120 @@ input[type="file"] {
     width: 100px;
   }
 
+  .his {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    overflow-y: scroll;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
   .c {
-    font-size: 25px;
-    height: 60%;
-    width: 100%;
-  }
-
-  .inf {
-    height: 8rem;
-    margin: 10px;
-  }
-  .logo {
-    width: 100%;
-    height: 70%;
-    margin: 10px;
-  }
-
-  .infff {
-    font-size: 12px;
-    width: 100%;
-    margin: 10px;
+    border-radius: 12px;
+    width: 90%;
+    height: 40%;
+    background-color: #F6F8FC;
+    box-shadow: 0px 0px 10px grey;
+    display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  .inf {
+    height: 6rem;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    width: 20%;
+    height: 100%;
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    font-size: 40px;
   }
 
+  .pedidoEntregado{
+    height: 80%;
+  }
+  
+  .infff {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+    border-bottom: #2d57a8 3px solid;
+  }
+  
+  .infff>p{
+    font-size: 2vh;
+  }
+  
+  .infff h3 {
+    font-size: 2vh;
+  }
+  
   .listo {
     width: 30%;
+    margin: 10px;
   }
-
+  
   .co {
-    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
   }
-
-  #lis {
-    color: #09f10d;
+  
+  .co>p{
+    font-weight: 600;
   }
-
+  
   .chulo {
-    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    font-size: 14px;
   }
-
+  
+  .chulo>i{
+    color: #288372;
+    font-size: 3vh;
+  }
+  
   #b {
     width: 100%;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
+  
   #but {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verdeOscuro);
+    color: var(--blanco);
+    text-decoration: none;
+    height: 5vh;
+    width: 16vh;
+    border-radius: 8px;
+    font-size: 2.3vh;
+    transition: all ease 0.3s;
+    cursor: pointer;
     border: none;
   }
 
   .cajja {
-    max-width: 100%;
     width: 90%;
   }
 
@@ -1237,9 +1548,9 @@ input[type="file"] {
   }
 
   .modal-contenido {
-    max-width: 90%;
     width: 100%;
-    margin: 20px auto;
+    left: 0%;
+    margin: -10% auto;
   }
 
   .modalVerMas-content {
@@ -1360,7 +1671,7 @@ input[type="file"] {
   }
 
   .nameEPS > img {
-    width: 20vh;
+    width: 10vh;
   }
 
   .customerData {
@@ -1405,10 +1716,11 @@ input[type="file"] {
 
   .modalVerMas-content {
     background-color: #fefefe;
-    margin: 50% auto;
+    margin: 30% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 40vh;
+    height: 48vh;
   }
 
   .modalVerMas-content > h2 {
@@ -1428,6 +1740,14 @@ input[type="file"] {
     height: 8vh;
   }
 
+  #aplicarButton{
+    height: 4vh;
+    width: 220px;
+    background-color: var(--verdeOscuro);
+    border: none;
+    color: #fff;
+  }
+
   .deliveryData {
     display: flex;
     flex-direction: row;
@@ -1438,7 +1758,7 @@ input[type="file"] {
   }
 
   .epsInfo > img {
-    width: 14vh;
+    width: 6vh;
   }
 
   .orderInfo {
@@ -1526,13 +1846,144 @@ DE LAS TAREAS*/
     flex-wrap: 1;
   }
 
+  /* OPCIONES SELECCIONADAS */
+
+  .ContenedoresOptionConfig1 {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    flex: 1;
+    gap: 1vh;
+  }
+  
+  .optionDatosDomiciliario{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 15vh;
+    padding-left: 4vh;
+    gap: 3vh;
+    padding: 1vh;
+    border-bottom: 4px solid grey;
+  }
+  
+  .optionDatosDomiciliario>img{
+    width: 10vh;
+    height: 100%;
+  }
+  
+  .Namemail{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vh;
+  }
+  
+  .Namemail>p{
+    font-size: 1.8vh;
+  }
+
+  .Namemail>h2{
+    font-size: 2vh;
+  }
+  
+  .textDatosDomiciliario{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 74%;
+  }
+  
+  .textDatosDomiciliario>h3{
+    font-size: 3.5vh;
+  }
+  
+  .articlesDP{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 55vh;
+    width: 70vh;
+    
+  }
+  
+  .textDatosPersonales{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+  }
+  
+  .textDatosPersonales>h4{
+    font-size: 2.4Vh;
+    color: rgb(71, 71, 71);
+  }
+  
+  .textDatosPersonales>p{
+    font-size: 2.1vh;
+    color: grey;
+  }
+
+  /* CONTENEDOR 2 */
+
+  .cambiarContraseña{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 0px 15px  grey;
+    height: 60vh;
+    width: 35vh;
+  }
+  
+  .contraseña{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 11vh;
+    width: 30vh;
+  }
+  
+  .contraseña>label{
+    font-size: 2.5vh;
+    font-weight: 600;
+  }
+  transitionupload
+  .contraseña>input{
+    height: 5vh;
+    width: 96%;
+    font-size: 1.8vh;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    outline: none;
+  }
+
+
+  
+  .confirmarCambioContraseña{
+    height: 6vh;
+    width: 30vh;
+    font-size: 2vh;
+    font-weight: 600;
+    background-color: var(--verdeOscuro);
+    color: #fff;
+    transition: all ease 0.3s;
+    border: none;
+  }
+  
+  .confirmarCambioContraseña:hover{
+    background-color: #20685b;
+  }
+
   /* CONTENEDOR DE LAS TAREAS A REALIZAR */
 
   .pendingTask {
     display: flex;
     flex-direction: row;
     height: 50vh;
-    background-color: #154163;
   }
 
   .taskData {
@@ -1545,14 +1996,13 @@ DE LAS TAREAS*/
   .addressInformation {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-left: 2vh;
+    width: 80%;
     gap: 2vh;
     font-size: 10px;
   }
 
   .addressInformation > img {
-    width: 20vh;
+    width: 100%;
     height: 20vh;
   }
 
@@ -1561,21 +2011,24 @@ DE LAS TAREAS*/
     flex-direction: column;
     justify-content: center;
     height: 20vh;
-    color: var(--blanco);
     width: 88%;
     gap: 1vh;
+  }
+
+  .addressData>span{
+    font-size: 17px;
   }
 
   .taskData > p {
     padding-left: 3vh;
     font-weight: 600;
-    color: var(--blanco);
   }
 
   .shippingStatus {
     display: flex;
     flex-direction: column;
     width: 40%;
+    margin-top: 10px;
   }
 
   .shippingStatus > p {
@@ -1584,7 +2037,6 @@ DE LAS TAREAS*/
     justify-content: flex-end;
     height: 6vh;
     padding-right: 6vh;
-    color: var(--blanco);
     font-size: 1.8vh;
   }
 
@@ -1594,7 +2046,6 @@ DE LAS TAREAS*/
 
   .stateDelivery > span {
     height: 4vh;
-    color: var(--blanco);
     font-size: 3vh;
     font-weight: 700;
   }
@@ -1608,12 +2059,11 @@ DE LAS TAREAS*/
   }
 
   .DETE > span {
-    color: var(--blanco);
     font-size: 12vh;
   }
 
   .DETE > p {
-    color: var(--blanco);
+    color: black;
   }
 
   .optionsStateDelivery {
@@ -1629,8 +2079,8 @@ DE LAS TAREAS*/
 }
   .upload,
   .deliver {
-    height: 6vh;
-    width: 15vh;
+    height: 5vh;
+    width: 14vh;
   }
 
   .upload {
@@ -1651,7 +2101,7 @@ DE LAS TAREAS*/
     background-color: var(--verdeOscuro);
     border: none;
     color: var(--blanco);
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 8px;
     transition: all ease 0.3s;
   }
@@ -1664,6 +2114,7 @@ DE LAS TAREAS*/
   .navConfig {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 375px) {

@@ -1,6 +1,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "../config/Conexion.php";
+       // Establecer la zona horaria a Colombia
+       date_default_timezone_set('America/Bogota');
 
     // Evitar inyección SQL usando mysqli_real_escape_string
     $idCompra = mysqli_real_escape_string($conexion, $_POST['idCompra']);
@@ -11,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $consultaComprasMasivas->execute();
     $consultaComprasMasivas->bind_result($cantidadFarmacias, $cantidadConfirmada, $horaReclamada);
     $consultaComprasMasivas->fetch();
-    $consultaComprasMasivas->close();
+    $consultaComprasMasivas->close();  
 
     // Actualizar comprasmasivas
     $nuevaCantidadConfirmada = $cantidadConfirmada + 1;
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($cantidadFarmacias == $nuevaCantidadConfirmada && $horaReclamada <= $horaMedicamentos) {
         // Actualizar estado en la tabla reporteestadofinal
         $nuevoEstado = 3;
-        $actualizarReporteEstado = $conexion->prepare("UPDATE reporteestadofinal SET idestadocompra = ?, fechafinal = DATE_ADD(NOW(), INTERVAL 1 MINUTE) WHERE idcompra = ?");
+        $actualizarReporteEstado = $conexion->prepare("UPDATE reporteestadofinal SET idestadocompra = ?, fechafinal = DATE_ADD(NOW(), INTERVAL 30 MINUTE) WHERE idcompra = ?");
         $actualizarReporteEstado->bind_param("ii", $nuevoEstado, $idCompra);
         $actualizarReporteEstado->execute();
         $actualizarReporteEstado->close();

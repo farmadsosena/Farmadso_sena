@@ -28,7 +28,7 @@ if ($idDomiciliario) {
         $direccionCompra = $datosCompra["direccion"];
 
         // Consulta para obtener información del paciente
-        $consultaPaciente = "SELECT * FROM usuarios WHERE idusuario = " . $datosCompra["idPaciente"];
+        $consultaPaciente = "SELECT * FROM usuarios WHERE idusuario = " . $datosCompra["idUsuario"];
         $resultadoPaciente = mysqli_query($conexion, $consultaPaciente);
         $datosPaciente = $resultadoPaciente->fetch_assoc();
 
@@ -36,7 +36,7 @@ if ($idDomiciliario) {
         echo ' <section class="pendingTask">';
         echo '<div class="taskData">';
         echo '<div class="addressInformation">';
-        echo '<img src="assets/img/domiciliario1.jpg" alt="" />';
+        echo '<img src="../assets/img/tareaPendiente.png" alt="" />';
         echo '<div class="addressData">';
         echo '<span>Cliente: ' . $datosPaciente["nombre"] . ' ' . $datosPaciente["apellido"] . '</span>';
         echo '<span>Direccion Cliente: '. $direccionCompra .' </span>';
@@ -49,6 +49,9 @@ if ($idDomiciliario) {
             WHERE detallecompra.idcompra = $idcompra";
 
         $resultadoDireccionesMedicamentos = mysqli_query($conexion, $consultaDireccionesMedicamentos);
+
+
+        
 
         // Mostrar todas las direcciones de los medicamentos
         $contadorDirecciones = 1;
@@ -67,14 +70,19 @@ if ($idDomiciliario) {
         echo '<span>ESTADO:</span>';
         echo '<div class="DETE">';
         echo '<span class="material-symbols-outlined"> electric_moped </span>';
-        echo '<p>EN CAMINO</p>';
+        if($datosReporte["idestadocompra"] == 2){
+            echo '<p style="color: red;">Reclamar</p>';
+        }elseif($datosReporte["idestadocompra"] == 3){
+            echo '<p style="color: green;">Entregado</p>';
+        }
+       
         echo '</div>';
         echo '<div class="optionsStateDelivery">';
         echo '<form type="submit" class="formularioEntrega" action="" method="post">';
         echo '<input type="hidden" name="idcompra" value="' . $idcompra . '">';
         echo '<label class="upload">';
         echo 'Cargar Imagen';
-        echo '<input type="file" name="archivo" />';
+        echo '<input type="file" class="fileUpload" name="archivo" />';
         echo '</label>';
         echo '<button class="deliver">ENTREGAR</button>';
         echo '</form>';

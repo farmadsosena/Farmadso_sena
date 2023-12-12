@@ -1,6 +1,6 @@
 <?php
 
-$conexion = mysqli_connect("localhost", "root", "", "farmadso");
+require_once('../config/Conexion.php');
 
 $idDomi = $_SESSION["id"];
 
@@ -16,32 +16,24 @@ if (!$conexion) {
         $consultaDomiciliario = "SELECT * FROM domiciliario WHERE idusuario = $idDomi";
         $resultadoDomiciliario = mysqli_query($conexion, $consultaDomiciliario);
 
-        // Verificar si la consulta fue exitosa
-        if (!$resultadoDomiciliario) {
-            die("Error en la consulta de domiciliario: " . mysqli_error($conexion));
-        }
 
         // Verificar si se encontró el domiciliario
-        if (mysqli_num_rows($resultadoDomiciliario) > 0) {
+        if ($resultadoDomiciliario->num_rows > 0) {
 
-    
+          $idDomiciliario = $resultadoDomiciliario->fetch_assoc();
+          $id = $idDomiciliario['iddomiciliario'];
 
-            $sql = "SELECT * FROM reporteestadofinal WHERE idrepartidor = $idDomi";
+            $sql = "SELECT * FROM reporteestadofinal WHERE idrepartidor = $id";
             $resultado = mysqli_query($conexion, $sql);
 
-            // Verificar si la consulta fue exitosa
-            if (!$resultado) {
-                die("Error en la consulta: " . mysqli_error($conexion));
-            }
-
             while ($datosdereporte = $resultado->fetch_assoc()) {
-                $idcompra = $datosdereporte["idcompra"];
-                $idestadocompra = $datosdereporte["idestadocompra"];
+                $idcompra = intval( $datosdereporte["idcompra"]);
+                $idestadocompra =intval ($datosdereporte["idestadocompra"]);
 
-        
+
                 if ($idestadocompra === 4) {
                     $idestadocompra = "Entregado";
-
+            
                     // Formatear la fecha
                     $fechaEntrega = date("d/m/Y", strtotime($datosdereporte["fechafinal"]));
 
@@ -55,7 +47,7 @@ if (!$conexion) {
                         }
 
                         $datosCompra = $resultadocompra->fetch_assoc();
-                        $idpaciente = $datosCompra["idPaciente"];
+                        $idpaciente = $datosCompra["idUsuario"];
                         $direccionCliente = $datosCompra["direccion"];
 
                         if ($idpaciente) {
@@ -71,15 +63,16 @@ if (!$conexion) {
                             $nombreUsuario = $datosUsuario["nombre"];
                             $apellidoUsuario = $datosUsuario["apellido"];
 
-                        }
-                    }
-                }
-                  
+
+
+
+
+                            
                             // Imprimir el bloque HTML con los datos
                             echo '<div class="c">
                                     <div class="inf">
                                       <div class="logo">
-                                        <i class="fa-solid fa-box-archive"></i>
+                                        <img src="../assets/img/pedidoEntregado.png" class="pedidoEntregado">
                                       </div>
                                       <div class="infff">
                                         <p></p>
@@ -91,7 +84,7 @@ if (!$conexion) {
                                       </div>
                                       <div class="listo">
                                         <div class="co">
-                                          <p>000 ' . $idcompra . '</p>
+                                          <p>000'. $idcompra . '</p>
                                         </div>
                                         <div class="chulo">
                                           <i class="fa-solid fa-check"></i>
@@ -106,6 +99,11 @@ if (!$conexion) {
                                     </div>
                                   </div>';
 
+
+                        }
+                    }
+                }
+                  
             }
         } else {
             echo "El domiciliario no existe.";
