@@ -4,8 +4,9 @@
 
 
 <div class="containerEditarFarmacia">
+    <div class="headermodals">
 <i class="bx bx-chevron-left bx-x" onclick="closeModalFarmaciaP()"></i>
-    <h2 class="form-header">Tu Farmacia</h2>
+    <h2 class="form-header">Tu Farmacia</h2></div>
     <form class="formularioFarmacia" action="../controllers/procesaEdicionFarmacia.php" method="post" enctype="multipart/form-data">
         <!-- Campos existentes en la tabla farmacias -->
         <div class="ajustaForm">

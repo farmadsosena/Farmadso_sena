@@ -24,10 +24,79 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Ejecuta la consulta y maneja errores
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
-                echo "Registro con ID $id eliminado correctamente.";
-            } else {
+                echo'
+                <style>
+                
+            .loader-container {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .loader {
+                border: 8px solid #f3f3f3;
+                border-top: 8px solid #3498db;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+                margin: 20px auto;
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+                </style>
+                <div class="loader-container">
+                <div class="loader"></div>
+                <p>Vaciando historial...</p>
+            </div>';
+            
+                header("Location: ../views/panelAdmin.php");
+                exit();
+     
+
+            } else {   echo'
+                <style>
+                
+            .loader-container {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .loader {
+                border: 8px solid #f3f3f3;
+                border-top: 8px solid #3498db;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+                margin: 20px auto;
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+                </style>
+                <div class="loader-container">
+                <div class="loader"></div>
+                <p>Buscando posibles registros...</p>
+            </div>';
                 echo "No se encontró ningún registro con ID $id.";
             }
+            header("Location: ../views/panelAdmin.php");
+                exit();
         } else {
             echo "Error al ejecutar la consulta: " . $stmt->error;
         }

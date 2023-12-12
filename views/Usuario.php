@@ -161,14 +161,14 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   return $resultado->num_rows > 0;
                 }
 
-                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 'Aceptado')) {
+                if (existe_en_tabla('domiciliario', $id, 'EstadoAcept', 2)) {
                   echo '<div class="option">
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
 
                 $_SESSION["domi"]= $id;
                 }
-                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 'Aceptado')) {
+                if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 2)) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';

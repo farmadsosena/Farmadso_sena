@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($cantidadFarmacias == $nuevaCantidadConfirmada && $horaReclamada <= $horaMedicamentos) {
         // Actualizar estado en la tabla reporteestadofinal
         $nuevoEstado = 3;
-        $actualizarReporteEstado = $conexion->prepare("UPDATE reporteestadofinal SET idestadocompra = ?, fechafinal = DATE_ADD(NOW(), INTERVAL 1 MINUTE) WHERE idcompra = ?");
+        $actualizarReporteEstado = $conexion->prepare("UPDATE reporteestadofinal SET idestadocompra = ?, fechafinal = DATE_ADD(NOW(), INTERVAL 30 MINUTE) WHERE idcompra = ?");
         $actualizarReporteEstado->bind_param("ii", $nuevoEstado, $idCompra);
         $actualizarReporteEstado->execute();
         $actualizarReporteEstado->close();
@@ -52,6 +52,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Redireccionar de manera adecuada utilizando window en lugar de windows
+    echo'
+    <style>
+    
+.loader-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+    <div class="loader-container">
+    <div class="loader"></div>
+    <p>Procesando cambios...</p>
+</div>';
+
     echo "<script>window.location.href='../views/PanelAdmin.php';</script>";
 
     // Cerrar la conexión y liberar recursos

@@ -72,3 +72,91 @@ var chartIngresosAnualesLine = new Chart(ctxIngresosAnualesLine, {
     data: dataIngresosAnualesLine,
     options: opcionesIngresosAnualesLine
 });
+
+
+// Graficas generales
+document.addEventListener("DOMContentLoaded", function () {
+
+    function drawChart(ctx, labels, data, backgroundColor, borderColor, totalGeneral) {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels.concat('Total'),
+                datasets: [{
+                    label: 'Cantidad Vendida',
+                    data: data.map(entry => entry.total_vendido),
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
+                    borderWidth: 1
+                }, {
+                    label: 'Precio Unitario',
+                    data: data.map(entry => entry.precio_unitario).concat(0),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    hidden: true // Ocultar por defecto
+                }, {
+                    label: 'Subtotal',
+                    data: data.map(entry => entry.subtotal).concat(0),
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1,
+                    hidden: true // Ocultar por defecto
+                }, {
+                    label: 'Total Ganancias',
+                    data: Array(labels.length).fill(0).concat(totalGeneral),
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderColor: 'rgba(0, 128, 0, 1)',
+                    borderWidth: 1,
+                    hidden: true // Ocultar por defecto
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                onClick: function(e) {
+                    var activePoints = this.getElementsAtEvent(e);
+                    if (activePoints.length > 0) {
+                        var clickedDatasetIndex = activePoints[0].datasetIndex;
+                        this.data.datasets.forEach(function(dataset, index) {
+                            if (index === clickedDatasetIndex) {
+                                dataset.hidden = false;
+                            } else {
+                                dataset.hidden = true;
+                            }
+                        });
+                        this.update();
+                    }
+                }
+            }
+        });
+    }
+
+    fetch('../controllers/consultaGrafica.php')
+        .then(response => response.json())
+        .then(dataFromServer => {
+            drawChart(
+                document.getElementById('chartSemanal').getContext('2d'),
+                dataFromServer.semanal.map(entry => entry.nombre_medicamento),
+                dataFromServer.semanal,
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 1)',
+                dataFromServer.total_general_semanal
+            );
+
+            drawChart(
+                document.getElementById('chartMensual').getContext('2d'),
+                dataFromServer.mensual.map(entry => entry.nombre_medicamento),
+                dataFromServer.mensual,
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 1)',
+                dataFromServer.total_general_mensual
+            );
+        })
+        .catch(error => {
+            console.error('Error al obtener los datos:', error);
+        });
+});

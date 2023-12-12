@@ -1,0 +1,238 @@
+#mostrar_produc_ofertas {
+    width: 30rem;
+    gap: 0.6em;
+    padding: 0.5em;
+    flex-direction: column;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+      rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  }
+  
+  #mostrar_produc_ofertas>h3 {
+    color: var(--colorP);
+  }
+  
+#userContainer {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    overflow: auto;
+}
+  
+  .itemUser {
+    gap: 0.8em;
+    cursor: pointer;
+    border-bottom: 1px solid var(--secundary);
+    min-height: 80px;
+    justify-content: space-around;
+    padding-left: 1em;
+    display: flex;
+    align-items: center;
+  }
+  
+  .itemUser>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .info :nth-child(1) {
+    font-size: 13px;
+  }
+  
+  .info :nth-child(2) {
+    font-size: 12.5px;
+    color: var(--tertiary);
+    text-decoration: none;
+  }
+  
+  .itemUser:hover {
+    background-color: var(--secundary);
+  }
+  
+  .info {
+    gap: 0.2em;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .status {
+    flex: 1;
+    justify-content: flex-end;
+  }
+  
+  .status :nth-child(1) {
+    text-transform: capitalize;
+    font-size: 12px;
+  }
+  
+  .status :nth-child(2) {
+    color: gray;
+    font-size: 11.5px;
+  }
+  
+  #search {
+    position: relative;
+    height: 2rem;
+  }
+  
+  .bx-search {
+    position: absolute;
+    top: 29%;
+    left: 0.2em;
+    z-index: 2;
+  }
+  
+  #search [type="search"] {
+    padding: 0.5em 0.5em 0.5em 1.6em;
+    border-radius: 0.2em;
+    align-self: flex-start;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    height: 2.2rem;
+    width: 100%;
+    color: var(--colorP);
+    border: 1px solid rgb(227, 217, 217);
+    background-color: var(--blanco);
+    margin-bottom: 0.4em;
+    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.05);
+  }
+
+
+
+
+
+
+
+
+  .form-da {
+    width: 100%;
+    overflow: auto;
+    height: 97%;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .texto-form-header-da {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .cont-form-input {
+    display: flex;
+    padding: 10px 0;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .cont-form-da-numF {
+    position: relative;
+  }
+  
+  .cont-pro-ra-da {
+    position: absolute;
+    bottom: -96px;
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    overflow: auto;
+    border: 1px solid #ccd0d5;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s ease;
+    visibility: hidden;
+    transform: perspective(1000px) rotatex(90deg);
+  }
+  
+  .lis-pro-ra-da {
+    padding: 6px;
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    color: #212121;
+    background-color: #fff;
+  }
+  
+  .hover-lis-pro-ra-da {
+    border-radius: 4px;
+    background: #f8f9fa;
+  }
+  
+  .lis-pro-ra-da > svg {
+    fill: #3030308a;
+    rotate: 150deg;
+  }
+  
+  .lis-pro-ra-da > p {
+    font-size: 14px;
+    color: #212121;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: start;
+  }
+  
+  .no-pro-ra-da {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .most-cont-pro-ra-da {
+    z-index: 2 !important;
+    visibility: visible !important;
+    transform: perspective(1000px) rotatex(0deg) !important;
+  }
+  
+  .cont-input-flex {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cont-input-flex > p {
+    color: #606770;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+  }
+  
+  .form-input {
+    width: 100% !important;
+    padding: 11px;
+    font-size: 15px;
+    line-height: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccd0d5 !important;
+    color: #1c1e21;
+    height: auto !important;
+    background: #f5f6f7;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #form-da-Tocu,
+  #form-da-jornada,
+  #form-da-usua {
+    background-color: #fff;
+  }
+  
+  #form-da-motivo {
+    resize: none;
+  }
+  
+  .form-input:focus {
+    outline: none;
+  }
+
+  .cont_agg_oferta{
+    display: flex;
+  }

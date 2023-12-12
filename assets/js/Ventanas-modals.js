@@ -97,10 +97,7 @@ function closeDetalles() {
     var contMedicine = document.querySelector('.container-ventas');
     var contForm = document.querySelector('.detalles');
 
-    // Mostrar alerta
-    var confirmClose = confirm("Deseas salir del vaino?");
 
-    if (confirmClose) {
         // Cambiar el estilo de visualización
         contMedicine.style.display = 'flex';
         contForm.style.display = 'none';
@@ -111,7 +108,7 @@ function closeDetalles() {
             input.value = ''; // Limpiar el valor del input
         });
     }
-}
+
 
 function openEstado(){
     var contMedicine = document.querySelector('.container-ventas');
@@ -191,19 +188,21 @@ function openDetalleInventario(nombreProducto){
     }
 }
 
-function openModalComentarios(){
-    var contModalC = document.querySelector('.modal-comentarios');
-    contModalC.style.display = 'block';
+function openModalInforme(){
+    var contModalC = document.querySelector('.modalInforme');
+    contModalC.style.display = 'flex';
 }
 
-function closeModalComentarios() {
-    var contModalC = document.querySelector('.modal-comentarios');
-    contModalC.style.display = 'none';
+document.querySelector('.modalInforme').addEventListener('click', function(event) {
+    if (!event.target.closest('.mInf')) {
+        closeModalInforme();
+    }
+});
 
-    var comentarios = document.querySelectorAll('.comentario');
-    comentarios.forEach(function(comentario) {
-        comentario.style.display = 'flex';
-    });
+function closeModalInforme() {
+    var contModal = document.querySelector('.modalInforme');
+    contModal.style.display = 'none';
+
 }
 
 function openModalOfertas(){

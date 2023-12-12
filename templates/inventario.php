@@ -61,7 +61,12 @@ if ($result) {
         // <button class="boton" onclick="eliminarMedicamento(\''. $row['idmedicamento'].'\')">
 
     }if (mysqli_num_rows($result) == 0) {
-        echo '<p>Inventario vacio.</p>';
+        echo '
+        <div class="sinMedicamentos">
+        <img src="../assets/img/NoHayM.jpg" alt="" class="imgNohay">
+        <h3 class="titleNohay">Inventario Vacio.</h3>
+        </div>
+        ';
     }
 } else {
     echo "Error en la consulta: " . mysqli_error($conexion);

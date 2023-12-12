@@ -1,14 +1,13 @@
 function enviarInforme(event) {
-    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  
+    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminado
     // Obtener los valores de los inputs de fecha
     const fechaInicio = document.getElementById("fecha_inicio").value;
     const fechaFin = document.getElementById("fecha_fin").value;
   
-    // Verificar si ambos inputs de fecha tienen valor
+    // Verificar si ambos inputs de fecha tienen va 
     if (fechaInicio && fechaFin) {
       const formData = new FormData(filtroInforme);
-      const url = "controllers/generarInforme.php"; // Reemplaza con la URL a la que deseas enviar los datos
+      const url = "../controllers/generarInforme.php"; // Reemplaza con la URL a la que deseas enviar los datos
   
       fetch(url, {
         method: "POST", // Puedes cambiar a "GET" si es necesario
@@ -21,25 +20,16 @@ function enviarInforme(event) {
             inputsInfo.forEach(input => {
               input.style.boxShadow='rgba(8, 255, 70, 0.05) 0px 0px 0px 1px, rgb(241, 26, 11) 0px 0px 0px 1px inset';
             });
-  
-            toastr.warning("No existen asignaciones en ese rango de fechas");
+            toastr.warning("No existen ventas en ese rango de dias");
           } else {
             inputsInfo = document.querySelectorAll('.inputsFecha');
             inputsInfo.forEach(input => {
               input.style.boxShadow='rgba(8, 255, 70, 0.05) 0px 0px 0px 1px, rgb(16, 176, 53) 0px 0px 0px 1px inset';
             });
-            // Mostrar una alerta de confirmación utilizando SweetAlert
-            Swal.fire({
-              title: '¿Desea guardar el informe?',
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonText: 'Sí, guardar',
-              cancelButtonText: 'Cancelar'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                exportarInformeExcel(data);
-              }
-            });
+            // Confirmacion de descarga
+            if (window.confirm("¿Deseas guardar el informe?")) {
+              exportarInformeExcel(data);
+            }
           }
         })
         .catch((error) => {

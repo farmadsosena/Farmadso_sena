@@ -49,3 +49,37 @@ $(document).ready(function () {
 });
 
 
+// CAMBIA HEADERCITO DE GRAFICAS
+$(document).ready(function() {
+    var headerGraficos = $("#headerGraficos");
+
+    $(".cont-grafics").on("scroll", function() {
+      var scrollPos = $(this).scrollTop();
+      var containerHeight = $(this).height();
+      var headerHeight = headerGraficos.height();
+
+      if (scrollPos > containerHeight / 2) {
+        headerGraficos.text("VENTAS MENSUALES"); // Cambia el texto y el color según sea necesario
+      } else {
+        headerGraficos.text("VENTAS SEMANALES"); // Restaura el texto y el color original
+      }
+    });
+  });
+
+
+var content = document.getElementById('myContent');
+
+  content.addEventListener('wheel', function(event) {
+    // Detectar la dirección del desplazamiento
+    var direction = event.deltaY > 0 ? 'down' : 'up';
+
+    // Hacer scroll hasta arriba o abajo según la dirección
+    if (direction === 'down') {
+      content.scrollTop += 100; // ajusta según tus necesidades
+    } else {
+      content.scrollTop -= 100; // ajusta según tus necesidades
+    }
+
+    // Prevenir el comportamiento por defecto del evento wheel
+    event.preventDefault();
+  });

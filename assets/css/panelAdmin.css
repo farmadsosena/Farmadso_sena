@@ -18,11 +18,15 @@ textarea{
 
 body {
     display: flex;
-    height: 100vh;
     z-index: 0;
 }
 
+
 /* Sidebar */
+.hemberger{
+    display: none;
+}
+  
 
 #sidebar {
     width: 15rem;
@@ -31,9 +35,14 @@ body {
     background-color: var(--blanco);
     padding: 1em 0;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-
+    
 }
 
+#sidebar ul{
+    display: flex;
+   flex-wrap: wrap;
+   height: 100%;
+}
 
 #topNav,
 #itemContainer {
@@ -92,6 +101,8 @@ body {
     height: 2.5rem;
     outline: none;
     border: none;
+    align-self: flex-end;
+    margin-left: 10%;
     width: 70%;
     padding: .2em .7em .5em .2em;
 }
@@ -456,7 +467,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 5px;
+    padding: 3px 6px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
@@ -474,7 +485,7 @@ body {
 
 .cont-allmedicine {
     display: flex;
-    height: 100%;
+    height: 23em;
     width: 100%;
     overflow-y: auto;
 }
@@ -507,6 +518,7 @@ body {
 
 .img-medicine img {
     width: 100%;
+    object-fit: contain;
     border-radius: 10px 10px 0px 0px;
     border-bottom: 1px solid rgb(188, 188, 188);
 }
@@ -576,7 +588,7 @@ body {
     border-radius: 3px;
     align-items: center;
     cursor: pointer;
-    z-index: 2;
+    z-index: 0;
     position: fixed;
     transition: background-color 0.3s;
 }
@@ -630,6 +642,17 @@ body {
     /* Ajusta la altura según tus necesidades */
     border: 1px solid #2e8f7b;
     border-radius: 20px;
+}
+
+.sinMedicamentos{    
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.imgNohay{
+    width: 45%;
 }
 
 
@@ -875,9 +898,10 @@ input[type="date"]:focus {
 
 .scroll-categories {
     display: flex;
-    height: 100%;
+    height: 23em;
     width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .scroll-categories::-webkit-scrollbar {
@@ -923,6 +947,7 @@ input[type="date"]:focus {
     display: flex;
     align-items: center;
     padding: 3px;
+    flex-wrap: wrap;
     height: 100%;
     padding: 10px;
 }
@@ -932,6 +957,7 @@ input[type="date"]:focus {
     border-right: 1px solid rgb(185, 185, 185);
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     height: 100%;
     padding: 10px;
 }
@@ -941,10 +967,15 @@ input[type="date"]:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: .5em;
     height: 100%;
+    padding: 8px;
 }
-
+ .bx-edit{
+    margin-left: 5px;
+    font-size: 17px;
+}
 .acciones {
     width: 40%;
     height: 30px;
@@ -975,14 +1006,32 @@ input[type="date"]:focus {
     color: var(--tertiary)
 }
 
-.categorias form {
-    display: flex;
+
+
+.categorias .formulario1 {
+    display: none;
     flex-direction: column;
     flex: 1;
     justify-content: space-around;
     padding: 1em;
     align-items: center;
 }
+
+
+.categorias .formulario2 {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+    padding: 1em;
+    align-items: center;
+}
+
+
+.active{
+    display: flex !important;
+}
+
 
 .input {
     width: 400px;
@@ -1013,6 +1062,7 @@ input[type="date"]:focus {
 
 
 
+
 /* Css de graphics admin*/
 .graphic {
     height: 11rem !important;
@@ -1031,9 +1081,7 @@ input[type="date"]:focus {
     flex-direction: column;
     align-self: center;
     align-items: flex-start;
-    padding: .5em;
     gap: 5px;
-    overflow-y: hidden;
 }
 /* Estilo para la factura */
 .contenido-factura{
@@ -1051,12 +1099,10 @@ input[type="date"]:focus {
 }
 
 .factura {
-    border: 1px solid #000;
-    padding: 20px;
     flex: 1;
     margin: 0 auto;
-    height: 20em;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilo para cada detalle en la factura */
@@ -1074,6 +1120,100 @@ input[type="date"]:focus {
     margin-bottom: 10px;
 }
 
+.encabezado{
+    display: flex;
+    padding: 10px;
+    background-color: #33a892;
+    color: white;
+    border: 1px solid gray;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: 800;
+    
+}
+.otrico{
+    width: 18px;
+}
+.productos{
+    border-right: 1px solid;
+    padding: 5px;
+    width: 45%;
+}
+.cantidades{
+    border-right: 1px solid;
+    padding: 5px;
+    width: 25%;
+}
+.precioU{
+    border-right: 1px solid;
+    padding: 5px;
+    width: 40%;
+}
+
+.subtotal{
+    padding: 5px;
+    width: 28%;
+}
+.scroll-detallesventas{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 18em;
+    border-bottom: 1px solid gray;
+}
+
+.scroll-detallesventas .encabezado{
+background-color:white ;
+color: black;
+font-weight: 200;
+border-radius: 0px 0px 0px 0px;
+border: none;
+border-bottom: 1px solid gray;
+border-left: 1px solid gray;
+
+}
+/* Detalle de compra */
+.header-ventas{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+.header-ventas h2{
+    margin:  0px 0px 0px 20px;
+
+}
+.scroll-ventas{
+    display: flex;
+    overflow-y: scroll;
+    width: 100%;
+    height: 23em;
+}
+.btn-estado{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.footer-detalles{
+ display: flex;
+ margin-top: 10px;
+ justify-content: space-around;
+}
+.totality{
+    background-color: #2e8f7b;
+    color: white;font-weight: 200;
+    padding: 5px 7px;
+    border-radius: 7px;
+
+}
+color-datesish{
+    color: #247a38;
+}
 
 /*VER HISTORIAL*/
 #backlog {
@@ -1186,7 +1326,8 @@ input[type="date"]:focus {
 
 .opciones-vol-busc {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 10px;
     margin-bottom: 5px;
 }
 
@@ -1231,6 +1372,7 @@ input[type="date"]:focus {
     height: 12em;
     border-radius: 10px 10px 0px 0px;
     padding: 0px;
+    object-fit: contain;
     margin: 0px;
     border-bottom: 1px solid rgb(196, 196, 196);
 }
@@ -1485,20 +1627,20 @@ input[type="date"]:focus {
 }
 
 
-/*  VENTANA MODAL COMENTARIOS */
-.modal-comentarios {
+/*  VENTANA Informes */
+.modalInforme {
     width: 100%;
     height: 100%;
     display: none;
+    justify-content: flex-end;
+    align-items: center;
     position: absolute;
-    background-color: rgba(133, 133, 133, 0.475);
+    background-color: rgba(0, 0, 0, 0.107); 
+    backdrop-filter: blur(0.5px); 
 }
 
 /* integracion de css de seccion comentario */
-* {
-    padding: 0;
-    margin: 0;
-}
+
 
 .contenedor {
     display: flex;
@@ -1761,11 +1903,10 @@ input[type="date"]:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 3rem;
+    height: 2rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    display: flex;
     align-items: center;
 
 }
@@ -1829,7 +1970,9 @@ input[type="date"]:focus {
     background-color: rgba(0, 0, 0, 0.5); 
     backdrop-filter: blur(2px); 
 }
-
+.headermodals{
+    display: flex;
+}
 .containerEditarFarmacia {
     display: flex;
     flex-direction: column;
@@ -1844,6 +1987,8 @@ input[type="date"]:focus {
 .form-header {
     text-align: center;
     color: #333;
+    flex: 1;
+    align-self: center;
     margin-bottom: 20px;
 }
 .formularioFarmacia{
@@ -1887,6 +2032,7 @@ input[type="date"]:focus {
     flex-direction: column;
 }
 .imgandbuton img{
+    object-fit: contain;
     width:150px; 
     height:150px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1934,27 +2080,218 @@ flex-direction: column;
     color: gray;
 }
 
-.loader-container {
+
+/* Graficas de farmacia */
+.graficos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 2em;
+    width: 98%;
+}
+
+.cont-grafics{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+}
+
+.semanal{
+    display: flex;
+    border: 3px solid blue;
+}
+#gr2{
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+#headerGraficos{
+    display: fixed;
+    position: fixed;
+    background-color: #3a935b;
+    color: white;
+    padding: 5px 7px;
+    border-radius: 5px;
+    transition: color 0.5s;
+    margin-top: 2px;
+}
+
+
+/* RESPONSIVE, EL responsable, el responsivo, el respondedor, el respondido, el responsecivo, el responsenzaaato yishhh */
+
+
+@media screen and (max-width:768px){
+   
+    .hemberger {
+        display: block;
+        cursor: pointer;
+        z-index: 1;
+        position: relative;
+      
+      }
+      
+      .hemberger .line {
+        width: 30px;
+        height: 4px;
+        border-radius: 10px;
+        background-color: #000;
+        margin: 6px 0;
+        z-index: 1;
+      }
+      
+      #sidebar {
+        position: absolute;
+        /* display: block; */
+        /* display: none; */
+        left: 0;
+        right: 0;
+        width: 5%;
+        transition: 0.5s;
+        /* overflow: hidden; */
+        height: 2rem;
+        background-color: #fff;
+      }
+      
+      #sidebar ul {
+        display: block;
+        width: fit-content;
+        margin: 10px auto 0 auto;
+        transition: 0.5s;
+        opacity: 0;
+      }
+       
+      
+      #sidebar.active {
+        display: flex;
+        left: 30px;
+        height: 100%;
+        color: #fff;
+        width: 60%;
+        z-index: 2;
+      }
+
+      #sidebar.active ul{
+        opacity: 1;
+      }
+      
+#topnav{
+    border: 1px solid orange;
+}
+#main{
     display: flex;
     width: 100%;
+    align-items: end;
+
+}
+.artWrap{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+
+}
+.art{
+    width: 80%;
+   
+}
+#contentSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 90%;
+    
+
+}
+
+#sidebarContent{
+    display: flex;
+    width: 100%;
+    height: 13em;
+    flex-direction: row;
+}
+.graphic{
+    width: 20%;
+    border: #4472ad;
+}
+#incio{
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+}
+.imagencontenedorincial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 300px;
+    padding-left: 30px;
+}
+}
+@media screen and (max-width:414px){
+    .mostrar_menu{
+        position: absolute;
+        top: 5px;
+        left: 10px;
+      }
+      .esconder_menu {
+        
+        position: absolute;
+        top: 40px;
+        right: 40px;
+      }
+#main{
+    display: flex;
+    flex: 1;
+
+}
+.imagencontenedorincial{
+    width: 100%;
+
+}
+.artWrap{
+    display: flex;
+    flex: 1;
+   flex-wrap: wrap;
+   height: 25%;
     flex-direction: column;
-    text-align: center;
+
+
+}
+.art{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
 }
 
-.loader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-}
+#sidebarContent{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+
+}
+#contentSection{
+    display: flex;
+    width: 100%;
+
+
+}
+@media screen and (max-width:375px){
+    .artWrap{
+        display: flex;
+        flex: 1;
+       flex-wrap: wrap;
+        flex-direction: column;
+
+    
+    }
+    .art{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+    }
+    
+}
 }

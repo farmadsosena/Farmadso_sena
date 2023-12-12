@@ -41,7 +41,10 @@
                     ';
                 }
                 if (mysqli_num_rows($result) == 0) {
-                    echo '<p>No se encontraron medicamentos.</p>';
+                    echo '   <div class="sinMedicamentos">
+                    <img src="../assets/img/NoHayM.jpg" alt="" class="imgNohay">
+                    <h3 class="titleNohay">No tienes medicamentos.</h3>
+                    </div>';
                 }
             } else {
                 echo "Error en la consulta: " . mysqli_error($conexion);

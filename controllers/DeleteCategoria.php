@@ -1,6 +1,7 @@
 <?php
 
 include '../config/Conexion.php';
+require_once '../models/Log.php';
 
 $response = array();
 
@@ -18,6 +19,20 @@ if ($stmt = mysqli_prepare($conexion, $deleteQuery)) {
         // La consulta se ejecutó con éxito
         $response['success'] = true;
         $response['message'] = "Categoría eliminada exitosamente";
+
+        $log  = new Log();
+
+        $ip = $log::getIp();
+        $type = $log::typeDispositive();
+        $info = array(
+            'nivel' => 'ERROR',   
+            'mensaje' => "Se ha eliminado una categoria",
+            'ip' => $ip,
+            'id_usuario' => $_SESSION['id'],
+            'tipo' => $type 
+        );
+        $resultt = $log->insert($info);
+
     } else {
         // Error en la ejecución de la consulta
         $response['success'] = false;

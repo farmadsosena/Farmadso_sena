@@ -7,7 +7,7 @@ class Conexion
     private $user = 'root';
     private $password = '';
     // private $database = 'farmadso';
-    private $database = 'farmadso';
+    private $database = 'elpichafria';
 
 
 
