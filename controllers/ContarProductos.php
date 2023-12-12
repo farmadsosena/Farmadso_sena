@@ -1,6 +1,6 @@
 <?php
 // Valor a validar
-$valor = $id_solicit; // Cambia esto al valor que deseas validar
+$valor = $id_solicit;
 $numero = $_SESSION["telefono"];
 
 // Consulta SQL para buscar el valor en la tabla
@@ -17,12 +17,12 @@ if ($result->num_rows > 0) {
     $cantidad = $row["CantidadMedi"];
     $idMedicamentoFormuala = $row["IdMedi"];
     $EPSusuario = $row["idEPS"];
-
+    
     $ConsulMedi = mysqli_query($conexion, "SELECT * FROM medicamentos 
-      INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
-      INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
-      WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'
-      ORDER BY medicamentos.precio ASC LIMIT 1");
+    INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+    INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
+    WHERE SOUNDEX(medicamentos.nombre) = SOUNDEX('$NombreMedicamento') AND farmacias.IdEps = '$EPSusuario'
+    ORDER BY medicamentos.precio ASC LIMIT 1");
 
 
     if (mysqli_num_rows($ConsulMedi) > 0) {
