@@ -3,21 +3,11 @@ require_once('../config/Conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_usuario = $_POST['id_usuario'];
-    $contacto = $_POST['contacto'];
-    $contrasena = $_POST['contrasena'];
+
     $tipo_vehiculo = $_POST['tipo_vehiculo'];
 
-    // Puedes validar y escapar los datos aquí según sea necesario
-
-    // Actualizar datos en la tabla usuarios
-    $sqlUsuario = "UPDATE usuarios SET telefono = '$contacto', passwordusuario = '$contrasena' WHERE idusuario = '$id_usuario'";
-    $resultadoUsuario = mysqli_query($conexion, $sqlUsuario);
-
-    if (!$resultadoUsuario) {
-        // Manejar error de actualización de datos de usuario
-        echo "Error al actualizar datos de usuario: " . mysqli_error($conexion);
-        exit;
-    }
+   
+  
 
     // Actualizar datos en la tabla domiciliario
     $sqlDomiciliario = "UPDATE domiciliario SET tipovehiculo = '$tipo_vehiculo' WHERE idusuario = '$id_usuario'";
