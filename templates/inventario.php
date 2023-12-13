@@ -3,7 +3,7 @@
 <div class="modal-inventario">
 <div class="productos-container">
     <div class="opciones-vol-busc">
-    <i class="bx bx-chevron-left" onclick="closeModalInventario()"></i>
+    <i class="bx bx-chevron-left bx-x" onclick="closeModalInventario()"></i>
     <h1>Inventario</h1>
     <input type="text" id="filtroNombre" placeholder="Filtrar por nombre o Categoria"></div>
     <div class="scroll-inventario">
@@ -13,12 +13,14 @@ require_once '../config/Conexion.php';
 $bd = new Conexion();
 $conexion = $bd->getConexion();  // Debes asegurarte de que esto devuelve una instancia de mysqli
 // Verifica si esto imprime una instancia válida de mysqli
-
+$id_farmacia = $_SESSION["farm"]; 
     $sql = "SELECT m.idmedicamento, m.codigo, m.precio, m.nombre, m.precio, i.descripcion, i.fechavencimiento,i.stock, i.formaadministracion, i.instrucciones, i.lote, c.nombrecategoria as categoria, p.nombreproveedor as proveedor, i.formaadministracion, m.imagenprincipal
                         FROM medicamentos m
                         INNER JOIN inventario i ON m.idmedicamento = i.idmedicamento
                         INNER JOIN categoria c ON i.idcategoria = c.idcategoria
-                        INNER JOIN proveedor p ON i.idprovedor = p.idproveedor";
+                        INNER JOIN proveedor p ON i.idprovedor = p.idproveedor
+                        INNER JOIN farmacias f ON m.idfarmacia = f.IdFarmacia
+                        WHERE f.IdFarmacia = '$id_farmacia'";
 
 $result = mysqli_query($conexion, $sql);
 
@@ -59,7 +61,12 @@ if ($result) {
         // <button class="boton" onclick="eliminarMedicamento(\''. $row['idmedicamento'].'\')">
 
     }if (mysqli_num_rows($result) == 0) {
-        echo '<p>Inventario vacio.</p>';
+        echo '
+        <div class="sinMedicamentos">
+        <img src="../assets/img/NoHayM.jpg" alt="" class="imgNohay">
+        <h3 class="titleNohay">Inventario Vacio.</h3>
+        </div>
+        ';
     }
 } else {
     echo "Error en la consulta: " . mysqli_error($conexion);

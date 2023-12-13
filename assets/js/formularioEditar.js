@@ -105,3 +105,10 @@ ActualizarM();
 
 
 
+function editarCategoria(idcategoria){
+    var contMedicine = document.querySelector('.container-categoria');
+    var contForm = document.querySelector('.categoriasedit');
+
+    contMedicine.style.display = 'none';
+    contForm.style.display = 'flex';
+}

@@ -7,10 +7,13 @@
     <div class="cont-allmedicine">
         <div class="articlesM-cont">
             <?php
+            $id_farmacia = $_SESSION["farm"]; 
             require_once '../config/Conexion.php';
-            $sql = "SELECT m.codigo, m.nombre, m.precio, i.descripcion, i.stock, m.imagenprincipal
+            $sql = "SELECT m.codigo, m.nombre, m.precio, i.descripcion, i.stock, m.imagenprincipal, f.*
                     FROM medicamentos m
-                    INNER JOIN inventario i ON m.idmedicamento = i.idmedicamento";
+                    INNER JOIN inventario i ON m.idmedicamento = i.idmedicamento
+                    INNER JOIN farmacias f ON m.idfarmacia = f.IdFarmacia
+                    WHERE f.IdFarmacia = '$id_farmacia'";
 
             $result = mysqli_query($conexion, $sql);
 
@@ -32,13 +35,16 @@
                                 </div>
                             </div>
                             <div class="opciones">
-                            <button onclick="openDetalleInventario(\'' . $row["nombre"] . '\')" class="btn-verdetalles">Ver detalles<i class="fas fa-info-circle"></i></button>
+                            <button onclick="openDetalleInventario(\'' . $row["nombre"] . '\')" class="btn-verdetalles" id="goku">Ver detalles<i class="fas fa-info-circle"></i></button>
                             </div>
                         </article>
                     ';
                 }
                 if (mysqli_num_rows($result) == 0) {
-                    echo '<p>No se encontraron medicamentos.</p>';
+                    echo '   <div class="sinMedicamentos">
+                    <img src="../assets/img/NoHayM.jpg" alt="" class="imgNohay">
+                    <h3 class="titleNohay">No tienes medicamentos.</h3>
+                    </div>';
                 }
             } else {
                 echo "Error en la consulta: " . mysqli_error($conexion);

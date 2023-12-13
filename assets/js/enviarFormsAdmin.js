@@ -11,7 +11,7 @@ function sendForm(event, formulario, ruta) {
         .then(data => {
             if(data.status === true){
                 toastr.success(data.message);
-                formulario.reset();
+                MedicineForm.reset();
             }else if(data.status === null){
                 toastr.warning(data.message);
             }else if(data.status === 'error'){

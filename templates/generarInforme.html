@@ -4,11 +4,9 @@
   #filtroInforme {
     background-color: #fff;
     display: flex;
-    padding: 1.8em;
+    padding: 1.8em; 
     flex-direction: column;
     width: 25rem;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
   #filtroInforme >h2{
     font-size: 1.1em;
@@ -78,12 +76,32 @@
   .itemWrap{
     width: 50%;
   }
-</style>
+  .mInf{
 
-<section class="modal" id="ModalfiltroInforme">
+    background-color: rgb(255, 255, 255);
+    display: block;
+    margin-right: 2%;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  .head-infor{
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+</style>
+<div class="modalInforme">
+
+
+<section class="modal mInf" id="ModalfiltroInforme">
+  <div class="head-infor">
+  <i class="bx bx-chevron-left bx-x" onclick="closeModalInforme()"></i>
+<h3 style="margin-left: 5%;">Generar Informe</h3></div>
   <form id="filtroInforme">
+    
     <!-- <div id='cerrarModalInforme'><i class="fa-solid fa-x"></i></div> -->
-    <h2>Informe de asignaciones</h2>
+
     <section class="rowWrapformulario">
 
       <div class="itemWrap">
@@ -127,4 +145,4 @@
 
 </form>
 
-</section>
+</section></div>
