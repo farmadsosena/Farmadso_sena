@@ -11,12 +11,13 @@ if (window.innerWidth <= 850) {
 function menu_responsi(){
     nav_menu.style.display = "none";
     contenido.style.marginLeft = "3rem";
+    nav_menu_respo.style.diplay = "flex";
     nav_menu_respo.classList.add("menu-respon-active");
 }
 
 function menu_responsi_total(){
     if (window.innerWidth <= 850) {
-
+        
     }else{
         nav_menu.style.display = "flex";
         contenido.style.marginLeft = "0";

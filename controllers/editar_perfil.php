@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
 include("../config/Conexion.php");
 
@@ -40,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     title: 'Éxito',
                     text: 'Cambios guardados con éxito'
                 });
+                
                 </script>";
                 header("Location: ../views/configuracion.php");
             } else {

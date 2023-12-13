@@ -1,11 +1,12 @@
 <?php
-require_once('../config/Conexion.php');
+$conexion = mysqli_connect("localhost", "root", "", "farmadso2");
 
 $sql = "SELECT * FROM compra";
 $resultado = mysqli_query($conexion, $sql);
 
 while ($datosCompra = $resultado->fetch_assoc()) {
-    $idpaciente = $datosCompra["idPaciente"];
+
+    $idpaciente = $datosCompra["idUsuario"];
     $idCompra = $datosCompra["idcompra"];
     $direccionpaciente = $datosCompra["direccion"];
 
@@ -15,7 +16,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
     }
 
     // Obtener nombre y apellido del paciente
-    $consultaPaciente = "SELECT nombre, apellido FROM usuarios WHERE idusuario = ?";
+    $consultaPaciente = "SELECT nombre, apellido, telefono FROM usuarios WHERE idusuario = ?";
     $stmtPaciente = mysqli_prepare($conexion, $consultaPaciente);
     mysqli_stmt_bind_param($stmtPaciente, "i", $idpaciente);
     mysqli_stmt_execute($stmtPaciente);
@@ -25,6 +26,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
         $filaUsuarios = $resultadoconsultaPaciente->fetch_assoc();
         $nombrePaciente = $filaUsuarios["nombre"];
         $apellidoCliente = $filaUsuarios["apellido"];
+        $telefonoCliente = $filaUsuarios["telefono"];
     }
 
     if ($idCompra) {
@@ -40,6 +42,9 @@ while ($datosCompra = $resultado->fetch_assoc()) {
             $row = $resultadoMedi->fetch_assoc();
             $idmedicamento = $row["idmedicamento"];
 
+        
+           
+
             // Consulta para obtener idfarmacia del primer medicamento
             $consultaIdFarmacia = "SELECT idmedicamento, idfarmacia FROM medicamentos WHERE idmedicamento = ?";
             $stmtIdFarmacia = mysqli_prepare($conexion, $consultaIdFarmacia);
@@ -53,6 +58,8 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                 $idmedicamento = $rowIdFarmacia["idmedicamento"];
                 $idfarmacia = $rowIdFarmacia["idfarmacia"];
 
+               
+
                 // Consulta para obtener la información de la farmacia
                 $consultaInfoFarmacia = "SELECT Nombre AS nombreFarmacia, Direccion FROM farmacias WHERE IdFarmacia = ?";
                 $stmtInfoFarmacia = mysqli_prepare($conexion, $consultaInfoFarmacia);
@@ -65,6 +72,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     $rowInfoFarmacia = $resultadoInfoFarmacia->fetch_assoc();
                     $nombreFarmacia = $rowInfoFarmacia["nombreFarmacia"];
                     $direccionFarmacia = $rowInfoFarmacia["Direccion"];
+                    
 
                     // Mostrar la información
                     echo '<article data-id="' . $datosCompra["idcompra"] . '" class="orderAvailable">';
@@ -77,6 +85,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     echo '<div class="customerData">';
                     echo '<span>Dirección: B/' . $direccionpaciente . '</span>';
                     echo '<span>Cliente: ' . $nombrePaciente . ' ' . $apellidoCliente . ' </span>';
+                    echo '<a href="tel: + ' . $telefonoCliente . '">' . $telefonoCliente . '</a>';
                     echo '</div>';
                     echo '<div class="buttonSeeMore" onclick="abrirNoti(' . $datosCompra["idcompra"] . ')">';
                     echo '<a href="#" class="seeMore" >Ver más</a>';
@@ -90,9 +99,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                 // Manejar el caso de que no haya medicamentos asociados a la compra
                 echo 'No hay medicamentos asociados a la compra.';
             }
-        } else {
-            // Manejar el caso de error en la consulta de idmedicamentos
-            echo 'Error en la consulta de idmedicamentos.';
         }
     }
 }
+?>

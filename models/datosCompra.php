@@ -1,13 +1,6 @@
 <?php
 require_once('../config/Conexion.php');
 
-// Verificar la conexión a la base de datos
-if (!$conexion) {
-    $error_message = 'Error de conexión a la base de datos: ' . mysqli_connect_error();
-    $response = array('status' => 'error', 'message' => $error_message);
-    echo json_encode($response);
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -43,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // datos que necesitamos de la tabla compra
     $fechaCompra = $datoscompra["fecha"];
-    $idpaciente = $datoscompra["idPaciente"];
+    $idpaciente = $datoscompra["idUsuario"];
     $direccionPaciente = $datoscompra["direccion"];
 
     // consulta para los datos del paciente
@@ -126,3 +119,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = array('status' => 'success', 'data' => $dataToSend);
     echo json_encode($response);
 }
+?>

@@ -6,7 +6,7 @@ class Conexion
     private $server = 'localhost';
     private $user = 'root';
     private $password = '';
-    private $database = 'farmadso';
+    private $database = 'farmadso2';
     
     // private $database = 'farmacia';
 
