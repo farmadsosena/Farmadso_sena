@@ -33,6 +33,10 @@ $result = $conexion->query($sql);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+    <!--Id cliente paypal-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AVWgpMk3r1AGWqSWCLInEmnNyB8mnUZqQtRrBN6NqEFZ7ycGeHiRT_oM_3_3M4NvsQEzJhLI5HX3EqHQ&currency=USD">
+    </script>
     <title>Pedido Fórmula</title>
 </head>
 
@@ -111,19 +115,19 @@ $result = $conexion->query($sql);
 
                     <article>
                         <!-- <button>tienda<i class="fa-brands fa-cc-amazon-pay"></i></button> -->
-                        
-                            <button id='buttonpayF' name='paypalformula'>
-                                    <span>
-                                        <i class="fa-brands fa-paypal"></i>
-                                    </span>
-                                    <span>Pay</span><span>Pal</span>
-                                
-                            </button>
-                        
-                        
+
+
+                        <!-- <p>Contenedor buttons</p> -->
+                        <section id="paypal-button-container">
+                            
+                        </section>
+
+
 
                         <!-- <button><i class="fa-brands fa-google-pay"></i></button> -->
                     </article>
+
+
                 </section>
 
                 <section>
@@ -187,11 +191,12 @@ $result = $conexion->query($sql);
 
                     while ($row = $result->fetch_assoc()) {
                         $nombreMedicamento = $row["medicamento"];
-                        $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo , I.stock AS stock FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo 
+                        $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo , I.stock AS stock FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo  
                         INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento 
                          WHERE nombre ='$nombreMedicamento'");
                         $cos = mysqli_fetch_assoc($datosMedicamento);
                         $_SESSION['stock'] = $cos['stock'];
+
                         if (mysqli_num_rows($datosMedicamento) > 0) {
                             echo '<article>
                                     <div>
@@ -243,14 +248,11 @@ $result = $conexion->query($sql);
                 <div class='resultformulas'>
                     <?php
                     $usu = $_SESSION['usu'];
-                    $adres = mysqli_query($conexion, "SELECT regimen FROM adres WHERE cedula = $usu");
-                    $copagoid = mysqli_fetch_assoc($adres);
-
-
 
                     $copago_query = mysqli_query($conexion, "SELECT * FROM usuarios
                             INNER JOIN copagos C ON C.idcopago = usuarios.idcopago WHERE documento ='$usu'");
                     $copagoid = mysqli_fetch_assoc($copago_query);
+                    // copago formula
                     $precio_medicamento = $cos['precio'];
                     $porcentaje_copago = $copagoid['porcentaje'];
                     $copago = $precio_medicamento * $porcentaje_copago;
@@ -261,8 +263,31 @@ $result = $conexion->query($sql);
                         <p><?php echo '$' . $adicion = 3500; ?></p>
                     </article>
                     <article>
-                        <p>Incluye Copago
-                        <p><?php echo '$' . $copago; ?></p>
+                        <?php
+                        // Verificamos si la consulta fue exitosa antes de acceder a sus resultados
+                        $adres = mysqli_query($conexion, "SELECT regimen FROM adres WHERE cedula = $usu");
+
+                        if ($adres) {
+                            $adresR = mysqli_fetch_assoc($adres);
+
+                            // Verificamos si $adresR contiene datos antes de acceder a 'regimen'
+                            if ($adresR && isset($adresR['regimen'])) {
+                                $regimen = $adresR['regimen'];
+
+                                if ($regimen === 'CONTRIBUTIVO') {
+                                    echo '<p>Incluye Copago</p>';
+                                    echo '<p>$' . $copago . '</p>';
+                                } else {
+                                    echo 'Eres subsidiado';
+                                }
+                            } else {
+                                echo 'No se encontró el régimen para esta cédula';
+                            }
+                        } else {
+                            echo 'Error en la consulta SQL';
+                        }
+                        ?>
+
                     </article>
 
 
@@ -284,6 +309,95 @@ $result = $conexion->query($sql);
                         ?>
                         </h3>
 
+                        <script>
+                            function renderizarPaypal() {
+                                const monto = <?php echo $subtotalfinal; ?>;
+                                console.log(monto)
+                                convertirPesosADolares(monto, function(pesoFinal) {
+                                    paypal.Buttons({
+                                        style: {
+                                            color: 'gold',
+                                            shape: 'pill',
+                                            label: 'pay'
+                                        },
+                                        createOrder: function(data, actions) {
+
+
+
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                    amount: {
+                                                        value: pesoFinal // Monto de compra
+                                                    }
+                                                }]
+
+                                            });
+
+                                        },
+                                        onApprove: function(data, actions) {
+                                            actions.order.capture().then(function(detalles) {
+                                                document.getElementById('modalCargar').style.display = 'flex';
+                                                fetch('../controllers/procesarCompra.php', {
+                                                        method: "POST",
+                                                        headers: {
+                                                            'Content-Type': 'application/json' // Corregido 'aplication' a 'application'
+                                                        },
+                                                        body: JSON.stringify({
+                                                            detalles: detalles
+                                                        })
+                                                    })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        if (data.success === true) {
+
+                                                            IDCOMPRA = data.idcompra;
+                                                            toastr.success('Compra realizada correctamente');
+                                                            ConsultarDataFactura(IDCOMPRA);
+                                                        }
+
+                                                    })
+                                                    .catch(error => {
+                                                        console.error('Hubo un error:', error);
+                                                    });
+                                            });
+                                        },
+                                        onCancel: function(data) {
+                                            toastr.warning("Pago cancelado");
+
+                                        }
+                                    }).render('#paypal-button-container');
+                                });
+
+                            }
+
+
+                            function convertirPesosADolares(cantidad, callback) {
+                                // Utilizamos una API para obtener la tasa de cambio actual del dólar
+                                $.ajax({
+                                    url: 'https://api.exchangerate-api.com/v4/latest/USD',
+                                    type: 'GET',
+                                    success: function(data) {
+                                        // Obtenemos la tasa de cambio actual
+                                        var tasaCambio = data.rates.COP;
+
+                                        // Realizamos la conversión
+                                        var resultado = cantidad / tasaCambio;
+
+                                        resultadoFinal = resultado.toFixed(2);
+
+                                        // Llamamos a la devolución de llamada con el resultado
+                                        callback(resultadoFinal);
+                                    },
+                                    error: function() {
+                                        alert('No se pudo obtener la tasa de cambio actual.');
+                                    }
+                                });
+                            }
+
+
+                            renderizarPaypal();
+                        </script>
+
                 </div>
             </article>
 
@@ -291,9 +405,7 @@ $result = $conexion->query($sql);
         </section>
     </main>
     <script src='../assets/js/contraEntregaFormula.js'></script>
-    
 
-   
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {

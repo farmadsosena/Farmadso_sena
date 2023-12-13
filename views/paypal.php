@@ -51,7 +51,7 @@ require '../controllers/validacion_usu_tienda.php';
 
     <script src="../assets/js/checkAmount.js"></script>
     <script src="../assets/js/consultarCart.js"></script>
-    <script src="../assets/js/consultarformula.js"></script>
+    <script src="../assets/js/consultarformula.js"></script> 
     <script>
         function adjustHeight() {
             if (window.innerWidth <= 768) {

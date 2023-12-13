@@ -40,23 +40,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // Obtener ID de la jornada
-            $stmt_get_jornada_id = $conexion->prepare("SELECT nombre FROM medicamentos WHERE nombre = ?");
-            $stmt_get_jornada_id->bind_param("i", $nombreMedicamento);
-            $stmt_get_jornada_id->execute();
-            $result_jornada_id = $stmt_get_jornada_id->get_result();
-            if ($result_jornada_id->num_rows === 0) {
-                $response['error'] = 'J no encontrada en fila: ' . $dataKey;
-                break;
-            } else {
-                $row_jornada_id = $result_jornada_id->fetch_assoc();
-                $medicamento = $row_jornada_id['nombre'];
-            }
+            // $stmt_get_jornada_id = $conexion->prepare("SELECT nombre FROM medicamentos WHERE nombre = ?");
+            // $stmt_get_jornada_id->bind_param("i", $nombreMedicamento);
+            // $stmt_get_jornada_id->execute();
+            // $result_jornada_id = $stmt_get_jornada_id->get_result();
+            // if ($result_jornada_id->num_rows === 0) {
+            //     $response['error'] = 'J no encontrada en fila: ' . $dataKey;
+            //     break;
+            // } else {
+            //     $row_jornada_id = $result_jornada_id->fetch_assoc();
+            //     $medicamento = $row_jornada_id['nombre'];
+            // }
 
             $sqlMedicamento = "INSERT INTO medicamentosformulas (IdFormula, medicamento, CodigoMedicamento, CantidadMedi, Concentracion, Via, Posologia)
                                 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmtMedicamento = $conexion->prepare($sqlMedicamento);
-            $stmtMedicamento->bind_param("issssss", $formulaId, $medicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia);
+            $stmtMedicamento->bind_param("issssss", $formulaId, $nombreMedicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia);
 
             if ($stmtMedicamento->execute()) {
                 // Registro de medicamento insertado con éxito
@@ -75,9 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     require_once "ContarProductos.php";
 
-
     // Cerrar la conexión a la base de datos
-
     // echo "<script>alert('Fórmula añadida con éxito')</script>";
     // echo "<script>window.location='../views/Usuario.php'</script>";
     header('Content-Type: application/json');
