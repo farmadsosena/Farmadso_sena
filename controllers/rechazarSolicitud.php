@@ -6,7 +6,7 @@ include "../config/Conexion.php";
 if(isset($_POST["ids_farmacia"])){
   $id= $_POST["ids_farmacia"];
  
-  $consulta= mysqli_query($conexion, "UPDATE farmacias SET EstadoSolicitud= '0' WHERE IdFarmacia= '$id'");
+  $consulta= mysqli_query($conexion, "UPDATE farmacias SET EstadoSolicitud= '4' WHERE IdFarmacia= '$id'");
   if($consulta){
    $mysqli=mysqli_query($conexion, "SELECT * FROM farmacias 
    INNER JOIN usuarios ON farmacias.idusuario= usuarios.idusuario
@@ -30,7 +30,7 @@ if(isset($_POST["ids_farmacia"])){
  if(isset($_POST["id_domicc"])){
   $id= $_POST["id_domicc"];
  
-  $consulta= mysqli_query($conexion, "UPDATE domiciliario SET EstadoAcept= '0' WHERE iddomiciliario= '$id'");
+  $consulta= mysqli_query($conexion, "UPDATE domiciliario SET EstadoAcept= '4' WHERE iddomiciliario= '$id'");
   if($consulta){
    $mysqli=mysqli_query($conexion, "SELECT * FROM domiciliario 
    INNER JOIN usuarios ON domiciliario.idusuario= usuarios.idusuario
