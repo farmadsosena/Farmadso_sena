@@ -2,7 +2,7 @@
 session_start();
 include "../config/Conexion.php";
 
-if (!isset($_SESSION["usu"])) {
+if (!isset($_SESSION["id"])) {
   echo "<script> window.location='login.php'</script>";
 }
 
@@ -188,87 +188,91 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </section>
         </section>
       </header>
-
-      <section class="paginas" id="uno">
-        <article class="formulas">
-          <section class="new-formula">
-            <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
-          </section>
-          <div class="opt_config">
-            <div class="search">
-              <input type="search" placeholder="Buscar Formula..." />
-              <i class='bx bx-filter'></i>
-            </div>
-            <div class="filtros">
-              <div class="doctor config_filtros" data-tipo-filtro="IdMedico">
-                <div class="filtros-titulo">Doctor</div>
-                <i class='bx bx-chevron-right'></i>
-                <section class="ventana-sal scrall rrrf">
-                  <?php
-                  $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
+      <?php
+      if ($eps == 2) {
+      ?>
+        <section class="paginas" id="uno">
+          <article class="formulas">
+            <section class="new-formula">
+              <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
+            </section>
+            <div class="opt_config">
+              <div class="search">
+                <input type="search" placeholder="Buscar Formula..." id="cassos" />
+                <i class='bx bx-filter'></i>
+              </div>
+              <div class="filtros">
+                <div class="doctor config_filtros" data-tipo-filtro="IdMedico">
+                  <div class="filtros-titulo">Doctor</div>
+                  <i class='bx bx-chevron-right'></i>
+                  <section class="ventana-sal scrall rrrf">
+                    <?php
+                    $medicos = mysqli_query($conexion, "SELECT * FROM formulas 
                 INNER JOIN medicos ON formulas.IdMedico = medicos.idmedico
-                WHERE idPaciente = '$id'");
+                WHERE idPaciente = '$id' and Estado='1'");
 
-                  if ($medicos->num_rows > 0) {
-                    $nombres_impresos = array();
+                    if ($medicos->num_rows > 0) {
+                      $nombres_impresos = array();
 
-                    while ($rg = mysqli_fetch_assoc($medicos)) {
-                      $usuario = $rg["idusuario"];
-                      $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $usuario");
-                      $row = mysqli_fetch_assoc($cons_med);
+                      while ($rg = mysqli_fetch_assoc($medicos)) {
+                        $usuario = $rg["idusuario"];
+                        $cons_med = mysqli_query($conexion, "SELECT * FROM usuarios WHERE idusuario = $usuario");
+                        $row = mysqli_fetch_assoc($cons_med);
 
-                      $nombre_completo = $row["nombre"] . " " . $row["apellido"];
+                        $nombre_completo = $row["nombre"] . " " . $row["apellido"];
 
-                      // Verificar si el nombre ya se ha impreso
-                      if (!in_array($nombre_completo, $nombres_impresos)) {
-                        echo "<div data-valor='" . $rg["idmedico"] . "'>" . $nombre_completo . "</div>";
-                        // Agregar el nombre al array de nombres impresos
-                        $nombres_impresos[] = $nombre_completo;
+                        // Verificar si el nombre ya se ha impreso
+                        if (!in_array($nombre_completo, $nombres_impresos)) {
+                          echo "<div data-valor='" . $rg["idmedico"] . "'>" . $nombre_completo . "</div>";
+                          // Agregar el nombre al array de nombres impresos
+                          $nombres_impresos[] = $nombre_completo;
+                        }
                       }
                     }
-                  }
-                  ?>
+                    ?>
 
-                </section>
+                  </section>
 
-              </div>
+                </div>
 
-              <div class="state config_filtros" data-tipo-filtro="EstadoFormula">
-                <div class="filtros-titulo">Estado</div>
-                <i class='bx bx-chevron-right'></i>
-                <section class="ventana-sal scrall frrr">
-                  <div data-valor="1">Pendiente</div>
-                  <div data-valor="2">No aceptando</div>
-                  <div data-valor="3">Entregado</div>
-                </section>
-              </div>
+                <div class="state config_filtros" data-tipo-filtro="estado">
+                  <div class="filtros-titulo">Estado</div>
+                  <i class='bx bx-chevron-right'></i>
+                  <section class="ventana-sal scrall frrr">
+                    <div data-valor="1">Pendiente</div>
+                    <div data-valor="2">No aceptando</div>
+                    <div data-valor="3">Entregado</div>
+                  </section>
+                </div>
 
-              <div class="date config_filtros" data-tipo-filtro="fechaOrden">
-                <div class="filtros-titulo">Fecha</div>
-                <i class='bx bx-chevron-right'></i>
-                <section class="ventana-sal scrall frrr">
-                  <input type="date" id="fecha">
-                </section>
+                <div class="date config_filtros" data-tipo-filtro="fechaOrden">
+                  <div class="filtros-titulo">Fecha</div>
+                  <i class='bx bx-chevron-right'></i>
+                  <section class="ventana-sal scrall frrr">
+                    <input type="date" id="fecha">
+                  </section>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="cards_formulas" id="LLEGARFR">
-            <!-- Comienzan tarjetas para formulas -->
+            <div class="cards_formulas" id="LLEGARFR">
+              <!-- Comienzan tarjetas para formulas -->
 
-            <!-- Final de tarjetas -->
-          </div>
+              <!-- Final de tarjetas -->
+            </div>
 
-          <div class="formula-info">
-          </div>
-          <div id="mensajeNoResultados" class="imgBusqueda">
-            <img src="../assets/img/notas.png" alt="">
-            No se encontraron resultados parecidos
-          </div>
-        </article>
+            <div class="formula-info">
+            </div>
+            <div id="mensajeNoResultados" class="imgBusqueda">
+              <img src="../assets/img/notas.png" alt="">
+              No se encontraron resultados parecidos
+            </div>
+          </article>
 
-      </section>
-
+        </section>
+      <?php
+      }
+      ?>
 
       <section class="paginas" id="dos">
 
@@ -421,7 +425,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
       <section class="paginas" id="cuatro">
         <div class="column" id="opciones">
           <?php
-          if (!isset($_SESSION["domi"])){
+          if (!isset($_SESSION["domi"])) {
             echo '
             <div class="option2" onclick=mostrarContenido("domiciliario")>Quiero ser domiciliario del sistema
              <div class="arrow-icon">
@@ -431,14 +435,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             ';
           }
 
-          if (!isset($_SESSION["farm"])){
+          if (!isset($_SESSION["farm"])) {
             echo '<div class="option2" onclick=mostrarContenido("farmacia")>Quiero registrar mi farmacia en el sistema
             <div class="arrow-icon">
               <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>';
-          }
-          else{
+          } else if (isset($_SESSION["farm"]) and isset($_SESSION["domi"])) {
             echo "Ya tiene todos los roles disponibles en el sistema";
           }
           ?>
@@ -727,7 +730,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           </div>
           <div class="mauso">
             <p>Causa externa</p>
-            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica"></textarea>
+            <textarea name="causa" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Causa de la cita medica" required></textarea>
           </div>
           <section class="flex-mauso">
             <section class="mauso-boom">
@@ -743,13 +746,13 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Foto de la formula</p>
-                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="file" name="Fotoformula" id="" placeholder="Numero del diagnostico" class="mauso-texto encojer" accept=".png, .jpg," required>
               </div>
             </section>
           </section>
           <div class="mauso">
             <p>Cantidad de medicamentos recetados</p>
-            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor">
+            <input type="text" name="cantidadMedicamentos" id="cantidadMedicamentos" placeholder="El numero total de los medicamentos que vienen en su formula" class="mauso-texto menor" required>
           </div>
         </section>
         <section class="padre-medicamentos">
@@ -766,7 +769,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
     </form>
   </section>
 
-<!-- ANIMACIION DE CARGA GENERAL -->
+  <!-- ANIMACIION DE CARGA GENERAL -->
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
       <div class="spinner"></div>

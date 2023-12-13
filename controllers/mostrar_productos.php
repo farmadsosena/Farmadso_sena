@@ -24,6 +24,15 @@ if (isset($_GET['AsPZ'])) {
     INNER JOIN categoria ON categoria.idcategoria = inventario.idcategoria
     WHERE categoria.idcategoria = ?");
     $stmt->bind_param("i", $id_categoria_tienda);
+} elseif (isset($_GET['vBsLQ'])) {
+    $llegado = $_GET['vBsLQ'];
+    $campoBuscado = "%$llegado%";
+    $stmt = $conexion->prepare("SELECT * FROM medicamentos 
+    LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
+    INNER JOIN farmacias ON farmacias.IdFarmacia = medicamentos.idfarmacia
+    INNER JOIN inventario ON inventario.idmedicamento = medicamentos.idmedicamento
+    WHERE medicamentos.nombre LIKE ?");
+    $stmt->bind_param("s", $campoBuscado);
 } else {
     $stmt = $conexion->prepare("SELECT * FROM medicamentos 
     LEFT JOIN promocion ON promocion.id_medicamento = medicamentos.idmedicamento
@@ -72,8 +81,9 @@ if ($result->num_rows > 0) {
             echo "<div class='cont_precio_cantidad'>";
             echo "<h2>$" . $precio_antes . "</h2>";
         }
-
-
+        if( $fila["stock"] <= 0){
+            echo "<p class='product-agotado'>Agotado</p>";
+        }
         echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $fila["stock"] . "' value='1'>";
         echo "</div>";
         echo "<button class='comprar-tarje-comp'>Comprar</button>";

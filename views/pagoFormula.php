@@ -7,6 +7,8 @@ include("../config/Conexion.php");
 
 
 $idFormula = $_SESSION["clave"];
+
+echo $idFormula;
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
 $result = $conexion->query($sql);
 ?>
@@ -35,8 +37,6 @@ $result = $conexion->query($sql);
 </head>
 
 <body>
-
-
     <section id="modalCargar">
         <div class="three-body">
             <div class="three-body__dot"></div>
@@ -89,7 +89,7 @@ $result = $conexion->query($sql);
         <section>
             <article class="menu-uno">
                 <section>
-                    <span><img src="../assets/img/" alt=""></span>
+                    <span><img src="../assets/img/logoFarmadso - cambio.png" alt=""></span>
                 </section>
 
                 <section>
@@ -111,16 +111,16 @@ $result = $conexion->query($sql);
 
                     <article>
                         <!-- <button>tienda<i class="fa-brands fa-cc-amazon-pay"></i></button> -->
-
-                        <button>
-                            <a href="paypal.php">
-                                <span>
-                                    <i class="fa-brands fa-paypal"></i>
-                                </span>
-                                <span>Pay</span><span>Pal</span>
-                            </a>
-                        </button>
-
+                        
+                            <button id='buttonpayF' name='paypalformula'>
+                                    <span>
+                                        <i class="fa-brands fa-paypal"></i>
+                                    </span>
+                                    <span>Pay</span><span>Pal</span>
+                                
+                            </button>
+                        
+                        
 
                         <!-- <button><i class="fa-brands fa-google-pay"></i></button> -->
                     </article>
@@ -176,7 +176,7 @@ $result = $conexion->query($sql);
             </article>
         </section>
 
-        <section>
+        <section class='container2'>
             <div class="contenedor">
                 <?php
                 if ($result->num_rows > 0) {
@@ -187,10 +187,11 @@ $result = $conexion->query($sql);
 
                     while ($row = $result->fetch_assoc()) {
                         $nombreMedicamento = $row["medicamento"];
-                        $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo 
+                        $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo , I.stock AS stock FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo 
+                        INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento 
                          WHERE nombre ='$nombreMedicamento'");
                         $cos = mysqli_fetch_assoc($datosMedicamento);
-
+                        $_SESSION['stock'] = $cos['stock'];
                         if (mysqli_num_rows($datosMedicamento) > 0) {
                             echo '<article>
                                     <div>
@@ -199,7 +200,7 @@ $result = $conexion->query($sql);
                                     </div>
                                     <div>
                                         <p>' . $nombreMedicamento . '</p>
-                                        <p>'.$cos['Concentracion'].'</p>
+                                        <p>' . $cos['Concentracion'] . '</p>
                                     </div>';
 
                             $estadoMedicamento = $row["EstadoFRM"];
@@ -222,9 +223,6 @@ $result = $conexion->query($sql);
                             echo "</article>";
                         }
                     }
-
-
-                    // echo json_encode($response);
                 }
                 ?>
                 <!-- border -->
@@ -234,11 +232,12 @@ $result = $conexion->query($sql);
                 <button> Usar</button>
             </article> -->
             <article class="total">
+                <hr class="linea">
                 <div class='resultformulas'>
                     <h4>Subtotal</h4>
                     <article>
                         <p>solo productos</p>
-                        <p><?php echo '$' .$subtotal; ?></p>
+                        <p><?php echo '$' . $subtotal; ?></p>
                     </article>
                 </div>
                 <div class='resultformulas'>
@@ -259,11 +258,11 @@ $result = $conexion->query($sql);
                     <h3>Total</h3>
                     <article>
                         <p>Incluye envío domicilio</p>
-                        <p><?php echo '$' .$adicion = 3500; ?></p>
+                        <p><?php echo '$' . $adicion = 3500; ?></p>
                     </article>
                     <article>
                         <p>Incluye Copago
-                        <p><?php echo '$' .$copago; ?></p>
+                        <p><?php echo '$' . $copago; ?></p>
                     </article>
 
 
@@ -281,8 +280,9 @@ $result = $conexion->query($sql);
 
                         $_SESSION['medicamentos'] = $medicamentosList;
                         $_SESSION['subtotal'] = $subtotalfinal;
+                        // echo json_encode($response);
                         ?>
-                    </h3>
+                        </h3>
 
                 </div>
             </article>
@@ -291,8 +291,9 @@ $result = $conexion->query($sql);
         </section>
     </main>
     <script src='../assets/js/contraEntregaFormula.js'></script>
+    
 
-    <!-- <script src="../assets/js/consultarCart.js"></script>  -->
+   
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {

@@ -39,7 +39,7 @@ class ContraEntregaModel
         $estadoCompra = 1; // Reemplazar con el valor correcto de estado de compra
         $tipoPago = 3; // Reemplazar con el valor correcto de tipo de pago
     
-        $stmt->bind_param("siisssissis", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idusuario);
+        $stmt->bind_param("siisssissis", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idusuario,$instrucciones);
     
         if (isset($idinvitado)) {
             $stmt->bind_param("siissssssss", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idinvitado, $instrucciones);
@@ -57,6 +57,7 @@ class ContraEntregaModel
                     $DATA = $data->fetch_assoc();
                     $precio = intval($DATA['precio']);
                     $stockActual = intval($DATA['stock']);
+                     
                     $cantidadS = intval($stock);
                     $stockFinal = $stockActual - $cantidadS;
     

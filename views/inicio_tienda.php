@@ -67,14 +67,9 @@ require_once "../controllers/validacion_usu_tienda.php";
     <article class="resultado_busqueda" style="display: none;">
       <h3>Medicamentos relacionados</h3>
       <section class="cont_medicamento_result">
-        <a href="" class="medicamento_result">
-          <img src="../uploads/imgProductos/6536f9824c523_acetaminofén-500mg-caja-16-tabletas-tecnoquimicas-sa.jpg"
-            alt="">
-          <p>Acetaminofen</p>
-        </a>
       </section>
       <section class="todos_medicamento_result">
-        <a href="">Ver todos los 100 medicamentos relacionados</a>
+        <a href=""></a>
       </section>
     </article>
     <article class="vista_prede_buscador">
@@ -359,6 +354,7 @@ require_once "../controllers/validacion_usu_tienda.php";
           </filter>
         </defs>
       </svg>
+      <h3>No hay medicamentos relacionados</h3>
     </section>
   </section>
 
@@ -754,7 +750,7 @@ require_once "../controllers/validacion_usu_tienda.php";
 <script src="../assets/js/funcionMenutienda.js"></script>
 <script src="../assets/js/detallesRapidos.js"></script>
 <script src="../assets/js/consultarCarrito.js"></script>
-<script src="../assets/js/obtenerFactura.js"></script>
+<script src="../assets/js/set_medicamentos_masBuscado.js"></script>
 <script src="../assets/js/buscador_medicamentos.js"></script>
 </body>
 

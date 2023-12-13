@@ -72,6 +72,11 @@ function validarDatos($datos)
         $valid['error'] = 'El correo electrónico es obligatorio.';
     } elseif (!filter_var($datos['correo'], FILTER_VALIDATE_EMAIL)) {
         $valid['error'] = 'El correo electrónico no tiene un formato válido.';
+    } elseif($_SESSION['medicamentos'] === []){
+        $valid['error'] = 'no hay medicamentos existentes';
+    } elseif($_SESSION['medicamentos'] > $_SESSION['stock']){
+        $valid['error'] = 'no hay medicamentos disponibles';
     }
     return empty($valid['error']) ? '' : $valid['error'];
 }
+

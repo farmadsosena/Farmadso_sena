@@ -6,7 +6,7 @@ $basic  = new \Vonage\Client\Credentials\Basic("6bcebbec", "H87TJsY11rtCSqec");
 $client = new \Vonage\Client($basic);
 
 $response = $client->sms()->send(
-    new \Vonage\SMS\Message\SMS("573123350607", BRAND_NAME, 'Tu clave para acceder es: '.$claveSecretaRecibida)
+    new \Vonage\SMS\Message\SMS("573142280319", BRAND_NAME, 'Tu clave para acceder es: '.$claveSecretaRecibida)
 );
 
 $message = $response->current();

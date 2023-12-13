@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../config/Conexion.php";
+require_once "../config/Conexion.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cantidadMedicamentos = $_POST["cantidadMedicamentos"];
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // Obtener ID de la jornada
-            $stmt_get_jornada_id = $conexion->prepare("SELECT idmedicamento FROM medicamentos WHERE nombre = ?");
+            $stmt_get_jornada_id = $conexion->prepare("SELECT nombre FROM medicamentos WHERE nombre = ?");
             $stmt_get_jornada_id->bind_param("i", $nombreMedicamento);
             $stmt_get_jornada_id->execute();
             $result_jornada_id = $stmt_get_jornada_id->get_result();
@@ -49,14 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             } else {
                 $row_jornada_id = $result_jornada_id->fetch_assoc();
-                $medicamento_id = $row_jornada_id['id_jornada'];
+                $medicamento = $row_jornada_id['nombre'];
             }
 
             $sqlMedicamento = "INSERT INTO medicamentosformulas (IdFormula, medicamento, CodigoMedicamento, CantidadMedi, Concentracion, Via, Posologia)
                                 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             $stmtMedicamento = $conexion->prepare($sqlMedicamento);
-            $stmtMedicamento->bind_param("issssss", $formulaId, $nombreMedicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia);
+            $stmtMedicamento->bind_param("issssss", $formulaId, $medicamento, $codigoMedicamento, $cantidadEstablecida, $concentracion, $viaMedicamento, $posologia);
 
             if ($stmtMedicamento->execute()) {
                 // Registro de medicamento insertado con éxito

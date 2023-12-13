@@ -1,6 +1,6 @@
 <?php
 // Valor a validar
-$valor = $id_solicit; // Cambia esto al valor que deseas validar
+$valor = $id_solicit;
 $numero = $_SESSION["telefono"];
 
 // Consulta SQL para buscar el valor en la tabla
@@ -11,33 +11,51 @@ WHERE medicamentosformulas.IdFormula = '$valor'";
 $result = $conexion->query($sql);
 
 if ($result->num_rows > 0) {
+  $avisoInsertado = false; // Variable para verificar si ya se insertó el aviso
   while ($row = $result->fetch_assoc()) {
     $NombreMedicamento = $row["medicamento"];
     $cantidad = $row["CantidadMedi"];
     $idMedicamentoFormuala = $row["IdMedi"];
     $EPSusuario = $row["idEPS"];
-
+    
     $ConsulMedi = mysqli_query($conexion, "SELECT * FROM medicamentos 
-      INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
-      INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
-      WHERE medicamentos.nombre = '$NombreMedicamento' AND farmacias.IdEps = '$EPSusuario'");
-    $rf = mysqli_fetch_assoc($ConsulMedi);
+    INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+    INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
+    WHERE SOUNDEX(medicamentos.nombre) = SOUNDEX('$NombreMedicamento') AND farmacias.IdEps = '$EPSusuario'
+    ORDER BY medicamentos.precio ASC LIMIT 1");
+
 
     if (mysqli_num_rows($ConsulMedi) > 0) {
-      $Stiockcantidad = $rf["stock"];
+      $rf = mysqli_fetch_assoc($ConsulMedi);
+      $idFarmacia = $rf["idfarmacia"];
+      $idMedicamento = $rf['idmedicamento']; // Obtén el ID del medicamento
+      $stockCantidad = $rf["stock"];
 
-      if ($cantidad <= $Stiockcantidad) {
-        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Disponible' WHERE IdMedi='$idMedicamentoFormuala'");
+      // Verifica si idFarmacia no está vacío y establece $idNull en consecuencia
+      $idNull = (!empty($idFarmacia)) ? $idFarmacia : '';
 
+      if ($cantidad <= $stockCantidad) {
+        // Suficiente cantidad de stock
+        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Disponible', FarmaciaMED='$idNull' WHERE IdMedi='$idMedicamentoFormuala'");
       } else {
-        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias' WHERE IdMedi='$idMedicamentoFormuala'");
+        // Stock insuficiente
+        $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Sin unidades necesarias', FarmaciaMED='$idNull' WHERE IdMedi='$idMedicamentoFormuala'");
 
-        if (mysqli_num_rows($ConsulMedi) > 0) {
-          // echo "Sin unidades para". $NombreMedicamento."<br>";
+        // Verifica si el aviso no ha sido insertado antes
+        if (!$avisoInsertado) {
+          $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdFormulaAviso, FechaAviso) VALUES ('$valor', NOW())");
+          $avisoInsertado = true; // Establece la variable para que no se inserte nuevamente
         }
       }
-    }else{// If para corroborar la existencia del medicamento
-      $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Medicamento inexistente' WHERE IdMedi='$idMedicamentoFormuala'");
+    } else {
+      // Medicamento inexistente
+      $insertar = mysqli_query($conexion, "UPDATE medicamentosformulas SET EstadoFRM= 'Medicamento inexistente', FarmaciaMED=NULL WHERE IdMedi='$idMedicamentoFormuala'");
+
+      // Verifica si el aviso no ha sido insertado antes
+      if (!$avisoInsertado) {
+        $Aviso = mysqli_query($conexion, "INSERT INTO avisos (IdFormulaAviso, FechaAviso) VALUES ('$valor', NOW())");
+        $avisoInsertado = true; // Establece la variable para que no se inserte nuevamente
+      }
     }
   }
 

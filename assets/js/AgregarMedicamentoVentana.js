@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="mauso">
             <p>Nombre del medicamento ${i}</p>
             <div>Escriba en este espacio el nombre completo del medicamento que hay en formula</div>
-            <input type="text" name="Medicamento${i}" id="NombreMedicamento${i}" placeholder="Nombre del medicamento" class="mauso-texto">
+            <input type="text" name="Medicamento${i}" id="NombreMedicamento${i}" placeholder="Nombre del medicamento" class="mauso-texto" required> 
             <section id="medicamento${i}" class="mauso-resultados scrall fored">
              
             </section>
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Cantidad establecida</p>
-                <input type="text" name="cantidad${i}" id="" placeholder="Cantidad en numeros" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="text" name="cantidad${i}" id="" placeholder="Cantidad en numeros" class="mauso-texto encojer" required>
               </div>
             </section>
           </section>
@@ -286,13 +286,13 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="mauso">
                 <p>Concentración</p>
                 <!-- <div>Es posible que el codigo no aparezca en su formula, no rellene esta opción entonces</div> -->
-                <input type="text" name="concentracion${i}" id="" placeholder="Concentracion del medicamento" class="mauso-texto">
+                <input type="text" name="concentracion${i}" id="" placeholder="Concentracion del medicamento" class="mauso-texto" required>
               </div>
             </section>
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Via del medicamento</p>
-                <input type="text" name="via${i}" id="" placeholder="Via" class="mauso-texto encojer" accept=".png, .jpg,">
+                <input type="text" name="via${i}" id="" placeholder="Via" class="mauso-texto encojer" required>
               </div>
             </section>
           </section>
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           <div class="mauso">
             <p>Posologia</p>
-            <textarea name="posologia${i}" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Cada cuanto debe tomar el medicamento"></textarea>
+            <textarea name="posologia${i}" id="" cols="30" rows="10" class="mauso-texto rezine-none" placeholder="Cada cuanto debe tomar el medicamento" required></textarea>
           </div>
         `;
 

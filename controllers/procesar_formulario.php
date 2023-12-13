@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Establecer el valor de estado como 1
     $estado = 1;
+    $copago= 1;
 
     // Validación de contraseña y confirmar contraseña
     $confirmar_password = $_POST["passwordusuario"];
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </script>";
             } else {
                 // Insertar datos en la base de datos
-                $sql = "INSERT INTO usuarios (nombre, apellido, tipo_documento, documento, correo, passwordusuario, telefono, idEps, idrol) VALUES ('$nombre', '$apellido', '$tipo_documento', '$documento', '$correo', '$passwordusuario', '$telefono', '$idEps', '$idrol')";
+                $sql = "INSERT INTO usuarios (nombre, apellido, tipo_documento, documento, correo, passwordusuario, telefono, idEps, idrol,idcopago) VALUES ('$nombre', '$apellido', '$tipo_documento', '$documento', '$correo', '$passwordusuario', '$telefono', '$idEps', '$idrol','$copago')";
                 if (mysqli_query($conexion, $sql)) {
                     echo "<script>
                         Swal.fire({

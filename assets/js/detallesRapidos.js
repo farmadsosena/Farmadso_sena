@@ -22,6 +22,12 @@ document
   });
 
 function enviar_recibir_datos(card,card_medicamento) {
+  if(card_medicamento){
+    if(card_medicamento.classList.contains("medicamento_result")){
+      var id_medi_relacionado = card_medicamento.getAttribute("data-im");
+      set_medicamentos_masBuscado(id_medi_relacionado);
+    }
+  }
   $(".container-rapido").css("display", "none");
   $(".cont-spinner-deta_med").css("display", "flex");
   $(".venergar-info").addClass("active-venergar-info");
