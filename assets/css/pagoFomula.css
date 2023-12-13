@@ -387,7 +387,7 @@ body{
     padding: 0px 30px 30px 30px;
     width: 100%;
     font-size: 15px;
-    height: 18rem;
+    height: 20rem;
     gap: 10px;
     transition: .3s ease;
     overflow: auto;
@@ -395,10 +395,12 @@ body{
   
 }
 
+
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1){
     /* border: 1px solid; */
     width: 100%;
     display: flex;
+    align-items: center;
     height: 10rem;
     flex-direction: column;
 }
@@ -431,11 +433,16 @@ body{
 }
 
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>div>textarea{
-    padding: 2px;
+    padding-left: 20px;
+    text-transform: capitalize;
     width: 100%;
     border: 2px solid #c7c7c7;
     border-radius: 10px;
     transition: .3s ease;
+    resize: none; /* Evita que el usuario pueda redimensionar el textarea */
+    height: 50px; /* Establece la altura fija deseada */
+    max-height: 50px; /* Establece la altura máxima para evitar que se expanda más */
+    min-height: 60px;
 }
 
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(1)>div>input{
@@ -454,7 +461,7 @@ body{
     width: 100%;
     /* border: 1px solid; */
     height: 16rem;
-    padding-top: 15px;
+    
 }
 
 .menu>section:nth-child(1)>.menu-dos>form>section:nth-child(2)>header{
@@ -541,10 +548,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: start;
+    gap: 10px;
     /* border: 1px solid; */
-    height: 50%;
+    height: 60%;
     width: 100%;
+    overflow: auto;
 }
 .menu>section:nth-child(2)>.contenedor>article{
     /* border: 1px solid; */
@@ -649,11 +658,12 @@ body{
     /* border: 1px solid; */
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    height: 5rem;
+    padding-top: 10px;
     padding-left: 40px;
     padding-right: 40px;
+    gap: 15px;
 }
 
 .menu>section:nth-child(2)>.total>span{
@@ -684,8 +694,8 @@ body{
 .menu>section:nth-child(2)>.total>div:nth-child(2){
     display: flex;
     gap: 10px;
-    justify-content: start;
-    align-items: center;
+    justify-content: end;
+    
     /* border: 1px solid; */
 }
 
@@ -708,4 +718,23 @@ body{
     color: gray;
 }
 
+.resultformulas{
+    font-size: 13px;
+    color: gray;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.resultformulas>article{
+    display: flex;
+    justify-content: space-between;
+}
+
+.resulttotal{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}

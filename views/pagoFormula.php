@@ -4,6 +4,8 @@ if (!$_SESSION['id']) {
     header('location: login.php');
 }
 include("../config/Conexion.php");
+
+
 $idFormula = $_SESSION["clave"];
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
 $result = $conexion->query($sql);
@@ -27,6 +29,8 @@ $result = $conexion->query($sql);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <!-- Enlace al JavaScript de Toastr.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
     <title>Pedido Fórmula</title>
 </head>
 
@@ -41,6 +45,7 @@ $result = $conexion->query($sql);
         </div>
         <p>Cargando...</p>
     </section>
+    <?php require 'factura.html'; ?>
     <div class="container">
         <header class="cabecera">
             <section>
@@ -84,7 +89,7 @@ $result = $conexion->query($sql);
         <section>
             <article class="menu-uno">
                 <section>
-                    <span></span>
+                    <span><img src="../assets/img/" alt=""></span>
                 </section>
 
                 <section>
@@ -106,17 +111,17 @@ $result = $conexion->query($sql);
 
                     <article>
                         <!-- <button>tienda<i class="fa-brands fa-cc-amazon-pay"></i></button> -->
-                       
-                            <button>
-                                <a href="paypal.php">
+
+                        <button>
+                            <a href="paypal.php">
                                 <span>
                                     <i class="fa-brands fa-paypal"></i>
                                 </span>
                                 <span>Pay</span><span>Pal</span>
-                                </a>
-                            </button>
+                            </a>
+                        </button>
 
-                        
+
                         <!-- <button><i class="fa-brands fa-google-pay"></i></button> -->
                     </article>
                 </section>
@@ -141,7 +146,7 @@ $result = $conexion->query($sql);
 
                     <section>
                         <header>
-                            <h1>Dirección de Envío</h1>
+                            <h1>ContraEntrega</h1>
                         </header>
                         <div>
 
@@ -159,10 +164,10 @@ $result = $conexion->query($sql);
                     </section>
                     <section>
                         <input type="text" name="correo" placeholder='Correo'>
-                        <div>
+                        <!-- <div>
                             <input type="checkbox" name="" id="">
                             <p>Enviarme novedades y ofertas por Correo Electrónico</p>
-                        </div>
+                        </div> -->
                     </section>
                     <button name='realizarcompra' class="saveContraentrega"></button>
                 </form>
@@ -175,106 +180,119 @@ $result = $conexion->query($sql);
             <div class="contenedor">
                 <?php
                 if ($result->num_rows > 0) {
+                    $subtotalfinal = 0;
+                    $medicamentos = array();
+                    $subtotal = 0;
+                    $medicamentosList = array();
+
                     while ($row = $result->fetch_assoc()) {
                         $nombreMedicamento = $row["medicamento"];
                         $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo 
-                        WHERE nombre ='$nombreMedicamento'");
+                         WHERE nombre ='$nombreMedicamento'");
                         $cos = mysqli_fetch_assoc($datosMedicamento);
 
-
                         if (mysqli_num_rows($datosMedicamento) > 0) {
-
                             echo '<article>
-                            <div>
-                                <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
-                                <p>1</p>
-                            </div>
-                            <div>
-                                <p>' . $nombreMedicamento . '</p>
-                                <p>100mg</p>
-                            </div>
-                            ';
+                                    <div>
+                                        <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
+                                        <p>' . $cos['CantidadMedi'] . '</p>
+                                    </div>
+                                    <div>
+                                        <p>' . $nombreMedicamento . '</p>
+                                        <p>'.$cos['Concentracion'].'</p>
+                                    </div>';
+
                             $estadoMedicamento = $row["EstadoFRM"];
                             if ($estadoMedicamento !== "Disponible") {
                                 echo '<div>
-                                    <p>' . $row["EstadoFRM"] . '</p>
-                                 </div>';
+                                        <p>' . $row["EstadoFRM"] . '</p>
+                                    </div>';
                             } else {
-                                $costo = $cos['precio'] * $cos['CantidadMedi'];
-                                $subtotal = $costo;
-                                // $id = $cos['idmedicamento'];
-                                // // Agrega el producto al array $medicamentos
-                                // $cos['costo'] = $costo;
-                                // $medicamentosList[$id] = $cos['CantidadMedi'];
-                                // $medicamentos[] = $cos;
+                                $id = $cos['idmedicamento'];
+                                $costo = $cos['CantidadMedi'] * $cos['precio'];
+                                $subtotal += $costo;
+
+                                $cos['costo'] = $costo;
+                                $medicamentosList[$id] = $cos['CantidadMedi'];
+                                $medicamentos[] = $cos;
                                 echo '<div>
-                                     <p>$' . $cos["precio"] . '</p>
+                                    <p>$' . $cos["precio"] . '</p>
                                 </div>';
                             }
                             echo "</article>";
                         }
-                        
                     }
+
+
+                    // echo json_encode($response);
                 }
-
-                $response = array(
-                    // 'medicamentos' => $medicamentos,
-                    // 'subtotal' => $subtotal
-                );
-
-                // $_SESSION['medicamentos'] = $medicamentosList;
-                
-                echo json_encode($response);
                 ?>
                 <!-- border -->
             </div>
-
-            <article class="comprar">
+            <!-- <article class="comprar">
                 <input type="text" placeholder="Tarjeta de Regalo o Código de descuento">
                 <button> Usar</button>
-            </article>
-
+            </article> -->
             <article class="total">
-                <span>
-                    <h2>Subtotal</h2>
-                    <h3>Envios</h3>
-                </span>
-                <span>
-                    <h1 class='subtotalvalor'><?php
-                                                // if ($costo > 0) {
-                                                //     echo '$' . "" . $subtotal;
-                                                // } else {
-                                                //     echo 0;
-                                                // }
-                                                 ?>
-                    </h1>
-                    <h3>Calculado en el siguiente paso</h3>
-                </span>
-            </article>
+                <div class='resultformulas'>
+                    <h4>Subtotal</h4>
+                    <article>
+                        <p>solo productos</p>
+                        <p><?php echo '$' .$subtotal; ?></p>
+                    </article>
+                </div>
+                <div class='resultformulas'>
+                    <?php
+                    $usu = $_SESSION['usu'];
+                    $adres = mysqli_query($conexion, "SELECT regimen FROM adres WHERE cedula = $usu");
+                    $copagoid = mysqli_fetch_assoc($adres);
 
-            <article class="total">
-                <div>
+
+
+                    $copago_query = mysqli_query($conexion, "SELECT * FROM usuarios
+                            INNER JOIN copagos C ON C.idcopago = usuarios.idcopago WHERE documento ='$usu'");
+                    $copagoid = mysqli_fetch_assoc($copago_query);
+                    $precio_medicamento = $cos['precio'];
+                    $porcentaje_copago = $copagoid['porcentaje'];
+                    $copago = $precio_medicamento * $porcentaje_copago;
+                    ?>
                     <h3>Total</h3>
+                    <article>
+                        <p>Incluye envío domicilio</p>
+                        <p><?php echo '$' .$adicion = 3500; ?></p>
+                    </article>
+                    <article>
+                        <p>Incluye Copago
+                        <p><?php echo '$' .$copago; ?></p>
+                    </article>
 
-                    <p>Incluye $ <?php echo $adicion = 3500 ?> de envio domicilio </p>
+
                 </div>
-                <div>
+                <div class='resulttotal'>
                     <p>COP</p>
-                    <h1><?php 
-                    // $total = $subtotal + $adicion;
-                    //     if ($subtotal > 0) {
-                    //         echo '$' . "" . $valor = $total;
-                    //     } else {
-                    //         echo 0;
-                    //     }
-                        ?></h1>
+                    <h4>
+                        <?php
+                        // Se asume que $subtotal está definido en otro lugar del código
+                        echo '$' . ($subtotalfinal = $subtotal + $adicion + $copago);
+                        $response = array(
+                            'medicamentos' => $medicamentos,
+                            'subtotal' => $subtotalfinal
+                        );
+
+                        $_SESSION['medicamentos'] = $medicamentosList;
+                        $_SESSION['subtotal'] = $subtotalfinal;
+                        ?>
+                    </h3>
+
                 </div>
             </article>
+
+
         </section>
     </main>
     <script src='../assets/js/contraEntregaFormula.js'></script>
 
-    <script src="../assets/js/consultarCart.js"></script> 
+    <!-- <script src="../assets/js/consultarCart.js"></script>  -->
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
@@ -288,6 +306,7 @@ $result = $conexion->query($sql);
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
+    <script src="../assets/js/obtenerFactura.js"></script>
 </body>
 
 </html>
