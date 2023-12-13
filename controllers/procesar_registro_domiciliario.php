@@ -9,6 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $tipo_vehiculo = $_POST["tipovehiculo"];
     $estadolaboral = "Trabajando";
     $estadoAcep = 1;
+
+    $consulta= mysqli_query($conexion,"SELECT * FROM domiciliario WHERE idusuario= '$id_usuario' and EstadoAcept='1'");
+
+    if(mysqli_num_rows($consulta) > 0){
+        echo "<script> 
+        alert('Usted ya hizo una solicitud para pedir ser una farmacia, por tanto tiene que esperar la respuesta por su correo')
+        window.location= '../views/Usuario.php'
+        </script>";
+        exit; // Detener la ejecución del código si hay un error al guardar la imagen
+    }
     
     if (isset($_POST["tipoCuenta"])) {
         $tipoCuenta = $_POST["tipoCuenta"];
