@@ -32,13 +32,14 @@ if (contenedorGuardado) {
     botonGuardado.classList.add('btnActive');
   }
 } else {
-  document.getElementById('Inic').style.classList.add('doss');
+  document.getElementById('Inic').classList.add('doss');
   document.getElementById('uno').style.display = 'flex';
-
 }
-// Mostrar el contenedor "uno" por defecto
 
 mostrarContenedoresMenu('uno', document.getElementById('Inic'));
+
+// Mostrar el contenedor "uno" por defecto
+
 
 
 const rectElements = document.querySelectorAll('.rect');
