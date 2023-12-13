@@ -86,7 +86,8 @@ if ($result->num_rows > 0) {
         }
         echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $fila["stock"] . "' value='1'>";
         echo "</div>";
-        echo "<input type='submit' name='comprar' value='Comprar' class='comprar-tarje-comp'>";
+        echo "<button class='comprar-tarje-comp'>Comprar</button>";
+        // echo "<input type='submit' name='comprar' value='Comprar' class='comprar-tarje-comp'>";
         echo "</div>";
         echo "</form>";
     }

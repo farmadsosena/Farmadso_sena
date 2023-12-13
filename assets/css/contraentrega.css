@@ -143,8 +143,10 @@ body {
     width: 100% !important;
 }
 
-.saveContraentrega {
+#btn-compra {
+    border: none;
     height: 3rem;
+    border-radius: .5em;
     width: 50%;
     background-color: var(--azulClaro);
     color: var(--blanco);
@@ -155,28 +157,7 @@ body {
     position: relative;
 }
 
-.saveContraentrega::after{
-    content: 'Realizar compra';
-    width: 100%;
-    height:100%;
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    left: 0;
-    transition: all .3s ease;
-    background-color: var(--azulOscuro);
-    clip-path: polygon(0% 0%, 95% 0, 100% 50%, 94% 100%, 0% 100%);
-}
 
-
-.saveContraentrega:hover::after {
-
-    clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%);
-
-}
 
 .cartView {
     overflow: hidden;

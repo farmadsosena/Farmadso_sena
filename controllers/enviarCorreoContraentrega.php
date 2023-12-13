@@ -9,10 +9,12 @@ require '../correo/PHPMailer.php';
 require '../correo/SMTP.php';
 require '../correo/Exception.php';
 
+
+
+// Verificar si se envió un correo electrónico desde el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener el valor del campo de correo electrónico
-   $correo = $email;
-
+    $correo = $_POST['correo'];
     try {
         // Tu código existente aquí
 
@@ -31,12 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Configuración de los destinatarios y el contenido del correo
         $mail->setFrom('mejiayohany6@gmail.com', 'Compra exitosa'); // Remitente
-        $mail->addAddress($correo); // Destinatario
+        $mail->addAddress($correo);
+        // $mail->addAddress('yohsantanilla@misena.edu.co', ''); // Destinatario
         $mail->addReplyTo('info@example.com', 'Information'); // Dirección de respuesta
         $mail->isHTML(true); // Habilita el formato HTML
         $mail->Subject = 'Compra realizada '; // Asunto del correo
 
         // Contenido del correo en formato HTML
+
+
         // Contenido del correo en formato HTML (ejemplo de factura)
         $mail->Body = '
 <h2 style=" text-aling:center ; ">FARMADSO</h2>
@@ -56,8 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Body .= $DATA_ALL[$i];
         }
 
-
-        $mail->Body .= '</table><br> <p>Subtotal de Compra <b>' . intval($total) . '</b></p>';
+        $mail->Body .= '</table><br> <p>Subtotal de Compra <b>' . intval($subtotal) . '</b></p>';
 
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; // Cuerpo alternativo en texto plano para clientes que no admiten HTML
 

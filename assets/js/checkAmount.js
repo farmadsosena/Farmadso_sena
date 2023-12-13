@@ -3,10 +3,10 @@ function consultarMonto(callback) {
         .then((response) => response.json())
         .then(data => {
             if (data.state === false) {
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
             } else if (data.state === true) {
                 const monto = data.amount;
-    
+
                 convertirPesosADolares(monto, function (pesoFinal) {
                     paypal.Buttons({
                         style: {
@@ -16,23 +16,21 @@ function consultarMonto(callback) {
                         },
                         createOrder: function (data, actions) {
 
-                           
-                            
+
+
                             return actions.order.create({
                                 purchase_units: [{
                                     amount: {
                                         value: pesoFinal // Monto de compra
                                     }
                                 }]
-                                
-                            });
 
-                           
+                            });
 
                         },
                         onApprove: function (data, actions) {
                             actions.order.capture().then(function (detalles) {
-                                document.getElementById('modalCargar').style.display ='flex';
+                                document.getElementById('modalCargar').style.display = 'flex';
                                 fetch('../controllers/procesarCompra.php', {
                                     method: "POST",
                                     headers: {
@@ -42,21 +40,24 @@ function consultarMonto(callback) {
                                         detalles: detalles
                                     })
                                 })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.success === true) {
-                                        document.getElementById('modalCargar').style.display ='none';
-                                        toastr.success('Compra realizada correctamente');
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Hubo un error:', error);
-                                });
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success === true) {
+                                            document.getElementById('modalCargar').style.display = 'none';
+                                            IDCOMPRA = data.idcompra;
+                                            toastr.success('Compra realizada correctamente');
+                                            ConsultarDataFactura(IDCOMPRA);
+                                        }
+                                        
+                                    })
+                                    .catch(error => {
+                                        console.error('Hubo un error:', error);
+                                    });
                             });
                         },
                         onCancel: function (data) {
                             toastr.warning("Pago cancelado");
-                            document.getElementById('modalCargar').style.display ='none';
+                            document.getElementById('modalCargar').style.display = 'none';
                         }
                     }).render('#paypal-button-container');
                 });

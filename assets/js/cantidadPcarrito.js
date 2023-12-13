@@ -6,7 +6,7 @@ $(document).ready(function() {
         dataType: 'json',
         success: function(response) {
             // Actualizar el contador de usuarios en la página
-            $('#productCount').text(response.count);
+            $('#cantidadFinal').text(response.count);
         },
         error: function(error) {
             console.log(error);

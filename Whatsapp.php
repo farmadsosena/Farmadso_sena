@@ -14,4 +14,4 @@ Hemos visto que tiene una formula medica por reclamar, entre al siguiente enlace
 $api=$client->sendChatMessage($to,$body);
 
 // print_r($api);
-?>Ñ
+?>

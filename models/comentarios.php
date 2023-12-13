@@ -1,6 +1,6 @@
 <?php
 
-$consulsql = mysqli_query($conexion, "SELECT * FROM comentario ORDER BY idComentario ASC");
+$consulsql = mysqli_query($conexion, "SELECT * FROM comentarios ORDER BY idcomentario ASC");
 
 if ($consulsql) {
   if (mysqli_num_rows($consulsql) > 0) {

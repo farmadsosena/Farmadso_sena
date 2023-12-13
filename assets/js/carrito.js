@@ -1,9 +1,9 @@
 // $(document).ready(function () {
-  
+
 $('.cardProductoS').submit(function (e) {
   e.preventDefault();
   var form = $(this);
-var formData = form.serialize();
+  var formData = form.serialize();
 
   $.ajax({
     url: '../controllers/agregarCarrito.php',
@@ -23,11 +23,18 @@ var formData = form.serialize();
         });
       } else if (response === 'nostock') {
         // Mostrar la alerta de error con barra de progreso
-        toastr.error('No hay suficiente stock disponible para agregar el producto', 'Error', {
+        toastr.warning('No hay suficiente stock disponible para agregar el producto', 'Error', {
           timeOut: 1000, // Duración de 1 segundo
           progressBar: true // Barra de progreso activada
         });
-      } else if (response === 'noSession') {
+      }else if (response === 'agotado') {
+        // Mostrar la alerta de error con barra de progreso
+        toastr.error('Producto Agotado', 'Error', {
+          timeOut: 1000, // Duración de 1 segundo
+          progressBar: true // Barra de progreso activada
+        });
+      } 
+      else if (response === 'noSession') {
         // Si no hay sesión activa, redirigir a la página de inicio de sesión
         toastr.warning('Para agregar productos al carrito, necesitas iniciar sesión', 'Advertencia', {
           timeOut: 2500, // Duración de 1 segundo
@@ -128,7 +135,7 @@ function eliminarProductoDelCarrito(idProducto) {
   $.ajax({
     url: '../controllers/eliminarCarrito.php',
     type: 'POST',
-    data: {id_Productounitario:idProducto },
+    data: { id_Productounitario: idProducto },
     success: function (response) {
       toastr.success("El medicamento se eliminó del carrito", "Correcto", toastrOptions);
       consultarCarrito();
@@ -164,9 +171,9 @@ function eliminarProductosDelCarrito(idsProductos) {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Delegación de eventos para el contenedor "tabla-contenedor"
-  $('#tabla-contenedor').on('change', '.checkboxMarcados', function() {
+  $('#tabla-contenedor').on('change', '.checkboxMarcados', function () {
     // Obtener la cantidad de checkboxes marcados
     var checkboxesMarcados = $('.checkboxMarcados:checked').length;
 

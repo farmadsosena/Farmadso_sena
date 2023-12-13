@@ -1,12 +1,17 @@
+<?php
+require '../controllers/validacion_usu_tienda.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../assets/css/contraentrega.css" />
     <link rel="stylesheet" href="../assets/css/pagoConCard.css" />
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ez9zJV1raHt9BY6abu0AcnL0SNceZlHQ+6RFtUpO2wqBYYZSxUp6lv/KG5UWUUp9" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +25,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <!-- Enlace al JavaScript de Toastr.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+    integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+    crossorigin="anonymous"></script>
     <title>Contraentrega</title>
 </head>
 
@@ -33,6 +42,7 @@
         </div>
         <p>Cargando...</p>
     </section>
+    <?php require 'factura.html'; ?>
     <main id="mainFormContraentrega">
         <section class="columnFormContraentrega">
             <h1 id="animated-text">
@@ -48,7 +58,8 @@
                 <div>
                     <p id="payContinue">Seguir comprando <i class='bx bx-basket' style="font-size: 1.2em"></i></p>
                     <p id="cantidadFinal">0</p>
-                    <script src="../assets/javascript/cantidadP.js"></script>
+
+                    <script src="../assets/js/cantidadPcarrito.js"></script>
                     <i class='bx bx-cart' id="viewCartIcon"></i>
                 </div>
 
@@ -60,19 +71,14 @@
 
                 <form method="POST" id="form-eliminar">
                     <p>Monto final a pagar <b id="subtotal"></b></p>
-
                     <div id="tabla-contenedor">
-                    
-
-
-
                     </div>
                 </form>
             </div>
 
-            <form class="formulario_contraentrega activeForm" autocomplete="off" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
+            <form class="formulario_contraentrega activeForm" autocomplete="off" method="post" id="contraentregaForm"
+                onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
                 <img src="../assets/img/LogoFarmadsoLargo.png" alt="" class="logoFarmadso">
-
                 <article class="groupTwo">
                     <div class="inputCont">
                         <label for="nombre">Nombre</label>
@@ -94,8 +100,6 @@
                         <span> <i style="color: #2d57a8" class='bx bxs-map-pin'></i>
                         </span>
                     </div>
-
-
                 </article>
 
                 <article class="groupTwo">
@@ -113,12 +117,15 @@
                 </article>
 
                 <div class="inputCont">
-                    <label for="instrucciones">Instrucciones de envio</label>
-                    <textarea name="instrucciones" id="instrucciones" rows="3"></textarea>
+                    <label for="instrucciones">Indicaciones de envio</label>
+                    <textarea name="instrucciones" id="instrucciones" rows="3" placeholder=" opcional"></textarea>
                 </div>
+                
 
                 <div class="groupOne">
-                    <button name='realizarcompra' class="saveContraentrega"></button>
+                    <button id="btn-compra" class="saveContraentrega" name='realizarcompra' >
+                    Validando  <i class="fa-solid fa-spinner fa-spin"></i>
+                    </button>
                 </div>
             </form>
         </main>
@@ -126,6 +133,8 @@
 
     </main>
     <script src="../assets/js/contraEntrega.js"></script>
+    <script src="../assets/js/consultarCart.js"></script>
+
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)
         if (window.innerWidth <= 768) {
@@ -139,7 +148,8 @@
             bodyContraentrega.style.height = windowHeightVh + "px";
         }
     </script>
- <script src="../assets/js/consultarCart.js"></script>
+    <script src="../assets/js/obtenerFactura.js"></script>
+    
 </body>
 
-</html> 
+</html>

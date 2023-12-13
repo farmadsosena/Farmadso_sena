@@ -42,7 +42,7 @@ if (!empty($idUserSession['sessionId'])) {
 
 $resultadoCarrito = mysqli_query($conexion, $consultaCarrito);
 $cantidad_carrito = mysqli_num_rows($resultadoCarrito);
-if ($cantidad_carrito == 0) {
+if ($cantidad_carrito === 0) {
     $response = "nohay";
 } else {
     $response = array(

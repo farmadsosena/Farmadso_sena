@@ -2,7 +2,9 @@
 session_start();
 #Validacion de rol
 include('../config/Conexion.php');
-
+if (!$_SESSION['id']) {
+  header('location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

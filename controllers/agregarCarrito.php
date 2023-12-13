@@ -26,18 +26,19 @@ function buscarProductoInventario($idmedicamento, $cantidadProducto)
     $resultado_consult = mysqli_fetch_assoc($resultado);
     $candidadStock = $resultado_consult['stock'];
     $precio = $resultado_consult['precio'];
-    
+
 
     $costoTotal = $cantidadProducto * $precio;
 
 
-    if ($cantidadProducto > $candidadStock) {
+    if ($candidadStock <= 0) {
+        echo json_encode('agotado');
+    }elseif ($cantidadProducto > $candidadStock) {
         // En caso de que no haya suficiente stock en inventario del producto seleccionado
         echo json_encode('nostock');
     } else {
         // Llamamos a la función para consultar productos del carrito
         $stateCart = cartQuery($idmedicamento);
-
         // Validamos el resultado de la funcion cartQuery()
         $state = ($stateCart === null) ? insertCart($idmedicamento, $cantidadProducto, $costoTotal) : updateCart($idmedicamento, $cantidadProducto, $costoTotal);
     }
@@ -57,8 +58,7 @@ function cartQuery($idmedicamento)
         } else {
             return null;
         }
-    } else if (isset($_SESSION['id'])) {
-
+    } elseif (isset($_SESSION['id'])) {
         $idusuario = $_SESSION['id'];
         $consulta = $conexion->query("SELECT idcarrito, cantidadcarrito, precio FROM carrito WHERE idusuario = '$idusuario' AND idmedicamento = '$idmedicamento'");
 
@@ -77,7 +77,7 @@ function userValidate()
     return $idUser;
 }
 
-function insertCart($idmedicamento,$cantidadProducto,$precio,)
+function insertCart($idmedicamento, $cantidadProducto, $precio,)
 {
     global $conexion;
     // Obtener el id de la session activa 
@@ -102,7 +102,7 @@ function insertCart($idmedicamento,$cantidadProducto,$precio,)
 
 function updateCart($idmedicamento, $cantidadProducto, $amount)
 {
-    
+
     global $conexion;
     // Obtener el id de la session activa 
     $idUser = userValidate();
@@ -134,8 +134,8 @@ function updateCart($idmedicamento, $cantidadProducto, $amount)
         INNER JOIN inventario ON carrito.idmedicamento  = inventario.idmedicamento
         WHERE carrito.idmedicamento  = '$idmedicamento' and carrito.idusuario = '$idUserBd'
         ");
-        
-        
+
+
         if ($queryCart->num_rows > 0) {
 
             $cartArticle = $queryCart->fetch_assoc();
@@ -149,7 +149,7 @@ function updateCart($idmedicamento, $cantidadProducto, $amount)
         }
     }
 
-    
+
     $data = array(
         'correcto' => 'medicamento actualizado en carrito'
     );

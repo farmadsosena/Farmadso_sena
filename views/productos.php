@@ -50,15 +50,14 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <div id="tabla-contenedor">
 
                     <section>
-
                     </section>
                 </div>
             </form>
 
             <div class="contboton" id="contC">
                 <button class="botonCarrito deleteCarrito">Quitar marcados</button>
-                <a href="pago.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
-                <a href="views/pasarela.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
+                <a href="paypal.php" class="pagar paypal">Pagar con PayPal <i class="fa-brands fa-paypal"></i></a>
+                <a href="contraentrega.php" class="pagar">Pago contra entrega <i class="fa-solid fa-money-bill"></i></a>
             </div>
 
 
@@ -223,7 +222,7 @@ require_once "../controllers/validacion_usu_tienda.php";
         <div class="menuResponsive">
             <div class="profileResponsive">
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>">
                     <p>
@@ -243,11 +242,12 @@ require_once "../controllers/validacion_usu_tienda.php";
                 <div class="enlaceMenu" id="abrirEditar2"><a href="Usuario.php" class="formulas-menuNav-tienda"><i class="fa-solid fa-sheet-plastic"></i></i>Formulas</a></div>
                 <!-- <div id="" class="enlaceMenu" onclick="verCompra()"><i class="fa-solid fa-shopping-basket"></i>Mis compras</div> -->
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <a href="../config/cerrarSesion.php" class="enlaceMenu"><i class="fa-solid fa-right-from-bracket"></i>Cerrar sesion</a>
                 <?php
                 }
+                
                 ?>
             </div>
         </div>
@@ -261,6 +261,9 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <input type="search" id="buscador_medicamento1" class="buscador_medicamentos" placeholder="Nombre medicamento">
                     <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
                 </div>
+                <?php
+                    echo $_SESSION["id"];
+                    ?>
             </section>
             <div id="abrirCarrito" class="addCarrito abrirCarrito">
                 <i class='bx bx-cart-alt'></i>
@@ -295,7 +298,7 @@ require_once "../controllers/validacion_usu_tienda.php";
             </div>
             <div class="profile-user">
                 <?php
-                if (isset($_SESSION["usu"])) {
+                if (isset($_SESSION["id"])) {
                 ?>
                     <a href="configuracion.php" class="perfil-tienda" title="<?php echo $rr["nombre"] ?>"><img src="<?php echo $rr["imgUser"] ?>" alt="<?php echo $rr["nombre"] ?>"></a>
                 <?php
@@ -678,7 +681,7 @@ require_once "../controllers/validacion_usu_tienda.php";
     <script src="../assets/js/slider_inicio_tienda.js"></script>
     <script src="../assets/js/Font.js"></script>
     <script src="../assets/js/carritoF.js"></script>
-    <script src="../assets/js/agregarCarrito.js"></script>
+    
     <script src="../assets/js/funcionMenutienda.js"></script>
     <script src="../assets/js/detallesRapidos.js"></script>
     <script src="../assets/js/consultarCarrito.js"></script>
