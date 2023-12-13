@@ -31,7 +31,7 @@ if(isset($_POST["id_domiciliario"])){
   if($consulta){
    $mysqli=mysqli_query($conexion, "SELECT * FROM domiciliario 
    INNER JOIN usuarios ON domiciliario.idusuario= usuarios.idusuario
-   WHERE EstadoAcept='$id'");
+   WHERE iddomiciliario='$id'");
    $row=mysqli_fetch_assoc($mysqli);
  
    $cuenta= "Domiciliario";
