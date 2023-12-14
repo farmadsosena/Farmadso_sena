@@ -456,6 +456,23 @@ input[type="text"] {
   width: 20px;
 }
 
+
+.regresar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  position: relative;
+  top: 20px;
+  left: 300px;
+  background-color: var(--azulClaro);
+  height: 2rem;
+  text-decoration: none;
+  width: 10%;
+  color: #fff;
+  border-radius: 10px;
+}
+
 /*responsive contenido*/
 
 /* Estilos para pantallas pequeñas (menos de 768px de ancho) */
@@ -465,7 +482,19 @@ input[type="text"] {
     margin-right: 0; /* Eliminar el margen derecho */
   }
 
-
+  .regresar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 10px;
+    left: 360px;
+    width: 20%;
+    height: 1rem;
+    position: absolute;
+   padding: 10px 12px;
+   
+  }
   .contenedor-pestañas .opc {
     height: auto; /* Ajustar la altura automáticamente */
     margin-bottom: 5px; /* Espaciado entre pestañas */

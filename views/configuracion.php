@@ -129,11 +129,12 @@ $imgUser = $_SESSION['img'];
     <div id="miperfil" class="contenido-pestaña">
       <div class="vane">
         <div class="perfil">
-          <img src="<?php  echo  $imgUser?>" alt="" />
+          <img src="<?php echo $imgUser; ?>" alt="" />
           <div class="datos">
             <p class="nn"><?php echo $user['nombre'];?> <?php echo $user['apellido']; ?></p>
             <p><?php echo $user['correo']; ?></p>
           </div>
+          <a class="regresar" href="../views/Usuario.php">Regresar</a>
         </div>
 
         <form class="formdatos" action="../controllers/editar_perfil.php" method="POST">
