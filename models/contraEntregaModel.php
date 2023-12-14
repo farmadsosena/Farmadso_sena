@@ -45,6 +45,7 @@ class ContraEntregaModel
             $stmt->bind_param("siissssssss", $fecha_formateada, $subtotal, $estadoCompra, $direccion, $nombre, $apellido, $telefono, $email, $tipoPago, $idinvitado, $instrucciones);
         }
     
+        
         if ($stmt->execute()) {
             $idcompra = $this->conexion->insert_id;
             $_SESSION['idcompraContraentrega'] = $idcompra;
@@ -66,7 +67,7 @@ class ContraEntregaModel
                     $totaNum = intval($stock);
                     $subtotalProducto = $totaNum * $precio;
     
-                    $insertDetalleCompra = $this->conexion->query("INSERT INTO detallecompra (idcompra, idmedicamento, cantidad, preciototal) VALUES ('$idcompra', '$key', '$stock', '$subtotalProducto')");
+                    $insertDetalleCompra = $this->conexion->query("INSERT INTO detallecompra(idcompra, idmedicamento, cantidad, preciototal) VALUES ('$idcompra', '$key', '$stock', '$subtotalProducto')");
     
                     // Eliminar productos del carrito para este usuario o invitado
                     if (isset($idusuario)) {

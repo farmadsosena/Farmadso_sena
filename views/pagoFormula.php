@@ -25,6 +25,7 @@ $result = $conexion->query($sql);
 
     <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <!-- toast.js -->
     <!-- Enlace a la hoja de estilos de Toastr.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
@@ -89,7 +90,7 @@ $result = $conexion->query($sql);
         <section>
             <article class="menu-uno">
                 <section>
-                    
+
                 </section>
 
                 <section>
@@ -177,10 +178,11 @@ $result = $conexion->query($sql);
         </section>
 
         <section class='container2'>
-            <div class="contenedor">
+            <div class="contenedor" id="medicamentos">
                 <?php
-
+                $nombreAgotado = "";
                 if ($result->num_rows > 0) {
+
                     $subtotalfinal = 0;
                     $medicamentos = array();
                     $subtotal = 0;
@@ -223,10 +225,12 @@ $result = $conexion->query($sql);
                                     $medicamentos[] = $cos;
                                     echo '<div>
                             <p>$' . $cos["precio"] . '</p>
-                        </div>';
+                        </div>
+                        <div class="eliminarProducto" data-id="' . $cos['idmedicamento'] . '">Eliminar <i class="fa-solid fa-trash"></i></div>
+                        <input type="hidden" name="idProductos[]" value="' . $cos['idmedicamento'] . '  => ' . $fila['cantidadcarrito'] . '">';
                                 }
                             } else {
-                                $nombreAgotado = $cos['nombre'];
+
 
                                 echo '<div>
                                 
@@ -256,43 +260,52 @@ $result = $conexion->query($sql);
                 <!-- border -->
             </div>
             <article class="comprar">
-                <?php
-                
-                $datossimilar = mysqli_query($conexion, "SELECT *, Iv.stock AS stock,Fc.nombre FROM medicamentos
-                INNER JOIN inventario Iv ON Iv.idmedicamento = medicamentos.idmedicamento
-                INNER JOIN farmacias Fc ON Fc.IdFarmacia = medicamentos.idfarmacia
-                WHERE medicamentos.nombre LIKE '%$nombreAgotado%' AND medicamentos.nombre != '$nombreAgotado'");
-                if ($datossimilar) {
-                    if (mysqli_num_rows($datossimilar) > 0) {
-                        while ($cos = mysqli_fetch_assoc($datossimilar)) {
+
+                <h5>otros medicamentos de interes</h5>
+                <form autocomplete="off" method="post" id="formula" onsubmit="sendForm(event,'formula','../controllers/añadirMediFormula.php')">
+                    <?php
+                    $similarMedQuery = mysqli_query($conexion, "SELECT *, I.stock AS stock,medicamentos.idmedicamento AS idmedicamento FROM medicamentos
+               INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento
+               INNER JOIN farmacias Fc ON Fc.IdFarmacia = medicamentos.idfarmacia
+               WHERE  I.stock > 0");
+                    $estado = 'Disponible';
+                    if ($similarMedQuery) {
+                        $similares = array();
+                        while ($medicamento = mysqli_fetch_assoc($similarMedQuery)) {
+                            echo '<input type="hidden" name="idformula" value="' . $nombreFormula . '">';
+                            echo '<input type="hidden" name="idmedicamento" value="' . $medicamento['idmedicamento'] . '">';
+                            echo '<input type="hidden" name="idfarmacia" value="' . $medicamento['idfarmacia'] . '">';
+                            echo '<input type="hidden" name="estado" value="' . $estado . '">';
+                            echo '<input type="hidden" name="codigo" value="' . $medicamento['codigo']  . '">';
                             echo '<article>';
-                            echo '<div>
-                                <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
-                            </div>
-                            <div>
-                                <p>' . $cos['nombre'] . '</p>
-                                // <p>' . $cos['Concentracion'] . '</p>
-                            </div>';
-                            echo '<div>
-                                <p>$' . $cos["precio"] . '</p>
-                            </div>';
-                            echo '<div>
-                                <p>$' . $cos["farmacia"] . '</p>
-                            </div>';
+                            echo '<div>';
+                            echo '<img src="../uploads/imgProductos/' . $medicamento["imagenprincipal"] . '" alt="">';
+                            echo '</div>';
+                            echo '<div>';
+                            echo '<p>' . $medicamento['nombre'] . '</p>';
+                            echo '<p>$' . $medicamento["precio"] . '</p>';
+                            echo '</div>';
+                            echo '<div>';
+                            echo '<img src="../uploads/imgProductos/' . $medicamento["imgfarmacia"] . '" alt="">';
+                            echo '<p>' . $medicamento["Nombre"] . '</p>';
+                            echo '</div>';
+                            echo "<div class='cont_precio_cantidad'>";
+                            echo "<input type='number' class='card-cantidad' name='cantidad' min='1' max='" . $medicamento["stock"] . "' value='1'>";
+                            echo "</div>";
+                            echo '<div>';
+                            echo '<button name="hola"><i class="bx bx-message-square-add icon"></i></button>';
+                            echo '</div>';
+
                             echo '</article>';
                         }
                     } else {
-                        echo 'No se encontraron medicamentos similares para ' . $nombreAgotado;
+                        echo 'No se encontraron medicamentos similares';
                     }
-                }
-                ?>
-                
-                
+                    ?>
+                </form>
 
             </article>
-
-
-            <article class="total">
+            <article class="total" id="total">
                 <hr class="linea">
                 <div class='resultformulas'>
                     <h4>Subtotal</h4>
@@ -337,7 +350,7 @@ $result = $conexion->query($sql);
                                     echo 'Eres subsidiado';
                                 }
                             } else {
-                                echo 'No se encontró el régimen para esta cédula';
+                                echo 'No tienes ningun regimen aún';
                             }
                         } else {
                             echo 'Error en la consulta SQL';
@@ -470,6 +483,7 @@ $result = $conexion->query($sql);
         </section>
     </main>
     <script src='../assets/js/contraEntregaFormula.js'></script>
+    <script src='../assets/js/añadirMediFormula.js'></script>
 
     <script>
         // Verifica si el ancho de la ventana es menor que un cierto valor (ajusta el valor según tus necesidades)

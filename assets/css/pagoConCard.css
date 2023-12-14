@@ -30,7 +30,7 @@ body {
     padding: 2em;
     z-index: 1;
     overflow: auto;
-    height: 80% !important;
+    height: 100% !important;
 }
 #paypal-button-container >img{
     width: 90%;
@@ -177,10 +177,11 @@ body {
     display: flex;
     flex: none;
     box-sizing: border-box;
-    padding: 1em;
+    padding: 2em;
     overflow: auto;
     height: 100% !important;
-
+    justify-content: center;
+    align-items: center;
 }
 
 

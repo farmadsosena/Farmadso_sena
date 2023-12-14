@@ -189,7 +189,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </section>
       </header>
       <?php
-      if ($eps == 2) {
+      if (!$eps == 1) {
       ?>
         <section class="paginas" id="uno">
           <article class="formulas">
