@@ -34,6 +34,21 @@ function closeFormMedicine() {
     }
 }
 
+function closeEditar(){
+    var contMediVer = document.querySelector('.cont-medicine');
+    var contMedit = document.querySelector('.cont-editar-medicamento');
+    // Mostrar alerta
+    var confirmClose = confirm("Si vuelves, se perderá el contenido incluido en los campos. ¿Deseas continuar?");
+
+    if (confirmClose) {
+        // Cambiar el estilo de visualización
+        contMediVer.style.display = 'flex';
+        contMedit.style.display = 'none';
+
+        document.getElementById('medicineEdit').reset();
+        
+}}
+
 function openFormCategories() {
     var contMedicine = document.querySelector('.container-categoria');
     var contForm = document.querySelector('.categorias');

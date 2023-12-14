@@ -1,6 +1,7 @@
 <?php
 include('../config/Conexion.php');
-
+require_once '../models/Log.php';
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -84,6 +85,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="loader"></div>
     <p>Procesando cambios...</p>
 </div>';
+
+       
+$log  = new Log();
+ 
+$ip = $log::getIp();
+$type = $log::typeDispositive();
+$info = array(
+    'nivel' => 'INFO',   
+    'mensaje' => "Se han realizado un cambios en tus datos de farmacia ",
+    'ip' => $ip,
+    'id_usuario' => $_SESSION['id'],
+    'tipo' => $type 
+);
+$resultt = $log->insert($info);
 
     header("Location: ../views/panelAdmin.php");
     exit();

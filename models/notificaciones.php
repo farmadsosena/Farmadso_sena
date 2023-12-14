@@ -7,6 +7,8 @@ $resultado = mysqli_query($conexion, $sql);
 while ($datosCompra = $resultado->fetch_assoc()) {
 
     $idpaciente = $datosCompra["idUsuario"];
+
+    $idpaciente = $datosCompra["idUsuario"];
     $idCompra = $datosCompra["idcompra"];
     $direccionpaciente = $datosCompra["direccion"];
 
@@ -45,6 +47,9 @@ while ($datosCompra = $resultado->fetch_assoc()) {
         
            
 
+        
+           
+
             // Consulta para obtener idfarmacia del primer medicamento
             $consultaIdFarmacia = "SELECT idmedicamento, idfarmacia FROM medicamentos WHERE idmedicamento = ?";
             $stmtIdFarmacia = mysqli_prepare($conexion, $consultaIdFarmacia);
@@ -57,6 +62,8 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                 $rowIdFarmacia = $resultadoIdFarmacia->fetch_assoc();
                 $idmedicamento = $rowIdFarmacia["idmedicamento"];
                 $idfarmacia = $rowIdFarmacia["idfarmacia"];
+
+               
 
                
 
@@ -73,6 +80,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     $nombreFarmacia = $rowInfoFarmacia["nombreFarmacia"];
                     $direccionFarmacia = $rowInfoFarmacia["Direccion"];
                     
+                    
 
                     // Mostrar la información
                     echo '<article data-id="' . $datosCompra["idcompra"] . '" class="orderAvailable">';
@@ -85,6 +93,7 @@ while ($datosCompra = $resultado->fetch_assoc()) {
                     echo '<div class="customerData">';
                     echo '<span>Dirección: B/' . $direccionpaciente . '</span>';
                     echo '<span>Cliente: ' . $nombrePaciente . ' ' . $apellidoCliente . ' </span>';
+                    echo '<a href="tel: + ' . $telefonoCliente . '">' . $telefonoCliente . '</a>';
                     echo '<a href="tel: + ' . $telefonoCliente . '">' . $telefonoCliente . '</a>';
                     echo '</div>';
                     echo '<div class="buttonSeeMore" onclick="abrirNoti(' . $datosCompra["idcompra"] . ')">';
@@ -102,4 +111,5 @@ while ($datosCompra = $resultado->fetch_assoc()) {
         }
     }
 }
+?>
 ?>

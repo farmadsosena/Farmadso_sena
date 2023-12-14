@@ -261,7 +261,7 @@
                                     <input type="file" name="imgCategory" accept="image/*" />
                                 </section>
 
-                                <input type="submit" id="boton" name="enviarE" value="AgregarCategoria" class="boton_aggcategoria">
+                                <button type="submit" name="enviarE" class="boton_aggcategoria" >Agregar Categoría</button>
                             
                             </form>
 
@@ -282,7 +282,7 @@
                                     <input type="file" name="imgCategory" accept="image/*" />
                                 </section>
 
-                                <input type="submit" id="boton" name="enviarE" value="Editar" class="boton_aggcategoria">
+                                  <button type="submit" name="enviarE"  class="boton_aggcategoria">Actualizar Categoria</button>
                             
                             </form>
 

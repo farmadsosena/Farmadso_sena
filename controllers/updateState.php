@@ -1,12 +1,14 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include "../config/Conexion.php";
-       // Establecer la zona horaria a Colombia
-       date_default_timezone_set('America/Bogota');
+    require_once '../models/Log.php';
+    session_start();
 
+    
     // Evitar inyección SQL usando mysqli_real_escape_string
     $idCompra = mysqli_real_escape_string($conexion, $_POST['idCompra']);
 
+   
     // Obtener datos de la tabla comprasmasivas
     $consultaComprasMasivas = $conexion->prepare("SELECT cantidadFarmacias, cantidadConfirmada, HoraReclamada FROM comprasmasivas WHERE idcompra = ?");
     $consultaComprasMasivas->bind_param("i", $idCompra);
@@ -53,6 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $actualizarHora->close();
     }
 
+    $consulticacompra = $conexion->query("SELECT c.* FROM compra c WHERE c.idcompra = $idCompra");
+
+    $resultadits = $consulticacompra->fetch_assoc(); 
+    
+    $fechita = $resultadits['fecha'];
+    
     // Redireccionar de manera adecuada utilizando window en lugar de windows
     echo'
     <style>
@@ -86,6 +94,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="loader"></div>
     <p>Procesando cambios...</p>
 </div>';
+
+
+$log  = new Log();
+ 
+$ip = $log::getIp();
+$type = $log::typeDispositive();
+$info = array(
+    'nivel' => 'INFO',   
+    'mensaje' => "Se han realizado reclamo de compra del dia: ".$fechita." ",
+    'ip' => $ip,
+    'id_usuario' => $_SESSION['id'],
+    'tipo' => $type 
+);
+$resultt = $log->insert($info);
 
     echo "<script>window.location.href='../views/PanelAdmin.php';</script>";
 

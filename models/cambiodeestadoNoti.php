@@ -67,8 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                              VALUES ('$idCompra', '$cantidadDirecciones', 0, NULL, 1)";
                     $resultadoInsertarCantidadDirecciones = mysqli_query($conexion, $consultaInsertarCantidadDirecciones);
 
-                    if (!$resultadoInsertarCantidadDirecciones) {
-                        echo json_encode(array("status" => "error", "message" => "Error al insertar en comprasmasivas: " . mysqli_error($conexion)));
+                    if ($resultadoInsertarCantidadDirecciones) {
+
+                        $_SESSION['nuevoEstado'] = $nuevoEstado;
+                        // echo "Se insertó en comprasmasivas correctamente";
+                    } else {
+                        echo "Error al insertar en comprasmasivas: " . mysqli_error($conexion);
                     }
                 } else {
                     echo json_encode(array("status" => "error", "message" => "Error al insertar en reporteestadofinal: " . mysqli_error($conexion)));

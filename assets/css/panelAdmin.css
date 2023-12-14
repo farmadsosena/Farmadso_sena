@@ -934,6 +934,7 @@ input[type="date"]:focus {
     align-items: center;
     width: 100%;
     gap: 0px;
+
     border: 1px solid rgb(185, 185, 185);
 }
 
@@ -1083,6 +1084,21 @@ input[type="date"]:focus {
     align-items: flex-start;
     gap: 5px;
 }
+.venta{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#filtroVenta{
+    padding: 5px 5px;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+#filtroVenta{
+   outline: none; 
+}
+
 /* Estilo para la factura */
 .contenido-factura{
     display: flex;
@@ -1326,8 +1342,9 @@ color-datesish{
 
 .opciones-vol-busc {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     gap: 10px;
+    width: 100%;
     margin-bottom: 5px;
 }
 

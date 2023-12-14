@@ -32,3 +32,22 @@ document.getElementById('filtroInventario').addEventListener('input', function (
 });
 
 
+// FILTRA POR FECHA
+
+document.getElementById('filtroVenta').addEventListener('input', function () {
+    var filtro = this.value.toLowerCase().trim();
+    var articulos = document.querySelectorAll('.venta');
+
+    articulos.forEach(function(categoriV) {
+        var fecha = categoriV.querySelector('.fecha').textContent.toLowerCase();
+        
+        if (fecha.includes(filtro)) {
+            categoriV.style.display = 'flex';
+        } else {
+            categoriV.style.display = 'none';
+        }
+    });
+});
+
+
+
