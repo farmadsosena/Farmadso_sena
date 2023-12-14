@@ -7,7 +7,7 @@ require '../controllers/validacion_usu_tienda.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/pagoConCard.css">
+    <link rel="stylesheet" href="../assets/css/pagoConCardPay.css">
     <link rel="shortcut icon" href="../assets/img/logoFarmadso - cambio.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,7 +51,7 @@ require '../controllers/validacion_usu_tienda.php';
 
     <script src="../assets/js/checkAmount.js"></script>
     <script src="../assets/js/consultarCart.js"></script>
-    <script src="../assets/js/consultarformula.js"></script> 
+
     <script>
         function adjustHeight() {
             if (window.innerWidth <= 768) {

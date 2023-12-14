@@ -9,7 +9,7 @@ require '../controllers/validacion_usu_tienda.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../assets/css/contraentrega.css" />
-    <link rel="stylesheet" href="../assets/css/pagoConCard.css" />
+    <link rel="stylesheet" href="../assets/css/pagoConCardPay.css" />
     <link rel="stylesheet" href="../assets/css/animacionCarga.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ez9zJV1raHt9BY6abu0AcnL0SNceZlHQ+6RFtUpO2wqBYYZSxUp6lv/KG5UWUUp9" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Contenido del correo en formato HTML
 
+
         // Contenido del correo en formato HTML (ejemplo de factura)
         $mail->Body = '
 <h2 style=" text-aling:center ; ">FARMADSO</h2>

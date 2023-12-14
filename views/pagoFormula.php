@@ -143,7 +143,7 @@ $result = $conexion->query($sql);
                     </div>
                 </section> -->
 
-                <form class="formulario_contraentrega activeForm" autocomplete="off" method="post" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControlleradd.php')">
+                <form class="formulario_contraentrega activeForm" autocomplete="off" method="post" id="contraentregaForm" onsubmit="sendForm(event,'contraentregaForm','../controllers/contraEntregaControllerFormula.php')">
 
                     <section>
                         <header>
@@ -259,52 +259,7 @@ $result = $conexion->query($sql);
                 ?>
                 <!-- border -->
             </div>
-            <article class="comprar">
 
-                <h5>otros medicamentos de interes</h5>
-                <form autocomplete="off" method="post" id="formula" onsubmit="sendForm(event,'formula','../controllers/añadirMediFormula.php')">
-                    <?php
-                    $similarMedQuery = mysqli_query($conexion, "SELECT *, I.stock AS stock,medicamentos.idmedicamento AS idmedicamento FROM medicamentos
-               INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento
-               INNER JOIN farmacias Fc ON Fc.IdFarmacia = medicamentos.idfarmacia
-               WHERE  I.stock > 0");
-                    $estado = 'Disponible';
-                    if ($similarMedQuery) {
-                        $similares = array();
-                        while ($medicamento = mysqli_fetch_assoc($similarMedQuery)) {
-                            echo '<input type="hidden" name="idformula" value="' . $nombreFormula . '">';
-                            echo '<input type="hidden" name="idmedicamento" value="' . $medicamento['idmedicamento'] . '">';
-                            echo '<input type="hidden" name="idfarmacia" value="' . $medicamento['idfarmacia'] . '">';
-                            echo '<input type="hidden" name="estado" value="' . $estado . '">';
-                            echo '<input type="hidden" name="codigo" value="' . $medicamento['codigo']  . '">';
-                            echo '<article>';
-                            echo '<div>';
-                            echo '<img src="../uploads/imgProductos/' . $medicamento["imagenprincipal"] . '" alt="">';
-                            echo '</div>';
-                            echo '<div>';
-                            echo '<p>' . $medicamento['nombre'] . '</p>';
-                            echo '<p>$' . $medicamento["precio"] . '</p>';
-                            echo '</div>';
-                            echo '<div>';
-                            echo '<img src="../uploads/imgProductos/' . $medicamento["imgfarmacia"] . '" alt="">';
-                            echo '<p>' . $medicamento["Nombre"] . '</p>';
-                            echo '</div>';
-                            echo "<div class='cont_precio_cantidad'>";
-                            echo "<input type='number' class='card-cantidad' name='cantidad' min='1' max='" . $medicamento["stock"] . "' value='1'>";
-                            echo "</div>";
-                            echo '<div>';
-                            echo '<button name="hola"><i class="bx bx-message-square-add icon"></i></button>';
-                            echo '</div>';
-
-                            echo '</article>';
-                        }
-                    } else {
-                        echo 'No se encontraron medicamentos similares';
-                    }
-                    ?>
-                </form>
-
-            </article>
             <article class="total" id="total">
                 <hr class="linea">
                 <div class='resultformulas'>
