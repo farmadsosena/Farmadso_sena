@@ -24,6 +24,7 @@ body {
 
 
 #paypal-button-container {
+    
     flex: 1;
     box-sizing: border-box;
     padding: 2em;
@@ -173,12 +174,14 @@ body {
 
 
 #paypal-button-container {
-    flex: 1;
+    display: flex;
+    flex: none;
     box-sizing: border-box;
     padding: 2em;
     overflow: auto;
     height: 100% !important;
-
+    justify-content: center;
+    align-items: center;
 }
 
 

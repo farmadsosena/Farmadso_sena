@@ -2,7 +2,7 @@
 session_start();
 include "../config/Conexion.php";
 
-if (!isset($_SESSION["usu"])) {
+if (!isset($_SESSION["id"])) {
   echo "<script> window.location='login.php'</script>";
 }
 
@@ -188,11 +188,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
         </section>
       </header>
       <?php
-      if ($eps == 2) {
+      if (!$eps == 1) {
       ?>
         <section class="paginas" id="uno">
           <article class="formulas">
             <section class="new-formula">
+              
               <button id="abrirNewVentana"><i class='bx bx-plus-medical'></i>Agregar nueva formula</button>
             </section>
             <div class="opt_config">

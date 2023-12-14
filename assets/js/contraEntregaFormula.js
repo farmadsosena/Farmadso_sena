@@ -11,15 +11,13 @@ function sendForm(event, formcontraentrega, link) {
         .then((data) => {
             console.log(data);
             if (data.status === true) {
-                document.getElementById('modalCargar').style.display = 'flex';
-                
                 form.reset();
-                
-                // Retraso antes de redirigir a la página de inicio
-                setTimeout(() => {
-                    document.getElementById('modalCargar').style.display = 'none' ;
-                    window.location.href = "inicio_tienda.php";
-                }, 3000); 
+                setTimeout(()=>{
+                    document.getElementById('modalCargar').style.display = 'none';
+                },
+                2000)
+                IDCOMPRA = data.idcompra;
+                ConsultarDataFactura(IDCOMPRA);
                 toastr.success(data.message);
             } else if (data.status === false || data.status === 'error') {
                 toastr.error(data.message);

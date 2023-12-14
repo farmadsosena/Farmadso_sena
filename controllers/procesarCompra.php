@@ -232,6 +232,7 @@ if (isset($_SESSION['id'])) {
             $respuesta = array(
                 'success' => true,
                 'idcompra' => $_SESSION['idcompraContraentrega']
+
             );
             
             unset($_SESSION['idcompraContraentrega']);
