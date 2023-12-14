@@ -8,7 +8,6 @@ include("../config/Conexion.php");
 
 $idFormula = $_SESSION["clave"];
 
-echo $idFormula;
 $sql = "SELECT * FROM medicamentosformulas WHERE IdFormula = '$idFormula'";
 $result = $conexion->query($sql);
 ?>
@@ -62,9 +61,6 @@ $result = $conexion->query($sql);
                 <i class="fa-solid fa-chevron-right"></i>
                 <a href="inicio_tienda.php">Tienda Virtual</a>
             </section>
-            <?php
-            echo $_SESSION['id'];
-            ?>
             <section>
                 <h1>Colombia(ESP <i class="fa-solid fa-arrow-down"></i>)</h1>
             </section>
@@ -93,11 +89,11 @@ $result = $conexion->query($sql);
         <section>
             <article class="menu-uno">
                 <section>
-                    <span><img src="../assets/img/logoFarmadso - cambio.png" alt=""></span>
+                    
                 </section>
 
                 <section>
-                    <nav>
+                    <!-- <nav>
                         <ul>
                             <li><a href="">Carrito</i></a></li>
                             <i class="fa-solid fa-chevron-right"></i>
@@ -107,7 +103,7 @@ $result = $conexion->query($sql);
                             <i class="fa-solid fa-chevron-right"></i>
                             <li><a href="">Pagos</a></li>
                         </ul>
-                    </nav>
+                    </nav> -->
                 </section>
 
                 <section>
@@ -119,7 +115,7 @@ $result = $conexion->query($sql);
 
                         <!-- <p>Contenedor buttons</p> -->
                         <section id="paypal-button-container">
-                            
+
                         </section>
 
 
@@ -183,59 +179,119 @@ $result = $conexion->query($sql);
         <section class='container2'>
             <div class="contenedor">
                 <?php
+
                 if ($result->num_rows > 0) {
                     $subtotalfinal = 0;
                     $medicamentos = array();
                     $subtotal = 0;
                     $medicamentosList = array();
 
-                    while ($row = $result->fetch_assoc()) {
-                        $nombreMedicamento = $row["medicamento"];
-                        $datosMedicamento = mysqli_query($conexion, "SELECT * ,(medicamentos.precio * M.CantidadMedi) AS costo , I.stock AS stock FROM medicamentos INNER JOIN medicamentosformulas M ON M.CodigoMedicamento = medicamentos.codigo  
-                        INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento 
-                         WHERE nombre ='$nombreMedicamento'");
-                        $cos = mysqli_fetch_assoc($datosMedicamento);
-                        $_SESSION['stock'] = $cos['stock'];
+                    $row = $result->fetch_assoc();
+                    $nombreFormula = $row['IdFormula'];
 
-                        if (mysqli_num_rows($datosMedicamento) > 0) {
-                            echo '<article>
-                                    <div>
-                                        <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
-                                        <p>' . $cos['CantidadMedi'] . '</p>
-                                    </div>
-                                    <div>
-                                        <p>' . $nombreMedicamento . '</p>
-                                        <p>' . $cos['Concentracion'] . '</p>
-                                    </div>';
-
-                            $estadoMedicamento = $row["EstadoFRM"];
-                            if ($estadoMedicamento !== "Disponible") {
+                    $datosMedicamento = mysqli_query($conexion, "SELECT *, (medicamentos.precio * M.CantidadMedi) AS costo, I.stock AS stock 
+        FROM formulas F
+        INNER JOIN medicamentosformulas M ON M.IdFormula = F.idFormula
+        INNER JOIN medicamentos ON medicamentos.codigo = M.CodigoMedicamento 
+        INNER JOIN inventario I ON I.idmedicamento = medicamentos.idmedicamento 
+        WHERE M.IdFormula = '$nombreFormula'");
+                    if ($datosMedicamento) {
+                        while ($cos = mysqli_fetch_assoc($datosMedicamento)) {
+                            echo '<article>';
+                            if ($cos['stock'] > 0 && $cos['CantidadMedi'] > 0) {
                                 echo '<div>
-                                        <p>' . $row["EstadoFRM"] . '</p>
-                                    </div>';
+                        <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
+                        <p>' . $cos['CantidadMedi'] . '</p>
+                    </div>
+                    <div>
+                        <p>' . $cos['nombre'] . '</p>
+                        <p>' . $cos['Concentracion'] . '</p>
+                    </div>';
+
+                                $estadoMedicamento = $cos["EstadoFRM"];
+                                if ($estadoMedicamento !== "Disponible") {
+                                    echo '<div>
+                            <p>' . $cos["EstadoFRM"] . '</p>
+                        </div>';
+                                } else {
+                                    $id = $cos['idmedicamento'];
+                                    $costo = $cos['CantidadMedi'] * $cos['precio'];
+                                    $subtotal += $costo;
+                                    $precio_medicamento = $cos['precio'];
+                                    $cos['costo'] = $costo;
+                                    $medicamentosList[$id] = $cos['CantidadMedi'];
+                                    $medicamentos[] = $cos;
+                                    echo '<div>
+                            <p>$' . $cos["precio"] . '</p>
+                        </div>';
+                                }
                             } else {
-                                $id = $cos['idmedicamento'];
-                                $costo = $cos['CantidadMedi'] * $cos['precio'];
-                                $subtotal += $costo;
+                                $nombreAgotado = $cos['nombre'];
 
-                                $cos['costo'] = $costo;
-                                $medicamentosList[$id] = $cos['CantidadMedi'];
-                                $medicamentos[] = $cos;
                                 echo '<div>
-                                    <p>$' . $cos["precio"] . '</p>
+                                
+                                <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
+                                <p>' . $cos['CantidadMedi'] . '</p>
+                            </div>
+                            <div>
+                                <p>' . $cos['nombre'] . '</p>
+                                <p>' . $cos['Concentracion'] . '</p>
+                            </div>';
+                                $estadoMedicamento = $cos["EstadoFRM"];
+                                if ($estadoMedicamento !== "Disponible") {
+                                    echo '<div>
+                                    <p>' . $cos["EstadoFRM"] . '</p>
                                 </div>';
+                                }
                             }
-                            echo "</article>";
+                            echo '</article>';
                         }
                     }
+                }
+
+                if (!empty($medicamentos)) {
+                    $_SESSION['medicamentos'] = $medicamentosList;
                 }
                 ?>
                 <!-- border -->
             </div>
-            <!-- <article class="comprar">
-                <input type="text" placeholder="Tarjeta de Regalo o Código de descuento">
-                <button> Usar</button>
-            </article> -->
+            <article class="comprar">
+                <?php
+                
+                $datossimilar = mysqli_query($conexion, "SELECT *, Iv.stock AS stock,Fc.nombre FROM medicamentos
+                INNER JOIN inventario Iv ON Iv.idmedicamento = medicamentos.idmedicamento
+                INNER JOIN farmacias Fc ON Fc.IdFarmacia = medicamentos.idfarmacia
+                WHERE medicamentos.nombre LIKE '%$nombreAgotado%' AND medicamentos.nombre != '$nombreAgotado'");
+                if ($datossimilar) {
+                    if (mysqli_num_rows($datossimilar) > 0) {
+                        while ($cos = mysqli_fetch_assoc($datossimilar)) {
+                            echo '<article>';
+                            echo '<div>
+                                <img src="../uploads/imgProductos/' . $cos["imagenprincipal"] . '" alt="">
+                            </div>
+                            <div>
+                                <p>' . $cos['nombre'] . '</p>
+                                // <p>' . $cos['Concentracion'] . '</p>
+                            </div>';
+                            echo '<div>
+                                <p>$' . $cos["precio"] . '</p>
+                            </div>';
+                            echo '<div>
+                                <p>$' . $cos["farmacia"] . '</p>
+                            </div>';
+                            echo '</article>';
+                        }
+                    } else {
+                        echo 'No se encontraron medicamentos similares para ' . $nombreAgotado;
+                    }
+                }
+                ?>
+                
+                
+
+            </article>
+
+
             <article class="total">
                 <hr class="linea">
                 <div class='resultformulas'>
@@ -252,8 +308,8 @@ $result = $conexion->query($sql);
                     $copago_query = mysqli_query($conexion, "SELECT * FROM usuarios
                             INNER JOIN copagos C ON C.idcopago = usuarios.idcopago WHERE documento ='$usu'");
                     $copagoid = mysqli_fetch_assoc($copago_query);
-                    // copago formula
-                    $precio_medicamento = $cos['precio'];
+                    // copago formulas
+
                     $porcentaje_copago = $copagoid['porcentaje'];
                     $copago = $precio_medicamento * $porcentaje_copago;
                     ?>
@@ -265,7 +321,7 @@ $result = $conexion->query($sql);
                     <article>
                         <?php
                         // Verificamos si la consulta fue exitosa antes de acceder a sus resultados
-                        $adres = mysqli_query($conexion, "SELECT regimen FROM adres WHERE cedula = $usu");
+                        $adres = mysqli_query($conexion, "SELECT regimen,tipo_afiliacion FROM adres WHERE cedula = $usu");
 
                         if ($adres) {
                             $adresR = mysqli_fetch_assoc($adres);
@@ -293,17 +349,26 @@ $result = $conexion->query($sql);
 
                 </div>
                 <div class='resulttotal'>
-                    <p>COP</p>
                     <h4>
                         <?php
+                        if ($adresR && isset($adresR['regimen'])) {
+                            $regimen = $adresR['regimen'];
+                            $afiliacion = $adresR['tipo_afiliacion'];
+                            if ($regimen === 'CONTRIBUTIVO' && $afiliacion === 'BENEFICIARIO' || $regimen === 'CONTRIBUTIVO' &&  $afiliacion === 'COTIZANTE') {
+                                echo '<p>COP</p>' . ($subtotalfinal = $subtotal + $adicion + $copago);
+                            } elseif ($regimen === 'SUBSIDIADO') {
+                                echo '<p>COP</p>' . ($subtotalfinal = $subtotal + $adicion);
+                            }
+                        } else {
+                            echo '<p>COP</p>' . ($subtotalfinal = $subtotal + $adicion);
+                        }
                         // Se asume que $subtotal está definido en otro lugar del código
-                        echo '$' . ($subtotalfinal = $subtotal + $adicion + $copago);
+
                         $response = array(
                             'medicamentos' => $medicamentos,
                             'subtotal' => $subtotalfinal
                         );
 
-                        $_SESSION['medicamentos'] = $medicamentosList;
                         $_SESSION['subtotal'] = $subtotalfinal;
                         // echo json_encode($response);
                         ?>

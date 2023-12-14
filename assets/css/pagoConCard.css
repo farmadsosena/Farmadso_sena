@@ -24,12 +24,13 @@ body {
 
 
 #paypal-button-container {
+    
     flex: 1;
     box-sizing: border-box;
     padding: 2em;
     z-index: 1;
     overflow: auto;
-    height: 100% !important;
+    height: 80% !important;
 }
 #paypal-button-container >img{
     width: 90%;
@@ -173,9 +174,10 @@ body {
 
 
 #paypal-button-container {
-    flex: 1;
+    display: flex;
+    flex: none;
     box-sizing: border-box;
-    padding: 2em;
+    padding: 1em;
     overflow: auto;
     height: 100% !important;
 
