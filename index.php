@@ -76,7 +76,7 @@
             accecibilidad.
           </div>
 
-          <a href="">Verificar mi cuenta en una EPS</a>
+          <!-- <a href="">Verificar mi cuenta en una EPS</a> -->
         </section>
         <section class="img-present"></section>
       </section>

@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "farmadso2");
+$conexion = mysqli_connect("localhost", "root", "", "farmadso");
 
 $sql = "SELECT * FROM compra";
 $resultado = mysqli_query($conexion, $sql);

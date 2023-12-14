@@ -38,6 +38,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $viaMedicamento = $_POST["via" . $i];
             $posologia = $_POST["posologia" . $i];
 
+            if (is_numeric($nombreMedicamento)) {
+                echo "Error: El nombre del medicamento no puede ser solo un número.";
+                exit();
+                // Puedes manejar el error de la manera que desees, como redirigir a una página de error.
+            }
+            
+            // Verificar que $cantidadEstablecida sea solo un número
+            if (!is_numeric($cantidadEstablecida)) {
+                echo "Error: La cantidad establecida debe ser un número.";
+                exit();
+                // Puedes manejar el error de la manera que desees, como redirigir a una página de error.
+            }
+            
+            // Verificar que $viaMedicamento sea solo letras
+            if (!ctype_alpha($viaMedicamento)) {
+                echo "Error: La vía del medicamento debe contener solo letras.";
+                exit();
+                // Puedes manejar el error de la manera que desees, como redirigir a una página de error.
+            }
+
             $sqlMedicamento = "INSERT INTO medicamentosformulas (IdFormula, medicamento, CodigoMedicamento, CantidadMedi, Concentracion, Via, Posologia)
                                 VALUES (?, ?, ?, ?, ?, ?, ?)";
 

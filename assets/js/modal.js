@@ -26,7 +26,7 @@ function abrirG(idCompra) {
         var imagen = data.data.imagen;
 
         // Formatear la fecha
-        var fechaFormateada = new Date(fechafinal + "T00:00:00Z");
+        var fechaFormateada = new Date(fechafinal);
         var dia = fechaFormateada.getDate();
         var mes = fechaFormateada.getMonth() + 1;
         var anio = fechaFormateada.getFullYear();
