@@ -100,13 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="cuerpo-formula">
               <section class="cazz">
                 <h3>Entidad benefactora</h3>
-                <div><?php 
-               $eps= $row['IdEps']; 
-                $InfoM = mysqli_query($conexion, "SELECT * FROM eps WHERE ideps = $eps");
-                $rew = mysqli_fetch_assoc($InfoM);
-                
-                echo $rew["nombre"];
-                ?></div>
+                <div><?php
+                      $eps = $row['IdEps'];
+                      $InfoM = mysqli_query($conexion, "SELECT * FROM eps WHERE ideps = $eps");
+                      $rew = mysqli_fetch_assoc($InfoM);
+
+                      echo $rew["nombre"];
+                      ?></div>
               </section>
 
               <section class="cazz flax">
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <section class="cazz cores">
                 <section class="wat">
                   <h3>Entidad benefactora</h3>
-                  <h4><?php  echo $rew["nit"]; ?></h4>
+                  <h4><?php echo $rew["nit"]; ?></h4>
                 </section>
                 <div>
                   <?php echo $row['descripDiag'] ?>
@@ -158,10 +158,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($detalles) {
                   if (mysqli_num_rows($detalles) > 0) {
                     while ($raw = mysqli_fetch_assoc($detalles)) {
+                      $NombreMedicamento= $raw["medicamento"];
+                      $farmacia= $raw["FarmaciaMED"];
+                      $ConsulMedi = mysqli_query($conexion, "SELECT * FROM medicamentos 
+                      INNER JOIN inventario ON medicamentos.idmedicamento = inventario.idmedicamento
+                      INNER JOIN farmacias ON medicamentos.idfarmacia = farmacias.idfarmacia
+                      WHERE SOUNDEX(medicamentos.nombre) = SOUNDEX('$NombreMedicamento') AND medicamentos.idfarmacia = '$farmacia'");
+
+                      $tar=mysqli_fetch_assoc($ConsulMedi);
                       echo '<div class="cards">
                       <div class="carde">
                         <div class="card__image-holder">
-                          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+                          <img class="card__image" src="../uploads/imgProductos/'.$tar["imagenprincipal"].'" alt="wave" />
                         </div>
                         <div class="card-title">
                           <a href="#" class="toggle-info btn">
@@ -169,19 +177,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <span class="right"></span>
                           </a>
                           <h2>
-                            Card title
-                            <small>Image from unsplash.com</small>
+                            '.$raw["medicamento"].'
                           </h2>
                         </div>
                         <div class="card-flap flap1">
                           <div class="card-description">
-                            This grid is an attempt to make something nice that works on touch devices. Ignoring hover
-                            states when theyre not available etc.
+                            Cantidad medicamento: '.$raw["CantidadMedi"].'<br>
+                            Concentracion: '.$raw["Concentracion"].'<br>
+                            Estado Actual: '.$raw["EstadoFRM"].'<br>
+                            Via: '.$raw["Via"].'<br>
+                            Posologia: '.$raw["Posologia"].'<br>
                           </div>
                           <div class="card-flap flap2">
-                            <div class="card-actions">
-                              <a href="#" class="btn">Read more</a>
-                            </div>
+                            <!-- <div class="card-actions">
+                               <a href="#" class="btn">Read more</a>
+                             </div>-->
                           </div>
                         </div>
                       </div>
@@ -198,57 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
       </section>
     </section>
-
-
-    <script>
-      $(document).ready(function() {
-        var zindex = 10;
-
-        $("div.carde").click(function(e) {
-          e.preventDefault();
-          console.log("HECHO")
-
-          var isShowing = false;
-
-          if ($(this).hasClass("show")) {
-            isShowing = true
-          }
-
-          if ($("div.cards").hasClass("showing")) {
-            // a card is already in view
-            $("div.card.show")
-              .removeClass("show");
-
-            if (isShowing) {
-              // this card was showing - reset the grid
-              $("div.cards")
-                .removeClass("showing");
-            } else {
-              // this card isn't showing - get in with it
-              $(this)
-                .css({
-                  zIndex: zindex
-                })
-                .addClass("show");
-            }
-            zindex++;
-
-          } else {
-            // no cards in view
-            $("div.cards")
-              .addClass("showing");
-            $(this)
-              .css({
-                zIndex: zindex
-              })
-              .addClass("show");
-
-            zindex++;
-          }
-
-        });
-      });
-    </script>
 <?php
   }
 }

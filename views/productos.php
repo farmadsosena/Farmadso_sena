@@ -261,9 +261,7 @@ require_once "../controllers/validacion_usu_tienda.php";
                     <input type="search" id="buscador_medicamento1" class="buscador_medicamentos" placeholder="Nombre medicamento">
                     <i class="fa-solid fa-magnifying-glass" onclick="activar_buscador_responsive()"></i>
                 </div>
-                <?php
-                    echo $_SESSION["id"];
-                    ?>
+              
             </section>
             <div id="abrirCarrito" class="addCarrito abrirCarrito">
                 <i class='bx bx-cart-alt'></i>

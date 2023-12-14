@@ -1770,14 +1770,14 @@ a.btn:active {
   transition: all 0.025s 0s ease-out;
 }
 
-div.cards {
+.cards {
   display: flex;
   flex-wrap: wrap;
   max-width: 960px;
   text-align: center;
 }
 
-div.carde {
+.carde {
   background: var(--white);
   margin: 8px;
   max-width: 230px;
@@ -1799,7 +1799,7 @@ div.carde {
     padding-bottom: 75%;
   }
 
-  div.card-title {
+  .card-title {
     background:var(--white);
     padding: 6px 15px 10px;
     position: relative;
@@ -1851,19 +1851,19 @@ div.carde {
     }
   }
 
-  div.card-description {
+  .card-description {
     padding: 0 15px 10px;
     position: relative;
     font-size: 14px;
   }
 
-  div.card-actions {
+  .card-actions {
     box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.075);
     padding: 10px 15px 20px;
     text-align: center;
   }
 
-  div.card-flap {
+  .card-flap {
     background: darken(var(--white), 15);
     position: absolute;
     width: 100%;
@@ -1871,33 +1871,33 @@ div.carde {
     transform: rotateX(-90deg);
   }
 
-  div.flap1 {
+  .flap1 {
     transition: all 0.3s 0.3s ease-out;
     z-index: -1;
   }
 
-  div.flap2 {
+  .flap2 {
     transition: all 0.3s 0s ease-out;
     z-index: -2;
   }
 }
 
-div.cards.showing {
-  div.card {
+ .cards.showing {
+  .card {
     cursor: pointer;
     opacity: 0.6;
     transform: scale(0.88);
   }
 }
 
-.no-touch div.cards.showing {
-  div.card:hover {
+.no-touch .cards.showing {
+  .card:hover {
     opacity: 0.94;
     transform: scale(0.92);
   }
 }
 
-div.carde.show {
+.carde.show {
   opacity: 1 !important;
   transform: scale(1) !important;
 
@@ -1919,16 +1919,16 @@ div.carde.show {
     }
   }
 
-  div.card-flap {
+  .card-flap {
     background: var(--white);
     transform: rotateX(0deg);
   }
 
-  div.flap1 {
+  .flap1 {
     transition: all 0.3s 0s ease-out;
   }
 
-  div.flap2 {
+  .flap2 {
     transition: all 0.3s 0.2s ease-out;
   }
 }

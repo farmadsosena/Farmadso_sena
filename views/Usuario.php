@@ -96,12 +96,12 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
               </div>
             </div>
 
-            <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
+            <!-- <div class="toggle-dic" id="trash" onclick="mostrarContenedoresMenu('tres', this)">
               <div>
                 <i class='bx bx-trash-alt'></i>
                 Papelera
               </div>
-            </div>
+            </div> -->
 
             <a href="#" class="toggle-dic" onclick="confirmRedirect()">
               <div>
@@ -164,17 +164,17 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
                   <i class="bx bx-car"></i> Domiciliario
                 </div>';
 
-                $_SESSION["domi"]= $id;
+                  $_SESSION["domi"] = $id;
                 }
                 if (existe_en_tabla('farmacias', $id, 'EstadoSolicitud', 2)) {
                   echo '<div class="option">
                   <i class="bx bxs-business"></i> Farmaceutico
                 </div>';
-                $con = mysqli_query($conexion, "SELECT * FROM farmacias WHERE idusuario = '$id'");
-                if($con){
-                  $fila_farm = mysqli_fetch_assoc($con);
-                  $_SESSION["farm"] = $fila_farm["IdFarmacia"];
-                }
+                  $con = mysqli_query($conexion, "SELECT * FROM farmacias WHERE idusuario = '$id'");
+                  if ($con) {
+                    $fila_farm = mysqli_fetch_assoc($con);
+                    $_SESSION["farm"] = $fila_farm["IdFarmacia"];
+                  }
                 }
                 ?>
               </div>
@@ -261,6 +261,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             </div>
 
             <div class="formula-info">
+              <!-- el archivo donde llegan todos estos datos es controllers/FOmrulasViews.php -->
             </div>
             <div id="mensajeNoResultados" class="imgBusqueda">
               <img src="../assets/img/notas.png" alt="">
@@ -298,51 +299,51 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
           <script>
             function cargarDatos() {
-                $.ajax({
-                    url: '../controllers/compras.php',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#tabla-body').empty();
+              $.ajax({
+                url: '../controllers/compras.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  $('#tabla-body').empty();
 
-                        if (data.length === 1 && data[0].mensaje === 'Sin compras en el sistema') {
-                            $('#tabla-body').html('<tr><td colspan="5">No tienes compras realizadas</td></tr>');
-                        } else {
-                            data.forEach(function(item) {
-                                var fecha = new Date(item.fecha);
-                                var opcionesFecha = {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric'
-                                };
-                                var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+                  if (data.length === 1 && data[0].mensaje === 'Sin compras en el sistema') {
+                    $('#tabla-body').html('<tr><td colspan="5">No tienes compras realizadas</td></tr>');
+                  } else {
+                    data.forEach(function(item) {
+                      var fecha = new Date(item.fecha);
+                      var opcionesFecha = {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      };
+                      var fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
 
-                                var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
+                      var totalFormateado = new Intl.NumberFormat('es-ES').format(item.total);
 
-                                var row = `<tr>
+                      var row = `<tr>
                                     <td class="fecha">${fechaFormateada}</td>
                                     <td class="estado">${item.estado}</td>
                                     <td class="email">${item.correo_usuario}</td>
                                     <td class="total">${totalFormateado}</td> 
                                     <td class="accion"><button class="verdetalle" onclick="mostrarDetalleCompra(${item.idcompra})">Ver Más</button></td>
                                 </tr>`;
-                                $('#tabla-body').append(row);
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('Error al cargar los datos:');
-                        console.log(xhr.responseText);
-                        console.log(status);
-                        console.log(error);
-                    }
-                });
+                      $('#tabla-body').append(row);
+                    });
+                  }
+                },
+                error: function(xhr, status, error) {
+                  console.log('Error al cargar los datos:');
+                  console.log(xhr.responseText);
+                  console.log(status);
+                  console.log(error);
+                }
+              });
             }
 
             $(document).ready(function() {
-                cargarDatos();
+              cargarDatos();
             });
-        </script>
+          </script>
 
 
           <!-- Ventana modal -->
@@ -373,39 +374,39 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
 
           <script>
             function mostrarDetalleCompra(idcompra) {
-                $.ajax({
-                    url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#detallecompra').empty();
+              $.ajax({
+                url: '../controllers/DetallesCompra.php?idcompra=' + idcompra,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                  $('#detallecompra').empty();
 
-                        if (data.length === 1 && data[0].mensaje === 'No se encontraron detalles de compra para el ID proporcionado.') {
-                            $('#detallecompra').html('<tr><td colspan="3">Esta compra no tiene detalles</td></tr>');
-                        } else {
-                            data.forEach(function(detalle) {
-                                var row = `<tr>
+                  if (data.length === 1 && data[0].mensaje === 'No se encontraron detalles de compra para el ID proporcionado.') {
+                    $('#detallecompra').html('<tr><td colspan="3">Esta compra no tiene detalles</td></tr>');
+                  } else {
+                    data.forEach(function(detalle) {
+                      var row = `<tr>
                                     <td>${detalle.nombre_medicamento}</td>
                                     <td>${detalle.cantidad}</td>    
                                     <td>${detalle.preciototal}</td>              
                                 </tr>`;
-                                $('#detallecompra').append(row);
-                            });
-                        }
+                      $('#detallecompra').append(row);
+                    });
+                  }
 
-                        $('#modalDetalle').show();
-                    },
-                    error: function(error) {
-                        console.log('Error al cargar los detalles de la compra: ' + error);
-                    }
-                });
+                  $('#modalDetalle').show();
+                },
+                error: function(error) {
+                  console.log('Error al cargar los detalles de la compra: ' + error);
+                }
+              });
             }
-        </script>
+          </script>
 
         </div>
       </section>
 
-      <section class="paginas" id="tres">
+      <!-- <section class="paginas" id="tres">
         <div class="icon"><i class='bx bx-left-arrow-alt'></i></div>
         <div class="bt-form"><button>
             <i class='bx bxs-leaf'></i>
@@ -419,7 +420,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             ?>
           </article>
         </div>
-      </section>
+      </section> -->
 
       <section class="paginas" id="cuatro">
         <div class="column" id="opciones">
@@ -721,7 +722,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
           <div class="mauso">
             <p>Diagnostico</p>
             <div>Escriba en este espacio el codigo del diagnostico que aparece en su formula</div>
-            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="">
+            <input type="text" name="" id="CodigoDiagnostico" placeholder="Numero del diagnostico" class="mauso-texto" autocomplete="off" value="" required>
             <input type="hidden" name="diagnostico" id="CodeDiag" class="mauso-texto" autocomplete="off" value="">
             <section id="resultados" class="mauso-resultados scrall">
               <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 1 - 37)-->
@@ -735,7 +736,7 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
             <section class="mauso-boom">
               <div class="mauso">
                 <p>Medico responsable</p>
-                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto">
+                <input type="text" name="" id="MedicoResponsable" placeholder="Numero de tarjeta profesional" class="mauso-texto" required>
                 <input type="hidden" name="medico" id="MedicoFinal" class="mauso-texto" autocomplete="off" value="">
                 <section id="medicosResult" class="mauso-resultados scrall">
                   <!-- Aparecen dinamicamente los resultados de las busqueda del diagnostico AgregarMedicamentoVenatana.js(Linea 41 - 76) -->
@@ -771,12 +772,39 @@ $rr = mysqli_fetch_assoc($consulta); // El usuario está "iniciado sesión" manu
   <!-- ANIMACIION DE CARGA GENERAL -->
   <section class="tamaño" id="CargaDiseño">
     <section class="deco">
-    <div class="spinner"></div>
+      <div class="spinner"></div>
     </section>
     <section class="daco">
       <p>Cargando...</p>
     </section>
   </section>
+
+  <script>
+    $(document).ready(function() {
+      var zindex = 10;
+
+      // Utiliza un delegado de eventos para manejar clics en elementos futuros
+      $(document).on("click", ".carde", function(e) {
+        e.preventDefault();
+
+        var isShowing = $(this).hasClass("show");
+
+        if ($(".cards").hasClass("showing")) {
+          // Si ya hay una tarjeta visible, ocúltala
+          $(".card .show").removeClass("show");
+          $(".cards").removeClass("showing");
+        } else {
+          // No hay tarjetas visibles, muestra esta tarjeta
+          $(this).css({
+            zIndex: zindex
+          }).toggleClass("show");
+          $(".cards").addClass("showing");
+        }
+
+        zindex++;
+      });
+    });
+  </script>
 
   <script src="../assets/js/CambiarMenu.js"></script>
   <script src="../assets/js/usuarioJS.js"></script>

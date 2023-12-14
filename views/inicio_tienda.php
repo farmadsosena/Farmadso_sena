@@ -362,7 +362,7 @@ require_once "../controllers/validacion_usu_tienda.php";
     </section>
     <section class="content-main">
       <aside>
-        <h3>!Ahora no tienes que hacer largas filas compra medicamentos desde Farmadso!</h3>
+        <h3>!Ahora no tienes que hacer largas filas, compra medicamentos desde Farmadso!</h3>
         <p>Farmadso te brinda la capacidad de que lleguen medicamentos a la puerta de tu casa, Compralos a tu farmacia
           de eps o para un mejor precio desde otras farmacias encontradas en FARMADSO.</p>
         <button type="button" class="visitP" id="crearProductos">

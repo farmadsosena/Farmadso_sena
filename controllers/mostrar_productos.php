@@ -214,7 +214,13 @@ if ($result->num_rows > 0) {
                 </filter>
             </defs>
         </svg>
-        <h1>No exiten productos</h1>
+<?php
+    if(isset($_GET['ZjAPa'])){
+        echo "<h1>No existen productos para esta categoria</h1>";
+        return;
+    }
+?>
+        <h1>No existen productos</h1>
     </div>
 <?php
 }

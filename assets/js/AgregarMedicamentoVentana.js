@@ -329,29 +329,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
               }
 
-              $.ajax({
-                type: "POST",
-                url: "../controllers/nombreMedicamentos.php",
-                data: { query: query },
-                success: function (data) {
-                  // console.log(ventanaMedicamentos);
-                  ventanaMedicamentos.classList.add("agg");
-                  $(ventanaMedicamentos).html(data);
+              // $.ajax({
+              //   type: "POST",
+              //   url: "../controllers/nombreMedicamentos.php",
+              //   data: { query: query },
+              //   success: function (data) {
+              //     // console.log(ventanaMedicamentos);
+              //     ventanaMedicamentos.classList.add("agg");
+              //     $(ventanaMedicamentos).html(data);
 
-                  //Al dar click en el contenedor de resultados, el valor pasa al contenedor ""  para enviar a la base de datos
-                  $(".mauso-diagnee").on("click", function () {
-                    var valor = $(this).data("codigo");
-                    var nombre = $(this).data("nombre");
-                    var id = $(this).data("ids");
+              //     //Al dar click en el contenedor de resultados, el valor pasa al contenedor ""  para enviar a la base de datos
+              //     $(".mauso-diagnee").on("click", function () {
+              //       var valor = $(this).data("codigo");
+              //       var nombre = $(this).data("nombre");
+              //       var id = $(this).data("ids");
 
-                    $("#CodeDiag").val(id);
-                    $("#CodigoDiagnostico").val(valor + " //  " + nombre);
-                    document
-                      .getElementById("resultados")
-                      .classList.remove("agg");
-                  });
-                },
-              });
+              //       $("#CodeDiag").val(id);
+              //       $("#CodigoDiagnostico").val(valor + " //  " + nombre);
+              //       document
+              //         .getElementById("resultados")
+              //         .classList.remove("agg");
+              //     });
+              //   },
+              // });
             });
           });
         }

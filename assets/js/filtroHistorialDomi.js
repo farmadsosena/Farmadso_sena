@@ -87,7 +87,7 @@ valorFechaFinal.addEventListener("input", function () {
     var facturas = document.querySelectorAll(".c");
 
     facturas.forEach((factura) => {
-        var fecha = factura.querySelector(".FechaDate>p");
+        var fecha = factura.querySelector(".FechaDate>h3");
         console.log("Contenido de FechaDate>p:", fecha.textContent);
 
         var fechaString = fecha.textContent.trim().replace("Fecha:", ""); // Elimina espacios y la parte "Fecha:"
