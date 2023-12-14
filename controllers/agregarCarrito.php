@@ -113,16 +113,22 @@ function updateCart($idmedicamento, $cantidadProducto, $amount)
     if (isset($idUser['idinvitado'])) {
 
         //  Actualizar el carrito si es invitado / primero consultamos si existe ese producto 
-        $queryCart = $conexion->query("SELECT   idmedicamento, cantidadcarrito,precio FROM carrito 
-        WHERE idmedicamento  = '$idmedicamento' and idinvitado = '$idUserBd'
+        $queryCart = $conexion->query("SELECT   carrito.idmedicamento, carrito.cantidadcarrito, carrito.precio, inventario.stock FROM carrito 
+        INNER JOIN inventario ON carrito.idmedicamento = inventario.idmedicamento
+        WHERE carrito.idmedicamento  = '$idmedicamento' and carrito.idinvitado = '$idUserBd'
         ");
         if ($queryCart->num_rows > 0) {
 
             $cartArticle = $queryCart->fetch_assoc();
             $amountBd = floatval($cartArticle['precio']);
             $cantidadBd = intval($cartArticle['cantidadcarrito']);
+            $stock_inventario = $cartArticle['stock'];
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidadProducto;
+            if($newCantidad > $stock_inventario){
+                echo json_encode('nostock');
+                exit();
+            }
             $conexion->query("UPDATE carrito SET cantidadcarrito = '$newCantidad', precio = '$newAmount' 
             WHERE  idmedicamento = '$idmedicamento'  and idinvitado = '$idUserBd'
             ");
@@ -141,8 +147,13 @@ function updateCart($idmedicamento, $cantidadProducto, $amount)
             $cartArticle = $queryCart->fetch_assoc();
             $amountBd = floatval($cartArticle['precio']);
             $cantidadBd = intval($cartArticle['cantidadcarrito']);
+            $stock_inventario = $cartArticle['stock'];
             $newAmount = $amount + $amountBd;
             $newCantidad = $cantidadBd + $cantidadProducto;
+            if($newCantidad > $stock_inventario){
+                echo json_encode('nostock');
+                exit();
+            }
             $conexion->query("UPDATE  carrito  SET cantidadcarrito ='$newCantidad', precio = '$newAmount' 
             WHERE  idmedicamento = '$idmedicamento'  and idusuario = '$idUserBd'
             ");

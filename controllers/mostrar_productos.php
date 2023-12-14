@@ -84,7 +84,7 @@ if ($result->num_rows > 0) {
         if( $fila["stock"] <= 0){
             echo "<p class='product-agotado'>Agotado</p>";
         }
-        echo "<input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='" . $fila["stock"] . "' value='1'>";
+        ?> <input type='number' class='card-cantidad' name='cantidadcarrito' min='1' max='<?php echo ($fila["stock"] <= 0) ? 1 : $fila["stock"]; ?>' value='1'> <?php
         echo "</div>";
         echo "<button class='comprar-tarje-comp'>Comprar</button>";
         // echo "<input type='submit' name='comprar' value='Comprar' class='comprar-tarje-comp'>";

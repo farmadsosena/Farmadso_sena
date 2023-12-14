@@ -108,7 +108,6 @@
 
   .form-da {
     width: 100%;
-    overflow: auto;
     height: 97%;
     padding: 10px;
     transition: all 0.3s ease;
@@ -235,4 +234,26 @@
 
   .cont_agg_oferta{
     display: flex;
+  }
+
+  .valordescuento{
+    width: 46px !important;
+    height: 33px !important;
+    border-radius: 11px;
+  }
+
+  .inertar_ofertas{
+    border: none;
+    background-color: #54b435;
+    cursor: pointer;
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .cont_btn_io{
+    justify-content: flex-end;
   }

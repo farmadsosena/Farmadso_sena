@@ -390,6 +390,7 @@
         <script src="../assets/js/formularioEditar.js"></script>
         <script src="../assets/js/generarInforme.js"></script>
         <script src="../assets/js/abrirmenu.js"></script>
+        <script src="../assets/js/ofertas_farmacia.js"></script>
     </body>
 
     </html>
