@@ -465,6 +465,7 @@ input[type="text"] {
     margin-right: 0; /* Eliminar el margen derecho */
   }
 
+
   .contenedor-pestañas .opc {
     height: auto; /* Ajustar la altura automáticamente */
     margin-bottom: 5px; /* Espaciado entre pestañas */
@@ -488,8 +489,10 @@ input[type="text"] {
   }
 
   .formdatos {
+    width: 100%;
     flex-direction: column; /* Cambiar a diseño de columna */
-    align-items: center; /* Centrar elementos */
+    align-items: center; 
+    justify-content: center;/* Centrar elementos */
   }
 
   .formdatos .left, .formdatos .right {
