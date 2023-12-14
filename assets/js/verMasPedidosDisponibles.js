@@ -23,9 +23,8 @@ function abrirNoti(idCompra) {
 
         var direccionesMedicamentos = data.data.direccionesMedicamentos;
 
-        // Formatear la fecha
-        // Formatear la fecha
-        var fechaFormateada = new Date(fechaCompra + "T00:00:00Z");
+        // Parsea la fecha antes de formatearla
+        var fechaFormateada = new Date(Date.parse(fechaCompra));
         fechaFormateada.setMinutes(
           fechaFormateada.getMinutes() + fechaFormateada.getTimezoneOffset()
         );

@@ -1,9 +1,7 @@
 <?php
 require_once('../config/Conexion.php');
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     // Verificar si el ID de compra está presente en la solicitud
     if (!isset($_POST['idCompra'])) {
         $response = array('status' => 'error', 'message' => 'ID de compra no proporcionado');
@@ -46,6 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $datospaciente = $respuesta->fetch_assoc();
         $nombrePaciente = $datospaciente["nombre"];
         $apellidoPaciente = $datospaciente["apellido"];
+    }else{
+        $consultapacientecompra = "SELECT * FROM compra WHERE idcompra = $idCompra";
+        $resultadoPacientecompra = mysqli_query($conexion, $consultapacientecompra);
+        $datosUsuarioCompra = $resultadoPacientecompra->fetch_assoc();
+        $nombrePaciente = $datosUsuarioCompra["nombre"];
+        $apellidoPaciente = $datosUsuarioCompra["apellido"];
     }
 
     // consulta para la tabla detalles de compra
@@ -104,10 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Formatear la fecha como cadena en formato ISO 8601
+    $fechaFormateada = date("c", strtotime($fechaCompra));
+
     // Crear un array con los datos que deseas enviar
     $dataToSend = array(
         'idCompra' => $idCompra,
-        'fechaCompra' => $fechaCompra,
+        'fechaCompra' => $fechaFormateada,
         'nombrePaciente' => $nombrePaciente,
         'apellidoPaciente' => $apellidoPaciente,
         'direccionPaciente' => $direccionPaciente,

@@ -53,6 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombrePaciente = $datospaciente["nombre"];
         $apellidoPaciente = $datospaciente["apellido"];
     }
+    else{
+        $consultapaciente = "SELECT * FROM compra WHERE idcompra = $idCompra";
+        $respuesta = mysqli_query($conexion, $consultapaciente);
+        $datospaciente = $respuesta->fetch_assoc();
+        $nombrePaciente = $datospaciente["nombre"];
+        $apellidoPaciente = $datospaciente["apellido"];
+    }
 
     // Consulta para obtener la imagen de la tabla reporteestadofinal
     $consultaImagen = "SELECT imagen FROM reporteestadofinal WHERE idcompra = $idCompra";

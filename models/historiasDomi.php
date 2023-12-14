@@ -47,22 +47,9 @@ if (!$conexion) {
                         }
 
                         $datosCompra = $resultadocompra->fetch_assoc();
-                        $idpaciente = $datosCompra["idUsuario"];
                         $direccionCliente = $datosCompra["direccion"];
 
-                        if ($idpaciente) {
-                            $consultaUsuarios = "SELECT * FROM usuarios WHERE idusuario = $idpaciente";
-                            $resultadoUsuario = mysqli_query($conexion, $consultaUsuarios);
-
-                            // Verificar si la consulta de usuarios fue exitosa
-                            if (!$resultadoUsuario) {
-                                die("Error en la consulta de usuarios: " . mysqli_error($conexion));
-                            }
-
-                            $datosUsuario = $resultadoUsuario->fetch_assoc();
-                            $nombreUsuario = $datosUsuario["nombre"];
-                            $apellidoUsuario = $datosUsuario["apellido"];
-
+                      
 
 
 
@@ -100,7 +87,7 @@ if (!$conexion) {
                                   </div>';
 
 
-                        }
+                        
                     }
                 }
                   

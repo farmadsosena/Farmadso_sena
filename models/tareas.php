@@ -26,11 +26,21 @@ if ($idDomiciliario) {
         $resultadocompra = mysqli_query($conexion, $consultaCompras);
         $datosCompra = $resultadocompra->fetch_assoc();
         $direccionCompra = $datosCompra["direccion"];
+        $usuario = $datosCompra["idUsuario"];
 
-        // Consulta para obtener información del paciente
-        $consultaPaciente = "SELECT * FROM usuarios WHERE idusuario = " . $datosCompra["idUsuario"];
-        $resultadoPaciente = mysqli_query($conexion, $consultaPaciente);
-        $datosPaciente = $resultadoPaciente->fetch_assoc();
+        if($usuario){
+      // Consulta para obtener información del paciente
+      $consultaPaciente = "SELECT * FROM usuarios WHERE idusuario = $usuario";
+      $resultadoPaciente = mysqli_query($conexion, $consultaPaciente);
+      $datosPaciente = $resultadoPaciente->fetch_assoc();
+
+        }else{
+            $consultapacientecompra = "SELECT * FROM compra WHERE idcompra = $idCompra";
+            $resultadoPaciente = mysqli_query($conexion, $consultapacientecompra);
+            $datosPaciente = $resultadoPaciente->fetch_assoc();
+    
+        }
+  
 
         // Resto del código para mostrar la información
         echo ' <section class="pendingTask">';

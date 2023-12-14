@@ -26,7 +26,8 @@ function abrirG(idCompra) {
         var imagen = data.data.imagen;
 
         // Formatear la fecha
-        var fechaFormateada = new Date(fechafinal + "T00:00:00Z");
+        var fechaFormateada = new Date(fechafinal);
+
         var dia = fechaFormateada.getDate();
         var mes = fechaFormateada.getMonth() + 1;
         var anio = fechaFormateada.getFullYear();
@@ -37,13 +38,15 @@ function abrirG(idCompra) {
 
         var fechafinal = dia + "/" + mes + "/" + anio;
 
-        document.querySelector("#numFact").textContent = "000"+idCompra;
+        document.querySelector("#numFact").textContent = "000" + idCompra;
         document.querySelector("#FechFact").textContent = fechafinal;
         document.querySelector("#DIREFact").textContent = direccionCliente;
         document.querySelector("#DpFact").textContent = direccion1;
         document.querySelector("#dtFact").textContent = direccion2;
-        document.querySelector("#ImgFact").src = "../assets/EvidenciaCompra/" + imagen;
-        document.querySelector("#ClienteFact").textContent = nombreUsuario + " " + apellidoPaciente;
+        document.querySelector("#ImgFact").src =
+          "../assets/EvidenciaCompra/" + imagen;
+        document.querySelector("#ClienteFact").textContent =
+          nombreUsuario + " " + apellidoPaciente;
 
         secondModal.style.display = "flex";
       } else {
