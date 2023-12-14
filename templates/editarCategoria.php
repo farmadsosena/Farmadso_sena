@@ -20,9 +20,7 @@
                 <input type="file"  name="imgCategory" accept="image/*" id="imagen" />
             </section>
 
-
-            <input type="submit" value="Actualizar Categoria" class="boton_aggcategoria">
-
+            <button type="submit" name="enviar" class="boton_aggcategoria" >Actualizar Categoria</button>
         </form>
 
 </div>

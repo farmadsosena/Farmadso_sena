@@ -137,7 +137,7 @@
                             //             <i class="bx bxs-business"></i> Farmaceutico
                             //         </div>';
                             // }
-                            if (existe_en_tabla('usuarios', $id, 'estado', '1')) {
+                            if (existe_en_tabla('usuarios', $id, 'estado', '2')) {
                                 echo '<div class="option">
                                         <i class="bx bx-user-circle"></i> Cuenta de usuario
                                     </div>';
@@ -261,7 +261,7 @@
                                     <input type="file" name="imgCategory" accept="image/*" />
                                 </section>
 
-                                <input type="submit" id="boton" name="enviarE" value="AgregarCategoria" class="boton_aggcategoria">
+                                <button type="submit" name="enviarE" class="boton_aggcategoria" >Agregar Categoría</button>
                             
                             </form>
 
@@ -282,7 +282,7 @@
                                     <input type="file" name="imgCategory" accept="image/*" />
                                 </section>
 
-                                <input type="submit" id="boton" name="enviarE" value="Editar" class="boton_aggcategoria">
+                                  <button type="submit" name="enviarE"  class="boton_aggcategoria">Actualizar Categoria</button>
                             
                             </form>
 

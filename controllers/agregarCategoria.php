@@ -6,16 +6,7 @@ session_start();
 
 // ESO DEBE IR DENTRO DE EL CUMPLIMIENTO TOTAL DE LA CONSULTA (guarda backlog de cambio realizado o agregamiento jijija de categoria miking)
 
-        //    $ip = $log::getIp();
-        // $type = $log::typeDispositive();
-        // $info = array(
-        //     'nivel' => 'SUCCESS',   
-        //     'mensaje' => "Se ha registrado un nuevo medicamento con el nombre  " . $medicine['nombre']  . " ",
-        //     'ip' => $ip,
-        //     'id_usuario' => $_SESSION['id'],
-        //     'tipo' => $type 
-        // );
-        // $resultt = $log->insert($info);
+  
 
       
         // Verificar si se ha enviado el formulario
@@ -58,7 +49,20 @@ session_start();
             
                     // Si todo se realiza correctamente, puedes redirigir a una página de éxito
                     header('Content-Type: application/json');
+
                     if ($ejecuta) {
+                        
+                        $ip = $log::getIp();
+                        $type = $log::typeDispositive();
+                        $info = array(
+                            'nivel' => 'SUCCESS',   
+                            'mensaje' => "Se ha registrado una nueva categoria con el nombre ",
+                            'ip' => $ip,
+                            'id_usuario' => $_SESSION['id'],
+                            'tipo' => $type 
+                        );
+                        $resultt = $log->insert($info);
+
                         echo json_encode(['success' => $ejecuta]);
                         exit();
                     } else {

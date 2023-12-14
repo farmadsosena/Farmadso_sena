@@ -62,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $resultadoInsertarCantidadDirecciones = mysqli_query($conexion, $consultaInsertarCantidadDirecciones);
 
                     if ($resultadoInsertarCantidadDirecciones) {
+
+                        $_SESSION['nuevoEstado'] = $nuevoEstado;
                         // echo "Se insertó en comprasmasivas correctamente";
                     } else {
                         echo "Error al insertar en comprasmasivas: " . mysqli_error($conexion);
