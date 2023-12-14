@@ -16,7 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST["correof"];
     $epsregustrado = $_POST["epsRegistradof"];
     $id_Epsf = $_POST["idEpsf"];
-    $estado = "Pendiente";
+    $estado = 1;
+
+
+    //Consultar si hay mas d eun registro del mismo usuario
+    $consulta= mysqli_query($conexion,"SELECT * FROM farmacias WHERE idusuario= '$idusuario' and EstadoSolicitud='1'");
+
+    if(mysqli_num_rows($consulta) > 0){
+        echo "<script> 
+        alert('Usted ya hizo una solicitud para pedir ser una farmacia, por tanto tiene que esperar la respuesta por su correo')
+        window.location= '../views/Usuario.php'
+        </script>";
+        exit; // Detener la ejecución del código si hay un error al guardar la imagen
+    }
 
     if($epsregustrado == "no"){
         $id_Epsf =1;
@@ -44,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>
             alert('El código postal y el teléfono no pueden ser números negativos.');
             window.history.back();
-        </script>";
+        </>";
     } elseif (!filter_var($_POST['correof'], FILTER_VALIDATE_EMAIL)) {
         echo "<script>
             alert('El correo no es válido. Por favor, ingrese un correo válido.');

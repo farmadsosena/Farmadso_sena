@@ -10,12 +10,17 @@ if (!isset($_SESSION["usu"])) {
 if (!isset($_SESSION["domi"])) {
   echo "<script> window.location='login.php'</script>";
 }
-
-// if (!isset($_SESSION["farm"])) {
-//   echo "<script> window.location='login.php'</script>";
-// }
-
 $id = $_SESSION["id"];
+
+$estado=mysqli_query($conexion, "SELECT * FROM domiciliario WHERE idusuario= '$id'");
+$raw= mysqli_fetch_assoc($estado);
+
+$estado= $raw["EstadoAcept"];
+
+ if ($estado == "3") {
+   echo "<script> window.location='SinPermiso.html'</script>";
+ }
+
 
 ?>
 <!DOCTYPE html>

@@ -41,3 +41,33 @@ $(document).ready(function () {
     });
 });
 
+
+
+$(document).ready(function() {
+    // Evento de cambio en el cuadro de búsqueda
+    $('#cassos').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase(); // Obtener el término de búsqueda en minúsculas
+        var resultadosEncontrados = false;
+        var estanco= document.getElementById('mensajeNoResultados');
+        // Iterar sobre las tarjetas de fórmulas
+
+        $('#LLEGARFR .card').each(function() {
+            var informacion = $(this).data('informacion').toLowerCase();
+            
+
+            // Mostrar u ocultar según si el término de búsqueda está presente en la información
+            if (informacion.includes(searchTerm)) {
+                $(this).show();
+                resultadosEncontrados= true;
+            } else {
+                $(this).hide();
+            }
+        });
+
+         if (resultadosEncontrados) {
+            estanco.classList.remove('flex')
+            } else {
+            estanco.classList.add('flex')
+            }
+    });
+});
